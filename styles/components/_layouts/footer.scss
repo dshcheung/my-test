@@ -1,0 +1,45 @@
+#layouts-footer {
+  .links {
+    height: inherit;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: space-around;
+
+    .links-section {
+      padding: 15px;
+      width: inherit;
+      max-width: 250px;
+      margin: 0 auto;
+      flex-grow: 1;
+    }
+  }
+
+  hr {
+    margin: 0;
+  }
+
+  .others {
+    padding: 15px;
+    .copy-right {
+      float: left;
+    }
+
+    .social {
+      float: right;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        display: inline-block;
+        padding: 0 5px;
+
+        i {
+          color: white;
+        }
+      }
+    }
+  }
+}

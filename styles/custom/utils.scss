@@ -1,0 +1,17 @@
+// auto add margin top when multi row is used
+.row + .row {
+  margin-top: 15px;
+}
+
+hr {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.margin-0 {
+  margin: 0;
+}
+
+.padding-15 {
+  padding: 15px;
+}

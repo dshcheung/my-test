@@ -1,0 +1,75 @@
+#layouts-navbar {
+  height: 100px;
+  background-color: white;
+  border-bottom: 2px solid rgb(237,238,238);
+  margin-bottom: 0;
+
+  >div {
+    height: 100%;
+
+    .navbar-header {
+      height: 100%;
+
+      .navbar-brand {
+        height: 100%;
+        img {
+          height: 100%;
+        }
+      }
+
+      .navbar-toggle {
+        margin-top: 33px;
+        margin-bottom: 33px;
+      }
+    }
+
+    .navbar-collapse {
+      background-color: white;
+
+      .navbar-nav {
+        height: 98px;
+
+        li > a {
+          padding-top: 38.5px;
+          padding-bottom: 38.5px;
+
+          >span, >button {
+            font-size: large;
+          }
+        }
+
+        li.li-btn > a {
+          padding-top: 30.5px;
+          padding-bottom: 30.5px;
+        }
+      }
+
+      .navbar-nav:last-child {
+        float: right;
+      }
+    }
+
+    .navbar-collapse.in, .navbar-collapse.collapsing {
+      width: 100vw;
+      border-bottom: 2px solid rgb(237,238,238);
+
+      .navbar-nav {
+        height: inherit;
+
+        li > a {
+          padding-top: 10px;
+          padding-bottom: 10px;
+          text-align: center;
+
+          >span, >button {
+            font-size: inherit;
+          }
+        }
+      }
+
+      .navbar-nav:last-child {
+        float: none;
+      }
+    }
+  }
+}

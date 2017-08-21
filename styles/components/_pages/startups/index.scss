@@ -1,0 +1,75 @@
+#pages-startups-index {
+  section {
+    text-align: center;
+    margin-bottom: 15px;
+
+    .section-header {
+      >div {
+        padding: 15px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .startup-list {
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+
+    .startup-list {
+      .startup-card {
+        padding: 15px;
+
+        .border {
+          height: 100%;
+          border: 2px solid rgb(237,238,238);
+          display: flex;
+          flex-flow: column nowrap;
+
+          >div {
+            flex: 0 1 auto;
+          }
+
+          .card-header {
+            padding: 5px;
+          }
+
+          .card-banner {
+            padding: 0;
+
+            img {
+              width: 100%;
+              height: auto;
+            }
+          }
+
+          .card-info {
+            flex: 1 auto;
+            padding: 15px;
+
+            .about {
+              margin-bottom: 111px;
+              ul {
+                padding-left: 20px;
+                margin: 15px 0 0;
+              }
+            }
+
+            .stats {
+              align-self: flex-end;
+              position: absolute;
+              left: 15px;
+              right: 15px;
+              bottom: 15px;
+
+              .progress {
+                margin: 15px 0;
+                height: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
