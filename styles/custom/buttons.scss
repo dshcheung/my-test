@@ -1,0 +1,7 @@
+.btn-gray {
+  color: $gray-text;
+  cursor: pointer;
+  &:hover {
+    color: $white-text;
+  }
+}

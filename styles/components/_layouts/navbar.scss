@@ -1,10 +1,10 @@
 #layouts-navbar {
   height: 100px;
   background-color: white;
-  border-bottom: 2px solid rgb(237,238,238);
+  border-bottom: 1px solid $gray-lighter;
   margin-bottom: 0;
 
-  >div {
+  > div {
     height: 100%;
 
     .navbar-header {
@@ -29,18 +29,27 @@
       .navbar-nav {
         height: 98px;
 
-        li > a {
-          padding-top: 38.5px;
-          padding-bottom: 38.5px;
-
-          >span, >button {
-            font-size: large;
+        li {
+          padding: 23px 15px;
+          &:hover:not(.li-btn) {
+            border-bottom: 5px solid $brand-primary;
           }
-        }
-
-        li.li-btn > a {
-          padding-top: 30.5px;
-          padding-bottom: 30.5px;
+          > a {
+            font-size: large;
+            text-transform: uppercase;
+            cursor: pointer;
+            >span {
+              color: $brand-primary;
+            }
+            &.btn {
+              color: $white-text;
+              &:hover {
+                color: $white-text;
+                background-color: $btn-info-hover-bg;
+                border-color: $btn-info-hover-border;
+              }
+            }
+          }
         }
       }
 
@@ -51,18 +60,20 @@
 
     .navbar-collapse.in, .navbar-collapse.collapsing {
       width: 100vw;
-      border-bottom: 2px solid rgb(237,238,238);
+      border-bottom: 1px solid $gray-lighter;
 
       .navbar-nav {
         height: inherit;
 
-        li > a {
-          padding-top: 10px;
-          padding-bottom: 10px;
-          text-align: center;
+        li {
+          padding: 0;
+          > a {
+            padding: 10px 0;
+            text-align: center;
 
-          >span, >button {
-            font-size: inherit;
+            >span, >button {
+              font-size: inherit;
+            }
           }
         }
       }

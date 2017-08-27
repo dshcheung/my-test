@@ -82,8 +82,8 @@ export default class Navbar extends Component {
               </Link>
             </li>
             <li onClick={() => { this.toggleMenu() }} className="li-btn">
-              <Link to="/auth/signup" activeClassName="active">
-                <button className="btn btn-primary">Get Started</button>
+              <Link className="btn btn-info" to="/auth/signup" activeClassName="active">
+                Get Started
               </Link>
             </li>
           </ul>
