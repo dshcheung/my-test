@@ -5,3 +5,10 @@
     color: $white-text;
   }
 }
+
+// in your file
+.btn-linked-in {
+  @extend .btn-info;
+  background-color: $brand-linked-in;
+  // more stuff
+}

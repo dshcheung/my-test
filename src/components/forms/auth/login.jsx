@@ -23,7 +23,7 @@ export default class LoginForm extends Component {
 
     return (
       <div id="forms-auth-login" className={optClass}>
-        <h2 className="form-title">LOG IN</h2>
+        <h1 className="form-title margin-bottom-20 margin-top-0">LOG IN</h1>
 
         <form onSubmit={handleSubmit}>
           <Field
@@ -31,8 +31,7 @@ export default class LoginForm extends Component {
             component={TextField}
             opts={{
               type: "email",
-              label: "Email *",
-              placeholder: "Enter Email"
+              label: "Email *"
             }}
           />
 
@@ -43,22 +42,21 @@ export default class LoginForm extends Component {
               return (
                 <div>
                   <label htmlFor={name}>{label}</label>
-                  <Link className="pull-right">Forgot?</Link>
+                  <Link className="pull-right forgot-password">Forgot?</Link>
                 </div>
               )
             }}
             opts={{
               type: "password",
-              label: "Password *",
-              placeholder: "Enter Password"
+              label: "Password *"
             }}
           />
 
-          <button className="btn btn-primary btn-block" type="submit" disabled={shouldDisable}>
-            {submitInProcess ? <LoadingSpinner small white /> : "Signin To Your Account"}
+          <button className="btn btn-info btn-lg btn-block" type="submit" disabled={shouldDisable}>
+            {submitInProcess ? <LoadingSpinner small white /> : "Sign into your account"}
           </button>
-          <button className="btn btn-primary btn-block" type="button" disabled={shouldDisable}>
-            <i className="fa fa-linkedin-square" /> Sign in with LinkedIn
+          <button className="btn btn-linked-in btn-lg btn-block" type="button" disabled={shouldDisable}>
+            <i className="fa fa-linkedin fa-lg" /> Sign in with LinkedIn
           </button>
         </form>
       </div>

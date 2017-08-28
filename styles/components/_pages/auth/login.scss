@@ -1,7 +1,28 @@
 #page-auth-login {
+  #forms-auth-login {
+    padding: 30px;
+    border: 2px solid $gray-lighter;
+    .form-title {
+      font-size: $font-size-h2;
+      color: $brand-primary;
+    }
+    label {
+      color: $gray-light;
+    }
+    .forgot-password {
+      color: $brand-primary;
+      font-weight: 400;
+    }
+    .btn {
+      font-size: $btn-font-size-base;
+      i {
+        margin-right: 25px;
+      }
+    }
+  }
   .create-account {
     padding: 15px;
     text-align: center;
-    border: 2px solid rgb(237,238,238);
+    border: 2px solid $gray-lighter;
   }
 }

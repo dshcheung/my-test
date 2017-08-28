@@ -15,15 +15,16 @@
       margin: 0 auto;
       flex-grow: 1;
       .header {
-        font-size: 1.5em;
+        font-size: $font-size-large;
       }
       ul {
         margin: 20px auto 0;
         list-style: none;
         padding-left: 0;
         li {
-          font-size: 1.2em;
+          font-size: $font-size-base;
           color: $gray-text;
+          max-width: 200px;
           a {
             text-decoration: none;
           }
@@ -42,7 +43,7 @@
 
   .others {
     padding: 15px 0;
-    font-size: 1.3em;
+    font-size: $font-size-base;
     color: $gray-text;
     .copy-right {
       float: left;

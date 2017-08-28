@@ -34,8 +34,11 @@
           &:hover:not(.li-btn) {
             border-bottom: 5px solid $brand-primary;
           }
+          &.li-btn {
+            padding: 28px 15px;
+          }
           > a {
-            font-size: large;
+            // font-size: large;
             text-transform: uppercase;
             cursor: pointer;
             >span {
@@ -43,6 +46,7 @@
             }
             &.btn {
               color: $white-text;
+              padding: 8px 15px;
               &:hover {
                 color: $white-text;
                 background-color: $btn-info-hover-bg;
@@ -67,6 +71,9 @@
 
         li {
           padding: 0;
+          &.li-btn {
+            padding: 0;
+          }
           > a {
             padding: 10px 0;
             text-align: center;

@@ -9,20 +9,38 @@ hr {
 }
 
 // padding
+
+
+// $marginSizes: 0, 5, 10, 15, 20;
+// @each $margin in $marginSizes {
+//   .margin-#{$margin} {
+//     margin: #{$margin}px;
+//   }
+// }
+
+.border-radius-0 {
+  border-radius: 0;
+}
+
+.border-none {
+  border: 1px solid transparent;
+}
+
+$directions: '', '-top', '-left', '-right', '-bottom';
 $paddingSizes: 0, 5, 10, 15, 20;
-@each $padding in $paddingSizes {
-  .padding-#{$padding} {
-    padding: #{$padding}px;
+@each $direction in $directions {
+  @each $padding in $paddingSizes {
+    .padding#{$direction}-#{$padding} {
+      padding#{$direction}: #{$padding}px;
+    }
   }
 }
 
 $marginSizes: 0, 5, 10, 15, 20;
-@each $margin in $marginSizes {
-  .margin-#{$margin} {
-    margin: #{$margin}px;
+@each $direction in $directions {
+  @each $margin in $marginSizes {
+    .margin#{$direction}-#{$margin} {
+      margin#{$direction}: #{$margin}px;
+    }
   }
-}
-
-.border-radius-0 {
-  border-radius: 0;
 }

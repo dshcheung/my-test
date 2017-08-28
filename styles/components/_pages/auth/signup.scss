@@ -2,7 +2,54 @@
   .tnc {
     text-align: center;
     padding: 15px;
-    border: 2px solid rgb(237,238,238);
+    border: 2px solid $gray-lighter;
     background-color: rgb(237,238,238);
+    color: $gray-light;
+    a {
+      font-weight: bolder;
+      cursor: pointer;
+    }
+  }
+
+  #forms-auth-signup {
+    padding: 30px;
+    border: 2px solid $gray-lighter;
+    .row + .row {
+      margin-top: 0;
+    }
+    p {
+      color: $gray-light;
+      font-size: $font-size-large;
+    }
+    .form-title {
+      font-size: $font-size-h2;
+      color: $brand-primary;
+    }
+    label {
+      color: $gray-light;
+      input[type="radio"] {
+        margin-left: 20px;
+      }
+    }
+    .forgot-password {
+      color: $brand-primary;
+      font-weight: 400;
+    }
+    .btn {
+      font-size: $btn-font-size-base;
+      margin-bottom: 15px;
+      i {
+        margin-right: 25px;
+      }
+    }
+
+    .have-account {
+      text-align: center;
+      font-size: $btn-font-size-base;
+      color: $gray-light;
+      a {
+        font-weight: bolder;
+      }
+    }
   }
 }
