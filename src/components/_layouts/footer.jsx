@@ -4,13 +4,11 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 
 const mapStateToProps = () => {
-  return {
-  }
+  return { }
 }
 
 const mapDispatchToProps = () => {
-  return {
-  }
+  return { }
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -68,7 +66,7 @@ export default class Footer extends Component {
                 </div>
 
                 <div className="links-section">
-                  <img className="footer-brand" src="https://www.whub.io/assets/logo/whub-logo-04-44b806d1d9dae0f2b4433f53828f9ddd.png" alt="AngelHub" />
+                  <img className="footer-brand" src="https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/footer-logo.png" alt="AngelHub" />
                 </div>
               </div>
             </div>
