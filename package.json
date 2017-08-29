@@ -8,6 +8,10 @@
     "start": "node server.jsx",
     "start-dev": "webpack-dev-server --progress --colors --config ./webpack.config.js --hot"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:dented/black-saber.git"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
