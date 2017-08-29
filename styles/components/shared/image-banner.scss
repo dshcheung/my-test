@@ -1,0 +1,16 @@
+#comp-image-banner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  background-color: black;
+  background-repeat: no-repeat;
+
+  &.cover {
+    background-size: cover;
+  }
+
+  &.contain {
+    background-size: contain;
+  }
+}

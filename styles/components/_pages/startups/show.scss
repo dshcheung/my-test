@@ -1,3 +1,50 @@
 #pages-startups-show {
+  .basic-info {
 
+    >div:last-child {
+      .name {
+        margin-top: 0;
+      }
+
+      .overview {
+        color: gray;
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+
+      .fundings {
+        .funding-card {
+          margin: 5px;
+          padding: 10px;
+          display: inline-block;
+          border: 1px solid gray;
+          border-radius: 10px;
+
+          .amount {
+            font-size: 20px;
+          }
+
+          .title {
+            font-size: 18px;
+            color: gray;
+          }
+        }
+      }
+
+      .bar {
+        margin-bottom: 10px;
+
+        .progress {
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+      }
+
+      .warning {
+        .instruction {
+          color: gray;
+        }
+      }
+    }
+  }
 }
