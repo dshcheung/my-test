@@ -51,7 +51,7 @@ export default class Navbar extends Component {
         <BNavbar.Header>
           <BNavbar.Brand>
             <Link to="/" onClick={() => { this.toggleMenu(true) }}>
-              <img src="https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/third-logo.png" alt="Logo" />
+              <img src="https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/main-logo.png" alt="Logo" />
             </Link>
           </BNavbar.Brand>
           <BNavbar.Toggle onClick={() => { this.toggleMenu() }} />
