@@ -3,6 +3,7 @@
   background-color: white;
   border-bottom: 1px solid $gray-lighter;
   margin-bottom: 0;
+  padding: 0 10px;
 
   > div {
     height: 100%;
@@ -32,7 +33,7 @@
         li {
           padding: 23px 15px;
           &:hover:not(.li-btn) {
-            border-bottom: 5px solid $brand-primary;
+            border-top: 5px solid $brand-primary;
           }
           &.li-btn {
             padding: 28px 15px;

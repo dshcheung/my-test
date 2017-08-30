@@ -17,7 +17,7 @@ hr {
 }
 
 $directions: '', '-top', '-left', '-right', '-bottom';
-$paddingSizes: 0, 5, 10, 15, 20;
+$paddingSizes: 0, 5, 10, 15, 20, 30, 40, 50;
 @each $direction in $directions {
   @each $padding in $paddingSizes {
     .padding#{$direction}-#{$padding} {
@@ -26,7 +26,7 @@ $paddingSizes: 0, 5, 10, 15, 20;
   }
 }
 
-$marginSizes: 0, 5, 10, 15, 20;
+$marginSizes: 0, 5, 10, 15, 20, 30, 40, 50;
 @each $direction in $directions {
   @each $margin in $marginSizes {
     .margin#{$direction}-#{$margin} {

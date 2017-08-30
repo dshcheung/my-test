@@ -1,0 +1,104 @@
+.bg-dark {
+  color: $white-text;
+}
+
+.bg-primary {
+  background-color: $brand-angelhub-blue;
+}
+
+.section {
+  padding: 15rem 0;
+}
+
+.main-header {
+  background-color: #f7f7f7;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)), url(https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/main-landscape.jpg);
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)), url(https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/main-landscape.jpg);
+  position: relative;
+  padding: 20rem 0;
+  text-align: center;
+  h1 {
+    font-size: ($font-size-base * 4.5);
+    letter-spacing: 1rem;
+    font-weight: bold;
+  }
+  .tagline {
+    font-size: ($font-size-base * 1.5);
+  }
+  a {
+    letter-spacing: 0.5rem;
+  }
+}
+
+.news {
+  padding: 0;
+  border-bottom: 2px solid $gray-text;
+  .news-heading {
+    color: $brand-primary;
+  }
+  .news-item {
+    .news-date {
+      border: 1px solid $brand-primary;
+      padding: 5px 15px;
+      text-align: center;
+      font-size: ($font-size-base * 1.5);
+      font-weight: bold;
+      color: $brand-primary;
+    }
+    .news-link {
+      text-decoration: none;
+      cursor: pointer;
+      &:hover {
+        .news-caption {
+          text-decoration: underline;
+        }
+      }
+    }
+    .news-title {
+      color: $brand-info;
+      font-size: ($font-size-base * 1.4);
+    }
+    .news-caption {
+      color: $gray-light;
+    }
+  }
+}
+
+.note {
+  border-bottom: 1px solid $brand-angelhub-blue;
+  .note-details {
+    padding: 5rem;
+  }
+  img {
+    width: 150px;
+    margin: 20px auto;
+    display: block;
+  }
+  .note-caption {
+    color: $gray-text;
+    font-size: ($font-size-base * 1.2);
+  }
+}
+
+.how-it-works {
+  .section-heading {
+    color: $brand-primary;
+    font-weight: bold;
+  }
+  p {
+    color: $gray-light;
+    font-size: ($font-size-base * 1.2);
+    margin: 20px 0;
+    padding-right: 20px;
+  }
+  .how-it-works-details {
+    padding-left: 10rem;
+  }
+  .how-it-works-options {
+
+  }
+}

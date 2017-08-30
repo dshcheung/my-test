@@ -19,11 +19,13 @@ $gray-light:             lighten($gray-base, 46.7%) !default; // #777
 $gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
 $gray-text:              #ccc !default;
 
-$brand-primary:         #283A88 !default;
+$brand-primary:         #283A88 !default; //#18264c !default;
 $brand-success:         #5cb85c !default;
 $brand-info:            #29ABE2 !default;
 $brand-warning:         #f0ad4e !default;
 $brand-danger:          #d9534f !default;
+
+$brand-angelhub-blue:   #18264c !default;
 
 $brand-linked-in:       #00A0DC !default;
 
