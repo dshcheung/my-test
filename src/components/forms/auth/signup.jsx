@@ -28,7 +28,7 @@ export default class SignupForm extends Component {
 
     return (
       <div id="forms-auth-signup" className={optClass}>
-        <h1 className="form-title margin-bottom-20 margin-top-0">JOIN ANGLEHUB</h1>
+        <h1 className="form-title margin-bottom-20 margin-top-0 text-uppercase">Join AngelHub</h1>
         <p>You need to sign up to get full access. Free to join</p>
 
         <form onSubmit={handleSubmit}>

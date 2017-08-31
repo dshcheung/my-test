@@ -33,7 +33,7 @@
         li {
           padding: 23px 15px;
           &:hover:not(.li-btn) {
-            border-top: 5px solid $brand-primary;
+            border-bottom: 5px solid $brand-primary;
           }
           &.li-btn {
             padding: 28px 15px;

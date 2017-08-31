@@ -29,7 +29,7 @@ export default class Login extends Component {
 
         <div className="row">
           <div className="create-account col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-            <span>New to Angel Hub? </span>
+            <span>New to AngelHub? </span>
             <Link to="/auth/signup">Create An Account</Link>
           </div>
         </div>

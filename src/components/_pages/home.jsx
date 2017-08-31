@@ -17,7 +17,7 @@ const mapDispatchToProps = () => {
 export default class Home extends Component {
   render() {
     return (
-      <div>
+      <div className="padding-top-0 padding-bottom-0">
         <section className="section main-header bg-dark">
           <div className="container">
             <div className="row">
@@ -29,20 +29,20 @@ export default class Home extends Component {
             </div>
           </div>
         </section>
-        <section className="section news bg-white padding-top-20 padding-bottom-20">
+        <section className="section news bg-white">
           <div className="container-fluid">
             <div className="row">
-              <div className="col-sm-12 col-md-1 col-md-offset-1">
-                <span className="news-heading h2 text-uppercase">
-                  Latest <br />News
+              <div className="col-sm-12 col-md-2 col-lg-2 text-centersi">
+                <span className="news-heading h3 text-uppercase">
+                  Latest News
                 </span>
               </div>
               <div className="col-sm-12 col-md-3">
                 <div className="news-item">
-                  <div className="col-sm-6 col-md-2 news-date">
+                  <div className="col-sm-6 col-md-3 news-date">
                     <span>JUL<br />10</span>
                   </div>
-                  <div className="col-sm-6 col-md-10 news-details">
+                  <div className="col-sm-6 col-md-9 news-details">
                     <Link className="news-link">
                       <span className="news-title">Lorem ipsum dolor sit amet</span>
                       <p className="news-caption">consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
@@ -52,10 +52,10 @@ export default class Home extends Component {
               </div>
               <div className="col-sm-12 col-md-3">
                 <div className="news-item">
-                  <div className="col-sm-6 col-md-2 news-date">
+                  <div className="col-sm-6 col-md-3 news-date">
                     <span>JUL<br />12</span>
                   </div>
-                  <div className="col-sm-6 col-md-10 news-details">
+                  <div className="col-sm-6 col-md-9 news-details">
                     <Link className="news-link">
                       <span className="news-title">Lorem ipsum dolor sit amet</span>
                       <p className="news-caption">consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
@@ -65,10 +65,10 @@ export default class Home extends Component {
               </div>
               <div className="col-sm-12 col-md-3">
                 <div className="news-item">
-                  <div className="col-sm-6 col-md-2 news-date">
+                  <div className="col-sm-6 col-md-3 news-date">
                     <span>JUL<br />13</span>
                   </div>
-                  <div className="col-sm-6 col-md-10 news-details">
+                  <div className="col-sm-6 col-md-9 news-details">
                     <Link className="news-link">
                       <span className="news-title">Lorem ipsum dolor sit amet</span>
                       <p className="news-caption">consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
@@ -76,8 +76,8 @@ export default class Home extends Component {
                   </div>
                 </div>
               </div>
-              <div className="col-sm-12 col-md-1">
-                <Link className="btn btn-info btn-lg"><span className="h3">More <br />News</span></Link>
+              <div className="col-sm-12 col-md-1 col-lg-1 text-center">
+                <Link className="btn btn-info"><span className="h4">More <br />News</span></Link>
               </div>
             </div>
           </div>
@@ -107,6 +107,9 @@ export default class Home extends Component {
           </div>
         </section>
         <section className="section how-it-works bg-white">
+          <div className="diamond position-absolute top-minus-25">
+            <div className="inner" />
+          </div>
           <div className="container-fluid">
             <div className="row">
               <div className="col-sm-12 col-md-6 col-lg-5 how-it-works-details">

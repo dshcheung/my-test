@@ -8,6 +8,7 @@
 
 .section {
   padding: 15rem 0;
+  position: relative;
 }
 
 .main-header {
@@ -30,12 +31,12 @@
     font-size: ($font-size-base * 1.5);
   }
   a {
-    letter-spacing: 0.5rem;
+    letter-spacing: 0.4rem;
   }
 }
 
 .news {
-  padding: 0;
+  padding: 15px 0;
   border-bottom: 2px solid $gray-text;
   .news-heading {
     color: $brand-primary;
@@ -60,7 +61,7 @@
     }
     .news-title {
       color: $brand-info;
-      font-size: ($font-size-base * 1.4);
+      font-size: ($font-size-base * 1.2);
     }
     .news-caption {
       color: $gray-light;
@@ -100,5 +101,25 @@
   }
   .how-it-works-options {
 
+  }
+}
+
+.diamond {
+  margin: 0 auto;
+  width: 50px;
+  height: 50px;
+  border: 2px solid $brand-primary;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: rotate(-45deg);
+     -moz-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+       -o-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  .inner {
+    width: 25px;
+    height: 25px;
+    margin: 10px auto;
+    background-color: $brand-primary;
   }
 }
