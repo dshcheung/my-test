@@ -13,11 +13,20 @@ const history = syncHistoryWithStore(browserHistory, store)
 
 require('../styles/index.scss')
 
+const scrollTop = () => {
+  const element = document.getElementsByTagName("body")[0]
+
+  if (element) {
+    element.scrollTop = 0
+  }
+}
+
 const render = (routes) => {
   return ReactDOM.render(
     <AppContainer>
       <Provider store={store}>
         <Router
+          onUpdate={scrollTop}
           history={history}
           routes={routes}
         />
