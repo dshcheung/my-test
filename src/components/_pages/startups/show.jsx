@@ -1,17 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import AutoAffix from 'react-overlays/lib/AutoAffix'
+import Link from 'react-scroll/modules/components/Link'
+import Element from 'react-scroll/modules/components/Element'
 
 import {
   getStartup,
   resetStartup
 } from '../../../actions/startups'
 
+import LoadingSpinner from '../../shared/loading-spinner'
 import ImageBanner from '../../shared/image-banner'
 
 const mapStateToProps = (state) => {
   return {
-    startup: _.get(state, 'startups.show', null)
+    startup: _.get(state, 'startups.show', null),
+    getStartupInProcess: _.get(state, 'requestStatus.GET_STARTUP')
   }
 }
 
@@ -33,9 +38,17 @@ export default class StartupsShow extends Component {
   }
 
   render() {
-    const { startup } = this.props
+    const { startup, getStartupInProcess } = this.props
 
-    if (!startup) return null
+    if (getStartupInProcess) return <LoadingSpinner optClass="text-center" />
+
+    if (!startup) {
+      return (
+        <div className="text-center">
+          <h3>No Such Startup</h3>
+        </div>
+      )
+    }
 
     return (
       <div id="pages-startups-show" className="container">
@@ -47,6 +60,14 @@ export default class StartupsShow extends Component {
                 contain
               />
             </div>
+            <dl className="dl-horizontal">
+              <dt>Founded Year:</dt>
+              <dd>2016</dd>
+              <dt>Location:</dt>
+              <dd>Hong Kong</dd>
+              <dt>Time left to invest:</dt>
+              <dd>xxxxxxx</dd>
+            </dl>
           </div>
           <div className="col-xs-12 col-md-6">
             <h1 className="name">{startup.name}</h1>
@@ -95,10 +116,112 @@ export default class StartupsShow extends Component {
 
         <hr />
 
-        <section className="row more-info">
-          something
+        <section className="row more-info" id="denis">
+          <div className="col-xs-12 col-sm-3">
+            <AutoAffix viewportOffsetTop={100} container={this}>
+              <div className="sidebar-wrapper">
+                <ul className="scrollto">
+                  {
+                    _.get(startup, "highlights[0]") && (
+                      <li><Link to="Highlights" spy smooth duration={500} offset={-100}>Highlights</Link></li>
+                    )
+                  }
+                  {
+                    _.get(startup, "profile.overview") && (
+                      <li><Link to="Overview" spy smooth duration={500} offset={-100}>Overview</Link></li>
+                    )
+                  }
+                  {
+                    _.get(startup, "pitch_deck.title") && (
+                      <li><Link to="Pitch Deck" spy smooth duration={500} offset={-100}>Pitch Deck</Link></li>
+                    )
+                  }
+                  {
+                    _.get(startup, "media[0]") && (
+                      <li><Link to="Media" spy smooth duration={500} offset={-100}>Media</Link></li>
+                    )
+                  }
+                  {
+                    _.get(startup, "members[0]") && (
+                      <li><Link to="Team" spy smooth duration={500} offset={-100}>Team</Link></li>
+                    )
+                  }
+                  {
+                    _.get(startup, "market_scope.title") && (
+                      <li><Link to="Market Scope" spy smooth duration={500} offset={-100}>Market Scope</Link></li>
+                    )
+                  }
+                  {
+                    _.get(startup, "risk.title") && (
+                      <li><Link to="Risk & Disclosure" spy smooth duration={500} offset={-100}>Risk & Disclosure</Link></li>
+                    )
+                  }
+                  {
+                    _.get(startup, "end_notes") && (
+                      <li><Link to="End Notes" spy smooth duration={500} offset={-100}>End Notes</Link></li>
+                    )
+                  }
+                </ul>
+
+                <hr />
+
+                <ul className="links">
+                  <li><i className="fa fa-commenting-o fa-2x" /><span>Investor Discussion</span></li>
+                  <li><i className="fa fa-pencil-square-o fa-2x" /><span>Startup Survey</span></li>
+                  <li><i className="fa fa-envelope-o fa-2x" /><span>Contact AngelHub</span></li>
+                </ul>
+              </div>
+            </AutoAffix>
+          </div>
+          <div className="col-xs-12 col-sm-9">
+            {_.get(startup, "highlights[0]") && moreInfoContentHighlights("Highlights", startup.highlights)}
+            {_.get(startup, "profile.overview") && moreInfoContent("Overview", startup.profile.overview)}
+            {_.get(startup, "pitch_deck.title") && moreInfoContent("Pitch Deck", startup.pitch_deck.title)}
+            {_.get(startup, "media[0]") && moreInfoContentMedia("Media", startup.media)}
+            {_.get(startup, "members[0]") && moreInfoContentTeam("Team", startup.members)}
+            {_.get(startup, "market_scope.title") && moreInfoContent("Market Scope", startup.market_scope.title)}
+            {_.get(startup, "risk.title") && moreInfoContent("Risk & Disclosure", startup.risk.title)}
+            {_.get(startup, "end_notes") && moreInfoContent("End Notes", startup.end_notes)}
+          </div>
         </section>
       </div>
     )
   }
+}
+
+const moreInfoContent = (title, content) => {
+  return (
+    <Element name={title} className="section">
+      <h2>{title}</h2>
+      <hr />
+      <p>{content}</p>
+    </Element>
+  )
+}
+
+const moreInfoContentHighlights = (title) => {
+  return (
+    <Element name={title} className="section">
+      <h2>{title}</h2>
+      <hr />
+    </Element>
+  )
+}
+
+const moreInfoContentMedia = (title) => {
+  return (
+    <Element name={title} className="section">
+      <h2>{title}</h2>
+      <hr />
+    </Element>
+  )
+}
+
+const moreInfoContentTeam = (title) => {
+  return (
+    <Element name={title} className="section">
+      <h2>{title}</h2>
+      <hr />
+    </Element>
+  )
 }

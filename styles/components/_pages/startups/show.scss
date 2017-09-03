@@ -1,5 +1,16 @@
 #pages-startups-show {
   .basic-info {
+    >div:first-child {
+      dl {
+        font-size: 20px;
+        margin-top: 10px;
+
+        dt {
+          text-align: left;
+          width: 165px;
+        }
+      }
+    }
 
     >div:last-child {
       .name {
@@ -13,6 +24,7 @@
       }
 
       .fundings {
+        margin: 0 -5px;
         .funding-card {
           margin: 5px;
           padding: 10px;
@@ -43,6 +55,44 @@
       .warning {
         .instruction {
           color: gray;
+        }
+      }
+    }
+  }
+
+  .more-info {
+    padding-top: 20px;
+    >div:first-child {
+      .sidebar-wrapper {
+        ul {
+          padding: 0;
+          list-style: none;
+          font-size: 18px;
+          text-align: right;
+
+          &.links {
+            text-align: left;
+
+            li {
+              padding: 10px;
+
+              i {
+                margin-right: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    >div:last-child {
+      div.section {
+        &:not(:first-child) {
+          margin-top: 40px;
+        }
+
+        h2 {
+          margin-top: 0;
         }
       }
     }
