@@ -60,3 +60,14 @@ $btn-font-size-base:      16px !default;
 //== Forms
 //
 //##
+
+
+//== Home
+//
+//##
+$static_path: 'https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/';
+$home_bg_main: '#{$static_path}main-landscape.jpg';
+$members_only_bg: '#{$static_path}members-only.jpg';
+$how_it_works_bg: '#{$static_path}how-it-works.jpg';
+$how_it_works_option_bg: '#{$static_path}benefits-01.jpg';
+$exclusive_benefits_bg: '#{$static_path}exclusive-benefits.jpg';

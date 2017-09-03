@@ -46,7 +46,7 @@ $spacing: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50;
 @each $direction in $directions {
   @each $size in $spacing {
     .#{$direction}-#{$size} {
-      #{$direction}: #{$size}px;
+      #{$direction}: #{$size}px !important;
     }
   }
 }
@@ -54,7 +54,42 @@ $spacing: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50;
 @each $direction in $directions {
   @each $size in $spacing {
     .#{$direction}-minus-#{$size} {
-      #{$direction}: -#{$size}px;
+      #{$direction}: -#{$size}px !important;
     }
   }
+}
+
+.diamond, .diamond-filled {
+  margin: 0 auto;
+  width: 50px;
+  height: 50px;
+  border: 2px solid $brand-primary;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: rotate(-45deg);
+     -moz-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+       -o-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  -webkit-transition: 0.5s ease-in-out;
+     -moz-transition: 0.5s ease-in-out;
+       -o-transition: 0.5s ease-in-out;
+          transition: 0.5s ease-in-out;
+  &:hover {
+    -webkit-transform: rotate(0deg);
+       -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+         -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  .inner {
+    width: 25px;
+    height: 25px;
+    margin: 10px auto;
+    background-color: $brand-primary;
+  }
+}
+
+.diamond-filled {
+  background-color: $brand-primary;
 }

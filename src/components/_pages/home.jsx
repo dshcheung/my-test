@@ -114,7 +114,7 @@ export default class Home extends Component {
             <div className="row">
               <div className="col-sm-12 col-md-6 col-lg-5 how-it-works-details">
                 <span className="h2 section-heading text-uppercase">How it works</span>
-                <p>
+                <p className="text-gray">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                   quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -122,7 +122,7 @@ export default class Home extends Component {
                   cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                   proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </p>
-                <p className="">
+                <p className="text-gray">
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                   quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -134,23 +134,104 @@ export default class Home extends Component {
               </div>
               <div className="col-sm-12 col-md-6 col-lg-7 how-it-works-options">
                 <div className="row">
-                  <div className="col-sm-12 col-md-6">
-                    <Link className="btn btn-primary btn-outline btn-lg text-uppercase">1</Link>
+                  <div className="col-md-12 col-lg-6">
+                    <div className="text-center text-white option">
+                      <i className="fa fa-money fa-4x fa-fw" />
+                      <p className="caption">Lorem ipsum dolor sit amet</p>
+                      <p className="hover">consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                    </div>
                   </div>
-                  <div className="col-sm-12 col-md-6">
-                    <Link className="btn btn-primary btn-outline btn-lg text-uppercase">2</Link>
+                  <div className="col-md-12 col-lg-6">
+                    <div className="text-center text-white option">
+                      <i className="fa fa-money fa-4x fa-fw" />
+                      <p className="caption">Lorem ipsum dolor sit amet</p>
+                      <p className="hover">consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                    </div>
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-sm-12 col-md-6">
-                    <Link className="btn btn-primary btn-outline btn-lg text-uppercase">3</Link>
+                  <div className="col-md-12 col-lg-6">
+                    <div className="text-center text-white option">
+                      <i className="fa fa-money fa-4x fa-fw" />
+                      <p className="caption">Lorem ipsum dolor sit amet</p>
+                      <p className="hover">consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                    </div>
                   </div>
-                  <div className="col-sm-12 col-md-6">
-                    <Link className="btn btn-primary btn-outline btn-lg text-uppercase">4</Link>
+                  <div className="col-md-12 col-lg-6">
+                    <div className="text-center text-white option">
+                      <i className="fa fa-money fa-4x fa-fw " />
+                      <p className="caption">Lorem ipsum dolor sit amet</p>
+                      <p className="hover">consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+            <div className="row exclusive-benefits">
+              <div className="diamond border-none position-absolute top-minus-25 left-30">
+                <div className="inner" />
+              </div>
+              <div className="col-md-12 col-lg-6 skew-20">
+                <div className="bg-exclusive">
+                  <div className="section-heading h1 text-white text-uppercase">Exclusive Member Benefits</div>
+                  <p className="exclusive-details margin-top-30">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+              </div>
+              <div className="col-md-12 col-lg-6">
+                <div className="benefits">
+                  <div className="benefit">
+                    <div className="row">
+                      <div className="col-md-4 col-lg-2">
+                        <i className="fa fa-mobile fa-4x fa-fw" />
+                      </div>
+                      <div className="col-md-8 col-lg-10">
+                        <p className="text-gray margin-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="benefit">
+                    <div className="row">
+                      <div className="col-md-4 col-lg-2">
+                        <i className="fa fa-mobile fa-4x fa-fw" />
+                      </div>
+                      <div className="col-md-8 col-lg-10">
+                        <p className="text-gray margin-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="benefit">
+                    <div className="row">
+                      <div className="col-md-4 col-lg-2">
+                        <i className="fa fa-mobile fa-4x fa-fw" />
+                      </div>
+                      <div className="col-md-8 col-lg-10">
+                        <p className="text-gray margin-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="benefit">
+                    <div className="row">
+                      <div className="col-md-4 col-lg-2">
+                        <i className="fa fa-mobile fa-4x fa-fw" />
+                      </div>
+                      <div className="col-md-8 col-lg-10">
+                        <p className="text-gray margin-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="benefit">
+                    <div className="col-md-8 col-md-offset-4 col-lg-10 col-lg-offset-2 padding-0">
+                      <Link className="btn btn-primary btn-outline btn-lg text-uppercase text-bold">Get In Touch</Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="section growth bg-primary">
+          <div className="diamond border-none position-absolute top-minus-25">
+            <div className="inner" />
           </div>
         </section>
       </div>
