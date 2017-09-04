@@ -121,6 +121,9 @@
       .warning {
         font-size: ($font-size-base * 1.4);
         font-weight: 200;
+        span {
+          color: $brand-primary;
+        }
         .instruction {
           color: gray;
         }
