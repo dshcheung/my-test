@@ -10,6 +10,7 @@ $bootstrap-sass-asset-helper: false !default;
 //== Colors
 //
 //## Gray and brand colors for use across Bootstrap.
+$white:                  #fff !default;
 $white-text:             #fff !default;
 $gray-base:              #000 !default;
 $gray-darker:            lighten($gray-base, 13.5%) !default; // #222
@@ -71,3 +72,10 @@ $members_only_bg: '#{$static_path}members-only.jpg';
 $how_it_works_bg: '#{$static_path}how-it-works.jpg';
 $how_it_works_option_bg: '#{$static_path}benefits-01.jpg';
 $exclusive_benefits_bg: '#{$static_path}exclusive-benefits.jpg';
+
+
+//== Grid
+//
+//###
+
+$grid-gutter-width:         30px !default;

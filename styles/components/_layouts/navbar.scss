@@ -39,7 +39,7 @@
             padding: 28px 15px;
           }
           > a {
-            // font-size: large;
+            font-size: ($font-size-base * 1.2);
             text-transform: uppercase;
             cursor: pointer;
             >span {

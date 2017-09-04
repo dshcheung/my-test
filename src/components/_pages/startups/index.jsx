@@ -44,7 +44,7 @@ export default class StartupsIndex extends Component {
         <section>
           <div className="row section-header">
             <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-              <h2>LIVE STARTUPS</h2>
+              <h1>LIVE STARTUPS</h1>
               <p>{lorem}</p>
             </div>
           </div>
@@ -66,54 +66,67 @@ export default class StartupsIndex extends Component {
                     )
                   } else {
                     component = startups.map((startup, i) => {
+                      const styles = {
+                        backgroundImage: `url(${_.get(startup, 'profile.banner.original', null) || '/company-logo.jpg'})`
+                      }
                       return (
                         <div key={i} className="col-xs-12 col-sm-4 text-center startup-card">
-                          <Link to={`/startups/${startup.id}`} className="border clearfix">
-                            <div className="col-xs-12 card-header bg-primary">ACCEPTING INVESTMENT</div>
-                            <div className="col-xs-12 card-banner">
-                              <img
-                                src={`${_.get(startup, "profile.banner.original", null) || "/company-logo.jpg"}`}
-                                alt="banner"
-                              />
+                          <Link to={`/startups/${startup.id}`} className="clearfix">
+                            <div className="col-xs-12 card-header text-white bg-info">ACCEPTING INVESTMENT</div>
+                            <div className="col-xs-12 card-banner" style={styles}>
+                              <img className="startup-logo position-absolute top-15 left-10" src={`${_.get(startup, "profile.avatar.original", null) || "/company-logo.jpg"}`} alt={`Logo ${startup.name}}`} />
+                              <div className="startup-badge text-uppercase text-white text-italics position-absolute bottom-0 right-0">
+                                Coming Soon
+                              </div>
                             </div>
                             <div className="col-xs-12 card-info">
-                              <div className="name">
-                                <div>Category</div>
-                                <h4>{startup.name}</h4>
+                              <div className="row">
+                                <div className="name">
+                                  <div className="h4">Category</div>
+                                  <div className="h3 margin-top-5 margin-bottom-5 text-bold text-gray-dark">{startup.name}</div>
+                                </div>
                               </div>
 
-                              <div className="about">
-                                <hr />
-                                <div>{startup.profile.description}</div>
-                                {
-                                  startup.highlights.length > 0 && (
-                                    <ul>
-                                      {
-                                        startup.highlights.map((highlight, k) => {
-                                          if (i >= 3) return null
+                              <div className="row">
+                                <div className="about">
+                                  <hr />
+                                  <div>{startup.profile.description}</div>
+                                  {
+                                    startup.highlights.length > 0 && (
+                                      <ul>
+                                        {
+                                          startup.highlights.map((highlight, k) => {
+                                            if (i >= 3) return null
 
-                                          return (
-                                            <li key={k}>{highlight}</li>
-                                          )
-                                        })
-                                      }
-                                    </ul>
-                                  )
-                                }
+                                            return (
+                                              <li key={k}>{highlight}</li>
+                                            )
+                                          })
+                                        }
+                                      </ul>
+                                    )
+                                  }
+                                </div>
                               </div>
 
-                              <div className="stats">
-                                <hr />
-                                <div className="clearfix">
-                                  <div className="pull-left"><b>$1,222</b> raised</div>
-                                  <div className="pull-right"><b>4</b> investors</div>
-                                </div>
-                                <div className="progress">
-                                  <div className="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style={{ width: "80%" }} />
-                                </div>
-                                <div className="clearfix">
-                                  <div className="pull-left"><b>80%</b> achieved</div>
-                                  <div className="pull-right"><b>23</b> days left</div>
+                              <div className="row">
+                                <div className="col-xs-12">
+                                  <div className="stats">
+                                    <hr />
+                                    <div className="clearfix">
+                                      <div className="pull-left"><strong>$1,222</strong> raised</div>
+                                      <div className="pull-right"><strong>4</strong> investors</div>
+                                    </div>
+                                    <div className="progress">
+                                      <div className="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style={{ width: "80%" }} />
+                                      <div className="progress-start filled" />
+                                      <div className="progress-end" />
+                                    </div>
+                                    <div className="clearfix">
+                                      <div className="pull-left"><strong>80%</strong> achieved</div>
+                                      <div className="pull-right"><strong>23</strong> days left</div>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
