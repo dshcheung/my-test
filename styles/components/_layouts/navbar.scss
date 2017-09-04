@@ -48,7 +48,7 @@
             &.btn {
               color: $white-text;
               padding: 8px 15px;
-              &:hover {
+              &:hover, &:focus {
                 color: $white-text;
                 background-color: $btn-info-hover-bg;
                 border-color: $btn-info-hover-border;
