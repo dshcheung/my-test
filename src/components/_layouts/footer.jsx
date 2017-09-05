@@ -40,10 +40,7 @@ export default class Footer extends Component {
                     <li><Link className="btn-gray">Blog</Link></li>
                     <li><Link className="btn-gray">Partners</Link></li>
                     <li><Link className="btn-gray">Contact</Link></li>
-                    <li><Link className="btn-gray">About</Link></li>
-                    <li><Link className="btn-gray">Dev Blog</Link></li>
-                    <li><Link className="btn-gray">Twitter</Link></li>
-                    <li><Link className="btn-gray">Videos</Link></li>
+                    <li><Link className="btn-gray">Team</Link></li>
                   </ul>
                 </div>
 

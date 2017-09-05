@@ -54,7 +54,9 @@ export default class Navbar extends Component {
               <img src="https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/main-logo.png" alt="Logo" />
             </Link>
           </BNavbar.Brand>
-          <BNavbar.Toggle onClick={() => { this.toggleMenu() }} />
+          <BNavbar.Toggle onClick={() => { this.toggleMenu() }}>
+            <i className="fa fa-signal fa-rotate-90" />
+          </BNavbar.Toggle>
         </BNavbar.Header>
 
         <BNavbar.Collapse>

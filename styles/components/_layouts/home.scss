@@ -1,6 +1,7 @@
 .pages-home-index {
+  padding-top: 0;
   .section {
-    padding: 15rem 0;
+    padding: 10rem 0;
     position: relative;
   }
 
@@ -29,7 +30,7 @@
 
   .news {
     padding: 15px 0;
-    border-bottom: 2px solid $gray-text;
+    // border-bottom: 2px solid $gray-text;
     .news-heading {
       color: $brand-primary;
     }
@@ -85,11 +86,7 @@
   }
 
   .how-it-works {
-    background-color: $white-text;
-    background-position: center center;
-    background-repeat: repeat-y;
-    background-size: cover;
-    background-image: url($how_it_works_bg);
+    background-color: $white;
 
     .section-heading {
       color: $brand-primary;
@@ -98,7 +95,6 @@
     p {
       font-size: ($font-size-base * 1.2);
       margin: 20px 0;
-      padding-right: 20px;
     }
     .how-it-works-details {
       padding-left: 10rem;
@@ -112,8 +108,8 @@
 
         background-image: linear-gradient(to bottom, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($how_it_works_option_bg);
         background-image: -webkit-linear-gradient(top, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($how_it_works_option_bg);
-        height: 30rem;
-        padding: 10rem 0;
+        height: 25rem;
+        padding: 7rem 0;
         i {
           display: block;
           opacity: 1;
@@ -126,8 +122,8 @@
           visibility: hidden;
         }
         &:hover {
-          background-image: linear-gradient(to bottom, rgba(41, 171, 226, 0.5), rgba(41, 171, 226, 0.8)), url($how_it_works_option_bg);
-          background-image: -webkit-linear-gradient(top, rgba(41, 171, 226, 0.5), rgba(41, 171, 226, 0.8)), url($how_it_works_option_bg);
+          background-image: linear-gradient(to bottom, rgba(41, 171, 226, 0.8), rgba(41, 171, 226, 0.8)), url($how_it_works_option_bg);
+          background-image: -webkit-linear-gradient(top, rgba(41, 171, 226, 0.8), rgba(41, 171, 226, 0.8)), url($how_it_works_option_bg);
           i {
             display: none;
             opacity: 0;
@@ -164,20 +160,20 @@
            -moz-transform-style: preserve-3d;
             -ms-transform-style: preserve-3d;
                 transform-style: preserve-3d;
-        -webkit-transform: skew(20deg);
-           -moz-transform: skew(20deg);
-            -ms-transform: skew(20deg);
-             -o-transform: skew(20deg);
-                transform: skew(20deg);
+        -webkit-transform: skew(15deg);
+           -moz-transform: skew(15deg);
+            -ms-transform: skew(15deg);
+             -o-transform: skew(15deg);
+                transform: skew(15deg);
         background-color: $brand-primary;
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
 
-        background-image: linear-gradient(to bottom, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($exclusive_benefits_bg);
-        background-image: -webkit-linear-gradient(top, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($exclusive_benefits_bg);
+        background-image: linear-gradient(to bottom, rgba(24, 38, 76, 0.8), rgba(24, 38, 76, 0.8)), url($exclusive_benefits_bg);
+        background-image: -webkit-linear-gradient(top, rgba(24, 38, 76, 0.8), rgba(24, 38, 76, 0.8)), url($exclusive_benefits_bg);
         padding: 10em 15em 15em 15em;
-        height: 500px;
+        height: 600px;
         width: 115%;
         .section-heading {
           font-weight: 400;
@@ -196,7 +192,8 @@
             vertical-align: top;
           }
           i {
-            font-size: 5em;
+            font-size: 4em;
+            color: $brand-primary;
           }
           p {
             font-size: 1.5em;

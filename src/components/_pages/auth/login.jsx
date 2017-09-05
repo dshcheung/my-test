@@ -19,7 +19,7 @@ const mapDispatchToProps = () => {
 export default class Login extends Component {
   render() {
     return (
-      <div id="page-auth-login" className="container clearfix">
+      <div id="page-auth-login" className="container padding-top-20 padding-bottom-20">
         <div className="row">
           <LoginForm
             optClass="col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4"

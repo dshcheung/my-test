@@ -4,6 +4,7 @@
   }
 }
 #pages-startups-show {
+  padding-bottom: 20px;
   .aspect-16-9 {
     .startup-avatar {
       width: 75px;
@@ -150,6 +151,7 @@
               padding-right: 3rem;
               color: $gray-light;
               font-size: ($font-size-base * 1.4);
+              cursor: pointer;
               &.active {
                 color: $brand-primary;
                 font-weight: bold;
@@ -184,6 +186,7 @@
     }
 
     .section {
+      margin-bottom: 20px;
       &:not(:first-child) {
         margin-top: 20px;
       }
