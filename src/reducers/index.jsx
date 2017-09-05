@@ -6,11 +6,13 @@ import { RESET_ALL_STATE } from '../actions/session'
 
 import paginationReducer from './pagination'
 import requestStatusReducer from './request-status'
+import sessionReducer from './session'
 import startupsReducer from './startups'
 
 const appReducer = combineReducers({
   pagination: paginationReducer,
   requestStatus: requestStatusReducer,
+  session: sessionReducer,
   startups: startupsReducer,
   routing: routerReducer,
   form: formReducer

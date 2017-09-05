@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux'
 import { Link } from 'react-router'
+
+import { createUser } from '../../../actions/users'
 
 import SignupForm from '../../forms/auth/signup'
 
@@ -9,12 +11,24 @@ const mapStateToProps = () => {
   return { }
 }
 
-const mapDispatchToProps = () => {
-  return { }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createUser: bindActionCreators(createUser, dispatch)
+  }
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Signup extends Component {
+  constructor(props) {
+    super(props)
+
+    this.createUser = this.createUser.bind(this)
+  }
+
+  createUser(values) {
+    this.props.createUser(values)
+  }
+
   render() {
     return (
       <div id="page-auth-signup" className="container padding-top-20 padding-bottom-20">

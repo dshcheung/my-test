@@ -38,8 +38,8 @@ export default class SignupForm extends Component {
               component={RadioField}
               optItemClass="col-xs-12 col-sm-6 radio-group"
               opts={[
-                { value: "investor", label: "I am an investor" },
-                { value: "founder", label: "I am an founder" }
+                { value: "Investor", label: "I am an investor" },
+                { value: "StartupUser", label: "I am an founder" }
               ]}
             />
           </div>

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux'
 import { Link } from 'react-router'
+
+import { createSession } from '../../../actions/session'
 
 import LoginForm from '../../forms/auth/login'
 
@@ -10,13 +12,24 @@ const mapStateToProps = () => {
   }
 }
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch) => {
   return {
+    createSession: bindActionCreators(createSession, dispatch)
   }
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Login extends Component {
+  constructor(props) {
+    super(props)
+
+    this.createSession = this.createSession.bind(this)
+  }
+
+  createSession(values) {
+    this.props.createSession(values)
+  }
+
   render() {
     return (
       <div id="page-auth-login" className="container padding-top-20 padding-bottom-20">
