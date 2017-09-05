@@ -8,7 +8,7 @@
 
 .btn-white {
   border-color: $white-text;
-  color: $white-text;
+  color: $white-text !important;
   &:hover {
     color: $gray-base;
     background-color: $white-text;

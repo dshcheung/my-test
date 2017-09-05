@@ -45,6 +45,7 @@
             padding: 5px;
             border: 1px solid $brand-info;
             font-size: ($font-size-base * 1.3);
+            font-weight: 100;
           }
 
           .card-banner {
@@ -69,6 +70,12 @@
             color: $gray-light;
             .name, .about, .stats {
               padding: 0 10px;
+              font-weight: 100;
+            }
+            .name {
+              .h4 {
+                font-weight: 100;
+              }
             }
             .about {
               ul {

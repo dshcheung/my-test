@@ -29,14 +29,14 @@ export default class SignupForm extends Component {
     return (
       <div id="forms-auth-signup" className={optClass}>
         <h1 className="form-title margin-bottom-20 margin-top-0 text-uppercase">Join AngelHub</h1>
-        <p>You need to sign up to get full access. Free to join</p>
+        <p>You need to sign up to get full access. Free to join!</p>
 
         <form onSubmit={handleSubmit}>
           <div className="row">
             <Field
               name="role"
               component={RadioField}
-              optItemClass="col-xs-12 col-sm-6"
+              optItemClass="col-xs-12 col-sm-6 radio-group"
               opts={[
                 { value: "investor", label: "I am an investor" },
                 { value: "founder", label: "I am an founder" }
@@ -85,12 +85,15 @@ export default class SignupForm extends Component {
             }}
           />
 
-          <button className="btn btn-linked-in btn-lg btn-block" type="button" disabled={shouldDisable}>
-            <i className="fa fa-linkedin fa-lg" /> Sign in with LinkedIn
-          </button>
-          <button className="btn btn-info btn-lg btn-block" type="submit" disabled={shouldDisable}>
-            {submitInProcess ? <LoadingSpinner small white /> : "Continue"}
-          </button>
+          <div className="form-actions">
+            <div className="margin-bottom-10">Connect an account</div>
+            <button className="btn btn-linked-in btn-lg btn-block" type="button" disabled={shouldDisable}>
+              <i className="fa fa-linkedin fa-lg" /> Sign in with LinkedIn
+            </button>
+            <button className="btn btn-info btn-lg btn-block" type="submit" disabled={shouldDisable}>
+              {submitInProcess ? <LoadingSpinner small white /> : "Continue"}
+            </button>
+          </div>
 
           <hr />
 

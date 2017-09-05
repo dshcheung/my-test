@@ -62,6 +62,7 @@ export default class StartupsShow extends Component {
                     src={`${_.get(startup, "profile.banner.original", null) || "/company-logo.jpg"}`}
                     contain
                   />
+                  <img className="startup-avatar position-absolute top-15 left-10" src={`${_.get(startup, "profile.avatar.original", null) || "/company-logo.jpg"}`} alt={`Logo ${startup.name}}`} />
                 </div>
                 <dl className="basic-details dl-horizontal">
                   <dt>Founded Year:</dt>

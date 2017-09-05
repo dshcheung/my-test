@@ -6,13 +6,11 @@ import { Link } from 'react-router'
 import SignupForm from '../../forms/auth/signup'
 
 const mapStateToProps = () => {
-  return {
-  }
+  return { }
 }
 
 const mapDispatchToProps = () => {
-  return {
-  }
+  return { }
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -22,13 +20,13 @@ export default class Signup extends Component {
       <div id="page-auth-signup" className="container clearfix">
         <div className="row">
           <SignupForm
-            optClass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
+            optClass="col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4"
             onSubmit={this.createUser}
           />
         </div>
 
         <div className="row">
-          <div className="tnc col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+          <div className="tnc col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
             <span>By joining AngelHub, you are agreeing to our </span>
             <Link>Investor Registration Agreement</Link>
             <span> and </span>

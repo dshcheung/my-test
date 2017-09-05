@@ -1,216 +1,207 @@
-.bg-dark {
-  color: $white-text;
-}
-
-.bg-primary {
-  background-color: $brand-angelhub-blue;
-}
-.bg-info {
-  background-color: $brand-info;
-}
-
-.section {
-  padding: 15rem 0;
-  position: relative;
-}
-
-.main-header {
-  background-color: $brand-primary;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-image: linear-gradient(to bottom, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($home_bg_main);
-  background-image: -webkit-linear-gradient(top, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($home_bg_main);
-  position: relative;
-  padding: 20rem 0;
-  text-align: center;
-  h1 {
-    font-size: ($font-size-base * 4.5);
-    letter-spacing: 1rem;
-    font-weight: bold;
+.pages-home-index {
+  .section {
+    padding: 15rem 0;
+    position: relative;
   }
-  .tagline {
-    font-size: ($font-size-base * 1.5);
-  }
-  a {
-    letter-spacing: 0.4rem;
-  }
-}
 
-.news {
-  padding: 15px 0;
-  border-bottom: 2px solid $gray-text;
-  .news-heading {
-    color: $brand-primary;
-  }
-  .news-item {
-    .news-date {
-      border: 1px solid $brand-primary;
-      padding: 5px 15px;
-      text-align: center;
-      font-size: ($font-size-base * 1.5);
+  .main-header {
+    background-color: $brand-primary;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: linear-gradient(to bottom, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($home_bg_main);
+    background-image: -webkit-linear-gradient(top, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($home_bg_main);
+    position: relative;
+    padding: 20rem 0;
+    text-align: center;
+    h1 {
+      font-size: ($font-size-base * 4.5);
+      letter-spacing: 1rem;
       font-weight: bold;
+    }
+    .tagline {
+      font-size: ($font-size-base * 1.5);
+    }
+    a {
+      letter-spacing: 0.4rem;
+    }
+  }
+
+  .news {
+    padding: 15px 0;
+    border-bottom: 2px solid $gray-text;
+    .news-heading {
       color: $brand-primary;
     }
-    .news-link {
-      text-decoration: none;
-      cursor: pointer;
-      &:hover {
-        .news-caption {
-          text-decoration: underline;
+    .news-item {
+      .news-date {
+        border: 1px solid $brand-primary;
+        padding: 5px 15px;
+        text-align: center;
+        font-size: ($font-size-base * 1.5);
+        font-weight: bold;
+        color: $brand-primary;
+      }
+      .news-link {
+        text-decoration: none;
+        cursor: pointer;
+        &:hover {
+          .news-caption {
+            text-decoration: underline;
+          }
         }
       }
+      .news-title {
+        color: $brand-info;
+        font-size: ($font-size-base * 1.2);
+      }
+      .news-caption {
+        color: $gray-light;
+      }
     }
-    .news-title {
-      color: $brand-info;
+  }
+
+  .note {
+    border-bottom: 1px solid $brand-angelhub-blue;
+    background-color: $brand-primary;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    background-image: linear-gradient(to bottom, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($members_only_bg);
+    background-image: -webkit-linear-gradient(top, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($members_only_bg);
+    .note-details {
+      padding: 5rem;
+    }
+    img {
+      width: 150px;
+      margin: 20px auto;
+      display: block;
+    }
+    .note-caption {
+      color: $gray-text;
       font-size: ($font-size-base * 1.2);
     }
-    .news-caption {
-      color: $gray-light;
+  }
+
+  .how-it-works {
+    background-color: $white-text;
+    background-position: center center;
+    background-repeat: repeat-y;
+    background-size: cover;
+    background-image: url($how_it_works_bg);
+
+    .section-heading {
+      color: $brand-primary;
+      font-weight: bold;
     }
-  }
-}
+    p {
+      font-size: ($font-size-base * 1.2);
+      margin: 20px 0;
+      padding-right: 20px;
+    }
+    .how-it-works-details {
+      padding-left: 10rem;
+    }
+    .how-it-works-options {
+      .option {
+        background-color: $brand-primary;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
 
-.note {
-  border-bottom: 1px solid $brand-angelhub-blue;
-  background-color: $brand-primary;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  background-image: linear-gradient(to bottom, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($members_only_bg);
-  background-image: -webkit-linear-gradient(top, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($members_only_bg);
-  .note-details {
-    padding: 5rem;
-  }
-  img {
-    width: 150px;
-    margin: 20px auto;
-    display: block;
-  }
-  .note-caption {
-    color: $gray-text;
-    font-size: ($font-size-base * 1.2);
-  }
-}
-
-.how-it-works {
-  background-color: $white-text;
-  background-position: center center;
-  background-repeat: repeat-y;
-  background-size: cover;
-  background-image: url($how_it_works_bg);
-
-  .section-heading {
-    color: $brand-primary;
-    font-weight: bold;
-  }
-  p {
-    font-size: ($font-size-base * 1.2);
-    margin: 20px 0;
-    padding-right: 20px;
-  }
-  .how-it-works-details {
-    padding-left: 10rem;
-  }
-  .how-it-works-options {
-    .option {
-      background-color: $brand-primary;
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: cover;
-
-      background-image: linear-gradient(to bottom, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($how_it_works_option_bg);
-      background-image: -webkit-linear-gradient(top, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($how_it_works_option_bg);
-      height: 30rem;
-      padding: 10rem 0;
-      i {
-        display: block;
-        opacity: 1;
-        visibility: visible;
-        margin: 0 auto;
-      }
-      .hover {
-        display: none;
-        opacity: 0;
-        visibility: hidden;
-      }
-      &:hover {
-        background-image: linear-gradient(to bottom, rgba(41, 171, 226, 0.5), rgba(41, 171, 226, 0.8)), url($how_it_works_option_bg);
-        background-image: -webkit-linear-gradient(top, rgba(41, 171, 226, 0.5), rgba(41, 171, 226, 0.8)), url($how_it_works_option_bg);
+        background-image: linear-gradient(to bottom, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($how_it_works_option_bg);
+        background-image: -webkit-linear-gradient(top, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($how_it_works_option_bg);
+        height: 30rem;
+        padding: 10rem 0;
         i {
+          display: block;
+          opacity: 1;
+          visibility: visible;
+          margin: 0 auto;
+        }
+        .hover {
           display: none;
           opacity: 0;
           visibility: hidden;
         }
-        .hover {
-          display: block;
-          opacity: 1;
-          visibility: visible;
+        &:hover {
+          background-image: linear-gradient(to bottom, rgba(41, 171, 226, 0.5), rgba(41, 171, 226, 0.8)), url($how_it_works_option_bg);
+          background-image: -webkit-linear-gradient(top, rgba(41, 171, 226, 0.5), rgba(41, 171, 226, 0.8)), url($how_it_works_option_bg);
+          i {
+            display: none;
+            opacity: 0;
+            visibility: hidden;
+          }
+          .hover {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+          }
         }
       }
     }
-  }
-  .exclusive-benefits {
-    padding: 10rem 0;
-    position: relative;
-    .skew-20 {
-      -webkit-transform-style: preserve-3d;
-         -moz-transform-style: preserve-3d;
-          -ms-transform-style: preserve-3d;
-              transform-style: preserve-3d;
-      -webkit-transform: skew(-20deg);
-         -moz-transform: skew(-20deg);
-          -ms-transform: skew(-20deg);
-           -o-transform: skew(-20deg);
-              transform: skew(-20deg);
+    .exclusive-benefits {
+      padding: 10rem 0;
       position: relative;
-      overflow: hidden;
-      margin-left: -10%;
-      margin-right: 10%;
-    }
-    .bg-exclusive {
-      -webkit-transform-style: preserve-3d;
-         -moz-transform-style: preserve-3d;
-          -ms-transform-style: preserve-3d;
-              transform-style: preserve-3d;
-      -webkit-transform: skew(20deg);
-         -moz-transform: skew(20deg);
-          -ms-transform: skew(20deg);
-           -o-transform: skew(20deg);
-              transform: skew(20deg);
-      background-color: $brand-primary;
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: cover;
+      .skew-20 {
+        -webkit-transform-style: preserve-3d;
+           -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+        -webkit-transform: skew(-20deg);
+           -moz-transform: skew(-20deg);
+            -ms-transform: skew(-20deg);
+             -o-transform: skew(-20deg);
+                transform: skew(-20deg);
+        position: relative;
+        overflow: hidden;
+        margin-left: -10%;
+        margin-right: 10%;
+      }
+      .bg-exclusive {
+        -webkit-transform-style: preserve-3d;
+           -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+        -webkit-transform: skew(20deg);
+           -moz-transform: skew(20deg);
+            -ms-transform: skew(20deg);
+             -o-transform: skew(20deg);
+                transform: skew(20deg);
+        background-color: $brand-primary;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
 
-      background-image: linear-gradient(to bottom, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($exclusive_benefits_bg);
-      background-image: -webkit-linear-gradient(top, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($exclusive_benefits_bg);
-      padding: 10em 15em 15em 15em;
-      height: 500px;
-      width: 115%;
-      .section-heading {
-        font-weight: 400;
-        letter-spacing: 0.1em;
-      }
-      .exclusive-details {
-        color: $gray-lighter;
-        text-align: justify;
-      }
-    }
-    .benefits {
-      .benefit {
-        margin-bottom: 40px;
-        i, p {
-          display: table-cell;
-          vertical-align: top;
+        background-image: linear-gradient(to bottom, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($exclusive_benefits_bg);
+        background-image: -webkit-linear-gradient(top, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($exclusive_benefits_bg);
+        padding: 10em 15em 15em 15em;
+        height: 500px;
+        width: 115%;
+        .section-heading {
+          font-weight: 400;
+          letter-spacing: 0.1em;
         }
-        i {
-          font-size: 5em;
+        .exclusive-details {
+          color: $gray-lighter;
+          text-align: justify;
         }
-        p {
-          font-size: 1.5em;
-          font-weight: 100;
+      }
+      .benefits {
+        .benefit {
+          margin-bottom: 40px;
+          i, p {
+            display: table-cell;
+            vertical-align: top;
+          }
+          i {
+            font-size: 5em;
+          }
+          p {
+            font-size: 1.5em;
+            font-weight: 100;
+          }
         }
       }
     }

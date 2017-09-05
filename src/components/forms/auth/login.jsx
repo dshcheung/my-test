@@ -31,7 +31,7 @@ export default class LoginForm extends Component {
             component={TextField}
             opts={{
               type: "email",
-              label: "Email *"
+              label: "Username / Email *"
             }}
           />
 

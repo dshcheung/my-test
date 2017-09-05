@@ -22,13 +22,13 @@ export default class Login extends Component {
       <div id="page-auth-login" className="container clearfix">
         <div className="row">
           <LoginForm
-            optClass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
+            optClass="col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4"
             onSubmit={this.createSession}
           />
         </div>
 
         <div className="row">
-          <div className="create-account col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+          <div className="create-account col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
             <span>New to AngelHub? </span>
             <Link to="/auth/signup">Create An Account</Link>
           </div>

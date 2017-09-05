@@ -6,13 +6,13 @@
     background-color: rgb(237,238,238);
     color: $gray-light;
     a {
-      font-weight: bolder;
+      font-weight: 800;
       cursor: pointer;
     }
   }
 
   #forms-auth-signup {
-    padding: 30px;
+    padding: 20px;
     border: 2px solid $gray-lighter;
     .row + .row {
       margin-top: 0;
@@ -26,9 +26,15 @@
       color: $brand-primary;
     }
     label {
-      color: $gray-light;
+      color: $gray;
+      font-weight: 400;
       input[type="radio"] {
         margin-left: 20px;
+      }
+      &.radio-group {
+        span {
+          font-weight: 800;
+        }
       }
     }
     .forgot-password {

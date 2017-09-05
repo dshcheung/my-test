@@ -17,7 +17,7 @@ const mapDispatchToProps = () => {
 export default class Home extends Component {
   render() {
     return (
-      <div className="padding-top-0 padding-bottom-0">
+      <div className="pages-home-index padding-top-0 padding-bottom-0">
         <section className="section main-header bg-dark">
           <div className="container">
             <div className="row">

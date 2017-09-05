@@ -4,16 +4,22 @@
   }
 }
 #pages-startups-show {
+  .aspect-16-9 {
+    .startup-avatar {
+      width: 75px;
+      height: auto;
+      border-radius: 20em;
+    }
+  }
   .basic-info {
-    > div:first-child {
-      dl {
-        font-size: 20px;
-        margin-top: 10px;
-        dt {
-          color: $brand-primary;
-          text-align: left;
-          width: 165px;
-        }
+    .basic-details {
+      font-size: ($font-size-base * 1.2);
+      margin-top: 10px;
+      dt {
+        font-weight: 400;
+        color: $brand-primary;
+        text-align: left;
+        width: 200px;
       }
     }
 
@@ -29,20 +35,20 @@
       }
 
       .fundings {
-        margin: 0 -5px;
+        margin-top: 30px;
         .funding-card {
           padding: 10px;
-          border: 1px solid gray;
+          border: 1px solid $brand-primary;
           border-radius: 10px;
           .amount {
             font-size: ($font-size-base * 1.5);
-            color: $brand-angelhub-blue;
+            color: $brand-primary;
             font-weight: bold;
           }
 
           .title {
             font-size: ($font-size-base * 1.2);
-            color: gray;
+            color: $gray-light;
           }
         }
       }

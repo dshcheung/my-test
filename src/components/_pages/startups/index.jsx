@@ -40,8 +40,8 @@ export default class StartupsIndex extends Component {
     const lorem = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam accusantium voluptatum, facilis magnam, laboriosam repellat dolore cumque id quia exercitationem sequi unde, dicta incidunt! Nostrum sapiente blanditiis suscipit maiores eius."
 
     return (
-      <div id="pages-startups-index" className="container">
-        <section>
+      <div id="pages-startups-index" className="container-fluid padding-0">
+        <section className="container">
           <div className="row section-header">
             <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
               <h1>LIVE STARTUPS</h1>
@@ -76,7 +76,7 @@ export default class StartupsIndex extends Component {
                             <div className="col-xs-12 card-banner" style={styles}>
                               <img className="startup-logo position-absolute top-15 left-10" src={`${_.get(startup, "profile.avatar.original", null) || "/company-logo.jpg"}`} alt={`Logo ${startup.name}}`} />
                               <div className="startup-badge text-uppercase text-white text-italics position-absolute bottom-0 right-0">
-                                Coming Soon
+                                Closing Soon
                               </div>
                             </div>
                             <div className="col-xs-12 card-info">
@@ -259,6 +259,19 @@ export default class StartupsIndex extends Component {
               </div>
             </div>
           */}
+        </section>
+        <section className="bg-opportunities padding-top-40 padding-bottom-40">
+          <div className="row">
+            <div className="col-xs-12">
+              <div className="h1 text-white margin-bottom-30">Access More Investment Opportunities</div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-xs-12 col-md-6 col-md-offset-3">
+              <Link to="/auth/signup" className="btn btn-info btn-lg text-uppercase margin-right-20">Get Started</Link>
+              <Link to="/login" className="btn btn-outline btn-white btn-log btn-lg text-uppercase margin-left-20">Login</Link>
+            </div>
+          </div>
         </section>
 
         {/*
