@@ -40,38 +40,45 @@ export default class Home extends Component {
               <div className="col-sm-12 col-md-3">
                 <div className="news-item">
                   <div className="col-sm-6 col-md-3 news-date">
-                    <span>JUL<br />10</span>
+                    <span>SEP<br />1</span>
                   </div>
                   <div className="col-sm-6 col-md-9 news-details">
-                    <Link className="news-link" to="https://whub.io/events/hong-kong-fintech-ecosystem-toolbox-2017-insights-trends-1502351926">
+                    <Link className="news-link" to="https://www.slideshare.net/WHubio/hong-kong-startup-ecosystem-toolbox-v30">
+                      <span className="news-title">Hong Kong Startup Ecosystem White Paper</span>
+                      <p className="news-caption">
+                        Discover the people that make the Startup Ecosystem, VC,
+                        funded Startups, accelerators and incubators... and why Hong Kong is so attractive and growing exponentially.
+                      </p>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div className="col-sm-12 col-md-3">
+                <div className="news-item">
+                  <div className="col-sm-6 col-md-3 news-date">
+                    <span>SEP<br />4</span>
+                  </div>
+                  <div className="col-sm-6 col-md-9 news-details">
+                    <Link className="news-link" to="https://techcrunch.com/2017/09/01/gogovan-becomes-hong-kongs-first-1-billion-startup-following-merger-deal/">
+                      <span className="news-title">Hong Kong’s 1st unicorn is a logistic company</span>
+                      <p className="news-caption">GoGoVan becomes Hong Kong’s first $1 billion startup following merger deal</p>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-sm-12 col-md-3">
+                <div className="news-item">
+                  <div className="col-sm-6 col-md-3 news-date">
+                    <span>SEP<br />19</span>
+                  </div>
+                  <div className="col-sm-6 col-md-9 news-details">
+                    <Link className="news-link" to="https://www.eventbrite.hk/e/hong-kong-fintech-ecosystem-toolbox-2017-insights-trends-tickets-36853092592">
                       <span className="news-title">Toolbox</span>
-                      <p className="news-caption">Insights about the FinTech ecosystem: Who are the key players in the Hong Kong FinTech sector?</p>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm-12 col-md-3">
-                <div className="news-item">
-                  <div className="col-sm-6 col-md-3 news-date">
-                    <span>JUL<br />12</span>
-                  </div>
-                  <div className="col-sm-6 col-md-9 news-details">
-                    <Link className="news-link">
-                      <span className="news-title">Lorem ipsum dolor sit amet</span>
-                      <p className="news-caption">consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm-12 col-md-3">
-                <div className="news-item">
-                  <div className="col-sm-6 col-md-3 news-date">
-                    <span>JUL<br />13</span>
-                  </div>
-                  <div className="col-sm-6 col-md-9 news-details">
-                    <Link className="news-link">
-                      <span className="news-title">Lorem ipsum dolor sit amet</span>
-                      <p className="news-caption">consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                      <p className="news-caption">
+                        Who are the key players in the Hong Kong FinTech sector? What resources can you find in Hong Kong?
+                        Join us to get a better understanding of the FinTech scene in less than 60 minutes!
+                      </p>
                     </Link>
                   </div>
                 </div>
