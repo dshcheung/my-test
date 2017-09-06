@@ -37,7 +37,7 @@ export default class StartupsIndex extends Component {
   render() {
     const { startups, getStartupsInProcess } = this.props
 
-    const lorem = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam accusantium voluptatum, facilis magnam, laboriosam repellat dolore cumque id quia exercitationem sequi unde, dicta incidunt! Nostrum sapiente blanditiis suscipit maiores eius."
+    const tagline = "Invest into businesses you believe in"
 
     return (
       <div id="pages-startups-index" className="container-fluid padding-0">
@@ -45,7 +45,7 @@ export default class StartupsIndex extends Component {
           <div className="row section-header">
             <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
               <h1>LIVE STARTUPS</h1>
-              <p>{lorem}</p>
+              <p>{tagline}</p>
             </div>
           </div>
 
