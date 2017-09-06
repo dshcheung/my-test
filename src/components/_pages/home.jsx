@@ -74,7 +74,7 @@ export default class Home extends Component {
                   </div>
                   <div className="col-sm-6 col-md-9 news-details">
                     <Link className="news-link" to="https://www.eventbrite.hk/e/hong-kong-fintech-ecosystem-toolbox-2017-insights-trends-tickets-36853092592">
-                      <span className="news-title">Toolbox</span>
+                      <span className="news-title">FinTech Toolbox Launch Event</span>
                       <p className="news-caption">
                         Who are the key players in the Hong Kong FinTech sector? What resources can you find in Hong Kong?
                         Join us to get a better understanding of the FinTech scene in less than 60 minutes!
