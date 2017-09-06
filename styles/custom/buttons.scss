@@ -10,7 +10,7 @@
   border-color: $white-text;
   color: $white-text !important;
   &:hover {
-    color: $gray-base;
+    color: $gray-base !important;
     background-color: $white-text;
   }
 }
