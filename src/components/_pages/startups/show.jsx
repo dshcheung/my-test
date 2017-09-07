@@ -223,15 +223,26 @@ const moreInfoContent = (title, content) => {
   return (
     <Element name={title} className="section">
       <div className="h2">{title}</div>
-      <p dangerouslySetInnerHTML={{ __html: this.htmlDecode(content) }} />
+      <p dangerouslySetInnerHTML={{ __html: htmlDecode(content) }} />
     </Element>
   )
 }
 
-const moreInfoContentHighlights = (title) => {
+const moreInfoContentHighlights = (title, highlights) => {
   return (
     <Element name={title} className="section">
       <div className="h2">{title}</div>
+      <p>
+        <ul>
+          {
+            highlights.map((highlight, k) => {
+              return (
+                <li key={k} dangerouslySetInnerHTML={{ __html: htmlDecode(highlight.detail) }} />
+              )
+            })
+          }
+        </ul>
+      </p>
     </Element>
   )
 }
@@ -250,4 +261,10 @@ const moreInfoContentTeam = (title) => {
       <div className="h2">{title}</div>
     </Element>
   )
+}
+
+const htmlDecode = (input) => {
+  const e = document.createElement('div')
+  e.innerHTML = input
+  return e.innerHTML
 }

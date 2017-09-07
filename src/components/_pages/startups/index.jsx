@@ -95,10 +95,10 @@ export default class StartupsIndex extends Component {
                               <div className="row">
                                 <div className="about">
                                   <hr />
-                                  <div>{startup.profile.description}</div>
+                                  <div>{startup.profile.tagline}</div>
                                   {
                                     startup.highlights.length > 0 && (
-                                      <ul className="">
+                                      <ul>
                                         {
                                           startup.highlights.map((highlight, k) => {
                                             if (k >= 3) return null
