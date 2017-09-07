@@ -92,8 +92,8 @@ export default class Home extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-6 col-md-offset-3 bg-primary text-center note-details">
-                <img className="" src="https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/footer-logo.png" alt="Logo" />
                 <span className="h2 section-heading text-uppercase">Why AngelHub?</span>
+                <img className="" src="https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/footer-logo.png" alt="Logo" />
                 <p className="note-caption">
                   <strong>Our mission is simple: connect Professional Investors to high quality startups seeking funding.</strong>
                   To fulfill our mission, we created an innovative digital capital market which greatly reduces the traditional barriers for investing in highly vetted private companies.
@@ -107,60 +107,6 @@ export default class Home extends Component {
             <div className="inner" />
           </div>
           <div className="container-fluid">
-            <div className="row">
-              <div className="col-sm-12 col-md-6 col-lg-5 how-it-works-details">
-                <span className="h2 section-heading text-uppercase">How it works</span>
-                <p className="text-gray">
-                  Experience the new way to investing with access to highly curated startups while building a diversified
-                  portfolio in the simplest, trustworthy and most efficient way.
-                </p>
-                <Link className="btn btn-primary btn-outline btn-lg text-uppercase">Get In Touch</Link>
-              </div>
-              <div className="col-sm-12 col-md-6 col-lg-7 how-it-works-options">
-                <div className="row">
-                  <div className="col-md-12 col-lg-6">
-                    <div className="text-center text-white option">
-                      <i className="fa fa-list fa-4x fa-fw" />
-                      <p className="caption">Highly Vetted Startup</p>
-                      <p className="hover">
-                        Rigorous selection process through interviews and Investment Committee composed of
-                        highly successful entrepreneurs, experienced investors, experts and top-level business leaders
-                      </p>
-                    </div>
-                  </div>
-                  <div className="col-md-12 col-lg-6">
-                    <div className="text-center text-white option">
-                      <i className="fa fa-pie-chart fa-4x fa-fw" />
-                      <p className="caption">Investment Management</p>
-                      <p className="hover">
-                        Monitor the companies you invest in and manage your portfolio with an ongoing investor-startup relation
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-12 col-lg-6">
-                    <div className="text-center text-white option">
-                      <i className="fa fa-book fa-4x fa-fw" />
-                      <p className="caption">Diversified Portfolio</p>
-                      <p className="hover">
-                        Increase the probability of success via our sector agnostic vetted startups
-                      </p>
-                    </div>
-                  </div>
-                  <div className="col-md-12 col-lg-6">
-                    <div className="text-center text-white option">
-                      <i className="fa fa-shield fa-4x fa-fw " />
-                      <p className="caption">Secure & Transparent</p>
-                      <p className="hover">
-                        First Equity Crowdfunding platform licensed by the SFC. Digitized
-                        data-room to assess the opportunity and risks through due diligence documentation
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
             <div className="row exclusive-benefits">
               <div className="diamond border-none position-absolute top-minus-25 left-30">
                 <div className="inner" />
