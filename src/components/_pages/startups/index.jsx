@@ -80,31 +80,30 @@ export default class StartupsIndex extends Component {
                         <div key={i} className="col-xs-12 col-sm-6 col-md-4 text-center startup-card">
                           {
                             privateCard ? (
-                              <div className="col-xs-12 card-header text-white bg-info">PRIVATE</div>
+                              <div className="col-xs-12 card-header text-white bg-info">COMING SOON</div>
                             ) : (
                               <div className="col-xs-12 card-header text-white bg-info">ACCEPTING INVESTMENT</div>
                             )
                           }
 
-                          <div className="col-xs-12 card-banner" style={styles}>
-                            <Link to={`/startups/${startup.id}`} className={`clearfix ${blur}`}>
+                          <Link to={`/startups/${startup.id}`} className="clearfix card-banner-wrapper">
+                            <div className={`col-xs-12 card-banner clearfix`} style={styles}>
                               <img className="startup-logo position-absolute top-15 left-10" src={`${_.get(startup, "profile.avatar.original", null) || "/company-logo.jpg"}`} alt={`Logo ${startup.name}}`} />
-                              <div className="startup-badge text-uppercase text-white text-italics position-absolute bottom-0 right-0">
-                                Closing Soon
-                              </div>
-                            </Link>
-                          </div>
+                            </div>
+                          </Link>
 
                           {
                             privateCard ? (
                               <div className="col-xs-12 card-info">
                                 <div className="name">
-                                  <div className="h3 margin-top-5 margin-bottom-5 text-bold text-gray-dark">Private</div>
+                                  <div className="h4">Category</div>
+                                  <div className="h3 margin-top-5 margin-bottom-5 text-bold text-gray-dark">
+                                    <Link to={`/startups/${startup.id}`}>{startup.name}</Link>
+                                  </div>
                                 </div>
                                 <div className="about">
                                   <hr />
-                                  <p>You must be logged in to view this opportunity.</p>
-                                  <p><Link to="/auth/login">Login</Link> or <Link to="/auth/signup">set up your investor account</Link></p>
+                                  <div>{startup.profile.tagline}</div>
                                 </div>
                               </div>
                             ) : (

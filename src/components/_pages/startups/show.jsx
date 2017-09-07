@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import AutoAffix from 'react-overlays/lib/AutoAffix'
 import Link from 'react-scroll/modules/components/Link'
 import Element from 'react-scroll/modules/components/Element'
+import RouteLink from 'react-router/lib/Link'
 
 import {
   getStartup,
@@ -199,6 +200,11 @@ export default class StartupsShow extends Component {
                           <li><Link to="End Notes" spy smooth duration={500} offset={-100}>End Notes</Link></li>
                         )
                       }
+                      {
+                        _.get(startup, "attachments[0]") && (
+                          <li><Link to="Documents" spy smooth duration={500} offset={-100}>Documents</Link></li>
+                        )
+                      }
                     </ul>
 
                     <hr />
@@ -222,6 +228,7 @@ export default class StartupsShow extends Component {
                 {_.get(startup, "market_scope.title") && moreInfoContentMarketScope("Market Scope", startup.market_scope.title, startup.market_scope.description, startup.market_scope.attachments)}
                 {_.get(startup, "risk.title") && moreInfoContent("Risk & Disclosure", startup.risk.title)}
                 {_.get(startup, "end_notes") && moreInfoContent("End Notes", startup.end_notes)}
+                {_.get(startup, "attachments[0]") && moreInfoDocuments("Documents", startup.attachments)}
               </div>
             </section>
           </div>
@@ -382,6 +389,30 @@ const moreInfoContentMarketScope = (title, contentTitle, details, attachments) =
           }
         </div>
       </div>
+    </Element>
+  )
+}
+
+const moreInfoDocuments = (title, documents) => {
+  return (
+    <Element name={title} className="section">
+      <div className="h2">{title}</div>
+      <div className="row documents">
+        <div className="col-xs-12">
+          <ul>
+            {
+              documents.map((doc, i) => {
+                return (
+                  <li key={i}>
+                    <span><i className="fa fa-file-text" />{doc.title}</span>
+                  </li>
+                )
+              })
+            }
+          </ul>
+        </div>
+      </div>
+      <RouteLink className="text-uppercase access btn btn-warning btn-lg" to="/auth/login">Login Required</RouteLink>
     </Element>
   )
 }

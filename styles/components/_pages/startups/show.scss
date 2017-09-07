@@ -205,6 +205,8 @@
 
     .section {
       margin-bottom: 20px;
+      position: relative;
+
       &:not(:first-child) {
         margin-top: 20px;
       }
@@ -250,6 +252,23 @@
           }
         }
       }
+
+      .documents {
+        -webkit-filter: blur(2px);
+        -moz-filter: blur(2px);
+        -o-filter: blur(2px);
+        -ms-filter: blur(2px);
+        filter: blur(2px);
+      }
+
+      .access {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -20px;
+        margin-left: -75px;
+      }
+
       ul {
         margin: 0;
         li {
