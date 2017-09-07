@@ -204,7 +204,7 @@ export default class StartupsShow extends Component {
               <div className="col-xs-12 col-sm-9">
                 {_.get(startup, "highlights[0]") && moreInfoContentHighlights("Highlights", startup.highlights)}
                 {_.get(startup, "profile.overview") && moreInfoContent("Overview", startup.profile.overview)}
-                {_.get(startup, "pitch_deck.title") && moreInfoContent("Pitch Deck", startup.pitch_deck.title)}
+                {_.get(startup, "pitch_deck.title") && moreInfoContentPitchDeck("Pitch Deck", startup.pitch_deck.title, startup.pitch_deck.attachments)}
                 {_.get(startup, "media[0]") && moreInfoContentMedia("Media", startup.media)}
                 {_.get(startup, "members[0]") && moreInfoContentTeam("Team", startup.members)}
                 {_.get(startup, "market_scope.title") && moreInfoContent("Market Scope", startup.market_scope.title)}
@@ -237,7 +237,7 @@ const moreInfoContentHighlights = (title, highlights) => {
           {
             highlights.map((highlight, k) => {
               return (
-                <li key={k} dangerouslySetInnerHTML={{ __html: htmlDecode(highlight.detail) }} />
+                <li className="margin-bottom-10" key={k} dangerouslySetInnerHTML={{ __html: htmlDecode(highlight.detail) }} />
               )
             })
           }
@@ -247,10 +247,20 @@ const moreInfoContentHighlights = (title, highlights) => {
   )
 }
 
-const moreInfoContentMedia = (title) => {
+const moreInfoContentPitchDeck = (title) => {
   return (
     <Element name={title} className="section">
       <div className="h2">{title}</div>
+      <p className="gallery" />
+    </Element>
+  )
+}
+
+const moreInfoContentMedia = (title, content) => {
+  return (
+    <Element name={title} className="section">
+      <div className="h2">{title}</div>
+      <p dangerouslySetInnerHTML={{ __html: htmlDecode(content) }} />
     </Element>
   )
 }

@@ -96,21 +96,6 @@ export default class StartupsIndex extends Component {
                                 <div className="about">
                                   <hr />
                                   <div>{startup.profile.tagline}</div>
-                                  {
-                                    startup.highlights.length > 0 && (
-                                      <ul>
-                                        {
-                                          startup.highlights.map((highlight, k) => {
-                                            if (k >= 3) return null
-
-                                            return (
-                                              <li key={k} dangerouslySetInnerHTML={{ __html: this.htmlDecode(highlight.detail) }} />
-                                            )
-                                          })
-                                        }
-                                      </ul>
-                                    )
-                                  }
                                 </div>
                               </div>
 
