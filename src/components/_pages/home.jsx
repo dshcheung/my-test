@@ -91,7 +91,7 @@ export default class Home extends Component {
         <section className="section note bg-dark">
           <div className="container">
             <div className="row">
-              <div className="col-md-6 col-md-offset-3 bg-primary text-center note-details">
+              <div className="col-md-8 col-md-offset-2 bg-primary text-center note-details">
                 <img src="https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/footer-logo.png" alt="Logo" />
                 <span className="h2 section-heading text-uppercase">Why AngelHub?</span>
                 <p className="note-caption text-bold">
