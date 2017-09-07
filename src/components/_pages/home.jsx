@@ -47,8 +47,7 @@ export default class Home extends Component {
                     <Link className="news-link" to="https://www.slideshare.net/WHubio/hong-kong-startup-ecosystem-toolbox-v30">
                       <span className="news-title">Hong Kong Startup Ecosystem White Paper</span>
                       <p className="news-caption">
-                        Discover the people that make the Startup Ecosystem, VC,
-                        funded Startups, accelerators and incubators... and why Hong Kong is so attractive and growing exponentially.
+                        Discover the people that make the Startup Ecosystem, VC, funded Startups, accelerators and incubators...
                       </p>
                     </Link>
                   </div>
@@ -78,7 +77,6 @@ export default class Home extends Component {
                       <span className="news-title">FinTech Toolbox Launch Event</span>
                       <p className="news-caption">
                         Who are the key players in the Hong Kong FinTech sector? What resources can you find in Hong Kong?
-                        Join us to get a better understanding of the FinTech scene in less than 60 minutes!
                       </p>
                     </Link>
                   </div>
@@ -95,17 +93,10 @@ export default class Home extends Component {
             <div className="row">
               <div className="col-md-6 col-md-offset-3 bg-primary text-center note-details">
                 <img className="" src="https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/footer-logo.png" alt="Logo" />
+                <span className="h2 section-heading text-uppercase">Why AngelHub?</span>
                 <p className="note-caption">
-                  AngelHub is focused on funding and supporting the world’s most promising startups. Our rigorous vetting process starts
-                  with screening referrals from our different partners and online applications from the community. This includes investors,
-                  accelerators, incubators and VC firms. We conduct interviews and due diligence process of the deals. This is followed
-                  by an in depth review of our Investment Committee composed of highly successful entrepreneurs, experienced investors,
-                  experts and top-level business leaders. An opportunity listed on AngelHub for investment has gone through this rigorous
-                  selection process.
-                </p>
-                <p className="note-caption">
-                  AngelHub is the <span className="text-underline">first Curated Startup Equity Investment Platform</span> for
-                  Professional Investors <span className="text-underline">licensed by the SFC</span>.
+                  <strong>Our mission is simple: connect Professional Investors to high quality startups seeking funding.</strong>
+                  To fulfill our mission, we created an innovative digital capital market which greatly reduces the traditional barriers for investing in highly vetted private companies.
                 </p>
               </div>
             </div>
