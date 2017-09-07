@@ -71,7 +71,7 @@ export default class StartupsIndex extends Component {
                     )
                   } else {
                     component = startups.map((startup, i) => {
-                      const privateCard = i > 0
+                      const privateCard = false
                       const blur = privateCard && "blur"
                       const styles = {
                         backgroundImage: `url(${_.get(startup, 'profile.banner.original', null) || '/company-logo.jpg'})`
@@ -86,14 +86,14 @@ export default class StartupsIndex extends Component {
                             )
                           }
 
-                          <div className="col-xs-12 card-banner" style={styles}>
-                            <Link to={`/startups/${startup.id}`} className={`clearfix ${blur}`}>
+                          <Link to={`/startups/${startup.id}`} className="clearfix card-banner-wrapper">
+                            <div className={`col-xs-12 card-banner clearfix ${blur}`} style={styles}>
                               <img className="startup-logo position-absolute top-15 left-10" src={`${_.get(startup, "profile.avatar.original", null) || "/company-logo.jpg"}`} alt={`Logo ${startup.name}}`} />
                               <div className="startup-badge text-uppercase text-white text-italics position-absolute bottom-0 right-0">
                                 Closing Soon
                               </div>
-                            </Link>
-                          </div>
+                            </div>
+                          </Link>
 
                           {
                             privateCard ? (
