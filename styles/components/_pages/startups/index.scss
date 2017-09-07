@@ -56,9 +56,10 @@
             background-position: center;
             background-size: cover;
             .startup-logo {
-              border-radius: 10em;
+              border-radius: 5px;
               width: 100px;
               height: auto;
+              background-color: $white;
             }
           }
 
