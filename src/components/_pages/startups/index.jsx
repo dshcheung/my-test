@@ -71,15 +71,23 @@ export default class StartupsIndex extends Component {
                     )
                   } else {
                     component = startups.map((startup, i) => {
+                      const privateCard = i > 0
+                      const blur = privateCard && "blur"
                       const styles = {
                         backgroundImage: `url(${_.get(startup, 'profile.banner.original', null) || '/company-logo.jpg'})`
                       }
                       return (
                         <div key={i} className="col-xs-12 col-sm-6 col-md-4 text-center startup-card">
-                          <div className="col-xs-12 card-header text-white bg-info">ACCEPTING INVESTMENT</div>
+                          {
+                            privateCard ? (
+                              <div className="col-xs-12 card-header text-white bg-info">PRIVATE</div>
+                            ) : (
+                              <div className="col-xs-12 card-header text-white bg-info">ACCEPTING INVESTMENT</div>
+                            )
+                          }
 
-                          <div className="col-xs-12 card-banner" style={styles}>
-                            <Link to={`/startups/${startup.id}`} className="clearfix">
+                          <div className="col-xs-12 card-banner">
+                            <Link to={`/startups/${startup.id}`} className={`clearfix ${blur}`} style={styles}>
                               <img className="startup-logo position-absolute top-15 left-10" src={`${_.get(startup, "profile.avatar.original", null) || "/company-logo.jpg"}`} alt={`Logo ${startup.name}}`} />
                               <div className="startup-badge text-uppercase text-white text-italics position-absolute bottom-0 right-0">
                                 Closing Soon
@@ -87,34 +95,51 @@ export default class StartupsIndex extends Component {
                             </Link>
                           </div>
 
-                          <div className="col-xs-12 card-info">
-                            <div className="name">
-                              <div className="h4">Category</div>
-                              <div className="h3 margin-top-5 margin-bottom-5 text-bold text-gray-dark">{startup.name}</div>
-                            </div>
+                          {
+                            privateCard ? (
+                              <div className="col-xs-12 card-info">
+                                <div className="name">
+                                  <div className="h3 margin-top-5 margin-bottom-5 text-bold text-gray-dark">Private</div>
+                                </div>
+                                <div className="about">
+                                  <hr />
+                                  <p>You must be logged in to view this opportunity.</p>
+                                  <p><Link to="/auth/login">Login</Link> or <Link to="/auth/signup">set up your investor account</Link></p>
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="col-xs-12 card-info">
+                                <div className="name">
+                                  <div className="h4">Category</div>
+                                  <div className="h3 margin-top-5 margin-bottom-5 text-bold text-gray-dark">
+                                    <Link to={`/startups/${startup.id}`}>{startup.name}</Link>
+                                  </div>
+                                </div>
 
-                            <div className="about">
-                              <hr />
-                              <div>{startup.profile.tagline}</div>
-                            </div>
+                                <div className="about">
+                                  <hr />
+                                  <div>{startup.profile.tagline}</div>
+                                </div>
 
-                            <div className="stats">
-                              <hr />
-                              <div className="clearfix">
-                                <div className="pull-left"><strong>$1,222</strong> raised</div>
-                                <div className="pull-right"><strong>4</strong> investors</div>
+                                <div className="stats">
+                                  <hr />
+                                  <div className="clearfix">
+                                    <div className="pull-left"><strong>$1,222</strong> raised</div>
+                                    <div className="pull-right"><strong>4</strong> investors</div>
+                                  </div>
+                                  <div className="progress">
+                                    <div className="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style={{ width: "80%" }} />
+                                    <div className="progress-start filled" />
+                                    <div className="progress-end" />
+                                  </div>
+                                  <div className="clearfix">
+                                    <div className="pull-left"><strong>80%</strong> achieved</div>
+                                    <div className="pull-right"><strong>23</strong> days left</div>
+                                  </div>
+                                </div>
                               </div>
-                              <div className="progress">
-                                <div className="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style={{ width: "80%" }} />
-                                <div className="progress-start filled" />
-                                <div className="progress-end" />
-                              </div>
-                              <div className="clearfix">
-                                <div className="pull-left"><strong>80%</strong> achieved</div>
-                                <div className="pull-right"><strong>23</strong> days left</div>
-                              </div>
-                            </div>
-                          </div>
+                            )
+                          }
                         </div>
                       )
                     })
