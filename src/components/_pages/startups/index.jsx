@@ -72,7 +72,7 @@ export default class StartupsIndex extends Component {
                   } else {
                     component = startups.map((startup, i) => {
                       const privateCard = i > 0
-                      const blur = privateCard && "blur"
+                      // const blur = privateCard && "blur"
                       const styles = {
                         backgroundImage: `url(${_.get(startup, 'profile.banner.original', null) || '/company-logo.jpg'})`
                       }

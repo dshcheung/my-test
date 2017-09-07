@@ -135,7 +135,7 @@ export default class StartupsShow extends Component {
                     </div>
                   </div>
                 </div>
-                <button className="btn btn-primary btn-lg padding-20 btn-block btn-invest">SIGNUP TO INVEST</button>
+                <button className="btn btn-primary btn-lg padding-20 btn-block btn-invest text-uppercase">Invest Now</button>
                 <div className="warning margin-top-50">
                   <span className="text-bold">Purchased securities are not currently tradeable.</span>
                   <p className="instruction">Expect to hold your investment until the company lists on a national exchange or is acquired.</p>
@@ -218,7 +218,7 @@ export default class StartupsShow extends Component {
                 </AutoAffix>
               </div>
               <div className="col-xs-12 col-sm-9">
-                {_.get(startup, "highlights[0]") && moreInfoContentList("Highlights", startup.highlights)}
+                {_.get(startup, "highlights[0]") && moreInfoContentList("Highlights", startup.highlights, 'highlights')}
                 {_.get(startup, "profile.overview") && moreInfoContent("Overview", startup.profile.overview)}
                 {_.get(startup, "key_performance_indicators[0]") && moreInfoContentList("KPIs", startup.key_performance_indicators)}
                 {_.get(startup, "milestones[0]") && moreInfoContentMilestones("Milestones", startup.milestones)}
@@ -249,13 +249,13 @@ const moreInfoContent = (title, content) => {
   )
 }
 
-const moreInfoContentList = (title, items) => {
+const moreInfoContentList = (title, items, className) => {
   return (
     <Element name={title} className="section">
       <div className="h2">{title}</div>
       <div className="row">
         <div className="col-xs-12">
-          <ul className="list">
+          <ul className={"list " + className}>
             {
               items.map((item, k) => {
                 return (

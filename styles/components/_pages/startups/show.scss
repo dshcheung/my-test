@@ -222,6 +222,11 @@
         font-size: ($font-size-base * 1.1);
         font-weight: 200;
       }
+			.highlights {
+				li {
+					color: darken(#FF7538, 20%);
+				}
+			}
       .milestone {
         .h3 {
           margin-top: 0;
