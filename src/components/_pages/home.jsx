@@ -92,8 +92,8 @@ export default class Home extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-6 col-md-offset-3 bg-primary text-center note-details">
+                <img src="https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/footer-logo.png" alt="Logo" />
                 <span className="h2 section-heading text-uppercase">Why AngelHub?</span>
-                <img className="" src="https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/footer-logo.png" alt="Logo" />
                 <p className="note-caption text-bold">
                   Our mission is simple: connect Professional Investors to high quality startups seeking funding.
                 </p>

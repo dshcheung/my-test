@@ -64,7 +64,7 @@
 
   .note {
     border-bottom: 1px solid $brand-angelhub-blue;
-    background-color: $brand-primary;
+    background-color: $brand-angelhub-blue;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -72,22 +72,29 @@
     background-image: linear-gradient(to bottom, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($members_only_bg);
     background-image: -webkit-linear-gradient(top, rgba(24, 38, 76, 0.5), rgba(24, 38, 76, 0.8)), url($members_only_bg);
     .note-details {
-      padding: 5rem;
+      padding: 5rem 2rem;
+      border: 2px solid $white;
+    }
+    .h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      display: block;
     }
     img {
       width: 150px;
-      margin: 20px auto;
-      display: block;
+      // margin: 20px auto;
+      position: absolute;
+      top: -80px;
+      right: -20px;
     }
     .note-caption {
-      color: $gray-text;
-      font-size: ($font-size-base * 1.2);
+      margin-top: 10px;
+      color: $white-text;
     }
   }
 
   .how-it-works {
     background-color: $white;
-
     .section-heading {
       color: $brand-primary;
       font-weight: bold;
