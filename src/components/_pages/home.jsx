@@ -22,8 +22,9 @@ export default class Home extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <h1 className="text-uppercase margin-bottom-20">Welcome to AngelHub</h1>
-                <p className="tagline text-uppercase margin-bottom-50">The New Era of Angel Investing.</p>
+                <h1 className="text-uppercase margin-bottom-20">AngelHub</h1>
+                <p className="tagline text-uppercase margin-top-20">First Startup Investment Platform</p>
+                <p className="text-uppercase margin-bottom-50">Licensed by the SFC</p>
                 <Link className="btn btn-white btn-lg btn-outline text-uppercase">Request Invitation</Link>
               </div>
             </div>
