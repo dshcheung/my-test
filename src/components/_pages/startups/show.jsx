@@ -355,7 +355,7 @@ const moreInfoContentTeam = (title, members) => {
                   <p>
                     <span className="text-bold header">{member.name}</span>
                     <span className="title">{member.title}</span>
-                    <span className="description">{member.description}</span>
+                    <span className="description" dangerouslySetInnerHTML={{ __html: htmlDecode(member.description) }} />
                   </p>
                 </div>
               </div>
