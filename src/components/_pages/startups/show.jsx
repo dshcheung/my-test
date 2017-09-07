@@ -340,14 +340,15 @@ const moreInfoContentTeam = (title, members) => {
         {
           members.map((member) => {
             return (
-              <div className="col-xs-12 team-member" key={member.id}>
-                <div className="col-xs-6 col-sm-4 col-md-3">
-                  <img className="img-responsive" src={member.avatar.original} alt={member.name} />
+              <div className="col-xs-12 team-member margin-bottom-20" key={member.id}>
+                <div className="col-xs-6 col-sm-4 col-md-2">
+                  <img className="full-width" src={member.avatar.original} alt={member.name} />
                 </div>
-                <div className="col-xs-6 col-sm-8 col-md-9">
+                <div className="col-xs-6 col-sm-8 col-md-10">
                   <p>
-                    <span>{member.name}</span>
-                    <span>{member.title}</span>
+                    <span className="text-bold header">{member.name}</span>
+                    <span className="title">{member.title}</span>
+                    <span className="description">{member.description}</span>
                   </p>
                 </div>
               </div>

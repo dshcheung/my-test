@@ -235,10 +235,18 @@
         }
       }
       .team-member {
+				.full-width {
+					width: 100%;
+				}
         p {
-          font-size: ($font-size-base * 0.8);
           span {
             display: block;
+						&.title {
+							font-size: ($font-size-base * 0.9);
+						}
+						&.description {
+							font-size: ($font-size-base * 0.9);
+						}
           }
         }
       }
