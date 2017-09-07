@@ -3,12 +3,14 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Link } from 'react-router'
 
-import { createUser } from '../../../actions/users'
+import { createUser, CREATE_USER } from '../../../actions/users'
 
 import SignupForm from '../../forms/auth/signup'
 
-const mapStateToProps = () => {
-  return { }
+const mapStateToProps = (state) => {
+  return {
+    createUserInProcess: _.get(state.requestStatus, CREATE_USER)
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -34,13 +36,14 @@ export default class Signup extends Component {
       <div id="page-auth-signup" className="container padding-top-20 padding-bottom-20">
         <div className="row">
           <SignupForm
-            optClass="col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4"
+            optClass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
             onSubmit={this.createUser}
+            submitInProcess={this.props.createUserInProcess}
           />
         </div>
 
         <div className="row">
-          <div className="tnc col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
+          <div className="tnc col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
             <span>By joining AngelHub, you are agreeing to our </span>
             <Link>Investor Registration Agreement</Link>
             <span> and </span>

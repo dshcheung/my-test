@@ -4,7 +4,6 @@ import { Link } from 'react-router'
 
 import TextField from '../../shared/form-elements/text-field'
 import RadioField from '../../shared/form-elements/radio-field'
-import LoadingSpinner from '../../shared/loading-spinner'
 import Validators from '../../../services/form-validators'
 
 @reduxForm({
@@ -17,14 +16,19 @@ import Validators from '../../../services/form-validators'
       lastName: ["presences"],
       role: ["presences"]
     }, values)
+  },
+  initialValues: {
+    email: "test@test.com",
+    password: "123456",
+    firstName: "Denis",
+    lastName: "Cheung",
+    role: "StartupUser"
   }
 })
 
 export default class SignupForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass } = this.props
-
-    const shouldDisable = submitInProcess
 
     return (
       <div id="forms-auth-signup" className={optClass}>
@@ -86,12 +90,19 @@ export default class SignupForm extends Component {
           />
 
           <div className="form-actions">
-            <div className="margin-bottom-10">Connect an account</div>
-            <button className="btn btn-linked-in btn-lg btn-block" type="button" disabled={shouldDisable}>
-              <i className="fa fa-linkedin fa-lg" /> Sign in with LinkedIn
+            <button
+              className={`btn btn-info btn-lg btn-block ${submitInProcess && "m-progress"}`}
+              type="submit"
+              disabled={submitInProcess}
+            >
+              Continue
             </button>
-            <button className="btn btn-info btn-lg btn-block" type="submit" disabled={shouldDisable}>
-              {submitInProcess ? <LoadingSpinner small white /> : "Continue"}
+            <button
+              className={`btn btn-linked-in btn-lg btn-block ${submitInProcess && "m-progress"}`}
+              type="button"
+              disabled={submitInProcess}
+            >
+              <i className="fa fa-linkedin fa-lg" /> Sign in with LinkedIn
             </button>
           </div>
 

@@ -3,12 +3,13 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Link } from 'react-router'
 
-import { createSession } from '../../../actions/session'
+import { createSession, CREATE_SESSION } from '../../../actions/session'
 
 import LoginForm from '../../forms/auth/login'
 
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
   return {
+    createSessionInProcess: _.get(state.requestStatus, CREATE_SESSION)
   }
 }
 
@@ -35,13 +36,14 @@ export default class Login extends Component {
       <div id="page-auth-login" className="container padding-top-20 padding-bottom-20">
         <div className="row">
           <LoginForm
-            optClass="col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4"
+            optClass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
             onSubmit={this.createSession}
+            submitInProcess={this.props.createSessionInProcess}
           />
         </div>
 
         <div className="row">
-          <div className="create-account col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
+          <div className="create-account col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
             <span>New to AngelHub? </span>
             <Link to="/auth/signup">Create An Account</Link>
           </div>
