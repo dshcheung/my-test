@@ -1,37 +1,41 @@
 .shared-loading-spinner {
-  .animationload {
-    background-color: $white;
+  background-color: $white;
+  height: 82px;
+
+  &.absolute {
     position: fixed;
     height: 100%;
     width: 100%;
     left: 0;
     top: 0;
     z-index: 10000;
-    .ahub-loading {
-      animation: 1.5s linear 0s normal none infinite running ahub-loading;
-      background: $brand-info none repeat scroll 0 0;
-      border-radius: 50px;
-      height: 50px;
-      left: 50%;
-      margin-left: -25px;
-      margin-top: -25px;
-      position: absolute;
-      top: 50%;
-      width: 50px;
-    }
-    .ahub-loading::after {
-      animation: 1.5s linear 0s normal none infinite running ahub-loading_after;
-      border-color: $brand-primary transparent;
-      border-radius: 80px;
-      border-style: solid;
-      border-width: 10px;
-      content: "";
-      height: 80px;
-      left: -15px;
-      position: absolute;
-      top: -15px;
-      width: 80px;
-    }
+  }
+
+  .ahub-loading {
+    animation: 1.5s linear 0s normal none infinite running ahub-loading;
+    background: $brand-info none repeat scroll 0 0;
+    border-radius: 50px;
+    height: 50px;
+    left: 50%;
+    margin-left: -25px;
+    margin-top: -25px;
+    position: absolute;
+    top: 50%;
+    width: 50px;
+  }
+
+  .ahub-loading::after {
+    animation: 1.5s linear 0s normal none infinite running ahub-loading_after;
+    border-color: $brand-primary transparent;
+    border-radius: 80px;
+    border-style: solid;
+    border-width: 10px;
+    content: "";
+    height: 80px;
+    left: -15px;
+    position: absolute;
+    top: -15px;
+    width: 80px;
   }
 }
 

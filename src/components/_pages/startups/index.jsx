@@ -60,7 +60,7 @@ export default class StartupsIndex extends Component {
                 let component = null
                 if (getStartupsInProcess) {
                   component = (
-                    <LoadingSpinner optClass="col-xs-12" />
+                    <LoadingSpinner />
                   )
                 } else {
                   if (startups.length === 0) {

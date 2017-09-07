@@ -53,7 +53,7 @@ export default class LoginForm extends Component {
           />
 
           <button className="btn btn-info btn-lg btn-block" type="submit" disabled={shouldDisable}>
-            {submitInProcess ? <LoadingSpinner small white /> : "Sign into your account"}
+            {submitInProcess ? <LoadingSpinner /> : "Sign into your account"}
           </button>
           <button className="btn btn-linked-in btn-lg btn-block" type="button" disabled={shouldDisable}>
             <i className="fa fa-linkedin fa-lg" /> Sign in with LinkedIn

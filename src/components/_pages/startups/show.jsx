@@ -46,7 +46,7 @@ export default class StartupsShow extends Component {
   render() {
     const { startup, getStartupInProcess } = this.props
 
-    if (getStartupInProcess) return <LoadingSpinner optClass="text-center" />
+    if (getStartupInProcess) return <LoadingSpinner />
 
     if (!startup) {
       return (

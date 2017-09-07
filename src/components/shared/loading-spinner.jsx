@@ -1,14 +1,12 @@
 import React from 'react'
 
-export default ({ initLoad, white, optClass }) => {
-  const colour = white ? "white" : "dark"
+// TODO: change on submit button loading style for forms
+export default ({ optClass, absolute }) => {
+  const absoluteClass = absolute ? "absolute" : ""
 
   return (
-    <div className={`shared-loading-spinner ${optClass}`}>
-      <div className="animationload">
-        <div className={`ahub-loading ${colour}`} />
-      </div>
-      {initLoad && <span>Please Wait</span>}
+    <div className={`shared-loading-spinner ${optClass} ${absoluteClass}`}>
+      <div className="ahub-loading" />
     </div>
   )
 }
