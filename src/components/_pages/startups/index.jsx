@@ -34,9 +34,14 @@ export default class StartupsIndex extends Component {
     this.props.resetStartups()
   }
 
+  htmlDecode(input) {
+    const e = document.createElement('div')
+    e.innerHTML = input
+    return e.innerHTML
+  }
+
   render() {
     const { startups, getStartupsInProcess } = this.props
-
     const tagline = "Invest into businesses you believe in"
 
     return (
@@ -93,13 +98,13 @@ export default class StartupsIndex extends Component {
                                   <div>{startup.profile.description}</div>
                                   {
                                     startup.highlights.length > 0 && (
-                                      <ul>
+                                      <ul className="">
                                         {
                                           startup.highlights.map((highlight, k) => {
-                                            if (i >= 3) return null
+                                            if (k >= 3) return null
 
                                             return (
-                                              <li key={k}>{highlight}</li>
+                                              <li key={k} dangerouslySetInnerHTML={{ __html: this.htmlDecode(highlight.detail) }} />
                                             )
                                           })
                                         }

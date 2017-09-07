@@ -79,8 +79,22 @@
             }
             .about {
               ul {
+                text-align: left;
                 padding-left: 20px;
                 margin: 15px 0 0;
+                li {
+                  list-style: none;
+                  a {
+                    display: inline;
+                  }
+                  &:before {
+                    content: "\f054"; /* FontAwesome Unicode */
+                    font-family: FontAwesome;
+                    display: inline-block;
+                    margin-left: -1.3em; /* same as padding-left set on li */
+                    width: 1.3em; /* same as padding-left set on li */
+                  }
+                }
               }
             }
             hr {

@@ -37,6 +37,12 @@ export default class StartupsShow extends Component {
     this.props.resetStartup()
   }
 
+  htmlDecode(input) {
+    const e = document.createElement('div')
+    e.innerHTML = input
+    return e.innerHTML
+  }
+
   render() {
     const { startup, getStartupInProcess } = this.props
 
@@ -69,13 +75,13 @@ export default class StartupsShow extends Component {
                   <dd>2016</dd>
                   <dt>Location:</dt>
                   <dd>Hong Kong</dd>
-                  <dt>Time left to invest:</dt>
-                  <dd>xxxxxxx</dd>
+                  <dt className="hide">Time left to invest:</dt>
+                  <dd className="hide">xxxxxxx</dd>
                 </dl>
               </div>
               <div className="col-xs-12 col-md-6">
                 <h1 className="name text-uppercase">{startup.name}</h1>
-                <p className="overview margin-bottom-20">{startup.profile.overview}</p>
+                <p className="overview margin-bottom-20" dangerouslySetInnerHTML={{ __html: this.htmlDecode(startup.profile.tagline) }} />
                 <div className="row">
                   <div className="col-xs-12 padding-0 fundings">
                     <div className="col-md-4">
@@ -217,7 +223,7 @@ const moreInfoContent = (title, content) => {
   return (
     <Element name={title} className="section">
       <div className="h2">{title}</div>
-      <p>{content}</p>
+      <p dangerouslySetInnerHTML={{ __html: this.htmlDecode(content) }} />
     </Element>
   )
 }
