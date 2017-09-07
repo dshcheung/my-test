@@ -137,7 +137,7 @@ export default class StartupsShow extends Component {
                 <button className="btn btn-primary btn-lg padding-20 btn-block btn-invest">SIGNUP TO INVEST</button>
                 <div className="warning margin-top-50">
                   <span className="text-bold">Purchased securities are not currently tradeable.</span>
-                  <p className="instruction">Expect to hold your investment until the company lists on a nation al exchange or is acquired.</p>
+                  <p className="instruction">Expect to hold your investment until the company lists on a national exchange or is acquired.</p>
                 </div>
               </div>
             </section>
@@ -155,6 +155,11 @@ export default class StartupsShow extends Component {
                         )
                       }
                       {
+                        _.get(startup, "profile.overview") && (
+                          <li><Link to="Overview" spy smooth duration={500} offset={-100}>Overview</Link></li>
+                        )
+                      }
+                      {
                         _.get(startup, "key_performance_indicators[0]") && (
                           <li><Link to="KPIs" spy smooth duration={500} offset={-100}>KPIs</Link></li>
                         )
@@ -162,11 +167,6 @@ export default class StartupsShow extends Component {
                       {
                         _.get(startup, "milestones[0]") && (
                           <li><Link to="Milestones" spy smooth duration={500} offset={-100}>Milestones</Link></li>
-                        )
-                      }
-                      {
-                        _.get(startup, "profile.overview") && (
-                          <li><Link to="Overview" spy smooth duration={500} offset={-100}>Overview</Link></li>
                         )
                       }
                       {
@@ -204,9 +204,9 @@ export default class StartupsShow extends Component {
                     <hr />
 
                     <ul className="links">
-                      <li><i className="fa fa-commenting-o fa-2x" /><span>Investor Discussion</span></li>
-                      <li><i className="fa fa-pencil-square-o fa-2x" /><span>Startup Survey</span></li>
-                      <li><i className="fa fa-envelope-o fa-2x" /><span>Contact AngelHub</span></li>
+                      <li><i className="fa fa-commenting-o" /><span>Investor Discussion</span></li>
+                      <li><i className="fa fa-pencil-square-o" /><span>Startup Survey</span></li>
+                      <li><i className="fa fa-envelope-o" /><span>Contact AngelHub</span></li>
                     </ul>
                   </div>
                 </AutoAffix>
@@ -235,7 +235,9 @@ const moreInfoContent = (title, content) => {
   return (
     <Element name={title} className="section">
       <div className="h2">{title}</div>
-      <p dangerouslySetInnerHTML={{ __html: htmlDecode(content) }} />
+      <div>
+        <p dangerouslySetInnerHTML={{ __html: htmlDecode(content) }} />
+      </div>
     </Element>
   )
 }
@@ -244,16 +246,18 @@ const moreInfoContentList = (title, items) => {
   return (
     <Element name={title} className="section">
       <div className="h2">{title}</div>
-      <div>
-        <ul>
-          {
-            items.map((item, k) => {
-              return (
-                <li className="margin-bottom-10" key={k} dangerouslySetInnerHTML={{ __html: htmlDecode(item.detail) }} />
-              )
-            })
-          }
-        </ul>
+      <div className="row">
+        <div className="col-xs-12">
+          <ul className="list">
+            {
+              items.map((item, k) => {
+                return (
+                  <li key={k} dangerouslySetInnerHTML={{ __html: htmlDecode(item.detail) }} />
+                )
+              })
+            }
+          </ul>
+        </div>
       </div>
     </Element>
   )
@@ -264,18 +268,20 @@ const moreInfoContentMilestones = (title, milestones) => {
     <Element name={title} className="section">
       <div className="h2">{title}</div>
       <div className="row">
-        <ul>
+        <div className="col-xs-12">
           {
             milestones.map((milestone) => {
               return (
-                <li className="margin-bottom-10" key={milestone.id}>
-                  <span className="label label-info">{moment(milestone.completed_on).format('MMMM YYYY')}</span>
-                  <span dangerouslySetInnerHTML={{ __html: htmlDecode(milestone.detail) }} />
-                </li>
+                <div className="row milestone" key={milestone.id}>
+                  <div className="col-xs-12">
+                    <div className="h3">{moment(milestone.completed_on).format('MMMM YYYY')}</div>
+                    <p dangerouslySetInnerHTML={{ __html: htmlDecode(milestone.detail) }} />
+                  </div>
+                </div>
               )
             })
           }
-        </ul>
+        </div>
       </div>
     </Element>
   )
