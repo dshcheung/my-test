@@ -95,7 +95,7 @@ export default class Home extends Component {
                 <span className="h2 section-heading text-uppercase">Why AngelHub?</span>
                 <img className="" src="https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/footer-logo.png" alt="Logo" />
                 <p className="note-caption">
-                  <strong>Our mission is simple: connect Professional Investors to high quality startups seeking funding.</strong>
+                  <strong>Our mission is simple: connect Professional Investors to high quality startups seeking funding.</strong><br />
                   To fulfill our mission, we created an innovative digital capital market which greatly reduces the traditional barriers for investing in highly vetted private companies.
                 </p>
               </div>
@@ -103,9 +103,6 @@ export default class Home extends Component {
           </div>
         </section>
         <section className="section how-it-works bg-white bg-connected">
-          <div className="diamond position-absolute top-minus-25">
-            <div className="inner" />
-          </div>
           <div className="container-fluid">
             <div className="row exclusive-benefits">
               <div className="diamond border-none position-absolute top-minus-25 left-30">
