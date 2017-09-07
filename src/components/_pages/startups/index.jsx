@@ -86,8 +86,8 @@ export default class StartupsIndex extends Component {
                             )
                           }
 
-                          <div className="col-xs-12 card-banner">
-                            <Link to={`/startups/${startup.id}`} className={`clearfix ${blur}`} style={styles}>
+                          <div className="col-xs-12 card-banner" style={styles}>
+                            <Link to={`/startups/${startup.id}`} className={`clearfix ${blur}`}>
                               <img className="startup-logo position-absolute top-15 left-10" src={`${_.get(startup, "profile.avatar.original", null) || "/company-logo.jpg"}`} alt={`Logo ${startup.name}}`} />
                               <div className="startup-badge text-uppercase text-white text-italics position-absolute bottom-0 right-0">
                                 Closing Soon
