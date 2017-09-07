@@ -234,6 +234,14 @@
           }
         }
       }
+      .team-member {
+        p {
+          font-size: ($font-size-base * 0.8);
+          span {
+            display: block;
+          }
+        }
+      }
       ul {
         margin: 0;
         li {

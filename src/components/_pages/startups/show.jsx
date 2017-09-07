@@ -319,10 +319,9 @@ const moreInfoContentMedia = (title, media) => {
         {
           media.map((post, i) => {
             return (
-              <div key={i} className="col-md-3 col-sm-4 col-xs-6">
+              <div key={i} className="col-md-2 col-sm3 col-xs-6">
                 <a href={post.link} target="_blank">
                   <img className="img-responsive" key={i} src={post.banner.original} alt={post.title} />
-                  <p className="caption">{post.description}</p>
                 </a>
               </div>
             )
@@ -341,11 +340,15 @@ const moreInfoContentTeam = (title, members) => {
         {
           members.map((member) => {
             return (
-              <div className="col-md-3 col-sm-4 col-xs-6" key={member.id}>
-                <img className="img-responsive" src={member.avatar.original} alt={member.name} />
-                <div className="row">
-                  <div className="col-xs-12 text-bold">{ member.name }</div>
-                  <div className="col-xs-12">{member.title}</div>
+              <div className="col-xs-12 team-member" key={member.id}>
+                <div className="col-xs-6 col-sm-4 col-md-3">
+                  <img className="img-responsive" src={member.avatar.original} alt={member.name} />
+                </div>
+                <div className="col-xs-6 col-sm-8 col-md-9">
+                  <p>
+                    <span>{member.name}</span>
+                    <span>{member.title}</span>
+                  </p>
                 </div>
               </div>
             )
