@@ -155,6 +155,16 @@ export default class StartupsShow extends Component {
                         )
                       }
                       {
+                        _.get(startup, "key_performance_indicators[0]") && (
+                          <li><Link to="KPIs" spy smooth duration={500} offset={-100}>KPIs</Link></li>
+                        )
+                      }
+                      {
+                        _.get(startup, "milestones[0]") && (
+                          <li><Link to="Milestones" spy smooth duration={500} offset={-100}>Milestones</Link></li>
+                        )
+                      }
+                      {
                         _.get(startup, "profile.overview") && (
                           <li><Link to="Overview" spy smooth duration={500} offset={-100}>Overview</Link></li>
                         )
@@ -202,12 +212,14 @@ export default class StartupsShow extends Component {
                 </AutoAffix>
               </div>
               <div className="col-xs-12 col-sm-9">
-                {_.get(startup, "highlights[0]") && moreInfoContentHighlights("Highlights", startup.highlights)}
+                {_.get(startup, "highlights[0]") && moreInfoContentList("Highlights", startup.highlights)}
                 {_.get(startup, "profile.overview") && moreInfoContent("Overview", startup.profile.overview)}
-                {_.get(startup, "pitch_deck.title") && moreInfoContentPitchDeck("Pitch Deck", startup.pitch_deck.title, startup.pitch_deck.attachments)}
+                {_.get(startup, "key_performance_indicators[0]") && moreInfoContentList("KPIs", startup.key_performance_indicators)}
+                {_.get(startup, "milestones[0]") && moreInfoContentMilestones("Milestones", startup.milestones)}
+                {_.get(startup, "pitch_deck.title") && moreInfoContentPitchDeck("Pitch Deck", startup.pitch_deck.attachments)}
                 {_.get(startup, "media[0]") && moreInfoContentMedia("Media", startup.media)}
                 {_.get(startup, "members[0]") && moreInfoContentTeam("Team", startup.members)}
-                {_.get(startup, "market_scope.title") && moreInfoContent("Market Scope", startup.market_scope.title)}
+                {_.get(startup, "market_scope.title") && moreInfoContentMarketScope("Market Scope", startup.market_scope.title, startup.market_scope.description, startup.market_scope.attachments)}
                 {_.get(startup, "risk.title") && moreInfoContent("Risk & Disclosure", startup.risk.title)}
                 {_.get(startup, "end_notes") && moreInfoContent("End Notes", startup.end_notes)}
               </div>
@@ -228,47 +240,138 @@ const moreInfoContent = (title, content) => {
   )
 }
 
-const moreInfoContentHighlights = (title, highlights) => {
+const moreInfoContentList = (title, items) => {
   return (
     <Element name={title} className="section">
       <div className="h2">{title}</div>
-      <p>
+      <div>
         <ul>
           {
-            highlights.map((highlight, k) => {
+            items.map((item, k) => {
               return (
-                <li className="margin-bottom-10" key={k} dangerouslySetInnerHTML={{ __html: htmlDecode(highlight.detail) }} />
+                <li className="margin-bottom-10" key={k} dangerouslySetInnerHTML={{ __html: htmlDecode(item.detail) }} />
               )
             })
           }
         </ul>
-      </p>
+      </div>
     </Element>
   )
 }
 
-const moreInfoContentPitchDeck = (title) => {
+const moreInfoContentMilestones = (title, milestones) => {
   return (
     <Element name={title} className="section">
       <div className="h2">{title}</div>
-      <p className="gallery" />
+      <div className="row">
+        <ul>
+          {
+            milestones.map((milestone) => {
+              return (
+                <li className="margin-bottom-10" key={milestone.id}>
+                  <span className="label label-info">{moment(milestone.completed_on).format('MMMM YYYY')}</span>
+                  <span dangerouslySetInnerHTML={{ __html: htmlDecode(milestone.detail) }} />
+                </li>
+              )
+            })
+          }
+        </ul>
+      </div>
     </Element>
   )
 }
 
-const moreInfoContentMedia = (title, content) => {
+const moreInfoContentPitchDeck = (title, attachments) => {
   return (
     <Element name={title} className="section">
       <div className="h2">{title}</div>
-      <p dangerouslySetInnerHTML={{ __html: htmlDecode(content) }} />
+      <div>
+        <ul className="">
+          {
+            attachments.map((attachment, i) => {
+              return (
+                <li key={i}>
+                  <a href={attachment.file.original} className="btn btn-success">
+                    {attachment.title}
+                    <i className="fa fa-fw fa-download" />
+                  </a>
+                </li>
+              )
+            })
+          }
+        </ul>
+      </div>
     </Element>
   )
 }
 
-const moreInfoContentTeam = (title) => {
+const moreInfoContentMedia = (title, media) => {
   return (
     <Element name={title} className="section">
       <div className="h2">{title}</div>
+      <div className="row">
+        {
+          media.map((post, i) => {
+            return (
+              <div key={i} className="col-md-3 col-sm-4 col-xs-6">
+                <a href={post.link} target="_blank">
+                  <img className="img-responsive" key={i} src={post.banner.original} alt={post.title} />
+                  <p className="caption">{post.description}</p>
+                </a>
+              </div>
+            )
+          })
+        }
+      </div>
+    </Element>
+  )
+}
+
+const moreInfoContentTeam = (title, members) => {
+  return (
+    <Element name={title} className="section">
+      <div className="h2">{title}</div>
+      <div className="row">
+        {
+          members.map((member) => {
+            return (
+              <div className="col-md-3 col-sm-4 col-xs-6" key={member.id}>
+                <img className="img-responsive" src={member.avatar.original} alt={member.name} />
+                <div className="row">
+                  <div className="col-xs-12 text-bold">{ member.name }</div>
+                  <div className="col-xs-12">{member.title}</div>
+                </div>
+              </div>
+            )
+          })
+        }
+      </div>
+    </Element>
+  )
+}
+
+const moreInfoContentMarketScope = (title, contentTitle, details, attachments) => {
+  return (
+    <Element name={title} className="section">
+      <div className="h2">{title}</div>
+      <div className="row">
+        <div className="col-xs-12">
+          <p dangerouslySetInnerHTML={{ __html: htmlDecode(details) }} />
+          {
+            _.some(attachments) && (
+              <p className="gallery">
+                {
+                  attachments.map((attachment) => {
+                    return (
+                      <img className="img-responsive" src={attachment.file.original} alt={attachment.file.title} />
+                    )
+                  })
+                }
+              </p>
+            )
+          }
+        </div>
+      </div>
     </Element>
   )
 }
