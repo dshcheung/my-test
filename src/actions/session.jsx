@@ -31,7 +31,10 @@ export const createSession = (values) => {
   const request = genAxios({
     method: "post",
     url: genApiUrl(apiAuthenticatesIndex()),
-    data: getFormData(values, 'user')
+    data: getFormData({
+      login: _.get(values, 'email', null),
+      password: _.get(values, 'password', null)
+    }, 'user')
   })
 
   return {
