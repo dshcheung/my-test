@@ -112,7 +112,7 @@ export default class Home extends Component {
             <div className="row exclusive-benefits">
               <div className="col-md-12 col-lg-6 skew-20">
                 <div className="bg-exclusive">
-                  <div className="section-heading h1 text-white text-uppercase">Exclusive Member Benefits</div>
+                  <div className="section-heading h1 text-white text-uppercase">Exclusive Investor Benefits</div>
                   <p className="exclusive-details margin-top-30">Be part of the Future by investing in the Innovative and disruptive Startups that are building it</p>
                 </div>
               </div>
