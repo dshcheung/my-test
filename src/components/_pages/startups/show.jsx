@@ -113,8 +113,8 @@ export default class StartupsShow extends Component {
                         <div className="title">Interest Rate</div>
                       </li>
                       <li className="hide">
-                        <div className="amount">$140,000</div>
-                        <div className="title">Pre-Money Valuation</div>
+                        <div className="amount">10,000,000</div>
+                        <div className="title">CAP</div>
                       </li>
                       <li>
                         <div className="amount">Convertible</div>
