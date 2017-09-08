@@ -24,9 +24,11 @@
   padding-bottom: 20px;
   .aspect-16-9 {
     .startup-avatar {
-      width: 75px;
+      width: 100px;
       height: auto;
-      border-radius: 20em;
+      border-radius: 5px;
+			padding: 5px;
+			background-color: $white;
     }
   }
   .basic-info {
