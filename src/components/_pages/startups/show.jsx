@@ -109,10 +109,14 @@ export default class StartupsShow extends Component {
                   <div className="col-sm-12">
                     <ul className="share-list">
                       <li>
-                        <div className="amount">8.00%</div>
-                        <div className="title">Interest Rate</div>
-                        <div className="amount">20%</div>
-                        <div className="title">Discount</div>
+                        <div>
+                          <span className="amount">8.00%</span>
+                          <span className="title"> Interest Rate</span>
+                        </div>
+                        <div>
+                          <span className="amount">20%</span>
+                          <span className="title">Discount</span>
+                        </div>
                       </li>
                       <li className="">
                         <div className="amount">US$10,000,000</div>
