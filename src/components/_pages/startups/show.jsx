@@ -111,6 +111,8 @@ export default class StartupsShow extends Component {
                       <li>
                         <div className="amount">8.00%</div>
                         <div className="title">Interest Rate</div>
+                        <div className="amount">20%</div>
+                        <div className="title">Discount</div>
                       </li>
                       <li className="">
                         <div className="amount">US$10,000,000</div>
