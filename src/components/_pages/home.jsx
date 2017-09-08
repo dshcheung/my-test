@@ -109,6 +109,60 @@ export default class Home extends Component {
             <div className="inner" />
           </div>
           <div className="container-fluid">
+            <div className="container selecting-the-best">
+              <div className="row">
+                <div className="col-xs-12">
+                  <div className="h1 text-center section-heading margin-top-0 margin-bottom-10">Selecting the Best Startups</div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-xs-12 col-md-6 col-md-offset-1">
+                  <ul className="nav nav-list-icons">
+                    <li className="nav-list-item">
+                      <div className="list-icon">
+                        <i className="fa fa-search fa-fw fa-4x" />
+                      </div>
+                      <div className="list-text">
+                        <strong>Deal Origination</strong>
+                        <p>
+                          Our rigorous vetting process starts with screening referrals from our different partners and online applications from the community.
+                          This includes investors, accelerators, incubators and VC firms. All startups apply online through our detail questionnaire about
+                          their company, team, idea, problem, market opportunity, competition analysis, previous funding, technology, milestones and financials.
+                        </p>
+                      </div>
+                    </li>
+                    <li className="nav-list-item">
+                      <div className="list-icon">
+                        <i className="fa fa-lightbulb-o fa-fw fa-4x" />
+                      </div>
+                      <div className="list-text">
+                        <strong>Deal Selection</strong>
+                        <p>
+                          We conduct interviews and due diligence process of the deals. We want to know more about the company and the people.
+                          This is followed by an in depth review of our Investment Committee composed of highly successful entrepreneurs, experienced
+                          investors, experts and top-level business leaders.
+                        </p>
+                      </div>
+                    </li>
+                    <li className="nav-list-item">
+                      <div className="list-icon">
+                        <i className="fa fa-paper-plane fa-fw fa-4x" />
+                      </div>
+                      <div className="list-text">
+                        <strong>Deal Launch</strong>
+                        <p>
+                          The deal information and due diligence documents are uploaded to the platform and launched for our investor community.
+                          An opportunity listed on AngelHub for investment has gone through this rigorous selection process.
+                        </p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div className="col-xs-12 col-md-4">
+                  <img src="https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/landing-imac.png" className="img-responsive" alt="Screenshot" />
+                </div>
+              </div>
+            </div>
             <div className="row exclusive-benefits">
               <div className="col-md-12 col-lg-6 skew-20">
                 <div className="bg-exclusive">

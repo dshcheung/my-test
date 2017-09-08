@@ -144,6 +144,37 @@
         }
       }
     }
+    .selecting-the-best {
+      .section-heading {
+        color: $brand-primary;
+        font-weight: bold;
+      }
+      .nav-list-icons {
+        padding: 0;
+        margin: 0;
+        .nav-list-item {
+          display: table;
+          margin-bottom: 4rem;
+          .list-icon, .list-text {
+            display: table-cell;
+            vertical-align: top;
+          }
+          .list-icon {
+            color: $brand-primary;
+          }
+          .list-text {
+            padding-left: 10px;
+            strong {
+              font-size: ($font-size-base * 1.5);
+              text-transform: uppercase;
+            }
+            p {
+              font-size: $font-size-base;
+            }
+          }
+        }
+      }
+    }
     .exclusive-benefits {
       padding: 5rem 0;
       position: relative;
