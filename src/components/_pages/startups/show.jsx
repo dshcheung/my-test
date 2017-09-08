@@ -87,13 +87,13 @@ export default class StartupsShow extends Component {
                   <div className="col-xs-12 padding-0 fundings">
                     <div className="col-md-4">
                       <div className="funding-card">
-                        <div className="amount">$900,000USD</div>
+                        <div className="amount">US$900,000</div>
                         <div className="title">Raised</div>
                       </div>
                     </div>
                     <div className="col-md-5">
                       <div className="funding-card">
-                        <div className="amount">$2,000,000USD</div>
+                        <div className="amount">US$2,000,000</div>
                         <div className="title">Funding Goal</div>
                       </div>
                     </div>
@@ -113,7 +113,7 @@ export default class StartupsShow extends Component {
                         <div className="title">Interest Rate</div>
                       </li>
                       <li className="">
-                        <div className="amount">10,000,000USD</div>
+                        <div className="amount">US$10,000,000</div>
                         <div className="title">CAP</div>
                       </li>
                       <li>

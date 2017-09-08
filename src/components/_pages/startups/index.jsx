@@ -123,7 +123,7 @@ export default class StartupsIndex extends Component {
                                 <div className="stats">
                                   <hr />
                                   <div className="clearfix">
-                                    <div className="pull-left"><strong>$900,000</strong> raised</div>
+                                    <div className="pull-left"><strong>US$900,000</strong> raised</div>
                                     <div className="pull-right"><strong>7</strong> investors</div>
                                   </div>
                                   <div className="progress">
