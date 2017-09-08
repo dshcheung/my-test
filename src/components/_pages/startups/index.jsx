@@ -45,7 +45,7 @@ export default class StartupsIndex extends Component {
     const tagline = "Invest into businesses you believe in"
 
     return (
-      <div id="pages-startups-index" className="container-fluid padding-0">
+      <div id="pages-startups-index" className="container-fluid">
         <section className="container">
           <div className="row section-header">
             <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
@@ -96,7 +96,7 @@ export default class StartupsIndex extends Component {
                             privateCard ? (
                               <div className="col-xs-12 card-info">
                                 <div className="name">
-                                  <div className="h4">Category</div>
+                                  <div className="h4">{startup.category}</div>
                                   <div className="h3 margin-top-5 margin-bottom-5 text-bold text-gray-dark">
                                     <Link to={`/startups/${startup.id}`}>{startup.name}</Link>
                                   </div>
@@ -109,7 +109,7 @@ export default class StartupsIndex extends Component {
                             ) : (
                               <div className="col-xs-12 card-info">
                                 <div className="name">
-                                  <div className="h4">Category</div>
+                                  <div className="h4">{startup.category}</div>
                                   <div className="h3 margin-top-5 margin-bottom-5 text-bold text-gray-dark">
                                     <Link to={`/startups/${startup.id}`}>{startup.name}</Link>
                                   </div>
@@ -123,17 +123,17 @@ export default class StartupsIndex extends Component {
                                 <div className="stats">
                                   <hr />
                                   <div className="clearfix">
-                                    <div className="pull-left"><strong>$1,222</strong> raised</div>
-                                    <div className="pull-right"><strong>4</strong> investors</div>
+                                    <div className="pull-left"><strong>$900,000</strong> raised</div>
+                                    <div className="pull-right"><strong>7</strong> investors</div>
                                   </div>
                                   <div className="progress">
-                                    <div className="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style={{ width: "80%" }} />
+                                    <div className="progress-bar progress-bar-info" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style={{ width: "45%" }} />
                                     <div className="progress-start filled" />
                                     <div className="progress-end" />
                                   </div>
                                   <div className="clearfix">
-                                    <div className="pull-left"><strong>80%</strong> achieved</div>
-                                    <div className="pull-right"><strong>23</strong> days left</div>
+                                    <div className="pull-left"><strong>45%</strong> achieved</div>
+                                    <div className="pull-right"><strong>{ moment('2017-10-31').diff(moment(), 'days') }</strong> days left</div>
                                   </div>
                                 </div>
                               </div>
