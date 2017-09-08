@@ -127,3 +127,17 @@ $spacing: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50;
     background-position: right center;
   }
 }
+
+.list-style-none {
+  list-style: none !important;
+  li {
+    &:before {
+      content: '' !important;
+    }
+  }
+}
+
+.inline-block {
+  margin: 0 5px;
+  display: inline-block;
+}

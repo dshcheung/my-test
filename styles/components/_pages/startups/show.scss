@@ -48,7 +48,7 @@
 
       .overview {
         color: gray;
-        font-size: 20px;
+        font-size: ($font-size-base * 1.2);
         margin-bottom: 10px;
       }
 
@@ -231,7 +231,7 @@
         .h3 {
           margin-top: 0;
           color: $brand-primary;
-          border-bottom: 1px solid $brand-primary;
+          // border-bottom: 1px solid $brand-primary;
           font-size: ($font-size-base * 1.2);
           margin-bottom: 0.5em;
         }
@@ -259,11 +259,23 @@
       }
 
       .documents {
-        -webkit-filter: blur(2px);
-        -moz-filter: blur(2px);
-        -o-filter: blur(2px);
-        -ms-filter: blur(2px);
-        filter: blur(2px);
+        -webkit-filter: blur(4px);
+        -moz-filter: blur(4px);
+        -o-filter: blur(4px);
+        -ms-filter: blur(4px);
+        filter: blur(4px);
+				ul {
+					li {
+						i {
+							color: $brand-angelhub-blue;
+						}
+						span {
+							margin-right: 10px;
+							display: inline-block;
+							vertical-align: text-top;
+						}
+					}
+				}
       }
 
       .access {

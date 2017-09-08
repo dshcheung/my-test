@@ -87,19 +87,19 @@ export default class StartupsShow extends Component {
                   <div className="col-xs-12 padding-0 fundings">
                     <div className="col-md-4">
                       <div className="funding-card">
-                        <div className="amount">$140,000</div>
+                        <div className="amount">$900,000</div>
                         <div className="title">Raised</div>
                       </div>
                     </div>
                     <div className="col-md-5">
                       <div className="funding-card">
-                        <div className="amount">$140,000</div>
+                        <div className="amount">$2,000,000</div>
                         <div className="title">Funding Goal</div>
                       </div>
                     </div>
                     <div className="col-md-3">
                       <div className="funding-card">
-                        <div className="amount">4</div>
+                        <div className="amount">7</div>
                         <div className="title">Investors</div>
                       </div>
                     </div>
@@ -117,7 +117,7 @@ export default class StartupsShow extends Component {
                         <div className="title">Pre-Money Valuation</div>
                       </li>
                       <li>
-                        <div className="amount">Preferred Equity</div>
+                        <div className="amount">Convertible</div>
                         <div className="title">Security Type</div>
                       </li>
                     </ul>
@@ -125,18 +125,18 @@ export default class StartupsShow extends Component {
                 </div>
                 <div className="bar margin-top-50">
                   <div className="progress">
-                    <div className="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style={{ width: "80%" }} />
+                    <div className="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style={{ width: "45%" }} />
                     <div className="progress-start filled" />
                     <div className="progress-end" />
                   </div>
                   <div className="clearfix progress-percent">
                     <div className="pull-right">
-                      <span><strong>80%</strong> achieved</span>
+                      <span><strong>45%</strong> achieved</span>
                     </div>
                   </div>
                 </div>
                 <button className="btn btn-primary btn-lg padding-20 btn-block btn-invest text-uppercase">Invest Now</button>
-                <div className="warning margin-top-50">
+                <div className="warning margin-top-50 hide">
                   <span className="text-bold">Purchased securities are not currently tradeable.</span>
                   <p className="instruction">Expect to hold your investment until the company lists on a national exchange or is acquired.</p>
                 </div>
@@ -399,12 +399,18 @@ const moreInfoDocuments = (title, documents) => {
       <div className="h2">{title}</div>
       <div className="row documents">
         <div className="col-xs-12">
-          <ul>
+          <ul className="list-style-none">
             {
               documents.map((doc, i) => {
                 return (
                   <li key={i}>
-                    <span><i className="fa fa-file-text" />{doc.title}</span>
+                    <div className="inline-block">
+                      <i className="fa fa-file-text fa-3x" />
+                    </div>
+                    <div className="inline-block">
+                      <span className="display-block text-bold">{doc.title}</span>
+                      <span className="text-gray">{moment().format('MMM YYYY')}</span>
+                    </div>
                   </li>
                 )
               })
@@ -412,7 +418,10 @@ const moreInfoDocuments = (title, documents) => {
           </ul>
         </div>
       </div>
-      <RouteLink className="text-uppercase access btn btn-warning btn-lg" to="/auth/login">Login Required</RouteLink>
+      <RouteLink className="text-uppercase access btn btn-warning btn-lg" to="/auth/login">
+        <i className="fa fa-lock fa-fw" />
+        Request Access
+      </RouteLink>
     </Element>
   )
 }
