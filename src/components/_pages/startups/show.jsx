@@ -87,7 +87,7 @@ export default class StartupsShow extends Component {
                   <div className="col-xs-12 padding-0 fundings">
                     <div className="col-md-4">
                       <div className="funding-card">
-                        <div className="amount">US$900,000</div>
+                        <div className="amount">US$1,500,000</div>
                         <div className="title">Raised</div>
                       </div>
                     </div>
