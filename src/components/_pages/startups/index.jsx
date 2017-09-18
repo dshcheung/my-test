@@ -132,7 +132,7 @@ export default class StartupsIndex extends Component {
                                     <div className="progress-end" />
                                   </div>
                                   <div className="clearfix">
-                                    <div className="pull-left"><strong>45%</strong> achieved</div>
+                                    <div className="pull-left"><strong>75%</strong> achieved</div>
                                     <div className="pull-right"><strong>{ moment('2017-10-31').diff(moment(), 'days') }</strong> days left</div>
                                   </div>
                                 </div>
