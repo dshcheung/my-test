@@ -123,11 +123,11 @@ export default class StartupsIndex extends Component {
                                 <div className="stats">
                                   <hr />
                                   <div className="clearfix">
-                                    <div className="pull-left"><strong>US$900,000</strong> raised</div>
+                                    <div className="pull-left"><strong>US$1,500,000</strong> raised</div>
                                     <div className="pull-right"><strong>7</strong> investors</div>
                                   </div>
                                   <div className="progress">
-                                    <div className="progress-bar progress-bar-info" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style={{ width: "45%" }} />
+                                    <div className="progress-bar progress-bar-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{ width: "75%" }} />
                                     <div className="progress-start filled" />
                                     <div className="progress-end" />
                                   </div>
