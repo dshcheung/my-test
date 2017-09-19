@@ -21,23 +21,13 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Signup extends Component {
-  constructor(props) {
-    super(props)
-
-    this.createUser = this.createUser.bind(this)
-  }
-
-  createUser(values) {
-    this.props.createUser(values)
-  }
-
   render() {
     return (
       <div id="page-auth-signup" className="container padding-top-20 padding-bottom-20">
         <div className="row">
           <SignupForm
             optClass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
-            onSubmit={this.createUser}
+            onSubmit={this.props.createUser}
             submitInProcess={this.props.createUserInProcess}
           />
         </div>

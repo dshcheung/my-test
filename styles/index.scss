@@ -9,8 +9,12 @@
 @import "components/_layouts/footer";
 @import "components/_pages/auth/login";
 @import "components/_pages/auth/signup";
+@import "components/_pages/auth/forgot-password";
+@import "components/_pages/auth/reset-password";
 @import "components/_pages/startups/index";
 @import "components/_pages/startups/show";
+@import "components/_pages/verify/email";
+@import "components/_pages/verify/mobile";
 @import "components/shared/image-banner";
 @import "custom/buttons";
 @import "custom/loader";

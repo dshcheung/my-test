@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
 import { Link } from 'react-router'
 
-import TextField from '../../shared/form-elements/text-field'
 import Validators from '../../../services/form-validators'
+
+import TextField from '../../shared/form-elements/text-field'
 
 @reduxForm({
   form: "LoginForm",
@@ -43,7 +44,7 @@ export default class LoginForm extends Component {
               return (
                 <div>
                   <label htmlFor={name}>{label}</label>
-                  <Link className="pull-right forgot-password">Forgot?</Link>
+                  <Link to="/auth/forgot_password" className="pull-right forgot-password">Forgot?</Link>
                 </div>
               )
             }}

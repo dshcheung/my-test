@@ -6,7 +6,7 @@ import { setCurrentUser } from './session'
 
 export const CREATE_USER = "CREATE_USER"
 
-export const createUser = (values, cb) => {
+export const createUser = (values) => {
   const request = genAxios({
     method: "post",
     url: genApiUrl(apiUsersIndex()),
@@ -26,7 +26,6 @@ export const createUser = (values, cb) => {
     request,
     successCB: (dispatch, data) => {
       dispatch(setCurrentUser(data))
-      if (cb) { cb(dispatch) }
     }
   }
 }

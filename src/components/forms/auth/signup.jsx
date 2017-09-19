@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
 import { Link } from 'react-router'
 
+import Validators from '../../../services/form-validators'
+
 import TextField from '../../shared/form-elements/text-field'
 import RadioField from '../../shared/form-elements/radio-field'
-import Validators from '../../../services/form-validators'
 
 @reduxForm({
   form: "SignupForm",

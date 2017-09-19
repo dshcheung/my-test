@@ -24,7 +24,7 @@ export default function promiseMiddleware() {
         dispatch(mergeRequestInProcess(false, type))
       }).catch((error) => {
         if (error && error.response) {
-          if (error.response.status === 401) { dispatch(resetAllState()) }
+          if (error.response.status === 401) { dispatch(resetAllState(dispatch)) }
 
           if (errorCB) { errorCB(dispatch, error.response) }
         }

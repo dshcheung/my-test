@@ -21,23 +21,13 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Login extends Component {
-  constructor(props) {
-    super(props)
-
-    this.createSession = this.createSession.bind(this)
-  }
-
-  createSession(values) {
-    this.props.createSession(values)
-  }
-
   render() {
     return (
       <div id="page-auth-login" className="container padding-top-20 padding-bottom-20">
         <div className="row">
           <LoginForm
             optClass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
-            onSubmit={this.createSession}
+            onSubmit={this.props.createSession}
             submitInProcess={this.props.createSessionInProcess}
           />
         </div>
