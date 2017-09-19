@@ -2,7 +2,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 
 import { isEmpty } from './utils'
-import { BASE_V1_URL, AUTH_TOKEN } from '../constants'
+import { BASE_URL, AUTH_TOKEN } from '../constants'
 
 export function generateQueryString(params, startStr) {
   let queries = ""
@@ -21,7 +21,7 @@ export function generateQueryString(params, startStr) {
 
 export function genApiUrl(url, params) {
   const queries = generateQueryString(params, '?')
-  return `https://${BASE_V1_URL}${url}${queries}`
+  return `${BASE_URL}${url}${queries}`
 }
 
 export function addParamsToUrl(url, params) {
