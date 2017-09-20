@@ -56,7 +56,8 @@ module.exports = function () {
       }),
       new webpack.DefinePlugin({
         'process.env': {
-          'NODE_ENV': JSON.stringify("development")
+          'NODE_ENV': JSON.stringify("development"),
+          'API_URL': JSON.stringify(process.env.API_URL || 'https://scarif-api.herokuapp.com/v1/')
         }
       })
     ]
