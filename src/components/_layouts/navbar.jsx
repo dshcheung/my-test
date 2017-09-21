@@ -3,9 +3,17 @@ import { connect } from 'react-redux'
 // import { bindActionCreators } from 'redux'
 import { Link } from 'react-router'
 import BNavbar from 'react-bootstrap/lib/Navbar'
+import Nav from 'react-bootstrap/lib/Nav'
+import NavDropdown from 'react-bootstrap/lib/NavDropdown'
+import MenuItem from 'react-bootstrap/lib/MenuItem'
+import NavItem from 'react-bootstrap/lib/NavItem'
+import LinkContainer from 'react-router-bootstrap/lib/LinkContainer'
 
-const mapStateToProps = () => {
+import { DEFAULT_PIC } from '../../constants'
+
+const mapStateToProps = (state) => {
   return {
+    currentUser: _.get(state, 'session')
   }
 }
 
@@ -14,81 +22,109 @@ const mapDispatchToProps = () => {
   }
 }
 
-@connect(mapStateToProps, mapDispatchToProps)
+@connect(mapStateToProps, mapDispatchToProps, null, { pure: false })
 export default class Navbar extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      expanded: false
-    }
-  }
-
-  componentWillMount() {
-    window.addEventListener("resize", () => {
-      if (this.state.expanded && window.innerWidth >= 768) {
-        this.setState({ expanded: false })
-      }
-    })
-  }
-
-  toggleMenu(alwaysFalse) {
-    if (window.innerWidth < 768) {
-      this.setState({ expanded: alwaysFalse ? false : !this.state.expanded })
-    }
-  }
-
   render() {
+    const { currentUser } = this.props
+
     return (
       <BNavbar
         fixedTop
         fluid
         collapseOnSelect
-        expanded={this.state.expanded}
-        onToggle={() => {}}
         id="layouts-navbar"
       >
         <BNavbar.Header>
           <BNavbar.Brand>
-            <Link to="/" onClick={() => { this.toggleMenu(true) }}>
+            <Link to="/">
               <img src="https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/main-logo.png" alt="Logo" />
             </Link>
           </BNavbar.Brand>
-          <BNavbar.Toggle onClick={() => { this.toggleMenu() }}>
+          <BNavbar.Toggle>
             <i className="fa fa-signal fa-rotate-90" />
           </BNavbar.Toggle>
         </BNavbar.Header>
 
         <BNavbar.Collapse>
-          <ul className="nav navbar-nav">
-            <li onClick={() => { this.toggleMenu() }}>
-              <Link to="/startups" activeClassName="active">
+          <Nav>
+            <LinkContainer to="/startups" active={false}>
+              <NavItem eventKey={1}>
                 <span>Discover Companies</span>
-              </Link>
-            </li>
-            <li onClick={() => { this.toggleMenu() }}>
-              <Link activeClassName="active">
+              </NavItem>
+            </LinkContainer>
+
+            <LinkContainer to="" active={false}>
+              <NavItem eventKey={2}>
                 <span>Learn</span>
-              </Link>
-            </li>
-            <li onClick={() => { this.toggleMenu() }}>
-              <Link activeClassName="active">
+              </NavItem>
+            </LinkContainer>
+
+            <LinkContainer to="" active={false}>
+              <NavItem eventKey={3}>
                 <span>About</span>
-              </Link>
-            </li>
-          </ul>
-          <ul className="nav navbar-nav">
-            <li onClick={() => { this.toggleMenu() }}>
-              <Link to="/auth/login" activeClassName="active">
-                <span>Login</span>
-              </Link>
-            </li>
-            <li onClick={() => { this.toggleMenu() }} className="li-btn">
-              <Link className="btn btn-info border-none" to="/auth/signup" activeClassName="active">
-                Get Started
-              </Link>
-            </li>
-          </ul>
+              </NavItem>
+            </LinkContainer>
+          </Nav>
+          {
+            !currentUser && (
+              <Nav pullRight>
+                <LinkContainer to="/auth/login" active={false}>
+                  <NavItem eventKey={4}>
+                    <span>Login</span>
+                  </NavItem>
+                </LinkContainer>
+
+                <LinkContainer to="/auth/signup" active={false}>
+                  <NavItem className="get-started" eventKey={5}>
+                    <div>Get Started</div>
+                  </NavItem>
+                </LinkContainer>
+              </Nav>
+            )
+          }
+          {
+            currentUser && (
+              <Nav pullRight>
+                <LinkContainer to="/my/messages" active={false}>
+                  <NavItem className="messages" eventKey={6}>
+                    <i className="fa fa-comments fa-2x hidden-xs" />
+                    <span className="hidden-sm hidden-md hidden-lg">MESSAGES</span>
+                    <div className="badge">1</div>
+                  </NavItem>
+                </LinkContainer>
+
+                <LinkContainer to="/my/notifications" active={false}>
+                  <NavItem className="notifications" eventKey={7}>
+                    <i className="fa fa-globe fa-2x hidden-xs" />
+                    <span className="hidden-sm hidden-md hidden-lg">Notifications</span>
+                    <div className="badge">1</div>
+                  </NavItem>
+                </LinkContainer>
+
+                <LinkContainer to={`/users/${currentUser.id}`} active={false}>
+                  <NavItem className="profile" eventKey={8}>
+                    <img src={_.get(currentUser, 'profile.avatar.small') || DEFAULT_PIC} alt="avatar" className="hidden-xs" />
+                    <span className="hidden-sm hidden-md hidden-lg">MY PROFILE</span>
+                  </NavItem>
+                </LinkContainer>
+
+                <NavDropdown title="" id="my-links" eventKey={9}>
+                  <LinkContainer to={`/users/${currentUser.id}`} active={false}>
+                    <MenuItem eventKey={9.1}>Edit Profile</MenuItem>
+                  </LinkContainer>
+                  <LinkContainer to="" active={false}>
+                    <MenuItem eventKey={9.2}>Change Password</MenuItem>
+                  </LinkContainer>
+                  <LinkContainer to="" active={false}>
+                    <MenuItem eventKey={9.3}>Settings</MenuItem>
+                  </LinkContainer>
+                  <LinkContainer to="" active={false}>
+                    <MenuItem eventKey={9.4}>Logout</MenuItem>
+                  </LinkContainer>
+                </NavDropdown>
+              </Nav>
+            )
+          }
         </BNavbar.Collapse>
       </BNavbar>
     )
