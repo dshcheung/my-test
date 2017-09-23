@@ -58,11 +58,15 @@
           &.profile {
             > a {
               padding: 15px;
-              width: 95px;
-              img {
-                height: 100%;
-                height: 100%;
-                border-radius: 32.5px;
+              div {
+                img {
+                  height: 65px;
+                  width: 65px;
+                  border-radius: 32.5px;
+                }
+                i {
+                  margin-left: 5px;
+                }
               }
             }
           }

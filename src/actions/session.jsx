@@ -49,6 +49,28 @@ export const createSession = (values) => {
   }
 }
 
+// destroy
+export const DELETE_SEESION = "DELETE_SEESION"
+export const deleteSession = () => {
+  const request = genAxios({
+    method: "delete",
+    url: genApiUrl(apiAuthenticatesIndex())
+  })
+
+  return {
+    type: DELETE_SEESION,
+    request,
+    successCB: (dispatch) => {
+      dispatch(resetAllState(dispatch))
+      notySuccess("Successfully Logged Out")
+    },
+    errorCB: (dispatch) => {
+      dispatch(resetAllState(dispatch))
+      notySuccess("Successfully Logged Out")
+    }
+  }
+}
+
 // forget password
 export const REQUEST_FORGET_PASSWORD = REQUEST_FORGET_PASSWORD
 export const requestForgetPassword = (values) => {

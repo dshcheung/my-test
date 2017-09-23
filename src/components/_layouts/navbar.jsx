@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux'
 import { Link } from 'react-router'
 import BNavbar from 'react-bootstrap/lib/Navbar'
 import Nav from 'react-bootstrap/lib/Nav'
@@ -11,14 +11,17 @@ import LinkContainer from 'react-router-bootstrap/lib/LinkContainer'
 
 import { DEFAULT_PIC } from '../../constants'
 
+import { deleteSession } from '../../actions/session'
+
 const mapStateToProps = (state) => {
   return {
     currentUser: _.get(state, 'session')
   }
 }
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch) => {
   return {
+    deleteSession: bindActionCreators(deleteSession, dispatch)
   }
 }
 
@@ -53,29 +56,48 @@ export default class Navbar extends Component {
               </NavItem>
             </LinkContainer>
 
-            <LinkContainer to="" active={false}>
-              <NavItem eventKey={2}>
-                <span>Learn</span>
-              </NavItem>
-            </LinkContainer>
+            {
+              currentUser && (
+                <LinkContainer to="/campaigns" active={false}>
+                  <NavItem eventKey={2}>
+                    <span>Browse Campaigns</span>
+                  </NavItem>
+                </LinkContainer>
+              )
+            }
 
-            <LinkContainer to="" active={false}>
-              <NavItem eventKey={3}>
-                <span>About</span>
-              </NavItem>
-            </LinkContainer>
+            {
+              !currentUser && (
+                <LinkContainer to="/learn" active={false}>
+                  <NavItem eventKey={3}>
+                    <span>Learn</span>
+                  </NavItem>
+                </LinkContainer>
+              )
+            }
+
+            {
+              !currentUser && (
+                <LinkContainer to="/about" active={false}>
+                  <NavItem eventKey={4}>
+                    <span>About</span>
+                  </NavItem>
+                </LinkContainer>
+              )
+            }
+
           </Nav>
           {
             !currentUser && (
               <Nav pullRight>
                 <LinkContainer to="/auth/login" active={false}>
-                  <NavItem eventKey={4}>
+                  <NavItem eventKey={5}>
                     <span>Login</span>
                   </NavItem>
                 </LinkContainer>
 
                 <LinkContainer to="/auth/signup" active={false}>
-                  <NavItem className="get-started" eventKey={5}>
+                  <NavItem className="get-started" eventKey={6}>
                     <div>Get Started</div>
                   </NavItem>
                 </LinkContainer>
@@ -86,7 +108,7 @@ export default class Navbar extends Component {
             currentUser && (
               <Nav pullRight>
                 <LinkContainer to="/my/messages" active={false}>
-                  <NavItem className="messages" eventKey={6}>
+                  <NavItem className="messages" eventKey={7}>
                     <i className="fa fa-comments fa-2x hidden-xs" />
                     <span className="hidden-sm hidden-md hidden-lg">MESSAGES</span>
                     <div className="badge">1</div>
@@ -94,32 +116,60 @@ export default class Navbar extends Component {
                 </LinkContainer>
 
                 <LinkContainer to="/my/notifications" active={false}>
-                  <NavItem className="notifications" eventKey={7}>
+                  <NavItem className="notifications" eventKey={8}>
                     <i className="fa fa-globe fa-2x hidden-xs" />
                     <span className="hidden-sm hidden-md hidden-lg">Notifications</span>
                     <div className="badge">1</div>
                   </NavItem>
                 </LinkContainer>
 
-                <LinkContainer to={`/users/${currentUser.id}`} active={false}>
-                  <NavItem className="profile" eventKey={8}>
-                    <img src={_.get(currentUser, 'profile.avatar.small') || DEFAULT_PIC} alt="avatar" className="hidden-xs" />
-                    <span className="hidden-sm hidden-md hidden-lg">MY PROFILE</span>
-                  </NavItem>
-                </LinkContainer>
+                <NavDropdown
+                  title={
+                    <div>
+                      <img src={_.get(currentUser, 'profile.avatar.small') || DEFAULT_PIC} alt="avatar" className="hidden-xs" />
+                      <span className="hidden-sm hidden-md hidden-lg">MY PROFILE</span>
+                      <i className="fa fa-caret-down" />
+                    </div>
+                  }
+                  noCaret
+                  className="profile"
+                  id="my-links"
+                  eventKey={9}
+                >
+                  {
+                    currentUser.role === "StartupUser" && (
+                      <LinkContainer to="/my/campaigns" active={false}>
+                        <MenuItem eventKey={9.1}>My Campaigns</MenuItem>
+                      </LinkContainer>
+                    )
+                  }
 
-                <NavDropdown title="" id="my-links" eventKey={9}>
+                  {
+                    currentUser.role === "StartupUser" && (
+                      <LinkContainer to="/my/startups" active={false}>
+                        <MenuItem eventKey={9.2}>My Startups</MenuItem>
+                      </LinkContainer>
+                    )
+                  }
+
+                  {
+                    currentUser.role === "Investor" && (
+                      <LinkContainer to="/my/portfolio" active={false}>
+                        <MenuItem eventKey={9.3}>My Portfolio</MenuItem>
+                      </LinkContainer>
+                    )
+                  }
+
+                  <MenuItem divider />
+
                   <LinkContainer to={`/users/${currentUser.id}`} active={false}>
-                    <MenuItem eventKey={9.1}>Edit Profile</MenuItem>
+                    <MenuItem eventKey={9.4}>Edit Profile</MenuItem>
+                  </LinkContainer>
+                  <LinkContainer to="/my/settings" active={false}>
+                    <MenuItem eventKey={9.5}>Settings</MenuItem>
                   </LinkContainer>
                   <LinkContainer to="" active={false}>
-                    <MenuItem eventKey={9.2}>Change Password</MenuItem>
-                  </LinkContainer>
-                  <LinkContainer to="" active={false}>
-                    <MenuItem eventKey={9.3}>Settings</MenuItem>
-                  </LinkContainer>
-                  <LinkContainer to="" active={false}>
-                    <MenuItem eventKey={9.4}>Logout</MenuItem>
+                    <MenuItem eventKey={9.6} onClick={this.props.deleteSession}>Logout</MenuItem>
                   </LinkContainer>
                 </NavDropdown>
               </Nav>
