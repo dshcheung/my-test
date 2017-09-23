@@ -36,13 +36,48 @@ export default (
     </Route>
 
     <Route path="my">
+      <Route path="messages">
+        <IndexRoute />
+        <Route path=":messageID" />
+      </Route>
+
+      <Route path="notifications">
+        <IndexRoute />
+        <Route path=":notificationID" />
+      </Route>
+
+      <Route path="portfolio" />
+
+      <Route path="startups">
+        <IndexRoute />
+        <Route path="new" />
+        <Route path=":startupID" />
+      </Route>
+
+      <Route path="campaigns">
+        <IndexRoute />
+        <Route path=":campaignID" />
+      </Route>
+
       <Route path="settings" />
+    </Route>
+
+    <Route path="users">
+      <Route path=":userID" />
     </Route>
 
     <Route path="startups">
       <IndexRoute component={StartupsIndexContainer} />
       <Route path=":startupID" component={StartupsShowContainer} />
     </Route>
+
+    <Route path="campaigns">
+      <IndexRoute />
+      <Route path=":campaignID" />
+    </Route>
+
+    <Route path="about" />
+    <Route path="learn" />
 
     <Route path="*" component={PageNotFound} />
   </Route>
