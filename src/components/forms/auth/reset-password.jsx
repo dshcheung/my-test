@@ -10,7 +10,11 @@ import TextField from '../../shared/form-elements/text-field'
   validate: (values) => {
     return Validators({
       reset_token: ["presences"],
-      password: ["presences", { type: "length", opts: { min: 6 } }]
+      password: ["presences", {
+        type: "length", opts: { min: 6 }
+      }, {
+        type: "confirmPassword", opts: { password: _.get(values, "password", null) }
+      }]
     }, values)
   }
 })

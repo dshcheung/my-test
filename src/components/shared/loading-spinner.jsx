@@ -1,6 +1,5 @@
 import React from 'react'
 
-// TODO: change on submit button loading style for forms
 export default ({ optClass, absolute }) => {
   const absoluteClass = absolute ? "absolute" : ""
 

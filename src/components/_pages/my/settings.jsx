@@ -20,6 +20,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
+// TODO: Notifications disable & function
 @connect(mapStateToProps, mapDispatchToProps)
 export default class My extends Component {
   render() {

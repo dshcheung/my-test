@@ -48,7 +48,7 @@ export const updateMyProfile = () => {
 
 // update password
 export const UPDATE_PASSWORD = "UPDATE_MY_PROFILE"
-export const updatePassword = (values) => {
+export const updatePassword = (values, middleware, props) => {
   const request = genAxios({
     method: "put",
     url: genApiUrl(apiMyProfile()),
@@ -64,6 +64,7 @@ export const updatePassword = (values) => {
     successCB: (dispatch, data) => {
       dispatch(setCurrentUser(data))
       notySuccess("Password Updated!")
+      props.reset() // reset form
     }
   }
 }
