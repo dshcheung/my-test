@@ -1,6 +1,10 @@
+
 @import "~noty/lib/noty";
 @import "base/variables";
 @import "base/bootstrap";
+@import "custom/buttons";
+@import "custom/loader";
+@import "custom/switch";
 @import "custom/utils";
 @import "components/shared/text";
 @import "components/_layouts/navbar";
@@ -11,10 +15,9 @@
 @import "components/_pages/auth/signup";
 @import "components/_pages/auth/forgot-password";
 @import "components/_pages/auth/reset-password";
+@import "components/_pages/my/settings";
 @import "components/_pages/startups/index";
 @import "components/_pages/startups/show";
 @import "components/_pages/verify/email";
 @import "components/_pages/verify/mobile";
 @import "components/shared/image-banner";
-@import "custom/buttons";
-@import "custom/loader";

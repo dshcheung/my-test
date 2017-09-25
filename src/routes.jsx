@@ -14,6 +14,9 @@ import ResetPasswordContainer from './components/_pages/auth/reset-password'
 import VerifyEmailContainer from './components/_pages/verify/email'
 import VerifyMobileContainer from './components/_pages/verify/mobile'
 
+import MyContainer from './components/_pages/my/wrapper'
+import MySettingsContainer from './components/_pages/my/settings'
+
 import StartupsIndexContainer from './components/_pages/startups/index'
 import StartupsShowContainer from './components/_pages/startups/show'
 
@@ -35,7 +38,7 @@ export default (
       <Route path="mobile" component={VerifyMobileContainer} />
     </Route>
 
-    <Route path="my">
+    <Route path="my" component={MyContainer}>
       <Route path="messages">
         <IndexRoute />
         <Route path=":messageID" />
@@ -59,7 +62,7 @@ export default (
         <Route path=":campaignID" />
       </Route>
 
-      <Route path="settings" />
+      <Route path="settings" component={MySettingsContainer} />
     </Route>
 
     <Route path="users">

@@ -1,0 +1,22 @@
+#page-my-settings {
+  padding: 30px;
+  border: 2px solid $gray-lighter;
+
+  .page-title {
+    font-size: $font-size-h2;
+    color: $brand-primary;
+  }
+
+  #forms-my-update-password {
+    label {
+      color: $gray-light;
+    }
+    .btn {
+      font-size: $btn-font-size-base;
+      font-weight: 100;
+      i {
+        margin-right: 25px;
+      }
+    }
+  }
+}

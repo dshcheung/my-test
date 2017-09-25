@@ -46,6 +46,28 @@ export const updateMyProfile = () => {
   }
 }
 
+// update password
+export const UPDATE_PASSWORD = "UPDATE_MY_PROFILE"
+export const updatePassword = (values) => {
+  const request = genAxios({
+    method: "put",
+    url: genApiUrl(apiMyProfile()),
+    data: getFormData({
+      password: _.get(values, 'password', null),
+      password_confirmation: _.get(values, 'passwordConfirmation', null)
+    }, 'user')
+  })
+
+  return {
+    type: UPDATE_PASSWORD,
+    request,
+    successCB: (dispatch, data) => {
+      dispatch(setCurrentUser(data))
+      notySuccess("Password Updated!")
+    }
+  }
+}
+
 // destroy
 export const DELETE_MY_PROFILE = "DELETE_MY_PROFILE"
 export const deleteMyProfile = () => {
