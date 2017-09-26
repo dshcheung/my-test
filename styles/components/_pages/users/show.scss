@@ -1,0 +1,76 @@
+#pages-users-show {
+  .banner {
+    position: relative;
+    height: 300px;
+
+    .user-avatar {
+      position: absolute;
+      right: 15px;
+      bottom: 15px;
+      height: 100px;
+      width: 100px;
+      border-radius: 50px;
+    }
+
+    .details {
+      position: absolute;
+      left: 15px;
+      bottom: 15px;
+      color: white;
+    }
+  }
+
+  .more-info {
+    padding-top: 20px;
+    .sidebar-wrapper {
+      .scrollto {
+        padding: 2rem 0;
+        li {
+          padding: 1rem 0;
+          a {
+            border-right: 5px solid transparent;
+            padding-right: 3rem;
+            color: $gray-light;
+            font-size: ($font-size-base * 1.2);
+            cursor: pointer;
+            &.active {
+              color: $brand-primary;
+              font-weight: bold;
+              border-right-color: $brand-primary;
+            }
+          }
+        }
+      }
+      ul {
+        padding: 0;
+        list-style: none;
+        text-align: right;
+      }
+    }
+  }
+
+  .section {
+    margin-bottom: 20px;
+    position: relative;
+
+    &:not(:first-child) {
+      margin-top: 20px;
+    }
+    .h2 {
+      margin-top: 0;
+      color: $brand-primary;
+      font-weight: bold;
+      border-bottom: 1px solid $brand-primary;
+      line-height: 45px;
+      margin-bottom: 3rem;
+
+      .add {
+        margin-top: 6.5px;
+      }
+    }
+    p {
+      font-size: ($font-size-base * 1.1);
+      font-weight: 200;
+    }
+  }
+}

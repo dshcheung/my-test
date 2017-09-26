@@ -4,14 +4,14 @@ import { resetAllState } from './actions/session'
 
 export default function promiseMiddleware() {
   return next => (action) => {
-    const { request, type, successCB, errorCB, paginate, preRequestCB, allowMultipleRequest } = action
+    const { request, type, successCB, errorCB, paginate, preRequestCB } = action
 
     if (!request) { return next(action) }
 
     next((dispatch, getState) => {
       const requestInProcess = getState().requestStatus[type]
 
-      if (requestInProcess && !allowMultipleRequest) { return }
+      if (requestInProcess) { return }
 
       if (preRequestCB) { preRequestCB(dispatch) }
 

@@ -26,7 +26,6 @@ import RadioField from '../../shared/form-elements/radio-field'
     role: "StartupUser"
   }
 })
-
 export default class SignupForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass } = this.props

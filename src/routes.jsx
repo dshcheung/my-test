@@ -17,6 +17,8 @@ import VerifyMobileContainer from './components/_pages/verify/mobile'
 import MyContainer from './components/_pages/my/wrapper'
 import MySettingsContainer from './components/_pages/my/settings'
 
+import UsersShowContainer from './components/_pages/users/show'
+
 import StartupsIndexContainer from './components/_pages/startups/index'
 import StartupsShowContainer from './components/_pages/startups/show'
 
@@ -66,7 +68,7 @@ export default (
     </Route>
 
     <Route path="users">
-      <Route path=":userID" />
+      <Route path=":userID" component={UsersShowContainer} />
     </Route>
 
     <Route path="startups">

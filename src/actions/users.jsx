@@ -1,11 +1,35 @@
 import { genApiUrl, genAxios } from '../services/api-request'
 import { getFormData } from '../services/get-form-data'
-import { apiUsersIndex } from '../services/api-path'
+import { apiUsersIndex, apiUsersShow } from '../services/api-path'
 
 import { setCurrentUser } from './session'
 
-export const CREATE_USER = "CREATE_USER"
+export const SET_USER = "SET_USER"
+export const setUser = (data) => {
+  return {
+    type: SET_USER,
+    user: data
+  }
+}
 
+export const MERGE_USER_ATTRIBUTE = "MERGE_USER_ATTRIBUTE"
+export const mergeUserAttribute = (data, attribute) => {
+  return {
+    type: MERGE_USER_ATTRIBUTE,
+    attribute,
+    data
+  }
+}
+
+export const RESET_USER = "RESET_USER"
+export const resetUser = () => {
+  return {
+    type: RESET_USER
+  }
+}
+
+// create
+export const CREATE_USER = "CREATE_USER"
 export const createUser = (values) => {
   const request = genAxios({
     method: "post",
@@ -26,6 +50,23 @@ export const createUser = (values) => {
     request,
     successCB: (dispatch, data) => {
       dispatch(setCurrentUser(data))
+    }
+  }
+}
+
+// show
+export const GET_USER = "GET_USER"
+export const getUser = ({ params = {} } = {}) => {
+  const request = genAxios({
+    method: "get",
+    url: genApiUrl(apiUsersShow(params))
+  })
+
+  return {
+    type: GET_USER,
+    request,
+    successCB: (dispatch, data) => {
+      dispatch(setUser(data))
     }
   }
 }

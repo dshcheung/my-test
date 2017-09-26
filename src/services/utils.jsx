@@ -22,3 +22,24 @@ export const isEmpty = (obj) => {
   }
   return true
 }
+
+export const getFullName = (user) => {
+  const firstName = _.get(user, 'profile.first_name')
+  const lastName = _.get(user, 'profile.last_name')
+
+  let fullName = ""
+
+  if (firstName && lastName) {
+    fullName = `${firstName} ${lastName}`
+  } else if (firstName && !lastName) {
+    fullName = firstName
+  } else if (!firstName && lastName) {
+    fullName = lastName
+  }
+
+  return fullName
+}
+
+export const getType = (v) => {
+  return toString.call(v).slice(8, -1)
+}

@@ -1,9 +1,10 @@
-
+@import "~react-widgets/dist/css/react-widgets";
 @import "~noty/lib/noty";
 @import "base/variables";
 @import "base/bootstrap";
 @import "custom/buttons";
 @import "custom/loader";
+@import "custom/react-widgets";
 @import "custom/switch";
 @import "custom/utils";
 @import "components/shared/text";
@@ -16,6 +17,7 @@
 @import "components/_pages/auth/forgot-password";
 @import "components/_pages/auth/reset-password";
 @import "components/_pages/my/settings";
+@import "components/_pages/users/show";
 @import "components/_pages/startups/index";
 @import "components/_pages/startups/show";
 @import "components/_pages/verify/email";

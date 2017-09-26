@@ -1,13 +1,11 @@
+import { getType } from './utils'
+
 export const getFormData = (values, name) => {
   const formData = new FormData()
 
   appendFormValue(formData, `${name}`, values)
 
   return formData
-}
-
-export const getType = (v) => {
-  return toString.call(v).slice(8, -1)
 }
 
 export const appendFormValue = (formData, base, v) => {
