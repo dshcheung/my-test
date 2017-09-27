@@ -62,7 +62,7 @@ export const deleteMyEducation = (params) => {
   })
 
   return {
-    type: DELETE_MY_EDUCATION,
+    type: `${DELETE_MY_EDUCATION}_${params.myEducationID}`,
     request,
     successCB: (dispatch) => {
       dispatch(deleteCurrentUserAttributeWithID(params.myEducationID, 'educations'))

@@ -39,9 +39,7 @@ const mapStateToProps = (state) => {
     user: _.get(state, 'user', null),
     getUserInProcess: _.get(state.requestStatus, GET_USER),
     getMyProfileInProcess: _.get(state.requestStatus, GET_MY_PROFILE),
-    deleteMyExperienceInProcess: _.get(state.requestStatus, DELETE_MY_EXPERIENCE),
-    deleteMyEducationInProcess: _.get(state.requestStatus, DELETE_MY_EDUCATION),
-    deleteMyEndorsementInProcess: _.get(state.requestStatus, DELETE_MY_ENDORSEMENT)
+    requestStatus: _.get(state, 'requestStatus')
   }
 }
 
@@ -93,10 +91,7 @@ export default class UsersShow extends Component {
   }
 
   render() {
-    const {
-      currentUser, getUserInProcess, getMyProfileInProcess,
-      deleteMyExperienceInProcess, deleteMyEducationInProcess, deleteMyEndorsementInProcess
-    } = this.props
+    const { currentUser, getUserInProcess, getMyProfileInProcess, requestStatus } = this.props
 
     const editable = _.get(currentUser, 'id') === this.props.routeParams.userID
     const user = editable ? currentUser : this.props.user
@@ -164,15 +159,15 @@ export default class UsersShow extends Component {
             <div className="col-xs-12 col-sm-9">
               {
                 (editable || _.get(user, "experiences[0]")) &&
-                moreInfoContentExperiences(editable, "Experiences", user.experiences, this.open, deleteMyExperience, deleteMyExperienceInProcess)
+                moreInfoContentExperiences(editable, "Experiences", user.experiences, this.open, deleteMyExperience, requestStatus)
               }
               {
                 (editable || _.get(user, "educations[0]")) &&
-                moreInfoContentEducations(editable, "Educations", user.educations, this.open, this.props.deleteMyEducation, deleteMyEducationInProcess)
+                moreInfoContentEducations(editable, "Educations", user.educations, this.open, this.props.deleteMyEducation, requestStatus)
               }
               {
                 (editable || _.get(user, "endorsements[0]")) &&
-                moreInfoContentEndorsements(editable, "Endorsements", user.endorsements, this.open, this.props.deleteMyEndorsement, deleteMyEndorsementInProcess)
+                moreInfoContentEndorsements(editable, "Endorsements", user.endorsements, this.open, this.props.deleteMyEndorsement, requestStatus)
               }
             </div>
           </section>
@@ -219,7 +214,7 @@ const emptyAndAdd = (editable, title, execute) => {
   return null
 }
 
-const moreInfoContentExperiences = (editable, title, items = [], open, deleteItem, requestInProcess) => {
+const moreInfoContentExperiences = (editable, title, items = [], open, deleteItem, requestStatus) => {
   return (
     <Element name={title} className="section">
       {titleAndAdd(editable, title, open, "addExperience")}
@@ -238,8 +233,8 @@ const moreInfoContentExperiences = (editable, title, items = [], open, deleteIte
                       <i className="fa fa-pencil" />
                     </button>
                     <button
-                      className="btn btn-danger delete"
-                      disabled={requestInProcess}
+                      className="btn btn-danger btn-outline delete"
+                      disabled={_.get(requestStatus, `${DELETE_MY_EXPERIENCE}_${item.id}`)}
                       onClick={() => { deleteItem({ myExperienceID: item.id }) }}
                     >
                       <i className="fa fa-trash" />
@@ -255,7 +250,7 @@ const moreInfoContentExperiences = (editable, title, items = [], open, deleteIte
   )
 }
 
-const moreInfoContentEducations = (editable, title, items = [], open, deleteItem, requestInProcess) => {
+const moreInfoContentEducations = (editable, title, items = [], open, deleteItem, requestStatus) => {
   return (
     <Element name={title} className="section">
       {titleAndAdd(editable, title, open, "addEducation")}
@@ -273,8 +268,8 @@ const moreInfoContentEducations = (editable, title, items = [], open, deleteItem
                       <i className="fa fa-pencil" />
                     </button>
                     <button
-                      className="btn btn-danger delete"
-                      disabled={requestInProcess}
+                      className="btn btn-danger btn-outline delete"
+                      disabled={_.get(requestStatus, `${DELETE_MY_EDUCATION}_${item.id}`)}
                       onClick={() => { deleteItem({ myEducationID: item.id }) }}
                     >
                       <i className="fa fa-trash" />
@@ -290,7 +285,7 @@ const moreInfoContentEducations = (editable, title, items = [], open, deleteItem
   )
 }
 
-const moreInfoContentEndorsements = (editable, title, items = [], open, deleteItem, requestInProcess) => {
+const moreInfoContentEndorsements = (editable, title, items = [], open, deleteItem, requestStatus) => {
   return (
     <Element name={title} className="section">
       {titleAndAdd(editable, title, open, "addEndorsement")}
@@ -308,8 +303,8 @@ const moreInfoContentEndorsements = (editable, title, items = [], open, deleteIt
                       <i className="fa fa-pencil" />
                     </button>
                     <button
-                      className="btn btn-danger delete"
-                      disabled={requestInProcess}
+                      className="btn btn-danger btn-outline delete"
+                      disabled={_.get(requestStatus, `${DELETE_MY_ENDORSEMENT}_${item.id}`)}
                       onClick={() => { deleteItem({ myEndorsementID: item.id }) }}
                     >
                       <i className="fa fa-trash" />

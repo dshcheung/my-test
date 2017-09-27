@@ -60,10 +60,10 @@ export const deleteMyEndorsement = (params) => {
   })
 
   return {
-    type: DELETE_MY_ENDORSEMENT,
+    type: `${DELETE_MY_ENDORSEMENT}_${params.myEndorsementID}`,
     request,
     successCB: (dispatch) => {
-      dispatch(deleteCurrentUserAttributeWithID(params.myEducationID, 'educations'))
+      dispatch(deleteCurrentUserAttributeWithID(params.myEndorsementID, 'endorsements'))
     }
   }
 }

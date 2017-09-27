@@ -64,10 +64,10 @@ export const deleteMyExperience = (params) => {
   })
 
   return {
-    type: DELETE_MY_EXPERIENCE,
+    type: `${DELETE_MY_EXPERIENCE}_${params.myExperienceID}`,
     request,
     successCB: (dispatch) => {
-      dispatch(deleteCurrentUserAttributeWithID(params.myEducationID, 'educations'))
+      dispatch(deleteCurrentUserAttributeWithID(params.myExperienceID, 'experiences'))
     }
   }
 }
