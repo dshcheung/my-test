@@ -3,12 +3,11 @@ import { getFormData } from '../../services/get-form-data'
 import { apiMyEducationsIndex, apiMyEducationsShow } from '../../services/api-path'
 import { notySuccess } from '../../services/noty'
 
-import { mergeCurrentUserAttribute } from '../session'
+import { mergeCurrentUserAttribute, deleteCurrentUserAttributeWithID } from '../session'
 
 // create
 export const CREATE_MY_EDUCATION = "CREATE_MY_EDUCATION"
 export const createMyEducation = (values, cb) => {
-  // TODO: education level
   const request = genAxios({
     method: "post",
     url: genApiUrl(apiMyEducationsIndex()),
@@ -30,6 +29,7 @@ export const createMyEducation = (values, cb) => {
   }
 }
 
+// update
 export const UPDATE_MY_EDUCATION = "UPDATE_MY_EDUCATION"
 export const updateMyEducation = (values, params, cb) => {
   const request = genAxios({
@@ -49,6 +49,23 @@ export const updateMyEducation = (values, params, cb) => {
       if (cb) cb()
       dispatch(mergeCurrentUserAttribute(data, 'educations'))
       notySuccess("Education Updated!")
+    }
+  }
+}
+
+// delete
+export const DELETE_MY_EDUCATION = "DELETE_MY_EDUCATION"
+export const deleteMyEducation = (params) => {
+  const request = genAxios({
+    method: "delete",
+    url: genApiUrl(apiMyEducationsShow(params))
+  })
+
+  return {
+    type: DELETE_MY_EDUCATION,
+    request,
+    successCB: (dispatch) => {
+      dispatch(deleteCurrentUserAttributeWithID(params.myEducationID, 'educations'))
     }
   }
 }

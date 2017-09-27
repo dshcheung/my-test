@@ -18,6 +18,10 @@ import {
   resetUser
 } from '../../../actions/users'
 
+import { deleteMyExperience, DELETE_MY_EXPERIENCE } from '../../../actions/my/experiences'
+import { deleteMyEducation, DELETE_MY_EDUCATION } from '../../../actions/my/educations'
+import { deleteMyEndorsement, DELETE_MY_ENDORSEMENT } from '../../../actions/my/endorsements'
+
 import LoadingSpinner from '../../shared/loading-spinner'
 import ImageBanner from '../../shared/image-banner'
 
@@ -34,14 +38,20 @@ const mapStateToProps = (state) => {
     currentUser: _.get(state, 'session'),
     user: _.get(state, 'user', null),
     getUserInProcess: _.get(state.requestStatus, GET_USER),
-    getMyProfileInProcess: _.get(state.requestStatus, GET_MY_PROFILE)
+    getMyProfileInProcess: _.get(state.requestStatus, GET_MY_PROFILE),
+    deleteMyExperienceInProcess: _.get(state.requestStatus, DELETE_MY_EXPERIENCE),
+    deleteMyEducationInProcess: _.get(state.requestStatus, DELETE_MY_EDUCATION),
+    deleteMyEndorsementInProcess: _.get(state.requestStatus, DELETE_MY_ENDORSEMENT)
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getUser: bindActionCreators(getUser, dispatch),
-    resetUser: bindActionCreators(resetUser, dispatch)
+    resetUser: bindActionCreators(resetUser, dispatch),
+    deleteMyExperience: bindActionCreators(deleteMyExperience, dispatch),
+    deleteMyEducation: bindActionCreators(deleteMyEducation, dispatch),
+    deleteMyEndorsement: bindActionCreators(deleteMyEndorsement, dispatch)
   }
 }
 
@@ -83,7 +93,10 @@ export default class UsersShow extends Component {
   }
 
   render() {
-    const { currentUser, getUserInProcess, getMyProfileInProcess } = this.props
+    const {
+      currentUser, getUserInProcess, getMyProfileInProcess,
+      deleteMyExperienceInProcess, deleteMyEducationInProcess, deleteMyEndorsementInProcess
+    } = this.props
 
     const editable = _.get(currentUser, 'id') === this.props.routeParams.userID
     const user = editable ? currentUser : this.props.user
@@ -149,9 +162,18 @@ export default class UsersShow extends Component {
               </AutoAffix>
             </div>
             <div className="col-xs-12 col-sm-9">
-              {(editable || _.get(user, "experiences[0]")) && moreInfoContentExperiences(editable, "Experiences", user.experiences, this.open)}
-              {(editable || _.get(user, "educations[0]")) && moreInfoContentEducations(editable, "Educations", user.educations, this.open)}
-              {(editable || _.get(user, "endorsements[0]")) && moreInfoContentEndorsements(editable, "Endorsements", user.endorsements, this.open)}
+              {
+                (editable || _.get(user, "experiences[0]")) &&
+                moreInfoContentExperiences(editable, "Experiences", user.experiences, this.open, deleteMyExperience, deleteMyExperienceInProcess)
+              }
+              {
+                (editable || _.get(user, "educations[0]")) &&
+                moreInfoContentEducations(editable, "Educations", user.educations, this.open, this.props.deleteMyEducation, deleteMyEducationInProcess)
+              }
+              {
+                (editable || _.get(user, "endorsements[0]")) &&
+                moreInfoContentEndorsements(editable, "Endorsements", user.endorsements, this.open, this.props.deleteMyEndorsement, deleteMyEndorsementInProcess)
+              }
             </div>
           </section>
         </div>
@@ -167,6 +189,7 @@ export default class UsersShow extends Component {
     )
   }
 }
+
 
 const titleAndAdd = (editable, title, open, modalName) => {
   return (
@@ -196,7 +219,7 @@ const emptyAndAdd = (editable, title, execute) => {
   return null
 }
 
-const moreInfoContentExperiences = (editable, title, items = [], open) => {
+const moreInfoContentExperiences = (editable, title, items = [], open, deleteItem, requestInProcess) => {
   return (
     <Element name={title} className="section">
       {titleAndAdd(editable, title, open, "addExperience")}
@@ -214,6 +237,13 @@ const moreInfoContentExperiences = (editable, title, items = [], open) => {
                     <button className="btn btn-info edit" onClick={() => { open("editExperience", item) }}>
                       <i className="fa fa-pencil" />
                     </button>
+                    <button
+                      className="btn btn-danger delete"
+                      disabled={requestInProcess}
+                      onClick={() => { deleteItem({ myExperienceID: item.id }) }}
+                    >
+                      <i className="fa fa-trash" />
+                    </button>
                   </div>
                 )
               })
@@ -225,7 +255,7 @@ const moreInfoContentExperiences = (editable, title, items = [], open) => {
   )
 }
 
-const moreInfoContentEducations = (editable, title, items = [], open) => {
+const moreInfoContentEducations = (editable, title, items = [], open, deleteItem, requestInProcess) => {
   return (
     <Element name={title} className="section">
       {titleAndAdd(editable, title, open, "addEducation")}
@@ -242,6 +272,13 @@ const moreInfoContentEducations = (editable, title, items = [], open) => {
                     <button className="btn btn-info edit" onClick={() => { open("editEducation", item) }}>
                       <i className="fa fa-pencil" />
                     </button>
+                    <button
+                      className="btn btn-danger delete"
+                      disabled={requestInProcess}
+                      onClick={() => { deleteItem({ myEducationID: item.id }) }}
+                    >
+                      <i className="fa fa-trash" />
+                    </button>
                   </div>
                 )
               })
@@ -253,7 +290,7 @@ const moreInfoContentEducations = (editable, title, items = [], open) => {
   )
 }
 
-const moreInfoContentEndorsements = (editable, title, items = [], open) => {
+const moreInfoContentEndorsements = (editable, title, items = [], open, deleteItem, requestInProcess) => {
   return (
     <Element name={title} className="section">
       {titleAndAdd(editable, title, open, "addEndorsement")}
@@ -269,6 +306,13 @@ const moreInfoContentEndorsements = (editable, title, items = [], open) => {
                     <div className="description">{item.description}</div>
                     <button className="btn btn-info edit" onClick={() => { open("editEndorsement", item) }}>
                       <i className="fa fa-pencil" />
+                    </button>
+                    <button
+                      className="btn btn-danger delete"
+                      disabled={requestInProcess}
+                      onClick={() => { deleteItem({ myEndorsementID: item.id }) }}
+                    >
+                      <i className="fa fa-trash" />
                     </button>
                   </div>
                 )

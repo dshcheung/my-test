@@ -3,7 +3,7 @@ import { getFormData } from '../../services/get-form-data'
 import { apiMyEndorsementsIndex, apiMyEndorsementsShow } from '../../services/api-path'
 import { notySuccess } from '../../services/noty'
 
-import { mergeCurrentUserAttribute } from '../session'
+import { mergeCurrentUserAttribute, deleteCurrentUserAttributeWithID } from '../session'
 
 // create
 export const CREATE_MY_ENDORSEMENT = "CREATE_MY_ENDORSEMENT"
@@ -28,6 +28,7 @@ export const createMyEndorsement = (values, cb) => {
   }
 }
 
+// update
 export const UPDATE_MY_ENDORSEMENT = "UPDATE_MY_ENDORSEMENT"
 export const updateMyEndorsement = (values, params, cb) => {
   const request = genAxios({
@@ -46,6 +47,23 @@ export const updateMyEndorsement = (values, params, cb) => {
       if (cb) cb()
       dispatch(mergeCurrentUserAttribute(data, 'endorsements'))
       notySuccess("Endorsement Updated!")
+    }
+  }
+}
+
+// delete
+export const DELETE_MY_ENDORSEMENT = "DELETE_MY_ENDORSEMENT"
+export const deleteMyEndorsement = (params) => {
+  const request = genAxios({
+    method: "delete",
+    url: genApiUrl(apiMyEndorsementsShow(params))
+  })
+
+  return {
+    type: DELETE_MY_ENDORSEMENT,
+    request,
+    successCB: (dispatch) => {
+      dispatch(deleteCurrentUserAttributeWithID(params.myEducationID, 'educations'))
     }
   }
 }

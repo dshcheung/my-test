@@ -3,7 +3,7 @@ import { getFormData } from '../../services/get-form-data'
 import { apiMyExperienceIndex, apiMyExperienceShow } from '../../services/api-path'
 import { notySuccess } from '../../services/noty'
 
-import { mergeCurrentUserAttribute } from '../session'
+import { mergeCurrentUserAttribute, deleteCurrentUserAttributeWithID } from '../session'
 
 // create
 export const CREATE_MY_EXPERIENCE = "CREATE_MY_EXPERIENCE"
@@ -30,6 +30,7 @@ export const createMyExperience = (values, cb) => {
   }
 }
 
+// update
 export const UPDATE_MY_EXPERIENCE = "UPDATE_MY_EXPERIENCE"
 export const updateMyExperience = (values, params, cb) => {
   const request = genAxios({
@@ -50,6 +51,23 @@ export const updateMyExperience = (values, params, cb) => {
       if (cb) cb()
       dispatch(mergeCurrentUserAttribute(data, 'experiences'))
       notySuccess("Experience Updated!")
+    }
+  }
+}
+
+// delete
+export const DELETE_MY_EXPERIENCE = "DELETE_MY_EXPERIENCE"
+export const deleteMyExperience = (params) => {
+  const request = genAxios({
+    method: "delete",
+    url: genApiUrl(apiMyExperienceShow(params))
+  })
+
+  return {
+    type: DELETE_MY_EXPERIENCE,
+    request,
+    successCB: (dispatch) => {
+      dispatch(deleteCurrentUserAttributeWithID(params.myEducationID, 'educations'))
     }
   }
 }
