@@ -11,7 +11,7 @@ import TextArea from '../../shared/form-elements/text-area'
   validate: (values) => {
     return Validators({
       name: ["presences"],
-      endorsement: ["presences"],
+      description: ["presences"],
     }, values)
   }
 })
@@ -32,10 +32,10 @@ export default class MyEndorsementForm extends Component {
           />
 
           <Field
-            name="endorsement"
+            name="description"
             component={TextArea}
             opts={{
-              label: "Endorsement *"
+              label: "Description *"
             }}
           />
 

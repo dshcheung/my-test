@@ -10,6 +10,10 @@ import { DEFAULT_PIC } from '../../../constants'
 import { getFullName } from '../../../services/utils'
 
 import {
+  GET_MY_PROFILE
+} from '../../../actions/my/profile'
+
+import {
   getUser, GET_USER,
   resetUser
 } from '../../../actions/users'
@@ -17,6 +21,7 @@ import {
 import LoadingSpinner from '../../shared/loading-spinner'
 import ImageBanner from '../../shared/image-banner'
 
+import EditMyProfileModal from '../../modals/my/edit-profile'
 import AddMyExperienceModal from '../../modals/my/add-experience'
 import AddMyEducationModal from '../../modals/my/add-education'
 import AddMyEndorsementModal from '../../modals/my/add-endorsement'
@@ -28,7 +33,8 @@ const mapStateToProps = (state) => {
   return {
     currentUser: _.get(state, 'session'),
     user: _.get(state, 'user', null),
-    getUserInProcess: _.get(state.requestStatus, GET_USER)
+    getUserInProcess: _.get(state.requestStatus, GET_USER),
+    getMyProfileInProcess: _.get(state.requestStatus, GET_MY_PROFILE)
   }
 }
 
@@ -51,7 +57,17 @@ export default class UsersShow extends Component {
   }
 
   componentWillMount() {
-    this.props.getUser({ params: this.props.routeParams })
+    if (this.props.currentUser && _.get(this.props.currentUser, 'id') !== this.props.routeParams.userID) {
+      this.props.getUser({ params: this.props.routeParams })
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.getMyProfileInProcess === true && nextProps.getMyProfileInProcess === false) {
+      if (_.get(nextProps.currentUser, 'id') !== nextProps.routeParams.userID) {
+        this.props.getUser({ params: this.props.routeParams })
+      }
+    }
   }
 
   componentWillUnmount() {
@@ -67,19 +83,20 @@ export default class UsersShow extends Component {
   }
 
   render() {
-    const { currentUser, user, getUserInProcess } = this.props
+    const { currentUser, getUserInProcess, getMyProfileInProcess } = this.props
 
-    if (getUserInProcess) return <LoadingSpinner />
+    const editable = _.get(currentUser, 'id') === this.props.routeParams.userID
+    const user = editable ? currentUser : this.props.user
+
+    if (getUserInProcess || getMyProfileInProcess) return <LoadingSpinner />
 
     if (!user) {
       return (
         <div className="text-center">
-          <h3>No Such Startup</h3>
+          <h3>No Such User</h3>
         </div>
       )
     }
-
-    const editable = currentUser.id === this.props.routeParams.userID
 
     return (
       <div id="pages-users-show" className="container-fluid">
@@ -97,6 +114,14 @@ export default class UsersShow extends Component {
               <span className="h1">{getFullName(user)}</span>
               <p>{_.get(user, "profile.bio")}</p>
             </div>
+            {
+              editable && (
+                <button
+                  className="btn btn-info edit"
+                  onClick={() => { this.open("editProfile", user.profile) }}
+                ><i className="fa fa-pencil" /></button>
+              )
+            }
           </section>
 
           <section className="more-info clearfix">
@@ -131,12 +156,13 @@ export default class UsersShow extends Component {
           </section>
         </div>
 
+        {this.state.editProfile && <EditMyProfileModal close={() => { this.close("editProfile") }} profile={this.state.editInfo} />}
         {this.state.addExperience && <AddMyExperienceModal close={() => { this.close("addExperience") }} />}
         {this.state.addEducation && <AddMyEducationModal close={() => { this.close("addEducation") }} />}
         {this.state.addEndorsement && <AddMyEndorsementModal close={() => { this.close("addEndorsement") }} />}
-        {this.state.editExperience && <EditMyExperienceModal close={() => { this.close("editExperience") }} experience={this.editInfo} />}
-        {this.state.editEducation && <EditMyEducationModal close={() => { this.close("editEducation") }} education={this.editInfo} />}
-        {this.state.editEndorsement && <EditMyEndorsementModal close={() => { this.close("editEndorsement") }} endorsement={this.editInfo} />}
+        {this.state.editExperience && <EditMyExperienceModal close={() => { this.close("editExperience") }} experience={this.state.editInfo} />}
+        {this.state.editEducation && <EditMyEducationModal close={() => { this.close("editEducation") }} education={this.state.editInfo} />}
+        {this.state.editEndorsement && <EditMyEndorsementModal close={() => { this.close("editEndorsement") }} endorsement={this.state.editInfo} />}
       </div>
     )
   }
@@ -178,19 +204,20 @@ const moreInfoContentExperiences = (editable, title, items = [], open) => {
       {
         items.length !== 0 && (
           <div className="row">
-            <div className="col-xs-12">
-              <ul className="list">
-                {
-                  items.map((item, k) => {
-                    return (
-                      <li key={k} onClick={() => { open("editExperience", item) }}>
-                        a
-                      </li>
-                    )
-                  })
-                }
-              </ul>
-            </div>
+            {
+              items.map((item, k) => {
+                return (
+                  <div key={k} className="col-xs-12 experience">
+                    <div className="title"><strong>{item.position}</strong>, {item.company}</div>
+                    <div className="year">{item.year && moment(item.year).format('YYYY')}</div>
+                    <div className="description">{item.description}</div>
+                    <button className="btn btn-info edit" onClick={() => { open("editExperience", item) }}>
+                      <i className="fa fa-pencil" />
+                    </button>
+                  </div>
+                )
+              })
+            }
           </div>
         )
       }
@@ -206,19 +233,19 @@ const moreInfoContentEducations = (editable, title, items = [], open) => {
       {
         items.length !== 0 && (
           <div className="row">
-            <div className="col-xs-12">
-              <ul className="list">
-                {
-                  items.map((item, k) => {
-                    return (
-                      <li key={k} onClick={() => { open("editEducation", item) }}>
-                        a
-                      </li>
-                    )
-                  })
-                }
-              </ul>
-            </div>
+            {
+              items.map((item, k) => {
+                return (
+                  <div key={k} className="col-xs-12 education">
+                    <div className="title"><strong>{item.education_level.name}</strong>, {item.school}</div>
+                    <div className="year">{item.year && moment(item.year).format('YYYY')}</div>
+                    <button className="btn btn-info edit" onClick={() => { open("editEducation", item) }}>
+                      <i className="fa fa-pencil" />
+                    </button>
+                  </div>
+                )
+              })
+            }
           </div>
         )
       }
@@ -234,19 +261,19 @@ const moreInfoContentEndorsements = (editable, title, items = [], open) => {
       {
         items.length !== 0 && (
           <div className="row">
-            <div className="col-xs-12">
-              <ul className="list">
-                {
-                  items.map((item, k) => {
-                    return (
-                      <li key={k} onClick={() => { open("editEndorsement", item) }}>
-                        a
-                      </li>
-                    )
-                  })
-                }
-              </ul>
-            </div>
+            {
+              items.map((item, k) => {
+                return (
+                  <div key={k} className="col-xs-12 endorsement">
+                    <div className="title"><strong>{item.name}</strong></div>
+                    <div className="description">{item.description}</div>
+                    <button className="btn btn-info edit" onClick={() => { open("editEndorsement", item) }}>
+                      <i className="fa fa-pencil" />
+                    </button>
+                  </div>
+                )
+              })
+            }
           </div>
         )
       }

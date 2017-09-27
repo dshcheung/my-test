@@ -51,7 +51,7 @@ export default class EditMyExperienceModal extends Component {
             submitInProcess={updateMyExperienceInProcess}
             initialValues={{
               company: _.get(experience, "company", ""),
-              year: moment.unix(_.get(experience, "year", moment().unix())).toDate(),
+              year: moment(_.get(experience, "year", moment())).toDate(),
               position: _.get(experience, "position", ""),
               description: _.get(experience, "description", "")
             }}

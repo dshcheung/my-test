@@ -3,7 +3,7 @@ import { getFormData } from '../../services/get-form-data'
 import { apiMyExperienceIndex, apiMyExperienceShow } from '../../services/api-path'
 import { notySuccess } from '../../services/noty'
 
-import { mergeUserAttribute } from '../users'
+import { mergeCurrentUserAttribute } from '../session'
 
 // create
 export const CREATE_MY_EXPERIENCE = "CREATE_MY_EXPERIENCE"
@@ -24,7 +24,7 @@ export const createMyExperience = (values, cb) => {
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()
-      dispatch(mergeUserAttribute(data, 'experiences'))
+      dispatch(mergeCurrentUserAttribute(data, 'experiences'))
       notySuccess("Experience Added!")
     }
   }
@@ -48,7 +48,7 @@ export const updateMyExperience = (values, params, cb) => {
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()
-      dispatch(mergeUserAttribute(data, 'experiences'))
+      dispatch(mergeCurrentUserAttribute(data, 'experiences'))
       notySuccess("Experience Updated!")
     }
   }

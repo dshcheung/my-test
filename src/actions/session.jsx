@@ -18,6 +18,15 @@ export const setCurrentUser = (data) => {
   }
 }
 
+export const MERGE_CURRENT_USER_ATTRIBUTE = "MERGE_CURRENT_USER_ATTRIBUTE"
+export const mergeCurrentUserAttribute = (data, attribute) => {
+  return {
+    type: MERGE_CURRENT_USER_ATTRIBUTE,
+    attribute,
+    data
+  }
+}
+
 export const RESET_ALL_STATE = "RESET_ALL_STATE"
 export const resetAllState = (dispatch) => {
   Cookies.remove(AUTH_TOKEN)

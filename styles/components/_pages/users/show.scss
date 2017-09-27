@@ -17,6 +17,15 @@
       left: 15px;
       bottom: 15px;
       color: white;
+      width: calc(100% - 135px);
+      max-width: 600px;
+      background-color: rgba(0,0,0, 0.8);
+    }
+
+    .edit {
+      position: absolute;
+      right: 15px;
+      top: 15px;
     }
   }
 
@@ -71,6 +80,17 @@
     p {
       font-size: ($font-size-base * 1.1);
       font-weight: 200;
+    }
+    .experience, .education, .endorsement {
+      position: relative;
+      padding-top: 15px;
+      padding-bottom: 15px;
+
+      .edit {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+      }
     }
   }
 }

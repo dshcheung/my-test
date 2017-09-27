@@ -11,12 +11,15 @@ import {
 import Validators from '../../../services/form-validators'
 
 import TextField from '../../shared/form-elements/text-field'
+import SelectField from '../../shared/form-elements/select-field'
 import DatetimePicker from '../../shared/form-elements/datetime-picker'
 
 const mapStateToProps = (state) => {
   return {
     getEducationLevelInProcess: _.get(state.requestStatus, GET_IMMOVABLE_EDUCATION_LEVEL),
-    educationLevel: _.get(state.immovables.show, 'education_level', []),
+    educationLevel: _.get(state.immovables, 'education_levels', []).map((el) => {
+      return { ...el, name: el.name_localized }
+    }),
     currentUser: _.get(state, 'session'),
   }
 }
@@ -35,6 +38,7 @@ const mapDispatchToProps = (dispatch) => {
     return Validators({
       school: ["presences"],
       year: ["presences"],
+      educationLevel: ["presences"]
     }, values)
   },
   initialValues: {
@@ -50,9 +54,8 @@ export default class MyEducationForm extends Component {
     this.props.resetImmovable()
   }
 
-  // TODO: education level
   render() {
-    const { handleSubmit, submitInProcess, optClass } = this.props
+    const { handleSubmit, submitInProcess, optClass, getEducationLevelInProcess, educationLevel } = this.props
 
     return (
       <div id="forms-my-education" className={optClass}>
@@ -63,6 +66,17 @@ export default class MyEducationForm extends Component {
             opts={{
               type: "text",
               label: "School Name *"
+            }}
+          />
+
+          <Field
+            name="educationLevel"
+            component={SelectField}
+            options={educationLevel}
+            requestInProcess={getEducationLevelInProcess}
+            opts={{
+              label: "Education Level *",
+              placeholder: "Select Educuation Level"
             }}
           />
 

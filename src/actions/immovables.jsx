@@ -1,13 +1,5 @@
 import { genApiUrl, genAxios } from '../services/api-request'
-import { apiImmovablesIndex, apiImmovablesShow } from '../services/api-path'
-
-export const SET_IMMOVABLES = "SET_IMMOVABLES"
-export const setImmovables = (data) => {
-  return {
-    type: SET_IMMOVABLES,
-    immovables: data
-  }
-}
+import { apiImmovablesShow } from '../services/api-path'
 
 export const SET_IMMOVABLE = "SET_IMMOVABLE"
 export const setImmovable = (data) => {
@@ -21,23 +13,6 @@ export const RESET_IMMOVABLE = "RESET_IMMOVABLE"
 export const resetImmovable = () => {
   return {
     type: RESET_IMMOVABLE
-  }
-}
-
-
-export const GET_IMMOVABLES = "GET_IMMOVABLES"
-export const getImmovables = () => {
-  const request = genAxios({
-    method: "get",
-    url: genApiUrl(apiImmovablesIndex())
-  })
-
-  return {
-    type: GET_IMMOVABLES,
-    request,
-    successCB: (dispatch, data) => {
-      dispatch(setImmovables(data))
-    }
   }
 }
 

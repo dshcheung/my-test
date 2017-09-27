@@ -51,7 +51,7 @@ export default class EditMyExperienceModal extends Component {
             submitInProcess={updateMyEndorsementInProcess}
             initialValues={{
               name: _.get(endorsement, "name", ""),
-              endorsement: _.get(endorsement, "endorsement", "")
+              description: _.get(endorsement, "description", "")
             }}
           />
         </Modal.Body>

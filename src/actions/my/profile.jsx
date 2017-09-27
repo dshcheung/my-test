@@ -29,17 +29,26 @@ export const getMyProfile = () => {
 
 // update
 export const UPDATE_MY_PROFILE = "UPDATE_MY_PROFILE"
-export const updateMyProfile = () => {
+export const updateMyProfile = (values, cb) => {
   const request = genAxios({
     method: "put",
     url: genApiUrl(apiMyProfile()),
-    data: getFormData({}, 'user')
+    data: getFormData({
+      profile: {
+        first_name: _.get(values, 'firstName', null),
+        last_name: _.get(values, 'lastName', null),
+        bio: _.get(values, 'bio', null),
+        avatar: _.get(values, 'avatar[0]', null),
+        banner: _.get(values, 'banner[0]', null)
+      }
+    }, 'user')
   })
 
   return {
     type: UPDATE_MY_PROFILE,
     request,
     successCB: (dispatch, data) => {
+      if (cb) cb()
       dispatch(setCurrentUser(data))
       notySuccess("Profile Updated!")
     }

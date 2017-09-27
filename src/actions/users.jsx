@@ -12,15 +12,6 @@ export const setUser = (data) => {
   }
 }
 
-export const MERGE_USER_ATTRIBUTE = "MERGE_USER_ATTRIBUTE"
-export const mergeUserAttribute = (data, attribute) => {
-  return {
-    type: MERGE_USER_ATTRIBUTE,
-    attribute,
-    data
-  }
-}
-
 export const RESET_USER = "RESET_USER"
 export const resetUser = () => {
   return {

@@ -40,7 +40,6 @@ export default class EditMyExperienceModal extends Component {
   render() {
     const { close, updateMyEducationInProcess, education } = this.props
 
-    // TODO: education level
     return (
       <Modal show onHide={close} className="form-modal">
         <Modal.Header closeButton>
@@ -52,7 +51,8 @@ export default class EditMyExperienceModal extends Component {
             submitInProcess={updateMyEducationInProcess}
             initialValues={{
               school: _.get(education, "school", ""),
-              year: moment.unix(_.get(education, "year", moment().unix())).toDate()
+              year: moment(_.get(education, "year", moment())).toDate(),
+              educationLevel: _.get(education, 'education_level.id', "")
             }}
           />
         </Modal.Body>
