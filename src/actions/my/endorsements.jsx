@@ -3,7 +3,7 @@ import { getFormData } from '../../services/get-form-data'
 import { apiMyEndorsementsIndex, apiMyEndorsementsShow } from '../../services/api-path'
 import { notySuccess } from '../../services/noty'
 
-import { mergeCurrentUserAttribute, deleteCurrentUserAttributeWithID } from '../session'
+import { mergeCurrentUserAttribute, deleteCurrentUserAttributeEntry } from '../session'
 
 // create
 export const CREATE_MY_ENDORSEMENT = "CREATE_MY_ENDORSEMENT"
@@ -63,7 +63,7 @@ export const deleteMyEndorsement = (params) => {
     type: `${DELETE_MY_ENDORSEMENT}_${params.myEndorsementID}`,
     request,
     successCB: (dispatch) => {
-      dispatch(deleteCurrentUserAttributeWithID(params.myEndorsementID, 'endorsements'))
+      dispatch(deleteCurrentUserAttributeEntry(params.myEndorsementID, 'endorsements'))
     }
   }
 }

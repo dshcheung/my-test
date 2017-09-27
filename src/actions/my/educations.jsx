@@ -3,7 +3,7 @@ import { getFormData } from '../../services/get-form-data'
 import { apiMyEducationsIndex, apiMyEducationsShow } from '../../services/api-path'
 import { notySuccess } from '../../services/noty'
 
-import { mergeCurrentUserAttribute, deleteCurrentUserAttributeWithID } from '../session'
+import { mergeCurrentUserAttribute, deleteCurrentUserAttributeEntry } from '../session'
 
 // create
 export const CREATE_MY_EDUCATION = "CREATE_MY_EDUCATION"
@@ -65,7 +65,7 @@ export const deleteMyEducation = (params) => {
     type: `${DELETE_MY_EDUCATION}_${params.myEducationID}`,
     request,
     successCB: (dispatch) => {
-      dispatch(deleteCurrentUserAttributeWithID(params.myEducationID, 'educations'))
+      dispatch(deleteCurrentUserAttributeEntry(params.myEducationID, 'educations'))
     }
   }
 }

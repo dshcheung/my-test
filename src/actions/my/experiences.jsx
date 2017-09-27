@@ -3,7 +3,7 @@ import { getFormData } from '../../services/get-form-data'
 import { apiMyExperienceIndex, apiMyExperienceShow } from '../../services/api-path'
 import { notySuccess } from '../../services/noty'
 
-import { mergeCurrentUserAttribute, deleteCurrentUserAttributeWithID } from '../session'
+import { mergeCurrentUserAttribute, deleteCurrentUserAttributeEntry } from '../session'
 
 // create
 export const CREATE_MY_EXPERIENCE = "CREATE_MY_EXPERIENCE"
@@ -67,7 +67,7 @@ export const deleteMyExperience = (params) => {
     type: `${DELETE_MY_EXPERIENCE}_${params.myExperienceID}`,
     request,
     successCB: (dispatch) => {
-      dispatch(deleteCurrentUserAttributeWithID(params.myExperienceID, 'experiences'))
+      dispatch(deleteCurrentUserAttributeEntry(params.myExperienceID, 'experiences'))
     }
   }
 }

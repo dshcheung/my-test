@@ -27,10 +27,10 @@ export const mergeCurrentUserAttribute = (data, attribute) => {
   }
 }
 
-export const DELETE_CURRENT_USER_ATTRIBUTE_WITH_ID = "DELETE_CURRENT_USER_ATTRIBUTE_WITH_ID"
-export const deleteCurrentUserAttributeWithID = (id, attribute) => {
+export const DELETE_CURRENT_USER_ATTRIBUTE_ENTRY = "DELETE_CURRENT_USER_ATTRIBUTE_ENTRY"
+export const deleteCurrentUserAttributeEntry = (id, attribute) => {
   return {
-    type: DELETE_CURRENT_USER_ATTRIBUTE_WITH_ID,
+    type: DELETE_CURRENT_USER_ATTRIBUTE_ENTRY,
     attribute,
     id
   }
@@ -62,6 +62,7 @@ export const createSession = (values) => {
     type: CREATE_SESSION,
     request,
     successCB: (dispatch, data) => {
+      dispatch(push(`/users/${data.id}`))
       dispatch(setCurrentUser(data))
     }
   }

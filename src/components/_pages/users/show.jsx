@@ -159,7 +159,7 @@ export default class UsersShow extends Component {
             <div className="col-xs-12 col-sm-9">
               {
                 (editable || _.get(user, "experiences[0]")) &&
-                moreInfoContentExperiences(editable, "Experiences", user.experiences, this.open, deleteMyExperience, requestStatus)
+                moreInfoContentExperiences(editable, "Experiences", user.experiences, this.open, this.props.deleteMyExperience, requestStatus)
               }
               {
                 (editable || _.get(user, "educations[0]")) &&
