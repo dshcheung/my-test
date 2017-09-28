@@ -8,6 +8,7 @@ import {
   resetStartups
 } from '../../../actions/startups'
 
+import MyStartupsSearchForm from '../../forms/startups/search'
 import LoadingSpinner from '../../shared/loading-spinner'
 
 const mapStateToProps = (state) => {
@@ -26,6 +27,14 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class StartupsIndex extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {}
+
+    this.getStartups = this.getStartups.bind(this)
+  }
+
   componentWillMount() {
     this.props.getStartups()
   }
@@ -34,23 +43,42 @@ export default class StartupsIndex extends Component {
     this.props.resetStartups()
   }
 
-  htmlDecode(input) {
-    const e = document.createElement('div')
-    e.innerHTML = input
-    return e.innerHTML
+  getStartups(values) {
+    this.setState({
+      keyword: _.get(values, "keyword"),
+      filterBy: _.get(values, "filter") ? "category_id" : "",
+      filter: _.get(values, "filter"),
+      sortBy: _.get(values, "sortBy"),
+      sort: _.get(values, "sort")
+    })
+    this.props.getStartups({
+      queries: {
+        q: _.get(values, "keyword"),
+        filter_by: _.get(values, "filter") ? "category_id" : "",
+        filter: _.get(values, "filter"),
+        sort_by: _.get(values, "sortBy"),
+        sort: _.get(values, "sort")
+      }
+    })
   }
 
   render() {
     const { startups, getStartupsInProcess } = this.props
-    const tagline = "Invest into businesses you believe in"
 
     return (
       <div id="pages-startups-index" className="container-fluid">
         <section className="container">
+          <div className="row section-search">
+            <MyStartupsSearchForm
+              optClass=""
+              onSubmit={this.getStartups}
+              submitInProcess={this.props.getStartupsInProcess}
+            />
+          </div>
           <div className="row section-header">
             <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
               <h1>LIVE STARTUPS</h1>
-              <p>{tagline}</p>
+              <p>Invest into businesses you believe in</p>
             </div>
           </div>
 
@@ -72,7 +100,6 @@ export default class StartupsIndex extends Component {
                   } else {
                     component = startups.map((startup, i) => {
                       const privateCard = i > 0
-                      // const blur = privateCard && "blur"
                       const styles = {
                         backgroundImage: `url(${_.get(startup, 'profile.banner.original', null) || '/company-logo.jpg'})`
                       }

@@ -47,7 +47,7 @@ const mapDispatchToProps = (dispatch) => {
 })
 export default class MyEducationForm extends Component {
   componentWillMount() {
-    this.props.getImmovable("education_level")
+    this.props.getImmovable({ immovableID: "education_level" })
   }
 
   componentWillUnmount() {

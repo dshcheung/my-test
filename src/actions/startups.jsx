@@ -48,7 +48,7 @@ export const getStartups = ({ queries = {}, nextHref = null } = {}) => {
     request,
     paginate: true,
     successCB: (dispatch, data) => {
-      dispatch(mergeStartups(data, !!nextHref))
+      dispatch(mergeStartups(data, !nextHref))
     }
   }
 }

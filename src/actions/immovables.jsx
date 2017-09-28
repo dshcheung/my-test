@@ -18,7 +18,7 @@ export const resetImmovable = () => {
 
 export const GET_IMMOVABLE = "GET_IMMOVABLE"
 export const GET_IMMOVABLE_EDUCATION_LEVEL = "GET_IMMOVABLE_EDUCATION_LEVEL"
-export const getImmovable = (immovableID) => {
+export const getImmovable = ({ immovableID } = {}) => {
   const request = genAxios({
     method: "get",
     url: genApiUrl(apiImmovablesShow({ immovableID }))
