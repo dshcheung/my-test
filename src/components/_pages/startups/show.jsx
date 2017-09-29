@@ -6,6 +6,8 @@ import Link from 'react-scroll/modules/components/Link'
 import Element from 'react-scroll/modules/components/Element'
 import RouteLink from 'react-router/lib/Link'
 
+import { DEFAULT_STARTUP_BANNER, DEFAULT_STARTUP_AVATAR } from '../../../constants'
+
 import {
   getStartup,
   resetStartup
@@ -66,12 +68,12 @@ export default class StartupsShow extends Component {
               <div className="col-xs-12 col-md-6">
                 <div className="aspect-16-9">
                   <ImageBanner
-                    src={`${_.get(startup, "profile.banner.original", null) || "/company-logo.jpg"}`}
+                    src={`${_.get(startup, "profile.banner.original", null) || DEFAULT_STARTUP_BANNER}`}
                     contain
                   />
                   <img
                     className="startup-avatar position-absolute top-15 left-10"
-                    src={`${_.get(startup, "profile.avatar.original", null) || "/company-logo.jpg"}`}
+                    src={`${_.get(startup, "profile.avatar.original", null) || DEFAULT_STARTUP_AVATAR}`}
                     alt={`Logo ${startup.name}}`}
                   />
                 </div>

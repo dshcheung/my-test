@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Link } from 'react-router'
 
+import { DEFAULT_STARTUP_BANNER, DEFAULT_STARTUP_AVATAR } from '../../../constants'
+
 import {
   getMyStartups, GET_MY_STARTUPS,
   resetMyStartups
@@ -93,7 +95,8 @@ export default class StartupsIndex extends Component {
                   )
 
                   const startupList = myStartups.map((myStartup, i) => {
-                    const banner = _.get(myStartup, 'profile.banner.original', null) || '/company-logo.jpg'
+                    const avatar = _.get(myStartup, 'profile.avatar.original', null) || DEFAULT_STARTUP_AVATAR
+                    const banner = _.get(myStartup, 'profile.banner.original', null) || DEFAULT_STARTUP_BANNER
                     const styles = {
                       backgroundImage: `url(${banner})`
                     }
@@ -103,7 +106,7 @@ export default class StartupsIndex extends Component {
                           <div className="col-xs-12 card-banner clearfix" style={styles}>
                             <img
                               className="startup-logo position-absolute top-15 left-10"
-                              src={banner}
+                              src={avatar}
                               alt={`Logo ${myStartup.name}`}
                             />
                           </div>

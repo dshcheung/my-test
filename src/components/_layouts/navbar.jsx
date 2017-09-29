@@ -9,7 +9,7 @@ import MenuItem from 'react-bootstrap/lib/MenuItem'
 import NavItem from 'react-bootstrap/lib/NavItem'
 import LinkContainer from 'react-router-bootstrap/lib/LinkContainer'
 
-import { DEFAULT_PIC } from '../../constants'
+import { DEFAULT_USER_AVATAR, AHUB_LOGO } from '../../constants'
 
 import { deleteSession } from '../../actions/session'
 
@@ -40,7 +40,7 @@ export default class Navbar extends Component {
         <BNavbar.Header>
           <BNavbar.Brand>
             <Link to="/">
-              <img src="https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/main-logo.png" alt="Logo" />
+              <img src={AHUB_LOGO} alt="Logo" />
             </Link>
           </BNavbar.Brand>
           <BNavbar.Toggle>
@@ -126,7 +126,7 @@ export default class Navbar extends Component {
                 <NavDropdown
                   title={
                     <div>
-                      <img src={_.get(currentUser, 'profile.avatar.original') || DEFAULT_PIC} alt="avatar" className="hidden-xs" />
+                      <img src={_.get(currentUser, 'profile.avatar.original') || DEFAULT_USER_AVATAR} alt="avatar" className="hidden-xs" />
                       <span className="hidden-sm hidden-md hidden-lg">MY PROFILE</span>
                       <i className="fa fa-caret-down" />
                     </div>

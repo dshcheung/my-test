@@ -5,7 +5,7 @@ import AutoAffix from 'react-overlays/lib/AutoAffix'
 import Link from 'react-scroll/modules/components/Link'
 import Element from 'react-scroll/modules/components/Element'
 
-import { DEFAULT_PIC } from '../../../constants'
+import { DEFAULT_USER_AVATAR, DEFAULT_USER_BANNER } from '../../../constants'
 
 import { getFullName } from '../../../services/utils'
 
@@ -111,11 +111,11 @@ export default class UsersShow extends Component {
         <div className="row">
           <section className="banner">
             <ImageBanner
-              src={_.get(user, "profile.banner.original", null)}
+              src={_.get(user, "profile.banner.original", null) || DEFAULT_USER_BANNER}
             />
             <img
               className="user-avatar"
-              src={_.get(user, "profile.avatar.original", null) || DEFAULT_PIC}
+              src={_.get(user, "profile.avatar.original", null) || DEFAULT_USER_AVATAR}
               alt="avatar"
             />
             <div className="details">
