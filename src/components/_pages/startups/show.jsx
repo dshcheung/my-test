@@ -9,7 +9,7 @@ import RouteLink from 'react-router/lib/Link'
 import { DEFAULT_STARTUP_BANNER, DEFAULT_STARTUP_AVATAR } from '../../../constants'
 
 import {
-  getStartup,
+  getStartup, GET_STARTUP,
   resetStartup
 } from '../../../actions/startups'
 
@@ -19,7 +19,7 @@ import ImageBanner from '../../shared/image-banner'
 const mapStateToProps = (state) => {
   return {
     startup: _.get(state, 'startup', null),
-    getStartupInProcess: _.get(state, 'requestStatus.GET_STARTUP')
+    getStartupInProcess: _.get(state.requestStatus, GET_STARTUP)
   }
 }
 

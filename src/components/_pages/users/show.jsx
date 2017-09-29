@@ -18,9 +18,9 @@ import {
   resetUser
 } from '../../../actions/users'
 
-import { deleteMyExperience, DELETE_MY_EXPERIENCE } from '../../../actions/my/experiences'
-import { deleteMyEducation, DELETE_MY_EDUCATION } from '../../../actions/my/educations'
-import { deleteMyEndorsement, DELETE_MY_ENDORSEMENT } from '../../../actions/my/endorsements'
+import { deleteMyExperience, DELETE_MY_EXPERIENCE } from '../../../actions/my/profile/experiences'
+import { deleteMyEducation, DELETE_MY_EDUCATION } from '../../../actions/my/profile/educations'
+import { deleteMyEndorsement, DELETE_MY_ENDORSEMENT } from '../../../actions/my/profile/endorsements'
 
 import LoadingSpinner from '../../shared/loading-spinner'
 import ImageBanner from '../../shared/image-banner'

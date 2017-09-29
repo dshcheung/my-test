@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 
 import {
   createMyExperience, CREATE_MY_EXPERIENCE
-} from '../../../../actions/my/experiences'
+} from '../../../../actions/my/profile/experiences'
 
 import MyProfileExperienceForm from '../../../forms/my/profile/experience'
 

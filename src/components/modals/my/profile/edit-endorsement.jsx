@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 
 import {
   updateMyEndorsement, UPDATE_MY_ENDORSEMENT
-} from '../../../../actions/my/endorsements'
+} from '../../../../actions/my/profile/endorsements'
 
 import MyProfileEndorsementForm from '../../../forms/my/profile/endorsement'
 

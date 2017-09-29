@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 
 import {
   updateMyEducation, UPDATE_MY_EDUCATION
-} from '../../../../actions/my/educations'
+} from '../../../../actions/my/profile/educations'
 
 import MyProfileEducationForm from '../../../forms/my/profile/education'
 
