@@ -269,9 +269,9 @@ const moreInfoContentList = (title, items, className) => {
         <div className="col-xs-12">
           <ul className={"list " + className}>
             {
-              items.map((item, k) => {
+              items.map((item, i) => {
                 return (
-                  <li key={k} dangerouslySetInnerHTML={{ __html: htmlDecode(item.detail) }} />
+                  <li key={i} dangerouslySetInnerHTML={{ __html: htmlDecode(item.detail) }} />
                 )
               })
             }
@@ -289,9 +289,9 @@ const moreInfoContentMilestones = (title, milestones) => {
       <div className="row">
         <div className="col-xs-12">
           {
-            milestones.map((milestone) => {
+            milestones.map((milestone, i) => {
               return (
-                <div className="row milestone" key={milestone.id}>
+                <div className="row milestone" key={i}>
                   <div className="col-xs-12">
                     <div className="h3">{moment(milestone.completed_on).format('MMMM YYYY')}</div>
                     <p dangerouslySetInnerHTML={{ __html: htmlDecode(milestone.detail) }} />
@@ -357,9 +357,9 @@ const moreInfoContentTeam = (title, members) => {
       <div className="h2">{title}</div>
       <div className="row">
         {
-          members.map((member) => {
+          members.map((member, i) => {
             return (
-              <div className="col-xs-12 team-member margin-bottom-20" key={member.id}>
+              <div className="col-xs-12 team-member margin-bottom-20" key={i}>
                 <div className="col-xs-6 col-sm-4 col-md-2">
                   <img className="full-width" src={member.avatar.original} alt={member.name} />
                 </div>
@@ -390,9 +390,9 @@ const moreInfoContentMarketScope = (title, contentTitle, details, attachments) =
             _.some(attachments) && (
               <p className="gallery">
                 {
-                  attachments.map((attachment) => {
+                  attachments.map((attachment, i) => {
                     return (
-                      <img className="img-responsive" src={attachment.file.original} alt={attachment.file.title} />
+                      <img key={i} className="img-responsive" src={attachment.file.original} alt={attachment.file.title} />
                     )
                   })
                 }
