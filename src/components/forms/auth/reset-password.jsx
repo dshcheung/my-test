@@ -6,7 +6,7 @@ import Validators from '../../../services/form-validators'
 import TextField from '../../shared/form-elements/text-field'
 
 @reduxForm({
-  form: "ResetPasswordForm",
+  form: "AuthResetPasswordForm",
   validate: (values) => {
     return Validators({
       reset_token: ["presences"],
@@ -18,7 +18,7 @@ import TextField from '../../shared/form-elements/text-field'
     }, values)
   }
 })
-export default class ResetPasswordForm extends Component {
+export default class AuthResetPasswordForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass } = this.props
 

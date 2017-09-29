@@ -7,7 +7,7 @@ import {
   createMyStartup, CREATE_MY_STARTUP
 } from '../../../../actions/my/startups'
 
-import MyStartupForm from '../../../forms/my/startups/startup'
+import MyStartupNameForm from '../../../forms/my/startups/name'
 
 const mapStateToProps = (state) => {
   return {
@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class AddMyStartupModal extends Component {
+export default class MyStartupsAddStartupModal extends Component {
   constructor(props) {
     super(props)
 
@@ -44,7 +44,7 @@ export default class AddMyStartupModal extends Component {
           <Modal.Title>Add Startup</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MyStartupForm
+          <MyStartupNameForm
             onSubmit={this.createMyStartup}
             submitInProcess={createMyStartupInProcess}
           />

@@ -7,7 +7,7 @@ import Validators from '../../../services/form-validators'
 import TextField from '../../shared/form-elements/text-field'
 
 @reduxForm({
-  form: "LoginForm",
+  form: "AuthLoginForm",
   validate: (values) => {
     return Validators({
       email: ["presences", "email"],
@@ -19,7 +19,7 @@ import TextField from '../../shared/form-elements/text-field'
     password: "123456"
   }
 })
-export default class LoginForm extends Component {
+export default class AuthLoginForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass } = this.props
 

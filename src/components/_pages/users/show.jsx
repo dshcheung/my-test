@@ -25,13 +25,13 @@ import { deleteMyEndorsement, DELETE_MY_ENDORSEMENT } from '../../../actions/my/
 import LoadingSpinner from '../../shared/loading-spinner'
 import ImageBanner from '../../shared/image-banner'
 
-import EditMyProfileModal from '../../modals/my/edit-profile'
-import AddMyExperienceModal from '../../modals/my/add-experience'
-import AddMyEducationModal from '../../modals/my/add-education'
-import AddMyEndorsementModal from '../../modals/my/add-endorsement'
-import EditMyExperienceModal from '../../modals/my/edit-experience'
-import EditMyEducationModal from '../../modals/my/edit-education'
-import EditMyEndorsementModal from '../../modals/my/edit-endorsement'
+import MyProfileEditProfileModal from '../../modals/my/profile/edit-profile'
+import MyProfileAddExperienceModal from '../../modals/my/profile/add-experience'
+import MyProfileAddEducationModal from '../../modals/my/profile/add-education'
+import MyProfileAddEndorsementModal from '../../modals/my/profile/add-endorsement'
+import MyProfileEditExperienceModal from '../../modals/my/profile/edit-experience'
+import MyProfileEditEducationModal from '../../modals/my/profile/edit-education'
+import MyProfileEditEndorsementModal from '../../modals/my/profile/edit-endorsement'
 
 const mapStateToProps = (state) => {
   return {
@@ -173,13 +173,13 @@ export default class UsersShow extends Component {
           </section>
         </div>
 
-        {this.state.editProfile && <EditMyProfileModal close={() => { this.close("editProfile") }} profile={this.state.editInfo} />}
-        {this.state.addExperience && <AddMyExperienceModal close={() => { this.close("addExperience") }} />}
-        {this.state.addEducation && <AddMyEducationModal close={() => { this.close("addEducation") }} />}
-        {this.state.addEndorsement && <AddMyEndorsementModal close={() => { this.close("addEndorsement") }} />}
-        {this.state.editExperience && <EditMyExperienceModal close={() => { this.close("editExperience") }} experience={this.state.editInfo} />}
-        {this.state.editEducation && <EditMyEducationModal close={() => { this.close("editEducation") }} education={this.state.editInfo} />}
-        {this.state.editEndorsement && <EditMyEndorsementModal close={() => { this.close("editEndorsement") }} endorsement={this.state.editInfo} />}
+        {this.state.editProfile && <MyProfileEditProfileModal close={() => { this.close("editProfile") }} profile={this.state.editInfo} />}
+        {this.state.addExperience && <MyProfileAddExperienceModal close={() => { this.close("addExperience") }} />}
+        {this.state.addEducation && <MyProfileAddEducationModal close={() => { this.close("addEducation") }} />}
+        {this.state.addEndorsement && <MyProfileAddEndorsementModal close={() => { this.close("addEndorsement") }} />}
+        {this.state.editExperience && <MyProfileEditExperienceModal close={() => { this.close("editExperience") }} experience={this.state.editInfo} />}
+        {this.state.editEducation && <MyProfileEditEducationModal close={() => { this.close("editEducation") }} education={this.state.editInfo} />}
+        {this.state.editEndorsement && <MyProfileEditEndorsementModal close={() => { this.close("editEndorsement") }} endorsement={this.state.editInfo} />}
       </div>
     )
   }

@@ -5,9 +5,9 @@ import { bindActionCreators } from 'redux'
 
 import {
   updateMyEndorsement, UPDATE_MY_ENDORSEMENT
-} from '../../../actions/my/endorsements'
+} from '../../../../actions/my/endorsements'
 
-import MyEndorsementForm from '../../forms/my/endorsement'
+import MyProfileEndorsementForm from '../../../forms/my/profile/endorsement'
 
 const mapStateToProps = (state) => {
   return {
@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class EditMyExperienceModal extends Component {
+export default class MyProfileEditEndorsementModal extends Component {
   constructor(props) {
     super(props)
 
@@ -46,7 +46,7 @@ export default class EditMyExperienceModal extends Component {
           <Modal.Title>Edit Endorsement</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MyEndorsementForm
+          <MyProfileEndorsementForm
             onSubmit={this.updateMyEndorsement}
             submitInProcess={updateMyEndorsementInProcess}
             initialValues={{

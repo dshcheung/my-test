@@ -5,7 +5,7 @@ import Panel from 'react-bootstrap/lib/Panel'
 
 import { updatePassword, UPDATE_PASSWORD } from '../../../actions/my/profile'
 
-import UpdatePasswordForm from '../../forms/my/update-password'
+import MyProfileUpdatePasswordForm from '../../forms/my/profile/update-password'
 
 const mapStateToProps = (state) => {
   return {
@@ -44,7 +44,7 @@ export default class My extends Component {
           </Panel>
 
           <Panel header="Update Password">
-            <UpdatePasswordForm
+            <MyProfileUpdatePasswordForm
               optclass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
               onSubmit={this.props.updatePassword}
               submitInProcess={this.props.updatePasswordInProcess}

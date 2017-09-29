@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 
 import { createSession, CREATE_SESSION } from '../../../actions/session'
 
-import LoginForm from '../../forms/auth/login'
+import AuthLoginForm from '../../forms/auth/login'
 
 const mapStateToProps = (state) => {
   return {
@@ -25,7 +25,7 @@ export default class Login extends Component {
     return (
       <div id="page-auth-login" className="container padding-top-20 padding-bottom-20">
         <div className="row">
-          <LoginForm
+          <AuthLoginForm
             optClass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
             onSubmit={this.props.createSession}
             submitInProcess={this.props.createSessionInProcess}

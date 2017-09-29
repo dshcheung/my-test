@@ -6,19 +6,19 @@ import Validators from '../../../../services/form-validators'
 import TextField from '../../../shared/form-elements/text-field'
 
 @reduxForm({
-  form: "MyStartupForm",
+  form: "MyStartupsNameForm",
   validate: (values) => {
     return Validators({
       name: ["presences"]
     }, values)
   }
 })
-export default class MyStartupForm extends Component {
+export default class MyStartupsNameForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass } = this.props
 
     return (
-      <div id="forms-my-startup" className={optClass}>
+      <div id="forms-my-startups-basic" className={optClass}>
         <form onSubmit={handleSubmit}>
           <Field
             name="name"

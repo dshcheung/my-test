@@ -5,9 +5,9 @@ import { bindActionCreators } from 'redux'
 
 import {
   updateMyProfile, UPDATE_MY_PROFILE
-} from '../../../actions/my/profile'
+} from '../../../../actions/my/profile'
 
-import MyProfileForm from '../../forms/my/profile'
+import MyProfileBasicForm from '../../../forms/my/profile/basic'
 
 const mapStateToProps = (state) => {
   return {
@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class EditMyProfileModal extends Component {
+export default class MyProfileEditProfileModal extends Component {
   constructor(props) {
     super(props)
 
@@ -44,7 +44,7 @@ export default class EditMyProfileModal extends Component {
           <Modal.Title>Edit Profile</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MyProfileForm
+          <MyProfileBasicForm
             onSubmit={this.updateMyProfile}
             submitInProcess={updateMyProfileInProcess}
             avatarUrl={_.get(profile, "avatar.original")}

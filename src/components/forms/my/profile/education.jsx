@@ -6,13 +6,13 @@ import { reduxForm, Field } from 'redux-form'
 import {
   getImmovable, GET_IMMOVABLE_EDUCATION_LEVEL,
   resetImmovable
-} from '../../../actions/immovables'
+} from '../../../../actions/immovables'
 
-import Validators from '../../../services/form-validators'
+import Validators from '../../../../services/form-validators'
 
-import TextField from '../../shared/form-elements/text-field'
-import SelectField from '../../shared/form-elements/select-field'
-import DatetimePicker from '../../shared/form-elements/datetime-picker'
+import TextField from '../../../shared/form-elements/text-field'
+import SelectField from '../../../shared/form-elements/select-field'
+import DatetimePicker from '../../../shared/form-elements/datetime-picker'
 
 const mapStateToProps = (state) => {
   return {
@@ -33,7 +33,7 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 @reduxForm({
-  form: "MyEducationForm",
+  form: "MyProfileEducationForm",
   validate: (values) => {
     return Validators({
       school: ["presences"],
@@ -45,7 +45,7 @@ const mapDispatchToProps = (dispatch) => {
     year: moment().startOf('day').toDate()
   }
 })
-export default class MyEducationForm extends Component {
+export default class MyProfileEducationForm extends Component {
   componentWillMount() {
     this.props.getImmovable({ immovableID: "education_level" })
   }
@@ -58,7 +58,7 @@ export default class MyEducationForm extends Component {
     const { handleSubmit, submitInProcess, optClass, getEducationLevelInProcess, educationLevel } = this.props
 
     return (
-      <div id="forms-my-education" className={optClass}>
+      <div id="forms-my-profile-education" className={optClass}>
         <form onSubmit={handleSubmit}>
           <Field
             name="school"

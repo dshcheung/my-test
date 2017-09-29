@@ -5,7 +5,7 @@ import { Link } from 'react-router'
 
 import { createUser, CREATE_USER } from '../../../actions/users'
 
-import SignupForm from '../../forms/auth/signup'
+import AuthSignupForm from '../../forms/auth/signup'
 
 const mapStateToProps = (state) => {
   return {
@@ -25,7 +25,7 @@ export default class Signup extends Component {
     return (
       <div id="page-auth-signup" className="container padding-top-20 padding-bottom-20">
         <div className="row">
-          <SignupForm
+          <AuthSignupForm
             optClass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
             onSubmit={this.props.createUser}
             submitInProcess={this.props.createUserInProcess}

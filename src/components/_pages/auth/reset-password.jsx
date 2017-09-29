@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 
 import { resetPassword, RESET_PASSWORD } from '../../../actions/my/profile'
 
-import ResetPasswordForm from '../../forms/auth/reset-password'
+import AuthResetPasswordForm from '../../forms/auth/reset-password'
 
 const mapStateToProps = (state) => {
   return {
@@ -24,7 +24,7 @@ export default class ResetPassword extends Component {
     return (
       <div id="page-auth-reset-password" className="container padding-top-20 padding-bottom-20">
         <div className="row">
-          <ResetPasswordForm
+          <AuthResetPasswordForm
             optClass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
             onSubmit={this.props.resetPassword}
             submitInProcess={this.props.resetPasswordInProcess}

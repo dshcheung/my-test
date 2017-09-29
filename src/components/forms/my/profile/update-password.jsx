@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
 
-import Validators from '../../../services/form-validators'
+import Validators from '../../../../services/form-validators'
 
-import TextField from '../../shared/form-elements/text-field'
+import TextField from '../../../shared/form-elements/text-field'
 
 @reduxForm({
-  form: "ResetPasswordForm",
+  form: "MyProfileUpdatePasswordForm",
   validate: (values) => {
     return Validators({
       password: ["presences", { type: "length", opts: { min: 6 } }],
@@ -18,12 +18,12 @@ import TextField from '../../shared/form-elements/text-field'
     }, values)
   }
 })
-export default class UpdatePasswordForm extends Component {
+export default class MyProfileUpdatePasswordForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass } = this.props
 
     return (
-      <div id="forms-my-update-password" className={optClass}>
+      <div id="forms-my-profile-update-password" className={optClass}>
         <form onSubmit={handleSubmit}>
           <Field
             name="password"

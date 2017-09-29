@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
 
-import Validators from '../../../services/form-validators'
+import Validators from '../../../../services/form-validators'
 
-import TextField from '../../shared/form-elements/text-field'
-import TextArea from '../../shared/form-elements/text-area'
-import ImageField from '../../shared/form-elements/image-field'
+import TextField from '../../../shared/form-elements/text-field'
+import TextArea from '../../../shared/form-elements/text-area'
+import ImageField from '../../../shared/form-elements/image-field'
 
 @reduxForm({
-  form: "MyProfileForm",
+  form: "MyProfileBasicForm",
   validate: (values) => {
     return Validators({
       firstName: ["presences"],
@@ -17,12 +17,12 @@ import ImageField from '../../shared/form-elements/image-field'
     }, values)
   }
 })
-export default class MyProfileForm extends Component {
+export default class MyProfileBasicForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass, avatarUrl, bannerUrl } = this.props
 
     return (
-      <div id="forms-my-profile" className={optClass}>
+      <div id="forms-my-profile-basic" className={optClass}>
         <form onSubmit={handleSubmit}>
           <Field
             name="firstName"

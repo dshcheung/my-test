@@ -8,7 +8,7 @@ import TextField from '../../shared/form-elements/text-field'
 import RadioField from '../../shared/form-elements/radio-field'
 
 @reduxForm({
-  form: "SignupForm",
+  form: "AuthSignupForm",
   validate: (values) => {
     return Validators({
       email: ["presences", "email"],
@@ -26,7 +26,7 @@ import RadioField from '../../shared/form-elements/radio-field'
     role: "StartupUser"
   }
 })
-export default class SignupForm extends Component {
+export default class AuthSignupForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass } = this.props
 

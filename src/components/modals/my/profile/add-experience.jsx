@@ -5,9 +5,9 @@ import { bindActionCreators } from 'redux'
 
 import {
   createMyExperience, CREATE_MY_EXPERIENCE
-} from '../../../actions/my/experiences'
+} from '../../../../actions/my/experiences'
 
-import MyExperienceForm from '../../forms/my/experience'
+import MyProfileExperienceForm from '../../../forms/my/profile/experience'
 
 const mapStateToProps = (state) => {
   return {
@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class AddMyExperienceModal extends Component {
+export default class MyProfileAddExperienceModal extends Component {
   constructor(props) {
     super(props)
 
@@ -44,7 +44,7 @@ export default class AddMyExperienceModal extends Component {
           <Modal.Title>Add Experience</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MyExperienceForm
+          <MyProfileExperienceForm
             onSubmit={this.createMyExperience}
             submitInProcess={createMyExperienceInProcess}
           />

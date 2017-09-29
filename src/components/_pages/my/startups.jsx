@@ -10,7 +10,7 @@ import {
 
 import LoadingSpinner from '../../shared/loading-spinner'
 
-import AddMyStartupModal from '../../modals/my/startups/add-startup'
+import MyStartupsAddStartupModal from '../../modals/my/startups/add-startup'
 
 const mapStateToProps = (state) => {
   return {
@@ -129,7 +129,7 @@ export default class StartupsIndex extends Component {
           </div>
         </section>
 
-        {this.state.addStartup && <AddMyStartupModal close={this.close} />}
+        {this.state.addStartup && <MyStartupsAddStartupModal close={this.close} />}
       </div>
     )
   }
