@@ -1,0 +1,71 @@
+#pages-my-startups-index {
+  section {
+    text-align: center;
+    margin-bottom: 15px;
+
+    @media (min-width: 768px) {
+      .startup-list {
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+
+    .startup-list {
+      .startup-card, .startup-card-new {
+        padding: 15px;
+        display: flex;
+        flex-flow: column nowrap;
+
+        > div, > a {
+          flex: 0 1 auto;
+        }
+
+        .card-banner-wrapper {
+          border: 1px solid $gray-text;
+          border-bottom-color: transparent;
+          padding: 0;
+          .card-banner {
+            height: 200px;
+            background-position: center;
+            background-size: cover;
+
+            &:hover {
+              text-decoration: none;
+              box-shadow: 1px 1px 5px $gray-lighter;
+            }
+
+            .startup-logo {
+              border-radius: 5px;
+              width: 100px;
+              padding: 5px;
+              height: auto;
+              background-color: $white;
+            }
+          }
+        }
+
+        .card-info {
+          border: 1px solid $gray-text;
+          border-top-color: transparent;
+          flex: 1 auto;
+          display: flex;
+          flex-flow: column nowrap;
+          padding: 15px;
+          color: $gray-light;
+
+          .name {
+            flex: 0 1 auto;
+            font-weight: 100;
+            width: 100%;
+          }
+
+          .name {
+            .h4 {
+              font-weight: 100;
+            }
+          }
+        }
+      }
+    }
+  }
+}

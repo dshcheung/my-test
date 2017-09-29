@@ -7,7 +7,7 @@ import TextField from '../../shared/form-elements/text-field'
 import SelectField from '../../shared/form-elements/select-field'
 
 @reduxForm({
-  form: "MyStartupsSearchForm",
+  form: "StartupsSearchForm",
   validate: (values) => {
     return Validators({
       keyword: [],
@@ -18,7 +18,7 @@ import SelectField from '../../shared/form-elements/select-field'
   }
 })
 
-export default class MyStartupsSearchForm extends Component {
+export default class StartupsSearchForm extends Component {
   reset() {
     this.props.reset()
     this.props.onSubmit()

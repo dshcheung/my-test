@@ -15,6 +15,7 @@ import VerifyEmailContainer from './components/_pages/verify/email'
 import VerifyMobileContainer from './components/_pages/verify/mobile'
 
 import MyContainer from './components/_pages/my/wrapper'
+import MyStartupsIndexContainer from './components/_pages/my/startups'
 import MySettingsContainer from './components/_pages/my/settings'
 
 import UsersShowContainer from './components/_pages/users/show'
@@ -53,11 +54,7 @@ export default (
 
       <Route path="portfolio" />
 
-      <Route path="startups">
-        <IndexRoute />
-        <Route path="new" />
-        <Route path=":startupID" />
-      </Route>
+      <Route path="startups" component={MyStartupsIndexContainer} />
 
       <Route path="campaigns">
         <IndexRoute />

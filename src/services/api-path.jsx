@@ -62,6 +62,10 @@ export const apiMyEducationsShow = (params) => {
   return `${apiMyEducationsIndex()}/${params.myEducationID}`
 }
 
+export const apiMyStartupsIndex = () => {
+  return `${apiMy()}/startups`
+}
+
 export const apiVerifyMyProfile = () => {
   return `${apiMyProfile()}/verify`
 }

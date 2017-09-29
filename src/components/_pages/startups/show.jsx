@@ -16,7 +16,7 @@ import ImageBanner from '../../shared/image-banner'
 
 const mapStateToProps = (state) => {
   return {
-    startup: _.get(state, 'startups.show', null),
+    startup: _.get(state, 'startup', null),
     getStartupInProcess: _.get(state, 'requestStatus.GET_STARTUP')
   }
 }
@@ -86,7 +86,7 @@ export default class StartupsShow extends Component {
               </div>
               <div className="col-xs-12 col-md-6">
                 <h1 className="name text-uppercase">{startup.name}</h1>
-                <p className="overview margin-bottom-20" dangerouslySetInnerHTML={{ __html: this.htmlDecode(startup.profile.tagline) }} />
+                <p className="overview margin-bottom-20" dangerouslySetInnerHTML={{ __html: this.htmlDecode(_.get(startup.profile.tagline)) }} />
                 <div className="row">
                   <div className="col-xs-12 padding-0 fundings">
                     <div className="col-md-4">

@@ -5,18 +5,22 @@ import { reducer as formReducer } from 'redux-form'
 import { RESET_ALL_STATE } from '../actions/session'
 
 import immovablesReducer from './immovables'
+import myStartupsReducer from './my-startups'
 import paginationReducer from './pagination'
 import requestStatusReducer from './request-status'
 import sessionReducer from './session'
 import startupsReducer from './startups'
+import startupReducer from './startup'
 import usersReducer from './users'
 
 const appReducer = combineReducers({
   immovables: immovablesReducer,
+  myStartups: myStartupsReducer,
   pagination: paginationReducer,
   requestStatus: requestStatusReducer,
   session: sessionReducer,
   startups: startupsReducer,
+  startup: startupReducer,
   user: usersReducer,
   routing: routerReducer,
   form: formReducer

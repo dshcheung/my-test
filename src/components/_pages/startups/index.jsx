@@ -4,17 +4,17 @@ import { bindActionCreators } from 'redux'
 import { Link } from 'react-router'
 
 import {
-  getStartups,
+  getStartups, GET_STARTUPS,
   resetStartups
 } from '../../../actions/startups'
 
-import MyStartupsSearchForm from '../../forms/startups/search'
+import StartupsSearchForm from '../../forms/startups/search'
 import LoadingSpinner from '../../shared/loading-spinner'
 
 const mapStateToProps = (state) => {
   return {
-    startups: _.get(state, 'startups.index', []),
-    getStartupsInProcess: _.get(state, 'requestStatus.GET_STARTUPS')
+    startups: _.get(state, 'startups', []),
+    getStartupsInProcess: _.get(state.requestStatus, GET_STARTUPS)
   }
 }
 
@@ -69,7 +69,7 @@ export default class StartupsIndex extends Component {
       <div id="pages-startups-index" className="container-fluid">
         <section className="container">
           <div className="row section-search">
-            <MyStartupsSearchForm
+            <StartupsSearchForm
               optClass=""
               onSubmit={this.getStartups}
               submitInProcess={this.props.getStartupsInProcess}
@@ -87,21 +87,16 @@ export default class StartupsIndex extends Component {
               (() => {
                 let component = null
                 if (getStartupsInProcess) {
-                  component = (
-                    <LoadingSpinner />
-                  )
+                  component = <LoadingSpinner />
                 } else {
                   if (startups.length === 0) {
-                    component = (
-                      <div className="col-xs-12">
-                        <h3>No Startups Found</h3>
-                      </div>
-                    )
+                    component = <div className="col-xs-12"><h3>No Startups Found</h3></div>
                   } else {
                     component = startups.map((startup, i) => {
                       const privateCard = i > 0
+                      const banner = _.get(startup, 'profile.banner.original', null) || '/company-logo.jpg'
                       const styles = {
-                        backgroundImage: `url(${_.get(startup, 'profile.banner.original', null) || '/company-logo.jpg'})`
+                        backgroundImage: `url(${banner})`
                       }
                       return (
                         <div key={i} className="col-xs-12 col-sm-6 col-md-4 text-center startup-card">
@@ -115,7 +110,11 @@ export default class StartupsIndex extends Component {
 
                           <Link to={`/startups/${startup.id}`} className="clearfix card-banner-wrapper">
                             <div className={`col-xs-12 card-banner clearfix`} style={styles}>
-                              <img className="startup-logo position-absolute top-15 left-10" src={`${_.get(startup, "profile.avatar.original", null) || "/company-logo.jpg"}`} alt={`Logo ${startup.name}}`} />
+                              <img
+                                className="startup-logo position-absolute top-15 left-10"
+                                src={banner}
+                                alt={`Logo ${startup.name}}`}
+                              />
                             </div>
                           </Link>
 
