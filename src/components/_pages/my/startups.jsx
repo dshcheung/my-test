@@ -5,36 +5,52 @@ import { Link } from 'react-router'
 
 import {
   getMyStartups, GET_MY_STARTUPS,
-  resetMyStartups,
-  createMyStartup, CREATE_MY_STARTUP
+  resetMyStartups
 } from '../../../actions/my/startups'
 
 import LoadingSpinner from '../../shared/loading-spinner'
 
+import AddMyStartupModal from '../../modals/my/startups/add-startup'
+
 const mapStateToProps = (state) => {
   return {
     myStartups: _.get(state, 'myStartups', []),
-    getMyStartupsInProcess: _.get(state.requestStatus, GET_MY_STARTUPS),
-    createMyStartupInProcess: _.get(state.requestStatus, CREATE_MY_STARTUP)
+    getMyStartupsInProcess: _.get(state.requestStatus, GET_MY_STARTUPS)
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getMyStartups: bindActionCreators(getMyStartups, dispatch),
-    resetMyStartups: bindActionCreators(resetMyStartups, dispatch),
-    createMyStartup: bindActionCreators(createMyStartup, dispatch)
+    resetMyStartups: bindActionCreators(resetMyStartups, dispatch)
   }
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class StartupsIndex extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {}
+
+    this.open = this.open.bind(this)
+    this.close = this.close.bind(this)
+  }
+
   componentWillMount() {
     this.props.getMyStartups()
   }
 
   componentWillUnmount() {
     this.props.resetMyStartups()
+  }
+
+  open() {
+    this.setState({ addStartup: true })
+  }
+
+  close() {
+    this.setState({ addStartup: false })
   }
 
   render() {
@@ -59,7 +75,7 @@ export default class StartupsIndex extends Component {
                       key="new-startup"
                       className="col-xs-12 col-sm-6 col-md-4 text-center startup-card-new"
                     >
-                      <a className="clearfix card-banner-wrapper">
+                      <a className="clearfix card-banner-wrapper" onClick={this.open}>
                         <div
                           className="col-xs-12 card-banner clearfix"
                           style={{ backgroundImage: "url(/default-banner-2.jpeg)" }}
@@ -69,7 +85,7 @@ export default class StartupsIndex extends Component {
                       <div className="col-xs-12 card-info">
                         <div className="name">
                           <div className="h3 margin-top margin-bottom-text-bold text-gray-dark">
-                            <a>Create A New Startup</a>
+                            <a onClick={this.open}>Create A New Startup</a>
                           </div>
                         </div>
                       </div>
@@ -112,6 +128,8 @@ export default class StartupsIndex extends Component {
             }
           </div>
         </section>
+
+        {this.state.addStartup && <AddMyStartupModal close={this.close} />}
       </div>
     )
   }

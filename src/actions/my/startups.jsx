@@ -36,7 +36,7 @@ export const getMyStartups = ({ queries = {}, nextHref = null } = {}) => {
 }
 
 export const CREATE_MY_STARTUP = "CREATE_MY_STARTUP"
-export const createMyStartup = (values) => {
+export const createMyStartup = (values, cb) => {
   const request = genAxios({
     method: "post",
     url: genApiUrl(apiMyStartupsIndex()),
@@ -49,6 +49,7 @@ export const createMyStartup = (values) => {
     type: CREATE_MY_STARTUP,
     request,
     successCB: (dispatch, data) => {
+      if (cb) cb()
       dispatch(mergeMyStartups({ startups: [data.startup] }))
     }
   }
