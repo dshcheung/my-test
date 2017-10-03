@@ -54,6 +54,13 @@
         margin-bottom: 10px;
       }
 
+			@media (min-width: 992px) {
+				.fundings {
+					> div:first-child {
+						padding-left: 0;
+					}
+				}
+			}
       .fundings {
         margin-top: 30px;
         .funding-card {
@@ -61,7 +68,7 @@
           border: 1px solid $brand-primary;
           border-radius: 10px;
           .amount {
-            font-size: ($font-size-base * 1.5);
+            font-size: ($font-size-base * 1.4);
             color: $brand-primary;
             font-weight: bold;
           }

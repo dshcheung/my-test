@@ -137,13 +137,13 @@ export default class StartupsShow extends Component {
                 </div>
                 <div className="bar margin-top-50">
                   <div className="progress">
-                    <div className="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style={{ width: "45%" }} />
+                    <div className="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style={{ width: "75%" }} />
                     <div className="progress-start filled" />
                     <div className="progress-end" />
                   </div>
                   <div className="clearfix progress-percent">
                     <div className="pull-right">
-                      <span><strong>45%</strong> achieved</span>
+                      <span><strong>75%</strong> achieved</span>
                     </div>
                   </div>
                 </div>
