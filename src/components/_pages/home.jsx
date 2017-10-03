@@ -98,7 +98,8 @@ export default class Home extends Component {
                   Our mission is simple: connect Professional Investors to high quality startups seeking funding.
                 </p>
                 <p className="note-caption">
-                  To fulfill our mission, we created an innovative digital capital market which greatly reduces the traditional barriers for investing in highly vetted private companies.
+                  To fulfill our mission, we created an innovative digital capital market which greatly reduces the
+                  traditional barriers for investing in highly vetted private companies.
                 </p>
               </div>
             </div>
@@ -125,9 +126,10 @@ export default class Home extends Component {
                       <div className="list-text">
                         <strong>Deal Origination</strong>
                         <p>
-                          Our rigorous vetting process starts with screening referrals from our different partners and online applications from the community.
-                          This includes investors, accelerators, incubators and VC firms. All startups apply online through our detail questionnaire about
-                          their company, team, idea, problem, market opportunity, competition analysis, previous funding, technology, milestones and financials.
+                          Our rigorous vetting process starts with screening referrals from our different partners and online
+                          applications from the community. This includes investors, accelerators, incubators and VC firms.
+                          All startups apply online through our detail questionnaire about their company, team, idea, problem,
+                          market opportunity, competition analysis, previous funding, technology, milestones and financials.
                         </p>
                       </div>
                     </li>
@@ -138,9 +140,9 @@ export default class Home extends Component {
                       <div className="list-text">
                         <strong>Deal Selection</strong>
                         <p>
-                          We conduct interviews and due diligence process of the deals. We want to know more about the company and the people.
-                          This is followed by an in depth review of our Investment Committee composed of highly successful entrepreneurs, experienced
-                          investors, experts and top-level business leaders.
+                          We conduct interviews and due diligence process of the deals. We want to know more about the
+                          company and the people. This is followed by an in depth review of our Investment Committee
+                          composed of highly successful entrepreneurs, experienced investors, experts and top-level business leaders.
                         </p>
                       </div>
                     </li>

@@ -243,22 +243,37 @@
           }
         }
       }
-      .team-member {
-				.full-width {
-					width: 100%;
+			&.team {
+				.team-story {
+					font-size: $font-size-base;
+					color: $gray-light;
 				}
-        p {
-          span {
-            display: block;
+				.team-founder {
+					.full-width {
+						width: 100%;
+					}
+					.title {
+						font-size: ($font-size-base * 0.9);
+						display: block;
+						text-transform: capitalize;
+					}
+					.description {
+						font-size: ($font-size-base * 0.9);
+						display: block;
+					}
+				}
+				.team-member {
+					.full-width {
+						width: 100%;
+					}
+					span {
+						display: block;
 						&.title {
 							font-size: ($font-size-base * 0.9);
 						}
-						&.description {
-							font-size: ($font-size-base * 0.9);
-						}
-          }
-        }
-      }
+					}
+				}
+			}
 
       .documents {
         -webkit-filter: blur(4px);

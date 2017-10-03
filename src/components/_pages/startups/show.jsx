@@ -193,7 +193,7 @@ export default class StartupsShow extends Component {
                         )
                       }
                       {
-                        _.get(startup, "members[0]") && (
+                        _.get(startup, "team") && (
                           <li><Link to="Team" spy smooth duration={500} offset={-100}>Team</Link></li>
                         )
                       }
@@ -236,7 +236,7 @@ export default class StartupsShow extends Component {
                 {_.get(startup, "milestones[0]") && moreInfoContentMilestones("Milestones", startup.milestones)}
                 {_.get(startup, "pitch_deck.title") && moreInfoContentPitchDeck("Pitch Deck", startup.pitch_deck.attachments)}
                 {_.get(startup, "media[0]") && moreInfoContentMedia("Media", startup.media)}
-                {_.get(startup, "members[0]") && moreInfoContentTeam("Team", startup.members)}
+                {_.get(startup, "team") && moreInfoContentTeam("Team", startup.team)}
                 {_.get(startup, "market_scope.title") && moreInfoContentMarketScope("Market Scope", startup.market_scope.title, startup.market_scope.description, startup.market_scope.attachments)}
                 {_.get(startup, "risk.title") && moreInfoContent("Risk & Disclosure", startup.risk.title)}
                 {_.get(startup, "end_notes") && moreInfoContent("End Notes", startup.end_notes)}
@@ -351,23 +351,47 @@ const moreInfoContentMedia = (title, media) => {
   )
 }
 
-const moreInfoContentTeam = (title, members) => {
+const moreInfoContentTeam = (title, team) => {
   return (
-    <Element name={title} className="section">
+    <Element name={title} className="section team">
       <div className="h2">{title}</div>
       <div className="row">
+        <div className="col-xs-12 team-story">
+          { team.story }
+        </div>
+      </div>
+      <div className="row">
         {
-          members.map((member, i) => {
+          team.founders.map((member, i) => {
             return (
-              <div className="col-xs-12 team-member margin-bottom-20" key={i}>
-                <div className="col-xs-6 col-sm-4 col-md-2">
+              <div className="col-xs-12 team-founder margin-bottom-20" key={i}>
+                <div className="h3">Founders</div>
+                <div className="col-xs-6 col-sm-4 col-md-4">
                   <img className="full-width" src={member.avatar.original} alt={member.name} />
                 </div>
-                <div className="col-xs-6 col-sm-8 col-md-10">
+                <div className="col-xs-6 col-sm-8 col-md-8">
                   <p>
                     <span className="text-bold header">{member.name}</span>
                     <span className="title">{member.title}</span>
                     <span className="description" dangerouslySetInnerHTML={{ __html: htmlDecode(member.description) }} />
+                  </p>
+                </div>
+              </div>
+            )
+          })
+        }
+      </div>
+      <div className="row">
+        {
+          team.members.map((member, i) => {
+            return (
+              <div className="col-xs-12 team-member margin-bottom-20" key={i}>
+                <div className="h3">Important Members</div>
+                <div className="col-xs-6 col-sm-4 col-md-2">
+                  <img className="full-width" src={member.avatar.original} alt={member.name} />
+                  <p>
+                    <span className="text-bold header">{member.name}</span>
+                    <span className="title">{member.title}</span>
                   </p>
                 </div>
               </div>
