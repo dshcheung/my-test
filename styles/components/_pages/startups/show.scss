@@ -248,6 +248,12 @@
 					font-size: $font-size-base;
 					color: $gray-light;
 				}
+				.h3 {
+					margin-top: 0;
+          color: $brand-primary;
+          font-size: ($font-size-base * 1.2);
+          margin-bottom: 0.5em;
+				}
 				.team-founder {
 					.full-width {
 						width: 100%;
