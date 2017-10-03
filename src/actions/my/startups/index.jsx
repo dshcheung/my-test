@@ -1,6 +1,6 @@
-import { genApiUrl, addParamsToUrl, genAxios } from '../../services/api-request'
-import { getFormData } from '../../services/get-form-data'
-import { apiMyStartupsIndex } from '../../services/api-path'
+import { genApiUrl, addParamsToUrl, genAxios } from '../../../services/api-request'
+import { getFormData } from '../../../services/get-form-data'
+import { apiMyStartupsIndex } from '../../../services/api-path'
 
 export const MERGE_MY_STARTUPS = "MERGE_MY_STARTUPS"
 export const mergeMyStartups = (data, reset) => {

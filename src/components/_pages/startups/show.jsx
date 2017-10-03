@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import AutoAffix from 'react-overlays/lib/AutoAffix'
 import Link from 'react-scroll/modules/components/Link'
 import Element from 'react-scroll/modules/components/Element'
-import RouteLink from 'react-router/lib/Link'
+// import RouteLink from 'react-router/lib/Link'
 
 import { DEFAULT_STARTUP_BANNER, DEFAULT_STARTUP_AVATAR } from '../../../constants'
 
@@ -15,6 +15,13 @@ import {
 
 import LoadingSpinner from '../../shared/loading-spinner'
 import ImageBanner from '../../shared/image-banner'
+
+import MyStartupEditOverviewModal from '../../modals/my/startups/edit-overview'
+
+import MyStartupAddHighlightModal from '../../modals/my/startups/add-highlight'
+import MyStartupAddKPIModal from '../../modals/my/startups/add-kpi'
+import MyStartupAddMilestoneModal from '../../modals/my/startups/add-milestone'
+import MyStartupAddPitchDeckModal from '../../modals/my/startups/add-pitch-deck'
 
 const mapStateToProps = (state) => {
   return {
@@ -32,22 +39,203 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class StartupsShow extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {}
+
+    this.open = this.open.bind(this)
+    this.close = this.close.bind(this)
+  }
+
   componentWillMount() {
     this.props.getStartup({ params: this.props.routeParams })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ editable: _.get(nextProps, 'startup.is_editable', false) })
   }
 
   componentWillUnmount() {
     this.props.resetStartup()
   }
 
-  htmlDecode(input) {
-    const e = document.createElement('div')
-    e.innerHTML = input
-    return e.innerHTML
+  open(name, editInfo) {
+    this.setState({ [name]: true, editInfo })
+  }
+
+  close(name) {
+    this.setState({ [name]: false, editInfo: false })
+  }
+
+  title(title, modalName, editInfo, icon) {
+    const iconClass = icon === "edit" ? "fa-pencil" : "fa-plus"
+    return (
+      <div className="h2">
+        {title}
+        {
+          this.state.editable && (
+            <button
+              className="btn btn-info pull-right add"
+              onClick={() => { this.open(modalName, editInfo) }}
+            ><i className={`fa ${iconClass}`} /></button>
+          )
+        }
+      </div>
+    )
+  }
+
+  emptyContent(title, execute, mode) {
+    const keyWord = mode === "edit" ? "Edit" : "Add"
+    if (this.state.editable && execute) {
+      return (
+        <div>
+          <p>{`Click ${keyWord} Icon To ${keyWord} ${title}`}</p>
+        </div>
+      )
+    }
+
+    return null
+  }
+
+  moreInfoContentHighlights() {
+    const { startup } = this.props
+    const title = "Highlights"
+    const highlights = _.get(startup, 'highlights', [])
+    return (
+      <Element name={title} className="section">
+        {this.title(title, 'addHighlight')}
+        {this.emptyContent(title, highlights.length === 0)}
+        {
+          highlights.length > 0 && (
+            <div className="row">
+              <div className="col-xs-12">
+                <ul className="list highlights">
+                  {
+                    highlights.map((highlight, i) => {
+                      return (
+                        <li key={i} dangerouslySetInnerHTML={{ __html: htmlDecode(highlight.detail) }} />
+                      )
+                    })
+                  }
+                </ul>
+              </div>
+            </div>
+          )
+        }
+      </Element>
+    )
+  }
+
+  moreInfoContentOverview() {
+    const { startup } = this.props
+    const title = "Overview"
+    const overview = _.get(startup.profile, 'overview')
+    return (
+      <Element name={title} className="section">
+        {this.title(title, "editOverview", overview, "edit")}
+        {this.emptyContent(title, !overview, "edit")}
+        {overview && <div><p dangerouslySetInnerHTML={{ __html: htmlDecode(overview) }} /></div>}
+      </Element>
+    )
+  }
+
+  moreInfoContentKPI() {
+    const { startup } = this.props
+    const title = "KPIs"
+    const kpis = _.get(startup, 'key_performance_indicators', [])
+    return (
+      <Element name={title} className="section">
+        {this.title(title, 'addKPI')}
+        {this.emptyContent(title, kpis.length === 0)}
+        {
+          kpis.length > 0 && (
+            <div className="row">
+              <div className="col-xs-12">
+                <ul className="list">
+                  {
+                    kpis.map((kpi, i) => {
+                      return (
+                        <li key={i} dangerouslySetInnerHTML={{ __html: htmlDecode(kpi.detail) }} />
+                      )
+                    })
+                  }
+                </ul>
+              </div>
+            </div>
+          )
+        }
+      </Element>
+    )
+  }
+
+  moreInfoContentMilestones() {
+    const { startup } = this.props
+    const title = "Milestones"
+    const milestones = _.get(startup, "milestones", [])
+    return (
+      <Element name={title} className="section">
+        {this.title(title, 'addMilestone')}
+        {this.emptyContent(title, milestones.length === 0)}
+        {
+          milestones.length > 0 && (
+            <div className="row">
+              <div className="col-xs-12">
+                {
+                  milestones.map((milestone, i) => {
+                    return (
+                      <div className="row milestone" key={i}>
+                        <div className="col-xs-12">
+                          <div className="h3">{moment(milestone.completed_on).format('MMMM YYYY')}</div>
+                          <p dangerouslySetInnerHTML={{ __html: htmlDecode(milestone.detail) }} />
+                        </div>
+                      </div>
+                    )
+                  })
+                }
+              </div>
+            </div>
+          )
+        }
+      </Element>
+    )
+  }
+
+  moreInfoContentPitchDecks() {
+    const { startup } = this.props
+    const title = "Pitch Deck"
+    const attachments = _.get(startup.pitch_deck, 'attachments', [])
+    return (
+      <Element name={title} className="section">
+        {this.title(title, 'addPitchDeck')}
+        {this.emptyContent(title, attachments.length === 0)}
+        {
+          attachments.length > 0 && (
+            <div>
+              <ul>
+                {
+                  attachments.map((attachment, i) => {
+                    return (
+                      <li key={i}>
+                        <a href={attachment.file.original} className="btn btn-success">
+                          {attachment.title}
+                          <i className="fa fa-fw fa-download" />
+                        </a>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            </div>
+          )
+        }
+      </Element>
+    )
   }
 
   render() {
-    const { startup, getStartupInProcess } = this.props
+    const { startup, getStartupInProcess, routeParams } = this.props
+    const { editable } = this.state
 
     if (getStartupInProcess) return <LoadingSpinner />
 
@@ -88,7 +276,7 @@ export default class StartupsShow extends Component {
               </div>
               <div className="col-xs-12 col-md-6">
                 <h1 className="name text-uppercase">{startup.name}</h1>
-                <p className="overview margin-bottom-20" dangerouslySetInnerHTML={{ __html: this.htmlDecode(startup.profile.tagline) }} />
+                <p className="overview margin-bottom-20" dangerouslySetInnerHTML={{ __html: htmlDecode(_.get(startup.profile, 'tagline', '')) }} />
                 <div className="row">
                   <div className="col-xs-12 padding-0 fundings">
                     <div className="col-md-4">
@@ -163,57 +351,57 @@ export default class StartupsShow extends Component {
                   <div className="sidebar-wrapper">
                     <ul className="scrollto">
                       {
-                        _.get(startup, "highlights[0]") && (
+                        (editable || _.get(startup, "highlights[0]")) && (
                           <li><Link to="Highlights" spy smooth duration={500} offset={-100}>Highlights</Link></li>
                         )
                       }
                       {
-                        _.get(startup, "profile.overview") && (
+                        (editable || _.get(startup, "profile.overview")) && (
                           <li><Link to="Overview" spy smooth duration={500} offset={-100}>Overview</Link></li>
                         )
                       }
                       {
-                        _.get(startup, "key_performance_indicators[0]") && (
+                        (editable || _.get(startup, "key_performance_indicators[0]")) && (
                           <li><Link to="KPIs" spy smooth duration={500} offset={-100}>KPIs</Link></li>
                         )
                       }
                       {
-                        _.get(startup, "milestones[0]") && (
+                        (editable || _.get(startup, "milestones[0]")) && (
                           <li><Link to="Milestones" spy smooth duration={500} offset={-100}>Milestones</Link></li>
                         )
                       }
                       {
-                        _.get(startup, "pitch_deck.title") && (
+                        (editable || _.get(startup, "pitch_deck.title")) && (
                           <li><Link to="Pitch Deck" spy smooth duration={500} offset={-100}>Pitch Deck</Link></li>
                         )
                       }
                       {
-                        _.get(startup, "media[0]") && (
+                        (editable || _.get(startup, "media[0]")) && (
                           <li><Link to="Media" spy smooth duration={500} offset={-100}>Media</Link></li>
                         )
                       }
                       {
-                        _.get(startup, "team") && (
+                        (editable || _.get(startup, "team")) && (
                           <li><Link to="Team" spy smooth duration={500} offset={-100}>Team</Link></li>
                         )
                       }
                       {
-                        _.get(startup, "market_scope.title") && (
+                        (editable || _.get(startup, "market_scope.title")) && (
                           <li><Link to="Market Scope" spy smooth duration={500} offset={-100}>Market Scope</Link></li>
                         )
                       }
                       {
-                        _.get(startup, "risk.title") && (
+                        (editable || _.get(startup, "risk.title")) && (
                           <li><Link to="Risk & Disclosure" spy smooth duration={500} offset={-100}>Risk & Disclosure</Link></li>
                         )
                       }
                       {
-                        _.get(startup, "end_notes") && (
+                        (editable || _.get(startup, "end_notes")) && (
                           <li><Link to="End Notes" spy smooth duration={500} offset={-100}>End Notes</Link></li>
                         )
                       }
                       {
-                        _.get(startup, "attachments[0]") && (
+                        (editable || _.get(startup, "attachments[0]")) && (
                           <li><Link to="Documents" spy smooth duration={500} offset={-100}>Documents</Link></li>
                         )
                       }
@@ -230,236 +418,25 @@ export default class StartupsShow extends Component {
                 </AutoAffix>
               </div>
               <div className="col-xs-12 col-sm-9">
-                {_.get(startup, "highlights[0]") && moreInfoContentList("Highlights", startup.highlights, 'highlights')}
-                {_.get(startup, "profile.overview") && moreInfoContent("Overview", startup.profile.overview)}
-                {_.get(startup, "key_performance_indicators[0]") && moreInfoContentList("KPIs", startup.key_performance_indicators)}
-                {_.get(startup, "milestones[0]") && moreInfoContentMilestones("Milestones", startup.milestones)}
-                {_.get(startup, "pitch_deck.title") && moreInfoContentPitchDeck("Pitch Deck", startup.pitch_deck.attachments)}
-                {_.get(startup, "media[0]") && moreInfoContentMedia("Media", startup.media)}
-                {_.get(startup, "team") && moreInfoContentTeam("Team", startup.team)}
-                {_.get(startup, "market_scope.title") && moreInfoContentMarketScope("Market Scope", startup.market_scope.title, startup.market_scope.description, startup.market_scope.attachments)}
-                {_.get(startup, "risk.title") && moreInfoContent("Risk & Disclosure", startup.risk.title)}
-                {_.get(startup, "end_notes") && moreInfoContent("End Notes", startup.end_notes)}
-                {_.get(startup, "attachments[0]") && moreInfoDocuments("Documents", startup.attachments)}
+                {(editable || _.get(startup, "highlights[0]")) && this.moreInfoContentHighlights()}
+                {(editable || _.get(startup, "profile.overview")) && this.moreInfoContentOverview()}
+                {(editable || _.get(startup, "key_performance_indicators[0]")) && this.moreInfoContentKPI()}
+                {(editable || _.get(startup, "milestones[0]")) && this.moreInfoContentMilestones()}
+                {(editable || _.get(startup, "pitch_deck.attachments")) && this.moreInfoContentPitchDecks()}
               </div>
             </section>
           </div>
         </div>
+
+        {this.state.editOverview && <MyStartupEditOverviewModal close={() => { this.close("editOverview") }} params={routeParams} overview={this.state.editInfo} />}
+
+        {this.state.addHighlight && <MyStartupAddHighlightModal close={() => { this.close("addHighlight") }} params={routeParams} />}
+        {this.state.addKPI && <MyStartupAddKPIModal close={() => { this.close("addKPI") }} params={routeParams} />}
+        {this.state.addMilestone && <MyStartupAddMilestoneModal close={() => { this.close("addMilestone") }} params={routeParams} />}
+        {this.state.addPitchDeck && <MyStartupAddPitchDeckModal close={() => { this.close("addPitchDeck") }} params={routeParams} />}
       </div>
     )
   }
-}
-
-const moreInfoContent = (title, content) => {
-  return (
-    <Element name={title} className="section">
-      <div className="h2">{title}</div>
-      <div>
-        <p dangerouslySetInnerHTML={{ __html: htmlDecode(content) }} />
-      </div>
-    </Element>
-  )
-}
-
-const moreInfoContentList = (title, items, className) => {
-  return (
-    <Element name={title} className="section">
-      <div className="h2">{title}</div>
-      <div className="row">
-        <div className="col-xs-12">
-          <ul className={"list " + className}>
-            {
-              items.map((item, i) => {
-                return (
-                  <li key={i} dangerouslySetInnerHTML={{ __html: htmlDecode(item.detail) }} />
-                )
-              })
-            }
-          </ul>
-        </div>
-      </div>
-    </Element>
-  )
-}
-
-const moreInfoContentMilestones = (title, milestones) => {
-  return (
-    <Element name={title} className="section">
-      <div className="h2">{title}</div>
-      <div className="row">
-        <div className="col-xs-12">
-          {
-            milestones.map((milestone, i) => {
-              return (
-                <div className="row milestone" key={i}>
-                  <div className="col-xs-12">
-                    <div className="h3">{moment(milestone.completed_on).format('MMMM YYYY')}</div>
-                    <p dangerouslySetInnerHTML={{ __html: htmlDecode(milestone.detail) }} />
-                  </div>
-                </div>
-              )
-            })
-          }
-        </div>
-      </div>
-    </Element>
-  )
-}
-
-const moreInfoContentPitchDeck = (title, attachments) => {
-  return (
-    <Element name={title} className="section">
-      <div className="h2">{title}</div>
-      <div>
-        <ul className="">
-          {
-            attachments.map((attachment, i) => {
-              return (
-                <li key={i}>
-                  <a href={attachment.file.original} className="btn btn-success">
-                    {attachment.title}
-                    <i className="fa fa-fw fa-download" />
-                  </a>
-                </li>
-              )
-            })
-          }
-        </ul>
-      </div>
-    </Element>
-  )
-}
-
-const moreInfoContentMedia = (title, media) => {
-  return (
-    <Element name={title} className="section">
-      <div className="h2">{title}</div>
-      <div className="row">
-        {
-          media.map((post, i) => {
-            return (
-              <div key={i} className="col-md-2 col-sm3 col-xs-6">
-                <a href={post.link} target="_blank">
-                  <img className="img-responsive" key={i} src={post.banner.original} alt={post.title} />
-                </a>
-              </div>
-            )
-          })
-        }
-      </div>
-    </Element>
-  )
-}
-
-const moreInfoContentTeam = (title, team) => {
-  return (
-    <Element name={title} className="section team">
-      <div className="h2">{title}</div>
-      <div className="row">
-        <div className="col-xs-12 team-story">
-          { team.story }
-        </div>
-      </div>
-      <div className="row">
-        {
-          team.founders.map((member, i) => {
-            return (
-              <div className="col-xs-12 team-founder margin-bottom-20" key={i}>
-                <div className="h3">Founders</div>
-                <div className="col-xs-6 col-sm-4 col-md-4">
-                  <img className="full-width" src={member.avatar.original} alt={member.name} />
-                </div>
-                <div className="col-xs-6 col-sm-8 col-md-8">
-                  <p>
-                    <span className="text-bold header">{member.name}</span>
-                    <span className="title">{member.title}</span>
-                    <span className="description" dangerouslySetInnerHTML={{ __html: htmlDecode(member.description) }} />
-                  </p>
-                </div>
-              </div>
-            )
-          })
-        }
-      </div>
-      <div className="row">
-        {
-          team.members.map((member, i) => {
-            return (
-              <div className="col-xs-12 team-member margin-bottom-20" key={i}>
-                <div className="h3">Important Members</div>
-                <div className="col-xs-6 col-sm-4 col-md-2">
-                  <img className="full-width" src={member.avatar.original} alt={member.name} />
-                  <p>
-                    <span className="text-bold header">{member.name}</span>
-                    <span className="title">{member.title}</span>
-                  </p>
-                </div>
-              </div>
-            )
-          })
-        }
-      </div>
-    </Element>
-  )
-}
-
-const moreInfoContentMarketScope = (title, contentTitle, details, attachments) => {
-  return (
-    <Element name={title} className="section">
-      <div className="h2">{title}</div>
-      <div className="row">
-        <div className="col-xs-12">
-          <p dangerouslySetInnerHTML={{ __html: htmlDecode(details) }} />
-          {
-            _.some(attachments) && (
-              <p className="gallery">
-                {
-                  attachments.map((attachment, i) => {
-                    return (
-                      <img key={i} className="img-responsive" src={attachment.file.original} alt={attachment.file.title} />
-                    )
-                  })
-                }
-              </p>
-            )
-          }
-        </div>
-      </div>
-    </Element>
-  )
-}
-
-const moreInfoDocuments = (title, documents) => {
-  return (
-    <Element name={title} className="section">
-      <div className="h2">{title}</div>
-      <div className="row documents">
-        <div className="col-xs-12">
-          <ul className="list-style-none">
-            {
-              documents.map((doc, i) => {
-                return (
-                  <li key={i}>
-                    <div className="inline-block">
-                      <i className="fa fa-file-text fa-3x" />
-                    </div>
-                    <div className="inline-block">
-                      <span className="display-block text-bold">{doc.title}</span>
-                      <span className="text-gray">{moment().format('MMM YYYY')}</span>
-                    </div>
-                  </li>
-                )
-              })
-            }
-          </ul>
-        </div>
-      </div>
-      <RouteLink className="text-uppercase access btn btn-warning btn-lg" to="/auth/login">
-        <i className="fa fa-lock fa-fw" />
-        Request Access
-      </RouteLink>
-    </Element>
-  )
 }
 
 const htmlDecode = (input) => {

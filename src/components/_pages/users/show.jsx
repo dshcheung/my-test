@@ -185,7 +185,7 @@ export default class UsersShow extends Component {
   }
 }
 
-
+// TODO: Move to class methods
 const titleAndAdd = (editable, title, open, modalName) => {
   return (
     <div className="h2">
@@ -214,6 +214,7 @@ const emptyAndAdd = (editable, title, execute) => {
   return null
 }
 
+// TODO: Consolidate functions
 const moreInfoContentExperiences = (editable, title, items = [], open, deleteItem, requestStatus) => {
   return (
     <Element name={title} className="section">
