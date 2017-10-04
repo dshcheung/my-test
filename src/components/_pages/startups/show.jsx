@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import AutoAffix from 'react-overlays/lib/AutoAffix'
 import Link from 'react-scroll/modules/components/Link'
 import Element from 'react-scroll/modules/components/Element'
-// import RouteLink from 'react-router/lib/Link'
+import RouteLink from 'react-router/lib/Link'
 
 import { DEFAULT_STARTUP_BANNER, DEFAULT_STARTUP_AVATAR } from '../../../constants'
 
@@ -39,6 +39,7 @@ import MyStartupAddMediaModal from '../../modals/my/startups/add-media'
 
 const mapStateToProps = (state) => {
   return {
+    currentUser: _.get(state, 'session', null),
     startup: _.get(state, 'startup', null),
     getStartupInProcess: _.get(state.requestStatus, GET_STARTUP),
     requestStatus: _.get(state, 'requestStatus')
@@ -120,6 +121,7 @@ export default class StartupsShow extends Component {
 
   moreInfoContentHighlights() {
     const { startup, requestStatus, routeParams } = this.props
+    const { editable } = this.state
     const title = "Highlights"
     const highlights = _.get(startup, 'highlights', [])
     return (
@@ -135,19 +137,27 @@ export default class StartupsShow extends Component {
                     highlights.map((highlight, i) => {
                       return (
                         <li key={i}>
-                          <button
-                            className="btn btn-info edit pull-right"
-                            onClick={() => { this.open("editHighlight", highlight) }}
-                          >
-                            <i className="fa fa-pencil" />
-                          </button>
-                          <button
-                            className="btn btn-danger btn-outline delete pull-right"
-                            disabled={_.get(requestStatus, `${DELETE_MY_STARTUP_HIGHLIGHT}_${highlight.id}`)}
-                            onClick={() => { this.props.deleteMyStartupHighlight({ ...routeParams, highlightID: highlight.id }) }}
-                          >
-                            <i className="fa fa-trash" />
-                          </button>
+                          {
+                            editable && (
+                              <button
+                                className="btn btn-info edit pull-right"
+                                onClick={() => { this.open("editHighlight", highlight) }}
+                              >
+                                <i className="fa fa-pencil" />
+                              </button>
+                            )
+                          }
+                          {
+                            editable && (
+                              <button
+                                className="btn btn-danger btn-outline delete pull-right"
+                                disabled={_.get(requestStatus, `${DELETE_MY_STARTUP_HIGHLIGHT}_${highlight.id}`)}
+                                onClick={() => { this.props.deleteMyStartupHighlight({ ...routeParams, highlightID: highlight.id }) }}
+                              >
+                                <i className="fa fa-trash" />
+                              </button>
+                            )
+                          }
                           <span dangerouslySetInnerHTML={{ __html: htmlDecode(highlight.detail) }} />
                         </li>
                       )
@@ -180,6 +190,7 @@ export default class StartupsShow extends Component {
 
   moreInfoContentKPI() {
     const { startup, requestStatus, routeParams } = this.props
+    const { editable } = this.state
     const title = "KPIs"
     const kpis = _.get(startup, 'key_performance_indicators', [])
     return (
@@ -195,19 +206,27 @@ export default class StartupsShow extends Component {
                     kpis.map((kpi, i) => {
                       return (
                         <li key={i}>
-                          <button
-                            className="btn btn-info edit pull-right"
-                            onClick={() => { this.open("editKPI", kpi) }}
-                          >
-                            <i className="fa fa-pencil" />
-                          </button>
-                          <button
-                            className="btn btn-danger btn-outline delete pull-right"
-                            disabled={_.get(requestStatus, `${DELETE_MY_STARTUP_KPI}_${kpi.id}`)}
-                            onClick={() => { this.props.deleteMyStartupKPI({ ...routeParams, kpiID: kpi.id }) }}
-                          >
-                            <i className="fa fa-trash" />
-                          </button>
+                          {
+                            editable && (
+                              <button
+                                className="btn btn-info edit pull-right"
+                                onClick={() => { this.open("editKPI", kpi) }}
+                              >
+                                <i className="fa fa-pencil" />
+                              </button>
+                            )
+                          }
+                          {
+                            editable && (
+                              <button
+                                className="btn btn-danger btn-outline delete pull-right"
+                                disabled={_.get(requestStatus, `${DELETE_MY_STARTUP_KPI}_${kpi.id}`)}
+                                onClick={() => { this.props.deleteMyStartupKPI({ ...routeParams, kpiID: kpi.id }) }}
+                              >
+                                <i className="fa fa-trash" />
+                              </button>
+                            )
+                          }
                           <span dangerouslySetInnerHTML={{ __html: htmlDecode(kpi.detail) }} />
                         </li>
                       )
@@ -224,6 +243,7 @@ export default class StartupsShow extends Component {
 
   moreInfoContentMilestones() {
     const { startup, requestStatus, routeParams } = this.props
+    const { editable } = this.state
     const title = "Milestones"
     const milestones = _.get(startup, "milestones", [])
     return (
@@ -239,19 +259,27 @@ export default class StartupsShow extends Component {
                     return (
                       <div className="row milestone" key={i}>
                         <div className="col-xs-12">
-                          <button
-                            className="btn btn-info edit pull-right"
-                            onClick={() => { this.open("editMilestone", milestone) }}
-                          >
-                            <i className="fa fa-pencil" />
-                          </button>
-                          <button
-                            className="btn btn-danger btn-outline delete pull-right"
-                            disabled={_.get(requestStatus, `${DELETE_MY_STARTUP_MILESTONE}_${milestone.id}`)}
-                            onClick={() => { this.props.deleteMyStartupMilestone({ ...routeParams, milestoneID: milestone.id }) }}
-                          >
-                            <i className="fa fa-trash" />
-                          </button>
+                          {
+                            editable && (
+                              <button
+                                className="btn btn-info edit pull-right"
+                                onClick={() => { this.open("editMilestone", milestone) }}
+                              >
+                                <i className="fa fa-pencil" />
+                              </button>
+                            )
+                          }
+                          {
+                            editable && (
+                              <button
+                                className="btn btn-danger btn-outline delete pull-right"
+                                disabled={_.get(requestStatus, `${DELETE_MY_STARTUP_MILESTONE}_${milestone.id}`)}
+                                onClick={() => { this.props.deleteMyStartupMilestone({ ...routeParams, milestoneID: milestone.id }) }}
+                              >
+                                <i className="fa fa-trash" />
+                              </button>
+                            )
+                          }
                           <div className="h3">{moment(milestone.completed_on).format('MMMM YYYY')}</div>
                           <p dangerouslySetInnerHTML={{ __html: htmlDecode(milestone.detail) }} />
                         </div>
@@ -269,6 +297,7 @@ export default class StartupsShow extends Component {
 
   moreInfoContentPitchDecks() {
     const { startup, requestStatus, routeParams } = this.props
+    const { editable } = this.state
     const title = "Pitch Deck"
     const attachments = _.get(startup.pitch_deck, 'attachments', [])
     return (
@@ -283,13 +312,17 @@ export default class StartupsShow extends Component {
                   attachments.map((attachment, i) => {
                     return (
                       <li key={i}>
-                        <button
-                          className="btn btn-danger btn-outline delete pull-right"
-                          disabled={_.get(requestStatus, `${DELETE_MY_STARTUP_PITCH_DECK}_${attachment.id}`)}
-                          onClick={() => { this.props.deleteMyStartupPitchDeck({ ...routeParams, pitchDeckID: attachment.id }) }}
-                        >
-                          <i className="fa fa-trash" />
-                        </button>
+                        {
+                          editable && (
+                            <button
+                              className="btn btn-danger btn-outline delete pull-right"
+                              disabled={_.get(requestStatus, `${DELETE_MY_STARTUP_PITCH_DECK}_${attachment.id}`)}
+                              onClick={() => { this.props.deleteMyStartupPitchDeck({ ...routeParams, pitchDeckID: attachment.id }) }}
+                            >
+                              <i className="fa fa-trash" />
+                            </button>
+                          )
+                        }
                         <a href={attachment.file.original} className="btn btn-success">
                           {attachment.title}
                           <i className="fa fa-fw fa-download" />
@@ -308,6 +341,7 @@ export default class StartupsShow extends Component {
 
   moreInfoContentMedia() {
     const { startup, requestStatus, routeParams } = this.props
+    const { editable } = this.state
     const title = "Media"
     const media = _.get(startup, 'media', [])
     return (
@@ -325,19 +359,27 @@ export default class StartupsShow extends Component {
                         <img className="img-responsive" key={i} src={post.banner.original} alt={post.title} />
                       </a>
                       <div className="text-center">
-                        <button
-                          className="btn btn-danger btn-outline delete"
-                          disabled={_.get(requestStatus, `${DELETE_MY_STARTUP_MEDIA}_${post.id}`)}
-                          onClick={() => { this.props.deleteMyStartupMedia({ ...routeParams, mediaID: post.id }) }}
-                        >
-                          <i className="fa fa-trash" />
-                        </button>
-                        <button
-                          className="btn btn-info edit"
-                          onClick={() => { this.open("editMedia", post) }}
-                        >
-                          <i className="fa fa-pencil" />
-                        </button>
+                        {
+                          editable && (
+                            <button
+                              className="btn btn-danger btn-outline delete"
+                              disabled={_.get(requestStatus, `${DELETE_MY_STARTUP_MEDIA}_${post.id}`)}
+                              onClick={() => { this.props.deleteMyStartupMedia({ ...routeParams, mediaID: post.id }) }}
+                            >
+                              <i className="fa fa-trash" />
+                            </button>
+                          )
+                        }
+                        {
+                          editable && (
+                            <button
+                              className="btn btn-info edit"
+                              onClick={() => { this.open("editMedia", post) }}
+                            >
+                              <i className="fa fa-pencil" />
+                            </button>
+                          )
+                        }
                       </div>
                     </div>
                   )
@@ -414,6 +456,57 @@ export default class StartupsShow extends Component {
                 })
               }
             </div>
+          )
+        }
+      </Element>
+    )
+  }
+
+  moreInfoDocuments() {
+    const { startup, currentUser } = this.props
+    const { editable } = this.state
+    const title = "Documents"
+    const documents = _.get(startup, 'attachments', [])
+    const blur = !editable && "blur"
+    return (
+      <Element name={title} className="section">
+        {this.title(title, 'addDocument')}
+        {this.emptyContent(title, documents.length === 0)}
+        <div className={`row documents ${blur}`}>
+          <div className="col-xs-12">
+            <ul className="list-style-none">
+              {
+                documents.map((doc, i) => {
+                  return (
+                    <li key={i}>
+                      {
+                        editable && (
+                          <button
+                            className="btn btn-danger btn-outline delete pull-right"
+                            // disabled={_.get(requestStatus, `${DELETE_MY_STARTUP_ATTACHEMENT}_${doc.id}`)}
+                            // onClick={() => { this.props.deleteMyStartupAttachment({ ...routeParams, attachmentID: doc.id }) }}
+                          >
+                            <i className="fa fa-trash" />
+                          </button>
+                        )
+                      }
+                      <a href={doc.file.original} className="btn btn-success">
+                        {doc.title}
+                        <i className="fa fa-fw fa-download" />
+                      </a>
+                    </li>
+                  )
+                })
+              }
+            </ul>
+          </div>
+        </div>
+        {
+          !currentUser && !editable && (
+            <RouteLink className="text-uppercase access btn btn-warning btn-lg" to="/auth/login">
+              <i className="fa fa-lock fa-fw" />
+              Request Access
+            </RouteLink>
           )
         }
       </Element>
@@ -611,6 +704,7 @@ export default class StartupsShow extends Component {
                 {(editable || _.get(startup, "pitch_deck.attachments")) && this.moreInfoContentPitchDecks()}
                 {(editable || _.get(startup, "media[0]")) && this.moreInfoContentMedia()}
                 {(editable || _.get(startup, "team")) && this.moreInfoContentTeam()}
+                {(editable || _.get(startup, "attachments[0]")) && this.moreInfoDocuments()}
               </div>
             </section>
           </div>
