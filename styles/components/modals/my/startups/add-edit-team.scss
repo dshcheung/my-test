@@ -1,0 +1,26 @@
+#modals-my-startups-add-edit-team {
+  .founders, .members {
+    .team-list {
+      border: 2px solid $gray-lighter;
+      padding: 10px;
+      width: 100%;
+      overflow: auto;
+      .team-member {
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+        padding: 10px;
+        &:hover {
+          background-color: $gray-lighter;
+        }
+        img {
+          height: 65px;
+          width: 65px;
+        }
+        div {
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+}

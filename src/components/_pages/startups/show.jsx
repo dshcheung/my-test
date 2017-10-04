@@ -22,6 +22,8 @@ import { deleteMyStartupMedia, DELETE_MY_STARTUP_MEDIA } from '../../../actions/
 import LoadingSpinner from '../../shared/loading-spinner'
 import ImageBanner from '../../shared/image-banner'
 
+import MyStartupAddEditTeamModal from '../../modals/my/startups/add-edit-team'
+
 import MyStartupEditHighlightModal from '../../modals/my/startups/edit-highlight'
 import MyStartupEditOverviewModal from '../../modals/my/startups/edit-overview'
 import MyStartupEditKPIModal from '../../modals/my/startups/edit-kpi'
@@ -356,11 +358,10 @@ export default class StartupsShow extends Component {
     const story = _.get(team, 'story', '')
     const members = _.get(team, 'members', [])
     const isEmpty = founders.length === 0 && members.length === 0 && !story
-    const mode = isEmpty ? "add" : "edit"
     return (
       <Element name={title} className="section team">
-        {this.title(title, 'editTeam', team, mode)}
-        {this.emptyContent(title, isEmpty, mode)}
+        {this.title(title, 'addEditTeam', team, "edit")}
+        {this.emptyContent(title, isEmpty, "edit")}
         {
           story && (
             <div className="row">
@@ -614,6 +615,8 @@ export default class StartupsShow extends Component {
             </section>
           </div>
         </div>
+
+        {this.state.addEditTeam && <MyStartupAddEditTeamModal close={() => { this.close("addEditTeam") }} params={routeParams} team={this.state.editInfo} />}
 
         {this.state.editHighlight && <MyStartupEditHighlightModal close={() => { this.close("editHighlight") }} params={routeParams} highlight={this.state.editInfo} />}
         {this.state.editOverview && <MyStartupEditOverviewModal close={() => { this.close("editOverview") }} params={routeParams} profile={this.state.editInfo} />}

@@ -118,6 +118,10 @@ export const apiMyStartupsMediaShow = (params) => {
   return `${apiMyStartupsMediaIndex(params)}/${params.mediaID}`
 }
 
+export const apiMyStartupsTeamsIndex = (params) => {
+  return `${apiMyStartupsShow(params)}/teams`
+}
+
 export const apiVerifyMyProfile = () => {
   return `${apiMyProfile()}/verify`
 }
