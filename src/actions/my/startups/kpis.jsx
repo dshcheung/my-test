@@ -11,7 +11,7 @@ export const createMyStartupKPI = (values, params, cb) => {
     url: genApiUrl(apiMyStartupsKPIsIndex(params)),
     data: getFormData({
       detail: _.get(values, 'detail', null)
-    }, "kpi")
+    }, "key_performance_indicator")
   })
 
   return {
@@ -19,7 +19,7 @@ export const createMyStartupKPI = (values, params, cb) => {
     request,
     successCB: () => {
       if (cb) cb()
-      // dispatch(mergeCurrentUserAttribute(data, 'kpis'))
+      // dispatch(mergeCurrentUserAttribute(data, 'key_performance_indicators'))
       notySuccess("KPI Added!")
     }
   }
@@ -33,7 +33,7 @@ export const updateMyStartupKPI = (values, params, cb) => {
     url: genApiUrl(apiMyStartupsKPIsShow(params)),
     data: getFormData({
       detail: _.get(values, 'detail', null)
-    }, "kpi")
+    }, "key_performance_indicator")
   })
 
   return {
@@ -41,7 +41,7 @@ export const updateMyStartupKPI = (values, params, cb) => {
     request,
     successCB: () => {
       if (cb) cb()
-      // dispatch(mergeCurrentUserAttribute(data, 'kpis'))
+      // dispatch(mergeCurrentUserAttribute(data, 'key_performance_indicators'))
       notySuccess("KPI Updated!")
     }
   }
@@ -59,7 +59,7 @@ export const deleteMyStartupKPI = (params) => {
     type: `${DELETE_MY_STARTUP_KPI}_${params.kpiID}`,
     request,
     successCB: () => {
-      // dispatch(deleteCurrentUserAttributeEntry(params.kpiID, 'kpis'))
+      // dispatch(deleteCurrentUserAttributeEntry(params.kpiID, 'key_performance_indicators'))
     }
   }
 }

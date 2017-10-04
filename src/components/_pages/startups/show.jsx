@@ -13,27 +13,45 @@ import {
   resetStartup
 } from '../../../actions/startups'
 
+import { deleteMyStartupHighlight, DELETE_MY_STARTUP_HIGHLIGHT } from '../../../actions/my/startups/highlights'
+import { deleteMyStartupKPI, DELETE_MY_STARTUP_KPI } from '../../../actions/my/startups/kpis'
+import { deleteMyStartupMilestone, DELETE_MY_STARTUP_MILESTONE } from '../../../actions/my/startups/milestones'
+import { deleteMyStartupPitchDeck, DELETE_MY_STARTUP_PITCH_DECK } from '../../../actions/my/startups/pitch-decks'
+import { deleteMyStartupMedia, DELETE_MY_STARTUP_MEDIA } from '../../../actions/my/startups/media'
+
 import LoadingSpinner from '../../shared/loading-spinner'
 import ImageBanner from '../../shared/image-banner'
 
+import MyStartupEditHighlightModal from '../../modals/my/startups/edit-highlight'
 import MyStartupEditOverviewModal from '../../modals/my/startups/edit-overview'
+import MyStartupEditKPIModal from '../../modals/my/startups/edit-kpi'
+import MyStartupEditMilestoneModal from '../../modals/my/startups/edit-milestone'
+import MyStartupEditMediaModal from '../../modals/my/startups/edit-media'
 
 import MyStartupAddHighlightModal from '../../modals/my/startups/add-highlight'
+import MyStartupAddOverviewModal from '../../modals/my/startups/add-overview'
 import MyStartupAddKPIModal from '../../modals/my/startups/add-kpi'
 import MyStartupAddMilestoneModal from '../../modals/my/startups/add-milestone'
 import MyStartupAddPitchDeckModal from '../../modals/my/startups/add-pitch-deck'
+import MyStartupAddMediaModal from '../../modals/my/startups/add-media'
 
 const mapStateToProps = (state) => {
   return {
     startup: _.get(state, 'startup', null),
-    getStartupInProcess: _.get(state.requestStatus, GET_STARTUP)
+    getStartupInProcess: _.get(state.requestStatus, GET_STARTUP),
+    requestStatus: _.get(state, 'requestStatus')
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getStartup: bindActionCreators(getStartup, dispatch),
-    resetStartup: bindActionCreators(resetStartup, dispatch)
+    resetStartup: bindActionCreators(resetStartup, dispatch),
+    deleteMyStartupHighlight: bindActionCreators(deleteMyStartupHighlight, dispatch),
+    deleteMyStartupKPI: bindActionCreators(deleteMyStartupKPI, dispatch),
+    deleteMyStartupMilestone: bindActionCreators(deleteMyStartupMilestone, dispatch),
+    deleteMyStartupPitchDeck: bindActionCreators(deleteMyStartupPitchDeck, dispatch),
+    deleteMyStartupMedia: bindActionCreators(deleteMyStartupMedia, dispatch)
   }
 }
 
@@ -99,7 +117,7 @@ export default class StartupsShow extends Component {
   }
 
   moreInfoContentHighlights() {
-    const { startup } = this.props
+    const { startup, requestStatus, routeParams } = this.props
     const title = "Highlights"
     const highlights = _.get(startup, 'highlights', [])
     return (
@@ -114,7 +132,22 @@ export default class StartupsShow extends Component {
                   {
                     highlights.map((highlight, i) => {
                       return (
-                        <li key={i} dangerouslySetInnerHTML={{ __html: htmlDecode(highlight.detail) }} />
+                        <li key={i}>
+                          <button
+                            className="btn btn-info edit pull-right"
+                            onClick={() => { this.open("editHighlight", highlight) }}
+                          >
+                            <i className="fa fa-pencil" />
+                          </button>
+                          <button
+                            className="btn btn-danger btn-outline delete pull-right"
+                            disabled={_.get(requestStatus, `${DELETE_MY_STARTUP_HIGHLIGHT}_${highlight.id}`)}
+                            onClick={() => { this.props.deleteMyStartupHighlight({ ...routeParams, highlightID: highlight.id }) }}
+                          >
+                            <i className="fa fa-trash" />
+                          </button>
+                          <span dangerouslySetInnerHTML={{ __html: htmlDecode(highlight.detail) }} />
+                        </li>
                       )
                     })
                   }
@@ -130,18 +163,21 @@ export default class StartupsShow extends Component {
   moreInfoContentOverview() {
     const { startup } = this.props
     const title = "Overview"
+    const profile = _.get(startup, 'profile')
     const overview = _.get(startup.profile, 'overview')
+    const modalName = _.get(startup, 'profile') === null ? "addOverview" : "editOverview"
+    const mode = _.get(startup, 'profile') === null ? "add" : "edit"
     return (
       <Element name={title} className="section">
-        {this.title(title, "editOverview", overview, "edit")}
-        {this.emptyContent(title, !overview, "edit")}
+        {this.title(title, modalName, profile, mode)}
+        {this.emptyContent(title, !overview, mode)}
         {overview && <div><p dangerouslySetInnerHTML={{ __html: htmlDecode(overview) }} /></div>}
       </Element>
     )
   }
 
   moreInfoContentKPI() {
-    const { startup } = this.props
+    const { startup, requestStatus, routeParams } = this.props
     const title = "KPIs"
     const kpis = _.get(startup, 'key_performance_indicators', [])
     return (
@@ -156,7 +192,22 @@ export default class StartupsShow extends Component {
                   {
                     kpis.map((kpi, i) => {
                       return (
-                        <li key={i} dangerouslySetInnerHTML={{ __html: htmlDecode(kpi.detail) }} />
+                        <li key={i}>
+                          <button
+                            className="btn btn-info edit pull-right"
+                            onClick={() => { this.open("editKPI", kpi) }}
+                          >
+                            <i className="fa fa-pencil" />
+                          </button>
+                          <button
+                            className="btn btn-danger btn-outline delete pull-right"
+                            disabled={_.get(requestStatus, `${DELETE_MY_STARTUP_KPI}_${kpi.id}`)}
+                            onClick={() => { this.props.deleteMyStartupKPI({ ...routeParams, kpiID: kpi.id }) }}
+                          >
+                            <i className="fa fa-trash" />
+                          </button>
+                          <span dangerouslySetInnerHTML={{ __html: htmlDecode(kpi.detail) }} />
+                        </li>
                       )
                     })
                   }
@@ -170,7 +221,7 @@ export default class StartupsShow extends Component {
   }
 
   moreInfoContentMilestones() {
-    const { startup } = this.props
+    const { startup, requestStatus, routeParams } = this.props
     const title = "Milestones"
     const milestones = _.get(startup, "milestones", [])
     return (
@@ -186,6 +237,19 @@ export default class StartupsShow extends Component {
                     return (
                       <div className="row milestone" key={i}>
                         <div className="col-xs-12">
+                          <button
+                            className="btn btn-info edit pull-right"
+                            onClick={() => { this.open("editMilestone", milestone) }}
+                          >
+                            <i className="fa fa-pencil" />
+                          </button>
+                          <button
+                            className="btn btn-danger btn-outline delete pull-right"
+                            disabled={_.get(requestStatus, `${DELETE_MY_STARTUP_MILESTONE}_${milestone.id}`)}
+                            onClick={() => { this.props.deleteMyStartupMilestone({ ...routeParams, milestoneID: milestone.id }) }}
+                          >
+                            <i className="fa fa-trash" />
+                          </button>
                           <div className="h3">{moment(milestone.completed_on).format('MMMM YYYY')}</div>
                           <p dangerouslySetInnerHTML={{ __html: htmlDecode(milestone.detail) }} />
                         </div>
@@ -202,7 +266,7 @@ export default class StartupsShow extends Component {
   }
 
   moreInfoContentPitchDecks() {
-    const { startup } = this.props
+    const { startup, requestStatus, routeParams } = this.props
     const title = "Pitch Deck"
     const attachments = _.get(startup.pitch_deck, 'attachments', [])
     return (
@@ -217,6 +281,13 @@ export default class StartupsShow extends Component {
                   attachments.map((attachment, i) => {
                     return (
                       <li key={i}>
+                        <button
+                          className="btn btn-danger btn-outline delete pull-right"
+                          disabled={_.get(requestStatus, `${DELETE_MY_STARTUP_PITCH_DECK}_${attachment.id}`)}
+                          onClick={() => { this.props.deleteMyStartupPitchDeck({ ...routeParams, pitchDeckID: attachment.id }) }}
+                        >
+                          <i className="fa fa-trash" />
+                        </button>
                         <a href={attachment.file.original} className="btn btn-success">
                           {attachment.title}
                           <i className="fa fa-fw fa-download" />
@@ -226,6 +297,121 @@ export default class StartupsShow extends Component {
                   })
                 }
               </ul>
+            </div>
+          )
+        }
+      </Element>
+    )
+  }
+
+  moreInfoContentMedia() {
+    const { startup, requestStatus, routeParams } = this.props
+    const title = "Media"
+    const media = _.get(startup, 'media', [])
+    return (
+      <Element name={title} className="section">
+        {this.title(title, 'addMedia')}
+        {this.emptyContent(title, media.length === 0)}
+        {
+          media.length > 0 && (
+            <div className="row">
+              {
+                media.map((post, i) => {
+                  return (
+                    <div key={i} className="col-md-2 col-sm3 col-xs-6">
+                      <a href={post.link} target="_blank">
+                        <img className="img-responsive" key={i} src={post.banner.original} alt={post.title} />
+                      </a>
+                      <div className="text-center">
+                        <button
+                          className="btn btn-danger btn-outline delete"
+                          disabled={_.get(requestStatus, `${DELETE_MY_STARTUP_MEDIA}_${post.id}`)}
+                          onClick={() => { this.props.deleteMyStartupMedia({ ...routeParams, mediaID: post.id }) }}
+                        >
+                          <i className="fa fa-trash" />
+                        </button>
+                        <button
+                          className="btn btn-info edit"
+                          onClick={() => { this.open("editMedia", post) }}
+                        >
+                          <i className="fa fa-pencil" />
+                        </button>
+                      </div>
+                    </div>
+                  )
+                })
+              }
+            </div>
+          )
+        }
+      </Element>
+    )
+  }
+
+  moreInfoContentTeam() {
+    const { startup } = this.props
+    const title = "Team"
+    const team = _.get(startup, 'team', {})
+    const founders = _.get(team, 'founders', [])
+    const story = _.get(team, 'story', '')
+    const members = _.get(team, 'members', [])
+    const isEmpty = founders.length === 0 && members.length === 0 && !story
+    const mode = isEmpty ? "add" : "edit"
+    return (
+      <Element name={title} className="section team">
+        {this.title(title, 'editTeam', team, mode)}
+        {this.emptyContent(title, isEmpty, mode)}
+        {
+          story && (
+            <div className="row">
+              <div className="col-xs-12 team-story">{story}</div>
+            </div>
+          )
+        }
+        {
+          founders.length > 0 && (
+            <div className="row">
+              {
+                founders.map((member, i) => {
+                  return (
+                    <div className="col-xs-12 team-founder margin-bottom-20" key={i}>
+                      <div className="h3">Founders</div>
+                      <div className="col-xs-6 col-sm-4 col-md-4">
+                        <img className="full-width" src={member.avatar.original} alt={member.name} />
+                      </div>
+                      <div className="col-xs-6 col-sm-8 col-md-8">
+                        <p>
+                          <span className="text-bold header">{member.name}</span>
+                          <span className="title">{member.title}</span>
+                          <span className="description" dangerouslySetInnerHTML={{ __html: htmlDecode(member.description) }} />
+                        </p>
+                      </div>
+                    </div>
+                  )
+                })
+              }
+            </div>
+          )
+        }
+        {
+          members.length > 0 && (
+            <div className="row">
+              {
+                members.map((member, i) => {
+                  return (
+                    <div className="col-xs-12 team-member margin-bottom-20" key={i}>
+                      <div className="h3">Important Members</div>
+                      <div className="col-xs-6 col-sm-4 col-md-2">
+                        <img className="full-width" src={member.avatar.original} alt={member.name} />
+                        <p>
+                          <span className="text-bold header">{member.name}</span>
+                          <span className="title">{member.title}</span>
+                        </p>
+                      </div>
+                    </div>
+                  )
+                })
+              }
             </div>
           )
         }
@@ -251,7 +437,6 @@ export default class StartupsShow extends Component {
       <div id="pages-startups-show" className="container-fluid">
         <div className="row">
           <div className="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
-
             <section className="row basic-info">
               <div className="col-xs-12 col-md-6">
                 <div className="aspect-16-9">
@@ -423,17 +608,25 @@ export default class StartupsShow extends Component {
                 {(editable || _.get(startup, "key_performance_indicators[0]")) && this.moreInfoContentKPI()}
                 {(editable || _.get(startup, "milestones[0]")) && this.moreInfoContentMilestones()}
                 {(editable || _.get(startup, "pitch_deck.attachments")) && this.moreInfoContentPitchDecks()}
+                {(editable || _.get(startup, "media[0]")) && this.moreInfoContentMedia()}
+                {(editable || _.get(startup, "team")) && this.moreInfoContentTeam()}
               </div>
             </section>
           </div>
         </div>
 
-        {this.state.editOverview && <MyStartupEditOverviewModal close={() => { this.close("editOverview") }} params={routeParams} overview={this.state.editInfo} />}
+        {this.state.editHighlight && <MyStartupEditHighlightModal close={() => { this.close("editHighlight") }} params={routeParams} highlight={this.state.editInfo} />}
+        {this.state.editOverview && <MyStartupEditOverviewModal close={() => { this.close("editOverview") }} params={routeParams} profile={this.state.editInfo} />}
+        {this.state.editKPI && <MyStartupEditKPIModal close={() => { this.close("editKPI") }} params={routeParams} kpi={this.state.editInfo} />}
+        {this.state.editMilestone && <MyStartupEditMilestoneModal close={() => { this.close("editMilestone") }} params={routeParams} milestone={this.state.editInfo} />}
+        {this.state.editMedia && <MyStartupEditMediaModal close={() => { this.close("editMedia") }} params={routeParams} media={this.state.editInfo} />}
 
         {this.state.addHighlight && <MyStartupAddHighlightModal close={() => { this.close("addHighlight") }} params={routeParams} />}
+        {this.state.addOverview && <MyStartupAddOverviewModal close={() => { this.close("addOverview") }} params={routeParams} />}
         {this.state.addKPI && <MyStartupAddKPIModal close={() => { this.close("addKPI") }} params={routeParams} />}
         {this.state.addMilestone && <MyStartupAddMilestoneModal close={() => { this.close("addMilestone") }} params={routeParams} />}
         {this.state.addPitchDeck && <MyStartupAddPitchDeckModal close={() => { this.close("addPitchDeck") }} params={routeParams} />}
+        {this.state.addMedia && <MyStartupAddMediaModal close={() => { this.close("addMedia") }} params={routeParams} />}
       </div>
     )
   }

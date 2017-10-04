@@ -70,8 +70,12 @@ export const apiMyStartupsShow = (params) => {
   return `${apiMyStartupsIndex()}/${params.myStartupID || params.startupID}`
 }
 
-export const apiMyStartupsProfile = (params) => {
+export const apiMyStartupsProfileIndex = (params) => {
   return `${apiMyStartupsShow(params)}/profile`
+}
+
+export const apiMyStartupsProfileShow = (params) => {
+  return `${apiMyStartupsProfileIndex(params)}/${params.profileID}`
 }
 
 export const apiMyStartupsPitchDecksIndex = (params) => {
@@ -104,6 +108,14 @@ export const apiMyStartupsKPIsIndex = (params) => {
 
 export const apiMyStartupsKPIsShow = (params) => {
   return `${apiMyStartupsHighlightsIndex(params)}/${params.kpiID}`
+}
+
+export const apiMyStartupsMediaIndex = (params) => {
+  return `${apiMyStartupsShow(params)}/media`
+}
+
+export const apiMyStartupsMediaShow = (params) => {
+  return `${apiMyStartupsMediaIndex(params)}/${params.mediaID}`
 }
 
 export const apiVerifyMyProfile = () => {

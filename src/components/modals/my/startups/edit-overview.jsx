@@ -30,13 +30,16 @@ export default class MyStartupsEditOverviewModal extends Component {
   }
 
   updateMyStartupProfile(values) {
-    this.props.updateMyStartupProfile(values, this.props.params, () => {
+    this.props.updateMyStartupProfile(values, {
+      ...this.props.params,
+      profileID: this.props.profile.id
+    }, () => {
       this.props.close()
     })
   }
 
   render() {
-    const { close, updateMyStartupProfileInProcess, overview } = this.props
+    const { close, updateMyStartupProfileInProcess, profile: { overview } } = this.props
 
     return (
       <Modal show onHide={close} className="form-modal">
