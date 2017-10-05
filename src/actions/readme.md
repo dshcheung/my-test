@@ -8,4 +8,4 @@ Create, Update, Delete format
 export const xxx = (a, b, c) => {}
 ```
 
-cud = CREATE UPDATE DELETE
+gcud = GET CREATE UPDATE DELETE

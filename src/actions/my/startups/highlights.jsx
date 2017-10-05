@@ -6,8 +6,8 @@ import { notySuccess } from '../../../services/noty'
 import { mergeStartupAttribute, deleteStartupAttributeEntry } from '../../startups'
 
 // create
-export const CREATE_MY_STARTUP_HIGHLIGHT = "CREATE_MY_STARTUP_HIGHLIGHT"
-export const createMyStartupHighlight = (values, params, cb) => {
+export const C_MY_STARTUP_HIGHLIGHT = "C_MY_STARTUP_HIGHLIGHT"
+export const cMyStartupHighlight = (values, params, cb) => {
   const request = genAxios({
     method: "post",
     url: genApiUrl(apiMyStartupsHighlightsIndex(params)),
@@ -17,7 +17,7 @@ export const createMyStartupHighlight = (values, params, cb) => {
   })
 
   return {
-    type: CREATE_MY_STARTUP_HIGHLIGHT,
+    type: C_MY_STARTUP_HIGHLIGHT,
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()
@@ -28,8 +28,8 @@ export const createMyStartupHighlight = (values, params, cb) => {
 }
 
 // update
-export const UPDATE_MY_STARTUP_HIGHLIGHT = "UPDATE_MY_STARTUP_HIGHLIGHT"
-export const updateMyStartupHighlight = (values, params, cb) => {
+export const U_MY_STARTUP_HIGHLIGHT = "U_MY_STARTUP_HIGHLIGHT"
+export const uMyStartupHighlight = (values, params, cb) => {
   const request = genAxios({
     method: "put",
     url: genApiUrl(apiMyStartupsHighlightsShow(params)),
@@ -39,7 +39,7 @@ export const updateMyStartupHighlight = (values, params, cb) => {
   })
 
   return {
-    type: UPDATE_MY_STARTUP_HIGHLIGHT,
+    type: U_MY_STARTUP_HIGHLIGHT,
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()
@@ -50,15 +50,15 @@ export const updateMyStartupHighlight = (values, params, cb) => {
 }
 
 // delete
-export const DELETE_MY_STARTUP_HIGHLIGHT = "DELETE_MY_STARTUP_HIGHLIGHT"
-export const deleteMyStartupHighlight = (params) => {
+export const D_MY_STARTUP_HIGHLIGHT = "D_MY_STARTUP_HIGHLIGHT"
+export const dMyStartupHighlight = (params) => {
   const request = genAxios({
     method: "delete",
     url: genApiUrl(apiMyStartupsHighlightsShow(params))
   })
 
   return {
-    type: `${DELETE_MY_STARTUP_HIGHLIGHT}_${params.highlightID}`,
+    type: `${D_MY_STARTUP_HIGHLIGHT}_${params.highlightID}`,
     request,
     successCB: (dispatch) => {
       dispatch(deleteStartupAttributeEntry(params.highlightID, 'highlights'))

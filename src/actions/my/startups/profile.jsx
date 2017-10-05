@@ -6,8 +6,8 @@ import { notySuccess } from '../../../services/noty'
 import { mergeStartupAttribute } from '../../startups'
 
 // TODO CUD
-export const UPDATE_MY_STARTUP_PROFILE = "UPDATE_MY_STARTUP_PROFILE"
-export const updateMyStartupProfile = (values, params, cb) => {
+export const CU_MY_STARTUP_PROFILE = "CU_MY_STARTUP_PROFILE"
+export const cuMyStartupProfile = (values, params, cb) => {
   const request = genAxios({
     method: "put",
     url: genApiUrl(apiMyStartupsProfileIndex(params)),
@@ -17,7 +17,7 @@ export const updateMyStartupProfile = (values, params, cb) => {
   })
 
   return {
-    type: UPDATE_MY_STARTUP_PROFILE,
+    type: CU_MY_STARTUP_PROFILE,
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()

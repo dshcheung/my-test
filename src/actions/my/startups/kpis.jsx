@@ -6,8 +6,8 @@ import { notySuccess } from '../../../services/noty'
 import { mergeStartupAttribute, deleteStartupAttributeEntry } from '../../startups'
 
 // create
-export const CREATE_MY_STARTUP_KPI = "CREATE_MY_STARTUP_KPI"
-export const createMyStartupKPI = (values, params, cb) => {
+export const C_MY_STARTUP_KPI = "C_MY_STARTUP_KPI"
+export const cMyStartupKPI = (values, params, cb) => {
   const request = genAxios({
     method: "post",
     url: genApiUrl(apiMyStartupsKPIsIndex(params)),
@@ -17,7 +17,7 @@ export const createMyStartupKPI = (values, params, cb) => {
   })
 
   return {
-    type: CREATE_MY_STARTUP_KPI,
+    type: C_MY_STARTUP_KPI,
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()
@@ -28,8 +28,8 @@ export const createMyStartupKPI = (values, params, cb) => {
 }
 
 // update
-export const UPDATE_MY_STARTUP_KPI = "UPDATE_MY_STARTUP_KPI"
-export const updateMyStartupKPI = (values, params, cb) => {
+export const U_MY_STARTUP_KPI = "U_MY_STARTUP_KPI"
+export const uMyStartupKPI = (values, params, cb) => {
   const request = genAxios({
     method: "put",
     url: genApiUrl(apiMyStartupsKPIsShow(params)),
@@ -39,7 +39,7 @@ export const updateMyStartupKPI = (values, params, cb) => {
   })
 
   return {
-    type: UPDATE_MY_STARTUP_KPI,
+    type: U_MY_STARTUP_KPI,
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()
@@ -50,15 +50,15 @@ export const updateMyStartupKPI = (values, params, cb) => {
 }
 
 // delete
-export const DELETE_MY_STARTUP_KPI = "DELETE_MY_STARTUP_KPI"
-export const deleteMyStartupKPI = (params) => {
+export const D_MY_STARTUP_KPI = "D_MY_STARTUP_KPI"
+export const dMyStartupKPI = (params) => {
   const request = genAxios({
     method: "delete",
     url: genApiUrl(apiMyStartupsKPIsShow(params))
   })
 
   return {
-    type: `${DELETE_MY_STARTUP_KPI}_${params.kpiID}`,
+    type: `${D_MY_STARTUP_KPI}_${params.kpiID}`,
     request,
     successCB: (dispatch) => {
       dispatch(deleteStartupAttributeEntry(params.kpiID, 'key_performance_indicators'))
