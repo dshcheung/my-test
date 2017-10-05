@@ -1,6 +1,9 @@
 import { genApiUrl, genAxios } from '../../../services/api-request'
 import { getFormData } from '../../../services/get-form-data'
 import { apiMyStartupsTeamsIndex } from '../../../services/api-path'
+import { notySuccess } from '../../../services/noty'
+
+import { mergeStartupAttribute } from '../../startups'
 
 export const CREATE_OR_UPDATE_MY_STARTUP_TEAM = "CREATE_OR_UPDATE_MY_STARTUP_TEAM"
 export const createOrUpdateMyStartupTeam = (values, params, cb) => {
@@ -17,8 +20,10 @@ export const createOrUpdateMyStartupTeam = (values, params, cb) => {
   return {
     type: CREATE_OR_UPDATE_MY_STARTUP_TEAM,
     request,
-    successCB: () => {
+    successCB: (dispatch, data) => {
       if (cb) cb()
+      dispatch(mergeStartupAttribute(data, 'team'))
+      notySuccess("Team Updated!")
     }
   }
 }

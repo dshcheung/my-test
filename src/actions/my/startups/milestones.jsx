@@ -3,6 +3,8 @@ import { getFormData } from '../../../services/get-form-data'
 import { apiMyStartupsMilestonesIndex, apiMyStartupsMilestonesShow } from '../../../services/api-path'
 import { notySuccess } from '../../../services/noty'
 
+import { mergeStartupAttribute, deleteStartupAttributeEntry } from '../../startups'
+
 // create
 export const CREATE_MY_STARTUP_MILESTONE = "CREATE_MY_STARTUP_MILESTONE"
 export const createMyStartupMilestone = (values, params, cb) => {
@@ -18,9 +20,9 @@ export const createMyStartupMilestone = (values, params, cb) => {
   return {
     type: CREATE_MY_STARTUP_MILESTONE,
     request,
-    successCB: () => {
+    successCB: (dispatch, data) => {
       if (cb) cb()
-      // dispatch(mergeCurrentUserAttribute(data, 'milestones'))
+      dispatch(mergeStartupAttribute(data, 'milestones', 'completed_on'))
       notySuccess("Milestone Added!")
     }
   }
@@ -41,9 +43,9 @@ export const updateMyStartupMilestone = (values, params, cb) => {
   return {
     type: UPDATE_MY_STARTUP_MILESTONE,
     request,
-    successCB: () => {
+    successCB: (dispatch, data) => {
       if (cb) cb()
-      // dispatch(mergeCurrentUserAttribute(data, 'milestones'))
+      dispatch(mergeStartupAttribute(data, 'milestones', 'completed_on'))
       notySuccess("Milestone Updated!")
     }
   }
@@ -60,8 +62,8 @@ export const deleteMyStartupMilestone = (params) => {
   return {
     type: `${DELETE_MY_STARTUP_MILESTONE}_${params.milestoneID}`,
     request,
-    successCB: () => {
-      // dispatch(deleteCurrentUserAttributeEntry(params.milestoneID, 'milestones'))
+    successCB: (dispatch) => {
+      dispatch(deleteStartupAttributeEntry(params.milestoneID, 'milestones', 'completed_on'))
     }
   }
 }

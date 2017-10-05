@@ -25,6 +25,26 @@ export const setStartup = (data) => {
   }
 }
 
+export const MERGE_STARTUP_ATTRIBUTE = "MERGE_STARTUP_ATTRIBUTE"
+export const mergeStartupAttribute = (data, attribute, sortBy) => {
+  return {
+    type: MERGE_STARTUP_ATTRIBUTE,
+    attribute,
+    data,
+    sortBy
+  }
+}
+
+export const DELETE_STARTUP_ATTRIBUTE_ENTRY = "DELETE_STARTUP_ATTRIBUTE_ENTRY"
+export const deleteStartupAttributeEntry = (id, attribute, sortBy) => {
+  return {
+    type: DELETE_STARTUP_ATTRIBUTE_ENTRY,
+    attribute,
+    id,
+    sortBy
+  }
+}
+
 export const RESET_STARTUP = "RESET_STARTUP"
 export const resetStartup = () => {
   return {

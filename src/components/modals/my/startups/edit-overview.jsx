@@ -30,10 +30,7 @@ export default class MyStartupsEditOverviewModal extends Component {
   }
 
   updateMyStartupProfile(values) {
-    this.props.updateMyStartupProfile(values, {
-      ...this.props.params,
-      profileID: this.props.profile.id
-    }, () => {
+    this.props.updateMyStartupProfile(values, this.props.params, () => {
       this.props.close()
     })
   }

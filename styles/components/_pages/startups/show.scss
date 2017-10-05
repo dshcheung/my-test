@@ -1,5 +1,5 @@
 .gallery {
-	-webkit-column-count: 3;
+  -webkit-column-count: 3;
   -moz-column-count: 3;
   column-count: 3;
   img{
@@ -8,11 +8,11 @@
   }
 }
 @media (max-width: 500px) {
-	.gallery {
-	  -webkit-column-count: 1; /* Chrome, Safari, Opera */
+  .gallery {
+    -webkit-column-count: 1; /* Chrome, Safari, Opera */
     -moz-column-count: 1; /* Firefox */
     column-count: 1;
-	}
+  }
 }
 
 @media (min-width: 768px) {
@@ -27,8 +27,8 @@
       width: 100px;
       height: auto;
       border-radius: 5px;
-			padding: 5px;
-			background-color: $white;
+      padding: 5px;
+      background-color: $white;
     }
   }
   .basic-info {
@@ -54,13 +54,13 @@
         margin-bottom: 10px;
       }
 
-			@media (min-width: 992px) {
-				.fundings {
-					> div:first-child {
-						padding-left: 0;
-					}
-				}
-			}
+      @media (min-width: 992px) {
+        .fundings {
+          > div:first-child {
+            padding-left: 0;
+          }
+        }
+      }
       .fundings {
         margin-top: 30px;
         .funding-card {
@@ -81,9 +81,9 @@
       }
 
       .share-list {
-        margin: 0;
+        padding: 0;
+        margin: 0 auto;
         list-style: none;
-        margin: 20px auto 50px auto;
         li {
           float: left;
           padding: 0 3rem;
@@ -231,11 +231,11 @@
         font-size: ($font-size-base * 1.1);
         font-weight: 200;
       }
-			.highlights {
-				li {
-					color: darken(#FF7538, 20%);
-				}
-			}
+      .highlights {
+        li {
+          color: darken(#FF7538, 20%);
+        }
+      }
       .milestone {
         .h3 {
           margin-top: 0;
@@ -250,43 +250,43 @@
           }
         }
       }
-			&.team {
-				.team-story {
-					font-size: $font-size-base;
-					color: $gray-light;
-				}
-				.h3 {
-					margin-top: 0;
+      &.team {
+        .team-story {
+          font-size: $font-size-base;
+          color: $gray-light;
+        }
+        .h3 {
+          margin-top: 0;
           color: $brand-primary;
           font-size: ($font-size-base * 1.2);
           margin-bottom: 0.5em;
-				}
-				.team-founder {
-					.full-width {
-						width: 100%;
-					}
-					.title {
-						font-size: ($font-size-base * 0.9);
-						display: block;
-						text-transform: capitalize;
-					}
-					.description {
-						font-size: ($font-size-base * 0.9);
-						display: block;
-					}
-				}
-				.team-member {
-					.full-width {
-						width: 100%;
-					}
-					span {
-						display: block;
-						&.title {
-							font-size: ($font-size-base * 0.9);
-						}
-					}
-				}
-			}
+        }
+        .team-founder {
+          .full-width {
+            width: 100%;
+          }
+          .title {
+            font-size: ($font-size-base * 0.9);
+            display: block;
+            text-transform: capitalize;
+          }
+          .description {
+            font-size: ($font-size-base * 0.9);
+            display: block;
+          }
+        }
+        .team-member {
+          .full-width {
+            width: 100%;
+          }
+          span {
+            display: block;
+            &.title {
+              font-size: ($font-size-base * 0.9);
+            }
+          }
+        }
+      }
 
       .documents {
         &.blur {
@@ -296,18 +296,18 @@
           -ms-filter: blur(4px);
           filter: blur(4px);
         }
-				ul {
-					li {
-						i {
-							color: $brand-angelhub-blue;
-						}
-						span {
-							margin-right: 10px;
-							display: inline-block;
-							vertical-align: text-top;
-						}
-					}
-				}
+        ul {
+          li {
+            i {
+              color: $brand-angelhub-blue;
+            }
+            span {
+              margin-right: 10px;
+              display: inline-block;
+              vertical-align: text-top;
+            }
+          }
+        }
       }
 
       .access {

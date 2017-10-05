@@ -30,7 +30,10 @@ export default class MyStartupsEditKPIModal extends Component {
   }
 
   updateMyStartupKPI(values) {
-    this.props.updateMyStartupKPI(values, this.props.params, () => {
+    this.props.updateMyStartupKPI(values, {
+      ...this.props.params,
+      kpiID: _.get(this.props.kpi, 'id', null)
+    }, () => {
       this.props.close()
     })
   }

@@ -1,31 +1,16 @@
 import { genApiUrl, genAxios } from '../../../services/api-request'
 import { getFormData } from '../../../services/get-form-data'
-import { apiMyStartupsProfileIndex, apiMyStartupsProfileShow } from '../../../services/api-path'
+import { apiMyStartupsProfileIndex } from '../../../services/api-path'
+import { notySuccess } from '../../../services/noty'
 
-export const CREATE_MY_STARTUP_PROFILE = "CREATE_MY_STARTUP_PROFILE"
-export const createMyStartupProfile = (values, params, cb) => {
-  const request = genAxios({
-    method: 'post',
-    url: genApiUrl(apiMyStartupsProfileIndex(params)),
-    data: getFormData({
-      overview: _.get(values, 'overview', null)
-    }, 'profile')
-  })
+import { mergeStartupAttribute } from '../../startups'
 
-  return {
-    type: CREATE_MY_STARTUP_PROFILE,
-    request,
-    successCB: () => {
-      if (cb) cb()
-    }
-  }
-}
-
+// TODO CUD
 export const UPDATE_MY_STARTUP_PROFILE = "UPDATE_MY_STARTUP_PROFILE"
 export const updateMyStartupProfile = (values, params, cb) => {
   const request = genAxios({
     method: "put",
-    url: genApiUrl(apiMyStartupsProfileShow(params)),
+    url: genApiUrl(apiMyStartupsProfileIndex(params)),
     data: getFormData({
       overview: _.get(values, 'overview', null)
     }, 'profile')
@@ -34,8 +19,10 @@ export const updateMyStartupProfile = (values, params, cb) => {
   return {
     type: UPDATE_MY_STARTUP_PROFILE,
     request,
-    successCB: () => {
+    successCB: (dispatch, data) => {
       if (cb) cb()
+      dispatch(mergeStartupAttribute(data, 'profile'))
+      notySuccess(`${_.get(values, 'overview') ? "Overview" : "Profile"} Updated!`)
     }
   }
 }

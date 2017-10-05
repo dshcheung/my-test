@@ -74,10 +74,6 @@ export const apiMyStartupsProfileIndex = (params) => {
   return `${apiMyStartupsShow(params)}/profile`
 }
 
-export const apiMyStartupsProfileShow = (params) => {
-  return `${apiMyStartupsProfileIndex(params)}/${params.profileID}`
-}
-
 export const apiMyStartupsPitchDecksIndex = (params) => {
   return `${apiMyStartupsShow(params)}/pitch_decks`
 }
@@ -107,7 +103,7 @@ export const apiMyStartupsKPIsIndex = (params) => {
 }
 
 export const apiMyStartupsKPIsShow = (params) => {
-  return `${apiMyStartupsHighlightsIndex(params)}/${params.kpiID}`
+  return `${apiMyStartupsKPIsIndex(params)}/${params.kpiID}`
 }
 
 export const apiMyStartupsMediaIndex = (params) => {
@@ -116,6 +112,14 @@ export const apiMyStartupsMediaIndex = (params) => {
 
 export const apiMyStartupsMediaShow = (params) => {
   return `${apiMyStartupsMediaIndex(params)}/${params.mediaID}`
+}
+
+export const apiMyStartupsFundsIndex = (params) => {
+  return `${apiMyStartupsShow(params)}/funds`
+}
+
+export const apiMyStartupsFundsShow = (params) => {
+  return `${apiMyStartupsFundsIndex(params)}/${params.fundID}`
 }
 
 export const apiMyStartupsTeamsIndex = (params) => {

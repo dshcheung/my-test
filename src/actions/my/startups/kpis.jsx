@@ -3,6 +3,8 @@ import { getFormData } from '../../../services/get-form-data'
 import { apiMyStartupsKPIsIndex, apiMyStartupsKPIsShow } from '../../../services/api-path'
 import { notySuccess } from '../../../services/noty'
 
+import { mergeStartupAttribute, deleteStartupAttributeEntry } from '../../startups'
+
 // create
 export const CREATE_MY_STARTUP_KPI = "CREATE_MY_STARTUP_KPI"
 export const createMyStartupKPI = (values, params, cb) => {
@@ -17,9 +19,9 @@ export const createMyStartupKPI = (values, params, cb) => {
   return {
     type: CREATE_MY_STARTUP_KPI,
     request,
-    successCB: () => {
+    successCB: (dispatch, data) => {
       if (cb) cb()
-      // dispatch(mergeCurrentUserAttribute(data, 'key_performance_indicators'))
+      dispatch(mergeStartupAttribute(data, 'key_performance_indicators'))
       notySuccess("KPI Added!")
     }
   }
@@ -39,9 +41,9 @@ export const updateMyStartupKPI = (values, params, cb) => {
   return {
     type: UPDATE_MY_STARTUP_KPI,
     request,
-    successCB: () => {
+    successCB: (dispatch, data) => {
       if (cb) cb()
-      // dispatch(mergeCurrentUserAttribute(data, 'key_performance_indicators'))
+      dispatch(mergeStartupAttribute(data, 'key_performance_indicators'))
       notySuccess("KPI Updated!")
     }
   }
@@ -58,8 +60,8 @@ export const deleteMyStartupKPI = (params) => {
   return {
     type: `${DELETE_MY_STARTUP_KPI}_${params.kpiID}`,
     request,
-    successCB: () => {
-      // dispatch(deleteCurrentUserAttributeEntry(params.kpiID, 'key_performance_indicators'))
+    successCB: (dispatch) => {
+      dispatch(deleteStartupAttributeEntry(params.kpiID, 'key_performance_indicators'))
     }
   }
 }

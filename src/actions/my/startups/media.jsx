@@ -3,6 +3,8 @@ import { getFormData } from '../../../services/get-form-data'
 import { apiMyStartupsMediaIndex, apiMyStartupsMediaShow } from '../../../services/api-path'
 import { notySuccess } from '../../../services/noty'
 
+import { mergeStartupAttribute, deleteStartupAttributeEntry } from '../../startups'
+
 // create
 export const CREATE_MY_STARTUP_MEDIA = "CREATE_MY_STARTUP_MEDIA"
 export const createMyStartupMedia = (values, params, cb) => {
@@ -20,9 +22,9 @@ export const createMyStartupMedia = (values, params, cb) => {
   return {
     type: CREATE_MY_STARTUP_MEDIA,
     request,
-    successCB: () => {
+    successCB: (dispatch, data) => {
       if (cb) cb()
-      // dispatch(mergeCurrentUserAttribute(data, 'media'))
+      dispatch(mergeStartupAttribute(data, 'media'))
       notySuccess("Media Added!")
     }
   }
@@ -45,9 +47,9 @@ export const updateMyStartupMedia = (values, params, cb) => {
   return {
     type: UPDATE_MY_STARTUP_MEDIA,
     request,
-    successCB: () => {
+    successCB: (dispatch, data) => {
       if (cb) cb()
-      // dispatch(mergeCurrentUserAttribute(data, 'media'))
+      dispatch(mergeStartupAttribute(data, 'media'))
       notySuccess("Media Updated!")
     }
   }
@@ -64,8 +66,8 @@ export const deleteMyStartupMedia = (params) => {
   return {
     type: `${DELETE_MY_STARTUP_MEDIA}_${params.mediaID}`,
     request,
-    successCB: () => {
-      // dispatch(deleteCurrentUserAttributeEntry(params.mediaID, 'media'))
+    successCB: (dispatch) => {
+      dispatch(deleteStartupAttributeEntry(params.mediaID, 'media'))
     }
   }
 }
