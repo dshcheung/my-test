@@ -6,8 +6,8 @@ import { notySuccess } from '../../../services/noty'
 import { mergeStartupAttribute, deleteStartupAttributeEntry } from '../../startups'
 
 // create
-export const CREATE_MY_STARTUP_MILESTONE = "CREATE_MY_STARTUP_MILESTONE"
-export const createMyStartupMilestone = (values, params, cb) => {
+export const C_MY_STARTUP_MILESTONE = "C_MY_STARTUP_MILESTONE"
+export const cMyStartupMilestone = (values, params, cb) => {
   const request = genAxios({
     method: "post",
     url: genApiUrl(apiMyStartupsMilestonesIndex(params)),
@@ -18,7 +18,7 @@ export const createMyStartupMilestone = (values, params, cb) => {
   })
 
   return {
-    type: CREATE_MY_STARTUP_MILESTONE,
+    type: C_MY_STARTUP_MILESTONE,
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()
@@ -29,8 +29,8 @@ export const createMyStartupMilestone = (values, params, cb) => {
 }
 
 // update
-export const UPDATE_MY_STARTUP_MILESTONE = "UPDATE_MY_STARTUP_MILESTONE"
-export const updateMyStartupMilestone = (values, params, cb) => {
+export const U_MY_STARTUP_MILESTONE = "U_MY_STARTUP_MILESTONE"
+export const uMyStartupMilestone = (values, params, cb) => {
   const request = genAxios({
     method: "put",
     url: genApiUrl(apiMyStartupsMilestonesShow(params)),
@@ -41,7 +41,7 @@ export const updateMyStartupMilestone = (values, params, cb) => {
   })
 
   return {
-    type: UPDATE_MY_STARTUP_MILESTONE,
+    type: U_MY_STARTUP_MILESTONE,
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()
@@ -52,15 +52,15 @@ export const updateMyStartupMilestone = (values, params, cb) => {
 }
 
 // delete
-export const DELETE_MY_STARTUP_MILESTONE = "DELETE_MY_STARTUP_MILESTONE"
-export const deleteMyStartupMilestone = (params) => {
+export const D_MY_STARTUP_MILESTONE = "D_MY_STARTUP_MILESTONE"
+export const dMyStartupMilestone = (params) => {
   const request = genAxios({
     method: "delete",
     url: genApiUrl(apiMyStartupsMilestonesShow(params))
   })
 
   return {
-    type: `${DELETE_MY_STARTUP_MILESTONE}_${params.milestoneID}`,
+    type: `${D_MY_STARTUP_MILESTONE}_${params.milestoneID}`,
     request,
     successCB: (dispatch) => {
       dispatch(deleteStartupAttributeEntry(params.milestoneID, 'milestones', 'completed_on'))

@@ -4,6 +4,7 @@ import { reduxForm, Field } from 'redux-form'
 import Validators from '../../../../services/form-validators'
 
 import TextField from '../../../shared/form-elements/text-field'
+import FileField from '../../../shared/form-elements/file-field'
 
 @reduxForm({
   form: "MyStartupPitchDeckForm",
@@ -15,7 +16,7 @@ import TextField from '../../../shared/form-elements/text-field'
 })
 export default class MyStartupPitchDeckForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass } = this.props
+    const { handleSubmit, submitInProcess, optClass, fileUrl } = this.props
 
     return (
       <div id="forms-my-startup-pitch-deck" className={optClass}>
@@ -26,6 +27,15 @@ export default class MyStartupPitchDeckForm extends Component {
             opts={{
               type: "text",
               label: "Title *"
+            }}
+          />
+
+          <Field
+            name="file"
+            component={FileField}
+            fileUrl={fileUrl}
+            opts={{
+              label: "File"
             }}
           />
 

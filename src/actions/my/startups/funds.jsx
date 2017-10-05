@@ -6,8 +6,8 @@ import { notySuccess } from '../../../services/noty'
 import { mergeStartupAttribute, deleteStartupAttributeEntry } from '../../startups'
 
 // create
-export const CREATE_MY_STARTUP_FUND = "CREATE_MY_STARTUP_FUND"
-export const createMyStartupFund = (values, params, cb) => {
+export const C_MY_STARTUP_FUND = "C_MY_STARTUP_FUND"
+export const cMyStartupFund = (values, params, cb) => {
   const request = genAxios({
     method: "post",
     url: genApiUrl(apiMyStartupsFundsIndex(params)),
@@ -19,7 +19,7 @@ export const createMyStartupFund = (values, params, cb) => {
   })
 
   return {
-    type: CREATE_MY_STARTUP_FUND,
+    type: C_MY_STARTUP_FUND,
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()
@@ -30,8 +30,8 @@ export const createMyStartupFund = (values, params, cb) => {
 }
 
 // update
-export const UPDATE_MY_STARTUP_FUND = "UPDATE_MY_STARTUP_FUND"
-export const updateMyStartupFund = (values, params, cb) => {
+export const U_MY_STARTUP_FUND = "U_MY_STARTUP_FUND"
+export const uMyStartupFund = (values, params, cb) => {
   const request = genAxios({
     method: "put",
     url: genApiUrl(apiMyStartupsFundsShow(params)),
@@ -43,7 +43,7 @@ export const updateMyStartupFund = (values, params, cb) => {
   })
 
   return {
-    type: UPDATE_MY_STARTUP_FUND,
+    type: U_MY_STARTUP_FUND,
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()
@@ -54,15 +54,15 @@ export const updateMyStartupFund = (values, params, cb) => {
 }
 
 // delete
-export const DELETE_MY_STARTUP_FUND = "DELETE_MY_STARTUP_FUND"
-export const deleteMyStartupFund = (params) => {
+export const D_MY_STARTUP_FUND = "D_MY_STARTUP_FUND"
+export const dMyStartupFund = (params) => {
   const request = genAxios({
     method: "delete",
     url: genApiUrl(apiMyStartupsFundsShow(params))
   })
 
   return {
-    type: `${DELETE_MY_STARTUP_FUND}_${params.fundID}`,
+    type: `${D_MY_STARTUP_FUND}_${params.fundID}`,
     request,
     successCB: (dispatch) => {
       dispatch(deleteStartupAttributeEntry(params.fundID, 'funds', 'received_at'))

@@ -5,10 +5,10 @@ import { notySuccess } from '../../../services/noty'
 
 import { mergeStartupAttribute } from '../../startups'
 
-export const CREATE_OR_UPDATE_MY_STARTUP_TEAM = "CREATE_OR_UPDATE_MY_STARTUP_TEAM"
-export const createOrUpdateMyStartupTeam = (values, params, cb) => {
+export const CU_MY_STARTUP_TEAM = "CU_MY_STARTUP_TEAM"
+export const cuMyStartupTeam = (values, params, cb, isUpdate, keyword) => {
   const request = genAxios({
-    method: params.teamID ? "put" : "post",
+    method: isUpdate ? "put" : "post",
     url: genApiUrl(apiMyStartupsTeamsIndex(params)),
     data: getFormData({
       story: _.get(values, 'story', null),
@@ -18,12 +18,12 @@ export const createOrUpdateMyStartupTeam = (values, params, cb) => {
   })
 
   return {
-    type: CREATE_OR_UPDATE_MY_STARTUP_TEAM,
+    type: CU_MY_STARTUP_TEAM,
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()
       dispatch(mergeStartupAttribute(data, 'team'))
-      notySuccess("Team Updated!")
+      notySuccess(`Team ${keyword} ${isUpdate ? 'Updated' : 'Created'}!`)
     }
   }
 }

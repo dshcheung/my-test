@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
-export default class ImageField extends Component {
+export default class FileField extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      previewImgUrl: ''
+      previewFileUrl: ''
     }
   }
 
@@ -16,19 +16,13 @@ export default class ImageField extends Component {
       const file = _.get(fileList, '[0]', null)
 
       if (file) {
-        const reader = new FileReader()
-
-        reader.onload = (e) => {
-          this.setState({ previewImgUrl: e.target.result })
-        }
-
-        reader.readAsDataURL(file)
+        this.setState({ previewFileUrl: URL.createObjectURL(file) })
       }
     }
   }
 
   render() {
-    const { input, meta: { touched, invalid, error }, imgUrl, optClass, opts: {
+    const { input, meta: { touched, invalid, error }, fileUrl, optClass, opts: {
       label, noHelp
     } } = this.props
 
@@ -37,21 +31,34 @@ export default class ImageField extends Component {
 
     return (
       <div className={`form-group clearfix ${hasErrorClass}`}>
-        {label && <label htmlFor={newInput.name + "-noInteraction"}>{label}</label>}
+        { label && <label htmlFor={newInput.name + "-noInteraction"}>{label}</label>}
         <input
           id={newInput.name}
           className="hide"
           type="file"
-          accept=".jpg,.jpeg,.png"
+          accept=".pdf,.doc,.docx"
           {...newInput}
         />
         <label
           htmlFor={newInput.name}
-          className={`${optClass} image-field-label`}
-          style={{ backgroundImage: `url(${this.state.previewImgUrl || imgUrl})` }}
+          className={`${optClass} file-field-label`}
         >
           {
-            !this.state.previewImgUrl && !imgUrl && <span>Select Image</span>
+            !this.state.previewFileUrl && !fileUrl && (
+              <div><a className="btn btn-primary">Select File</a></div>
+            )
+          }
+          {
+            (this.state.previewFileUrl || fileUrl) && (
+              <div>
+                <a className="btn btn-warning">Select Replacement File</a>
+                <a
+                  href={this.state.previewFileUrl || fileUrl}
+                  className="btn btn-primary"
+                  download
+                >Download File</a>
+              </div>
+            )
           }
           {
             hasErrorClass && !noHelp && <span className="help-block">{touched ? error.join(", ") : ''}</span>

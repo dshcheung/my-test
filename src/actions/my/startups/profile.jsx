@@ -5,9 +5,29 @@ import { notySuccess } from '../../../services/noty'
 
 import { mergeStartupAttribute } from '../../startups'
 
-// TODO CUD
-export const CU_MY_STARTUP_PROFILE = "CU_MY_STARTUP_PROFILE"
-export const cuMyStartupProfile = (values, params, cb) => {
+export const C_MY_STARTUP_PROFILE = "C_MY_STARTUP_PROFILE"
+export const cMyStartupProfile = (values, params, cb) => {
+  const request = genAxios({
+    method: "post",
+    url: genApiUrl(apiMyStartupsProfileIndex(params)),
+    data: getFormData({
+      overview: _.get(values, 'overview', null)
+    }, 'profile')
+  })
+
+  return {
+    type: C_MY_STARTUP_PROFILE,
+    request,
+    successCB: (dispatch, data) => {
+      if (cb) cb()
+      dispatch(mergeStartupAttribute(data, 'profile'))
+      notySuccess(`${_.get(values, 'overview') ? "Overview" : "Profile"} Created!`)
+    }
+  }
+}
+
+export const U_MY_STARTUP_PROFILE = "U_MY_STARTUP_PROFILE"
+export const uMyStartupProfile = (values, params, cb) => {
   const request = genAxios({
     method: "put",
     url: genApiUrl(apiMyStartupsProfileIndex(params)),
@@ -17,7 +37,7 @@ export const cuMyStartupProfile = (values, params, cb) => {
   })
 
   return {
-    type: CU_MY_STARTUP_PROFILE,
+    type: U_MY_STARTUP_PROFILE,
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()

@@ -6,59 +6,50 @@ import { connect } from 'react-redux'
 import { DEFAULT_USER_AVATAR } from '../../../../constants'
 
 // import {
-//   createOrUpdateMyStartupTeam, CREATE_OR_UPDATE_MY_STARTUP_TEAM
+//   cuMyStartupTeam, CU_MY_STARTUP_TEAM
 // } from '../../../../actions/my/startups/teams'
 
-import MyStartupsAddEditTeamStoryModal from './add-edit-team-story'
+import MyStartupsNETeamStoryModal from './ne-team-story'
 
-import MyStartupsEditTeamFounderModal from './edit-team-founder'
-import MyStartupsEditTeamMemberModal from './edit-team-member'
-
-import MyStartupsAddTeamFounderModal from './add-team-founder'
-import MyStartupsAddTeamMemberModal from './add-team-member'
+import MyStartupsNETeamFounderModal from './ne-team-founder'
+import MyStartupsNETeamMemberModal from './ne-team-member'
 
 const mapStateToProps = () => {
   return {
-    // createOrUpdateMyStartupTeamInProcess: _.get(state.requestStatus, CREATE_OR_UPDATE_MY_STARTUP_TEAM)
+    // cuMyStartupTeamInProcess: _.get(state.requestStatus, CU_MY_STARTUP_TEAM)
   }
 }
 
 const mapDispatchToProps = () => {
   return {
-    // createOrUpdateMyStartupTeam: bindActionCreators(createOrUpdateMyStartupTeam, dispatch)
+    // cuMyStartupTeam: bindActionCreators(cuMyStartupTeam, dispatch)
   }
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class MyStartupsAddEditTeamModal extends Component {
+export default class MyStartupsSTeamModal extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      addEditTeam: true
+      sTeam: true
     }
 
-    this.createOrUpdateMyStartupTeam = this.createOrUpdateMyStartupTeam.bind(this)
     this.open = this.open.bind(this)
     this.close = this.close.bind(this)
   }
 
-  createOrUpdateMyStartupTeam(values) {
-    this.props.createOrUpdateMyStartupTeam(values, this.props.params, () => {
-      this.props.close()
-    })
-  }
-
-  open(modalName, editInfo, editIndex) {
-    this.setState({ addEditTeam: false, [modalName]: true, editInfo, editIndex })
+  open(modalName, stateEditMode, editInfo, editIndex) {
+    this.setState({ sTeam: false, [modalName]: true, stateEditMode, editInfo, editIndex })
   }
 
   close(modalName) {
-    this.setState({ addEditTeam: true, [modalName]: false, editInfo: null, editIndex: null })
+    this.setState({ sTeam: true, [modalName]: false, stateEditMode: false, editInfo: null, editIndex: null })
   }
 
   render() {
-    const { close, team, params } = this.props
+    const { close, editMode, team, params } = this.props
+    const { stateEditMode, editInfo } = this.state
 
     const story = _.get(team, 'story', '')
     const founders = _.get(team, 'founders', [])
@@ -69,11 +60,12 @@ export default class MyStartupsAddEditTeamModal extends Component {
     const hasMembers = members.length > 0
 
     const storyIconClass = hasStory ? "fa-pencil" : "fa-plus"
+    const keyword = editMode ? "Edit" : "Add"
 
     return (
-      <Modal show onHide={close} className={`form-modal ${!this.state.addEditTeam && 'hide'}`} id="modals-my-startups-add-edit-team">
+      <Modal show onHide={close} className={`form-modal ${!this.state.sTeam && 'hide'}`} id="modals-my-startups-add-edit-team">
         <Modal.Header closeButton>
-          <Modal.Title>Edit Team</Modal.Title>
+          <Modal.Title>{keyword} Team</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <section className="story">
@@ -81,7 +73,7 @@ export default class MyStartupsAddEditTeamModal extends Component {
               Story
               <button
                 className="btn btn-info pull-right"
-                onClick={() => { this.open('addEditTeamStory') }}
+                onClick={() => { this.open('neTeamStory', hasStory) }}
               ><i className={`fa ${storyIconClass}`} /></button>
             </div>
             {
@@ -92,13 +84,15 @@ export default class MyStartupsAddEditTeamModal extends Component {
               )
             }
           </section>
+
           <hr />
+
           <section className="founders">
             <div className="h3 margin-top-0">
               Founders
               <button
                 className="btn btn-info pull-right"
-                onClick={() => { this.open('addTeamFounder') }}
+                onClick={() => { this.open('neFounder', false) }}
               ><i className="fa fa-plus" /></button>
             </div>
             {
@@ -110,7 +104,7 @@ export default class MyStartupsAddEditTeamModal extends Component {
                       const title = _.get(founder, 'title')
                       const name = _.get(founder, 'name')
                       return (
-                        <div key={i} className="team-member" onClick={() => { this.open('editTeamFounder', founder, i) }}>
+                        <div key={i} className="team-member" onClick={() => { this.open('neFounder', true, founder, i) }}>
                           <img src={avatar} alt="Founder Avatar" />
                           {title && <div>{title}</div>}
                           {name && <div>{name}</div>}
@@ -124,13 +118,15 @@ export default class MyStartupsAddEditTeamModal extends Component {
               )
             }
           </section>
+
           <hr />
+
           <section className="members">
             <div className="h3 margin-top-0">
               Members
               <button
                 className="btn btn-info pull-right"
-                onClick={() => { this.open('addTeamMember') }}
+                onClick={() => { this.open('neMember', false) }}
               ><i className="fa fa-plus" /></button>
             </div>
             {
@@ -142,7 +138,7 @@ export default class MyStartupsAddEditTeamModal extends Component {
                       const title = _.get(member, 'title')
                       const name = _.get(member, 'name')
                       return (
-                        <div key={i} className="team-member" onClick={() => { this.open('editTeamMember', member, i) }}>
+                        <div key={i} className="team-member" onClick={() => { this.open('neMember', true, member, i) }}>
                           <img src={avatar} alt="Member Avatar" />
                           {title && <div>{title}</div>}
                           {name && <div>{name}</div>}
@@ -158,13 +154,9 @@ export default class MyStartupsAddEditTeamModal extends Component {
           </section>
         </Modal.Body>
 
-        {this.state.addEditTeamStory && <MyStartupsAddEditTeamStoryModal close={() => { this.close("addEditTeamStory") }} params={params} team={team} /> }
-
-        {this.state.editTeamFounder && <MyStartupsEditTeamFounderModal close={() => { this.close("editTeamFounder") }} params={params} team={team} founder={this.state.editInfo} />}
-        {this.state.editTeamMember && <MyStartupsEditTeamMemberModal close={() => { this.close("editTeamMember") }} params={params} team={team} member={this.state.editInfo} />}
-
-        {this.state.addTeamFounder && <MyStartupsAddTeamFounderModal close={() => { this.close("addTeamFounder") }} params={params} team={team} />}
-        {this.state.addTeamMember && <MyStartupsAddTeamMemberModal close={() => { this.close("addTeamMember") }} params={params} team={team} />}
+        {this.state.neTeamStory && <MyStartupsNETeamStoryModal close={() => { this.close("neTeamStory") }} params={params} editMode={stateEditMode} team={team} /> }
+        {this.state.neFounder && <MyStartupsNETeamFounderModal close={() => { this.close("neFounder") }} params={params} editMode={stateEditMode} team={team} founder={editInfo} />}
+        {this.state.neMember && <MyStartupsNETeamMemberModal close={() => { this.close("neMember") }} params={params} editMode={stateEditMode} team={team} member={editInfo} />}
       </Modal>
     )
   }

@@ -16,12 +16,17 @@ export default function(state = initialState, action) {
     case MERGE_STARTUP_ATTRIBUTE: {
       let attr = state[action.attribute]
       const attrType = getType(attr)
+      const dataType = getType(action.data)
 
       if (attrType === "Array") {
         attr = mergeData(attr, [action.data])
       }
 
       if (attrType === "Object") {
+        attr = action.data
+      }
+
+      if (attrType === "Null" && dataType === "Object") {
         attr = action.data
       }
 

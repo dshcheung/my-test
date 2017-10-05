@@ -4,7 +4,6 @@ import { reduxForm, Field } from 'redux-form'
 import Validators from '../../../../services/form-validators'
 
 import TextField from '../../../shared/form-elements/text-field'
-import TextArea from '../../../shared/form-elements/text-area'
 import ImageField from '../../../shared/form-elements/image-field'
 
 @reduxForm({
@@ -12,8 +11,7 @@ import ImageField from '../../../shared/form-elements/image-field'
   validate: (values) => {
     return Validators({
       name: ["presences"],
-      title: ["presences"],
-      description: ["presences"]
+      title: ["presences"]
     }, values)
   }
 })
@@ -39,14 +37,6 @@ export default class MyStartupTeamMemberForm extends Component {
             opts={{
               type: "text",
               label: "Title *"
-            }}
-          />
-
-          <Field
-            name="description"
-            component={TextArea}
-            opts={{
-              label: "Description *"
             }}
           />
 
