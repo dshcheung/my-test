@@ -8,4 +8,14 @@ Create, Update, Delete format
 export const xxx = (a, b, c) => {}
 ```
 
-gcud = GET CREATE UPDATE DELETE
+Naming Convention
+  - get - g
+  - create - c
+  - update - u
+  - delete - d
+
+  ```
+  // **** = any combination
+  export const ****_XXXX = "****_XXXX"
+  export const ****Xxxx = () => {}
+  ```

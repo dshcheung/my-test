@@ -36,11 +36,11 @@ export default class MyStartupsNETeamStoryModal extends Component {
   }
 
   render() {
-    const { close, cuMyStartupTeamInProcess, editMode, team } = this.props
+    const { close, cuMyStartupTeamInProcess, editMode, story } = this.props
 
     const keyword = editMode ? "Edit" : "Add"
     const initialValues = editMode ? {
-      story: _.get(team, 'story', '')
+      story: story || ''
     } : undefined
 
     return (

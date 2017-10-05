@@ -10,7 +10,6 @@ import { DEFAULT_USER_AVATAR } from '../../../../constants'
 // } from '../../../../actions/my/startups/teams'
 
 import MyStartupsNETeamStoryModal from './ne-team-story'
-
 import MyStartupsNETeamFounderModal from './ne-team-founder'
 import MyStartupsNETeamMemberModal from './ne-team-member'
 
@@ -63,7 +62,7 @@ export default class MyStartupsSTeamModal extends Component {
     const keyword = editMode ? "Edit" : "Add"
 
     return (
-      <Modal show onHide={close} className={`form-modal ${!this.state.sTeam && 'hide'}`} id="modals-my-startups-add-edit-team">
+      <Modal show onHide={close} className={`form-modal ${!this.state.sTeam && 'hide'}`} id="modals-my-startups-s-team">
         <Modal.Header closeButton>
           <Modal.Title>{keyword} Team</Modal.Title>
         </Modal.Header>
@@ -73,12 +72,12 @@ export default class MyStartupsSTeamModal extends Component {
               Story
               <button
                 className="btn btn-info pull-right"
-                onClick={() => { this.open('neTeamStory', hasStory) }}
+                onClick={() => { this.open('neTeamStory', hasStory, story) }}
               ><i className={`fa ${storyIconClass}`} /></button>
             </div>
             {
               hasStory ? (
-                <div>{_.get(team, 'story', '')}</div>
+                <div>{story}</div>
               ) : (
                 <div>Click Add Icon To Add Story</div>
               )
@@ -154,9 +153,9 @@ export default class MyStartupsSTeamModal extends Component {
           </section>
         </Modal.Body>
 
-        {this.state.neTeamStory && <MyStartupsNETeamStoryModal close={() => { this.close("neTeamStory") }} params={params} editMode={stateEditMode} team={team} /> }
-        {this.state.neFounder && <MyStartupsNETeamFounderModal close={() => { this.close("neFounder") }} params={params} editMode={stateEditMode} team={team} founder={editInfo} />}
-        {this.state.neMember && <MyStartupsNETeamMemberModal close={() => { this.close("neMember") }} params={params} editMode={stateEditMode} team={team} member={editInfo} />}
+        {this.state.neTeamStory && <MyStartupsNETeamStoryModal close={() => { this.close("neTeamStory") }} params={params} editMode={stateEditMode} story={editInfo} /> }
+        {this.state.neFounder && <MyStartupsNETeamFounderModal close={() => { this.close("neFounder") }} params={params} editMode={stateEditMode} founder={editInfo} />}
+        {this.state.neMember && <MyStartupsNETeamMemberModal close={() => { this.close("neMember") }} params={params} editMode={stateEditMode} member={editInfo} />}
       </Modal>
     )
   }

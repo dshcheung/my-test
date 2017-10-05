@@ -39,10 +39,7 @@ export default class MyStartupsNEMemberModal extends Component {
           avatar: _.get(values, 'avatar[0]', null)
         }
       ]
-    }, {
-      ...this.props.params,
-      teamID: _.get(this.props.team, 'id')
-    }, () => {
+    }, this.props.params, () => {
       this.props.close()
     }, this.props.editMode, "Member")
   }

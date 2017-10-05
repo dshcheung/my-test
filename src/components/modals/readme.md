@@ -1,7 +1,10 @@
 Naming Convention
-- show - s
-- new - n
-- edit - e
-- delete - d
+  - show - s
+  - new - n
+  - edit - e
+  - delete - d
 
-sned-xxxx.jsx
+  **** = any combination
+  ****-xxxx.jsx
+
+  xYyyy****XxxxModal

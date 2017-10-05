@@ -7,7 +7,7 @@ import {
   cuMyStartupPitchDeck, CU_MY_STARTUP_PITCH_DECK
 } from '../../../../actions/my/startups/pitch-decks'
 
-import MyStartupPitchDeckForm from '../../../forms/my/startups/pitch-deck'
+import MyStartupPitchDeckDescriptionForm from '../../../forms/my/startups/pitch-deck-description'
 
 const mapStateToProps = (state) => {
   return {
@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class MyStartupsNEPitchDeckModal extends Component {
+export default class MyStartupsNEPitchDeckDescriptionModal extends Component {
   constructor(props) {
     super(props)
 
@@ -32,28 +32,27 @@ export default class MyStartupsNEPitchDeckModal extends Component {
   cuMyStartupPitchDeck(values) {
     this.props.cuMyStartupPitchDeck(values, this.props.params, () => {
       this.props.close()
-    })
+    }, this.props.editMode, "Description")
   }
 
   render() {
-    const { close, cuMyStartupPitchDeckInProcess, editMode, attachment } = this.props
+    const { close, cuMyStartupPitchDeckInProcess, editMode, description } = this.props
 
     const keyword = editMode ? "Edit" : "Add"
     const initialValues = editMode ? {
-      title: _.get(attachment, 'title', '')
+      description: description || ''
     } : undefined
 
     return (
       <Modal show onHide={close} className="form-modal">
         <Modal.Header closeButton>
-          <Modal.Title>{keyword} Pitch Deck</Modal.Title>
+          <Modal.Title>{keyword} Pitch Deck Description</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MyStartupPitchDeckForm
+          <MyStartupPitchDeckDescriptionForm
             onSubmit={this.cuMyStartupPitchDeck}
             submitInProcess={cuMyStartupPitchDeckInProcess}
             initialValues={initialValues}
-            fileUrl={_.get(attachment, 'file.original', null)}
           />
         </Modal.Body>
       </Modal>

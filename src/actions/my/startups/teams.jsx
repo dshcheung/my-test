@@ -5,6 +5,7 @@ import { notySuccess } from '../../../services/noty'
 
 import { mergeStartupAttribute } from '../../startups'
 
+// create update
 export const CU_MY_STARTUP_TEAM = "CU_MY_STARTUP_TEAM"
 export const cuMyStartupTeam = (values, params, cb, isUpdate, keyword) => {
   const request = genAxios({

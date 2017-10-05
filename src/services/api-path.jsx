@@ -74,22 +74,6 @@ export const apiMyStartupsProfileIndex = (params) => {
   return `${apiMyStartupsShow(params)}/profile`
 }
 
-export const apiMyStartupsPitchDecksIndex = (params) => {
-  return `${apiMyStartupsShow(params)}/pitch_decks`
-}
-
-export const apiMyStartupsPitchDecksShow = (params) => {
-  return `${apiMyStartupsPitchDecksIndex(params)}/${params.pitchDeckID}`
-}
-
-export const apiMyStartupsMilestonesIndex = (params) => {
-  return `${apiMyStartupsShow(params)}/milestones`
-}
-
-export const apiMyStartupsMilestonesShow = (params) => {
-  return `${apiMyStartupsMilestonesIndex(params)}/${params.milestoneID}`
-}
-
 export const apiMyStartupsHighlightsIndex = (params) => {
   return `${apiMyStartupsShow(params)}/highlights`
 }
@@ -106,12 +90,12 @@ export const apiMyStartupsKPIsShow = (params) => {
   return `${apiMyStartupsKPIsIndex(params)}/${params.kpiID}`
 }
 
-export const apiMyStartupsMediaIndex = (params) => {
-  return `${apiMyStartupsShow(params)}/media`
+export const apiMyStartupsMilestonesIndex = (params) => {
+  return `${apiMyStartupsShow(params)}/milestones`
 }
 
-export const apiMyStartupsMediaShow = (params) => {
-  return `${apiMyStartupsMediaIndex(params)}/${params.mediaID}`
+export const apiMyStartupsMilestonesShow = (params) => {
+  return `${apiMyStartupsMilestonesIndex(params)}/${params.milestoneID}`
 }
 
 export const apiMyStartupsFundsIndex = (params) => {
@@ -124,6 +108,26 @@ export const apiMyStartupsFundsShow = (params) => {
 
 export const apiMyStartupsTeamsIndex = (params) => {
   return `${apiMyStartupsShow(params)}/teams`
+}
+
+export const apiMyStartupsTeamsShow = (params) => {
+  return `${apiMyStartupsTeamsIndex(params)}/${params.teamID}`
+}
+
+export const apiMyStartupsPitchDecksIndex = (params) => {
+  return `${apiMyStartupsShow(params)}/pitch_decks`
+}
+
+export const apiMyStartupsMarketScopesIndex = (params) => {
+  return `${apiMyStartupsShow(params)}/market_scopes`
+}
+
+export const apiMyStartupsMediaIndex = (params) => {
+  return `${apiMyStartupsShow(params)}/media`
+}
+
+export const apiMyStartupsMediaShow = (params) => {
+  return `${apiMyStartupsMediaIndex(params)}/${params.mediaID}`
 }
 
 export const apiVerifyMyProfile = () => {
