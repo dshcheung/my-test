@@ -107,7 +107,7 @@ export const apiMyStartupsFundsShow = (params) => {
 }
 
 export const apiMyStartupsTeamsIndex = (params) => {
-  return `${apiMyStartupsShow(params)}/teams`
+  return `${apiMyStartupsShow(params)}/team`
 }
 
 export const apiMyStartupsTeamsShow = (params) => {
@@ -115,11 +115,11 @@ export const apiMyStartupsTeamsShow = (params) => {
 }
 
 export const apiMyStartupsPitchDecksIndex = (params) => {
-  return `${apiMyStartupsShow(params)}/pitch_decks`
+  return `${apiMyStartupsShow(params)}/pitch_deck`
 }
 
 export const apiMyStartupsMarketScopesIndex = (params) => {
-  return `${apiMyStartupsShow(params)}/market_scopes`
+  return `${apiMyStartupsShow(params)}/market_scope`
 }
 
 export const apiMyStartupsMediaIndex = (params) => {

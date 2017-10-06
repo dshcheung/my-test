@@ -2,6 +2,9 @@
   .section-search {
     .form-group {
       margin: auto 5px;
+      input[type="text"] {
+        width: 300px;
+      }
     }
   }
   section {

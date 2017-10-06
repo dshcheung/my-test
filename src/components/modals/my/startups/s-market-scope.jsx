@@ -72,7 +72,7 @@ export default class MyStartupsSMarketScopeModal extends Component {
             </div>
             {
               hasDescription ? (
-                <div>{description}</div>
+                <div dangerouslySetInnerHTML={{ __html: htmlDecode(description) }} />
               ) : (
                 <div>Click Add Icon To Add Description</div>
               )
@@ -131,4 +131,10 @@ export default class MyStartupsSMarketScopeModal extends Component {
       </Modal>
     )
   }
+}
+
+const htmlDecode = (input) => {
+  const e = document.createElement('div')
+  e.innerHTML = input
+  return e.innerHTML
 }

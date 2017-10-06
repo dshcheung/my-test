@@ -215,6 +215,13 @@
     .section {
       margin-bottom: 20px;
       position: relative;
+      .h3 {
+        margin-top: 0;
+        color: $brand-primary;
+        // border-bottom: 1px solid $brand-primary;
+        font-size: ($font-size-base * 1.2);
+        margin-bottom: 0.5em;
+      }
 
       &:not(:first-child) {
         margin-top: 20px;
@@ -340,5 +347,14 @@
         }
       }
     }
+  }
+}
+
+.attachment-list {
+  list-style: none;
+  li {
+    display: inline-block;
+    position: relative;
+    width: 100%;
   }
 }

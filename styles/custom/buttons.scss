@@ -148,3 +148,26 @@
     width: 14px;
     height: 14px;
 }
+
+.btn {
+  &.edit, &.delete {
+    background-color: transparent;
+    border-color: transparent;
+    font-size: $font-size-large;
+    &:hover {
+      background-color: $gray-lighter;
+    }
+  }
+  &.edit {
+    color: $brand-info;
+    &:hover {
+      color: $brand-info;
+    }
+  }
+  &.delete {
+    color: $brand-danger;
+    &:hover {
+      color: $brand-danger;
+    }
+  }
+}

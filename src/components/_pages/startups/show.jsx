@@ -151,7 +151,7 @@ export default class StartupsShow extends Component {
                           {
                             editable && (
                               <button
-                                className="btn btn-danger btn-outline delete pull-right"
+                                className="btn btn-danger delete pull-right"
                                 disabled={_.get(requestStatus, `${D_MY_STARTUP_HIGHLIGHT}_${highlight.id}`)}
                                 onClick={() => { this.props.dMyStartupHighlight({ ...routeParams, highlightID: highlight.id }) }}
                               >
@@ -625,9 +625,9 @@ export default class StartupsShow extends Component {
                 </div>
                 <dl className="basic-details dl-horizontal">
                   <dt>Founded Year:</dt>
-                  <dd>2016</dd>
+                  <dd>{_.get(startup, "profile.year_founded", null)}</dd>
                   <dt>Location:</dt>
-                  <dd>Hong Kong</dd>
+                  <dd>{_.get(startup, "profile.location", null)}</dd>
                   <dt className="hide">Time left to invest:</dt>
                   <dd className="hide">xxxxxxx</dd>
                 </dl>
