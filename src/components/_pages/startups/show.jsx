@@ -120,7 +120,7 @@ export default class StartupsShow extends Component {
     return null
   }
 
-  moreInfoContentHighlights() {
+  moreInfoHighlights() {
     const { startup, requestStatus, routeParams } = this.props
     const { editable } = this.state
     const title = "Highlights"
@@ -173,7 +173,7 @@ export default class StartupsShow extends Component {
     )
   }
 
-  moreInfoContentOverview() {
+  moreInfoOverview() {
     const { startup } = this.props
     const title = "Overview"
     const profile = _.get(startup, 'profile')
@@ -187,7 +187,7 @@ export default class StartupsShow extends Component {
     )
   }
 
-  moreInfoContentKPI() {
+  moreInfoKPI() {
     const { startup, requestStatus, routeParams } = this.props
     const { editable } = this.state
     const title = "KPIs"
@@ -240,7 +240,7 @@ export default class StartupsShow extends Component {
     )
   }
 
-  moreInfoContentMilestones() {
+  moreInfoMilestones() {
     const { startup, requestStatus, routeParams } = this.props
     const { editable } = this.state
     const title = "Milestones"
@@ -294,7 +294,7 @@ export default class StartupsShow extends Component {
     )
   }
 
-  moreInfoContentFunds() {
+  moreInfoFunds() {
     const { startup, requestStatus, routeParams } = this.props
     const { editable } = this.state
     const title = "Funds"
@@ -348,7 +348,7 @@ export default class StartupsShow extends Component {
     )
   }
 
-  moreInfoContentTeam() {
+  moreInfoTeam() {
     const { startup } = this.props
     const title = "Team"
     const team = _.get(startup, 'team', {})
@@ -421,7 +421,7 @@ export default class StartupsShow extends Component {
     )
   }
 
-  moreInfoContentPitchDecks() {
+  moreInfoPitchDeck() {
     const { startup } = this.props
     const title = "Pitch Deck"
     const pitchDeck = _.get(startup, 'pitch_deck', {})
@@ -464,7 +464,7 @@ export default class StartupsShow extends Component {
     )
   }
 
-  moreInfoContentMarketScope() {
+  moreInfoMarketScope() {
     const { startup } = this.props
     const title = "Market Scope"
     const marketScope = _.get(startup, 'market_scope', {})
@@ -508,10 +508,10 @@ export default class StartupsShow extends Component {
   }
 
   // CU
-  moreInfoContentRisks() {}
+  moreInfoRisks() {}
 
   // ADD & EDIT
-  moreInfoContentMedia() {
+  moreInfoMedia() {
     const { startup } = this.props
     const title = "Media"
     const media = _.get(startup, 'media', [])
@@ -781,18 +781,18 @@ export default class StartupsShow extends Component {
                 </AutoAffix>
               </div>
               <div className="col-xs-12 col-sm-9">
-                {(editable || _.get(startup, "highlights[0]")) && this.moreInfoContentHighlights()}
-                {(editable || _.get(startup, "profile.overview")) && this.moreInfoContentOverview()}
-                {(editable || _.get(startup, "key_performance_indicators[0]")) && this.moreInfoContentKPI()}
-                {(editable || _.get(startup, "milestones[0]")) && this.moreInfoContentMilestones()}
-                {(editable || _.get(startup, "funds[0]")) && this.moreInfoContentFunds()}
-                {(editable || _.get(startup, "team")) && this.moreInfoContentTeam()}
-                {(editable || _.get(startup, "pitch_deck.attachments[0]")) && this.moreInfoContentPitchDecks()}
-                {(editable || _.get(startup, "market_scope.attachments[0]")) && this.moreInfoContentMarketScope()}
-                {/* (editable || _.get(startup, "risk.attachments[0]")) && this.moreInfoContent() */}
-                {/* (editable || _.get(startup, "media[0]")) && this.moreInfoContentMedia() */}
+                {(editable || _.get(startup, "highlights[0]")) && this.moreInfoHighlights()}
+                {(editable || _.get(startup, "profile.overview")) && this.moreInfoOverview()}
+                {(editable || _.get(startup, "key_performance_indicators[0]")) && this.moreInfoKPI()}
+                {(editable || _.get(startup, "milestones[0]")) && this.moreInfoMilestones()}
+                {(editable || _.get(startup, "funds[0]")) && this.moreInfoFunds()}
+                {(editable || _.get(startup, "team")) && this.moreInfoTeam()}
+                {(editable || _.get(startup, "pitch_deck.attachments[0]")) && this.moreInfoPitchDeck()}
+                {(editable || _.get(startup, "market_scope.attachments[0]")) && this.moreInfoMarketScope()}
+                {(editable || _.get(startup, "risk.attachments[0]")) && this.moreInfoRisks()}
+                {/* (editable || _.get(startup, "media[0]")) && this.moreInfoMedia() */}
                 {/* (editable || _.get(startup, "attachments[0]")) && this.moreInfoDocuments() */}
-                {/* (editable || _.get(startup, "end_notes")) && this.moreInfoContent() */}
+                {/* (editable || _.get(startup, "end_notes")) && this.moreInfo() */}
               </div>
             </section>
           </div>

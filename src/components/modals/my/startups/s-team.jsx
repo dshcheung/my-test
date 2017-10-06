@@ -7,7 +7,7 @@ import { DEFAULT_USER_AVATAR } from '../../../../constants'
 
 // import {
 //   cuMyStartupTeam, CU_MY_STARTUP_TEAM
-// } from '../../../../actions/my/startups/teams'
+// } from '../../../../actions/my/startups/team'
 
 import MyStartupsNETeamStoryModal from './ne-team-story'
 import MyStartupsNETeamFounderModal from './ne-team-founder'

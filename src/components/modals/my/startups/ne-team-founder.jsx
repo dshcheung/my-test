@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 
 import {
   cuMyStartupTeam, CU_MY_STARTUP_TEAM
-} from '../../../../actions/my/startups/teams'
+} from '../../../../actions/my/startups/team'
 
 import MyStartupTeamFounderForm from '../../../forms/my/startups/team-founder'
 
@@ -33,7 +33,7 @@ export default class MyStartupsNEFounderModal extends Component {
     this.props.cuMyStartupTeam({
       founders: [
         {
-          id: _.get(this.props.member, 'id', null),
+          id: _.get(this.props.founder, 'id', null),
           name: _.get(values, 'name', null),
           title: _.get(values, 'title', null),
           description: _.get(values, 'description', null),

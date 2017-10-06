@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 
 import {
   cuMyStartupMarketScope, CU_MY_STARTUP_MARKET_SCOPE
-} from '../../../../actions/my/startups/market-scopes'
+} from '../../../../actions/my/startups/market-scope'
 
 import MyStartupMarketScopeAttachmentForm from '../../../forms/my/startups/market-scope-attachment'
 
@@ -30,7 +30,15 @@ export default class MyStartupsNEMarketScopeAttachmentModal extends Component {
   }
 
   cuMyStartupMarketScope(values) {
-    this.props.cuMyStartupMarketScope(values, this.props.params, () => {
+    this.props.cuMyStartupMarketScope({
+      attachments: [
+        {
+          id: _.get(this.props.attachment, 'id', null),
+          title: _.get(values, 'title', null),
+          file: _.get(values, 'file[0]', null)
+        }
+      ]
+    }, this.props.params, () => {
       this.props.close()
     }, this.props.editMode, "Attachment")
   }

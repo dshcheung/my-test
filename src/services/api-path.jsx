@@ -106,19 +106,15 @@ export const apiMyStartupsFundsShow = (params) => {
   return `${apiMyStartupsFundsIndex(params)}/${params.fundID}`
 }
 
-export const apiMyStartupsTeamsIndex = (params) => {
+export const apiMyStartupsTeamIndex = (params) => {
   return `${apiMyStartupsShow(params)}/team`
 }
 
-export const apiMyStartupsTeamsShow = (params) => {
-  return `${apiMyStartupsTeamsIndex(params)}/${params.teamID}`
-}
-
-export const apiMyStartupsPitchDecksIndex = (params) => {
+export const apiMyStartupsPitchDeckIndex = (params) => {
   return `${apiMyStartupsShow(params)}/pitch_deck`
 }
 
-export const apiMyStartupsMarketScopesIndex = (params) => {
+export const apiMyStartupsMarketScopeIndex = (params) => {
   return `${apiMyStartupsShow(params)}/market_scope`
 }
 

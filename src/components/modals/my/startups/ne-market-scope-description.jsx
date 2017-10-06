@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 
 import {
   cuMyStartupMarketScope, CU_MY_STARTUP_MARKET_SCOPE
-} from '../../../../actions/my/startups/market-scopes'
+} from '../../../../actions/my/startups/market-scope'
 
 import MyStartupMarketScopeDescriptionForm from '../../../forms/my/startups/market-scope-description'
 

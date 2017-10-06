@@ -1,6 +1,6 @@
 import { genApiUrl, genAxios } from '../../../services/api-request'
 import { getFormData } from '../../../services/get-form-data'
-import { apiMyStartupsPitchDecksIndex } from '../../../services/api-path'
+import { apiMyStartupsPitchDeckIndex } from '../../../services/api-path'
 import { notySuccess } from '../../../services/noty'
 
 import { mergeStartupAttribute } from '../../startups'
@@ -10,13 +10,10 @@ export const CU_MY_STARTUP_PITCH_DECK = "CU_MY_STARTUP_PITCH_DECK"
 export const cuMyStartupPitchDeck = (values, params, cb, isUpdate, keyword) => {
   const request = genAxios({
     method: isUpdate ? "put" : "post",
-    url: genApiUrl(apiMyStartupsPitchDecksIndex(params)),
+    url: genApiUrl(apiMyStartupsPitchDeckIndex(params)),
     data: getFormData({
       description: _.get(values, 'description', null),
-      attachments_attributes: {
-        title: _.get(values, 'title', null),
-        file: _.get(values, 'file[0]', null)
-      }
+      attachments_attributes: _.get(values, 'attachments', null)
     }, "pitch_deck")
   })
 

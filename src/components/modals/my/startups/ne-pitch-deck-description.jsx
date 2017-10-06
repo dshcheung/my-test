@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 
 import {
   cuMyStartupPitchDeck, CU_MY_STARTUP_PITCH_DECK
-} from '../../../../actions/my/startups/pitch-decks'
+} from '../../../../actions/my/startups/pitch-deck'
 
 import MyStartupPitchDeckDescriptionForm from '../../../forms/my/startups/pitch-deck-description'
 

@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 
 import {
   cuMyStartupPitchDeck, CU_MY_STARTUP_PITCH_DECK
-} from '../../../../actions/my/startups/pitch-decks'
+} from '../../../../actions/my/startups/pitch-deck'
 
 import MyStartupPitchDeckAttachmentForm from '../../../forms/my/startups/pitch-deck-attachment'
 
@@ -30,7 +30,15 @@ export default class MyStartupsNEPitchDeckAttachmentModal extends Component {
   }
 
   cuMyStartupPitchDeck(values) {
-    this.props.cuMyStartupPitchDeck(values, this.props.params, () => {
+    this.props.cuMyStartupPitchDeck({
+      attachments: [
+        {
+          id: _.get(this.props.attachment, 'id', null),
+          title: _.get(values, 'title', null),
+          file: _.get(values, 'file[0]', null)
+        }
+      ]
+    }, this.props.params, () => {
       this.props.close()
     }, this.props.editMode, "Attachment")
   }

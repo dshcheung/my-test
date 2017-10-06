@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 
 import {
   cuMyStartupTeam, CU_MY_STARTUP_TEAM
-} from '../../../../actions/my/startups/teams'
+} from '../../../../actions/my/startups/team'
 
 import MyStartupTeamStoryForm from '../../../forms/my/startups/team-story'
 
