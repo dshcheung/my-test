@@ -6,6 +6,8 @@ import Cookies from 'js-cookie'
 import { AUTH_TOKEN } from '../../constants'
 
 import { getMyProfile } from '../../actions/my/profile'
+import { gMyConversations } from '../../actions/my/conversations'
+import { gMyNotifications } from '../../actions/my/notifications'
 
 import Navbar from './navbar'
 import Footer from './footer'
@@ -18,14 +20,20 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getMyProfile: bindActionCreators(getMyProfile, dispatch)
+    getMyProfile: bindActionCreators(getMyProfile, dispatch),
+    gMyConversations: bindActionCreators(gMyConversations, dispatch),
+    gMyNotifications: bindActionCreators(gMyNotifications, dispatch)
   }
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class App extends Component {
   componentWillMount() {
-    if (Cookies.get(AUTH_TOKEN)) this.props.getMyProfile()
+    if (Cookies.get(AUTH_TOKEN)) {
+      this.props.getMyProfile()
+      this.props.gMyConversations()
+      this.props.gMyNotifications()
+    }
   }
 
   render() {

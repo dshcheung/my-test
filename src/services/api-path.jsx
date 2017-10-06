@@ -34,6 +34,30 @@ export const apiMy = () => {
   return 'my'
 }
 
+export const apiMyConversationsIndex = () => {
+  return `${apiMy()}/conversations`
+}
+
+export const apiMyConversationsShow = (params) => {
+  return `${apiMyConversationsIndex()}/${params.conversationID}`
+}
+
+export const apiMyMessagesIndex = () => {
+  return `${apiMy()}/messages`
+}
+
+export const apiMyNotificationsIndex = () => {
+  return `${apiMy()}/notifications`
+}
+
+export const apiMyNotificationsShow = (params) => {
+  return `${apiMyNotificationsIndex()}/${params.notificationID}`
+}
+
+export const apiMyNotificationsShowRead = (params) => {
+  return `${apiMyNotificationsShow(params)}/read`
+}
+
 export const apiMyProfile = () => {
   return `${apiMy()}/profile`
 }
