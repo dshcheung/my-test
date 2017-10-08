@@ -6,7 +6,7 @@ import Cookies from 'js-cookie'
 import { AUTH_TOKEN } from '../../constants'
 
 import { getMyProfile } from '../../actions/my/profile'
-import { gMyConversations } from '../../actions/my/conversations'
+import { gMyConversations, gMyConversation } from '../../actions/my/conversations'
 import { gMyNotifications } from '../../actions/my/notifications'
 
 import Navbar from './navbar'
@@ -22,6 +22,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getMyProfile: bindActionCreators(getMyProfile, dispatch),
     gMyConversations: bindActionCreators(gMyConversations, dispatch),
+    gMyConversation: bindActionCreators(gMyConversation, dispatch),
     gMyNotifications: bindActionCreators(gMyNotifications, dispatch)
   }
 }

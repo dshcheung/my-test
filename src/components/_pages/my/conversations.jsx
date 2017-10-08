@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => {
   return {
-    myNConversations: _.get(state, 'myConversations', [])
+    myConversations: _.get(state, 'myConversations', [])
   }
 }
 

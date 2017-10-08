@@ -142,6 +142,10 @@ export const apiMyStartupsMarketScopeIndex = (params) => {
   return `${apiMyStartupsShow(params)}/market_scope`
 }
 
+export const apiMyStartupsRiskIndex = (params) => {
+  return `${apiMyStartupsShow(params)}/risk`
+}
+
 export const apiMyStartupsMediaIndex = (params) => {
   return `${apiMyStartupsShow(params)}/media`
 }

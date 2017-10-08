@@ -29,6 +29,7 @@ import MyStartupNEFundModal from '../../modals/my/startups/ne-fund'
 import MyStartupSTeamModal from '../../modals/my/startups/s-team'
 import MyStartupSPitchDeckModal from '../../modals/my/startups/s-pitch-deck'
 import MyStartupSMarketScopeModal from '../../modals/my/startups/s-market-scope'
+import MyStartupSRiskModal from '../../modals/my/startups/s-risk'
 
 import MyStartupEditMediaModal from '../../modals/my/startups/edit-media'
 
@@ -436,7 +437,7 @@ export default class StartupsShow extends Component {
         {
           description && (
             <div className="row">
-              <div className="col-xs-12 pitch-deck-description" dangerouslySetInnerHTML={{ __html: htmlDecode(description) }} />
+              <div className="col-xs-12 pitch-deck-description">{description}</div>
             </div>
           )
         }
@@ -479,7 +480,7 @@ export default class StartupsShow extends Component {
         {
           description && (
             <div className="row">
-              <div className="col-xs-12 market-scope-description" dangerouslySetInnerHTML={{ __html: htmlDecode(description) }} />
+              <div className="col-xs-12 market-scope-description">{description}</div>
             </div>
           )
         }
@@ -507,8 +508,48 @@ export default class StartupsShow extends Component {
     )
   }
 
-  // CU
-  moreInfoRisks() {}
+  moreInfoRisks() {
+    const { startup } = this.props
+    const title = "Risk & Disclosure"
+    const risk = _.get(startup, 'risk', {})
+    const description = _.get(risk, 'description', '')
+    const attachments = _.get(risk, 'attachments', [])
+    const isEmpty = !description && attachments.length === 0
+    const editMode = !isEmpty
+    return (
+      <Element name={title} className="section">
+        {this.title(title, 'sRisk', editMode, risk, 'startup.risk')}
+        {this.emptyContent(title, isEmpty, editMode)}
+        {
+          description && (
+            <div className="row">
+              <div className="col-xs-12 market-scope-description">{description}</div>
+            </div>
+          )
+        }
+        {
+          attachments.length > 0 && (
+            <div>
+              <ul>
+                {
+                  attachments.map((attachment, i) => {
+                    return (
+                      <li key={i}>
+                        <a href={attachment.file.original} className="btn btn-success">
+                          {attachment.title}
+                          <i className="fa fa-fw fa-download" />
+                        </a>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            </div>
+          )
+        }
+      </Element>
+    )
+  }
 
   // ADD & EDIT
   moreInfoMedia() {
@@ -806,6 +847,7 @@ export default class StartupsShow extends Component {
         {this.state.sTeam && <MyStartupSTeamModal close={() => { this.close("sTeam") }} params={routeParams} editMode={editMode} team={this.state.editInfo} />}
         {this.state.sPitchDeck && <MyStartupSPitchDeckModal close={() => { this.close("sPitchDeck") }} params={routeParams} editMode={editMode} pitchDeck={this.state.editInfo} />}
         {this.state.sMarketScope && <MyStartupSMarketScopeModal close={() => { this.close("sMarketScope") }} params={routeParams} editMode={editMode} marketScope={this.state.editInfo} />}
+        {this.state.sRisk && <MyStartupSRiskModal close={() => { this.close("sRisk") }} params={routeParams} editMode={editMode} risk={this.state.editInfo} />}
 
         {this.state.editMedia && <MyStartupEditMediaModal close={() => { this.close("editMedia") }} params={routeParams} media={this.state.editInfo} />}
         {this.state.addMedia && <MyStartupAddMediaModal close={() => { this.close("addMedia") }} params={routeParams} />}

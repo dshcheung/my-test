@@ -15,7 +15,7 @@ import VerifyEmailContainer from './components/_pages/verify/email'
 import VerifyMobileContainer from './components/_pages/verify/mobile'
 
 import MyContainer from './components/_pages/my/wrapper'
-import MyConversationsIndexContainer from './components/_pages/my/conversations/index'
+import MyConversationsIndexContainer from './components/_pages/my/conversations'
 import MyNotificationsIndexContainer from './components/_pages/my/notifications/index'
 import MyStartupsIndexContainer from './components/_pages/my/startups'
 import MySettingsContainer from './components/_pages/my/settings'
@@ -44,10 +44,7 @@ export default (
     </Route>
 
     <Route path="my" component={MyContainer}>
-      <Route path="conversations">
-        <IndexRoute component={MyConversationsIndexContainer} />
-        <Route path=":conversationID" />
-      </Route>
+      <Route path="conversations" component={MyConversationsIndexContainer} />
 
       <Route path="notifications">
         <IndexRoute component={MyNotificationsIndexContainer} />
