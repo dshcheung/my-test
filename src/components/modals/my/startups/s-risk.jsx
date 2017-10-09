@@ -1,25 +1,24 @@
 import React, { Component } from 'react'
 import Modal from 'react-bootstrap/lib/Modal'
 import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux'
 
-// import {
-//   cuMyStartupRisk, CU_MY_STARTUP_RISK
-// } from '../../../../actions/my/startups/risk'
+import {
+  dMyStartupRiskAttachment, D_MY_STARTUP_RISK_ATTACHMENT
+} from '../../../../actions/my/startups/risk'
 
-// TODO new Modals
-import MyStartupsNERiskDescriptionModal from './ne-pitch-deck-description'
-import MyStartupsNERiskAttachmentModal from './ne-pitch-deck-attachment'
+import MyStartupsNERiskDescriptionModal from './ne-risk-description'
+import MyStartupsNERiskAttachmentModal from './ne-risk-attachment'
 
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
   return {
-    // cuMyStartupRiskInProcess: _.get(state.requestStatus, CU_MY_STARTUP_RISK)
+    requestStatus: _.get(state, 'requestStatus')
   }
 }
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    // cuMyStartupRisk: bindActionCreators(cuMyStartupRisk, dispatch)
+    dMyStartupRiskAttachment: bindActionCreators(dMyStartupRiskAttachment, dispatch)
   }
 }
 
@@ -44,8 +43,20 @@ export default class MyStartupsSRiskModal extends Component {
     this.setState({ sRisk: true, [modalName]: false, stateEditMode: false, editInfo: null, editIndex: null })
   }
 
+  dMyStartupRiskAttachment(id) {
+    this.props.dMyStartupRiskAttachment({
+      attachments: [
+        {
+          id,
+          _destroy: true
+        }
+      ]
+    }, this.props.params)
+  }
+
+
   render() {
-    const { close, editMode, risk, params } = this.props
+    const { close, editMode, risk, params, requestStatus } = this.props
     const { stateEditMode, editInfo } = this.state
 
     const description = _.get(risk, 'description', '')
@@ -102,12 +113,15 @@ export default class MyStartupsSRiskModal extends Component {
                         <li key={i} className="attachment">
                           <button
                             className="btn btn-info edit pull-right"
+                            disabled={_.get(requestStatus, `${D_MY_STARTUP_RISK_ATTACHMENT}_${attachment.id}`)}
                             onClick={() => { this.open("neRiskAttachment", true, attachment, i) }}
                           >
                             <i className="fa fa-pencil" />
                           </button>
                           <button
                             className="btn btn-danger btn-outline delete pull-right"
+                            disabled={_.get(requestStatus, `${D_MY_STARTUP_RISK_ATTACHMENT}_${attachment.id}`)}
+                            onClick={() => { this.dMyStartupRiskAttachment(attachment.id) }}
                           >
                             <i className="fa fa-trash" />
                           </button>

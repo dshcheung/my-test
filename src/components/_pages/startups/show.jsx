@@ -17,6 +17,7 @@ import { dMyStartupHighlight, D_MY_STARTUP_HIGHLIGHT } from '../../../actions/my
 import { dMyStartupKPI, D_MY_STARTUP_KPI } from '../../../actions/my/startups/kpis'
 import { dMyStartupMilestone, D_MY_STARTUP_MILESTONE } from '../../../actions/my/startups/milestones'
 import { dMyStartupFund, D_MY_STARTUP_FUND } from '../../../actions/my/startups/funds'
+import { dMyStartupMedia, D_MY_STARTUP_MEDIA } from '../../../actions/my/startups/media'
 
 import LoadingSpinner from '../../shared/loading-spinner'
 import ImageBanner from '../../shared/image-banner'
@@ -30,10 +31,7 @@ import MyStartupSTeamModal from '../../modals/my/startups/s-team'
 import MyStartupSPitchDeckModal from '../../modals/my/startups/s-pitch-deck'
 import MyStartupSMarketScopeModal from '../../modals/my/startups/s-market-scope'
 import MyStartupSRiskModal from '../../modals/my/startups/s-risk'
-
-import MyStartupEditMediaModal from '../../modals/my/startups/edit-media'
-
-import MyStartupAddMediaModal from '../../modals/my/startups/add-media'
+import MyStartupNEMediaModal from '../../modals/my/startups/ne-media'
 
 const mapStateToProps = (state) => {
   return {
@@ -52,6 +50,7 @@ const mapDispatchToProps = (dispatch) => {
     dMyStartupKPI: bindActionCreators(dMyStartupKPI, dispatch),
     dMyStartupMilestone: bindActionCreators(dMyStartupMilestone, dispatch),
     dMyStartupFund: bindActionCreators(dMyStartupFund, dispatch),
+    dMyStartupMedia: bindActionCreators(dMyStartupMedia, dispatch)
   }
 }
 
@@ -551,15 +550,16 @@ export default class StartupsShow extends Component {
     )
   }
 
-  // ADD & EDIT
   moreInfoMedia() {
-    const { startup } = this.props
+    const { startup, routeParams, requestStatus } = this.props
+    const { editable } = this.state
     const title = "Media"
     const media = _.get(startup, 'media', [])
+    const isEmpty = media.length === 0
     return (
       <Element name={title} className="section">
-        {this.title(title, 'addMedia')}
-        {this.emptyContent(title, media.length === 0)}
+        {this.title(title, 'neMedia', false)}
+        {this.emptyContent(title, isEmpty, false)}
         {
           media.length > 0 && (
             <div className="row">
@@ -570,6 +570,27 @@ export default class StartupsShow extends Component {
                       <a href={post.link} target="_blank">
                         <img className="img-responsive" key={i} src={post.banner.original} alt={post.title} />
                       </a>
+                      {
+                        editable && (
+                          <button
+                            className="btn btn-info edit pull-right"
+                            onClick={() => { this.open("neMedia", true, post) }}
+                          >
+                            <i className="fa fa-pencil" />
+                          </button>
+                        )
+                      }
+                      {
+                        editable && (
+                          <button
+                            className="btn btn-danger btn-outline delete pull-right"
+                            disabled={_.get(requestStatus, `${D_MY_STARTUP_MEDIA}_${post.id}`)}
+                            onClick={() => { this.props.dMyStartupMedia({ ...routeParams, mediaID: post.id }) }}
+                          >
+                            <i className="fa fa-trash" />
+                          </button>
+                        )
+                      }
                     </div>
                   )
                 })
@@ -831,7 +852,7 @@ export default class StartupsShow extends Component {
                 {(editable || _.get(startup, "pitch_deck.attachments[0]")) && this.moreInfoPitchDeck()}
                 {(editable || _.get(startup, "market_scope.attachments[0]")) && this.moreInfoMarketScope()}
                 {(editable || _.get(startup, "risk.attachments[0]")) && this.moreInfoRisks()}
-                {/* (editable || _.get(startup, "media[0]")) && this.moreInfoMedia() */}
+                {(editable || _.get(startup, "media[0]")) && this.moreInfoMedia()}
                 {/* (editable || _.get(startup, "attachments[0]")) && this.moreInfoDocuments() */}
                 {/* (editable || _.get(startup, "end_notes")) && this.moreInfo() */}
               </div>
@@ -848,9 +869,7 @@ export default class StartupsShow extends Component {
         {this.state.sPitchDeck && <MyStartupSPitchDeckModal close={() => { this.close("sPitchDeck") }} params={routeParams} editMode={editMode} pitchDeck={this.state.editInfo} />}
         {this.state.sMarketScope && <MyStartupSMarketScopeModal close={() => { this.close("sMarketScope") }} params={routeParams} editMode={editMode} marketScope={this.state.editInfo} />}
         {this.state.sRisk && <MyStartupSRiskModal close={() => { this.close("sRisk") }} params={routeParams} editMode={editMode} risk={this.state.editInfo} />}
-
-        {this.state.editMedia && <MyStartupEditMediaModal close={() => { this.close("editMedia") }} params={routeParams} media={this.state.editInfo} />}
-        {this.state.addMedia && <MyStartupAddMediaModal close={() => { this.close("addMedia") }} params={routeParams} />}
+        {this.state.neMedia && <MyStartupNEMediaModal close={() => { this.close("neMedia") }} params={routeParams} editMode={editMode} medium={this.state.editInfo} />}
       </div>
     )
   }

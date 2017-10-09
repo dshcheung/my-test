@@ -1,24 +1,24 @@
 import React, { Component } from 'react'
 import Modal from 'react-bootstrap/lib/Modal'
 import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux'
 
-// import {
-//   cuMyStartupMarketScope, CU_MY_STARTUP_MARKET_SCOPE
-// } from '../../../../actions/my/startups/market-scope'
+import {
+  dMyStartupMarketScopeAttachment, D_MY_STARTUP_MARKET_SCOPE_ATTACHMENT
+} from '../../../../actions/my/startups/market-scope'
 
 import MyStartupsNEMarketScopeDescriptionModal from './ne-market-scope-description'
 import MyStartupsNEMarketScopeAttachmentModal from './ne-market-scope-attachment'
 
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
   return {
-    // cuMyStartupMarketScopeInProcess: _.get(state.requestStatus, CU_MY_STARTUP_MARKET_SCOPE)
+    requestStatus: _.get(state, 'requestStatus')
   }
 }
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    // cuMyStartupMarketScope: bindActionCreators(cuMyStartupMarketScope, dispatch)
+    dMyStartupMarketScopeAttachment: bindActionCreators(dMyStartupMarketScopeAttachment, dispatch)
   }
 }
 
@@ -43,8 +43,19 @@ export default class MyStartupsSMarketScopeModal extends Component {
     this.setState({ sMarketScope: true, [modalName]: false, stateEditMode: false, editInfo: null, editIndex: null })
   }
 
+  dMyStartupMarketScopeAttachment(id) {
+    this.props.dMyStartupMarketScopeAttachment({
+      attachments: [
+        {
+          id,
+          _destroy: true
+        }
+      ]
+    }, this.props.params)
+  }
+
   render() {
-    const { close, editMode, marketScope, params } = this.props
+    const { close, editMode, marketScope, params, requestStatus } = this.props
     const { stateEditMode, editInfo } = this.state
 
     const description = _.get(marketScope, 'description', '')
@@ -101,12 +112,15 @@ export default class MyStartupsSMarketScopeModal extends Component {
                         <li key={i} className="attachment">
                           <button
                             className="btn btn-info edit pull-right"
+                            disabled={_.get(requestStatus, `${D_MY_STARTUP_MARKET_SCOPE_ATTACHMENT}_${attachment.id}`)}
                             onClick={() => { this.open("neMarketScopeAttachment", true, attachment, i) }}
                           >
                             <i className="fa fa-pencil" />
                           </button>
                           <button
                             className="btn btn-danger btn-outline delete pull-right"
+                            disabled={_.get(requestStatus, `${D_MY_STARTUP_MARKET_SCOPE_ATTACHMENT}_${attachment.id}`)}
+                            onClick={() => { this.dMyStartupMarketScopeAttachment(attachment.id) }}
                           >
                             <i className="fa fa-trash" />
                           </button>

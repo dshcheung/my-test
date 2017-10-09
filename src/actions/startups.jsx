@@ -36,12 +36,11 @@ export const mergeStartupAttribute = (data, attribute, sortBy) => {
 }
 
 export const DELETE_STARTUP_ATTRIBUTE_ENTRY = "DELETE_STARTUP_ATTRIBUTE_ENTRY"
-export const deleteStartupAttributeEntry = (id, attribute, sortBy) => {
+export const deleteStartupAttributeEntry = (id, attribute) => {
   return {
     type: DELETE_STARTUP_ATTRIBUTE_ENTRY,
     attribute,
-    id,
-    sortBy
+    id
   }
 }
 

@@ -6,8 +6,8 @@ import { notySuccess } from '../../../services/noty'
 import { mergeStartupAttribute, deleteStartupAttributeEntry } from '../../startups'
 
 // create
-export const CREATE_MY_STARTUP_MEDIA = "CREATE_MY_STARTUP_MEDIA"
-export const createMyStartupMedia = (values, params, cb) => {
+export const C_MY_STARTUP_MEDIA = "C_MY_STARTUP_MEDIA"
+export const cMyStartupMedia = (values, params, cb) => {
   const request = genAxios({
     method: "post",
     url: genApiUrl(apiMyStartupsMediaIndex(params)),
@@ -20,7 +20,7 @@ export const createMyStartupMedia = (values, params, cb) => {
   })
 
   return {
-    type: CREATE_MY_STARTUP_MEDIA,
+    type: C_MY_STARTUP_MEDIA,
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()
@@ -31,8 +31,8 @@ export const createMyStartupMedia = (values, params, cb) => {
 }
 
 // update
-export const UPDATE_MY_STARTUP_MEDIA = "UPDATE_MY_STARTUP_MEDIA"
-export const updateMyStartupMedia = (values, params, cb) => {
+export const U_MY_STARTUP_MEDIA = "U_MY_STARTUP_MEDIA"
+export const uMyStartupMedia = (values, params, cb) => {
   const request = genAxios({
     method: "put",
     url: genApiUrl(apiMyStartupsMediaShow(params)),
@@ -45,7 +45,7 @@ export const updateMyStartupMedia = (values, params, cb) => {
   })
 
   return {
-    type: UPDATE_MY_STARTUP_MEDIA,
+    type: U_MY_STARTUP_MEDIA,
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()
@@ -56,18 +56,19 @@ export const updateMyStartupMedia = (values, params, cb) => {
 }
 
 // delete
-export const DELETE_MY_STARTUP_MEDIA = "DELETE_MY_STARTUP_MEDIA"
-export const deleteMyStartupMedia = (params) => {
+export const D_MY_STARTUP_MEDIA = "D_MY_STARTUP_MEDIA"
+export const dMyStartupMedia = (params) => {
   const request = genAxios({
     method: "delete",
     url: genApiUrl(apiMyStartupsMediaShow(params))
   })
 
   return {
-    type: `${DELETE_MY_STARTUP_MEDIA}_${params.mediaID}`,
+    type: `${D_MY_STARTUP_MEDIA}_${params.mediaID}`,
     request,
     successCB: (dispatch) => {
       dispatch(deleteStartupAttributeEntry(params.mediaID, 'media'))
+      notySuccess("Media Deleted!")
     }
   }
 }

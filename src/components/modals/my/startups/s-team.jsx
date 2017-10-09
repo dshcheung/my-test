@@ -1,27 +1,27 @@
 import React, { Component } from 'react'
 import Modal from 'react-bootstrap/lib/Modal'
 import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux'
 
 import { DEFAULT_USER_AVATAR } from '../../../../constants'
 
-// import {
-//   cuMyStartupTeam, CU_MY_STARTUP_TEAM
-// } from '../../../../actions/my/startups/team'
+import {
+  dMyStartupTeamMember, D_MY_STARTUP_TEAM_MEMBER
+} from '../../../../actions/my/startups/team'
 
 import MyStartupsNETeamStoryModal from './ne-team-story'
 import MyStartupsNETeamFounderModal from './ne-team-founder'
 import MyStartupsNETeamMemberModal from './ne-team-member'
 
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
   return {
-    // cuMyStartupTeamInProcess: _.get(state.requestStatus, CU_MY_STARTUP_TEAM)
+    requestStatus: _.get(state, 'requestStatus')
   }
 }
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    // cuMyStartupTeam: bindActionCreators(cuMyStartupTeam, dispatch)
+    dMyStartupTeamMember: bindActionCreators(dMyStartupTeamMember, dispatch)
   }
 }
 
@@ -46,8 +46,19 @@ export default class MyStartupsSTeamModal extends Component {
     this.setState({ sTeam: true, [modalName]: false, stateEditMode: false, editInfo: null, editIndex: null })
   }
 
+  dMyStartupTeamMember(id, keyword) {
+    this.props.dMyStartupTeamMember({
+      [keyword]: [
+        {
+          id,
+          _destroy: true
+        }
+      ]
+    }, this.props.params, keyword)
+  }
+
   render() {
-    const { close, editMode, team, params } = this.props
+    const { close, editMode, team, params, requestStatus } = this.props
     const { stateEditMode, editInfo } = this.state
 
     const story = _.get(team, 'story', '')
@@ -103,10 +114,24 @@ export default class MyStartupsSTeamModal extends Component {
                       const title = _.get(founder, 'title')
                       const name = _.get(founder, 'name')
                       return (
-                        <div key={i} className="team-member" onClick={() => { this.open('neFounder', true, founder, i) }}>
+                        <div key={i} className="team-member">
                           <img src={avatar} alt="Founder Avatar" />
                           {title && <div>{title}</div>}
                           {name && <div>{name}</div>}
+                          <button
+                            className="btn btn-info edit pull-right"
+                            disabled={_.get(requestStatus, `${D_MY_STARTUP_TEAM_MEMBER}_${founder.id}`)}
+                            onClick={() => { this.open('neFounder', true, founder, i) }}
+                          >
+                            <i className="fa fa-pencil" />
+                          </button>
+                          <button
+                            className="btn btn-danger btn-outline delete pull-right"
+                            disabled={_.get(requestStatus, `${D_MY_STARTUP_TEAM_MEMBER}_${founder.id}`)}
+                            onClick={() => { this.dMyStartupTeamMember(founder.id, 'founders') }}
+                          >
+                            <i className="fa fa-trash" />
+                          </button>
                         </div>
                       )
                     })
@@ -137,10 +162,24 @@ export default class MyStartupsSTeamModal extends Component {
                       const title = _.get(member, 'title')
                       const name = _.get(member, 'name')
                       return (
-                        <div key={i} className="team-member" onClick={() => { this.open('neMember', true, member, i) }}>
+                        <div key={i} className="team-member">
                           <img src={avatar} alt="Member Avatar" />
                           {title && <div>{title}</div>}
                           {name && <div>{name}</div>}
+                          <button
+                            className="btn btn-info edit pull-right"
+                            disabled={_.get(requestStatus, `${D_MY_STARTUP_TEAM_MEMBER}_${member.id}`)}
+                            onClick={() => { this.open('neMember', true, member, i) }}
+                          >
+                            <i className="fa fa-pencil" />
+                          </button>
+                          <button
+                            className="btn btn-danger btn-outline delete pull-right"
+                            disabled={_.get(requestStatus, `${D_MY_STARTUP_TEAM_MEMBER}_${member.id}`)}
+                            onClick={() => { this.dMyStartupTeamMember(member.id, 'members') }}
+                          >
+                            <i className="fa fa-trash" />
+                          </button>
                         </div>
                       )
                     })

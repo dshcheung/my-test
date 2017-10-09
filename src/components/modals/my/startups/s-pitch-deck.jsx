@@ -1,24 +1,24 @@
 import React, { Component } from 'react'
 import Modal from 'react-bootstrap/lib/Modal'
 import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux'
 
-// import {
-//   cuMyStartupPitchDeck, CU_MY_STARTUP_PITCH_DECK
-// } from '../../../../actions/my/startups/pitch-deck'
+import {
+  dMyStartupPitchDeckAttachment, D_MY_STARTUP_PITCH_DECK_ATTACHMENT
+} from '../../../../actions/my/startups/pitch-deck'
 
 import MyStartupsNEPitchDeckDescriptionModal from './ne-pitch-deck-description'
 import MyStartupsNEPitchDeckAttachmentModal from './ne-pitch-deck-attachment'
 
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
   return {
-    // cuMyStartupPitchDeckInProcess: _.get(state.requestStatus, CU_MY_STARTUP_PITCH_DECK)
+    requestStatus: _.get(state, 'requestStatus')
   }
 }
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    // cuMyStartupPitchDeck: bindActionCreators(cuMyStartupPitchDeck, dispatch)
+    dMyStartupPitchDeckAttachment: bindActionCreators(dMyStartupPitchDeckAttachment, dispatch)
   }
 }
 
@@ -43,8 +43,19 @@ export default class MyStartupsSPitchDeckModal extends Component {
     this.setState({ sPitchDeck: true, [modalName]: false, stateEditMode: false, editInfo: null, editIndex: null })
   }
 
+  dMyStartupPitchDeckAttachment(id) {
+    this.props.dMyStartupPitchDeckAttachment({
+      attachments: [
+        {
+          id,
+          _destroy: true
+        }
+      ]
+    }, this.props.params)
+  }
+
   render() {
-    const { close, editMode, pitchDeck, params } = this.props
+    const { close, editMode, pitchDeck, params, requestStatus } = this.props
     const { stateEditMode, editInfo } = this.state
 
     const description = _.get(pitchDeck, 'description', '')
@@ -101,12 +112,15 @@ export default class MyStartupsSPitchDeckModal extends Component {
                         <li key={i} className="attachment">
                           <button
                             className="btn btn-info edit pull-right"
+                            disabled={_.get(requestStatus, `${D_MY_STARTUP_PITCH_DECK_ATTACHMENT}_${attachment.id}`)}
                             onClick={() => { this.open("nePitchDeckAttachment", true, attachment, i) }}
                           >
                             <i className="fa fa-pencil" />
                           </button>
                           <button
                             className="btn btn-danger btn-outline delete pull-right"
+                            disabled={_.get(requestStatus, `${D_MY_STARTUP_PITCH_DECK_ATTACHMENT}_${attachment.id}`)}
+                            onClick={() => { this.dMyStartupPitchDeckAttachment(attachment.id) }}
                           >
                             <i className="fa fa-trash" />
                           </button>
