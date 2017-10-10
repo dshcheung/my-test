@@ -34,7 +34,7 @@ export default class Home extends Component {
           <div className="container-fluid">
             <div className="row">
               <div className="col-sm-12 col-md-2 col-lg-2 text-centersi">
-                <span className="news-heading h3 text-uppercase">
+                <span className="news-heading h4 text-uppercase">
                   Latest Insights, Trends and Analysis
                 </span>
               </div>

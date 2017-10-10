@@ -52,7 +52,7 @@ export default class Navbar extends Component {
           <Nav>
             <LinkContainer to="/startups" active={false}>
               <NavItem eventKey={1}>
-                <span>Discover Companies</span>
+                <span>Startups</span>
               </NavItem>
             </LinkContainer>
 
@@ -60,7 +60,7 @@ export default class Navbar extends Component {
               currentUser && (
                 <LinkContainer to="/campaigns" active={false}>
                   <NavItem eventKey={2}>
-                    <span>Browse Campaigns</span>
+                    <span>Campaigns</span>
                   </NavItem>
                 </LinkContainer>
               )
@@ -168,6 +168,9 @@ export default class Navbar extends Component {
                   <LinkContainer to="/my/settings" active={false}>
                     <MenuItem eventKey={9.5}>Settings</MenuItem>
                   </LinkContainer>
+
+                  <MenuItem divider />
+
                   <LinkContainer to="" active={false}>
                     <MenuItem eventKey={9.6} onClick={this.props.deleteSession}>Logout</MenuItem>
                   </LinkContainer>

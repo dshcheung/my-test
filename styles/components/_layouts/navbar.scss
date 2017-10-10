@@ -4,20 +4,13 @@
   border-bottom: 1px solid $gray-lighter;
   margin-bottom: 0;
   padding: 0 10px;
-
   > div {
-    // height: 100%;
-
     .navbar-header {
-      // height: 100%;
-
       .navbar-brand {
-        // height: 100%;
         img {
           max-height: 70px;
         }
       }
-
       .navbar-toggle {
         margin-top: 33px;
         margin-bottom: 33px;
@@ -26,11 +19,8 @@
 
     .navbar-collapse {
       background-color: white;
-
       .navbar-nav {
-        height: 100px;
-
-        >li {
+        > li {
           padding: 0;
           border-top: 5px solid transparent;
           height: 100%;
@@ -39,10 +29,10 @@
           }
           &.get-started {
             a {
-              padding: 27.5px 15px;
+              padding: 28px 15px;
               div {
                 color: $white-text;
-                padding: 10px 15px;
+                padding: 5px 10px;
                 font-weight: 100;
                 background-color: $brand-info;
               }
@@ -62,7 +52,7 @@
                 img {
                   height: 65px;
                   width: 65px;
-                  border-radius: 32.5px;
+                  border-radius: 20px;
                 }
                 i {
                   margin-left: 5px;
@@ -85,7 +75,7 @@
           > a {
             padding: 35px 15px;
             height: 100%;
-            font-size: ($font-size-base * 1.2);
+            font-size: ($font-size-base * 1.1);
             text-transform: uppercase;
             cursor: pointer;
             font-weight: 400;
@@ -100,11 +90,9 @@
     .navbar-collapse.in, .navbar-collapse.collapsing {
       width: inherit;
       border-bottom: 1px solid $gray-lighter;
-
       .navbar-nav {
         height: inherit;
-
-        >li {
+        > li {
           padding: 0;
           &.li-btn {
             padding: 0;
@@ -134,7 +122,7 @@
             padding: 10px 0;
             text-align: center;
 
-            >span, >button {
+            > span, > button {
               font-size: inherit;
             }
           }

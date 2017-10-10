@@ -755,7 +755,7 @@ export default class StartupsShow extends Component {
                     </div>
                   </div>
                 </div>
-                <button className="btn btn-primary btn-lg padding-20 btn-block btn-invest text-uppercase">Invest Now</button>
+                <button className="btn btn-primary btn-lg btn-block btn-invest text-uppercase">Invest Now</button>
                 <div className="warning margin-top-50 hide">
                   <span className="text-bold">Purchased securities are not currently tradeable.</span>
                   <p className="instruction">Expect to hold your investment until the company lists on a national exchange or is acquired.</p>
