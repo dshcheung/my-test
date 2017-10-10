@@ -70,6 +70,12 @@ export default class StartupsIndex extends Component {
     return (
       <div id="pages-startups-index" className="container-fluid">
         <section className="container">
+          <div className="row section-header">
+            <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+              <h1>LIVE STARTUPS</h1>
+              <p>Invest into businesses you believe in</p>
+            </div>
+          </div>
           <div className="row section-search">
             <StartupsSearchForm
               optClass=""
@@ -77,13 +83,6 @@ export default class StartupsIndex extends Component {
               submitInProcess={this.props.getStartupsInProcess}
             />
           </div>
-          <div className="row section-header">
-            <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-              <h1>LIVE STARTUPS</h1>
-              <p>Invest into businesses you believe in</p>
-            </div>
-          </div>
-
           <div className="row startup-list">
             {
               (() => {
