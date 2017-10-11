@@ -6,7 +6,7 @@ import Link from 'react-scroll/modules/components/Link'
 import Element from 'react-scroll/modules/components/Element'
 import RouteLink from 'react-router/lib/Link'
 
-import { DEFAULT_STARTUP_BANNER, DEFAULT_STARTUP_AVATAR } from '../../../constants'
+import { DEFAULT_STARTUP_BANNER, DEFAULT_STARTUP_AVATAR, DEFAULT_USER_AVATAR } from '../../../constants'
 
 import {
   getStartup, GET_STARTUP,
@@ -22,6 +22,7 @@ import { dMyStartupMedia, D_MY_STARTUP_MEDIA } from '../../../actions/my/startup
 import LoadingSpinner from '../../shared/loading-spinner'
 import ImageBanner from '../../shared/image-banner'
 
+import MyStartupEProfileModal from '../../modals/my/startups/e-profile'
 import MyStartupNEHighlightModal from '../../modals/my/startups/ne-highlight'
 import MyStartupNEOverviewModal from '../../modals/my/startups/ne-overview'
 import MyStartupNEKPIModal from '../../modals/my/startups/ne-kpi'
@@ -32,6 +33,7 @@ import MyStartupSPitchDeckModal from '../../modals/my/startups/s-pitch-deck'
 import MyStartupSMarketScopeModal from '../../modals/my/startups/s-market-scope'
 import MyStartupSRiskModal from '../../modals/my/startups/s-risk'
 import MyStartupNEMediaModal from '../../modals/my/startups/ne-media'
+import MyStartupSAttachmentsModal from '../../modals/my/startups/s-attachments'
 
 const mapStateToProps = (state) => {
   return {
@@ -378,7 +380,7 @@ export default class StartupsShow extends Component {
                     return (
                       <div key={i} className="col-xs-12">
                         <div className="col-xs-6 col-sm-4 col-md-4">
-                          <img className="full-width" src={member.avatar.original} alt={member.name} />
+                          <img className="full-width" src={member.avatar.original || DEFAULT_USER_AVATAR} alt={member.name} />
                         </div>
                         <div className="col-xs-6 col-sm-8 col-md-8">
                           <p>
@@ -602,46 +604,38 @@ export default class StartupsShow extends Component {
     )
   }
 
-  // CU
   moreInfoDocuments() {
     const { startup, currentUser } = this.props
     const { editable } = this.state
     const title = "Documents"
-    const documents = _.get(startup, 'attachments', [])
+    const attachments = _.get(startup, 'attachments', [])
+    const isEmpty = !attachments.length === 0
+    const editMode = !isEmpty
     const blur = !editable && "blur"
     return (
       <Element name={title} className="section">
-        {this.title(title, 'addDocument')}
-        {this.emptyContent(title, documents.length === 0)}
-        <div className={`row documents ${blur}`}>
-          <div className="col-xs-12">
-            <ul className="list-style-none">
-              {
-                documents.map((doc, i) => {
-                  return (
-                    <li key={i}>
-                      {
-                        editable && (
-                          <button
-                            className="btn btn-danger btn-outline delete pull-right"
-                            // disabled={_.get(requestStatus, `${DELETE_MY_STARTUP_ATTACHEMENT}_${doc.id}`)}
-                            // onClick={() => { this.props.deleteMyStartupAttachment({ ...routeParams, attachmentID: doc.id }) }}
-                          >
-                            <i className="fa fa-trash" />
-                          </button>
-                        )
-                      }
-                      <a href={doc.file.original} className="btn btn-success">
-                        {doc.title}
-                        <i className="fa fa-fw fa-download" />
-                      </a>
-                    </li>
-                  )
-                })
-              }
-            </ul>
-          </div>
-        </div>
+        {this.title(title, 'sAttachments', editMode, attachments, 'startup.attachments')}
+        {this.emptyContent(title, isEmpty, editMode)}
+        {
+          attachments.length > 0 && (
+            <div className={`documents ${blur}`}>
+              <ul>
+                {
+                  attachments.map((attachment, i) => {
+                    return (
+                      <li key={i}>
+                        <a href={attachment.file.original} className="btn btn-success">
+                          {attachment.title}
+                          <i className="fa fa-fw fa-download" />
+                        </a>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            </div>
+          )
+        }
         {
           !currentUser && !editable && (
             <RouteLink className="text-uppercase access btn btn-warning btn-lg" to="/auth/login">
@@ -673,6 +667,18 @@ export default class StartupsShow extends Component {
         <div className="row">
           <div className="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
             <section className="row basic-info">
+              {
+                editable && (
+                  <div className="col-xs-12">
+                    <button
+                      className="btn btn-info edit pull-right"
+                      onClick={() => { this.open("eProfile", true) }}
+                    >
+                      <i className="fa fa-pencil" />
+                    </button>
+                  </div>
+                )
+              }
               <div className="col-xs-12 col-md-6">
                 <div className="aspect-16-9">
                   <ImageBanner
@@ -801,17 +807,17 @@ export default class StartupsShow extends Component {
                         )
                       }
                       {
-                        (editable || _.get(startup, "pitch_deck.title")) && (
+                        (editable || _.get(startup, "pitch_deck")) && (
                           <li><Link to="Pitch Deck" spy smooth duration={500} offset={-100}>Pitch Deck</Link></li>
                         )
                       }
                       {
-                        (editable || _.get(startup, "market_scope.title")) && (
+                        (editable || _.get(startup, "market_scope")) && (
                           <li><Link to="Market Scope" spy smooth duration={500} offset={-100}>Market Scope</Link></li>
                         )
                       }
                       {
-                        (editable || _.get(startup, "risk.title")) && (
+                        (editable || _.get(startup, "risk")) && (
                           <li><Link to="Risk & Disclosure" spy smooth duration={500} offset={-100}>Risk & Disclosure</Link></li>
                         )
                       }
@@ -849,17 +855,18 @@ export default class StartupsShow extends Component {
                 {(editable || _.get(startup, "milestones[0]")) && this.moreInfoMilestones()}
                 {(editable || _.get(startup, "funds[0]")) && this.moreInfoFunds()}
                 {(editable || _.get(startup, "team")) && this.moreInfoTeam()}
-                {(editable || _.get(startup, "pitch_deck.attachments[0]")) && this.moreInfoPitchDeck()}
-                {(editable || _.get(startup, "market_scope.attachments[0]")) && this.moreInfoMarketScope()}
-                {(editable || _.get(startup, "risk.attachments[0]")) && this.moreInfoRisks()}
+                {(editable || _.get(startup, "pitch_deck")) && this.moreInfoPitchDeck()}
+                {(editable || _.get(startup, "market_scope")) && this.moreInfoMarketScope()}
+                {(editable || _.get(startup, "risk")) && this.moreInfoRisks()}
                 {(editable || _.get(startup, "media[0]")) && this.moreInfoMedia()}
-                {/* (editable || _.get(startup, "attachments[0]")) && this.moreInfoDocuments() */}
+                {(editable || _.get(startup, "attachments[0]")) && this.moreInfoDocuments()}
                 {/* (editable || _.get(startup, "end_notes")) && this.moreInfo() */}
               </div>
             </section>
           </div>
         </div>
 
+        {this.state.eProfile && <MyStartupEProfileModal close={() => { this.close("eProfile") }} params={routeParams} editMode={editMode} startup={this.state.editInfo} />}
         {this.state.neHighlight && <MyStartupNEHighlightModal close={() => { this.close("neHighlight") }} params={routeParams} editMode={editMode} highlight={editInfo} />}
         {this.state.neOverview && <MyStartupNEOverviewModal close={() => { this.close("neOverview") }} params={routeParams} editMode={editMode} profile={this.state.editInfo} />}
         {this.state.neKPI && <MyStartupNEKPIModal close={() => { this.close("neKPI") }} params={routeParams} editMode={editMode} kpi={this.state.editInfo} />}
@@ -870,6 +877,7 @@ export default class StartupsShow extends Component {
         {this.state.sMarketScope && <MyStartupSMarketScopeModal close={() => { this.close("sMarketScope") }} params={routeParams} editMode={editMode} marketScope={this.state.editInfo} />}
         {this.state.sRisk && <MyStartupSRiskModal close={() => { this.close("sRisk") }} params={routeParams} editMode={editMode} risk={this.state.editInfo} />}
         {this.state.neMedia && <MyStartupNEMediaModal close={() => { this.close("neMedia") }} params={routeParams} editMode={editMode} medium={this.state.editInfo} />}
+        {this.state.sAttachments && <MyStartupSAttachmentsModal close={() => { this.close("sAttachments") }} params={routeParams} editMode={editMode} attachments={this.state.editInfo} />}
       </div>
     )
   }

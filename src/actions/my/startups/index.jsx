@@ -1,6 +1,9 @@
 import { genApiUrl, addParamsToUrl, genAxios } from '../../../services/api-request'
 import { getFormData } from '../../../services/get-form-data'
-import { apiMyStartupsIndex } from '../../../services/api-path'
+import { apiMyStartupsIndex, apiMyStartupsShow } from '../../../services/api-path'
+import { notySuccess } from '../../../services/noty'
+
+import { setStartup } from '../../startups'
 
 export const MERGE_MY_STARTUPS = "MERGE_MY_STARTUPS"
 export const mergeMyStartups = (data, reset) => {
@@ -35,8 +38,8 @@ export const getMyStartups = ({ queries = {}, nextHref = null } = {}) => {
   }
 }
 
-export const CREATE_MY_STARTUP = "CREATE_MY_STARTUP"
-export const createMyStartup = (values, cb) => {
+export const C_MY_STARTUP = "C_MY_STARTUP"
+export const cMyStartup = (values, cb) => {
   const request = genAxios({
     method: "post",
     url: genApiUrl(apiMyStartupsIndex()),
@@ -46,11 +49,32 @@ export const createMyStartup = (values, cb) => {
   })
 
   return {
-    type: CREATE_MY_STARTUP,
+    type: C_MY_STARTUP,
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()
       dispatch(mergeMyStartups({ startups: [data.startup] }))
+    }
+  }
+}
+
+export const U_MY_STARTUP = "U_MY_STARTUP"
+export const uMyStartup = (values, params, cb) => {
+  const request = genAxios({
+    method: "put",
+    url: genApiUrl(apiMyStartupsShow(params)),
+    data: getFormData({
+      name: _.get(values, 'name', null)
+    }, 'startup')
+  })
+
+  return {
+    type: U_MY_STARTUP,
+    request,
+    successCB: (dispatch, data) => {
+      if (cb) cb()
+      dispatch(setStartup(data))
+      notySuccess("Name Updated!")
     }
   }
 }

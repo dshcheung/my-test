@@ -12,7 +12,7 @@ import {
 
 import LoadingSpinner from '../../shared/loading-spinner'
 
-import MyStartupsAddStartupModal from '../../modals/my/startups/add-startup'
+import MyStartupsNEStartupModal from '../../modals/my/startups/ne-startup'
 
 const mapStateToProps = (state) => {
   return {
@@ -48,11 +48,11 @@ export default class StartupsIndex extends Component {
   }
 
   open() {
-    this.setState({ addStartup: true })
+    this.setState({ neStartup: true })
   }
 
   close() {
-    this.setState({ addStartup: false })
+    this.setState({ neStartup: false })
   }
 
   render() {
@@ -132,7 +132,7 @@ export default class StartupsIndex extends Component {
           </div>
         </section>
 
-        {this.state.addStartup && <MyStartupsAddStartupModal close={this.close} />}
+        {this.state.neStartup && <MyStartupsNEStartupModal close={this.close} />}
       </div>
     )
   }

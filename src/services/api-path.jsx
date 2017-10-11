@@ -154,6 +154,14 @@ export const apiMyStartupsMediaShow = (params) => {
   return `${apiMyStartupsMediaIndex(params)}/${params.mediaID}`
 }
 
+export const apiMyStartupsAttachmentsIndex = (params) => {
+  return `${apiMyStartupsShow(params)}/attachments`
+}
+
+export const apiMyStartupsAttachmentsShow = (params) => {
+  return `${apiMyStartupsAttachmentsIndex(params)}/${params.attachmentID}`
+}
+
 export const apiVerifyMyProfile = () => {
   return `${apiMyProfile()}/verify`
 }

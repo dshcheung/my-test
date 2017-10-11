@@ -27,7 +27,7 @@ export const cMyStartupProfile = (values, params, cb) => {
 }
 
 export const U_MY_STARTUP_PROFILE = "U_MY_STARTUP_PROFILE"
-export const uMyStartupProfile = (values, params, cb) => {
+export const uMyStartupProfile = (values, params, cb, keyword = "Overview") => {
   const request = genAxios({
     method: "put",
     url: genApiUrl(apiMyStartupsProfileIndex(params)),
@@ -42,7 +42,7 @@ export const uMyStartupProfile = (values, params, cb) => {
     successCB: (dispatch, data) => {
       if (cb) cb()
       dispatch(mergeStartupAttribute(data, 'profile'))
-      notySuccess(`${_.get(values, 'overview') ? "Overview" : "Profile"} Updated!`)
+      notySuccess(`${keyword} Updated!`)
     }
   }
 }
