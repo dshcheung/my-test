@@ -15,43 +15,42 @@ const mapDispatchToProps = () => {
 export default class Footer extends Component {
   render() {
     return (
-      <div id="layouts-footer" className="bg-primary clearfix">
+      <div id="layouts-footer" className="bg-primary padding-bottom-50 clearfix">
         <div className="container-fluid">
           <div className="row">
             <div className="col-xs-12 col-md-10 col-md-offset-1">
               <div className="links">
                 <div className="links-section">
-                  <span className="header">Intergrations</span>
+                  <span className="header">Account</span>
                   <ul>
-                    <li><Link className="btn-gray">Google Sheets</Link></li>
-                    <li><Link className="btn-gray">Google Analytics</Link></li>
-                    <li><Link className="btn-gray">Xero</Link></li>
-                    <li><Link className="btn-gray">Salesforce</Link></li>
-                    <li><Link className="btn-gray">Quickbooks</Link></li>
-                    <li><Link className="btn-gray">Mixpanel</Link></li>
-                    <li><Link className="btn-gray">Stripe</Link></li>
-                    <li><Link className="btn-gray">ChartMogul</Link></li>
+                    <li><Link className="btn-gray">Log In</Link></li>
+                    <li><Link className="btn-gray">Sign up</Link></li>
                   </ul>
                 </div>
 
                 <div className="links-section">
-                  <span className="header">About Us</span>
+                  <span className="header">About</span>
                   <ul>
-                    <li><Link className="btn-gray">Blog</Link></li>
-                    <li><Link className="btn-gray">Partners</Link></li>
+                    <li><Link className="btn-gray">About Us</Link></li>
+                    <li><Link className="btn-gray">Careers</Link></li>
+                    <li><Link className="btn-gray">Press</Link></li>
                     <li><Link className="btn-gray">Contact</Link></li>
-                    <li><Link className="btn-gray">Team</Link></li>
+                    <li><Link className="btn-gray">Legal & Privacy</Link></li>
+                    <li><Link className="btn-gray">Security</Link></li>
                   </ul>
                 </div>
 
                 <div className="links-section">
-                  <span className="header">Solutions</span>
+                  <span className="header">Resources</span>
                   <ul>
-                    <li><Link className="btn-gray">Investor Updates & Reporting</Link></li>
-                    <li><Link className="btn-gray">Client Reporting</Link></li>
-                    <li><Link className="btn-gray">Internal Management Reporting</Link></li>
-                    <li><Link className="btn-gray">Dynamic Business Reports</Link></li>
-                    <li><Link className="btn-gray">KPI Dashboards</Link></li>
+                    <li><Link className="btn-gray">FAQ</Link></li>
+                    <li><Link className="btn-gray">Charts</Link></li>
+                    <li><Link className="btn-gray">Blog</Link></li>
+                    <li><Link className="btn-gray">Fees</Link></li>
+                    <li><Link className="btn-gray">Support</Link></li>
+                    <li><Link className="btn-gray">Trading Guide</Link></li>
+                    <li><Link className="btn-gray">API</Link></li>
+                    <li><Link className="btn-gray">Bug Bounty</Link></li>
                   </ul>
                 </div>
 
