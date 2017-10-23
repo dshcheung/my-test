@@ -481,7 +481,7 @@ export default class StartupsShow extends Component {
         {
           description && (
             <div className="row">
-              <div className="col-xs-12 market-scope-description">{description}</div>
+              <div className="col-xs-12 market-scope-description" dangerouslySetInnerHTML={{ __html: htmlDecode(description) }} />
             </div>
           )
         }
