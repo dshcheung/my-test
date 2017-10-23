@@ -378,16 +378,18 @@ export default class StartupsShow extends Component {
                 {
                   founders.map((member, i) => {
                     return (
-                      <div key={i} className="col-xs-12">
-                        <div className="col-xs-6 col-sm-4 col-md-4">
-                          <img className="full-width" src={member.avatar.original || DEFAULT_USER_AVATAR} alt={member.name} />
-                        </div>
-                        <div className="col-xs-6 col-sm-8 col-md-8">
-                          <p>
-                            <span className="text-bold header">{member.name}</span>
-                            <span className="title">{member.title}</span>
-                            <span className="description" dangerouslySetInnerHTML={{ __html: htmlDecode(member.description) }} />
-                          </p>
+                      <div key={i} className="row margin-bottom-10">
+                        <div className="col-xs-12">
+                          <div className="col-xs-6 col-sm-4 col-md-4">
+                            <img className="full-width" src={member.avatar.original || DEFAULT_USER_AVATAR} alt={member.name} />
+                          </div>
+                          <div className="col-xs-6 col-sm-8 col-md-8">
+                            <p>
+                              <span className="text-bold header">{member.name}</span>
+                              <span className="title">{member.title}</span>
+                              <span className="description" dangerouslySetInnerHTML={{ __html: htmlDecode(member.description) }} />
+                            </p>
+                          </div>
                         </div>
                       </div>
                     )
