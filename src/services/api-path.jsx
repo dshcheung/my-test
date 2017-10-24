@@ -58,6 +58,10 @@ export const apiMyNotificationsShowRead = (params) => {
   return `${apiMyNotificationsShow(params)}/read`
 }
 
+export const apiMyPreferencesIndex = () => {
+  return `${apiMy()}/preferences`
+}
+
 export const apiMyProfile = () => {
   return `${apiMy()}/profile`
 }
