@@ -844,8 +844,7 @@ export default class StartupsShow extends Component {
 
                     <ul className="links">
                       <li><i className="fa fa-commenting-o" /><span>Investor Discussion</span></li>
-                      <li><i className="fa fa-pencil-square-o" /><span>Startup Survey</span></li>
-                      <li><i className="fa fa-envelope-o" /><span>Contact AngelHub</span></li>
+                      <li><i className="fa fa-envelope-o" /><span>{ `Contact ${startup.name}` }</span></li>
                     </ul>
                   </div>
                 </AutoAffix>
