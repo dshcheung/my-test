@@ -46,13 +46,6 @@ export default class StartupsIndex extends Component {
   }
 
   getStartups(values) {
-    this.setState({
-      keyword: _.get(values, "keyword"),
-      filterBy: _.get(values, "filter") ? "category_id" : "",
-      filter: _.get(values, "filter"),
-      sortBy: _.get(values, "sortBy"),
-      sort: _.get(values, "sort")
-    })
     this.props.getStartups({
       queries: {
         q: _.get(values, "keyword"),

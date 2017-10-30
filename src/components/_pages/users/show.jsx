@@ -65,16 +65,8 @@ export default class UsersShow extends Component {
   }
 
   componentWillMount() {
-    if (this.props.currentUser && _.get(this.props.currentUser, 'id') !== this.props.routeParams.userID) {
+    if (_.get(this.props.currentUser, 'id') !== this.props.routeParams.userID) {
       this.props.getUser({ params: this.props.routeParams })
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.getMyProfileInProcess === true && nextProps.getMyProfileInProcess === false) {
-      if (_.get(nextProps.currentUser, 'id') !== nextProps.routeParams.userID) {
-        this.props.getUser({ params: this.props.routeParams })
-      }
     }
   }
 

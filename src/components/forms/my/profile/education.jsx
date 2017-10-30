@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { reduxForm, Field } from 'redux-form'
 
 import {
-  getImmovable, GET_IMMOVABLE_EDUCATION_LEVEL,
+  gImmovable, G_IMMOVABLE_EDUCATION_LEVEL,
   resetImmovable
 } from '../../../../actions/immovables'
 
@@ -16,7 +16,7 @@ import DatetimePicker from '../../../shared/form-elements/datetime-picker'
 
 const mapStateToProps = (state) => {
   return {
-    getEducationLevelInProcess: _.get(state.requestStatus, GET_IMMOVABLE_EDUCATION_LEVEL),
+    getEducationLevelInProcess: _.get(state.requestStatus, G_IMMOVABLE_EDUCATION_LEVEL),
     educationLevel: _.get(state.immovables, 'education_levels', []).map((el) => {
       return { ...el, name: el.name_localized }
     }),
@@ -26,7 +26,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getImmovable: bindActionCreators(getImmovable, dispatch),
+    gImmovable: bindActionCreators(gImmovable, dispatch),
     resetImmovable: bindActionCreators(resetImmovable, dispatch)
   }
 }
@@ -47,7 +47,7 @@ const mapDispatchToProps = (dispatch) => {
 })
 export default class MyProfileEducationForm extends Component {
   componentWillMount() {
-    this.props.getImmovable({ immovableID: "education_level" })
+    this.props.gImmovable({ immovableID: "education_level" })
   }
 
   componentWillUnmount() {

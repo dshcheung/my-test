@@ -7,11 +7,17 @@ const initialState = {}
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case SET_IMMOVABLE:
+    case SET_IMMOVABLE: {
+      let immovable = _.get(action, `immovable.${action.immovableID}`, null)
+      if (!immovable) {
+        immovable = { [action.immovableID]: _.get(action, 'immovable', []) }
+      }
+
       return {
         ...state,
-        ...action.immovable
+        ...immovable
       }
+    }
     case RESET_IMMOVABLE:
       return initialState
   }

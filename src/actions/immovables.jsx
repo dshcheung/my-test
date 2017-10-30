@@ -2,10 +2,11 @@ import { genApiUrl, genAxios } from '../services/api-request'
 import { apiImmovablesShow } from '../services/api-path'
 
 export const SET_IMMOVABLE = "SET_IMMOVABLE"
-export const setImmovable = (data) => {
+export const setImmovable = (data, immovableID) => {
   return {
     type: SET_IMMOVABLE,
-    immovable: data
+    immovable: data,
+    immovableID
   }
 }
 
@@ -16,19 +17,20 @@ export const resetImmovable = () => {
   }
 }
 
-export const GET_IMMOVABLE = "GET_IMMOVABLE"
-export const GET_IMMOVABLE_EDUCATION_LEVEL = "GET_IMMOVABLE_EDUCATION_LEVEL"
-export const getImmovable = ({ immovableID } = {}) => {
+export const G_IMMOVABLE = "G_IMMOVABLE"
+export const G_IMMOVABLE_EDUCATION_LEVEL = "G_IMMOVABLE_EDUCATION_LEVEL"
+export const G_IMMOVABLE_STARTUP_FILTERABLE = "G_IMMOVABLE_STARTUP_FILTERABLE"
+export const gImmovable = ({ immovableID } = {}) => {
   const request = genAxios({
     method: "get",
     url: genApiUrl(apiImmovablesShow({ immovableID }))
   })
 
   return {
-    type: `${GET_IMMOVABLE}_${immovableID.toUpperCase()}`,
+    type: `${G_IMMOVABLE}_${immovableID.toUpperCase()}`,
     request,
     successCB: (dispatch, data) => {
-      dispatch(setImmovable(data))
+      dispatch(setImmovable(data, immovableID))
     }
   }
 }
