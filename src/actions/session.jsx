@@ -62,8 +62,8 @@ export const createSession = (values) => {
     type: CREATE_SESSION,
     request,
     successCB: (dispatch, data) => {
-      dispatch(push(`/users/${data.id}`))
       dispatch(setCurrentUser(data))
+      dispatch(push(`/users/${data.id}`))
     }
   }
 }
