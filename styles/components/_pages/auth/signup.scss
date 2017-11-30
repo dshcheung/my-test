@@ -28,11 +28,9 @@
     label {
       color: $gray;
       font-weight: 400;
-      input[type="radio"] {
-        margin-left: 20px;
-      }
       &.radio-group {
         span {
+          margin-left: 10px;
           font-weight: 800;
         }
       }

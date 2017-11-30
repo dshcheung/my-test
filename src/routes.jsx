@@ -13,6 +13,7 @@ import ResetPasswordContainer from './components/_pages/auth/reset-password'
 
 import VerifyEmailContainer from './components/_pages/verify/email'
 import VerifyMobileContainer from './components/_pages/verify/mobile'
+import VerifyInvestorStatusContainer from './components/_pages/verify/investor-status'
 
 import MyContainer from './components/_pages/my/wrapper'
 import MyConversationsIndexContainer from './components/_pages/my/conversations'
@@ -44,6 +45,7 @@ export default (
     <Route path="verify">
       <Route path="email" component={VerifyEmailContainer} />
       <Route path="mobile" component={VerifyMobileContainer} />
+      <Route path="investor_status" component={VerifyInvestorStatusContainer} />
     </Route>
 
     <Route path="my" component={MyContainer}>

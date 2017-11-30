@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 
 export default class RadioField extends Component {
   render() {
-    const { input, meta: { touched, invalid, error }, opts, optItemClass, noHelp } = this.props
+    const { input, meta: { pristine, invalid, error }, opts, optItemClass, noHelp } = this.props
 
-    const hasErrorClass = touched && invalid ? 'has-error' : ''
+    const hasErrorClass = !pristine && invalid ? 'has-error' : ''
 
     return (
       <div className={`form-group clearfix ${hasErrorClass}`}>
@@ -12,7 +12,6 @@ export default class RadioField extends Component {
           opts.map((opt, i) => {
             return (
               <label key={i} className={`${optItemClass}`} htmlFor={input.name}>
-                <span>{opt.label} </span>
                 <input
                   type="radio"
                   name={input.name}
@@ -20,12 +19,13 @@ export default class RadioField extends Component {
                   onChange={input.onChange}
                   checked={input.value === opt.value}
                 />
+                <span>{opt.label} </span>
               </label>
             )
           })
         }
         {
-          hasErrorClass && !noHelp && <span className="help-block">{touched ? error.join(", ") : ''}</span>
+          hasErrorClass && !noHelp && <span className="help-block">{!pristine ? error.join(", ") : ''}</span>
         }
       </div>
     )

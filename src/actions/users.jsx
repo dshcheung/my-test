@@ -1,3 +1,5 @@
+import { push } from 'react-router-redux'
+
 import { genApiUrl, genAxios } from '../services/api-request'
 import { getFormData } from '../services/get-form-data'
 import { apiUsersIndex, apiUsersShow } from '../services/api-path'
@@ -41,6 +43,9 @@ export const createUser = (values) => {
     request,
     successCB: (dispatch, data) => {
       dispatch(setCurrentUser(data))
+      if (data.role === "Investor") {
+        dispatch(push('/verify/is_investor'))
+      }
     }
   }
 }
