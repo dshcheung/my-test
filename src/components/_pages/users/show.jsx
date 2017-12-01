@@ -65,7 +65,9 @@ export default class UsersShow extends Component {
   }
 
   componentWillMount() {
-    if (_.get(this.props.currentUser, 'id') !== this.props.routeParams.userID) {
+    const currentUserID = _.get(this.props, 'currentUser.id', null)
+    const routeUserID = _.get(this.props, 'routeParams.userID')
+    if (currentUserID === routeUserID) {
       this.props.getUser({ params: this.props.routeParams })
     }
   }
@@ -121,6 +123,21 @@ export default class UsersShow extends Component {
     }
 
     return null
+  }
+
+  moreInfoContacts() {
+    const title = "Contacts"
+    const { user } = this.state
+
+    return (
+      <Element name={title} className="section">
+        <h2 className="h2">{title}</h2>
+        <div className="row">
+          <div className="col-xs-12"><strong>Email:</strong> {user.email || "N/A"}</div>
+          <div className="col-xs-12"><strong>Mobile:</strong> {user.mobile || "N/A"}</div>
+        </div>
+      </Element>
+    )
   }
 
   moreInfoContentExperiences() {
@@ -265,8 +282,7 @@ export default class UsersShow extends Component {
       )
     }
 
-    // const showContact = user.preferences.show_email || user.preferences.show_mobile
-    const showContact = false
+    const showContact = user.preferences.show_email || user.preferences.show_mobile
 
     return (
       <div id="pages-users-show" className="container-fluid">
@@ -324,6 +340,7 @@ export default class UsersShow extends Component {
               </AutoAffix>
             </div>
             <div className="col-xs-12 col-sm-9">
+              {(showContact) && this.moreInfoContacts()}
               {(editable || _.get(user, "experiences[0]")) && this.moreInfoContentExperiences()}
               {(editable || _.get(user, "educations[0]")) && this.moreInfoContentEducations()}
               {(editable || _.get(user, "endorsements[0]")) && this.moreInfoContentEndorsements()}
