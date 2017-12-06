@@ -3,6 +3,8 @@ import { getFormData } from '../../services/get-form-data'
 import { apiMyCampaignsIndex, apiMyCampaignsShow } from '../../services/api-path'
 import { notySuccess } from '../../services/noty'
 
+import { setStartup } from '../campaigns'
+
 export const MERGE_MY_CAMPAIGNS = "MERGE_MY_CAMPAIGNS"
 export const mergeMyCampaigns = (data, reset) => {
   return {
@@ -71,7 +73,7 @@ export const uMyCampaign = (values, params, cb) => {
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()
-      // dispatch(setStartup(data))
+      dispatch(setStartup(data))
       notySuccess("Name Updated!")
     }
   }
