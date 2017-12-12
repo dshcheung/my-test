@@ -6,6 +6,14 @@ export const apiStartupsShow = (params) => {
   return `${apiStartupsIndex()}/${params.startupID}`
 }
 
+export const apiCampaignsIndex = () => {
+  return 'campaigns'
+}
+
+export const apiCampaignsShow = (params) => {
+  return `${apiCampaignsIndex()}/${params.campaignID}`
+}
+
 export const apiUsersIndex = () => {
   return 'users'
 }
@@ -88,6 +96,14 @@ export const apiMyEducationsIndex = () => {
 
 export const apiMyEducationsShow = (params) => {
   return `${apiMyEducationsIndex()}/${params.myEducationID}`
+}
+
+export const apiMyCampaignsIndex = () => {
+  return `${apiMy()}/campaigns`
+}
+
+export const apiMyCampaignsShow = (params) => {
+  return `${apiMyCampaignsIndex()}/${params.myCampaignID || params.campaignID}`
 }
 
 export const apiMyStartupsIndex = () => {

@@ -19,6 +19,7 @@ import MyContainer from './components/_pages/my/wrapper'
 import MyConversationsIndexContainer from './components/_pages/my/conversations'
 import MyNotificationsIndexContainer from './components/_pages/my/notifications/index'
 import MyStartupsIndexContainer from './components/_pages/my/startups'
+import MyPortfolioContainer from './components/_pages/my/portfolio'
 import MySettingsContainer from './components/_pages/my/settings'
 
 import UsersShowContainer from './components/_pages/users/show'
@@ -26,10 +27,39 @@ import UsersShowContainer from './components/_pages/users/show'
 import StartupsIndexContainer from './components/_pages/startups/index'
 import StartupsShowContainer from './components/_pages/startups/show'
 
+import CampaignsIndexContainer from './components/_pages/campaigns/index'
+
 import PageNotFound from './components/_pages/not-found'
 
-// TODO
-// Portfolio -> Campaigns Index
+// NOTE
+
+// Non Auth
+// * auth (both)
+// * startups (both)
+
+// Auth
+// * campaigns (both)
+// * verify/email (both)
+// * verify/mobile (both)
+// my/conversations (both)
+// my/notifications (both)
+// * my/settings (both)
+
+// StartupUser
+// my/portfolio -> My Campaigns Index & New (Modal)
+// my/startups
+// users/:id -> Relevent Info
+// startups/:id -> Editable If Owner
+// * users/:id -> Editable If Owner
+// campaigns/:id -> Editable If Owner
+
+// Investor
+// verify/investor_status
+// my/portfolio -> My Campaigns Pledged Index
+// users/:id -> Relevent Info
+// startups/:id -> Viewable
+// users/:id -> Editable If Owner
+// campaigns/:id -> Pledgable
 
 export default (
   <Route path="/" component={App}>
@@ -56,14 +86,9 @@ export default (
         <Route path=":notificationID" />
       </Route>
 
-      <Route path="portfolio" />
+      <Route path="portfolio" component={MyPortfolioContainer} />
 
       <Route path="startups" component={MyStartupsIndexContainer} />
-
-      <Route path="campaigns">
-        <Route path="new" />
-        <Route path=":campaignID" />
-      </Route>
 
       <Route path="settings" component={MySettingsContainer} />
     </Route>
@@ -78,7 +103,7 @@ export default (
     </Route>
 
     <Route path="campaigns">
-      <IndexRoute />
+      <IndexRoute component={CampaignsIndexContainer} />
       <Route path=":campaignID" />
     </Route>
 
