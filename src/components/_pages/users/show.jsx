@@ -70,6 +70,17 @@ export default class UsersShow extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    const currentUser = _.get(nextProps, 'currentUser', null)
+    const editable = _.get(currentUser, 'id') === nextProps.routeParams.userID
+
+    this.setState({ editable, user: editable ? currentUser : _.get(nextProps, 'user', null) })
+
+    // if (this.state.editName) {
+    //   this.setState({ editInfo: _.get(nextProps, this.state.editName) })
+    // }
+  }
+
   componentWillUnmount() {
     this.props.resetUser()
   }
@@ -82,11 +93,167 @@ export default class UsersShow extends Component {
     this.setState({ [name]: false, editInfo: null })
   }
 
-  render() {
-    const { currentUser, getUserInProcess, getMyProfileInProcess, requestStatus } = this.props
+  title(title, modalName, editMode, editInfo, editName) {
+    const iconClass = editMode ? "fa-pencil" : "fa-plus"
+    return (
+      <div className="h2">
+        {title}
+        {
+          this.state.editable && (
+            <button
+              className="btn btn-info pull-right add"
+              onClick={() => { this.open(modalName, editMode, editInfo, editName) }}
+            ><i className={`fa ${iconClass}`} /></button>
+          )
+        }
+      </div>
+    )
+  }
 
-    const editable = _.get(currentUser, 'id') === this.props.routeParams.userID
-    const user = editable ? currentUser : this.props.user
+  emptyAndAdd(title, execute, editMode) {
+    const keyWord = editMode ? "Edit" : "Add"
+    if (this.state.editable && execute) {
+      return (
+        <div>
+          <p>{`Click ${keyWord} Icon To ${keyWord} ${title}`}</p>
+        </div>
+      )
+    }
+
+    return null
+  }
+
+  moreInfoContentExperiences() {
+    const { requestStatus } = this.props
+    const { user, editable } = this.state
+    const title = "Experiences"
+    const highlights = _.get(user, 'experiences', [])
+
+    return (
+      <Element name={title} className="section">
+        {this.title(title, "addExperience", false)}
+        {this.emptyAndAdd(title, highlights.length === 0)}
+        {
+          highlights.length !== 0 && (
+            <div className="row">
+              {
+                highlights.map((highlight, k) => {
+                  return (
+                    <div key={k} className="col-xs-12 experience">
+                      <div className="title"><strong>{highlight.position}</strong>, {highlight.company}</div>
+                      <div className="year">{highlight.year && moment(highlight.year).format('YYYY')}</div>
+                      <div className="description">{highlight.description}</div>
+                      {
+                        editable && (
+                          <button className="btn btn-info edit" onClick={() => { this.open("editExperience", highlight) }}>
+                            <i className="fa fa-pencil" />
+                          </button>
+                        )
+                      }
+                      {
+                        editable && (
+                          <button
+                            className="btn btn-danger btn-outline delete"
+                            disabled={_.get(requestStatus, `${DELETE_MY_EXPERIENCE}_${highlight.id}`)}
+                            onClick={() => { this.props.deleteMyExperience({ myExperienceID: highlight.id }) }}
+                          >
+                            <i className="fa fa-trash" />
+                          </button>
+                        )
+                      }
+                    </div>
+                  )
+                })
+              }
+            </div>
+          )
+        }
+      </Element>
+    )
+  }
+
+  moreInfoContentEducations() {
+    const { requestStatus } = this.props
+    const { user } = this.state
+    const title = "Educations"
+    const educations = _.get(user, 'educations', [])
+
+    return (
+      <Element name={title} className="section">
+        {this.title(title, "addEducation", false)}
+        {this.emptyAndAdd(title, educations.length === 0)}
+        {
+          educations.length !== 0 && (
+            <div className="row">
+              {
+                educations.map((education, k) => {
+                  return (
+                    <div key={k} className="col-xs-12 education">
+                      <div className="title"><strong>{education.education_level.name}</strong>, {education.school}</div>
+                      <div className="year">{education.year && moment(education.year).format('YYYY')}</div>
+                      <button className="btn btn-info edit" onClick={() => { open("editEducation", education) }}>
+                        <i className="fa fa-pencil" />
+                      </button>
+                      <button
+                        className="btn btn-danger btn-outline delete"
+                        disabled={_.get(requestStatus, `${DELETE_MY_EDUCATION}_${education.id}`)}
+                        onClick={() => { this.props.deleteMyEducation({ myEducationID: education.id }) }}
+                      >
+                        <i className="fa fa-trash" />
+                      </button>
+                    </div>
+                  )
+                })
+              }
+            </div>
+          )
+        }
+      </Element>
+    )
+  }
+
+  moreInfoContentEndorsements() {
+    const { requestStatus } = this.props
+    const { user } = this.state
+    const title = "Endorsements"
+    const endorsements = _.get(user, 'endorsements', [])
+    return (
+      <Element name={title} className="section">
+        {this.title(title, "addEndorsement", false)}
+        {this.emptyAndAdd(title, endorsements.length === 0)}
+        {
+          endorsements.length !== 0 && (
+            <div className="row">
+              {
+                endorsements.map((endorsement, k) => {
+                  return (
+                    <div key={k} className="col-xs-12 endorsement">
+                      <div className="title"><strong>{endorsement.name}</strong></div>
+                      <div className="description">{endorsement.description}</div>
+                      <button className="btn btn-info edit" onClick={() => { open("editEndorsement", endorsement) }}>
+                        <i className="fa fa-pencil" />
+                      </button>
+                      <button
+                        className="btn btn-danger btn-outline delete"
+                        disabled={_.get(requestStatus, `${DELETE_MY_ENDORSEMENT}_${endorsement.id}`)}
+                        onClick={() => { this.props.deleteMyEndorsement({ myEndorsementID: endorsement.id }) }}
+                      >
+                        <i className="fa fa-trash" />
+                      </button>
+                    </div>
+                  )
+                })
+              }
+            </div>
+          )
+        }
+      </Element>
+    )
+  }
+
+  render() {
+    const { getUserInProcess, getMyProfileInProcess } = this.props
+    const { editable, user } = this.state
 
     if (getUserInProcess || getMyProfileInProcess) return <LoadingSpinner />
 
@@ -97,6 +264,9 @@ export default class UsersShow extends Component {
         </div>
       )
     }
+
+    // const showContact = user.preferences.show_email || user.preferences.show_mobile
+    const showContact = false
 
     return (
       <div id="pages-users-show" className="container-fluid">
@@ -130,6 +300,11 @@ export default class UsersShow extends Component {
                 <div className="sidebar-wrapper">
                   <ul className="scrollto">
                     {
+                      (editable || showContact) && (
+                        <li><Link to="Contacts" spy smooth duration={500} offset={-100}>Contacts</Link></li>
+                      )
+                    }
+                    {
                       (editable || _.get(user, "experiences[0]")) && (
                         <li><Link to="Experiences" spy smooth duration={500} offset={-100}>Experiences</Link></li>
                       )
@@ -149,18 +324,9 @@ export default class UsersShow extends Component {
               </AutoAffix>
             </div>
             <div className="col-xs-12 col-sm-9">
-              {
-                (editable || _.get(user, "experiences[0]")) &&
-                moreInfoContentExperiences(editable, "Experiences", user.experiences, this.open, this.props.deleteMyExperience, requestStatus)
-              }
-              {
-                (editable || _.get(user, "educations[0]")) &&
-                moreInfoContentEducations(editable, "Educations", user.educations, this.open, this.props.deleteMyEducation, requestStatus)
-              }
-              {
-                (editable || _.get(user, "endorsements[0]")) &&
-                moreInfoContentEndorsements(editable, "Endorsements", user.endorsements, this.open, this.props.deleteMyEndorsement, requestStatus)
-              }
+              {(editable || _.get(user, "experiences[0]")) && this.moreInfoContentExperiences()}
+              {(editable || _.get(user, "educations[0]")) && this.moreInfoContentEducations()}
+              {(editable || _.get(user, "endorsements[0]")) && this.moreInfoContentEndorsements()}
             </div>
           </section>
         </div>
@@ -175,140 +341,4 @@ export default class UsersShow extends Component {
       </div>
     )
   }
-}
-
-// TODO: Move to class methods
-const titleAndAdd = (editable, title, open, modalName) => {
-  return (
-    <div className="h2">
-      {title}
-      {
-        editable && (
-          <button
-            className="btn btn-info pull-right add"
-            onClick={() => { open(modalName) }}
-          ><i className="fa fa-plus" /></button>
-        )
-      }
-    </div>
-  )
-}
-
-const emptyAndAdd = (editable, title, execute) => {
-  if (editable && execute) {
-    return (
-      <div>
-        <p>Click Add Icon To Add {title}</p>
-      </div>
-    )
-  }
-
-  return null
-}
-
-// TODO: Consolidate functions
-const moreInfoContentExperiences = (editable, title, items = [], open, deleteItem, requestStatus) => {
-  return (
-    <Element name={title} className="section">
-      {titleAndAdd(editable, title, open, "addExperience")}
-      {emptyAndAdd(editable, title, items.length === 0)}
-      {
-        items.length !== 0 && (
-          <div className="row">
-            {
-              items.map((item, k) => {
-                return (
-                  <div key={k} className="col-xs-12 experience">
-                    <div className="title"><strong>{item.position}</strong>, {item.company}</div>
-                    <div className="year">{item.year && moment(item.year).format('YYYY')}</div>
-                    <div className="description">{item.description}</div>
-                    <button className="btn btn-info edit" onClick={() => { open("editExperience", item) }}>
-                      <i className="fa fa-pencil" />
-                    </button>
-                    <button
-                      className="btn btn-danger btn-outline delete"
-                      disabled={_.get(requestStatus, `${DELETE_MY_EXPERIENCE}_${item.id}`)}
-                      onClick={() => { deleteItem({ myExperienceID: item.id }) }}
-                    >
-                      <i className="fa fa-trash" />
-                    </button>
-                  </div>
-                )
-              })
-            }
-          </div>
-        )
-      }
-    </Element>
-  )
-}
-
-const moreInfoContentEducations = (editable, title, items = [], open, deleteItem, requestStatus) => {
-  return (
-    <Element name={title} className="section">
-      {titleAndAdd(editable, title, open, "addEducation")}
-      {emptyAndAdd(editable, title, items.length === 0)}
-      {
-        items.length !== 0 && (
-          <div className="row">
-            {
-              items.map((item, k) => {
-                return (
-                  <div key={k} className="col-xs-12 education">
-                    <div className="title"><strong>{item.education_level.name}</strong>, {item.school}</div>
-                    <div className="year">{item.year && moment(item.year).format('YYYY')}</div>
-                    <button className="btn btn-info edit" onClick={() => { open("editEducation", item) }}>
-                      <i className="fa fa-pencil" />
-                    </button>
-                    <button
-                      className="btn btn-danger btn-outline delete"
-                      disabled={_.get(requestStatus, `${DELETE_MY_EDUCATION}_${item.id}`)}
-                      onClick={() => { deleteItem({ myEducationID: item.id }) }}
-                    >
-                      <i className="fa fa-trash" />
-                    </button>
-                  </div>
-                )
-              })
-            }
-          </div>
-        )
-      }
-    </Element>
-  )
-}
-
-const moreInfoContentEndorsements = (editable, title, items = [], open, deleteItem, requestStatus) => {
-  return (
-    <Element name={title} className="section">
-      {titleAndAdd(editable, title, open, "addEndorsement")}
-      {emptyAndAdd(editable, title, items.length === 0)}
-      {
-        items.length !== 0 && (
-          <div className="row">
-            {
-              items.map((item, k) => {
-                return (
-                  <div key={k} className="col-xs-12 endorsement">
-                    <div className="title"><strong>{item.name}</strong></div>
-                    <div className="description">{item.description}</div>
-                    <button className="btn btn-info edit" onClick={() => { open("editEndorsement", item) }}>
-                      <i className="fa fa-pencil" />
-                    </button>
-                    <button
-                      className="btn btn-danger btn-outline delete"
-                      disabled={_.get(requestStatus, `${DELETE_MY_ENDORSEMENT}_${item.id}`)}
-                      onClick={() => { deleteItem({ myEndorsementID: item.id }) }}
-                    >
-                      <i className="fa fa-trash" />
-                    </button>
-                  </div>
-                )
-              })
-            }
-          </div>
-        )
-      }
-    </Element>
-  )
 }

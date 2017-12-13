@@ -27,6 +27,9 @@ import StartupsShowContainer from './components/_pages/startups/show'
 
 import PageNotFound from './components/_pages/not-found'
 
+// TODO
+// Portfolio -> Campaigns Index
+
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={HomeContainer} />
@@ -56,7 +59,7 @@ export default (
       <Route path="startups" component={MyStartupsIndexContainer} />
 
       <Route path="campaigns">
-        <IndexRoute />
+        <Route path="new" />
         <Route path=":campaignID" />
       </Route>
 
