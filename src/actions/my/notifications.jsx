@@ -2,12 +2,19 @@ import { genApiUrl, addParamsToUrl, genAxios } from '../../services/api-request'
 import { getFormData } from '../../services/get-form-data'
 import { apiMyNotificationsIndex, apiMyNotificationsShowRead } from '../../services/api-path'
 
-export const MERGE_MY_NOFICATIONS = "MERGE_MY_NOFICATIONS"
+export const MERGE_MY_NOTIFICATIONS = "MERGE_MY_NOTIFICATIONS"
 export const mergeMyNotifications = (data, reset) => {
   return {
-    type: MERGE_MY_NOFICATIONS,
+    type: MERGE_MY_NOTIFICATIONS,
     data: data.notifications,
     reset
+  }
+}
+
+export const RESET_MY_NOTIFICATIONS = "RESET_MY_NOTIFICATIONS"
+export const resetMyNotifications = () => {
+  return {
+    type: RESET_MY_NOTIFICATIONS
   }
 }
 

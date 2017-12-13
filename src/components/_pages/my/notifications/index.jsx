@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { Link } from 'react-router'
 
 import {
-  getMyNotifications, GET_MY_NOTIFICATIONS,
+  gMyNotifications, G_MY_NOTIFICATIONS,
   resetMyNotifications
 } from '../../../../actions/my/notifications'
 
@@ -13,13 +13,13 @@ import LoadingSpinner from '../../../shared/loading-spinner'
 const mapStateToProps = (state) => {
   return {
     myNotifications: _.get(state, 'myNotifications', []),
-    getMyNotificationsInProcess: _.get(state.requestStatus, GET_MY_NOTIFICATIONS)
+    gMyNotificationsInProcess: _.get(state.requestStatus, G_MY_NOTIFICATIONS)
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getMyNotifications: bindActionCreators(getMyNotifications, dispatch),
+    gMyNotifications: bindActionCreators(gMyNotifications, dispatch),
     resetMyNotifications: bindActionCreators(resetMyNotifications, dispatch)
   }
 }
@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch) => {
 @connect(mapStateToProps, mapDispatchToProps)
 export default class MyNotificationsIndex extends Component {
   componentWillMount() {
-    this.props.getMyNotifications()
+    this.props.gMyNotifications()
   }
 
   componentWillUnmount() {
@@ -35,7 +35,7 @@ export default class MyNotificationsIndex extends Component {
   }
 
   render() {
-    const { myNotifications, getMyNotificationsInProcess } = this.props
+    const { myNotifications, gMyNotificationsInProcess } = this.props
 
     return (
       <div id="page-my-notifications-index" className="container padding-top-20">
@@ -47,7 +47,7 @@ export default class MyNotificationsIndex extends Component {
             {
               (() => {
                 let component = null
-                if (getMyNotificationsInProcess) {
+                if (gMyNotificationsInProcess) {
                   component = <LoadingSpinner />
                 } else {
                   const noNotifications = myNotifications.length === 0 && (
