@@ -19,7 +19,7 @@ import MyContainer from './components/_pages/my/wrapper'
 import MyConversationsIndexContainer from './components/_pages/my/conversations'
 import MyNotificationsIndexContainer from './components/_pages/my/notifications/index'
 import MyStartupsIndexContainer from './components/_pages/my/startups'
-import MyPortfolioContainer from './components/_pages/my/portfolio'
+import MyCampaignsContainer from './components/_pages/my/campaigns'
 import MySettingsContainer from './components/_pages/my/settings'
 
 import UsersShowContainer from './components/_pages/users/show'
@@ -46,20 +46,18 @@ import PageNotFound from './components/_pages/not-found'
 // * my/settings (both)
 
 // StartupUser
-// my/portfolio -> My Campaigns Index & New (Modal)
-// my/startups
-// users/:id -> Relevent Info
-// startups/:id -> Editable If Owner
-// * users/:id -> Editable If Owner
+// my/campaigns -> My Campaigns Index & New (Modal)
+// * my/startups -> My Startups Index & New (Modal)
+// * startups/:id -> Editable If Owner
 // campaigns/:id -> Editable If Owner
+// * users/:id -> Editable If Owner
 
 // Investor
 // verify/investor_status
 // my/portfolio -> My Campaigns Pledged Index
-// users/:id -> Relevent Info
-// startups/:id -> Viewable
-// users/:id -> Editable If Owner
+// * startups/:id -> Viewable
 // campaigns/:id -> Pledgable
+// users/:id -> Editable If Owner
 
 export default (
   <Route path="/" component={App}>
@@ -86,15 +84,13 @@ export default (
         <Route path=":notificationID" />
       </Route>
 
-      <Route path="portfolio" component={MyPortfolioContainer} />
+      <Route path="portfolio" />
+
+      <Route path="campaigns" component={MyCampaignsContainer} />
 
       <Route path="startups" component={MyStartupsIndexContainer} />
 
       <Route path="settings" component={MySettingsContainer} />
-    </Route>
-
-    <Route path="users">
-      <Route path=":userID" component={UsersShowContainer} />
     </Route>
 
     <Route path="startups">
@@ -105,6 +101,10 @@ export default (
     <Route path="campaigns">
       <IndexRoute component={CampaignsIndexContainer} />
       <Route path=":campaignID" />
+    </Route>
+
+    <Route path="users">
+      <Route path=":userID" component={UsersShowContainer} />
     </Route>
 
     <Route path="about" />

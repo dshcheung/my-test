@@ -4,47 +4,47 @@ import { bindActionCreators } from 'redux'
 import { Link } from 'react-router'
 
 import {
-  getCampaigns, GET_CAMPAIGNS,
-  resetCampaigns
-} from '../../../actions/campaigns'
+  gMyCampaigns, G_MY_CAMPAIGNS,
+  resetMyCampaigns
+} from '../../../actions/my/campaigns'
 
 import StartupsSearchForm from '../../forms/startups/search'
 import LoadingSpinner from '../../shared/loading-spinner'
 
 const mapStateToProps = (state) => {
   return {
-    campaigns: _.get(state, 'campaigns', []),
-    getCampaignsInProcess: _.get(state.requestStatus, GET_CAMPAIGNS)
+    myCampaigns: _.get(state, 'myCampaigns', []),
+    gMyCampaignsInProcess: _.get(state.requestStatus, G_MY_CAMPAIGNS)
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getCampaigns: bindActionCreators(getCampaigns, dispatch),
-    resetCampaigns: bindActionCreators(resetCampaigns, dispatch)
+    gMyCampaigns: bindActionCreators(gMyCampaigns, dispatch),
+    resetMyCampaigns: bindActionCreators(resetMyCampaigns, dispatch)
   }
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class CampaignsIndex extends Component {
+export default class MyCampaigns extends Component {
   constructor(props) {
     super(props)
 
     this.state = {}
 
-    this.getCampaigns = this.getCampaigns.bind(this)
+    this.gMyCampaigns = this.gMyCampaigns.bind(this)
   }
 
   componentWillMount() {
-    this.props.getCampaigns()
+    this.props.gMyCampaigns()
   }
 
   componentWillUnmount() {
-    this.props.resetCampaigns()
+    this.props.resetMyCampaigns()
   }
 
-  getCampaigns(values) {
-    this.props.getCampaigns({
+  gMyCampaigns(values) {
+    this.props.gMyCampaigns({
       queries: {
         q: _.get(values, "keyword"),
         filter_by: _.get(values, "filter") ? "category_id" : "",
@@ -56,32 +56,29 @@ export default class CampaignsIndex extends Component {
   }
 
   render() {
-    const { campaigns, getCampaignsInProcess } = this.props
+    const { myCampaigns, gMyCampaignsInProcess } = this.props
 
     return (
-      <div id="pages-campaigns-index" className="container-fluid">
+      <div id="pages-my-campaigns" className="container-fluid">
         <section className="container">
-          <div className="row section-header">
-            <div className="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-              <h1>LIVE CAMPAIGNS</h1>
-              <p>Invest into businesses you believe in</p>
-            </div>
-          </div>
           <div className="row section-search">
             <StartupsSearchForm
               optClass=""
-              onSubmit={this.getCampaigns}
-              submitInProcess={getCampaignsInProcess}
+              onSubmit={this.gMyCampaigns}
+              submitInProcess={gMyCampaignsInProcess}
             />
+          </div>
+          <div className="new-campaign">
+            <button className="btn">NEW</button>
           </div>
           <div className="row campaign-list">
             {
               (() => {
                 let component = null
-                if (getCampaignsInProcess) {
+                if (gMyCampaignsInProcess) {
                   component = <LoadingSpinner />
                 } else {
-                  if (campaigns.length === 0) {
+                  if (myCampaigns.length === 0) {
                     component = <div className="col-xs-12"><h3>No Campaigns Found</h3></div>
                   } else {
                     component = (
@@ -110,7 +107,7 @@ export default class CampaignsIndex extends Component {
                         </thead>
                         <tbody>
                           {
-                            campaigns.map((campaign, i) => {
+                            myCampaigns.map((campaign, i) => {
                               const format = "MMM DD YYYY"
                               const maturityDate = moment(campaign.campaign_type.maturity_date).format(format)
                               const startDate = moment(campaign.start_date).format(format)
