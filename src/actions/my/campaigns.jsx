@@ -44,7 +44,11 @@ export const cMyCampaign = (values, cb) => {
     method: "post",
     url: genApiUrl(apiMyCampaignsIndex()),
     data: getFormData({
-      goal: _.get(values, 'goal', null)
+      startup_id: _.get(values, 'startupID', "4PVXM4syG6CbY6GM"),
+      goal: _.get(values, 'goal', null),
+      campaign_type_attributes: {
+        name: _.get(values, 'name', "TEST123")
+      }
     }, 'campaign')
   })
 
@@ -64,7 +68,11 @@ export const uMyCampaign = (values, params, cb) => {
     method: "put",
     url: genApiUrl(apiMyCampaignsShow(params)),
     data: getFormData({
-      goal: _.get(values, 'goal', null)
+      startup_id: _.get(values, 'startupID', "4PVXM4syG6CbY6GM"),
+      goal: _.get(values, 'goal', null),
+      campaign_type_attributes: {
+        name: _.get(values, 'name', "TEST123")
+      }
     }, 'campaign')
   })
 
