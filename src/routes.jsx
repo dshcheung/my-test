@@ -16,11 +16,11 @@ import VerifyMobileContainer from './components/_pages/verify/mobile'
 import VerifyInvestorStatusContainer from './components/_pages/verify/investor-status'
 
 import MyContainer from './components/_pages/my/wrapper'
+import MySettingsContainer from './components/_pages/my/settings'
 import MyConversationsIndexContainer from './components/_pages/my/conversations'
 import MyNotificationsIndexContainer from './components/_pages/my/notifications/index'
 import MyStartupsIndexContainer from './components/_pages/my/startups'
 import MyCampaignsContainer from './components/_pages/my/campaigns'
-import MySettingsContainer from './components/_pages/my/settings'
 
 import UsersShowContainer from './components/_pages/users/show'
 
@@ -28,6 +28,7 @@ import StartupsIndexContainer from './components/_pages/startups/index'
 import StartupsShowContainer from './components/_pages/startups/show'
 
 import CampaignsIndexContainer from './components/_pages/campaigns/index'
+import CampaignsShowContainer from './components/_pages/campaigns/show'
 
 import PageNotFound from './components/_pages/not-found'
 
@@ -46,7 +47,7 @@ import PageNotFound from './components/_pages/not-found'
 // * my/settings (both)
 
 // StartupUser
-// my/campaigns -> My Campaigns Index & New (Modal)
+// * my/campaigns -> My Campaigns Index & New (Modal)
 // * my/startups -> My Startups Index & New (Modal)
 // * startups/:id -> Editable If Owner
 // campaigns/:id -> Editable If Owner
@@ -77,6 +78,8 @@ export default (
     </Route>
 
     <Route path="my" component={MyContainer}>
+      <Route path="settings" component={MySettingsContainer} />
+
       <Route path="conversations" component={MyConversationsIndexContainer} />
 
       <Route path="notifications">
@@ -84,13 +87,15 @@ export default (
         <Route path=":notificationID" />
       </Route>
 
-      <Route path="portfolio" />
+      <Route path="startups" component={MyStartupsIndexContainer} />
 
       <Route path="campaigns" component={MyCampaignsContainer} />
 
-      <Route path="startups" component={MyStartupsIndexContainer} />
+      <Route path="portfolio" />
+    </Route>
 
-      <Route path="settings" component={MySettingsContainer} />
+    <Route path="users">
+      <Route path=":userID" component={UsersShowContainer} />
     </Route>
 
     <Route path="startups">
@@ -100,11 +105,7 @@ export default (
 
     <Route path="campaigns">
       <IndexRoute component={CampaignsIndexContainer} />
-      <Route path=":campaignID" />
-    </Route>
-
-    <Route path="users">
-      <Route path=":userID" component={UsersShowContainer} />
+      <Route path=":campaignID" component={CampaignsShowContainer} />
     </Route>
 
     <Route path="about" />

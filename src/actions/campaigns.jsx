@@ -21,7 +21,7 @@ export const SET_CAMPAIGN = "SET_CAMPAIGN"
 export const setCampaign = (data) => {
   return {
     type: SET_CAMPAIGN,
-    data: data.campaign
+    data
   }
 }
 
