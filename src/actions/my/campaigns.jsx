@@ -46,8 +46,14 @@ export const cMyCampaign = (values, cb) => {
     data: getFormData({
       startup_id: _.get(values, 'startupID', "4PVXM4syG6CbY6GM"),
       goal: _.get(values, 'goal', null),
+      start_date: _.get(values, 'startDate', null),
+      end_date: _.get(values, 'endDate', null),
       campaign_type_attributes: {
-        name: _.get(values, 'name', "TEST123")
+        name: _.get(values, 'name', null),
+        maturity_date: _.get(values, 'maturityDate', null),
+        interest_rate: _.get(values, 'interestRate', null),
+        amount: _.get(values, 'amount', null),
+        amount_type: _.get(values, 'amountType', null)
       }
     }, 'campaign')
   })

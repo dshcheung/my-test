@@ -8,7 +8,7 @@ import {
   uMyCampaign, U_MY_CAMPAIGN
 } from '../../../../actions/my/campaigns'
 
-import MyStartupNameForm from '../../../forms/my/startups/name'
+import MyCampaignForm from '../../../forms/my/campaigns/basic'
 
 const mapStateToProps = (state) => {
   return {
@@ -58,7 +58,7 @@ export default class MyCampaignsNECampaignModal extends Component {
           <Modal.Title>{keyword}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MyStartupNameForm
+          <MyCampaignForm
             onSubmit={this.onSubmit}
             submitInProcess={cMyCampaignInProcess || uMyCampaignInProcess}
             initialValues={initialValues}
