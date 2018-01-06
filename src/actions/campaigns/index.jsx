@@ -1,5 +1,5 @@
-import { genApiUrl, addParamsToUrl, genAxios } from '../services/api-request'
-import { apiCampaignsIndex, apiCampaignsShow } from '../services/api-path'
+import { genApiUrl, addParamsToUrl, genAxios } from '../../services/api-request'
+import { apiCampaignsIndex, apiCampaignsShow } from '../../services/api-path'
 
 export const MERGE_CAMPAIGNS = "MERGE_CAMPAIGNS"
 export const mergeCampaigns = (data, reset) => {

@@ -44,7 +44,7 @@ export const createUser = (values) => {
     successCB: (dispatch, data) => {
       dispatch(setCurrentUser(data))
       if (data.role === "Investor") {
-        dispatch(push('/verify/is_investor'))
+        dispatch(push('/verify/investor_status'))
       }
     }
   }
