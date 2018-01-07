@@ -8,7 +8,7 @@ import SelectField from '../../../shared/form-elements/select-field'
 import DatetimePicker from '../../../shared/form-elements/datetime-picker'
 
 @reduxForm({
-  form: "MyProfileBasicForm",
+  form: "MyCampaignBasicForm",
   validate: (values) => {
     return Validators({
       name: ["presences"],
@@ -24,7 +24,7 @@ import DatetimePicker from '../../../shared/form-elements/datetime-picker'
     maturityDate: moment().startOf('day').toDate()
   }
 })
-export default class MyProfileBasicForm extends Component {
+export default class MyCampaignBasicForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass } = this.props
 

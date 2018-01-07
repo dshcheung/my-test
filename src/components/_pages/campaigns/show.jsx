@@ -12,6 +12,8 @@ import {
 import LoadingSpinner from '../../shared/loading-spinner'
 import ImageBanner from '../../shared/image-banner'
 
+import CampaignNPledgeModal from '../../modals/campaigns/n-campaign-pledge'
+
 const mapStateToProps = (state) => {
   return {
     currentUser: _.get(state, 'session', null),
@@ -34,6 +36,9 @@ export default class CampaignsShow extends Component {
     super(props)
 
     this.state = {}
+
+    this.open = this.open.bind(this)
+    this.close = this.close.bind(this)
   }
 
   componentWillMount() {
@@ -50,6 +55,14 @@ export default class CampaignsShow extends Component {
 
   componentWillUnmount() {
     this.props.resetCampaign()
+  }
+
+  open() {
+    this.setState({ nPledge: true })
+  }
+
+  close() {
+    this.setState({ nPledge: false })
   }
 
   render() {
@@ -143,15 +156,16 @@ export default class CampaignsShow extends Component {
                     </div>
                   </div>
                 </div>
-                <button className="btn btn-primary btn-lg btn-block btn-invest text-uppercase">Invest Now</button>
-                <div className="warning margin-top-50 hide">
-                  <span className="text-bold">Purchased securities are not currently tradeable.</span>
-                  <p className="instruction">Expect to hold your investment until the company lists on a national exchange or is acquired.</p>
-                </div>
+                <button
+                  onClick={this.open}
+                  className="btn btn-primary btn-lg btn-block btn-invest text-uppercase"
+                >Invest Now</button>
               </div>
             </section>
           </div>
         </div>
+
+        {this.state.nPledge && <CampaignNPledgeModal close={this.close} params={this.props.routeParams} />}
       </div>
     )
   }

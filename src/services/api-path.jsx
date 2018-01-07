@@ -14,6 +14,14 @@ export const apiCampaignsShow = (params) => {
   return `${apiCampaignsIndex()}/${params.campaignID}`
 }
 
+export const apiCampaignsPledgesIndex = (params) => {
+  return `${apiCampaignsShow(params)}/pledges`
+}
+
+export const apiCampaignsPledgesShow = (params) => {
+  return `${apiCampaignsPledgesIndex(params)}/${params.pledgeID}`
+}
+
 export const apiUsersIndex = () => {
   return 'users'
 }
