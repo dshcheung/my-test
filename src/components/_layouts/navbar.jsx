@@ -50,12 +50,6 @@ export default class Navbar extends Component {
 
         <BNavbar.Collapse>
           <Nav>
-            <LinkContainer to="/startups" active={false}>
-              <NavItem eventKey={1}>
-                <span>Startups</span>
-              </NavItem>
-            </LinkContainer>
-
             {
               currentUser && (
                 <LinkContainer to="/campaigns" active={false}>
