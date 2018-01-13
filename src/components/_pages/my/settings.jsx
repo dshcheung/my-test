@@ -35,10 +35,12 @@ export default class My extends Component {
     super(props)
 
     this.state = {
-      tab: "general"
+      tab: "general",
+      contactEdit: false
     }
 
     this.change = this.change.bind(this)
+    this.changeEdit = this.changeEdit.bind(this)
     this.updateMyProfile = this.updateMyProfile.bind(this)
     this.updatePassword = this.updatePassword.bind(this)
   }
@@ -54,8 +56,15 @@ export default class My extends Component {
     this.setState({ tab })
   }
 
+  changeEdit(key) {
+    const originalValye = this.state[key]
+    this.setState({ [key]: !originalValye })
+  }
+
   updateMyProfile(values) {
-    this.props.updateMyProfile(values)
+    this.props.updateMyProfile(values, () => {
+      this.changeEdit("contactEdit")
+    })
   }
 
   updatePassword(values) {
@@ -67,7 +76,7 @@ export default class My extends Component {
   render() {
     const { currentUser } = this.props
 
-    const { email, mobile, validation_stages: {
+    const { email, mobile, verified_email, verified_mobile, validation_stages: {
       stage_one, stage_two, stage_three, stage_four
     } } = currentUser
 
@@ -102,15 +111,43 @@ export default class My extends Component {
                   />
                 </Panel>
                 <Panel header="Contact">
-                  <MyProfileContactForm
-                    optclass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
-                    onSubmit={this.updateMyProfile}
-                    submitInProcess={this.props.updateMyProfileInProcess}
-                    initialValues={{
-                      email,
-                      mobile
-                    }}
-                  />
+                  {
+                    !this.state.contactEdit && (
+                      <div>
+                        <button
+                          className="btn pull-right"
+                          onClick={() => { this.changeEdit("contactEdit") }}
+                        >Edit</button>
+                        {
+                          email && (
+                            <div>Email - {email || "Null"} <span onClick={() => { if (!verified_email) this.props.router.push("verify/email") }}>{
+                              verified_email ? "Verifed" : "verify here"
+                            }</span></div>
+                          )
+                        }
+                        {
+                          mobile && (
+                            <div>Mobile - {mobile || "Null"} <span onClick={() => { if (!verified_mobile) this.props.router.push("verify/mobile") }}>{
+                              verified_mobile ? "Verified" : "verify here"
+                            }</span></div>
+                          )
+                        }
+                      </div>
+                    )
+                  }
+                  {
+                    this.state.contactEdit && (
+                      <MyProfileContactForm
+                        optclass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
+                        onSubmit={this.updateMyProfile}
+                        submitInProcess={this.props.updateMyProfileInProcess}
+                        initialValues={{
+                          email,
+                          mobile
+                        }}
+                      />
+                    )
+                  }
                 </Panel>
                 <Panel header="Validation Status">
                   <div>Stage One - { stage_one ? "Completed" : "Waiting"}</div>
