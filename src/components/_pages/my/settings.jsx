@@ -3,21 +3,28 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Panel from 'react-bootstrap/lib/Panel'
 
-import { updatePassword, UPDATE_PASSWORD } from '../../../actions/my/profile'
+import {
+  updatePassword, UPDATE_PASSWORD,
+  updateMyProfile, UPDATE_MY_PROFILE
+} from '../../../actions/my/profile'
 import { uMyPreferences } from '../../../actions/my/preferences'
 
 import MyProfileUpdatePasswordForm from '../../forms/my/profile/update-password'
+import MyProfileNameForm from '../../forms/my/profile/settings-name'
+import MyProfileContactForm from '../../forms/my/profile/settings-contact'
 
 const mapStateToProps = (state) => {
   return {
     currentUser: _.get(state, 'session'),
-    updatePasswordInProcess: _.get(state.requestStatus, UPDATE_PASSWORD)
+    updatePasswordInProcess: _.get(state.requestStatus, UPDATE_PASSWORD),
+    updateMyProfileInProcess: _.get(state.requestStatus, UPDATE_MY_PROFILE)
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     updatePassword: bindActionCreators(updatePassword, dispatch),
+    updateMyProfile: bindActionCreators(updateMyProfile, dispatch),
     uMyPreferences: bindActionCreators(uMyPreferences, dispatch)
   }
 }
@@ -32,6 +39,8 @@ export default class My extends Component {
     }
 
     this.change = this.change.bind(this)
+    this.updateMyProfile = this.updateMyProfile.bind(this)
+    this.updatePassword = this.updatePassword.bind(this)
   }
 
   componentWillMount() {
@@ -44,8 +53,25 @@ export default class My extends Component {
     router.replace(`${location.pathname}#${tab}`)
     this.setState({ tab })
   }
+
+  updateMyProfile(values) {
+    this.props.updateMyProfile(values)
+  }
+
+  updatePassword(values) {
+    this.props.updatePassword(values, () => {
+      this.props.reset()
+    })
+  }
+
   render() {
     const { currentUser } = this.props
+
+    const { email, mobile, validation_stages: {
+      stage_one, stage_two, stage_three, stage_four
+    } } = currentUser
+
+    const { first_name, last_name } = currentUser.profile
 
     const { notify, locale, show_email, show_mobile } = currentUser.preferences
 
@@ -64,10 +90,34 @@ export default class My extends Component {
           {
             this.state.tab === "general" && (
               <div className="tab general">
-                Name
-                Email
-                Password
-                Investor Status
+                <Panel header="Name">
+                  <MyProfileNameForm
+                    optclass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
+                    onSubmit={this.updateMyProfile}
+                    submitInProcess={this.props.updateMyProfileInProcess}
+                    initialValues={{
+                      firstName: first_name,
+                      lastName: last_name
+                    }}
+                  />
+                </Panel>
+                <Panel header="Contact">
+                  <MyProfileContactForm
+                    optclass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
+                    onSubmit={this.updateMyProfile}
+                    submitInProcess={this.props.updateMyProfileInProcess}
+                    initialValues={{
+                      email,
+                      mobile
+                    }}
+                  />
+                </Panel>
+                <Panel header="Validation Status">
+                  <div>Stage One - { stage_one ? "Completed" : "Waiting"}</div>
+                  <div>Stage Two - { stage_two ? "Completed" : "Waiting"}</div>
+                  <div>Stage Three - { stage_three ? "Completed" : "Waiting"}</div>
+                  <div>Stage Four - { stage_four ? "Completed" : "Waiting"}</div>
+                </Panel>
               </div>
             )
           }
@@ -155,7 +205,7 @@ export default class My extends Component {
                 <Panel header="Update Password">
                   <MyProfileUpdatePasswordForm
                     optclass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
-                    onSubmit={this.props.updatePassword}
+                    onSubmit={this.updatePassword}
                     submitInProcess={this.props.updatePasswordInProcess}
                   />
                 </Panel>

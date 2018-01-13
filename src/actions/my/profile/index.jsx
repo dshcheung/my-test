@@ -34,6 +34,8 @@ export const updateMyProfile = (values, cb) => {
     method: "put",
     url: genApiUrl(apiMyProfile()),
     data: getFormData({
+      email: _.get(values, 'email', null),
+      mobile: _.get(values, 'mobile', null),
       profile: {
         first_name: _.get(values, 'firstName', null),
         last_name: _.get(values, 'lastName', null),
@@ -57,7 +59,7 @@ export const updateMyProfile = (values, cb) => {
 
 // update password
 export const UPDATE_PASSWORD = "UPDATE_MY_PROFILE"
-export const updatePassword = (values, middleware, props) => {
+export const updatePassword = (values, cb) => {
   const request = genAxios({
     method: "put",
     url: genApiUrl(apiMyProfile()),
@@ -71,9 +73,9 @@ export const updatePassword = (values, middleware, props) => {
     type: UPDATE_PASSWORD,
     request,
     successCB: (dispatch, data) => {
+      if (cb) cb()
       dispatch(setCurrentUser(data))
       notySuccess("Password Updated!")
-      props.reset() // reset form
     }
   }
 }
