@@ -22,13 +22,23 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class VerifyEmail extends Component {
+  constructor(props) {
+    super(props)
+
+    this.verifyMyProfile = this.verifyMyProfile.bind(this)
+  }
+
+  verifyMyProfile(values) {
+    this.props.verifyMyProfile(values)
+  }
+
   render() {
     return (
       <div id="page-verify-mobile" className="container padding-top-20 padding-bottom-20">
         <div className="row">
           <VerifyMobileForm
             optClass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
-            onSubmit={this.props.verifyMyProfile}
+            onSubmit={this.verifyMyProfile}
             submitInProcess={this.props.verifyMyProfileInProcess}
           />
         </div>

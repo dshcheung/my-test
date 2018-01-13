@@ -20,13 +20,23 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class ResetPassword extends Component {
+  constructor(props) {
+    super(props)
+
+    this.resetPassword = this.resetPassword.bind(this)
+  }
+
+  resetPassword(values) {
+    this.props.resetPassword(values)
+  }
+
   render() {
     return (
       <div id="page-auth-reset-password" className="container padding-top-20 padding-bottom-20">
         <div className="row">
           <AuthResetPasswordForm
             optClass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
-            onSubmit={this.props.resetPassword}
+            onSubmit={this.resetPassword}
             submitInProcess={this.props.resetPasswordInProcess}
           />
         </div>

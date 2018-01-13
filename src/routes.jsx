@@ -13,7 +13,6 @@ import ResetPasswordContainer from './components/_pages/auth/reset-password'
 
 import VerifyEmailContainer from './components/_pages/verify/email'
 import VerifyMobileContainer from './components/_pages/verify/mobile'
-import VerifyInvestorStatusContainer from './components/_pages/verify/investor-status'
 
 import MyContainer from './components/_pages/my/wrapper'
 import MySettingsContainer from './components/_pages/my/settings'
@@ -54,7 +53,10 @@ import PageNotFound from './components/_pages/not-found'
 // * users/:id -> Editable If Owner
 
 // Investor
-// verify/investor_status
+// verify/investor_stage_one
+// verify/investor_stage_two
+// verify/investor_stage_three
+// verify/investor_stage_four
 // my/portfolio -> My Campaigns Pledged Index
 // * startups/:id -> Viewable
 // campaigns/:id -> Pledgable
@@ -74,7 +76,6 @@ export default (
     <Route path="verify">
       <Route path="email" component={VerifyEmailContainer} />
       <Route path="mobile" component={VerifyMobileContainer} />
-      <Route path="investor_status" component={VerifyInvestorStatusContainer} />
     </Route>
 
     <Route path="my" component={MyContainer}>
