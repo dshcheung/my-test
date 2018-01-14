@@ -36,7 +36,7 @@ export default class My extends Component {
 
     this.state = {
       tab: "general",
-      contactEdit: false
+      editingForm: null
     }
 
     this.change = this.change.bind(this)
@@ -56,14 +56,13 @@ export default class My extends Component {
     this.setState({ tab })
   }
 
-  changeEdit(key) {
-    const originalValye = this.state[key]
-    this.setState({ [key]: !originalValye })
+  changeEdit(value) {
+    this.setState({ editingForm: value })
   }
 
   updateMyProfile(values) {
     this.props.updateMyProfile(values, () => {
-      this.changeEdit("contactEdit")
+      this.changeEdit(null)
     })
   }
 
@@ -100,23 +99,38 @@ export default class My extends Component {
             this.state.tab === "general" && (
               <div className="tab general">
                 <Panel header="Name">
-                  <MyProfileNameForm
-                    optclass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
-                    onSubmit={this.updateMyProfile}
-                    submitInProcess={this.props.updateMyProfileInProcess}
-                    initialValues={{
-                      firstName: first_name,
-                      lastName: last_name
-                    }}
-                  />
-                </Panel>
-                <Panel header="Contact">
                   {
-                    !this.state.contactEdit && (
+                    this.state.editingForm !== "name" && (
                       <div>
                         <button
                           className="btn pull-right"
-                          onClick={() => { this.changeEdit("contactEdit") }}
+                          onClick={() => { this.changeEdit("name") }}
+                        >Edit</button>
+                        {first_name} {last_name}
+                      </div>
+                    )
+                  }
+                  {
+                    this.state.editingForm === "name" && (
+                      <MyProfileNameForm
+                        optclass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
+                        onSubmit={this.updateMyProfile}
+                        submitInProcess={this.props.updateMyProfileInProcess}
+                        initialValues={{
+                          firstName: first_name,
+                          lastName: last_name
+                        }}
+                      />
+                    )
+                  }
+                </Panel>
+                <Panel header="Contact">
+                  {
+                    this.state.editingForm !== "contact" && (
+                      <div>
+                        <button
+                          className="btn pull-right"
+                          onClick={() => { this.changeEdit("contact") }}
                         >Edit</button>
                         {
                           email && (
@@ -136,7 +150,7 @@ export default class My extends Component {
                     )
                   }
                   {
-                    this.state.contactEdit && (
+                    this.state.editingForm === "contact" && (
                       <MyProfileContactForm
                         optclass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
                         onSubmit={this.updateMyProfile}
