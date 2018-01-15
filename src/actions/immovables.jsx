@@ -19,6 +19,8 @@ export const resetImmovable = () => {
 
 export const G_IMMOVABLE = "G_IMMOVABLE"
 export const G_IMMOVABLE_EDUCATION_LEVEL = "G_IMMOVABLE_EDUCATION_LEVEL"
+export const G_IMMOVABLE_CAMPAIGN_FILTERABLE = "G_IMMOVABLE_CAMPAIGN_FILTERABLE"
+// to remove
 export const G_IMMOVABLE_STARTUP_FILTERABLE = "G_IMMOVABLE_STARTUP_FILTERABLE"
 export const gImmovable = ({ immovableID } = {}) => {
   const request = genAxios({

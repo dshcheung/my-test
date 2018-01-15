@@ -23,7 +23,6 @@ import MyCampaignsContainer from './components/_pages/my/campaigns'
 
 import UsersShowContainer from './components/_pages/users/show'
 
-import StartupsIndexContainer from './components/_pages/startups/index'
 import StartupsShowContainer from './components/_pages/startups/show'
 
 import CampaignsIndexContainer from './components/_pages/campaigns/index'
@@ -100,7 +99,6 @@ export default (
     </Route>
 
     <Route path="startups">
-      <IndexRoute component={StartupsIndexContainer} />
       <Route path=":startupID" component={StartupsShowContainer} />
     </Route>
 
