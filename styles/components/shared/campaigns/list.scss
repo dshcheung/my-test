@@ -1,0 +1,103 @@
+@media (min-width: 768px) {
+  #shared-campaigns-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+#shared-campaigns-list {
+  .campaign-card {
+    padding: 15px;
+    display: flex;
+    flex-flow: column nowrap;
+
+    > div, > a {
+      flex: 0 1 auto;
+    }
+
+    .card-banner-wrapper {
+      border: 1px solid $gray-text;
+      border-bottom-color: transparent;
+      padding: 0;
+      .card-banner {
+        height: 200px;
+        background-position: center;
+        background-size: cover;
+
+        &:hover {
+          text-decoration: none;
+          box-shadow: 1px 1px 5px $gray-lighter;
+        }
+
+        .campaign-logo {
+          border-radius: 5px;
+          width: 100px;
+          padding: 5px;
+          height: auto;
+          background-color: $white;
+        }
+      }
+    }
+
+    .card-info {
+      border: 1px solid $gray-text;
+      border-top-color: transparent;
+      flex: 1 auto;
+      display: flex;
+      flex-flow: column nowrap;
+      padding: 15px;
+      color: $gray-light;
+
+      hr {
+        margin: 10px auto;
+      }
+
+      .name, .stats {
+        flex: 0 1 auto;
+        font-weight: 100;
+        width: 100%;
+      }
+
+      .name {
+        text-align: left;
+        font-size: ($font-size-base * 1.2);
+      }
+
+      .stats {
+        .progress {
+          border: 2px solid $brand-info;
+          border-radius: 2px;
+          height: 10px;
+          margin: 15px auto;
+          background-color: $white;
+          .progress-bar {
+            float: left;
+            width: 0;
+            height: 100%;
+            text-align: center;
+            background-color: $brand-info;
+          }
+          .progress-start, .progress-end {
+            position: absolute;
+            margin-top: -11px;
+            padding: 12px;
+            border-radius: 20px;
+            border: 2px solid $brand-info;
+            background-color: $white;
+            &.filled {
+              background-color: $brand-info;
+            }
+          }
+          .progress-start {
+            left: 15px;
+            border-right-width: 0;
+          }
+          .progress-end {
+            right: 15px;
+            border-left-width: 0;
+          }
+        }
+      }
+    }
+  }
+}

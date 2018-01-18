@@ -12,6 +12,7 @@ const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
 
 require('../styles/index.scss')
+require('./prototypes.js')
 
 const scrollTop = () => {
   const element = document.getElementsByTagName("body")[0]

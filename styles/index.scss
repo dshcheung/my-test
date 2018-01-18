@@ -9,6 +9,7 @@
 @import "custom/switch";
 @import "custom/utils";
 @import "components/shared/text";
+@import "components/shared/campaigns/list";
 @import "components/_layouts/navbar";
 @import "components/_layouts/home";
 @import "components/_layouts/body";
@@ -23,7 +24,6 @@
 @import "components/_pages/my/settings";
 @import "components/_pages/my/startups";
 @import "components/_pages/users/show";
-@import "components/_pages/startups/index";
 @import "components/_pages/startups/show";
 @import "components/_pages/verify/email";
 @import "components/_pages/verify/mobile";

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { reduxForm, Field } from 'redux-form'
 
-import { gImmovable, G_IMMOVABLE_CAMPAIGN_FILTERABLE } from '../../../actions/immovables'
+import { gImmovable, G_IMMOVABLE_STARTUP_FILTERABLE } from '../../../actions/immovables'
 
 import Validators from '../../../services/form-validators'
 
@@ -12,8 +12,8 @@ import SelectField from '../../shared/form-elements/select-field'
 
 const mapStateToProps = (state) => {
   return {
-    campaignFilterable: _.get(state.immovables, "campaign_filterable", []),
-    gcampaignFilterableInProcess: _.get(state.requestStatus, G_IMMOVABLE_CAMPAIGN_FILTERABLE)
+    startupFilterable: _.get(state.immovables, "startup_filterable", []),
+    gStartupFilterableInProcess: _.get(state.requestStatus, G_IMMOVABLE_STARTUP_FILTERABLE)
   }
 }
 
@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 @reduxForm({
-  form: "CampaignsSearchForm",
+  form: "StartupsSearchForm",
   validate: (values) => {
     return Validators({
       keyword: [],
@@ -36,9 +36,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 })
 
-export default class CampaignsSearchForm extends Component {
+export default class StartupsSearchForm extends Component {
   componentWillMount() {
-    this.props.gImmovable({ immovableID: "campaign_filterable" })
+    this.props.gImmovable({ immovableID: "startup_filterable" })
   }
 
   reset() {
@@ -47,10 +47,10 @@ export default class CampaignsSearchForm extends Component {
   }
 
   render() {
-    const { handleSubmit, submitInProcess, optClass, campaignFilterable } = this.props
+    const { handleSubmit, submitInProcess, optClass, startupFilterable } = this.props
 
     return (
-      <div id="forms-campaigns-search" className={optClass}>
+      <div id="forms-startups-search" className={optClass}>
         <form onSubmit={handleSubmit} className="form-inline">
           <Field
             name="keyword"
@@ -77,7 +77,7 @@ export default class CampaignsSearchForm extends Component {
           <Field
             name="sortBy"
             component={SelectField}
-            options={campaignFilterable}
+            options={startupFilterable}
             opts={{
               placeholder: "Sort By"
             }}

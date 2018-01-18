@@ -25,16 +25,5 @@
 
   section {
     text-align: center;
-    margin-bottom: 15px;
-
-    @media (min-width: 768px) {
-      .campaign-table {
-        width: 100%;
-      }
-    }
-
-    .campaign-table {
-      width: 100%;
-    }
   }
 }
