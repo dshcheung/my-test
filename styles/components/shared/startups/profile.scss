@@ -1,10 +1,4 @@
 #shared-startups-profile {
-  .edit-mode-actions {
-    .edit-profile {
-      margin-right: 15px;
-    }
-  }
-
   .header {
     .startup-banner {
       background-position: 50% 50%;
@@ -22,10 +16,156 @@
         height: auto;
       }
 
-      .startup-name {
+      .campaign-name, .startup-name, .startup-tagline {
         margin: 0 auto 15px;
         color: white;
         line-height: 30px;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .campaign-stats {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  .campaign-stats {
+    .left, .right {
+      display: flex;
+      flex-direction: column;
+
+      .stat-group {
+        padding: 15px 0;
+        flex-grow: 1;
+
+        div:first-child {
+          font-size: ($font-size-base * 1.5);
+          font-weight: bold;
+        }
+        div:last-child {
+          font-size: ($font-size-base * 1.2);
+        }
+      }
+
+      .stat-group:first-child {
+        padding-right: 7.5px;
+      }
+
+      .stat-group:last-child {
+        padding-left: 7.5px;
+      }
+
+      .stat-group:not(:first-child):not(:last-child) {
+        padding-right: 7.5px;
+        padding-left: 7.5px;
+      }
+    }
+
+    .left {
+      .valuation-type {
+        margin: 5px 0;
+      }
+
+      .finance-stat {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        flex-grow: 1;
+      }
+    }
+
+    .right {
+      .progress {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background-color: $white;
+        border: 2px solid $brand-primary;
+        height: 12px;
+        .progress-start, .progress-end {
+          position: absolute;
+          margin-top: -10px;
+          padding: 12px;
+          border-radius: 20px;
+          border: 2px solid $brand-primary;
+          background-color: $white;
+          &.filled {
+            background-color: $brand-primary;
+          }
+        }
+        .progress-start {
+          left: 10px;
+          border-right-width: 0;
+        }
+        .progress-end {
+          right: 10px;
+          border-left-width: 0;
+        }
+      }
+
+      .amount-stat {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .pledge {}
+
+  .startup-info {
+    position: relative;
+    height: inherit;
+
+    .auto-affix {
+      .sidebar-wrapper {
+        position: relative !important;
+        top: 0 !important;
+
+        .scrollto {
+          padding: 2rem 0;
+          li {
+            padding: 1rem 0;
+            a {
+              border-right: 5px solid transparent;
+              padding-right: 3rem;
+              color: $gray-light;
+              font-size: ($font-size-base * 1.2);
+              cursor: pointer;
+              &.active {
+                color: $brand-primary;
+                font-weight: bold;
+                border-right-color: $brand-primary;
+              }
+            }
+          }
+        }
+
+        ul {
+          padding: 0;
+          list-style: none;
+          text-align: right;
+          &.links {
+            text-align: left;
+            li {
+              font-size: ($font-size-base * 1.2);
+              padding: 15px;
+              color: $gray-light;
+              vertical-align: middle;
+              i {
+                font-size: ($font-size-base * 1.4);
+                margin-right: 20px;
+                color: $brand-primary;
+                vertical-align: middle;
+              }
+              span {
+                vertical-align: middle;
+              }
+            }
+          }
+        }
       }
     }
   }

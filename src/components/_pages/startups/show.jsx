@@ -650,6 +650,24 @@ export default class StartupsShow extends Component {
     )
   }
 
+  // {
+  //   editable && (
+  //     <div className="row edit-mode-actions">
+  //       <div className="col-xs-12 text-right">
+  //         <button
+  //           className="btn btn-info edit-profile"
+  //           onClick={() => { this.open("eProfile", startup) }}
+  //         ><i className="fa fa-pencil" /> Edit Profile</button>
+
+  //         <button
+  //           className="btn btn-info edit-mode"
+  //           onClick={() => { this.editModeToggle() }}
+  //         >{editMode ? "Exit" : "Enter"} Edit Mode</button>
+  //       </div>
+  //     </div>
+  //   )
+  // }
+
   render() {
     const { startup, getStartupInProcess, routeParams } = this.props
     const { editable, editMode, editInfo } = this.state
