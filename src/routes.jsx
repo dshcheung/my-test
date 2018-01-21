@@ -30,37 +30,6 @@ import CampaignsShowContainer from './components/_pages/campaigns/show'
 
 import PageNotFound from './components/_pages/not-found'
 
-// NOTE
-
-// Non Auth
-// * auth (both)
-// * startups (both)
-
-// Auth
-// * campaigns (both)
-// * verify/email (both)
-// * verify/mobile (both)
-// my/conversations (both)
-// my/notifications (both)
-// * my/settings (both)
-
-// StartupUser
-// * my/campaigns -> My Campaigns Index & New (Modal)
-// * my/startups -> My Startups Index & New (Modal)
-// * startups/:id -> Editable If Owner
-// campaigns/:id -> Editable If Owner
-// * users/:id -> Editable If Owner
-
-// Investor
-// verify/investor_stage_one
-// verify/investor_stage_two
-// verify/investor_stage_three
-// verify/investor_stage_four
-// my/portfolio -> My Campaigns Pledged Index
-// * startups/:id -> Viewable
-// campaigns/:id -> Pledgable
-// users/:id -> Editable If Owner
-
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={HomeContainer} />
@@ -87,24 +56,24 @@ export default (
         <Route path=":notificationID" />
       </Route>
 
-      <Route path="startups" component={MyStartupsIndexContainer} />
-
       <Route path="campaigns" component={MyCampaignsContainer} />
+
+      <Route path="startups" component={MyStartupsIndexContainer} />
 
       <Route path="portfolio" />
     </Route>
 
-    <Route path="users">
-      <Route path=":userID" component={UsersShowContainer} />
+    <Route path="campaigns">
+      <IndexRoute component={CampaignsIndexContainer} />
+      <Route path=":campaignID" component={CampaignsShowContainer} />
     </Route>
 
     <Route path="startups">
       <Route path=":startupID" component={StartupsShowContainer} />
     </Route>
 
-    <Route path="campaigns">
-      <IndexRoute component={CampaignsIndexContainer} />
-      <Route path=":campaignID" component={CampaignsShowContainer} />
+    <Route path="users">
+      <Route path=":userID" component={UsersShowContainer} />
     </Route>
 
     <Route path="about" />

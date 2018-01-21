@@ -666,22 +666,20 @@ export default class StartupsShow extends Component {
 
     return (
       <div id="pages-startups-show" className="container-fluid">
+        {
+          editable && (
+            <div className="row edit-toggle">
+              <button className="btn btn-info edit pull-right" onClick={() => { this.open("eProfile", true) }}>
+                <i className="fa fa-pencil" />
+              </button>
+            </div>
+          )
+        }
         <div className="row">
           <div className="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
             <section className="row basic-info">
-              {
-                editable && (
-                  <div className="col-xs-12">
-                    <button
-                      className="btn btn-info edit pull-right"
-                      onClick={() => { this.open("eProfile", true) }}
-                    >
-                      <i className="fa fa-pencil" />
-                    </button>
-                  </div>
-                )
-              }
               <div className="col-xs-12 col-md-6">
+
                 <div className="aspect-16-9">
                   <ImageBanner
                     src={`${_.get(startup, "profile.banner.original", null) || DEFAULT_STARTUP_BANNER}`}
@@ -693,6 +691,7 @@ export default class StartupsShow extends Component {
                     alt={`Logo ${startup.name}}`}
                   />
                 </div>
+
                 <dl className="basic-details dl-horizontal">
                   <dt>Founded Year:</dt>
                   <dd>{_.get(startup, "profile.year_founded", null)}</dd>
@@ -702,6 +701,7 @@ export default class StartupsShow extends Component {
                   <dd className="hide">xxxxxxx</dd>
                 </dl>
               </div>
+
               <div className="col-xs-12 col-md-6">
                 <h1 className="name text-uppercase">{startup.name}</h1>
                 <p className="overview margin-bottom-20" dangerouslySetInnerHTML={{ __html: htmlDecode(_.get(startup.profile, 'tagline', '')) }} />

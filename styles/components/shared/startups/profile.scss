@@ -1,0 +1,32 @@
+#shared-startups-profile {
+  .edit-mode-actions {
+    .edit-profile {
+      margin-right: 15px;
+    }
+  }
+
+  .header {
+    .startup-banner {
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-color: black;
+      position: relative;
+      text-align: center;
+
+      .startup-avatar {
+        margin: 15px 0;
+        padding: 15px;
+        background-color: white;
+        width: 150px;
+        height: auto;
+      }
+
+      .startup-name {
+        margin: 0 auto 15px;
+        color: white;
+        line-height: 30px;
+      }
+    }
+  }
+}

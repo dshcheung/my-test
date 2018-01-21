@@ -43,3 +43,29 @@ export const getFullName = (user) => {
 export const getType = (v) => {
   return toString.call(v).slice(8, -1)
 }
+
+export const mergeAttribute = (base, { data, attribute, sortBy }) => {
+  if (base === null) return base
+
+  let attr = base[attribute]
+  const attrType = getType(attr)
+  const dataType = getType(data)
+
+  if (attrType === "Array") {
+    attr = mergeData(attr, [data])
+  }
+
+  if (attrType === "Object") {
+    attr = data
+  }
+
+  if (attrType === "Null" && dataType === "Object") {
+    attr = data
+  }
+
+  if (sortBy) {
+    attr = _.sortBy(attr, [sortBy]).reverse()
+  }
+
+  return { ...base, [attribute]: attr }
+}
