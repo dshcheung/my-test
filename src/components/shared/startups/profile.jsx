@@ -166,6 +166,7 @@ export default class SharedStartupsProfile extends Component {
           }
 
           <div className="row startup">
+            { campaign && <hr /> }
             <div className="col-xs-12 col-sm-3 auto-affix">
               <AutoAffix viewportOffsetTop={100} container={this}>
                 <div className="sidebar-wrapper">
