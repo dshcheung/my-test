@@ -18,6 +18,7 @@ import SharedStartupsMedia from './media'
 import SharedStartupsAttachments from './attachments'
 
 import MyStartupEProfileModal from '../../modals/my/startups/e-profile'
+import MyCampaignsNECampaignModal from '../../modals/my/campaigns/ne-campaign'
 
 export default class SharedStartupsProfile extends Component {
   constructor(props) {
@@ -264,6 +265,7 @@ export default class SharedStartupsProfile extends Component {
         </div>
 
         {this.state.eSProfile && <MyStartupEProfileModal startup={startup} params={routeParams} close={this.close} />}
+        {this.state.eCProfile && <MyCampaignsNECampaignModal campaign={campaign} params={routeParams} close={this.close} editMode />}
       </div>
     )
   }

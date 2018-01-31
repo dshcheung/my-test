@@ -45,11 +45,21 @@ export default class MyCampaignsNECampaignModal extends Component {
   }
 
   render() {
-    const { close, cMyCampaignInProcess, uMyCampaignInProcess, editMode, name } = this.props
+    const { close, cMyCampaignInProcess, uMyCampaignInProcess, editMode, campaign } = this.props
 
     const keyword = editMode ? "Edit Campaign" : "Add Campaign"
+    const startDate = _.get(campaign, 'start_date', moment())
+    const endDate = _.get(campaign, 'end_date', moment())
+    const maturityDate = _.get(campaign, 'maturity_date', moment())
     const initialValues = editMode ? {
-      name: name || ''
+      name: _.get(campaign, 'campaign_type.name', ''),
+      amountType: _.get(campaign, 'campaign_type.amount_type', ''),
+      goal: _.get(campaign, 'goal', 0),
+      amount: parseInt(_.get(campaign, 'campaign_type.amount', 0), 10),
+      startDate: moment(startDate).toDate(),
+      endDate: moment(endDate).toDate(),
+      interestRate: _.get(campaign, 'campaign_type.interest_rate', 0),
+      maturityDate: moment(maturityDate).toDate()
     } : undefined
 
     return (
