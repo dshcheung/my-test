@@ -12,7 +12,6 @@ import ImageField from '../../../shared/form-elements/image-field'
   validate: (values) => {
     return Validators({
       description: [],
-      overview: [],
       tagline: [],
       yearFounded: []
     }, values)
@@ -30,14 +29,6 @@ export default class MyProfileBasicForm extends Component {
             component={TextArea}
             opts={{
               label: "Description"
-            }}
-          />
-
-          <Field
-            name="overview"
-            component={TextArea}
-            opts={{
-              label: "Overview"
             }}
           />
 

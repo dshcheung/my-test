@@ -17,10 +17,25 @@ import SharedStartupsRisk from './risk'
 import SharedStartupsMedia from './media'
 import SharedStartupsAttachments from './attachments'
 
+import MyStartupEProfileModal from '../../modals/my/startups/e-profile'
+
 export default class SharedStartupsProfile extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = { eSProfile: false, eCProfile: false }
+
+    this.close = this.close.bind(this)
+  }
+
+  close() {
+    this.setState({ eSProfile: false, eCProfile: false })
+  }
+
   render() {
     const { campaign, startup, loadingInProcess } = this.props
     const sEditable = _.get(startup, 'can.edit', false)
+    const cEditable = _.get(campaign, 'can.edit', false)
 
     if (loadingInProcess) return <LoadingSpinner />
 
@@ -78,26 +93,21 @@ export default class SharedStartupsProfile extends Component {
     const attachments = _.get(startup, "attachments", [])
     const attachmentsExist = attachments.length > 0
 
-    // {
-    //   editable && (
-    //     <div className="row edit-mode-actions">
-    //       <div className="col-xs-12 text-right">
-    //         <button
-    //           className="btn btn-info edit-profile"
-    //           onClick={() => { this.open("eProfile", startup) }}
-    //         ><i className="fa fa-pencil" /> Edit Profile</button>
-
-    //         <button
-    //           className="btn btn-info edit-mode"
-    //           onClick={() => { this.editModeToggle() }}
-    //         >{editMode ? "Exit" : "Enter"} Edit Mode</button>
-    //       </div>
-    //     </div>
-    //   )
-    // }
-
     return (
       <div id="shared-startups-profile" className="container-fluid">
+        {
+          (sEditable || cEditable) && (
+            <div className="row margin-top-15 edit-mode-actions">
+              <div className="col-xs-12 text-center">
+                <button
+                  className="btn btn-info"
+                  onClick={() => { this.setState({ eSProfile: sEditable, eCProfile: cEditable }) }}
+                ><i className="fa fa-pencil" /> Edit Startup Profile</button>
+              </div>
+            </div>
+          )
+        }
+
         <div className="row header">
           <div className="col-xs-12 startup-banner" style={bannerStyles}>
             <img src={avatar} className="startup-avatar" alt="Startup Avatar" />
@@ -252,8 +262,9 @@ export default class SharedStartupsProfile extends Component {
             </div>
           </div>
         </div>
+
+        {this.state.eSProfile && <MyStartupEProfileModal startup={startup} params={routeParams} close={this.close} />}
       </div>
     )
   }
 }
-
