@@ -4,7 +4,7 @@ import { resetAllState } from './actions/session'
 
 export default function promiseMiddleware() {
   return next => (action) => {
-    const { request, type, successCB, errorCB, paginate, preRequestCB } = action
+    const { request, type, successCB, errorCB, paginate, preRequestCB, run401 } = action
 
     if (!request) { return next(action) }
 
@@ -24,7 +24,7 @@ export default function promiseMiddleware() {
         dispatch(mergeRequestInProcess(false, type))
       }).catch((error) => {
         if (error && error.response) {
-          if (error.response.status === 401) { dispatch(resetAllState(dispatch)) }
+          if (run401 && error.response.status === 401) { dispatch(resetAllState(dispatch)) }
 
           if (errorCB) { errorCB(dispatch, error.response) }
         }

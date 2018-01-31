@@ -45,7 +45,7 @@ export default class MyStartupsNEOverviewModal extends Component {
   }
 
   render() {
-    const { close, cMyStartupProfileInProcess, editMode, profile: { overview } } = this.props
+    const { close, cMyStartupProfileInProcess, editMode, overview } = this.props
 
     const keyword = editMode ? "Edit" : "Add"
     const initialValues = editMode ? {

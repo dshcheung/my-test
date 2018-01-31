@@ -44,7 +44,7 @@ export const cMyCampaign = (values, cb) => {
     method: "post",
     url: genApiUrl(apiMyCampaignsIndex()),
     data: getFormData({
-      startup_id: _.get(values, 'startupID', "4PVXM4syG6CbY6GM"),
+      startup_id: _.get(values, 'startupID', "aWtoVAhmxMHaW3GH"),
       goal: _.get(values, 'goal', null),
       start_date: _.get(values, 'startDate', null),
       end_date: _.get(values, 'endDate', null),
@@ -74,7 +74,7 @@ export const uMyCampaign = (values, params, cb) => {
     method: "put",
     url: genApiUrl(apiMyCampaignsShow(params)),
     data: getFormData({
-      startup_id: _.get(values, 'startupID', "4PVXM4syG6CbY6GM"),
+      startup_id: _.get(values, 'startupID', "aWtoVAhmxMHaW3GH"),
       goal: _.get(values, 'goal', null),
       campaign_type_attributes: {
         name: _.get(values, 'name', "TEST123")

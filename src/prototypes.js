@@ -6,3 +6,9 @@ Number.prototype.currency = function(){
   }
   return unmod.reverse().join("");
 };
+
+String.prototype.decode = function(){
+  var e = document.createElement('div');
+  e.innerHTML = this;
+  return e.innerHTML;
+};

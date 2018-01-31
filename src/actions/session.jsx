@@ -6,7 +6,7 @@ import { AUTH_TOKEN } from '../constants'
 import { genApiUrl, genAxios } from '../services/api-request'
 import { getFormData } from '../services/get-form-data'
 import { apiAuthenticatesIndex, apiRequestForgetPassword } from '../services/api-path'
-import { notySuccess } from '../services/noty'
+import { notySuccess, notyError } from '../services/noty'
 
 export const SET_CURRENT_USER = "SET_CURRENT_USER"
 export const setCurrentUser = (data) => {
@@ -61,9 +61,13 @@ export const createSession = (values) => {
   return {
     type: CREATE_SESSION,
     request,
+    run401: false,
     successCB: (dispatch, data) => {
       dispatch(setCurrentUser(data))
       dispatch(push(`/users/${data.id}`))
+    },
+    errorCB: () => {
+      notyError("Incorrect Credentials")
     }
   }
 }
