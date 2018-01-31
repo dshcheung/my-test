@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class CampaignNPledgeModal extends Component {
+export default class CampaignsNPledgeModal extends Component {
   constructor(props) {
     super(props)
 

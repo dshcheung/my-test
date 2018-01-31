@@ -19,18 +19,19 @@ import SharedStartupsAttachments from './attachments'
 
 import MyStartupEProfileModal from '../../modals/my/startups/e-profile'
 import MyCampaignsNECampaignModal from '../../modals/my/campaigns/ne-campaign'
+import CampaignsNPledgeModal from '../../modals/campaigns/n-pledge'
 
 export default class SharedStartupsProfile extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { eSProfile: false, eCProfile: false }
+    this.state = { eSProfile: false, eCProfile: false, nPledge: false }
 
     this.close = this.close.bind(this)
   }
 
   close() {
-    this.setState({ eSProfile: false, eCProfile: false })
+    this.setState({ eSProfile: false, eCProfile: false, nPledge: false })
   }
 
   render() {
@@ -169,6 +170,7 @@ export default class SharedStartupsProfile extends Component {
                   <div className="col-xs-12 clearfix">
                     <button
                       className="btn btn-primary btn-block btn-lg"
+                      onClick={() => { this.setState({ nPledge: true }) }}
                     >Pledge Now</button>
                   </div>
                 </div>
@@ -266,6 +268,7 @@ export default class SharedStartupsProfile extends Component {
 
         {this.state.eSProfile && <MyStartupEProfileModal startup={startup} params={routeParams} close={this.close} />}
         {this.state.eCProfile && <MyCampaignsNECampaignModal campaign={campaign} params={routeParams} close={this.close} editMode />}
+        {this.state.nPledge && <CampaignsNPledgeModal close={this.close} params={routeParams} />}
       </div>
     )
   }
