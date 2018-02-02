@@ -6,6 +6,22 @@ export const apiStartupsShow = (params) => {
   return `${apiStartupsIndex()}/${params.startupID}`
 }
 
+export const apiCampaignsIndex = () => {
+  return 'campaigns'
+}
+
+export const apiCampaignsShow = (params) => {
+  return `${apiCampaignsIndex()}/${params.campaignID}`
+}
+
+export const apiCampaignsPledgesIndex = (params) => {
+  return `${apiCampaignsShow(params)}/pledges`
+}
+
+export const apiCampaignsPledgesShow = (params) => {
+  return `${apiCampaignsPledgesIndex(params)}/${params.pledgeID}`
+}
+
 export const apiUsersIndex = () => {
   return 'users'
 }
@@ -90,6 +106,14 @@ export const apiMyEducationsShow = (params) => {
   return `${apiMyEducationsIndex()}/${params.myEducationID}`
 }
 
+export const apiMyCampaignsIndex = () => {
+  return `${apiMy()}/campaigns`
+}
+
+export const apiMyCampaignsShow = (params) => {
+  return `${apiMyCampaignsIndex()}/${params.myCampaignID || params.campaignID}`
+}
+
 export const apiMyStartupsIndex = () => {
   return `${apiMy()}/startups`
 }
@@ -164,6 +188,10 @@ export const apiMyStartupsAttachmentsIndex = (params) => {
 
 export const apiMyStartupsAttachmentsShow = (params) => {
   return `${apiMyStartupsAttachmentsIndex(params)}/${params.attachmentID}`
+}
+
+export const apiMyQuestionnairesIndex = () => {
+  return `${apiMy()}/questionnaires`
 }
 
 export const apiVerifyMyProfile = () => {

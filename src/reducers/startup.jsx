@@ -1,4 +1,4 @@
-import { getType, mergeData } from '../services/utils'
+import { mergeAttribute } from '../services/utils'
 
 import {
   SET_STARTUP,
@@ -13,29 +13,8 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case SET_STARTUP:
       return action.data
-    case MERGE_STARTUP_ATTRIBUTE: {
-      let attr = state[action.attribute]
-      const attrType = getType(attr)
-      const dataType = getType(action.data)
-
-      if (attrType === "Array") {
-        attr = mergeData(attr, [action.data])
-      }
-
-      if (attrType === "Object") {
-        attr = action.data
-      }
-
-      if (attrType === "Null" && dataType === "Object") {
-        attr = action.data
-      }
-
-      if (action.sortBy) {
-        attr = _.sortBy(attr, [action.sortBy]).reverse()
-      }
-
-      return { ...state, [action.attribute]: attr }
-    }
+    case MERGE_STARTUP_ATTRIBUTE:
+      return mergeAttribute(state, action)
     case DELETE_STARTUP_ATTRIBUTE_ENTRY: {
       let attr = state[action.attribute]
 

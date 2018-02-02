@@ -53,17 +53,17 @@ export default class MyStartupsEProfileModal extends Component {
   }
 
   render() {
-    const { close, editMode, uMyStartupProfileInProcess, startup, params } = this.props
+    const { close, uMyStartupProfileInProcess, startup, params } = this.props
     const { stateEditMode, editInfo } = this.state
 
-    const keyword = editMode ? "Edit" : "Add"
+    const keyword = "Edit"
     const name = _.get(startup, 'name', '')
-    const initialValues = editMode ? {
+    const initialValues = {
       description: _.get(startup, 'profile.description', ''),
       overview: _.get(startup, 'profile.overview', ''),
       tagline: _.get(startup, 'profile.tagline', ''),
       yearFounded: _.get(startup, 'profile.year_founded', '')
-    } : undefined
+    }
 
     return (
       <Modal show onHide={close} className={`form-modal ${!this.state.eProfile && 'hide'}`} id="modals-my-startups-s-risk">

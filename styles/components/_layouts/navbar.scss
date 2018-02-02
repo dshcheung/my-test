@@ -1,5 +1,5 @@
 #layouts-navbar {
-  height: 100px;
+  height: $navbar-height;
   background-color: white;
   border-bottom: 1px solid $gray-lighter;
   margin-bottom: 0;
@@ -7,6 +7,7 @@
   > div {
     .navbar-header {
       .navbar-brand {
+        padding: 15px;
         img {
           max-height: 70px;
         }

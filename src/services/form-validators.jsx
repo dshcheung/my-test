@@ -13,6 +13,9 @@ const validators = {
   },
   confirmPassword: (value, { password }) => {
     if (value !== password) return "Please Enter The Same Password"
+  },
+  investorStatus: (value) => {
+    if (value === "5") return 'AngelHub is accredited investors only at this time.'
   }
 }
 

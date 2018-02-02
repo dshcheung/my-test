@@ -1,21 +1,34 @@
 #page-my-settings {
-  padding: 30px;
-  border: 2px solid $gray-lighter;
+  padding: 20px;
+  min-height: $min-body-height;
+  position: relative;
 
-  .page-title {
-    font-size: $font-size-h2;
-    color: $brand-primary;
+  .sidebar {
+    position: absolute;
+    width: 150px;
+    min-height: calc(100% - 40px);
+
+    ul {
+      padding: 0;
+      margin: 0;
+      li {
+        list-style: none;
+      }
+    }
   }
 
-  #forms-my-profile-update-password {
-    label {
-      color: $gray-light;
-    }
-    .btn {
-      font-size: $btn-font-size-base;
-      font-weight: 100;
-      i {
-        margin-right: 25px;
+  .content {
+    position: absolute;
+    width: calc(100% - 150px);
+    margin-left: 150px;
+    min-height: calc(100% - 40px);
+    border-left: 1px solid black;
+
+    .tab {
+      padding: 0 15px;
+
+      .page-title {
+        margin-top: 0;
       }
     }
   }

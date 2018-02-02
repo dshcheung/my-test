@@ -14,16 +14,21 @@ import ResetPasswordContainer from './components/_pages/auth/reset-password'
 import VerifyEmailContainer from './components/_pages/verify/email'
 import VerifyMobileContainer from './components/_pages/verify/mobile'
 
+
 import MyContainer from './components/_pages/my/wrapper'
+import MySettingsContainer from './components/_pages/my/settings'
 import MyConversationsIndexContainer from './components/_pages/my/conversations'
 import MyNotificationsIndexContainer from './components/_pages/my/notifications/index'
+import MyQuestionnairesContainer from './components/_pages/my/questionnaires'
 import MyStartupsIndexContainer from './components/_pages/my/startups'
-import MySettingsContainer from './components/_pages/my/settings'
+import MyCampaignsContainer from './components/_pages/my/campaigns'
 
 import UsersShowContainer from './components/_pages/users/show'
 
-import StartupsIndexContainer from './components/_pages/startups/index'
 import StartupsShowContainer from './components/_pages/startups/show'
+
+import CampaignsIndexContainer from './components/_pages/campaigns/index'
+import CampaignsShowContainer from './components/_pages/campaigns/show'
 
 import PageNotFound from './components/_pages/not-found'
 
@@ -44,6 +49,8 @@ export default (
     </Route>
 
     <Route path="my" component={MyContainer}>
+      <Route path="settings" component={MySettingsContainer} />
+
       <Route path="conversations" component={MyConversationsIndexContainer} />
 
       <Route path="notifications">
@@ -51,30 +58,26 @@ export default (
         <Route path=":notificationID" />
       </Route>
 
-      <Route path="portfolio" />
+      <Route path="questionnaires" component={MyQuestionnairesContainer} />
+
+      <Route path="campaigns" component={MyCampaignsContainer} />
 
       <Route path="startups" component={MyStartupsIndexContainer} />
 
-      <Route path="campaigns">
-        <IndexRoute />
-        <Route path=":campaignID" />
-      </Route>
+      <Route path="portfolio" />
+    </Route>
 
-      <Route path="settings" component={MySettingsContainer} />
+    <Route path="campaigns">
+      <IndexRoute component={CampaignsIndexContainer} />
+      <Route path=":campaignID" component={CampaignsShowContainer} />
+    </Route>
+
+    <Route path="startups">
+      <Route path=":startupID" component={StartupsShowContainer} />
     </Route>
 
     <Route path="users">
       <Route path=":userID" component={UsersShowContainer} />
-    </Route>
-
-    <Route path="startups">
-      <IndexRoute component={StartupsIndexContainer} />
-      <Route path=":startupID" component={StartupsShowContainer} />
-    </Route>
-
-    <Route path="campaigns">
-      <IndexRoute />
-      <Route path=":campaignID" />
     </Route>
 
     <Route path="about" />

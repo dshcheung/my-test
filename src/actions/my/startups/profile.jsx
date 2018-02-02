@@ -11,7 +11,12 @@ export const cMyStartupProfile = (values, params, cb) => {
     method: "post",
     url: genApiUrl(apiMyStartupsProfileIndex(params)),
     data: getFormData({
-      overview: _.get(values, 'overview', null)
+      description: _.get(values, 'description', null),
+      overview: _.get(values, 'overview', null),
+      tagline: _.get(values, 'tagline', null),
+      year_founded: _.get(values, 'yearFounded', null),
+      banner: _.get(values, 'banner[0]', null),
+      avatar: _.get(values, 'avatar[0]', null)
     }, 'profile')
   })
 
@@ -21,18 +26,23 @@ export const cMyStartupProfile = (values, params, cb) => {
     successCB: (dispatch, data) => {
       if (cb) cb()
       dispatch(mergeStartupAttribute(data, 'profile'))
-      notySuccess(`${_.get(values, 'overview') ? "Overview" : "Profile"} Created!`)
+      notySuccess("Created")
     }
   }
 }
 
 export const U_MY_STARTUP_PROFILE = "U_MY_STARTUP_PROFILE"
-export const uMyStartupProfile = (values, params, cb, keyword = "Overview") => {
+export const uMyStartupProfile = (values, params, cb) => {
   const request = genAxios({
     method: "put",
     url: genApiUrl(apiMyStartupsProfileIndex(params)),
     data: getFormData({
-      overview: _.get(values, 'overview', null)
+      description: _.get(values, 'description', null),
+      overview: _.get(values, 'overview', null),
+      tagline: _.get(values, 'tagline', null),
+      year_founded: _.get(values, 'yearFounded', null),
+      banner: _.get(values, 'banner[0]', null),
+      avatar: _.get(values, 'avatar[0]', null)
     }, 'profile')
   })
 
@@ -42,7 +52,7 @@ export const uMyStartupProfile = (values, params, cb, keyword = "Overview") => {
     successCB: (dispatch, data) => {
       if (cb) cb()
       dispatch(mergeStartupAttribute(data, 'profile'))
-      notySuccess(`${keyword} Updated!`)
+      notySuccess("Updated")
     }
   }
 }
