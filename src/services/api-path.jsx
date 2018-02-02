@@ -190,6 +190,10 @@ export const apiMyStartupsAttachmentsShow = (params) => {
   return `${apiMyStartupsAttachmentsIndex(params)}/${params.attachmentID}`
 }
 
+export const apiMyQuestionnairesIndex = () => {
+  return `${apiMy()}/questionnaires`
+}
+
 export const apiVerifyMyProfile = () => {
   return `${apiMyProfile()}/verify`
 }

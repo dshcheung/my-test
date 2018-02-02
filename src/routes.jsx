@@ -14,10 +14,12 @@ import ResetPasswordContainer from './components/_pages/auth/reset-password'
 import VerifyEmailContainer from './components/_pages/verify/email'
 import VerifyMobileContainer from './components/_pages/verify/mobile'
 
+
 import MyContainer from './components/_pages/my/wrapper'
 import MySettingsContainer from './components/_pages/my/settings'
 import MyConversationsIndexContainer from './components/_pages/my/conversations'
 import MyNotificationsIndexContainer from './components/_pages/my/notifications/index'
+import MyQuestionnairesContainer from './components/_pages/my/questionnaires'
 import MyStartupsIndexContainer from './components/_pages/my/startups'
 import MyCampaignsContainer from './components/_pages/my/campaigns'
 
@@ -55,6 +57,8 @@ export default (
         <IndexRoute component={MyNotificationsIndexContainer} />
         <Route path=":notificationID" />
       </Route>
+
+      <Route path="questionnaires" component={MyQuestionnairesContainer} />
 
       <Route path="campaigns" component={MyCampaignsContainer} />
 

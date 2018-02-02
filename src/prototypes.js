@@ -12,3 +12,15 @@ String.prototype.decode = function(){
   e.innerHTML = this;
   return e.innerHTML;
 };
+
+String.prototype.capitalize = function(){
+  return this.charAt(0).toUpperCase() + this.slice(1);
+};
+
+Array.prototype.capitalizeAll = function(){
+  return this.map(function(word){ return word.capitalize();  });
+};
+
+String.prototype.splitCap = function(split, join){
+  return this.split(split).capitalizeAll().join(join || " ");
+};

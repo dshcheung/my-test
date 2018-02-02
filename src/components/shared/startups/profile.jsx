@@ -38,6 +38,8 @@ export default class SharedStartupsProfile extends Component {
     const { campaign, startup, loadingInProcess } = this.props
     const sEditable = _.get(startup, 'can.edit', false)
     const cEditable = _.get(campaign, 'can.edit', false)
+    const canPledge = _.get(campaign, 'can.pledge', false)
+    const keyword = (sEditable && "Startup Profile") || (cEditable && "Campaign")
 
     if (loadingInProcess) return <LoadingSpinner />
 
@@ -104,7 +106,7 @@ export default class SharedStartupsProfile extends Component {
                 <button
                   className="btn btn-info"
                   onClick={() => { this.setState({ eSProfile: sEditable, eCProfile: cEditable }) }}
-                ><i className="fa fa-pencil" /> Edit Startup Profile</button>
+                ><i className="fa fa-pencil" /> Edit {keyword}</button>
               </div>
             </div>
           )
@@ -166,21 +168,25 @@ export default class SharedStartupsProfile extends Component {
                   </div>
                 </div>
 
-                <div className="pledge">
-                  <div className="col-xs-12 clearfix">
-                    <button
-                      className="btn btn-primary btn-block btn-lg"
-                      onClick={() => { this.setState({ nPledge: true }) }}
-                    >Pledge Now</button>
-                  </div>
-                </div>
+                {
+                  canPledge && (
+                    <div className="pledge">
+                      <div className="col-xs-12 clearfix">
+                        <button
+                          className="btn btn-primary btn-block btn-lg"
+                          onClick={() => { this.setState({ nPledge: true }) }}
+                        >Pledge Now</button>
+                      </div>
+                    </div>
+                  )
+                }
               </div>
             )
           }
 
           <div className="row startup">
             { campaign && <hr /> }
-            <div className="col-xs-12 col-sm-3 auto-affix">
+            <div className="col-xs-12 col-sm-3 auto-affix hidden-xs">
               <AutoAffix viewportOffsetTop={100} container={this}>
                 <div className="sidebar-wrapper">
                   <ul className="scrollto">

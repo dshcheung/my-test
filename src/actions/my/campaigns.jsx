@@ -44,7 +44,7 @@ export const cMyCampaign = (values, cb) => {
     method: "post",
     url: genApiUrl(apiMyCampaignsIndex()),
     data: getFormData({
-      startup_id: _.get(values, 'startupID', "aWtoVAhmxMHaW3GH"),
+      startup_id: _.get(values, 'startupID', "QjVUdicmUzhDXr41"),
       goal: _.get(values, 'goal', null),
       start_date: _.get(values, 'startDate', null),
       end_date: _.get(values, 'endDate', null),
@@ -63,7 +63,7 @@ export const cMyCampaign = (values, cb) => {
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()
-      dispatch(mergeMyCampaigns({ campaigns: [data.campaign] }))
+      dispatch(mergeMyCampaigns({ campaigns: [data] }))
     }
   }
 }

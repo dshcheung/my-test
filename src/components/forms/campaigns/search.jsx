@@ -3,17 +3,17 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { reduxForm, Field } from 'redux-form'
 
-import { gImmovable, G_IMMOVABLE_STARTUP_FILTERABLE } from '../../../actions/immovables'
+import { gImmovable, G_IMMOVABLE_CAMPAIGN_FILTERABLE } from '../../../actions/immovables'
 
 import Validators from '../../../services/form-validators'
 
 import TextField from '../../shared/form-elements/text-field'
-import SelectField from '../../shared/form-elements/select-field'
+// import SelectField from '../../shared/form-elements/select-field'
 
 const mapStateToProps = (state) => {
   return {
-    startupFilterable: _.get(state.immovables, "startup_filterable", []),
-    gStartupFilterableInProcess: _.get(state.requestStatus, G_IMMOVABLE_STARTUP_FILTERABLE)
+    campaignFilterable: _.get(state.immovables, "campaign_filterable", []),
+    gCampaignFilterableInProcess: _.get(state.requestStatus, G_IMMOVABLE_CAMPAIGN_FILTERABLE)
   }
 }
 
@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 @reduxForm({
-  form: "StartupsSearchForm",
+  form: "CampaignsSearchForm",
   validate: (values) => {
     return Validators({
       keyword: [],
@@ -36,9 +36,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 })
 
-export default class StartupsSearchForm extends Component {
+export default class CampaignsSearchForm extends Component {
   componentWillMount() {
-    this.props.gImmovable({ immovableID: "startup_filterable" })
+    this.props.gImmovable({ immovableID: "campaign_filterable" })
   }
 
   reset() {
@@ -47,7 +47,8 @@ export default class StartupsSearchForm extends Component {
   }
 
   render() {
-    const { handleSubmit, submitInProcess, optClass, startupFilterable } = this.props
+    // const { handleSubmit, submitInProcess, optClass, campaignFilterable } = this.props
+    const { handleSubmit, submitInProcess, optClass } = this.props
 
     return (
       <div id="forms-startups-search" className={optClass}>
@@ -57,7 +58,7 @@ export default class StartupsSearchForm extends Component {
             component={TextField}
             opts={{
               type: "text",
-              placeholder: "Keyword"
+              placeholder: "Startup Name"
             }}
           />
 
@@ -66,31 +67,30 @@ export default class StartupsSearchForm extends Component {
               <Field
                 name="filter"
                 component={SelectField}
-                options={[{ id: 1, name: "Some" }, { id: 2, name: "Thing" }]}
+                options={campaignFilterable}
                 opts={{
                   placeholder: "Category"
                 }}
               />
+              <Field
+                name="sortBy"
+                component={SelectField}
+                options={[{ id: 'name', name: "Name" }]}
+                opts={{
+                  placeholder: "Sort By"
+                }}
+              />
+
+              <Field
+                name="sort"
+                component={SelectField}
+                options={[{ id: "ASC", name: "ASC" }, { id: "DESC", name: "DESC" }]}
+                opts={{
+                  placeholder: "Direction"
+                }}
+              />
             */
           }
-
-          <Field
-            name="sortBy"
-            component={SelectField}
-            options={startupFilterable}
-            opts={{
-              placeholder: "Sort By"
-            }}
-          />
-
-          <Field
-            name="sort"
-            component={SelectField}
-            options={[{ id: "ASC", name: "ASC" }, { id: "DESC", name: "DESC" }]}
-            opts={{
-              placeholder: "Direction"
-            }}
-          />
 
           <button
             className={`btn btn-info ${submitInProcess && "m-progress"}`}

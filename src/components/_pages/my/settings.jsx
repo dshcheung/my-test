@@ -75,9 +75,15 @@ export default class My extends Component {
   render() {
     const { currentUser } = this.props
 
-    const { email, mobile, verified_email, verified_mobile, validation_stages: {
-      stage_one, stage_two, stage_three, stage_four
-    } } = currentUser
+    const { email, mobile, verified_email, verified_mobile } = currentUser
+
+    const isInvestor = currentUser.is_investor
+
+    // const completed = _.get(currentUser, 'investor.stage_one', false)
+    const stage_one = _.get(currentUser, 'investor.stage_one', false)
+    const stage_two = _.get(currentUser, 'investor.stage_two', false)
+    const stage_three = _.get(currentUser, 'investor.stage_three', false)
+    const stage_four = _.get(currentUser, 'investor.stage_four', false)
 
     const { first_name, last_name } = currentUser.profile
 
@@ -163,12 +169,16 @@ export default class My extends Component {
                     )
                   }
                 </Panel>
-                <Panel header="Validation Status">
-                  <div>Stage One - { stage_one ? "Completed" : "Waiting"}</div>
-                  <div>Stage Two - { stage_two ? "Completed" : "Waiting"}</div>
-                  <div>Stage Three - { stage_three ? "Completed" : "Waiting"}</div>
-                  <div>Stage Four - { stage_four ? "Completed" : "Waiting"}</div>
-                </Panel>
+                {
+                  isInvestor && (
+                    <Panel header="Validation Status">
+                      <div>Stage One - { stage_one ? "Completed" : "Waiting"}</div>
+                      <div>Stage Two - { stage_two ? "Completed" : "Waiting"}</div>
+                      <div>Stage Three - { stage_three ? "Completed" : "Waiting"}</div>
+                      <div>Stage Four - { stage_four ? "Completed" : "Waiting"}</div>
+                    </Panel>
+                  )
+                }
               </div>
             )
           }
