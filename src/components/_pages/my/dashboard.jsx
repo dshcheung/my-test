@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class MyPortfolio extends Component {
+export default class MyDashboard extends Component {
   componentWillMount() {
     this.props.gMyDashboard()
   }
@@ -40,9 +40,9 @@ export default class MyPortfolio extends Component {
     const campaigns = _.get(myDashboard, 'campaigns', [])
 
     return (
-      <div id="page-my-portfolio" className="container">
-        <Tabs defaultActiveKey={1} id="portfolio-tabs">
-          <Tab eventKey={1} title="Pledged Campaigns">
+      <div id="page-my-dashboard" className="container">
+        <Tabs defaultActiveKey={1} id="dashboard-tabs">
+          <Tab eventKey={1} title="My Campaigns">
             <div className="row">
               <div className="col-xs-12">
                 <table className="table table-hover">
@@ -52,7 +52,8 @@ export default class MyPortfolio extends Component {
                       <th>Days Left</th>
                       <th>Goal</th>
                       <th>Raised</th>
-                      <th>Pledged</th>
+                      <th>Investors</th>
+                      <th>Completed</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -64,7 +65,8 @@ export default class MyPortfolio extends Component {
                             <td>{moment(c.end_date).diff(moment(), 'days')}</td>
                             <td>${c.goal.currency()}</td>
                             <td>${c.raised.currency()}</td>
-                            <td>${c.campaign_pledges[0].amount.currency()}</td>
+                            <td>{c.number_of_investors}</td>
+                            <td>{c.has_reached_goal ? "Yes" : "No"}</td>
                           </tr>
                         )
                       })
@@ -74,7 +76,7 @@ export default class MyPortfolio extends Component {
               </div>
             </div>
           </Tab>
-          <Tab eventKey={2} title="Diversification Analysis">
+          <Tab eventKey={2} title="Some Analysis">
             In Development
           </Tab>
         </Tabs>
