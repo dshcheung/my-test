@@ -10,6 +10,7 @@ import immovablesReducer from './immovables'
 import myCampaignsReducer from './my-campaigns'
 import myConversationsReducer from './my-conversations'
 import myNotificationsReducer from './my-notifications'
+import myQuestionnairesReducers from './my-questionnaires'
 import myStartupsReducer from './my-startups'
 import paginationReducer from './pagination'
 import requestStatusReducer from './request-status'
@@ -25,6 +26,7 @@ const appReducer = combineReducers({
   myCampaigns: myCampaignsReducer,
   myConversations: myConversationsReducer,
   myNotifications: myNotificationsReducer,
+  myQuestionnaires: myQuestionnairesReducers,
   myStartups: myStartupsReducer,
   pagination: paginationReducer,
   requestStatus: requestStatusReducer,

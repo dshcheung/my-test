@@ -12,7 +12,8 @@ import DateTimePickerField from '../../shared/form-elements/datetime-picker'
   validate: (values) => {
     return Validators({
     }, values)
-  }
+  },
+  enableReinitialize: true
 })
 export default class QuestionnaireForm extends Component {
   render() {
@@ -26,7 +27,7 @@ export default class QuestionnaireForm extends Component {
           {
             questionnaires.map((question, i) => {
               let component = null
-              const name = `${question.id}.answer`
+              const name = `answers.[${i}].answer`
 
               switch (question.type) {
                 case "radio": {

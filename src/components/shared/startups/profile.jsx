@@ -94,8 +94,8 @@ export default class SharedStartupsProfile extends Component {
     const riskExist = !!risk
     const media = _.get(startup, "media", [])
     const mediaExist = media.length > 0
-    const attachments = _.get(startup, "attachments", [])
-    const attachmentsExist = attachments.length > 0
+    const attachments = _.get(startup, "attachments", null)
+    const attachmentsExist = !!attachments
 
     return (
       <div id="shared-startups-profile" className="container-fluid">

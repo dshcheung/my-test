@@ -1,0 +1,15 @@
+#pages-my-questionnaires {
+  .stage-nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 15px;
+
+    .nav-item:last-child {
+      span {
+        display: none;
+      }
+    }
+  }
+}
