@@ -7,6 +7,7 @@ export default class AutocompleteField extends Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
+    this.handleOnBlur = this.handleOnBlur.bind(this)
   }
 
   handleChange(data) {
@@ -18,6 +19,10 @@ export default class AutocompleteField extends Component {
 
   handleSelect(data) {
     this.props.input.onChange(data)
+  }
+
+  handleOnBlur() {
+    this.props.input.onBlur()
   }
 
   render() {
@@ -35,6 +40,7 @@ export default class AutocompleteField extends Component {
           {...input}
           onChange={this.handleChange}
           onSelect={this.handleSelect}
+          onBlur={this.handleOnBlur}
           busy={inProcess}
           data={options}
           valueField={valueField}

@@ -6,6 +6,7 @@ import Validators from '../../../services/form-validators'
 
 import TextField from '../../shared/form-elements/text-field'
 import RadioField from '../../shared/form-elements/radio-field'
+import CheckboxField from '../../shared/form-elements/checkbox-field'
 
 @reduxForm({
   form: "AuthSignupForm",
@@ -14,104 +15,139 @@ import RadioField from '../../shared/form-elements/radio-field'
       email: ["presences", "email"],
       password: ["presences", { type: "length", opts: { min: 6 } }],
       firstName: ["presences"],
-      lastName: ["presences"],
-      role: ["presences"]
+      lastName: ["presences"]
     }, values)
   },
-  initialValues: {
-    email: "test@test.com",
-    password: "123456",
-    firstName: "Denis",
-    lastName: "Cheung",
-    role: "StartupUser"
-  }
+  enableReinitialize: true
 })
 export default class AuthSignupForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass } = this.props
+    const { handleSubmit, submitInProcess, optClass, changeRole, role, questions } = this.props
 
     return (
       <div id="forms-auth-signup" className={optClass}>
         <h1 className="form-title margin-bottom-20 margin-top-0 text-uppercase">Join AngelHub</h1>
         <p>You need to sign up to get full access. Free to join!</p>
 
-        <form onSubmit={handleSubmit}>
-          <div className="row">
-            <Field
-              name="role"
-              component={RadioField}
-              optItemClass="col-xs-12 col-sm-6 radio-group"
-              opts={[
-                { value: "Investor", label: "I am an investor" },
-                { value: "StartupUser", label: "I am an founder" }
-              ]}
-            />
+        <div className="row">
+          <div className="col-xs-6">
+            <button
+              className={`btn btn-block btn-${role === "Investor" ? "info" : "default"}`}
+              onClick={() => { changeRole("Investor") }}
+            >I am an Investor</button>
           </div>
+          <div className="col-xs-6">
+            <button
+              className={`btn btn-block btn-${role === "StartupUser" ? "info" : "default"}`}
+              onClick={() => { changeRole("StartupUser") }}
+            >I am a Founder</button>
+          </div>
+        </div>
 
-          <div className="row">
-            <div className="col-xs-12 col-sm-6">
+        {
+          role && (
+            <form onSubmit={handleSubmit}>
+              <div className="row">
+                <div className="col-xs-12 col-sm-6">
+                  <Field
+                    name="firstName"
+                    component={TextField}
+                    opts={{
+                      type: "text",
+                      label: "First Name *"
+                    }}
+                  />
+                </div>
+                <div className="col-xs-12 col-sm-6">
+                  <Field
+                    name="lastName"
+                    component={TextField}
+                    opts={{
+                      type: "text",
+                      label: "Last Name *"
+                    }}
+                  />
+                </div>
+              </div>
+
               <Field
-                name="firstName"
+                name="email"
                 component={TextField}
                 opts={{
-                  type: "text",
-                  label: "First Name *"
+                  type: "email",
+                  label: "Email *"
                 }}
               />
-            </div>
-            <div className="col-xs-12 col-sm-6">
+
               <Field
-                name="lastName"
+                name="password"
                 component={TextField}
                 opts={{
-                  type: "text",
-                  label: "Last Name *"
+                  type: "password",
+                  label: "Password *"
                 }}
               />
-            </div>
-          </div>
 
-          <Field
-            name="email"
-            component={TextField}
-            opts={{
-              type: "email",
-              label: "Email *"
-            }}
-          />
+              {
+                questions && questions.map((q, i) => {
+                  let component = null
+                  const name = `questionnaire.answers.[${i}].answer`
 
-          <Field
-            name="password"
-            component={TextField}
-            opts={{
-              type: "password",
-              label: "Password *"
-            }}
-          />
+                  switch (q.type) {
+                    case "radio": {
+                      component = (
+                        <Field
+                          key={i}
+                          optItemClass="display-block"
+                          name={name}
+                          component={RadioField}
+                          title={q.title}
+                          opts={q.answers.map((answer) => {
+                            const key = Object.keys(answer)[0]
+                            return { value: key, label: answer[key] }
+                          })}
+                        />
+                      )
+                      break
+                    }
 
-          <div className="form-actions">
-            <button
-              className={`btn btn-info btn-lg btn-block ${submitInProcess && "m-progress"}`}
-              type="submit"
-              disabled={submitInProcess}
-            >
-              Continue
-            </button>
-            <button
-              className={`btn btn-linked-in btn-lg btn-block ${submitInProcess && "m-progress"}`}
-              type="button"
-              disabled={submitInProcess}
-            >
-              <i className="fa fa-linkedin fa-lg" /> Sign in with LinkedIn
-            </button>
-          </div>
+                    case "checkbox": {
+                      component = (
+                        <Field
+                          key={i}
+                          name={name}
+                          component={CheckboxField}
+                          opts={{
+                            label: q.title
+                          }}
+                        />
+                      )
+                    }
+                  }
 
-          <hr />
+                  return component
+                })
+              }
 
-          <div className="have-account">
-            <span>Already have an account? </span><Link to="/auth/login">Log in here</Link>
-          </div>
-        </form>
+              <div className="form-actions">
+                <button
+                  className={`btn btn-info btn-lg btn-block ${submitInProcess && "m-progress"}`}
+                  type="submit"
+                  disabled={submitInProcess}
+                >
+                  Continue
+                </button>
+              </div>
+
+            </form>
+          )
+        }
+
+        <hr />
+
+        <div className="have-account">
+          <span>Already have an account? </span><Link to="/auth/login">Log in here</Link>
+        </div>
       </div>
     )
   }

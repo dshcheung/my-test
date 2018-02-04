@@ -64,6 +64,7 @@ export const cMyCampaign = (values, cb) => {
     successCB: (dispatch, data) => {
       if (cb) cb()
       dispatch(mergeMyCampaigns({ campaigns: [data] }))
+      notySuccess("Created!")
     }
   }
 }

@@ -5,6 +5,7 @@ import Validators from '../../../services/form-validators'
 
 import RadioField from '../../shared/form-elements/radio-field'
 import TextField from '../../shared/form-elements/text-field'
+import CheckboxField from '../../shared/form-elements/checkbox-field'
 import DateTimePickerField from '../../shared/form-elements/datetime-picker'
 
 @reduxForm({
@@ -41,6 +42,19 @@ export default class QuestionnaireForm extends Component {
                         const key = Object.keys(answer)[0]
                         return { value: key, label: answer[key] }
                       })}
+                    />
+                  )
+                  break
+                }
+                case "checkbox": {
+                  component = (
+                    <Field
+                      key={i}
+                      name={name}
+                      component={CheckboxField}
+                      opts={{
+                        label: question.title
+                      }}
                     />
                   )
                   break
