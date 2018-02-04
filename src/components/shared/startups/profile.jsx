@@ -35,9 +35,9 @@ export default class SharedStartupsProfile extends Component {
   }
 
   render() {
-    const { campaign, startup, loadingInProcess } = this.props
-    const sEditable = _.get(startup, 'can.edit', false)
-    const cEditable = _.get(campaign, 'can.edit', false)
+    const { campaign, startup, loadingInProcess, mainFocus } = this.props
+    const sEditable = _.get(startup, 'can.edit', false) && mainFocus === "startup"
+    const cEditable = _.get(campaign, 'can.edit', false) && mainFocus === "campaign"
     const canPledge = _.get(campaign, 'can.pledge', false)
     const keyword = (sEditable && "Startup Profile") || (cEditable && "Campaign")
 
@@ -99,21 +99,20 @@ export default class SharedStartupsProfile extends Component {
 
     return (
       <div id="shared-startups-profile" className="container-fluid">
-        {
-          (sEditable || cEditable) && (
-            <div className="row margin-top-15 edit-mode-actions">
-              <div className="col-xs-12 text-center">
-                <button
-                  className="btn btn-info"
-                  onClick={() => { this.setState({ eSProfile: sEditable, eCProfile: cEditable }) }}
-                ><i className="fa fa-pencil" /> Edit {keyword}</button>
-              </div>
-            </div>
-          )
-        }
-
         <div className="row header">
           <div className="col-xs-12 startup-banner" style={bannerStyles}>
+            {
+              (sEditable || cEditable) && (
+                <div className="row margin-top-15 edit-mode-actions">
+                  <div className="col-xs-12 text-center">
+                    <button
+                      className="btn btn-info"
+                      onClick={() => { this.setState({ eSProfile: sEditable, eCProfile: cEditable }) }}
+                    ><i className="fa fa-pencil" /> Edit {keyword}</button>
+                  </div>
+                </div>
+              )
+            }
             <img src={avatar} className="startup-avatar" alt="Startup Avatar" />
             {campaignName && <div className="h1 campaign-name">{campaignName}</div>}
             {startupName && <div className="h2 startup-name">by {startupName}</div>}

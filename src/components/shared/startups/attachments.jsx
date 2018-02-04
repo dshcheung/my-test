@@ -27,7 +27,7 @@ export default class SharedStartupsAttachments extends Component {
     const { attachments, editable, routeParams } = this.props
     const { sAttachments } = this.state
     const title = "Documents"
-    const emptyAttachments = attachments.length === 0
+    const emptyAttachments = attachments === null || attachments.length === 0
     const editMode = !emptyAttachments
 
     return (

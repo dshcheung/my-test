@@ -118,6 +118,10 @@ export const apiMyStartupsIndex = () => {
   return `${apiMy()}/startups`
 }
 
+export const apiMyStartupsAutoIndex = () => {
+  return `${apiMyStartupsIndex()}/autocomplete`
+}
+
 export const apiMyStartupsShow = (params) => {
   return `${apiMyStartupsIndex()}/${params.myStartupID || params.startupID}`
 }

@@ -52,6 +52,7 @@ export default class MyCampaignsNECampaignModal extends Component {
     const endDate = _.get(campaign, 'end_date', moment())
     const maturityDate = _.get(campaign, 'maturity_date', moment())
     const initialValues = editMode ? {
+      startup: { name: _.get(campaign, 'startup.name', ''), id: _.get(campaign, 'startup.id', '') },
       name: _.get(campaign, 'campaign_type.name', ''),
       amountType: _.get(campaign, 'campaign_type.amount_type', ''),
       goal: _.get(campaign, 'goal', 0),

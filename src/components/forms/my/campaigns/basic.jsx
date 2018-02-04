@@ -1,16 +1,37 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { reduxForm, Field } from 'redux-form'
+
+import { gMyStartupsAuto, G_MY_STARTUPS_AUTO, resetMyStartupsAuto } from '../../../../actions/my/startups'
 
 import Validators from '../../../../services/form-validators'
 
 import TextField from '../../../shared/form-elements/text-field'
 import SelectField from '../../../shared/form-elements/select-field'
 import DatetimePicker from '../../../shared/form-elements/datetime-picker'
+import AutocompleteField from '../../../shared/form-elements/autocomplete'
 
+const mapStateToProps = (state) => {
+  return {
+    gMyStartupsAutoInProcess: _.get(state, `requestStatus[${G_MY_STARTUPS_AUTO}]`),
+    myStartupsAutocomplete: _.get(state, 'myStartupsAutocomplete', [])
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    gMyStartupsAuto: bindActionCreators(gMyStartupsAuto, dispatch),
+    resetMyStartupsAuto: bindActionCreators(resetMyStartupsAuto, dispatch)
+  }
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 @reduxForm({
   form: "MyCampaignBasicForm",
   validate: (values) => {
     return Validators({
+      startup: [{ type: "attrPresences", opts: { key: "id" } }],
       name: ["presences"],
       goal: ["presences"],
       startDate: ["presences"],
@@ -25,12 +46,38 @@ import DatetimePicker from '../../../shared/form-elements/datetime-picker'
   }
 })
 export default class MyCampaignBasicForm extends Component {
+  componentWillMount() {
+    this.props.gMyStartupsAuto()
+  }
+
+  componentWillUnmount() {
+    this.props.resetMyStartupsAuto()
+  }
+
+  gMyStartupsAuto(q) {
+    this.props.gMyStartupsAuto({ queries: { q } })
+  }
+
+
   render() {
-    const { handleSubmit, submitInProcess, optClass } = this.props
+    const { handleSubmit, submitInProcess, optClass, myStartupsAutocomplete, gMyStartupsAutoInProcess } = this.props
 
     return (
       <div id="forms-my-profile-basic" className={optClass}>
         <form onSubmit={handleSubmit}>
+          <Field
+            name="startup"
+            component={AutocompleteField}
+            search={(q) => { this.gMyStartupsAuto(q) }}
+            opts={{
+              options: myStartupsAutocomplete,
+              valueField: "id",
+              textField: "name",
+              label: "Select Startup *",
+              inProcess: gMyStartupsAutoInProcess
+            }}
+          />
+
           <Field
             name="name"
             component={TextField}

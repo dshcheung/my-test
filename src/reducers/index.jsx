@@ -12,6 +12,7 @@ import myConversationsReducer from './my-conversations'
 import myNotificationsReducer from './my-notifications'
 import myQuestionnairesReducers from './my-questionnaires'
 import myStartupsReducer from './my-startups'
+import myStartupsAutocompleteReducer from './my-startups-autocomplete'
 import paginationReducer from './pagination'
 import requestStatusReducer from './request-status'
 import sessionReducer from './session'
@@ -28,6 +29,7 @@ const appReducer = combineReducers({
   myNotifications: myNotificationsReducer,
   myQuestionnaires: myQuestionnairesReducers,
   myStartups: myStartupsReducer,
+  myStartupsAutocomplete: myStartupsAutocompleteReducer,
   pagination: paginationReducer,
   requestStatus: requestStatusReducer,
   session: sessionReducer,

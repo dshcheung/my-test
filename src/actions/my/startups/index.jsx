@@ -1,6 +1,6 @@
 import { genApiUrl, addParamsToUrl, genAxios } from '../../../services/api-request'
 import { getFormData } from '../../../services/get-form-data'
-import { apiMyStartupsIndex, apiMyStartupsShow } from '../../../services/api-path'
+import { apiMyStartupsIndex, apiMyStartupsShow, apiMyStartupsAutoIndex } from '../../../services/api-path'
 import { notySuccess } from '../../../services/noty'
 
 import { setStartup } from '../../startups'
@@ -75,6 +75,37 @@ export const uMyStartup = (values, params, cb) => {
       if (cb) cb()
       dispatch(setStartup(data))
       notySuccess("Name Updated!")
+    }
+  }
+}
+
+export const SET_MY_STARTUPS_AUTO = "SET_MY_STARTUPS_AUTO"
+export const setMyStartupsAuto = (data) => {
+  return {
+    type: SET_MY_STARTUPS_AUTO,
+    data: data.startups
+  }
+}
+
+export const RESET_MY_STARTUPS_AUTO = "RESET_MY_STARTUPS_AUTO"
+export const resetMyStartupsAuto = () => {
+  return {
+    type: RESET_MY_STARTUPS_AUTO
+  }
+}
+
+export const G_MY_STARTUPS_AUTO = "GET_MY_STARTUPS_AUTO"
+export const gMyStartupsAuto = ({ queries = {} } = {}) => {
+  const request = genAxios({
+    method: "get",
+    url: genApiUrl(apiMyStartupsAutoIndex(), queries)
+  })
+
+  return {
+    type: G_MY_STARTUPS_AUTO,
+    request,
+    successCB: (dispatch, data) => {
+      dispatch(setMyStartupsAuto(data))
     }
   }
 }
