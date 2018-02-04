@@ -13,7 +13,8 @@ import LoadingSpinner from '../../../shared/loading-spinner'
 const mapStateToProps = (state) => {
   return {
     myNotifications: _.get(state, 'myNotifications', []),
-    gMyNotificationsInProcess: _.get(state.requestStatus, G_MY_NOTIFICATIONS)
+    gMyNotificationsInProcess: _.get(state.requestStatus, G_MY_NOTIFICATIONS),
+    nextNotification: _.get(state.pagination, G_MY_NOTIFICATIONS, null)
   }
 }
 
@@ -35,7 +36,7 @@ export default class MyNotificationsIndex extends Component {
   }
 
   render() {
-    const { myNotifications, gMyNotificationsInProcess } = this.props
+    const { myNotifications, gMyNotificationsInProcess, nextNotification } = this.props
 
     return (
       <div id="page-my-notifications-index" className="container padding-top-20">
@@ -73,7 +74,14 @@ export default class MyNotificationsIndex extends Component {
                     )
                   })
 
-                  component = [noNotifications, ...notificationList]
+                  const loadMore = nextNotification && (
+                    <button
+                      onClick={() => { this.props.gMyNotifications({ nextHref: nextNotification }) }}
+                      className="btn btn-default"
+                    >Load More</button>
+                  )
+
+                  component = [noNotifications, ...notificationList, loadMore]
                 }
                 return component
               })()

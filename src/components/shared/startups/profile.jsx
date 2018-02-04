@@ -39,6 +39,7 @@ export default class SharedStartupsProfile extends Component {
     const sEditable = _.get(startup, 'can.edit', false) && mainFocus === "startup"
     const cEditable = _.get(campaign, 'can.edit', false) && mainFocus === "campaign"
     const canPledge = _.get(campaign, 'can.pledge', false)
+    const hasPledged = _.get(campaign, 'can.has_pledged', false)
     const keyword = (sEditable && "Startup Profile") || (cEditable && "Campaign")
 
     if (loadingInProcess) return <LoadingSpinner />
@@ -168,13 +169,14 @@ export default class SharedStartupsProfile extends Component {
                 </div>
 
                 {
-                  canPledge && (
+                  (canPledge || hasPledged) && (
                     <div className="pledge">
                       <div className="col-xs-12 clearfix">
                         <button
                           className="btn btn-primary btn-block btn-lg"
                           onClick={() => { this.setState({ nPledge: true }) }}
-                        >Pledge Now</button>
+                          disabled={hasPledged}
+                        >{canPledge && "Pledge Now"}{hasPledged && "You Have Pledged"}</button>
                       </div>
                     </div>
                   )

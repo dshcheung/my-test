@@ -51,10 +51,50 @@ export default class Navbar extends Component {
         <BNavbar.Collapse>
           <Nav>
             {
-              currentUser && (
+              currentUser && currentUser.role === "Investor" && (
+                <LinkContainer to="/My Portfolio" active={false}>
+                  <NavItem eventKey={1.1}>
+                    <span>Portfolio</span>
+                  </NavItem>
+                </LinkContainer>
+              )
+            }
+
+            {
+              currentUser && currentUser.role === "Investor" && (
                 <LinkContainer to="/campaigns" active={false}>
-                  <NavItem eventKey={2}>
+                  <NavItem eventKey={1.2}>
                     <span>Campaigns</span>
+                  </NavItem>
+                </LinkContainer>
+              )
+            }
+
+            {
+              currentUser && currentUser.role === "StartupUser" && (
+                <LinkContainer to="/my/dashboard" active={false}>
+                  <NavItem eventKey={2.1}>
+                    <span>Dashboard</span>
+                  </NavItem>
+                </LinkContainer>
+              )
+            }
+
+            {
+              currentUser && currentUser.role === "StartupUser" && (
+                <LinkContainer to="/my/startups" active={false}>
+                  <NavItem eventKey={2.2}>
+                    <span>My Startups</span>
+                  </NavItem>
+                </LinkContainer>
+              )
+            }
+
+            {
+              currentUser && currentUser.role === "StartupUser" && (
+                <LinkContainer to="/my/campaigns" active={false}>
+                  <NavItem eventKey={2.3}>
+                    <span>My Campaigns</span>
                   </NavItem>
                 </LinkContainer>
               )
@@ -132,8 +172,8 @@ export default class Navbar extends Component {
                 >
                   {
                     currentUser.role === "StartupUser" && (
-                      <LinkContainer to="/my/campaigns" active={false}>
-                        <MenuItem eventKey={9.1}>My Campaigns</MenuItem>
+                      <LinkContainer to="/my/dashboard" active={false}>
+                        <MenuItem eventKey={9.1}>Dashboard</MenuItem>
                       </LinkContainer>
                     )
                   }
@@ -147,9 +187,25 @@ export default class Navbar extends Component {
                   }
 
                   {
+                    currentUser.role === "StartupUser" && (
+                      <LinkContainer to="/my/campaigns" active={false}>
+                        <MenuItem eventKey={9.3}>My Campaigns</MenuItem>
+                      </LinkContainer>
+                    )
+                  }
+
+                  {
                     currentUser.role === "Investor" && (
                       <LinkContainer to="/my/portfolio" active={false}>
-                        <MenuItem eventKey={9.3}>My Portfolio</MenuItem>
+                        <MenuItem eventKey={9.4}>My Portfolio</MenuItem>
+                      </LinkContainer>
+                    )
+                  }
+
+                  {
+                    currentUser.role === "Investor" && (
+                      <LinkContainer to="/my/questionnaires" active={false}>
+                        <MenuItem eventKey={9.5}>My KYC Process</MenuItem>
                       </LinkContainer>
                     )
                   }
@@ -157,16 +213,16 @@ export default class Navbar extends Component {
                   <MenuItem divider />
 
                   <LinkContainer to={`/users/${currentUser.id}`} active={false}>
-                    <MenuItem eventKey={9.4}>Edit Profile</MenuItem>
+                    <MenuItem eventKey={9.6}>Edit Profile</MenuItem>
                   </LinkContainer>
                   <LinkContainer to="/my/settings" active={false}>
-                    <MenuItem eventKey={9.5}>Settings</MenuItem>
+                    <MenuItem eventKey={9.7}>Settings</MenuItem>
                   </LinkContainer>
 
                   <MenuItem divider />
 
                   <LinkContainer to="" active={false}>
-                    <MenuItem eventKey={9.6} onClick={this.props.deleteSession}>Logout</MenuItem>
+                    <MenuItem eventKey={9.8} onClick={this.props.deleteSession}>Logout</MenuItem>
                   </LinkContainer>
                 </NavDropdown>
               </Nav>
