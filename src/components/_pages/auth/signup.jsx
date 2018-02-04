@@ -46,11 +46,10 @@ export default class Signup extends Component {
   }
 
   createUser(values) {
-    console.log({
+    this.props.createUser({
       ...values,
       role: this.state.role
     })
-    // this.props.createUser({values})
   }
 
   changeRole(role) {

@@ -20,8 +20,9 @@ import MySettingsContainer from './components/_pages/my/settings'
 import MyConversationsIndexContainer from './components/_pages/my/conversations'
 import MyNotificationsIndexContainer from './components/_pages/my/notifications/index'
 import MyQuestionnairesContainer from './components/_pages/my/questionnaires'
-import MyStartupsIndexContainer from './components/_pages/my/startups'
 import MyCampaignsContainer from './components/_pages/my/campaigns'
+import MyStartupsIndexContainer from './components/_pages/my/startups'
+import MyPortfolioContainer from './components/_pages/my/portfolio'
 
 import UsersShowContainer from './components/_pages/users/show'
 
@@ -64,7 +65,7 @@ export default (
 
       <Route path="startups" component={MyStartupsIndexContainer} />
 
-      <Route path="portfolio" />
+      <Route path="portfolio" component={MyPortfolioContainer} />
     </Route>
 
     <Route path="campaigns">

@@ -52,7 +52,7 @@ export default class Navbar extends Component {
           <Nav>
             {
               currentUser && currentUser.role === "Investor" && (
-                <LinkContainer to="/My Portfolio" active={false}>
+                <LinkContainer to="/my/portfolio" active={false}>
                   <NavItem eventKey={1.1}>
                     <span>Portfolio</span>
                   </NavItem>

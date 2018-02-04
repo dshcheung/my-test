@@ -50,6 +50,10 @@ export const apiMy = () => {
   return 'my'
 }
 
+export const apiMyDashboardIndex = () => {
+  return `${apiMy()}/dashboard`
+}
+
 export const apiMyConversationsIndex = () => {
   return `${apiMy()}/conversations`
 }

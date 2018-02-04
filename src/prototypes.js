@@ -7,6 +7,21 @@ Number.prototype.currency = function(){
   return unmod.reverse().join("");
 };
 
+String.prototype.currency = function(){
+  var splitted = this.split(".");
+  var decimals = splitted[1];
+  var unmod = splitted[0].split("").reverse();
+  var comma = Math.floor(unmod.length / 3);
+  for (var i = 1; i <= comma; i++) {
+    unmod.splice(i * 4 - 1, 0, ",");
+  }
+  var final = unmod.reverse().join("");
+  if (decimals) {
+    final = final + "." + decimals;
+  }
+  return final;
+};
+
 String.prototype.decode = function(){
   var e = document.createElement('div');
   e.innerHTML = this;
