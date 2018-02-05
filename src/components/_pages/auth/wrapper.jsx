@@ -1,28 +1,32 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { push } from 'react-router-redux'
+
+import { notyWarning } from '../../../services/noty'
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: _.get(state, 'session')
+    currentUser: _.get(state, 'session'),
+    redirectionInProcess: _.get(state, 'redirectionInProcess')
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    push: bindActionCreators(push, dispatch)
-  }
-}
-
-@connect(mapStateToProps, mapDispatchToProps)
+@connect(mapStateToProps, null)
 export default class Auth extends Component {
   componentWillMount() {
-    if (this.props.currentUser) this.props.push("/")
+    if (this.props.currentUser) {
+      this.alreadyLoggedInRedirect()
+    }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.currentUser) this.props.push("/")
+    if (nextProps.currentUser && !nextProps.redirectionInProcess) {
+      this.alreadyLoggedInRedirect()
+    }
+  }
+
+  alreadyLoggedInRedirect() {
+    this.props.router.push("/")
+    notyWarning("You Are Already Logged In")
   }
 
   render() {

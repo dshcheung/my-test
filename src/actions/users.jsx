@@ -41,10 +41,13 @@ export const createUser = (values) => {
   return {
     type: CREATE_USER,
     request,
+    hasRedirection: true,
     successCB: (dispatch, data) => {
       dispatch(setCurrentUser(data))
       if (data.role === "Investor") {
-        dispatch(push('/validation/stage-one'))
+        dispatch(push('/my/questionnaires'))
+      } else if (data.role === "StartupUser") {
+        dispatch(push('/my/campaigns/new'))
       }
     }
   }

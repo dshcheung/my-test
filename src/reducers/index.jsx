@@ -15,6 +15,7 @@ import myQuestionnairesReducers from './my-questionnaires'
 import myStartupsReducer from './my-startups'
 import myStartupsAutocompleteReducer from './my-startups-autocomplete'
 import paginationReducer from './pagination'
+import redirectionReducer from './redirection'
 import requestStatusReducer from './request-status'
 import sessionReducer from './session'
 import startupReducer from './startup'
@@ -33,6 +34,7 @@ const appReducer = combineReducers({
   myStartups: myStartupsReducer,
   myStartupsAutocomplete: myStartupsAutocompleteReducer,
   pagination: paginationReducer,
+  redirectionInProcess: redirectionReducer,
   requestStatus: requestStatusReducer,
   session: sessionReducer,
   startup: startupReducer,

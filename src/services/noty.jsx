@@ -16,6 +16,16 @@ export const notyError = (text) => {
   new Noty(newConfig).show()
 }
 
+export const notyWarning = (text) => {
+  const newConfig = {
+    ...defaults,
+    text,
+    type: 'warning'
+  }
+
+  new Noty(newConfig).show()
+}
+
 export const notySuccess = (text) => {
   const newConfig = {
     ...defaults,

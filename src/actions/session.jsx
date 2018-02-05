@@ -61,10 +61,14 @@ export const createSession = (values) => {
   return {
     type: CREATE_SESSION,
     request,
-    run401: false,
+    hasRedirection: true,
     successCB: (dispatch, data) => {
       dispatch(setCurrentUser(data))
-      dispatch(push(`/users/${data.id}`))
+      if (data.role === "Investor") {
+        dispatch(push("/my/portfolio"))
+      } else if (data.role === "StartupUser") {
+        dispatch(push("/my/dashboard"))
+      }
     },
     errorCB: () => {
       notyError("Incorrect Credentials")
@@ -108,6 +112,7 @@ export const requestForgetPassword = (values) => {
   return {
     type: REQUEST_FORGET_PASSWORD,
     request,
+    hasRedirection: true,
     successCB: (dispatch) => {
       notySuccess("Request Sent!")
       dispatch(push('/auth/reset_password'))

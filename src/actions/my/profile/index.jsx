@@ -117,7 +117,11 @@ export const verifyMyProfile = (values) => {
     successCB: (dispatch, data) => {
       dispatch(setCurrentUser(data))
       notySuccess("Verified Successful!")
-      dispatch(push('/'))
+      if (data.role === "Investor") {
+        dispatch(push("/my/portfolio"))
+      } else if (data.role === "StartupUser") {
+        dispatch(push("/my/dashboard"))
+      }
     }
   }
 }
@@ -157,10 +161,14 @@ export const resetPassword = (values) => {
   return {
     type: RESET_PASSWORD,
     request,
+    hasRedirection: true,
     successCB: (dispatch, data) => {
       dispatch(setCurrentUser(data))
-      notySuccess("Reset Password Successful!")
-      dispatch(push('/'))
+      if (data.role === "Investor") {
+        dispatch(push("/my/portfolio"))
+      } else if (data.role === "StartupUser") {
+        dispatch(push("/my/dashboard"))
+      }
     }
   }
 }
