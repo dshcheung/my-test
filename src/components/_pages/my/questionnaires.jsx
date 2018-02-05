@@ -113,7 +113,7 @@ export default class ValidationStageOne extends Component {
     if (currentStage === null) return null
 
     const currentQuestionnaire = _.get(investorQuestionnaires, `${currentStage}.questions`, [])
-    const baseQuestionnaire = _.get(myQuestionnaires, `${currentStage}`)
+    const baseQuestionnaire = _.get(myQuestionnaires, `${currentStage}`, [])
 
     const title = currentStage.splitCap("_").toUpperCase()
 
