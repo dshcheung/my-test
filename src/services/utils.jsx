@@ -69,3 +69,20 @@ export const mergeAttribute = (base, { data, attribute, sortBy }) => {
 
   return { ...base, [attribute]: attr }
 }
+
+export const extractAttrFromRoutes = (routes, key) => {
+  const reversedRoutes = []
+  let value
+
+  routes.forEach((r) => {
+    reversedRoutes.unshift(r)
+  })
+
+  reversedRoutes.forEach((r) => {
+    if (_.get(r, key)) {
+      value = _.get(r, key)
+    }
+  })
+
+  return value
+}

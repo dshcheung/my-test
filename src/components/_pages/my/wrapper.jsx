@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { notyWarning } from '../../../services/noty'
+import { extractAttrFromRoutes } from '../../../services/utils'
 
 import { GET_MY_PROFILE } from '../../../actions/my/profile'
 
@@ -17,6 +18,12 @@ const mapStateToProps = (state) => {
 
 @connect(mapStateToProps, null)
 export default class My extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = { redirecting: false }
+  }
+
   componentWillMount() {
     if (!this.props.currentUser && !this.props.getMyProfileInProcess) {
       this.notLoggedInRedirect()
@@ -27,6 +34,13 @@ export default class My extends Component {
     if (!nextProps.currentUser && !nextProps.redirectionInProcess && !nextProps.getMyProfileInProcess) {
       this.notLoggedInRedirect()
     }
+
+    const roleAccess = extractAttrFromRoutes(nextProps.routes, "roleAccess")
+    if (!this.state.redirecting && roleAccess === "StartupUser" && nextProps.currentUser && nextProps.currentUser.role !== "StartupUser") {
+      this.notStartupUserRedirect()
+    } else if (!this.state.redirecting && roleAccess === "Investor" && nextProps.currentUser && nextProps.currentUser.role !== "Investor") {
+      this.notInvestorRedirect()
+    }
   }
 
   notLoggedInRedirect() {
@@ -34,8 +48,20 @@ export default class My extends Component {
     notyWarning("Please Login First")
   }
 
+  notStartupUserRedirect() {
+    this.setState({ redirecting: true })
+    this.props.router.push("/")
+    notyWarning("You Are Not A Startup user")
+  }
+
+  notInvestorRedirect() {
+    this.setState({ redirecting: true })
+    this.props.router.push("/")
+    notyWarning("You Are Not An Investor")
+  }
+
   render() {
-    if (this.props.getMyProfileInProcess === undefined || this.props.getMyProfileInProcess) {
+    if (!this.props.currentUser || this.state.redirecting) {
       return (
         <div className="container padding-top-20">
           <LoadingSpinner />

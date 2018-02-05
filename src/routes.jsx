@@ -16,13 +16,17 @@ import VerifyEmailContainer from './components/_pages/verify/email'
 import VerifyMobileContainer from './components/_pages/verify/mobile'
 
 import MyContainer from './components/_pages/my/wrapper'
+
 import MySettingsContainer from './components/_pages/my/settings'
 import MyConversationsIndexContainer from './components/_pages/my/conversations'
 import MyNotificationsIndexContainer from './components/_pages/my/notifications/index'
+
 import MyQuestionnairesContainer from './components/_pages/my/questionnaires'
 import MyPortfolioContainer from './components/_pages/my/portfolio'
+
 import MyCampaignsContainer from './components/_pages/my/campaigns/wrapper'
 import MyCampaignsIndexContainer from './components/_pages/my/campaigns/index'
+
 import MyDashboardContainer from './components/_pages/my/dashboard'
 
 import CampaignsContainer from './components/_pages/campaigns/wrapper'
@@ -62,16 +66,16 @@ export default (
       </Route>
 
       {/* Investor Paths */}
-      <Route path="questionnaires" component={MyQuestionnairesContainer} />
-      <Route path="portfolio" component={MyPortfolioContainer} />
+      <Route path="questionnaires" component={MyQuestionnairesContainer} roleAccess="Investor" />
+      <Route path="portfolio" component={MyPortfolioContainer} roleAccess="Investor" />
 
       {/* StartupUser Paths */}
-      <Route path="campaigns" component={MyCampaignsContainer}>
+      <Route path="campaigns" component={MyCampaignsContainer} roleAccess="StartupUser">
         <IndexRoute component={MyCampaignsIndexContainer} />
         <Route path="new" />
         <Route path=":id/edit" />
       </Route>
-      <Route path="dashboard" component={MyDashboardContainer} />
+      <Route path="dashboard" component={MyDashboardContainer} roleAccess="StartupUser" />
     </Route>
 
     {/* Investor Paths */}

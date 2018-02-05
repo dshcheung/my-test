@@ -5,15 +5,12 @@ import Tabs from 'react-bootstrap/lib/Tabs'
 import Tab from 'react-bootstrap/lib/Tab'
 import { Link } from 'react-router'
 
-import { notyWarning } from '../../../services/noty'
-
 import { gMyDashboard, G_MY_DASHBOARD, resetMyDashboard } from '../../../actions/my/dashboard'
 
 import LoadingSpinner from '../../shared/loading-spinner'
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: _.get(state, 'session'),
     gMyDashboardInProcess: _.get(state.requestStatus, G_MY_DASHBOARD),
     myDashboard: _.get(state, 'myDashboard')
   }
@@ -29,10 +26,6 @@ const mapDispatchToProps = (dispatch) => {
 @connect(mapStateToProps, mapDispatchToProps)
 export default class MyDashboard extends Component {
   componentWillMount() {
-    if (this.props.currentUser.role !== "StartupUser") {
-      this.props.router.push("/")
-      notyWarning("You Are Not A Startup User")
-    }
     this.props.gMyDashboard()
   }
 

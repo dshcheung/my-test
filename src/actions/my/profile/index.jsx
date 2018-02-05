@@ -21,6 +21,7 @@ export const getMyProfile = () => {
   return {
     type: GET_MY_PROFILE,
     request,
+    run401: true,
     successCB: (dispatch, data) => {
       dispatch(setCurrentUser(data))
     }

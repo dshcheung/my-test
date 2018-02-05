@@ -16,7 +16,7 @@ import TextField from '../../shared/form-elements/text-field'
   },
   initialValues: {
     email: "test@test.com",
-    password: "123456"
+    password: "12345678"
   }
 })
 export default class AuthLoginForm extends Component {

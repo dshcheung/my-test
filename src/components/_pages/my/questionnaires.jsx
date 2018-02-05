@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { notyWarning } from '../../../services/noty'
-
 import { gImmovable, G_IMMOVABLE_INVESTOR_QUESTIONNAIRE } from '../../../actions/immovables'
 import {
   G_MY_QUESTIONNAIRE, gMyQuestionnaire, resetMyQuestionnaires,
@@ -72,10 +70,6 @@ export default class ValidationStageOne extends Component {
   }
 
   componentWillMount() {
-    if (this.props.currentUser.role !== "Investor") {
-      this.props.router.push("/")
-      notyWarning("You Are Not An Investor")
-    }
     this.props.gImmovable({ immovableID: "investor_questionnaire" })
     this.props.gMyQuestionnaire()
   }

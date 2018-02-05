@@ -35,7 +35,7 @@ export default class Campaigns extends Component {
   }
 
   render() {
-    if (this.props.getMyProfileInProcess === undefined || this.props.getMyProfileInProcess) {
+    if (!this.props.currentUser) {
       return (
         <div className="container padding-top-20">
           <LoadingSpinner />
