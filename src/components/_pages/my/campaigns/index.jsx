@@ -5,12 +5,12 @@ import { bindActionCreators } from 'redux'
 import {
   gMyCampaigns, G_MY_CAMPAIGNS,
   resetMyCampaigns
-} from '../../../actions/my/campaigns'
+} from '../../../../actions/my/campaigns'
 
-import CampaignsSearchForm from '../../forms/campaigns/search'
-import CampaignList from '../../shared/campaigns/list'
+import CampaignsSearchForm from '../../../forms/campaigns/search'
+import CampaignList from '../../../shared/campaigns/list'
 
-import MyCampaignsNECampaignModal from '../../modals/my/campaigns/ne-campaign'
+import MyCampaignsNECampaignModal from '../../../modals/my/campaigns/ne-campaign'
 
 const mapStateToProps = (state) => {
   return {

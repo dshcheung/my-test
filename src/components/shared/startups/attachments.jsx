@@ -3,7 +3,7 @@ import Element from 'react-scroll/modules/components/Element'
 
 import SharedStartupsTitle from './title'
 import SharedStartupsEmpty from './empty'
-import MyStartupSAttachmentsModal from '../../modals/my/startups/s-attachments'
+import MyStartupsSAttachmentsModal from '../../modals/my/startups/s-attachments'
 
 export default class SharedStartupsAttachments extends Component {
   constructor(props) {
@@ -27,6 +27,7 @@ export default class SharedStartupsAttachments extends Component {
     const { attachments, editable, routeParams } = this.props
     const { sAttachments } = this.state
     const title = "Documents"
+    // Attachments still null after create. data_room issues?
     const emptyAttachments = attachments === null || attachments.length === 0
     const editMode = !emptyAttachments
 
@@ -69,7 +70,7 @@ export default class SharedStartupsAttachments extends Component {
 
         {
           sAttachments && (
-            <MyStartupSAttachmentsModal
+            <MyStartupsSAttachmentsModal
               close={this.close}
               params={routeParams}
               editMode={editMode}

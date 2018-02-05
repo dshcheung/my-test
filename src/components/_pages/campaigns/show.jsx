@@ -44,6 +44,7 @@ export default class CampaignsShow extends Component {
         campaign={campaign}
         loadingInProcess={getCampaignInProcess}
         routeParams={routeParams}
+        router={this.props.router}
       />
     )
   }

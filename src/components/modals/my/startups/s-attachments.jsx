@@ -54,7 +54,7 @@ export default class MyStartupsSAttachmentsModal extends Component {
     const { close, editMode, attachments, params, requestStatus } = this.props
     const { stateEditMode, editInfo } = this.state
 
-    const hasAttachments = attachments.length > 0
+    const hasAttachments = !!attachments
 
     const keyword = editMode ? "Edit" : "Add"
 

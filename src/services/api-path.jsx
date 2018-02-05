@@ -14,6 +14,10 @@ export const apiCampaignsShow = (params) => {
   return `${apiCampaignsIndex()}/${params.campaignID}`
 }
 
+export const apiCampaignsShowData = (params) => {
+  return `${apiCampaignsShow(params)}/request_data_access`
+}
+
 export const apiCampaignsPledgesIndex = (params) => {
   return `${apiCampaignsShow(params)}/pledges`
 }

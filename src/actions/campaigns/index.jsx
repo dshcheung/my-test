@@ -1,5 +1,5 @@
 import { genApiUrl, addParamsToUrl, genAxios } from '../../services/api-request'
-import { apiCampaignsIndex, apiCampaignsShow } from '../../services/api-path'
+import { apiCampaignsIndex, apiCampaignsShow, apiCampaignsShowData } from '../../services/api-path'
 
 export const MERGE_CAMPAIGNS = "MERGE_CAMPAIGNS"
 export const mergeCampaigns = (data, reset) => {
@@ -83,3 +83,21 @@ export const getCampaign = ({ params = {}, queries = {} } = {}) => {
     }
   }
 }
+
+export const REQUEST_DATA_ACCESS = "REQUEST_DATA_ACCESS"
+export const requestDataAccess = (params) => {
+  const request = genAxios({
+    method: "post",
+    url: genApiUrl(apiCampaignsShowData(params))
+  })
+
+  return {
+    type: REQUEST_DATA_ACCESS,
+    request,
+    successCB: (dispatch, data) => {
+      console.log(data)
+    }
+  }
+}
+
+// requestDataAccess({ campaignID: "Kwfefjb2EZjtDR9r"})

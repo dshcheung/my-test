@@ -17,30 +17,32 @@ import SharedStartupsRisk from './risk'
 import SharedStartupsMedia from './media'
 import SharedStartupsAttachments from './attachments'
 
-import MyStartupEProfileModal from '../../modals/my/startups/e-profile'
-import MyCampaignsNECampaignModal from '../../modals/my/campaigns/ne-campaign'
+// TODO: Remove These After Refactor
+// import MyStartupEProfileModal from '../../modals/my/startups/e-profile'
+// import MyCampaignsNECampaignModal from '../../modals/my/campaigns/ne-campaign'
 import CampaignsNPledgeModal from '../../modals/campaigns/n-pledge'
 
 export default class SharedStartupsProfile extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { eSProfile: false, eCProfile: false, nPledge: false }
+    this.state = { nPledge: false }
 
     this.close = this.close.bind(this)
   }
 
   close() {
-    this.setState({ eSProfile: false, eCProfile: false, nPledge: false })
+    this.setState({ nPledge: false })
   }
 
   render() {
-    const { campaign, startup, loadingInProcess } = this.props
-    const sEditable = _.get(startup, 'can.edit', false)
-    const cEditable = _.get(campaign, 'can.edit', false)
+    const { campaign, startup, loadingInProcess, editMode } = this.props
+    const editable = _.get(campaign, 'can.edit', false)
+    const modalEditable = editMode && editable
     const canPledge = _.get(campaign, 'can.pledge', false)
-    const hasPledged = _.get(campaign, 'can.has_pledged', false)
-    const keyword = (sEditable && "Startup Profile") || (cEditable && "Campaign")
+    const hasPledged = _.get(campaign, 'can.view_pledge', false)
+    // TODO: remind gram to add is_owner flag
+    // const canViewDataRoom = _.get(campaign, 'can.view_data_room', null)
 
     if (loadingInProcess) return <LoadingSpinner />
 
@@ -100,16 +102,18 @@ export default class SharedStartupsProfile extends Component {
 
     return (
       <div id="shared-startups-profile" className="container-fluid">
+        <div>Note for internal demo: since the merge of startups and campaigns are not done, please refresh to see data changes</div>
+        <div>Note for internal demo: since api is still in process of merging startups and campaigns, request_data_room access is tempolary disabled</div>
         <div className="row header">
           <div className="col-xs-12 startup-banner" style={bannerStyles}>
             {
-              (sEditable || cEditable) && (
+              editable && (
                 <div className="row margin-top-15 edit-mode-actions">
                   <div className="col-xs-12 text-center">
                     <button
                       className="btn btn-info"
-                      onClick={() => { this.setState({ eSProfile: sEditable, eCProfile: cEditable }) }}
-                    ><i className="fa fa-pencil" /> Edit {keyword}</button>
+                      onClick={() => { this.props.router.push(`/my/campaigns/${campaign.id}/edit`) }}
+                    ><i className="fa fa-pencil" /> Edit Startup</button>
                   </div>
                 </div>
               )
@@ -192,57 +196,57 @@ export default class SharedStartupsProfile extends Component {
                 <div className="sidebar-wrapper">
                   <ul className="scrollto">
                     {
-                      (sEditable || highlightsExist) && (
+                      (modalEditable || highlightsExist) && (
                         <li><Link to="Highlights" spy smooth duration={500} offset={-100}>Highlights</Link></li>
                       )
                     }
                     {
-                      (sEditable || overviewExist) && (
+                      (modalEditable || overviewExist) && (
                         <li><Link to="Overview" spy smooth duration={500} offset={-100}>Overview</Link></li>
                       )
                     }
                     {
-                      (sEditable || kpisExist) && (
+                      (modalEditable || kpisExist) && (
                         <li><Link to="KPIs" spy smooth duration={500} offset={-100}>KPIs</Link></li>
                       )
                     }
                     {
-                      (sEditable && milestonesExist) && (
+                      (modalEditable && milestonesExist) && (
                         <li><Link to="Milestones" spy smooth duration={500} offset={-100}>Milestones</Link></li>
                       )
                     }
                     {
-                      (sEditable || fundsExist) && (
+                      (modalEditable || fundsExist) && (
                         <li><Link to="Funds" spy smooth duration={500} offset={-100}>Funds</Link></li>
                       )
                     }
                     {
-                      (sEditable || teamExist) && (
+                      (modalEditable || teamExist) && (
                         <li><Link to="Team" spy smooth duration={500} offset={-100}>Team</Link></li>
                       )
                     }
                     {
-                      (sEditable || pitchDeckExist) && (
+                      (modalEditable || pitchDeckExist) && (
                         <li><Link to="Pitch Deck" spy smooth duration={500} offset={-100}>Pitch Deck</Link></li>
                       )
                     }
                     {
-                      (sEditable || marketScopeExist) && (
+                      (modalEditable || marketScopeExist) && (
                         <li><Link to="Market Scope" spy smooth duration={500} offset={-100}>Market Scope</Link></li>
                       )
                     }
                     {
-                      (sEditable || riskExist) && (
+                      (modalEditable || riskExist) && (
                         <li><Link to="Risk & Disclosure" spy smooth duration={500} offset={-100}>Risk & Disclosure</Link></li>
                       )
                     }
                     {
-                      (sEditable || mediaExist) && (
+                      (modalEditable || mediaExist) && (
                         <li><Link to="Media" spy smooth duration={500} offset={-100}>Media</Link></li>
                       )
                     }
                     {
-                      (sEditable || attachmentsExist) && (
+                      (modalEditable || attachmentsExist) && (
                         <li><Link to="Documents" spy smooth duration={500} offset={-100}>Documents</Link></li>
                       )
                     }
@@ -258,23 +262,21 @@ export default class SharedStartupsProfile extends Component {
               </AutoAffix>
             </div>
             <div className="col-xs-12 col-sm-9 startup-content">
-              {(sEditable || highlightsExist) && <SharedStartupsHighlights highlights={highlights} editable={sEditable} routeParams={routeParams} />}
-              {(sEditable || overviewExist) && <SharedStartupsOverview overview={overview} editable={sEditable} routeParams={routeParams} />}
-              {(sEditable || kpisExist) && <SharedStartupsKPIs kpis={kpis} editable={sEditable} routeParams={routeParams} />}
-              {(sEditable || milestonesExist) && <SharedStartupsMilestones milestones={milestones} editable={sEditable} routeParams={routeParams} />}
-              {(sEditable || fundsExist) && <SharedStartupsFunds funds={funds} editable={sEditable} routeParams={routeParams} />}
-              {(sEditable || teamExist) && <SharedStartupsTeam team={team} editable={sEditable} routeParams={routeParams} />}
-              {(sEditable || pitchDeckExist) && <SharedStartupsPitchDeck pitchDeck={pitchDeck} editable={sEditable} routeParams={routeParams} />}
-              {(sEditable || marketScopeExist) && <SharedStartupsMarketScope marketScope={marketScope} editable={sEditable} routeParams={routeParams} />}
-              {(sEditable || riskExist) && <SharedStartupsRisk risk={risk} editable={sEditable} routeParams={routeParams} />}
-              {(sEditable || mediaExist) && <SharedStartupsMedia media={media} editable={sEditable} routeParams={routeParams} />}
-              {(sEditable || attachmentsExist) && <SharedStartupsAttachments attachments={attachments} editable={sEditable} routeParams={routeParams} />}
+              {(modalEditable || highlightsExist) && <SharedStartupsHighlights highlights={highlights} editable={modalEditable} routeParams={routeParams} />}
+              {(modalEditable || overviewExist) && <SharedStartupsOverview overview={overview} editable={modalEditable} routeParams={routeParams} />}
+              {(modalEditable || kpisExist) && <SharedStartupsKPIs kpis={kpis} editable={modalEditable} routeParams={routeParams} />}
+              {(modalEditable || milestonesExist) && <SharedStartupsMilestones milestones={milestones} editable={modalEditable} routeParams={routeParams} />}
+              {(modalEditable || fundsExist) && <SharedStartupsFunds funds={funds} editable={modalEditable} routeParams={routeParams} />}
+              {(modalEditable || teamExist) && <SharedStartupsTeam team={team} editable={modalEditable} routeParams={routeParams} />}
+              {(modalEditable || pitchDeckExist) && <SharedStartupsPitchDeck pitchDeck={pitchDeck} editable={modalEditable} routeParams={routeParams} />}
+              {(modalEditable || marketScopeExist) && <SharedStartupsMarketScope marketScope={marketScope} editable={modalEditable} routeParams={routeParams} />}
+              {(modalEditable || riskExist) && <SharedStartupsRisk risk={risk} editable={modalEditable} routeParams={routeParams} />}
+              {(modalEditable || mediaExist) && <SharedStartupsMedia media={media} editable={modalEditable} routeParams={routeParams} />}
+              {(modalEditable || attachmentsExist) && <SharedStartupsAttachments attachments={attachments} editable={modalEditable} routeParams={routeParams} />}
             </div>
           </div>
         </div>
 
-        {this.state.eSProfile && <MyStartupEProfileModal startup={startup} params={routeParams} close={this.close} />}
-        {this.state.eCProfile && <MyCampaignsNECampaignModal campaign={campaign} params={routeParams} close={this.close} editMode />}
         {this.state.nPledge && <CampaignsNPledgeModal close={this.close} params={routeParams} />}
       </div>
     )

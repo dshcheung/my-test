@@ -21,7 +21,8 @@ import MyConversationsIndexContainer from './components/_pages/my/conversations'
 import MyNotificationsIndexContainer from './components/_pages/my/notifications/index'
 import MyQuestionnairesContainer from './components/_pages/my/questionnaires'
 import MyPortfolioContainer from './components/_pages/my/portfolio'
-import MyCampaignsContainer from './components/_pages/my/campaigns'
+import MyCampaignsContainer from './components/_pages/my/campaigns/wrapper'
+import MyCampaignsIndexContainer from './components/_pages/my/campaigns/index'
 import MyDashboardContainer from './components/_pages/my/dashboard'
 
 import CampaignsContainer from './components/_pages/campaigns/wrapper'
@@ -65,7 +66,11 @@ export default (
       <Route path="portfolio" component={MyPortfolioContainer} />
 
       {/* StartupUser Paths */}
-      <Route path="campaigns" component={MyCampaignsContainer} />
+      <Route path="campaigns" component={MyCampaignsContainer}>
+        <IndexRoute component={MyCampaignsIndexContainer} />
+        <Route path="new" />
+        <Route path=":id/edit" />
+      </Route>
       <Route path="dashboard" component={MyDashboardContainer} />
     </Route>
 

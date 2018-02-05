@@ -31,7 +31,7 @@ export default class MyDashboard extends Component {
   componentWillMount() {
     if (this.props.currentUser.role !== "StartupUser") {
       this.props.router.push("/")
-      notyWarning("You Are Not An Startup User")
+      notyWarning("You Are Not A Startup User")
     }
     this.props.gMyDashboard()
   }
