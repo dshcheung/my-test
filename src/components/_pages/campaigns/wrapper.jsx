@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 }
 
 @connect(mapStateToProps, null)
-export default class My extends Component {
+export default class Campaigns extends Component {
   componentWillMount() {
     if (!this.props.currentUser && !this.props.getMyProfileInProcess) {
       this.notLoggedInRedirect()

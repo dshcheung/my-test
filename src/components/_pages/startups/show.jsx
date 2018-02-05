@@ -40,7 +40,6 @@ export default class StartupsShow extends Component {
 
     return (
       <SharedStartupsProfile
-        mainFocus="startup"
         startup={startup}
         campaign={null}
         loadingInProcess={getStartupInProcess}

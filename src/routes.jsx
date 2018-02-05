@@ -24,6 +24,7 @@ import MyPortfolioContainer from './components/_pages/my/portfolio'
 import MyCampaignsContainer from './components/_pages/my/campaigns'
 import MyDashboardContainer from './components/_pages/my/dashboard'
 
+import CampaignsContainer from './components/_pages/campaigns/wrapper'
 import CampaignsIndexContainer from './components/_pages/campaigns/index'
 import CampaignsShowContainer from './components/_pages/campaigns/show'
 
@@ -69,7 +70,7 @@ export default (
     </Route>
 
     {/* Investor Paths */}
-    <Route path="campaigns">
+    <Route path="campaigns" component={CampaignsContainer}>
       <IndexRoute component={CampaignsIndexContainer} />
       <Route path=":campaignID" component={CampaignsShowContainer} />
     </Route>

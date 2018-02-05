@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class My extends Component {
+export default class Settings extends Component {
   constructor(props) {
     super(props)
 

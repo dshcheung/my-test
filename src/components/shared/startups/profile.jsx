@@ -35,9 +35,9 @@ export default class SharedStartupsProfile extends Component {
   }
 
   render() {
-    const { campaign, startup, loadingInProcess, mainFocus } = this.props
-    const sEditable = _.get(startup, 'can.edit', false) && mainFocus === "startup"
-    const cEditable = _.get(campaign, 'can.edit', false) && mainFocus === "campaign"
+    const { campaign, startup, loadingInProcess } = this.props
+    const sEditable = _.get(startup, 'can.edit', false)
+    const cEditable = _.get(campaign, 'can.edit', false)
     const canPledge = _.get(campaign, 'can.pledge', false)
     const hasPledged = _.get(campaign, 'can.has_pledged', false)
     const keyword = (sEditable && "Startup Profile") || (cEditable && "Campaign")

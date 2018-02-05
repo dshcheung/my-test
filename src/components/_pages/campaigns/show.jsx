@@ -40,7 +40,6 @@ export default class CampaignsShow extends Component {
 
     return (
       <SharedStartupsProfile
-        mainFocus="campaign"
         startup={_.get(campaign, 'startup', null)}
         campaign={campaign}
         loadingInProcess={getCampaignInProcess}
