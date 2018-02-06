@@ -21,7 +21,7 @@ export const cMyStartupFund = (values, params, cb) => {
     request,
     successCB: () => {
       if (cb) cb()
-      // TODO: mergeCampaignAttribute(data, 'funds', 'received_at')
+      // TODO: mergeMyCampaignAttribute(data, 'funds', 'received_at')
       notySuccess("Fund Added!")
     }
   }
@@ -45,7 +45,7 @@ export const uMyStartupFund = (values, params, cb) => {
     request,
     successCB: () => {
       if (cb) cb()
-      // TODO: mergeCampaignAttribute(data, 'funds', 'received_at')
+      // TODO: mergeMyCampaignAttribute(data, 'funds', 'received_at')
       notySuccess("Fund Updated!")
     }
   }
@@ -63,7 +63,7 @@ export const dMyStartupFund = (params) => {
     type: `${D_MY_STARTUP_FUND}_${params.fundID}`,
     request,
     successCB: () => {
-      // dispatch(deleteCampaignAttributeEntry(params.fundID, 'funds', 'received_at'))
+      // TODO: dispatch(deleteMyCampaignAttributeEntry(params.fundID, 'funds', 'received_at'))
     }
   }
 }

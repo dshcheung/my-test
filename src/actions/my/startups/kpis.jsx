@@ -19,7 +19,7 @@ export const cMyStartupKPI = (values, params, cb) => {
     request,
     successCB: () => {
       if (cb) cb()
-      // TODO: mergeCampaignAttribute(data, 'key_performance_indicators')
+      // TODO: mergeMyCampaignAttribute(data, 'key_performance_indicators')
       notySuccess("KPI Added!")
     }
   }
@@ -41,7 +41,7 @@ export const uMyStartupKPI = (values, params, cb) => {
     request,
     successCB: () => {
       if (cb) cb()
-      // TODO: mergeCampaignAttribute(data, 'key_performance_indicators')
+      // TODO: mergeMyCampaignAttribute(data, 'key_performance_indicators')
       notySuccess("KPI Updated!")
     }
   }
@@ -59,7 +59,7 @@ export const dMyStartupKPI = (params) => {
     type: `${D_MY_STARTUP_KPI}_${params.kpiID}`,
     request,
     successCB: () => {
-      // dispatch(deleteCampaignAttributeEntry(params.kpiID, 'key_performance_indicators'))
+      // TODO: dispatch(deleteMyCampaignAttributeEntry(params.kpiID, 'key_performance_indicators'))
     }
   }
 }

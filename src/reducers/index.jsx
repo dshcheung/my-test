@@ -7,6 +7,7 @@ import { RESET_ALL_STATE } from '../actions/session'
 import campaignReducer from './campaign'
 import campaignsReducer from './campaigns'
 import immovablesReducer from './immovables'
+import myCampaignReducer from './my-campaign'
 import myCampaignsReducer from './my-campaigns'
 import myConversationsReducer from './my-conversations'
 import myDashboardReducer from './my-dashboard'
@@ -22,6 +23,7 @@ const appReducer = combineReducers({
   campaign: campaignReducer,
   campaigns: campaignsReducer,
   immovables: immovablesReducer,
+  myCampaign: myCampaignReducer,
   myCampaigns: myCampaignsReducer,
   myConversations: myConversationsReducer,
   myDashboard: myDashboardReducer,

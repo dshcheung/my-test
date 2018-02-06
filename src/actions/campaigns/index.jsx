@@ -25,25 +25,6 @@ export const setCampaign = (data) => {
   }
 }
 
-export const MERGE_CAMPAIGN_ATTRIBUTE = "MERGE_CAMPAIGN_ATTRIBUTE"
-export const mergeCampaignAttribute = (data, attribute, sortBy) => {
-  return {
-    type: MERGE_CAMPAIGN_ATTRIBUTE,
-    attribute,
-    data,
-    sortBy
-  }
-}
-
-export const DELETE_CAMPAIGN_ATTRIBUTE_ENTRY = "DELETE_CAMPAIGN_ATTRIBUTE_ENTRY"
-export const deleteCampaignAttributeEntry = (id, attribute) => {
-  return {
-    type: DELETE_CAMPAIGN_ATTRIBUTE_ENTRY,
-    attribute,
-    id
-  }
-}
-
 export const RESET_CAMPAIGN = "RESET_CAMPAIGN"
 export const resetCampaign = () => {
   return {
@@ -94,8 +75,8 @@ export const requestDataAccess = (params) => {
   return {
     type: REQUEST_DATA_ACCESS,
     request,
-    successCB: (dispatch, data) => {
-      console.log(data)
+    successCB: () => {
+      // console.log(data)
     }
   }
 }

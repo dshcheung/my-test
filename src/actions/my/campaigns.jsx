@@ -38,6 +38,40 @@ export const gMyCampaigns = ({ queries = {}, nextHref = null } = {}) => {
   }
 }
 
+export const SET_MY_CAMPAIGN = "SET_MY_CAMPAIGN"
+export const setMyCampaign = ({ startup, campaign }) => {
+  return {
+    type: SET_MY_CAMPAIGN,
+    data: { startup, campaign }
+  }
+}
+
+export const RESET_MY_CAMPAIGN = "RESET_MY_CAMPAIGN"
+export const resetMyCampaign = () => {
+  return {
+    type: RESET_MY_CAMPAIGN
+  }
+}
+
+export const MERGE_MY_CAMPAIGN_ATTRIBUTE = "MERGE_MY_CAMPAIGN_ATTRIBUTE"
+export const mergeMyCampaignAttribute = (data, attribute, sortBy) => {
+  return {
+    type: MERGE_MY_CAMPAIGN_ATTRIBUTE,
+    attribute,
+    data,
+    sortBy
+  }
+}
+
+export const DELETE_MY_CAMPAIGN_ATTRIBUTE_ENTRY = "DELETE_MY_CAMPAIGN_ATTRIBUTE_ENTRY"
+export const deleteMyCampaignAttributeEntry = (id, attribute) => {
+  return {
+    type: DELETE_MY_CAMPAIGN_ATTRIBUTE_ENTRY,
+    attribute,
+    id
+  }
+}
+
 export const C_MY_CAMPAIGN = "C_MY_CAMPAIGN"
 export const cMyCampaign = (values, cb) => {
   const request = genAxios({

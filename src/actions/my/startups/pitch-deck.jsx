@@ -21,7 +21,7 @@ export const cuMyStartupPitchDeck = (values, params, cb, isUpdate, keyword) => {
     request,
     successCB: () => {
       if (cb) cb()
-      // TODO: mergeCampaignAttribute(data, 'pitch_deck')
+      // TODO: mergeMyCampaignAttribute(data, 'pitch_deck')
       notySuccess(`Pitch Deck ${keyword} ${isUpdate ? 'Updated' : 'Created'}!`)
     }
   }
@@ -44,7 +44,7 @@ export const dMyStartupPitchDeckAttachment = (values, params) => {
     type: `${D_MY_STARTUP_PITCH_DECK_ATTACHMENT}_${attachmentID}`,
     request,
     successCB: () => {
-      // TODO: mergeCampaignAttribute(data, 'pitch_deck')
+      // TODO: mergeMyCampaignAttribute(data, 'pitch_deck')
       notySuccess('Pitch Deck Attachment Deleted!')
     }
   }

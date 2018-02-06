@@ -21,7 +21,7 @@ export const cuMyStartupMarketScope = (values, params, cb, isUpdate, keyword) =>
     request,
     successCB: () => {
       if (cb) cb()
-      // TODO: mergeCampaignAttribute(data, 'market_scope')
+      // TODO: mergeMyCampaignAttribute(data, 'market_scope')
       notySuccess(`Market Scope ${keyword} ${isUpdate ? 'Updated' : 'Created'}!`)
     }
   }
@@ -45,7 +45,7 @@ export const dMyStartupMarketScopeAttachment = (values, params) => {
     type: `${D_MY_STARTUP_MARKET_SCOPE_ATTACHMENT}_${attachmentID}`,
     request,
     successCB: () => {
-      // TODO: mergeCampaignAttribute(data, 'market_scope')
+      // TODO: mergeMyCampaignAttribute(data, 'market_scope')
       notySuccess('Market Scope Attachment Deleted!')
     }
   }

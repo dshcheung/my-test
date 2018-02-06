@@ -21,7 +21,7 @@ export const cuMyStartupRisk = (values, params, cb, isUpdate, keyword) => {
     request,
     successCB: () => {
       if (cb) cb()
-      // TODO: mergeCampaignAttribute(data, 'risk')
+      // TODO: mergeMyCampaignAttribute(data, 'risk')
       notySuccess(`Risk ${keyword} ${isUpdate ? 'Updated' : 'Created'}!`)
     }
   }
@@ -45,7 +45,7 @@ export const dMyStartupRiskAttachment = (values, params) => {
     type: `${D_MY_STARTUP_RISK_ATTACHMENT}_${attachmentID}`,
     request,
     successCB: () => {
-      // TODO: mergeCampaignAttribute(data, 'risk')
+      // TODO: mergeMyCampaignAttribute(data, 'risk')
       notySuccess('Risk Attachment Deleted!')
     }
   }

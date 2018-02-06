@@ -6,7 +6,7 @@ import { apiMyStartupsIndex, apiMyStartupsShow } from '../../../services/api-pat
 import { notySuccess } from '../../../services/noty'
 
 export const C_MY_STARTUP = "C_MY_STARTUP"
-export const cMyStartup = (values, cb) => {
+export const cMyStartup = (values) => {
   const request = genAxios({
     method: "post",
     url: genApiUrl(apiMyStartupsIndex()),
@@ -19,7 +19,6 @@ export const cMyStartup = (values, cb) => {
     type: C_MY_STARTUP,
     request,
     successCB: (dispatch, data) => {
-      if (cb) cb()
       // TODO: setMyCampaign(data)
       dispatch(push(`/my/campaigns/${data.startup.campaign.id}/edit`))
     }
@@ -42,7 +41,7 @@ export const uMyStartup = (values, params, cb) => {
     successCB: () => {
       if (cb) cb()
       // TODO: setMyCampaign(data)
-      notySuccess("Name Updated!")
+      notySuccess("Updated")
     }
   }
 }

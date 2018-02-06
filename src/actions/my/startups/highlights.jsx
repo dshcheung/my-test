@@ -19,7 +19,7 @@ export const cMyStartupHighlight = (values, params, cb) => {
     request,
     successCB: () => {
       if (cb) cb()
-      // TODO: mergeCampaignAttribute(data, 'highlights')
+      // TODO: mergeMyCampaignAttribute(data, 'highlights')
       notySuccess("Highlight Added!")
     }
   }
@@ -41,7 +41,7 @@ export const uMyStartupHighlight = (values, params, cb) => {
     request,
     successCB: () => {
       if (cb) cb()
-      // TODO: mergeCampaignAttribute(data, 'highlights')
+      // TODO: mergeMyCampaignAttribute(data, 'highlights')
       notySuccess("Highlight Updated!")
     }
   }
@@ -59,7 +59,7 @@ export const dMyStartupHighlight = (params) => {
     type: `${D_MY_STARTUP_HIGHLIGHT}_${params.highlightID}`,
     request,
     successCB: () => {
-      // dispatch(deleteCampaignAttributeEntry(params.highlightID, 'highlights'))
+      // TODO: dispatch(deleteMyCampaignAttributeEntry(params.highlightID, 'highlights'))
     }
   }
 }

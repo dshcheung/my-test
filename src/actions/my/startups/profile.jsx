@@ -23,7 +23,7 @@ export const cMyStartupProfile = (values, params, cb) => {
     request,
     successCB: () => {
       if (cb) cb()
-      // TODO: mergeCampaignAttribute(data, 'profile')
+      // TODO: mergeMyCampaignAttribute(data, 'profile')
       notySuccess("Created")
     }
   }
@@ -49,7 +49,7 @@ export const uMyStartupProfile = (values, params, cb) => {
     request,
     successCB: () => {
       if (cb) cb()
-      // TODO: mergeCampaignAttribute(data, 'profile')
+      // TODO: mergeMyCampaignAttribute(data, 'profile')
       notySuccess("Updated")
     }
   }

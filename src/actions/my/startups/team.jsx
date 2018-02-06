@@ -23,7 +23,7 @@ export const cuMyStartupTeam = (values, params, cb, isUpdate, keyword) => {
     request,
     successCB: () => {
       if (cb) cb()
-      // TODO: mergeCampaignAttribute(data, 'team')
+      // TODO: mergeMyCampaignAttribute(data, 'team')
       notySuccess(`Team ${keyword} ${isUpdate ? 'Updated' : 'Created'}!`)
     }
   }
@@ -49,7 +49,7 @@ export const dMyStartupTeamMember = (values, params, keyword) => {
     type: `${D_MY_STARTUP_TEAM_MEMBER}_${targetID}`,
     request,
     successCB: () => {
-      // TODO: mergeCampaignAttribute(data, 'team')
+      // TODO: mergeMyCampaignAttribute(data, 'team')
       notySuccess(`Team ${keyword} Deleted!`)
     }
   }

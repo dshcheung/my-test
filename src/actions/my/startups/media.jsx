@@ -22,7 +22,7 @@ export const cMyStartupMedia = (values, params, cb) => {
     request,
     successCB: () => {
       if (cb) cb()
-      // TODO: mergeCampaignAttribute(data, 'media')
+      // TODO: mergeMyCampaignAttribute(data, 'media')
       notySuccess("Media Added!")
     }
   }
@@ -47,7 +47,7 @@ export const uMyStartupMedia = (values, params, cb) => {
     request,
     successCB: () => {
       if (cb) cb()
-      // TODO: mergeCampaignAttribute(data, 'media')
+      // TODO: mergeMyCampaignAttribute(data, 'media')
       notySuccess("Media Updated!")
     }
   }
@@ -65,7 +65,7 @@ export const dMyStartupMedia = (params) => {
     type: `${D_MY_STARTUP_MEDIA}_${params.mediaID}`,
     request,
     successCB: () => {
-      // dispatch(deleteCampaignAttributeEntry(params.mediaID, 'media'))
+      // TODO: dispatch(deleteMyCampaignAttributeEntry(params.mediaID, 'media'))
       notySuccess("Media Deleted!")
     }
   }

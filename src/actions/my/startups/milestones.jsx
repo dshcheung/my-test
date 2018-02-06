@@ -20,7 +20,7 @@ export const cMyStartupMilestone = (values, params, cb) => {
     request,
     successCB: () => {
       if (cb) cb()
-      // TODO: mergeCampaignAttribute(data, 'milestones', 'completed_on')
+      // TODO: mergeMyCampaignAttribute(data, 'milestones', 'completed_on')
       notySuccess("Milestone Added!")
     }
   }
@@ -43,7 +43,7 @@ export const uMyStartupMilestone = (values, params, cb) => {
     request,
     successCB: () => {
       if (cb) cb()
-      // TODO: mergeCampaignAttribute(data, 'milestones', 'completed_on')
+      // TODO: mergeMyCampaignAttribute(data, 'milestones', 'completed_on')
       notySuccess("Milestone Updated!")
     }
   }
@@ -61,7 +61,7 @@ export const dMyStartupMilestone = (params) => {
     type: `${D_MY_STARTUP_MILESTONE}_${params.milestoneID}`,
     request,
     successCB: () => {
-      // dispatch(deleteCampaignAttributeEntry(params.milestoneID, 'milestones', 'completed_on'))
+      // TODO: dispatch(deleteMyCampaignAttributeEntry(params.milestoneID, 'milestones', 'completed_on'))
     }
   }
 }
