@@ -5,23 +5,23 @@ import Link from 'react-scroll/modules/components/Link'
 import { DEFAULT_STARTUP_BANNER, DEFAULT_STARTUP_AVATAR } from '../../../constants'
 
 import LoadingSpinner from '../loading-spinner'
-import SharedStartupsHighlights from './highlights'
-import SharedStartupsOverview from './overview'
-import SharedStartupsKPIs from './kpis'
-import SharedStartupsMilestones from './milestones'
-import SharedStartupsFunds from './funds'
-import SharedStartupsTeam from './team'
-import SharedStartupsPitchDeck from './pitch-deck'
-import SharedStartupsMarketScope from './market-scope'
-import SharedStartupsRisk from './risk'
-import SharedStartupsMedia from './media'
-import SharedStartupsAttachments from './attachments'
+import SharedStartupsHighlights from '../startups/highlights'
+import SharedStartupsOverview from '../startups/overview'
+import SharedStartupsKPIs from '../startups/kpis'
+import SharedStartupsMilestones from '../startups/milestones'
+import SharedStartupsFunds from '../startups/funds'
+import SharedStartupsTeam from '../startups/team'
+import SharedStartupsPitchDeck from '../startups/pitch-deck'
+import SharedStartupsMarketScope from '../startups/market-scope'
+import SharedStartupsRisk from '../startups/risk'
+import SharedStartupsMedia from '../startups/media'
+import SharedStartupsAttachments from '../startups/attachments'
 
 // TODO: Remove These After Refactor
 // import MyCampaignsNECampaignModal from '../../modals/my/campaigns/ne-campaign'
 import CampaignsNPledgeModal from '../../modals/campaigns/n-pledge'
 
-export default class SharedStartupsProfile extends Component {
+export default class SharedCampaignsProfile extends Component {
   constructor(props) {
     super(props)
 
@@ -100,13 +100,11 @@ export default class SharedStartupsProfile extends Component {
     const attachmentsExist = !!attachments
 
     return (
-      <div id="shared-startups-profile" className="container-fluid">
-        <div>Note for internal demo: since the merge of startups and campaigns are not done, please refresh to see data changes</div>
-        <div>Note for internal demo: since the merge of startups and campaigns are not done, request_data_room access is tempolary disabled</div>
+      <div id="shared-campaigns-profile" className="container-fluid">
         <div className="row header">
           <div className="col-xs-12 startup-banner" style={bannerStyles}>
             {
-              editable && (
+              editable && !editMode && (
                 <div className="row margin-top-15 edit-mode-actions">
                   <div className="col-xs-12 text-center">
                     <button
@@ -126,7 +124,7 @@ export default class SharedStartupsProfile extends Component {
 
         <div className="container body">
           {
-            campaign && (
+            campaign && !editMode && (
               <div className="row campaign">
                 <div className="campaign-stats">
                   <div className="col-xs-12 col-sm-6 left">

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import SharedMyCampaignsStages from '../../../shared/my/campaigns/stages'
+
 import {
   gMyCampaign, G_MY_CAMPAIGN,
   resetMyCampaign
@@ -11,6 +13,7 @@ import LoadingSpinner from '../../../shared/loading-spinner'
 
 const mapStateToProps = (state) => {
   return {
+    myCampaign: _.get(state, 'myCampaign'),
     gMyCampaignInProcess: _.get(state.requestStatus, G_MY_CAMPAIGN)
   }
 }
@@ -24,35 +27,35 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class MyCampaignsEdit extends Component {
-  constructor(props) {
-    super(props)
-
-    this.gMyCampaign = this.gMyCampaign.bind(this)
-  }
-
   componentWillMount() {
-    this.props.gMyCampaign({ params: this.props.routeParams })
+    if (!this.props.myCampaign) {
+      this.props.gMyCampaign({ params: this.props.routeParams })
+    }
   }
 
   componentWillUnmount() {
     this.props.resetMyCampaign()
   }
 
-  gMyCampaign(values) {
-    this.props.gMyCampaign(values)
-  }
-
   render() {
-    const { gMyCampaignInProcess } = this.props
+    const { myCampaign, gMyCampaignInProcess } = this.props
 
-    if (gMyCampaignInProcess) return <LoadingSpinner />
-
-    return (
-      <div id="my-campaigns-edit" className="container">
-        <div className="row">
-          test
+    if (myCampaign) {
+      return (
+        <div id="my-campaigns-edit">
+          <SharedMyCampaignsStages
+            router={this.props.router}
+            location={this.props.location}
+            routeParams={{ ...this.props.routeParams, myStartupID: myCampaign.startup.id }}
+            disabled={{}}
+            editMode
+          />
         </div>
-      </div>
-    )
+      )
+    } else if (gMyCampaignInProcess || gMyCampaignInProcess === undefined) {
+      return <LoadingSpinner />
+    } else {
+      return null
+    }
   }
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import SharedStartupsProfile from '../../shared/startups/profile'
+import SharedCampaignsProfile from '../../shared/campaigns/profile'
 
 import {
   getCampaign, GET_CAMPAIGN,
@@ -39,7 +39,7 @@ export default class CampaignsShow extends Component {
     const { campaign, getCampaignInProcess, routeParams } = this.props
 
     return (
-      <SharedStartupsProfile
+      <SharedCampaignsProfile
         startup={_.get(campaign, 'startup', null)}
         campaign={campaign}
         loadingInProcess={getCampaignInProcess}

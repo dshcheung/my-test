@@ -1,0 +1,12 @@
+#shared-my-campaigns-stages {
+  .stage-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: spaced-between;
+
+    .stage-item {
+      flex-grow: 1;
+      text-align: center;
+    }
+  }
+}

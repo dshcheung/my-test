@@ -5,7 +5,7 @@ import { getFormData } from '../../../services/get-form-data'
 import { apiMyStartupsIndex, apiMyStartupsShow } from '../../../services/api-path'
 import { notySuccess } from '../../../services/noty'
 
-import { setMyCampaign } from '../campaigns'
+import { setMyCampaignFromStartup } from '../campaigns'
 
 export const C_MY_STARTUP = "C_MY_STARTUP"
 export const cMyStartup = (values) => {
@@ -21,8 +21,8 @@ export const cMyStartup = (values) => {
     type: C_MY_STARTUP,
     request,
     successCB: (dispatch, { startup }) => {
-      dispatch(setMyCampaign({ startup: _.omit(startup, 'campaign'), campaign: startup.campaign }))
-      dispatch(push(`/my/campaigns/${startup.campaign.id}/edit`))
+      dispatch(setMyCampaignFromStartup({ startup: _.omit(startup, 'campaign'), campaign: startup.campaign }))
+      dispatch(push(`/my/campaigns/${startup.campaign.id}/edit#stage_two`))
     }
   }
 }
@@ -42,8 +42,8 @@ export const uMyStartup = (values, params, cb) => {
     request,
     successCB: (dispatch, { startup }) => {
       if (cb) cb()
-      dispatch(setMyCampaign({ startup: _.omit(startup.campaign), campaign: startup.campaign }))
-      notySuccess("Updated")
+      dispatch(setMyCampaignFromStartup({ startup: _.omit(startup, 'campaign'), campaign: startup.campaign }))
+      notySuccess("Submitted")
     }
   }
 }

@@ -26,6 +26,10 @@ hr {
   display: block;
 }
 
+.pointer {
+  cursor: pointer
+}
+
 $directions: '', '-top', '-left', '-right', '-bottom';
 $paddingSizes: 0, 5, 10, 15, 20, 30, 40, 50;
 @each $direction in $directions {

@@ -122,6 +122,10 @@ export const apiMyCampaignsShow = (params) => {
   return `${apiMyCampaignsIndex()}/${params.myCampaignID || params.campaignID}`
 }
 
+export const apiMyCampaignsShowMFR = (params) => {
+  return `${apiMyCampaignsShow(params)}/mark_for_review`
+}
+
 export const apiMyStartupsIndex = () => {
   return `${apiMy()}/startups`
 }

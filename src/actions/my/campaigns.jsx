@@ -1,6 +1,6 @@
 import { genApiUrl, addParamsToUrl, genAxios } from '../../services/api-request'
 import { getFormData } from '../../services/get-form-data'
-import { apiMyCampaignsIndex, apiMyCampaignsShow } from '../../services/api-path'
+import { apiMyCampaignsIndex, apiMyCampaignsShow, apiMyCampaignsShowMFR } from '../../services/api-path'
 import { notySuccess } from '../../services/noty'
 
 import { setCampaign } from '../campaigns'
@@ -148,6 +148,21 @@ export const uMyCampaign = (values, params, cb) => {
       if (cb) cb()
       dispatch(setCampaign(data))
       notySuccess("Name Updated!")
+    }
+  }
+}
+
+export const MARK_MY_CAMPAIGN_FOR_REVIEW = "MARK_MY_CAMPAIGN_FOR_REVIEW"
+export const markMyCampaignForReview = (params) => {
+  const request = genAxios({
+    method: "put",
+    url: genApiUrl(apiMyCampaignsShowMFR(params))
+  })
+
+  return {
+    type: MARK_MY_CAMPAIGN_FOR_REVIEW,
+    request,
+    successCB: () => {
     }
   }
 }

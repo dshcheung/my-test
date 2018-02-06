@@ -75,7 +75,7 @@ export default (
       <Route path="campaigns" component={MyCampaignsContainer} roleAccess="StartupUser">
         <IndexRoute component={MyCampaignsIndexContainer} />
         <Route path="new" component={MyCampaignsNewContainer} />
-        <Route path=":campaignID/edit" component={MyCampaignsEditContainer} />
+        <Route path=":myCampaignID/edit" component={MyCampaignsEditContainer} />
       </Route>
       <Route path="dashboard" component={MyDashboardContainer} roleAccess="StartupUser" />
     </Route>
