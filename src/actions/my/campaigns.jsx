@@ -150,7 +150,7 @@ export const uMyCampaign = (values, params, cb) => {
     successCB: (dispatch, data) => {
       if (cb) cb()
       dispatch(setMyCampaign(data))
-      notySuccess("Updated!")
+      notySuccess("Submitted")
     }
   }
 }
