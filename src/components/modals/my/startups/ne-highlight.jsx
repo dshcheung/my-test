@@ -8,7 +8,7 @@ import {
   uMyStartupHighlight, U_MY_STARTUP_HIGHLIGHT
 } from '../../../../actions/my/startups/highlights'
 
-import MyStartupHighlightForm from '../../../forms/my/startups/highlight'
+import MyStartupsHighlightForm from '../../../forms/my/startups/highlight'
 
 const mapStateToProps = (state) => {
   return {
@@ -61,7 +61,7 @@ export default class MyStartupsNEHighlightModal extends Component {
           <Modal.Title>{keyword} Highlight</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MyStartupHighlightForm
+          <MyStartupsHighlightForm
             onSubmit={this.onSubmit}
             submitInProcess={cMyStartupHighlightInProcess || uMyStartupHighlightInProcess}
             initialValues={initialValues}

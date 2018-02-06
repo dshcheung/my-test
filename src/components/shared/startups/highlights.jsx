@@ -7,7 +7,7 @@ import { dMyStartupHighlight, D_MY_STARTUP_HIGHLIGHT } from '../../../actions/my
 
 import SharedStartupsTitle from './title'
 import SharedStartupsEmpty from './empty'
-import MyStartupNEHighlightModal from '../../modals/my/startups/ne-highlight'
+import MyStartupsNEHighlightModal from '../../modals/my/startups/ne-highlight'
 
 const mapStateToProps = (state) => {
   return {
@@ -104,7 +104,7 @@ export default class SharedStartupsHighlights extends Component {
 
         {
           neHighlight && (
-            <MyStartupNEHighlightModal
+            <MyStartupsNEHighlightModal
               close={this.close}
               params={routeParams}
               editMode={editMode}

@@ -23,6 +23,7 @@ export const cMyStartup = (values) => {
     successCB: (dispatch, { startup }) => {
       dispatch(setMyCampaignFromStartup({ startup: _.omit(startup, 'campaign'), campaign: startup.campaign }))
       dispatch(push(`/my/campaigns/${startup.campaign.id}/edit#stage_two`))
+      notySuccess("Submitted")
     }
   }
 }

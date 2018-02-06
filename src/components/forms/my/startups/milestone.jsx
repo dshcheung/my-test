@@ -7,7 +7,7 @@ import TextArea from '../../../shared/form-elements/text-area'
 import DatetimePicker from '../../../shared/form-elements/datetime-picker'
 
 @reduxForm({
-  form: "MyStartupMilestoneForm",
+  form: "MyStartupsMilestoneForm",
   validate: (values) => {
     return Validators({
       completedOn: ["presences"],
@@ -18,7 +18,7 @@ import DatetimePicker from '../../../shared/form-elements/datetime-picker'
     completedOn: moment().startOf('day').toDate()
   }
 })
-export default class MyStartupMilestoneForm extends Component {
+export default class MyStartupsMilestoneForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass } = this.props
 

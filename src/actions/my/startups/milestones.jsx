@@ -3,6 +3,8 @@ import { getFormData } from '../../../services/get-form-data'
 import { apiMyStartupsMilestonesIndex, apiMyStartupsMilestonesShow } from '../../../services/api-path'
 import { notySuccess } from '../../../services/noty'
 
+import { mergeMyCampaignAttribute, deleteMyCampaignAttributeEntry } from '../campaigns'
+
 // create
 export const C_MY_STARTUP_MILESTONE = "C_MY_STARTUP_MILESTONE"
 export const cMyStartupMilestone = (values, params, cb) => {
@@ -18,9 +20,9 @@ export const cMyStartupMilestone = (values, params, cb) => {
   return {
     type: C_MY_STARTUP_MILESTONE,
     request,
-    successCB: () => {
+    successCB: (dispatch, data) => {
       if (cb) cb()
-      // TODO: mergeMyCampaignAttribute(data, 'milestones', 'completed_on')
+      dispatch(mergeMyCampaignAttribute(data, 'startup.milestones', 'completed_on'))
       notySuccess("Milestone Added!")
     }
   }
@@ -41,9 +43,9 @@ export const uMyStartupMilestone = (values, params, cb) => {
   return {
     type: U_MY_STARTUP_MILESTONE,
     request,
-    successCB: () => {
+    successCB: (dispatch, data) => {
       if (cb) cb()
-      // TODO: mergeMyCampaignAttribute(data, 'milestones', 'completed_on')
+      dispatch(mergeMyCampaignAttribute(data, 'startup.milestones', 'completed_on'))
       notySuccess("Milestone Updated!")
     }
   }
@@ -60,8 +62,8 @@ export const dMyStartupMilestone = (params) => {
   return {
     type: `${D_MY_STARTUP_MILESTONE}_${params.milestoneID}`,
     request,
-    successCB: () => {
-      // TODO: dispatch(deleteMyCampaignAttributeEntry(params.milestoneID, 'milestones', 'completed_on'))
+    successCB: (dispatch) => {
+      dispatch(deleteMyCampaignAttributeEntry(params.milestoneID, 'startup.milestones', 'completed_on'))
     }
   }
 }

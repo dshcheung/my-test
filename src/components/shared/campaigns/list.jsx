@@ -7,7 +7,7 @@ import LoadingSpinner from '../loading-spinner'
 
 export default class CampaignList extends Component {
   render() {
-    const { loadingInProcess, campaigns } = this.props
+    const { loadingInProcess, campaigns, newable } = this.props
 
     return (
       <div className="row" id="shared-campaigns-list">
@@ -17,7 +17,7 @@ export default class CampaignList extends Component {
             if (loadingInProcess) {
               component = <LoadingSpinner />
             } else {
-              const createNewCampaign = (
+              const createNewCampaign = newable ? (
                 <div key="new-campaign" className="col-xs-12 col-sm-6 col-md-4 text-center campaign-card">
                   <Link to="/my/campaigns/new" className="clearfix card-banner-wrapper">
                     <div className="col-xs-12 card-banner clearfix" style={{ backgroundImage: `url(${DEFAULT_STARTUP_BANNER})` }}>
@@ -28,7 +28,7 @@ export default class CampaignList extends Component {
                     <Link className="h1" to="/my/campaigns/new">Create A New Startup</Link>
                   </div>
                 </div>
-              )
+              ) : false
 
               const campaignsItems = campaigns.map((campaign, i) => {
                 const banner = _.get(campaign, 'startup.profile.banner.orignal', null) || DEFAULT_STARTUP_BANNER

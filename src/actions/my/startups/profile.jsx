@@ -3,6 +3,8 @@ import { getFormData } from '../../../services/get-form-data'
 import { apiMyStartupsProfileIndex } from '../../../services/api-path'
 import { notySuccess } from '../../../services/noty'
 
+import { mergeMyCampaignAttribute } from '../campaigns'
+
 export const C_MY_STARTUP_PROFILE = "C_MY_STARTUP_PROFILE"
 export const cMyStartupProfile = (values, params, cb) => {
   const request = genAxios({
@@ -21,16 +23,16 @@ export const cMyStartupProfile = (values, params, cb) => {
   return {
     type: C_MY_STARTUP_PROFILE,
     request,
-    successCB: () => {
+    successCB: (dispatch, data) => {
       if (cb) cb()
-      // TODO: mergeMyCampaignAttribute(data, 'profile')
+      dispatch(mergeMyCampaignAttribute(data, 'startup.profile'))
       notySuccess("Created")
     }
   }
 }
 
 export const U_MY_STARTUP_PROFILE = "U_MY_STARTUP_PROFILE"
-export const uMyStartupProfile = (values, params, cb) => {
+export const uMyStartupProfile = (values, params, cb, keyword) => {
   const request = genAxios({
     method: "put",
     url: genApiUrl(apiMyStartupsProfileIndex(params)),
@@ -47,10 +49,10 @@ export const uMyStartupProfile = (values, params, cb) => {
   return {
     type: U_MY_STARTUP_PROFILE,
     request,
-    successCB: () => {
+    successCB: (dispatch, data) => {
       if (cb) cb()
-      // TODO: mergeMyCampaignAttribute(data, 'profile')
-      notySuccess("Updated")
+      dispatch(mergeMyCampaignAttribute(data, 'startup.profile'))
+      notySuccess(`Updated ${keyword || ""}`)
     }
   }
 }

@@ -15,7 +15,7 @@ const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
 
 const scrollTop = () => {
-  const element = document.getElementsByTagName("body")[0]
+  const element = document.getElementsByTagName("html")[0]
 
   if (element) {
     element.scrollTop = 0

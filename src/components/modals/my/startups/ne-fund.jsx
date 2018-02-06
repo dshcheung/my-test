@@ -8,7 +8,7 @@ import {
   uMyStartupFund, U_MY_STARTUP_FUND
 } from '../../../../actions/my/startups/funds'
 
-import MyStartupFundForm from '../../../forms/my/startups/fund'
+import MyStartupsFundForm from '../../../forms/my/startups/fund'
 
 const mapStateToProps = (state) => {
   return {
@@ -63,7 +63,7 @@ export default class MyStartupsNEFundModal extends Component {
           <Modal.Title>{keyword} Fund</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MyStartupFundForm
+          <MyStartupsFundForm
             onSubmit={this.onSubmit}
             submitInProcess={cMyStartupFundInProcess || uMyStartupFundInProcess}
             initialValues={initialValues}

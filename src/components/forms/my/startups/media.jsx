@@ -8,7 +8,7 @@ import TextArea from '../../../shared/form-elements/text-area'
 import ImageField from '../../../shared/form-elements/image-field'
 
 @reduxForm({
-  form: "MyStartupMediaForm",
+  form: "MyStartupsMediaForm",
   validate: (values) => {
     return Validators({
       title: ["presences"],
@@ -17,7 +17,7 @@ import ImageField from '../../../shared/form-elements/image-field'
     }, values)
   }
 })
-export default class MyStartupMediaForm extends Component {
+export default class MyStartupsMediaForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass, bannerUrl } = this.props
 

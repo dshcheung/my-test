@@ -3,8 +3,6 @@ import { getFormData } from '../../services/get-form-data'
 import { apiMyCampaignsIndex, apiMyCampaignsShow, apiMyCampaignsShowMFR } from '../../services/api-path'
 import { notySuccess } from '../../services/noty'
 
-import { setCampaign } from '../campaigns'
-
 export const MERGE_MY_CAMPAIGNS = "MERGE_MY_CAMPAIGNS"
 export const mergeMyCampaigns = (data, reset) => {
   return {
@@ -62,20 +60,19 @@ export const resetMyCampaign = () => {
 }
 
 export const MERGE_MY_CAMPAIGN_ATTRIBUTE = "MERGE_MY_CAMPAIGN_ATTRIBUTE"
-export const mergeMyCampaignAttribute = (data, attribute, sortBy) => {
+export const mergeMyCampaignAttribute = (data, targetPath) => {
   return {
     type: MERGE_MY_CAMPAIGN_ATTRIBUTE,
-    attribute,
-    data,
-    sortBy
+    targetPath,
+    data
   }
 }
 
 export const DELETE_MY_CAMPAIGN_ATTRIBUTE_ENTRY = "DELETE_MY_CAMPAIGN_ATTRIBUTE_ENTRY"
-export const deleteMyCampaignAttributeEntry = (id, attribute) => {
+export const deleteMyCampaignAttributeEntry = (id, targetPath) => {
   return {
     type: DELETE_MY_CAMPAIGN_ATTRIBUTE_ENTRY,
-    attribute,
+    targetPath,
     id
   }
 }
@@ -133,10 +130,16 @@ export const uMyCampaign = (values, params, cb) => {
     method: "put",
     url: genApiUrl(apiMyCampaignsShow(params)),
     data: getFormData({
-      startup_id: _.get(values, 'startupID', "aWtoVAhmxMHaW3GH"),
       goal: _.get(values, 'goal', null),
+      start_date: _.get(values, 'startDate', null),
+      end_date: _.get(values, 'endDate', null),
       campaign_type_attributes: {
-        name: _.get(values, 'name', "TEST123")
+        id: _.get(values, 'id', null),
+        name: _.get(values, 'name', null),
+        maturity_date: _.get(values, 'maturityDate', null),
+        interest_rate: _.get(values, 'interestRate', null),
+        amount: _.get(values, 'amount', null),
+        amount_type: _.get(values, 'amountType', null)
       }
     }, 'campaign')
   })
@@ -146,8 +149,8 @@ export const uMyCampaign = (values, params, cb) => {
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()
-      dispatch(setCampaign(data))
-      notySuccess("Name Updated!")
+      dispatch(setMyCampaign(data))
+      notySuccess("Updated!")
     }
   }
 }

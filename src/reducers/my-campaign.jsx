@@ -1,4 +1,4 @@
-import { mergeAttribute } from '../services/utils'
+import { mergeAttribute, deleteAttribute } from '../services/utils'
 
 import {
   SET_MY_CAMPAIGN,
@@ -19,20 +19,11 @@ export default function(state = initialState, action) {
         ...action.data.campaign,
         startup: action.data.startup
       }
-    case MERGE_MY_CAMPAIGN_ATTRIBUTE:
+    case MERGE_MY_CAMPAIGN_ATTRIBUTE: {
       return mergeAttribute(state, action)
+    }
     case DELETE_MY_CAMPAIGN_ATTRIBUTE_ENTRY: {
-      let attr = state[action.attribute]
-
-      attr = _.filter(attr, (a) => {
-        return a.id !== action.id
-      })
-
-      if (action.sortBy) {
-        attr = _.sortBy(attr, [action.sortBy]).reverse()
-      }
-
-      return { ...state, [action.attribute]: attr }
+      return deleteAttribute(state, action)
     }
     case RESET_MY_CAMPAIGN:
       return initialState

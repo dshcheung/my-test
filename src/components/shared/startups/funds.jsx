@@ -7,7 +7,7 @@ import { dMyStartupFund, D_MY_STARTUP_FUND } from '../../../actions/my/startups/
 
 import SharedStartupsTitle from './title'
 import SharedStartupsEmpty from './empty'
-import MyStartupNEFundModal from '../../modals/my/startups/ne-fund'
+import MyStartupsNEFundModal from '../../modals/my/startups/ne-fund'
 
 const mapStateToProps = (state) => {
   return {
@@ -105,7 +105,7 @@ export default class SharedStartupsFunds extends Component {
 
         {
           neFund && (
-            <MyStartupNEFundModal
+            <MyStartupsNEFundModal
               close={this.close}
               params={routeParams}
               editMode={editMode}

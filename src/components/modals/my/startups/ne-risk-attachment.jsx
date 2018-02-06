@@ -7,7 +7,7 @@ import {
   cuMyStartupRisk, CU_MY_STARTUP_RISK
 } from '../../../../actions/my/startups/risk'
 
-import MyStartupRiskAttachmentForm from '../../../forms/my/startups/risk-attachment'
+import MyStartupsRiskAttachmentForm from '../../../forms/my/startups/risk-attachment'
 
 const mapStateToProps = (state) => {
   return {
@@ -57,7 +57,7 @@ export default class MyStartupsNERiskAttachmentModal extends Component {
           <Modal.Title>{keyword} Risk Attachment</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MyStartupRiskAttachmentForm
+          <MyStartupsRiskAttachmentForm
             onSubmit={this.cuMyStartupRisk}
             submitInProcess={cuMyStartupRiskInProcess}
             initialValues={initialValues}

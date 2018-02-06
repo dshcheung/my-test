@@ -71,6 +71,7 @@ export default class MyCampaignsIndex extends Component {
           <CampaignList
             loadingInProcess={gMyCampaignsInProcess}
             campaigns={myCampaigns}
+            newable
           />
         </section>
       </div>

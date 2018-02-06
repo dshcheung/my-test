@@ -7,7 +7,7 @@ import { dMyStartupKPI, D_MY_STARTUP_KPI } from '../../../actions/my/startups/kp
 
 import SharedStartupsTitle from './title'
 import SharedStartupsEmpty from './empty'
-import MyStartupNEKPIModal from '../../modals/my/startups/ne-kpi'
+import MyStartupsNEKPIModal from '../../modals/my/startups/ne-kpi'
 
 const mapStateToProps = (state) => {
   return {
@@ -104,7 +104,7 @@ export default class SharedStartupsKPIs extends Component {
 
         {
           neKPI && (
-            <MyStartupNEKPIModal
+            <MyStartupsNEKPIModal
               close={this.close}
               params={routeParams}
               editMode={editMode}

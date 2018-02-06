@@ -3,6 +3,8 @@ import { getFormData } from '../../../services/get-form-data'
 import { apiMyStartupsRiskIndex } from '../../../services/api-path'
 import { notySuccess } from '../../../services/noty'
 
+import { mergeMyCampaignAttribute } from '../campaigns'
+
 // create update
 export const CU_MY_STARTUP_RISK = "CU_MY_STARTUP_RISK"
 export const cuMyStartupRisk = (values, params, cb, isUpdate, keyword) => {
@@ -19,9 +21,9 @@ export const cuMyStartupRisk = (values, params, cb, isUpdate, keyword) => {
   return {
     type: CU_MY_STARTUP_RISK,
     request,
-    successCB: () => {
+    successCB: (dispatch, data) => {
       if (cb) cb()
-      // TODO: mergeMyCampaignAttribute(data, 'risk')
+      dispatch(mergeMyCampaignAttribute(data, 'startup.risk'))
       notySuccess(`Risk ${keyword} ${isUpdate ? 'Updated' : 'Created'}!`)
     }
   }
@@ -44,8 +46,8 @@ export const dMyStartupRiskAttachment = (values, params) => {
   return {
     type: `${D_MY_STARTUP_RISK_ATTACHMENT}_${attachmentID}`,
     request,
-    successCB: () => {
-      // TODO: mergeMyCampaignAttribute(data, 'risk')
+    successCB: (dispatch, data) => {
+      dispatch(mergeMyCampaignAttribute(data, 'startup.risk'))
       notySuccess('Risk Attachment Deleted!')
     }
   }

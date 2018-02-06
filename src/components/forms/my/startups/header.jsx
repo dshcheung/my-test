@@ -3,52 +3,22 @@ import { reduxForm, Field } from 'redux-form'
 
 import Validators from '../../../../services/form-validators'
 
-import TextField from '../../../shared/form-elements/text-field'
-import TextArea from '../../../shared/form-elements/text-area'
 import ImageField from '../../../shared/form-elements/image-field'
 
 @reduxForm({
-  form: "MyProfileBasicForm",
+  form: "MyStartupsHeaderForm",
   validate: (values) => {
     return Validators({
-      description: [],
-      tagline: [],
-      yearFounded: []
     }, values)
   }
 })
-export default class MyProfileBasicForm extends Component {
+export default class MyStartupsHeaderForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass, avatarUrl, bannerUrl } = this.props
 
     return (
       <div id="forms-my-profile-basic" className={optClass}>
         <form onSubmit={handleSubmit}>
-          <Field
-            name="description"
-            component={TextArea}
-            opts={{
-              label: "Description"
-            }}
-          />
-
-          <Field
-            name="tagline"
-            component={TextArea}
-            opts={{
-              label: "Tagline"
-            }}
-          />
-
-          <Field
-            name="yearFounded"
-            component={TextField}
-            opts={{
-              type: "number",
-              label: "Year Founded"
-            }}
-          />
-
           <Field
             name="avatar"
             component={ImageField}

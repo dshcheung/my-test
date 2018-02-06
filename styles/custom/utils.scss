@@ -26,6 +26,10 @@ hr {
   display: block;
 }
 
+.position-absolute {
+  position: absolute;
+}
+
 .pointer {
   cursor: pointer
 }
@@ -100,10 +104,6 @@ $spacing: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50;
 
 .diamond-filled {
   background-color: $brand-primary;
-}
-
-.position-absolute {
-  position: absolute;
 }
 
 .bg-dark {

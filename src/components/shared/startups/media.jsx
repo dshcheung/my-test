@@ -7,7 +7,7 @@ import { dMyStartupMedia, D_MY_STARTUP_MEDIA } from '../../../actions/my/startup
 
 import SharedStartupsTitle from './title'
 import SharedStartupsEmpty from './empty'
-import MyStartupNEMediaModal from '../../modals/my/startups/ne-media'
+import MyStartupsNEMediaModal from '../../modals/my/startups/ne-media'
 
 const mapStateToProps = (state) => {
   return {
@@ -104,7 +104,7 @@ export default class SharedStartupsMedia extends Component {
 
         {
           neMedia && (
-            <MyStartupNEMediaModal
+            <MyStartupsNEMediaModal
               close={this.close}
               params={routeParams}
               editMode={editMode}

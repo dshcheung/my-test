@@ -3,6 +3,8 @@ import { getFormData } from '../../../services/get-form-data'
 import { apiMyStartupsMarketScopeIndex } from '../../../services/api-path'
 import { notySuccess } from '../../../services/noty'
 
+import { mergeMyCampaignAttribute } from '../campaigns'
+
 // create update
 export const CU_MY_STARTUP_MARKET_SCOPE = "CU_MY_STARTUP_MARKET_SCOPE"
 export const cuMyStartupMarketScope = (values, params, cb, isUpdate, keyword) => {
@@ -19,9 +21,9 @@ export const cuMyStartupMarketScope = (values, params, cb, isUpdate, keyword) =>
   return {
     type: CU_MY_STARTUP_MARKET_SCOPE,
     request,
-    successCB: () => {
+    successCB: (dispatch, data) => {
       if (cb) cb()
-      // TODO: mergeMyCampaignAttribute(data, 'market_scope')
+      dispatch(mergeMyCampaignAttribute(data, 'startup.market_scope'))
       notySuccess(`Market Scope ${keyword} ${isUpdate ? 'Updated' : 'Created'}!`)
     }
   }
@@ -44,8 +46,8 @@ export const dMyStartupMarketScopeAttachment = (values, params) => {
   return {
     type: `${D_MY_STARTUP_MARKET_SCOPE_ATTACHMENT}_${attachmentID}`,
     request,
-    successCB: () => {
-      // TODO: mergeMyCampaignAttribute(data, 'market_scope')
+    successCB: (dispatch, data) => {
+      dispatch(mergeMyCampaignAttribute(data, 'startup.market_scope'))
       notySuccess('Market Scope Attachment Deleted!')
     }
   }

@@ -7,7 +7,7 @@ import {
   cuMyStartupPitchDeck, CU_MY_STARTUP_PITCH_DECK
 } from '../../../../actions/my/startups/pitch-deck'
 
-import MyStartupPitchDeckAttachmentForm from '../../../forms/my/startups/pitch-deck-attachment'
+import MyStartupsPitchDeckAttachmentForm from '../../../forms/my/startups/pitch-deck-attachment'
 
 const mapStateToProps = (state) => {
   return {
@@ -57,7 +57,7 @@ export default class MyStartupsNEPitchDeckAttachmentModal extends Component {
           <Modal.Title>{keyword} Pitch Deck Attachment</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MyStartupPitchDeckAttachmentForm
+          <MyStartupsPitchDeckAttachmentForm
             onSubmit={this.cuMyStartupPitchDeck}
             submitInProcess={cuMyStartupPitchDeckInProcess}
             initialValues={initialValues}

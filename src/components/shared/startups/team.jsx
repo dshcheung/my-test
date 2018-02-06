@@ -5,7 +5,7 @@ import { DEFAULT_USER_AVATAR } from '../../../constants'
 
 import SharedStartupsTitle from './title'
 import SharedStartupsEmpty from './empty'
-import MyStartupSTeamModal from '../../modals/my/startups/s-team'
+import MyStartupsSTeamModal from '../../modals/my/startups/s-team'
 
 export default class SharedStartupsTeam extends Component {
   constructor(props) {
@@ -120,7 +120,7 @@ export default class SharedStartupsTeam extends Component {
 
         {
           sTeam && (
-            <MyStartupSTeamModal
+            <MyStartupsSTeamModal
               close={this.close}
               params={routeParams}
               editMode={editMode}

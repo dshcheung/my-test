@@ -7,7 +7,7 @@ import {
   cuMyStartupTeam, CU_MY_STARTUP_TEAM
 } from '../../../../actions/my/startups/team'
 
-import MyStartupTeamFounderForm from '../../../forms/my/startups/team-founder'
+import MyStartupsTeamFounderForm from '../../../forms/my/startups/team-founder'
 
 const mapStateToProps = (state) => {
   return {
@@ -61,7 +61,7 @@ export default class MyStartupsNEFounderModal extends Component {
           <Modal.Title>{keyword} Team Founder</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MyStartupTeamFounderForm
+          <MyStartupsTeamFounderForm
             onSubmit={this.cuMyStartupTeam}
             submitInProcess={cuMyStartupTeamInProcess}
             initialValues={initialValues}

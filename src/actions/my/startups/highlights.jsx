@@ -3,6 +3,8 @@ import { getFormData } from '../../../services/get-form-data'
 import { apiMyStartupsHighlightsIndex, apiMyStartupsHighlightsShow } from '../../../services/api-path'
 import { notySuccess } from '../../../services/noty'
 
+import { mergeMyCampaignAttribute, deleteMyCampaignAttributeEntry } from '../campaigns'
+
 // create
 export const C_MY_STARTUP_HIGHLIGHT = "C_MY_STARTUP_HIGHLIGHT"
 export const cMyStartupHighlight = (values, params, cb) => {
@@ -17,9 +19,9 @@ export const cMyStartupHighlight = (values, params, cb) => {
   return {
     type: C_MY_STARTUP_HIGHLIGHT,
     request,
-    successCB: () => {
+    successCB: (dispatch, data) => {
       if (cb) cb()
-      // TODO: mergeMyCampaignAttribute(data, 'highlights')
+      dispatch(mergeMyCampaignAttribute(data, 'startup.highlights'))
       notySuccess("Highlight Added!")
     }
   }
@@ -39,9 +41,9 @@ export const uMyStartupHighlight = (values, params, cb) => {
   return {
     type: U_MY_STARTUP_HIGHLIGHT,
     request,
-    successCB: () => {
+    successCB: (dispatch, data) => {
       if (cb) cb()
-      // TODO: mergeMyCampaignAttribute(data, 'highlights')
+      dispatch(mergeMyCampaignAttribute(data, 'startup.highlights'))
       notySuccess("Highlight Updated!")
     }
   }
@@ -58,8 +60,8 @@ export const dMyStartupHighlight = (params) => {
   return {
     type: `${D_MY_STARTUP_HIGHLIGHT}_${params.highlightID}`,
     request,
-    successCB: () => {
-      // TODO: dispatch(deleteMyCampaignAttributeEntry(params.highlightID, 'highlights'))
+    successCB: (dispatch) => {
+      dispatch(deleteMyCampaignAttributeEntry(params.highlightID, 'startup.highlights'))
     }
   }
 }

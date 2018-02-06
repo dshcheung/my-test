@@ -7,7 +7,7 @@ import {
   cuMyStartupPitchDeck, CU_MY_STARTUP_PITCH_DECK
 } from '../../../../actions/my/startups/pitch-deck'
 
-import MyStartupPitchDeckDescriptionForm from '../../../forms/my/startups/pitch-deck-description'
+import MyStartupsPitchDeckDescriptionForm from '../../../forms/my/startups/pitch-deck-description'
 
 const mapStateToProps = (state) => {
   return {
@@ -49,7 +49,7 @@ export default class MyStartupsNEPitchDeckDescriptionModal extends Component {
           <Modal.Title>{keyword} Pitch Deck Description</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MyStartupPitchDeckDescriptionForm
+          <MyStartupsPitchDeckDescriptionForm
             onSubmit={this.cuMyStartupPitchDeck}
             submitInProcess={cuMyStartupPitchDeckInProcess}
             initialValues={initialValues}

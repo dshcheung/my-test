@@ -7,7 +7,7 @@ import {
   cuMyStartupTeam, CU_MY_STARTUP_TEAM
 } from '../../../../actions/my/startups/team'
 
-import MyStartupTeamStoryForm from '../../../forms/my/startups/team-story'
+import MyStartupsTeamStoryForm from '../../../forms/my/startups/team-story'
 
 const mapStateToProps = (state) => {
   return {
@@ -49,7 +49,7 @@ export default class MyStartupsNETeamStoryModal extends Component {
           <Modal.Title>{keyword} Team Story</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MyStartupTeamStoryForm
+          <MyStartupsTeamStoryForm
             onSubmit={this.cuMyStartupTeam}
             submitInProcess={cuMyStartupTeamInProcess}
             initialValues={initialValues}

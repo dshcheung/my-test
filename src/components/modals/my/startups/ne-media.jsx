@@ -8,7 +8,7 @@ import {
   uMyStartupMedia, U_MY_STARTUP_MEDIA
 } from '../../../../actions/my/startups/media'
 
-import MyStartupMediaForm from '../../../forms/my/startups/media'
+import MyStartupsMediaForm from '../../../forms/my/startups/media'
 
 const mapStateToProps = (state) => {
   return {
@@ -63,7 +63,7 @@ export default class MyStartupsNEMediaModal extends Component {
           <Modal.Title>{keyword} Media</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MyStartupMediaForm
+          <MyStartupsMediaForm
             onSubmit={this.onSubmit}
             submitInProcess={cMyStartupMediaInProcess || uMyStartupMediaInProcess}
             initialValues={initialValues}

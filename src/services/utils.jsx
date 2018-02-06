@@ -44,30 +44,38 @@ export const getType = (v) => {
   return toString.call(v).slice(8, -1)
 }
 
-export const mergeAttribute = (base, { data, attribute, sortBy }) => {
+export const mergeAttribute = (base, { data, targetPath }) => {
   if (base === null) return base
 
-  let attr = base[attribute]
-  const attrType = getType(attr)
+  const target = _.get(base, targetPath)
+  const targetType = getType(target)
   const dataType = getType(data)
 
-  if (attrType === "Array") {
-    attr = mergeData(attr, [data])
+  if (targetType === "Array") {
+    _.set(base, targetPath, mergeData(target, [data]))
   }
 
-  if (attrType === "Object") {
-    attr = data
+  if (targetType === "Object") {
+    _.set(base, targetPath, data)
   }
 
-  if (attrType === "Null" && dataType === "Object") {
-    attr = data
+  if (targetType === "Null" && dataType === "Object") {
+    _.set(base, targetPath, data)
   }
 
-  if (sortBy) {
-    attr = _.sortBy(attr, [sortBy]).reverse()
-  }
+  return { ...base }
+}
 
-  return { ...base, [attribute]: attr }
+export const deleteAttribute = (base, { id, targetPath }) => {
+  let target = _.get(base, targetPath)
+
+  target = _.filter(target, (a) => {
+    return a.id !== id
+  })
+
+  _.set(base, targetPath, target)
+
+  return { ...base }
 }
 
 export const extractAttrFromRoutes = (routes, key) => {

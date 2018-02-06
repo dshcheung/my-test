@@ -7,7 +7,7 @@ import {
   cuMyStartupMarketScope, CU_MY_STARTUP_MARKET_SCOPE
 } from '../../../../actions/my/startups/market-scope'
 
-import MyStartupMarketScopeAttachmentForm from '../../../forms/my/startups/market-scope-attachment'
+import MyStartupsMarketScopeAttachmentForm from '../../../forms/my/startups/market-scope-attachment'
 
 const mapStateToProps = (state) => {
   return {
@@ -57,7 +57,7 @@ export default class MyStartupsNEMarketScopeAttachmentModal extends Component {
           <Modal.Title>{keyword} Market Scope Attachment</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MyStartupMarketScopeAttachmentForm
+          <MyStartupsMarketScopeAttachmentForm
             onSubmit={this.cuMyStartupMarketScope}
             submitInProcess={cuMyStartupMarketScopeInProcess}
             initialValues={initialValues}

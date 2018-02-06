@@ -3,7 +3,7 @@ import Element from 'react-scroll/modules/components/Element'
 
 import SharedStartupsTitle from './title'
 import SharedStartupsEmpty from './empty'
-import MyStartupSRiskModal from '../../modals/my/startups/s-risk'
+import MyStartupsSRiskModal from '../../modals/my/startups/s-risk'
 
 export default class SharedStartupsRisk extends Component {
   constructor(props) {
@@ -84,7 +84,7 @@ export default class SharedStartupsRisk extends Component {
 
         {
           sRisk && (
-            <MyStartupSRiskModal
+            <MyStartupsSRiskModal
               close={this.close}
               params={routeParams}
               editMode={editMode}

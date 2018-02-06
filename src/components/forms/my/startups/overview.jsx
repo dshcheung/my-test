@@ -6,14 +6,14 @@ import Validators from '../../../../services/form-validators'
 import TextArea from '../../../shared/form-elements/text-area'
 
 @reduxForm({
-  form: "MyStartupOverviewForm",
+  form: "MyStartupsOverviewForm",
   validate: (values) => {
     return Validators({
       name: ["presences"]
     }, values)
   }
 })
-export default class MyStartupOverviewForm extends Component {
+export default class MyStartupsOverviewForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass } = this.props
 

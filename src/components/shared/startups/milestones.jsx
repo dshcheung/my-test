@@ -7,7 +7,7 @@ import { dMyStartupMilestone, D_MY_STARTUP_MILESTONE } from '../../../actions/my
 
 import SharedStartupsTitle from './title'
 import SharedStartupsEmpty from './empty'
-import MyStartupNEMilestoneModal from '../../modals/my/startups/ne-milestone'
+import MyStartupsNEMilestoneModal from '../../modals/my/startups/ne-milestone'
 
 const mapStateToProps = (state) => {
   return {
@@ -105,7 +105,7 @@ export default class SharedStartupsMilestones extends Component {
 
         {
           neMilestone && (
-            <MyStartupNEMilestoneModal
+            <MyStartupsNEMilestoneModal
               close={this.close}
               params={routeParams}
               editMode={editMode}

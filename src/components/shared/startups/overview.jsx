@@ -3,7 +3,7 @@ import Element from 'react-scroll/modules/components/Element'
 
 import SharedStartupsTitle from './title'
 import SharedStartupsEmpty from './empty'
-import MyStartupNEOverviewModal from '../../modals/my/startups/ne-overview'
+import MyStartupsNEOverviewModal from '../../modals/my/startups/ne-overview'
 
 export default class SharedStartupsOverview extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ export default class SharedStartupsOverview extends Component {
     this.close = this.close.bind(this)
   }
 
-  open(overview) {
+  open(editMode, overview) {
     this.setState({ neOverview: true, editInfo: overview })
   }
 
@@ -54,7 +54,7 @@ export default class SharedStartupsOverview extends Component {
 
         {
           neOverview && (
-            <MyStartupNEOverviewModal
+            <MyStartupsNEOverviewModal
               close={this.close}
               params={routeParams}
               editMode={editMode}

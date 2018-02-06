@@ -8,7 +8,7 @@ import {
   uMyStartupProfile, U_MY_STARTUP_PROFILE
 } from '../../../../actions/my/startups/profile'
 
-import MyStartupOverviewForm from '../../../forms/my/startups/overview'
+import MyStartupsOverviewForm from '../../../forms/my/startups/overview'
 
 const mapStateToProps = (state) => {
   return {
@@ -58,7 +58,7 @@ export default class MyStartupsNEOverviewModal extends Component {
           <Modal.Title>{keyword} Overview</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MyStartupOverviewForm
+          <MyStartupsOverviewForm
             onSubmit={this.onSubmit}
             submitInProcess={cMyStartupProfileInProcess}
             initialValues={initialValues}

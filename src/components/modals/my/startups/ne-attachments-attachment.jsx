@@ -8,7 +8,7 @@ import {
   uMyStartupAttachment, U_MY_STARTUP_ATTACHMENT
 } from '../../../../actions/my/startups/attachments'
 
-import MyStartupAttachmentsAttachmentForm from '../../../forms/my/startups/attachments-attachment'
+import MyStartupsAttachmentsAttachmentForm from '../../../forms/my/startups/attachments-attachment'
 
 const mapStateToProps = (state) => {
   return {
@@ -61,7 +61,7 @@ export default class MyStartupsNEAttachmentsAttachmentModal extends Component {
           <Modal.Title>{keyword} Document Attachment</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MyStartupAttachmentsAttachmentForm
+          <MyStartupsAttachmentsAttachmentForm
             onSubmit={this.cuMyStartupAttachment}
             submitInProcess={cMyStartupAttachmentInProcess || uMyStartupAttachmentInProcess}
             initialValues={initialValues}

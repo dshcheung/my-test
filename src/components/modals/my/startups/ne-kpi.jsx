@@ -8,7 +8,7 @@ import {
   uMyStartupKPI, U_MY_STARTUP_KPI
 } from '../../../../actions/my/startups/kpis'
 
-import MyStartupKPIForm from '../../../forms/my/startups/kpi'
+import MyStartupsKPIForm from '../../../forms/my/startups/kpi'
 
 const mapStateToProps = (state) => {
   return {
@@ -61,7 +61,7 @@ export default class MyStartupsNEKPIModal extends Component {
           <Modal.Title>{keyword} KPI</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MyStartupKPIForm
+          <MyStartupsKPIForm
             onSubmit={this.onSubmit}
             submitInProcess={cMyStartupKPIInProcess || uMyStartupKPIInProcess}
             initialValues={initialValues}

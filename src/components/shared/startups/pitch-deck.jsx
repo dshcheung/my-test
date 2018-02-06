@@ -3,7 +3,7 @@ import Element from 'react-scroll/modules/components/Element'
 
 import SharedStartupsTitle from './title'
 import SharedStartupsEmpty from './empty'
-import MyStartupSPitchDeckModal from '../../modals/my/startups/s-pitch-deck'
+import MyStartupsSPitchDeckModal from '../../modals/my/startups/s-pitch-deck'
 
 export default class SharedStartupsPitchDeck extends Component {
   constructor(props) {
@@ -84,7 +84,7 @@ export default class SharedStartupsPitchDeck extends Component {
 
         {
           sPitchDeck && (
-            <MyStartupSPitchDeckModal
+            <MyStartupsSPitchDeckModal
               close={this.close}
               params={routeParams}
               editMode={editMode}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import AutoAffix from 'react-overlays/lib/AutoAffix'
 import Link from 'react-scroll/modules/components/Link'
+import { Link as RouteLink } from 'react-router'
 
 import { DEFAULT_STARTUP_BANNER, DEFAULT_STARTUP_AVATAR } from '../../../constants'
 
@@ -17,21 +18,20 @@ import SharedStartupsRisk from '../startups/risk'
 import SharedStartupsMedia from '../startups/media'
 import SharedStartupsAttachments from '../startups/attachments'
 
-// TODO: Remove These After Refactor
-// import MyCampaignsNECampaignModal from '../../modals/my/campaigns/ne-campaign'
+import MyStartupsEHeaderModal from '../../modals/my/startups/e-header'
 import CampaignsNPledgeModal from '../../modals/campaigns/n-pledge'
 
 export default class SharedCampaignsProfile extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { nPledge: false }
+    this.state = { nPledge: false, eHeader: false }
 
     this.close = this.close.bind(this)
   }
 
   close() {
-    this.setState({ nPledge: false })
+    this.setState({ nPledge: false, eHeader: false })
   }
 
   render() {
@@ -45,10 +45,10 @@ export default class SharedCampaignsProfile extends Component {
 
     if (loadingInProcess) return <LoadingSpinner />
 
-    if (!startup) {
+    if (!campaign) {
       return (
         <div className="text-center">
-          <h3>No Such Startup</h3>
+          <h3>No Such Campaign</h3>
         </div>
       )
     }
@@ -101,6 +101,13 @@ export default class SharedCampaignsProfile extends Component {
 
     return (
       <div id="shared-campaigns-profile" className="container-fluid">
+        {
+          editMode && (
+            <div className="text-center margin-bottom-15">
+              <RouteLink to={`/my/campaigns/${campaign.id}`} className="btn btn-info">Preview This</RouteLink>
+            </div>
+          )
+        }
         <div className="row header">
           <div className="col-xs-12 startup-banner" style={bannerStyles}>
             {
@@ -114,6 +121,12 @@ export default class SharedCampaignsProfile extends Component {
                   </div>
                 </div>
               )
+            }
+            {
+              modalEditable && <button
+                className="btn btn-info top-15 right-15 position-absolute"
+                onClick={() => { this.setState({ eHeader: true }) }}
+              ><i className="fa fa-pencil" /></button>
             }
             <img src={avatar} className="startup-avatar" alt="Startup Avatar" />
             {campaignName && <div className="h1 campaign-name">{campaignName}</div>}
@@ -249,12 +262,14 @@ export default class SharedCampaignsProfile extends Component {
                     }
                   </ul>
 
-                  <hr />
+                  {/*
+                    <hr />
 
-                  <ul className="links">
-                    <li><i className="fa fa-commenting-o" /><span>Investor Discussion</span></li>
-                    <li><i className="fa fa-envelope-o" /><span>{ `Contact ${startup.name}` }</span></li>
-                  </ul>
+                    <ul className="links">
+                      <li><i className="fa fa-commenting-o" /><span>Investor Discussion</span></li>
+                      <li><i className="fa fa-envelope-o" /><span>{ `Contact ${startup.name}` }</span></li>
+                    </ul>
+                  */}
                 </div>
               </AutoAffix>
             </div>
@@ -274,6 +289,7 @@ export default class SharedCampaignsProfile extends Component {
           </div>
         </div>
 
+        {this.state.eHeader && <MyStartupsEHeaderModal close={this.close} params={routeParams} /> }
         {this.state.nPledge && <CampaignsNPledgeModal close={this.close} params={routeParams} />}
       </div>
     )

@@ -8,7 +8,7 @@ import {
   uMyStartupMilestone, U_MY_STARTUP_MILESTONE
 } from '../../../../actions/my/startups/milestones'
 
-import MyStartupMilestoneForm from '../../../forms/my/startups/milestone'
+import MyStartupsMilestoneForm from '../../../forms/my/startups/milestone'
 
 const mapStateToProps = (state) => {
   return {
@@ -62,7 +62,7 @@ export default class MyStartupsNEMilestoneModal extends Component {
           <Modal.Title>{keyword} Milestone</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MyStartupMilestoneForm
+          <MyStartupsMilestoneForm
             onSubmit={this.onSubmit}
             submitInProcess={cMyStartupMilestoneInProcess || uMyStartupMilestoneInProcess}
             initialValues={initialValues}

@@ -3,7 +3,7 @@ import Element from 'react-scroll/modules/components/Element'
 
 import SharedStartupsTitle from './title'
 import SharedStartupsEmpty from './empty'
-import MyStartupSMarketScopeModal from '../../modals/my/startups/s-market-scope'
+import MyStartupsSMarketScopeModal from '../../modals/my/startups/s-market-scope'
 
 export default class SharedStartupsMarketScope extends Component {
   constructor(props) {
@@ -84,7 +84,7 @@ export default class SharedStartupsMarketScope extends Component {
 
         {
           sMarketScope && (
-            <MyStartupSMarketScopeModal
+            <MyStartupsSMarketScopeModal
               close={this.close}
               params={routeParams}
               editMode={editMode}

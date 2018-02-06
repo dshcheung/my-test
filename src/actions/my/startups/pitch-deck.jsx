@@ -3,6 +3,8 @@ import { getFormData } from '../../../services/get-form-data'
 import { apiMyStartupsPitchDeckIndex } from '../../../services/api-path'
 import { notySuccess } from '../../../services/noty'
 
+import { mergeMyCampaignAttribute } from '../campaigns'
+
 // create update
 export const CU_MY_STARTUP_PITCH_DECK = "CU_MY_STARTUP_PITCH_DECK"
 export const cuMyStartupPitchDeck = (values, params, cb, isUpdate, keyword) => {
@@ -19,9 +21,9 @@ export const cuMyStartupPitchDeck = (values, params, cb, isUpdate, keyword) => {
   return {
     type: CU_MY_STARTUP_PITCH_DECK,
     request,
-    successCB: () => {
+    successCB: (dispatch, data) => {
       if (cb) cb()
-      // TODO: mergeMyCampaignAttribute(data, 'pitch_deck')
+      dispatch(mergeMyCampaignAttribute(data, 'startup.pitch_deck'))
       notySuccess(`Pitch Deck ${keyword} ${isUpdate ? 'Updated' : 'Created'}!`)
     }
   }
@@ -43,8 +45,8 @@ export const dMyStartupPitchDeckAttachment = (values, params) => {
   return {
     type: `${D_MY_STARTUP_PITCH_DECK_ATTACHMENT}_${attachmentID}`,
     request,
-    successCB: () => {
-      // TODO: mergeMyCampaignAttribute(data, 'pitch_deck')
+    successCB: (dispatch, data) => {
+      dispatch(mergeMyCampaignAttribute(data, 'startup.pitch_deck'))
       notySuccess('Pitch Deck Attachment Deleted!')
     }
   }

@@ -7,7 +7,7 @@ import TextField from '../../../shared/form-elements/text-field'
 import DatetimePicker from '../../../shared/form-elements/datetime-picker'
 
 @reduxForm({
-  form: "MyStartupFundForm",
+  form: "MyStartupsFundForm",
   validate: (values) => {
     return Validators({
       receivedAt: ["presences"],
@@ -19,7 +19,7 @@ import DatetimePicker from '../../../shared/form-elements/datetime-picker'
     receivedAt: moment().startOf('day').toDate()
   }
 })
-export default class MyStartupFundForm extends Component {
+export default class MyStartupsFundForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass } = this.props
 

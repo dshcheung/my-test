@@ -7,7 +7,7 @@ import TextField from '../../../shared/form-elements/text-field'
 import ImageField from '../../../shared/form-elements/image-field'
 
 @reduxForm({
-  form: "MyStartupTeamMemberForm",
+  form: "MyStartupsTeamMemberForm",
   validate: (values) => {
     return Validators({
       name: ["presences"],
@@ -15,7 +15,7 @@ import ImageField from '../../../shared/form-elements/image-field'
     }, values)
   }
 })
-export default class MyStartupTeamMemberForm extends Component {
+export default class MyStartupsTeamMemberForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass, avatarUrl } = this.props
 

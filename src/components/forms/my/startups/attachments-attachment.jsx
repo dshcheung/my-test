@@ -7,14 +7,14 @@ import TextField from '../../../shared/form-elements/text-field'
 import FileField from '../../../shared/form-elements/file-field'
 
 @reduxForm({
-  form: "MyStartupAttachmentsAttachmentForm",
+  form: "MyStartupsAttachmentsAttachmentForm",
   validate: (values) => {
     return Validators({
       title: ["presences"]
     }, values)
   }
 })
-export default class MyStartupAttachmentsAttachmentForm extends Component {
+export default class MyStartupsAttachmentsAttachmentForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass, fileUrl } = this.props
 

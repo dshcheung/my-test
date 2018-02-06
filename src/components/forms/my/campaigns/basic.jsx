@@ -27,10 +27,12 @@ import DatetimePicker from '../../../shared/form-elements/datetime-picker'
 })
 export default class MyCampaignBasicForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass } = this.props
+    const { handleSubmit, submitInProcess, optClass, title } = this.props
 
     return (
       <div id="forms-my-profile-basic" className={optClass}>
+        { title && <h1 className="form-title margin-bottom-20 margin-top-0">{title}</h1>}
+
         <form onSubmit={handleSubmit}>
           <Field
             name="name"
