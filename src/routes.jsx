@@ -26,6 +26,7 @@ import MyPortfolioContainer from './components/_pages/my/portfolio'
 
 import MyCampaignsContainer from './components/_pages/my/campaigns/wrapper'
 import MyCampaignsIndexContainer from './components/_pages/my/campaigns/index'
+import MyCampaignsNewContainer from './components/_pages/my/campaigns/new'
 
 import MyDashboardContainer from './components/_pages/my/dashboard'
 
@@ -74,7 +75,7 @@ export default (
       {/* StartupUser Paths */}
       <Route path="campaigns" component={MyCampaignsContainer} roleAccess="StartupUser">
         <IndexRoute component={MyCampaignsIndexContainer} />
-        <Route path="new" />
+        <Route path="new" component={MyCampaignsNewContainer} />
         <Route path=":id/edit" />
       </Route>
       <Route path="dashboard" component={MyDashboardContainer} roleAccess="StartupUser" />

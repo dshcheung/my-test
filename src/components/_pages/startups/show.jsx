@@ -1,3 +1,4 @@
+// TODO: REMOVE
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -41,9 +42,10 @@ export default class StartupsShow extends Component {
     return (
       <SharedStartupsProfile
         startup={startup}
-        campaign={null}
+        campaign={_.get(startup, 'campaign', null)}
         loadingInProcess={getStartupInProcess}
         routeParams={routeParams}
+        router={this.props.router}
       />
     )
   }

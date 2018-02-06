@@ -10,8 +10,6 @@ import {
 import CampaignsSearchForm from '../../../forms/campaigns/search'
 import CampaignList from '../../../shared/campaigns/list'
 
-import MyCampaignsNECampaignModal from '../../../modals/my/campaigns/ne-campaign'
-
 const mapStateToProps = (state) => {
   return {
     myCampaigns: _.get(state, 'myCampaigns', []),
@@ -27,15 +25,13 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class MyCampaigns extends Component {
+export default class MyCampaignsIndex extends Component {
   constructor(props) {
     super(props)
 
     this.state = {}
 
     this.gMyCampaigns = this.gMyCampaigns.bind(this)
-    this.open = this.open.bind(this)
-    this.close = this.close.bind(this)
   }
 
   componentWillMount() {
@@ -44,14 +40,6 @@ export default class MyCampaigns extends Component {
 
   componentWillUnmount() {
     this.props.resetMyCampaigns()
-  }
-
-  open() {
-    this.setState({ neCampaign: true })
-  }
-
-  close() {
-    this.setState({ neCampaign: false })
   }
 
   gMyCampaigns(values) {
@@ -80,17 +68,11 @@ export default class MyCampaigns extends Component {
             />
           </div>
 
-          <div className="new-campaign">
-            <button onClick={this.open} className="btn">NEW</button>
-          </div>
-
           <CampaignList
             loadingInProcess={gMyCampaignsInProcess}
             campaigns={myCampaigns}
           />
         </section>
-
-        {this.state.neCampaign && <MyCampaignsNECampaignModal close={this.close} />}
       </div>
     )
   }
