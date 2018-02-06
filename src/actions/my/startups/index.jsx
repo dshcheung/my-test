@@ -5,6 +5,8 @@ import { getFormData } from '../../../services/get-form-data'
 import { apiMyStartupsIndex, apiMyStartupsShow } from '../../../services/api-path'
 import { notySuccess } from '../../../services/noty'
 
+import { setMyCampaign } from '../campaigns'
+
 export const C_MY_STARTUP = "C_MY_STARTUP"
 export const cMyStartup = (values) => {
   const request = genAxios({
@@ -18,9 +20,9 @@ export const cMyStartup = (values) => {
   return {
     type: C_MY_STARTUP,
     request,
-    successCB: (dispatch, data) => {
-      // TODO: setMyCampaign(data)
-      dispatch(push(`/my/campaigns/${data.startup.campaign.id}/edit`))
+    successCB: (dispatch, { startup }) => {
+      dispatch(setMyCampaign({ startup: _.omit(startup, 'campaign'), campaign: startup.campaign }))
+      dispatch(push(`/my/campaigns/${startup.campaign.id}/edit`))
     }
   }
 }
@@ -38,9 +40,9 @@ export const uMyStartup = (values, params, cb) => {
   return {
     type: U_MY_STARTUP,
     request,
-    successCB: () => {
+    successCB: (dispatch, { startup }) => {
       if (cb) cb()
-      // TODO: setMyCampaign(data)
+      dispatch(setMyCampaign({ startup: _.omit(startup.campaign), campaign: startup.campaign }))
       notySuccess("Updated")
     }
   }

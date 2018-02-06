@@ -64,7 +64,7 @@ export default class SharedStartupsProfile extends Component {
 
     // campaign stuff
     const goal = _.get(campaign, 'goal') || 0
-    const raised = _.get(campaign, 'raised')
+    const raised = _.get(campaign, 'raised') || 0
     const achieved = Math.floor((raised / goal) * 100)
     const investorNum = _.get(campaign, 'number_of_investors')
     const endDate = moment(_.get(campaign, 'end_date')).diff(moment(), 'days')
@@ -102,7 +102,6 @@ export default class SharedStartupsProfile extends Component {
     return (
       <div id="shared-startups-profile" className="container-fluid">
         <div>Note for internal demo: since the merge of startups and campaigns are not done, please refresh to see data changes</div>
-        <div>Note for internal demo: since the merge of startups and campaigns are not done, the update for campaign and startup are still seperate</div>
         <div>Note for internal demo: since the merge of startups and campaigns are not done, request_data_room access is tempolary disabled</div>
         <div className="row header">
           <div className="col-xs-12 startup-banner" style={bannerStyles}>

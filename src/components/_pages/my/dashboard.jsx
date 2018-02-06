@@ -66,12 +66,15 @@ export default class MyDashboard extends Component {
                         {
                           campaigns.map((c, i) => {
                             if (!c.approved) return null
+
+                            const goal = c.goal || 0
+                            const raised = c.raised || 0
                             return (
                               <tr key={i}>
                                 <td>{c.startup.name}</td>
                                 <td>{moment(c.end_date).diff(moment(), 'days')}</td>
-                                <td>${c.goal.currency()}</td>
-                                <td>${c.raised.currency()}</td>
+                                <td>${goal.currency()}</td>
+                                <td>${raised.currency()}</td>
                                 <td>{c.number_of_investors}</td>
                                 <td>{c.has_reached_goal ? "Yes" : "No"}</td>
                               </tr>

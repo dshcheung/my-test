@@ -41,8 +41,8 @@ export default class CampaignList extends Component {
                 const amountType = campaign.campaign_type.amount_type === "valuation_cap" ? "Valuation Cap" : "Equity"
 
                 const endDate = moment(campaign.end_date).diff(moment(), 'days')
-                const goal = campaign.goal
-                const raised = campaign.raised.currency()
+                const goal = campaign.goal || 0
+                const raised = campaign.raised || 0
                 const achieved = Math.floor((campaign.raised / goal) * 100)
                 const investorNum = campaign.number_of_investors
 
@@ -78,7 +78,7 @@ export default class CampaignList extends Component {
                             </div>
 
                             <div className="clearfix text-left">
-                              <div>$ {raised} raised</div>
+                              <div>$ {raised.currency()} raised of ${goal.currency()}</div>
                               <div>{achieved}% achieved</div>
                               <div>{investorNum} investors</div>
                               <div>{endDate} days left</div>

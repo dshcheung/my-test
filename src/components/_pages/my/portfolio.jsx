@@ -65,13 +65,17 @@ export default class MyPortfolio extends Component {
                       <tbody>
                         {
                           campaigns.map((c, i) => {
+                            const goal = c.goal || 0
+                            const raised = c.raised || 0
+                            // TODO: User your own campaign_pledges
+                            const pledgedAmount = _.get(c, 'campaign_pledges[0].amount')
                             return (
                               <tr key={i}>
                                 <td>{c.startup.name}</td>
                                 <td>{moment(c.end_date).diff(moment(), 'days')}</td>
-                                <td>${c.goal.currency()}</td>
-                                <td>${c.raised.currency()}</td>
-                                <td>${c.campaign_pledges[0].amount.currency()}</td>
+                                <td>${goal.currency()}</td>
+                                <td>${raised.currency()}</td>
+                                <td>${pledgedAmount.currency()}</td>
                               </tr>
                             )
                           })

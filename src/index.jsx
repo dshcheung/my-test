@@ -8,11 +8,11 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import configureStore from './store-config'
 import currentRoutes from './routes'
 
-const store = configureStore()
-const history = syncHistoryWithStore(browserHistory, store)
-
 require('../styles/index.scss')
 require('./prototypes.js')
+
+const store = configureStore()
+const history = syncHistoryWithStore(browserHistory, store)
 
 const scrollTop = () => {
   const element = document.getElementsByTagName("body")[0]

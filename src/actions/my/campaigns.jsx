@@ -39,9 +39,17 @@ export const gMyCampaigns = ({ queries = {}, nextHref = null } = {}) => {
 }
 
 export const SET_MY_CAMPAIGN = "SET_MY_CAMPAIGN"
-export const setMyCampaign = ({ startup, campaign }) => {
+export const setMyCampaign = (data) => {
   return {
     type: SET_MY_CAMPAIGN,
+    data
+  }
+}
+
+export const SET_MY_CAMPAIGN_FROM_STARTUP = "SET_MY_CAMPAIGN_FROM_STARTUP"
+export const setMyCampaignFromStartup = ({ startup, campaign }) => {
+  return {
+    type: SET_MY_CAMPAIGN_FROM_STARTUP,
     data: { startup, campaign }
   }
 }
@@ -69,6 +77,22 @@ export const deleteMyCampaignAttributeEntry = (id, attribute) => {
     type: DELETE_MY_CAMPAIGN_ATTRIBUTE_ENTRY,
     attribute,
     id
+  }
+}
+
+export const G_MY_CAMPAIGN = "G_MY_CAMPAIGN"
+export const gMyCampaign = ({ params = {}, queries = {} }) => {
+  const request = genAxios({
+    method: "get",
+    url: genApiUrl(apiMyCampaignsShow(params), queries)
+  })
+
+  return {
+    type: G_MY_CAMPAIGN,
+    request,
+    successCB: (dispatch, data) => {
+      dispatch(setMyCampaign(data))
+    }
   }
 }
 
