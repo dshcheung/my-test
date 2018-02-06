@@ -38,8 +38,6 @@ import UsersShowContainer from './components/_pages/users/show'
 
 import PageNotFound from './components/_pages/not-found'
 
-import MyStartupsIndexContainer from './components/_pages/my/startups'
-
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={HomeContainer} />
@@ -79,8 +77,6 @@ export default (
         <Route path=":id/edit" />
       </Route>
       <Route path="dashboard" component={MyDashboardContainer} roleAccess="StartupUser" />
-
-      <Route path="startups" component={MyStartupsIndexContainer} />
     </Route>
 
     {/* Investor Paths */}

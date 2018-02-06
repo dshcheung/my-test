@@ -3,8 +3,6 @@ import { getFormData } from '../../../services/get-form-data'
 import { apiMyStartupsProfileIndex } from '../../../services/api-path'
 import { notySuccess } from '../../../services/noty'
 
-import { mergeStartupAttribute } from '../../startups'
-
 export const C_MY_STARTUP_PROFILE = "C_MY_STARTUP_PROFILE"
 export const cMyStartupProfile = (values, params, cb) => {
   const request = genAxios({
@@ -23,9 +21,9 @@ export const cMyStartupProfile = (values, params, cb) => {
   return {
     type: C_MY_STARTUP_PROFILE,
     request,
-    successCB: (dispatch, data) => {
+    successCB: () => {
       if (cb) cb()
-      dispatch(mergeStartupAttribute(data, 'profile'))
+      // TODO: mergeCampaignAttribute(data, 'profile')
       notySuccess("Created")
     }
   }
@@ -49,9 +47,9 @@ export const uMyStartupProfile = (values, params, cb) => {
   return {
     type: U_MY_STARTUP_PROFILE,
     request,
-    successCB: (dispatch, data) => {
+    successCB: () => {
       if (cb) cb()
-      dispatch(mergeStartupAttribute(data, 'profile'))
+      // TODO: mergeCampaignAttribute(data, 'profile')
       notySuccess("Updated")
     }
   }

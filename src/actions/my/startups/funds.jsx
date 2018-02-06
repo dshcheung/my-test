@@ -3,8 +3,6 @@ import { getFormData } from '../../../services/get-form-data'
 import { apiMyStartupsFundsIndex, apiMyStartupsFundsShow } from '../../../services/api-path'
 import { notySuccess } from '../../../services/noty'
 
-import { mergeStartupAttribute, deleteStartupAttributeEntry } from '../../startups'
-
 // create
 export const C_MY_STARTUP_FUND = "C_MY_STARTUP_FUND"
 export const cMyStartupFund = (values, params, cb) => {
@@ -21,9 +19,9 @@ export const cMyStartupFund = (values, params, cb) => {
   return {
     type: C_MY_STARTUP_FUND,
     request,
-    successCB: (dispatch, data) => {
+    successCB: () => {
       if (cb) cb()
-      dispatch(mergeStartupAttribute(data, 'funds', 'received_at'))
+      // TODO: mergeCampaignAttribute(data, 'funds', 'received_at')
       notySuccess("Fund Added!")
     }
   }
@@ -45,9 +43,9 @@ export const uMyStartupFund = (values, params, cb) => {
   return {
     type: U_MY_STARTUP_FUND,
     request,
-    successCB: (dispatch, data) => {
+    successCB: () => {
       if (cb) cb()
-      dispatch(mergeStartupAttribute(data, 'funds', 'received_at'))
+      // TODO: mergeCampaignAttribute(data, 'funds', 'received_at')
       notySuccess("Fund Updated!")
     }
   }
@@ -64,8 +62,8 @@ export const dMyStartupFund = (params) => {
   return {
     type: `${D_MY_STARTUP_FUND}_${params.fundID}`,
     request,
-    successCB: (dispatch) => {
-      dispatch(deleteStartupAttributeEntry(params.fundID, 'funds', 'received_at'))
+    successCB: () => {
+      // dispatch(deleteCampaignAttributeEntry(params.fundID, 'funds', 'received_at'))
     }
   }
 }

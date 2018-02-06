@@ -82,16 +82,6 @@ export default class Navbar extends Component {
 
             {
               currentUser && currentUser.role === "StartupUser" && (
-                <LinkContainer to="/my/startups" active={false}>
-                  <NavItem eventKey={2.2}>
-                    <span>My Startups</span>
-                  </NavItem>
-                </LinkContainer>
-              )
-            }
-
-            {
-              currentUser && currentUser.role === "StartupUser" && (
                 <LinkContainer to="/my/campaigns" active={false}>
                   <NavItem eventKey={2.3}>
                     <span>My Campaigns</span>
@@ -174,14 +164,6 @@ export default class Navbar extends Component {
                     currentUser.role === "StartupUser" && (
                       <LinkContainer to="/my/dashboard" active={false}>
                         <MenuItem eventKey={9.1}>Dashboard</MenuItem>
-                      </LinkContainer>
-                    )
-                  }
-
-                  {
-                    currentUser.role === "StartupUser" && (
-                      <LinkContainer to="/my/startups" active={false}>
-                        <MenuItem eventKey={9.2}>My Startups</MenuItem>
                       </LinkContainer>
                     )
                   }

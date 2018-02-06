@@ -3,8 +3,6 @@ import { getFormData } from '../../../services/get-form-data'
 import { apiMyStartupsTeamIndex } from '../../../services/api-path'
 import { notySuccess } from '../../../services/noty'
 
-import { mergeStartupAttribute } from '../../startups'
-
 // create update
 export const CU_MY_STARTUP_TEAM = "CU_MY_STARTUP_TEAM"
 export const cuMyStartupTeam = (values, params, cb, isUpdate, keyword) => {
@@ -23,9 +21,9 @@ export const cuMyStartupTeam = (values, params, cb, isUpdate, keyword) => {
   return {
     type: CU_MY_STARTUP_TEAM,
     request,
-    successCB: (dispatch, data) => {
+    successCB: () => {
       if (cb) cb()
-      dispatch(mergeStartupAttribute(data, 'team'))
+      // TODO: mergeCampaignAttribute(data, 'team')
       notySuccess(`Team ${keyword} ${isUpdate ? 'Updated' : 'Created'}!`)
     }
   }
@@ -50,8 +48,8 @@ export const dMyStartupTeamMember = (values, params, keyword) => {
   return {
     type: `${D_MY_STARTUP_TEAM_MEMBER}_${targetID}`,
     request,
-    successCB: (dispatch, data) => {
-      dispatch(mergeStartupAttribute(data, 'team'))
+    successCB: () => {
+      // TODO: mergeCampaignAttribute(data, 'team')
       notySuccess(`Team ${keyword} Deleted!`)
     }
   }

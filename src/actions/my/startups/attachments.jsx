@@ -3,8 +3,6 @@ import { getFormData } from '../../../services/get-form-data'
 import { apiMyStartupsAttachmentsIndex, apiMyStartupsAttachmentsShow } from '../../../services/api-path'
 import { notySuccess } from '../../../services/noty'
 
-import { mergeStartupAttribute, deleteStartupAttributeEntry } from '../../startups'
-
 // create
 export const C_MY_STARTUP_ATTACHMENT = "C_MY_STARTUP_ATTACHMENT"
 export const cMyStartupAttachment = (values, params, cb) => {
@@ -20,9 +18,9 @@ export const cMyStartupAttachment = (values, params, cb) => {
   return {
     type: C_MY_STARTUP_ATTACHMENT,
     request,
-    successCB: (dispatch, data) => {
+    successCB: () => {
       if (cb) cb()
-      dispatch(mergeStartupAttribute(data, 'attachment'))
+      // TODO: mergeCampaignAttribute(data, 'attachment')
       notySuccess("Document Added!")
     }
   }
@@ -43,9 +41,9 @@ export const uMyStartupAttachment = (values, params, cb) => {
   return {
     type: U_MY_STARTUP_ATTACHMENT,
     request,
-    successCB: (dispatch, data) => {
+    successCB: () => {
       if (cb) cb()
-      dispatch(mergeStartupAttribute(data, 'attachment'))
+      // TODO: mergeCampaignAttribute(data, 'attachment')
       notySuccess("Document Updated!")
     }
   }
@@ -62,8 +60,8 @@ export const dMyStartupAttachment = (params) => {
   return {
     type: `${D_MY_STARTUP_ATTACHMENT}_${params.attachmentID}`,
     request,
-    successCB: (dispatch) => {
-      dispatch(deleteStartupAttributeEntry(params.attachmentID, 'attachment'))
+    successCB: () => {
+      // dispatch(deleteCampaignAttributeEntry(params.attachmentID, 'attachment'))
       notySuccess("Document Deleted!")
     }
   }

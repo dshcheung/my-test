@@ -18,7 +18,6 @@ import SharedStartupsMedia from './media'
 import SharedStartupsAttachments from './attachments'
 
 // TODO: Remove These After Refactor
-// import MyStartupEProfileModal from '../../modals/my/startups/e-profile'
 // import MyCampaignsNECampaignModal from '../../modals/my/campaigns/ne-campaign'
 import CampaignsNPledgeModal from '../../modals/campaigns/n-pledge'
 

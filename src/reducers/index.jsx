@@ -12,14 +12,10 @@ import myConversationsReducer from './my-conversations'
 import myDashboardReducer from './my-dashboard'
 import myNotificationsReducer from './my-notifications'
 import myQuestionnairesReducers from './my-questionnaires'
-import myStartupsReducer from './my-startups'
-import myStartupsAutocompleteReducer from './my-startups-autocomplete'
 import paginationReducer from './pagination'
 import redirectionReducer from './redirection'
 import requestStatusReducer from './request-status'
 import sessionReducer from './session'
-import startupReducer from './startup'
-import startupsReducer from './startups'
 import usersReducer from './users'
 
 const appReducer = combineReducers({
@@ -31,14 +27,10 @@ const appReducer = combineReducers({
   myDashboard: myDashboardReducer,
   myNotifications: myNotificationsReducer,
   myQuestionnaires: myQuestionnairesReducers,
-  myStartups: myStartupsReducer,
-  myStartupsAutocomplete: myStartupsAutocompleteReducer,
   pagination: paginationReducer,
   redirectionInProcess: redirectionReducer,
   requestStatus: requestStatusReducer,
   session: sessionReducer,
-  startup: startupReducer,
-  startups: startupsReducer,
   user: usersReducer,
   routing: routerReducer,
   form: formReducer
