@@ -298,7 +298,11 @@ export default class UsersShow extends Component {
             />
             <div className="details">
               <span className="h1">{getFullName(user)}</span>
-              <p>{_.get(user, "profile.bio")}</p>
+              {
+                _.get(user, "profile.bio", null) && (
+                  <p>{_.get(user, "profile.bio")}</p>
+                )
+              }
             </div>
             {
               editable && (

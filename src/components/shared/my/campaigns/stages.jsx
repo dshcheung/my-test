@@ -59,27 +59,27 @@ export default class SharedMyCampaignsStages extends Component {
 
     return (
       <div id="shared-my-campaigns-stages">
-        <div className="stage-nav container">
-          {
-            this.state.order.map((s, i) => {
-              const bgColor = currentStage === s ? "bg-info" : ""
-              const disabledThis = disabled[s] ? "disabled" : ""
-              return (
-                <div
-                  key={i}
-                  className={`pointer stage-item ${bgColor} ${disabledThis}`}
-                  onClick={() => {
-                    if (!disabledThis) {
-                      this.changeStage(s)
-                    }
-                  }}
-                >{s.splitCap("_")}</div>
-              )
-            })
-          }
+        <div className="stage-nav">
+          <div className="container">
+            {
+              this.state.order.map((s, i) => {
+                const bgColor = currentStage === s ? "bg-info" : ""
+                const disabledThis = disabled[s] ? "disabled" : ""
+                return (
+                  <div
+                    key={i}
+                    className={`pointer stage-item ${bgColor} ${disabledThis}`}
+                    onClick={() => {
+                      if (!disabledThis) {
+                        this.changeStage(s)
+                      }
+                    }}
+                  >{s.splitCap("_")}</div>
+                )
+              })
+            }
+          </div>
         </div>
-
-        <hr />
 
         {
           this.state.currentStage === "stage_one" && (

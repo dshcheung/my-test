@@ -93,11 +93,11 @@ export default class Settings extends Component {
       <div id="page-my-settings" className="container">
         <div className="sidebar">
           <ul>
-            <li className={this.state.tab === "general" ? "selected" : ""} onClick={() => { this.change("general") }}>General</li>
-            <li className={this.state.tab === "privacy" ? "selected" : ""} onClick={() => { this.change("privacy") }}>Privacy</li>
-            <li className={this.state.tab === "notification" ? "selected" : ""} onClick={() => { this.change("notification") }}>Notification</li>
-            <li className={this.state.tab === "language" ? "selected" : ""} onClick={() => { this.change("language") }}>Language</li>
-            <li className={this.state.tab === "security" ? "selected" : ""} onClick={() => { this.change("security") }}>Security</li>
+            <li className={`pointer hover-underline ${this.state.tab === "general" ? "selected" : ""}`} onClick={() => { this.change("general") }}>General</li>
+            <li className={`pointer hover-underline ${this.state.tab === "privacy" ? "selected" : ""}`} onClick={() => { this.change("privacy") }}>Privacy</li>
+            <li className={`pointer hover-underline ${this.state.tab === "notification" ? "selected" : ""}`} onClick={() => { this.change("notification") }}>Notification</li>
+            <li className={`pointer hover-underline ${this.state.tab === "language" ? "selected" : ""}`} onClick={() => { this.change("language") }}>Language</li>
+            <li className={`pointer hover-underline ${this.state.tab === "security" ? "selected" : ""}`} onClick={() => { this.change("security") }}>Security</li>
           </ul>
         </div>
         <div className="content">
@@ -140,15 +140,15 @@ export default class Settings extends Component {
                         >Edit</button>
                         {
                           email && (
-                            <div>Email - {email || "Null"} <span onClick={() => { if (!verified_email) this.props.router.push("verify/email") }}>{
-                              verified_email ? "Verifed" : "verify here"
+                            <div>Email - {email || "Null"} <span className={verified_email ? "label label-success" : "pointer btn btn-small btn-success"} onClick={() => { if (!verified_email) this.props.router.push("verify/email") }}>{
+                              verified_email ? "Verifed" : "Verify"
                             }</span></div>
                           )
                         }
                         {
                           mobile && (
-                            <div>Mobile - {mobile || "Null"} <span onClick={() => { if (!verified_mobile) this.props.router.push("verify/mobile") }}>{
-                              verified_mobile ? "Verified" : "verify here"
+                            <div>Mobile - {mobile || "Null"} <span className={verified_mobile ? "label label-success" : "pointer btn btn-small btn-success"} onClick={() => { if (!verified_mobile) this.props.router.push("verify/mobile") }}>{
+                              verified_mobile ? "Verified" : "Verify"
                             }</span></div>
                           )
                         }

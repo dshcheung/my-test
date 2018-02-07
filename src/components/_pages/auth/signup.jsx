@@ -82,10 +82,10 @@ export default class Signup extends Component {
             role={role}
             questions={questions}
             initialValues={{
-              email: "test@test.com",
-              password: "123456",
-              firstName: "Denis",
-              lastName: "Cheung",
+              email: "",
+              password: "",
+              firstName: "",
+              lastName: "",
               questionnaire: {
                 questionnaire_id: "sign_up",
                 answers: initialValuesAnswers
