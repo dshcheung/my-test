@@ -7,7 +7,7 @@ import LoadingSpinner from '../loading-spinner'
 
 export default class CampaignList extends Component {
   render() {
-    const { loadingInProcess, campaigns, newable } = this.props
+    const { loadingInProcess, campaigns, newable, investorViewable } = this.props
 
     return (
       <div className="row" id="shared-campaigns-list">
@@ -58,7 +58,7 @@ export default class CampaignList extends Component {
                 }
 
                 const submitStatus = _.get(campaign, 'status.submitted')
-                const isApproved = submitStatus === "accepted"
+                const isApproved = submitStatus === "accepted" || investorViewable
 
                 return (
                   <div key={i} className="col-xs-12 col-sm-6 col-md-4 text-center campaign-card">
@@ -98,7 +98,7 @@ export default class CampaignList extends Component {
                           <div>
                             <hr />
                             <Link to={linkTo}>
-                              { submitStatus === "not_submitted" && <div className="bg-default">{submitStatus.splitCap("_")}</div> }
+                              { submitStatus === "not_submitted" && <div className="bg-warning">{submitStatus.splitCap("_")}</div> }
                               { submitStatus === "pending" && <div className="bg-warning">{submitStatus.splitCap("_")}</div> }
                               { submitStatus === "rejected" && <div className="bg-danger">{submitStatus.splitCap("_")}</div> }
                             </Link>

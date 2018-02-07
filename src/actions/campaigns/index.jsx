@@ -65,6 +65,16 @@ export const getCampaign = ({ params = {}, queries = {} } = {}) => {
   }
 }
 
+export const MERGE_CAMPAIGN_ATTRIBUTE = "MERGE_CAMPAIGN_ATTRIBUTE"
+export const mergeCampaignAttribute = (data, targetPath, overrideTargetType) => {
+  return {
+    type: MERGE_CAMPAIGN_ATTRIBUTE,
+    targetPath,
+    data,
+    overrideTargetType
+  }
+}
+
 export const REQUEST_DATA_ACCESS = "REQUEST_DATA_ACCESS"
 export const requestDataAccess = (params) => {
   const request = genAxios({
@@ -75,10 +85,8 @@ export const requestDataAccess = (params) => {
   return {
     type: REQUEST_DATA_ACCESS,
     request,
-    successCB: () => {
-      // console.log(data)
+    successCB: (dispatch, data) => {
+      dispatch(mergeCampaignAttribute(data.permission, 'can.view_data_room'))
     }
   }
 }
-
-// requestDataAccess({ campaignID: "Kwfefjb2EZjtDR9r"})

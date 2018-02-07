@@ -1,10 +1,27 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import Element from 'react-scroll/modules/components/Element'
+
+import { REQUEST_DATA_ACCESS, requestDataAccess } from '../../../actions/campaigns'
 
 import SharedStartupsTitle from './title'
 import SharedStartupsEmpty from './empty'
 import MyStartupsSAttachmentsModal from '../../modals/my/startups/s-attachments'
 
+const mapStateToProps = (state) => {
+  return {
+    requestDataAccessInProcess: _.get(state.requestStatus, REQUEST_DATA_ACCESS)
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    requestDataAccess: bindActionCreators(requestDataAccess, dispatch)
+  }
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 export default class SharedStartupsAttachments extends Component {
   constructor(props) {
     super(props)
@@ -24,11 +41,12 @@ export default class SharedStartupsAttachments extends Component {
   }
 
   render() {
-    const { attachments, editable, routeParams } = this.props
+    const { attachments, editable, routeParams, viewDataRoom, requestDataAccessInProcess } = this.props
     const { sAttachments } = this.state
     const title = "Documents"
-    // Attachments still null after create. data_room issues?
-    const emptyAttachments = attachments === null || attachments.length === 0
+    const nullAttachments = attachments === null
+    const emptyAttachments = attachments && attachments.length === 0
+    const noAttachments = nullAttachments || emptyAttachments
     const editMode = !emptyAttachments
 
     return (
@@ -42,14 +60,31 @@ export default class SharedStartupsAttachments extends Component {
 
         <SharedStartupsEmpty
           title={title}
-          condition={emptyAttachments}
+          condition={noAttachments}
           editable={editable}
           editMode={editMode}
         />
 
         {
-          !emptyAttachments && (
-            <div className={`documents ${blur}`}>
+          emptyAttachments && viewDataRoom !== "accepted" && (
+            <div className="documents text-center">
+              <button
+                onClick={() => { this.props.requestDataAccess(routeParams) }}
+                className={`btn ${viewDataRoom === "rejected" ? "btn-danger" : "btn-info"} ${requestDataAccessInProcess && "m-progress"}`}
+                type="submit"
+                disabled={requestDataAccessInProcess || viewDataRoom === "rejected"}
+              >
+                {viewDataRoom === null && "Request Data"}
+                {viewDataRoom === "pending" && "Request Sent"}
+                {viewDataRoom === "rejected" && "Your Request Has Been Rejected"}
+              </button>
+            </div>
+          )
+        }
+
+        {
+          !emptyAttachments && viewDataRoom === "accepted" && (
+            <div className="documents">
               <ul>
                 {
                   attachments.map((attachment, i) => {

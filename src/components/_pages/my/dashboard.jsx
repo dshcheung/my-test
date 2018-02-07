@@ -65,28 +65,40 @@ export default class MyDashboard extends Component {
                       <tbody>
                         {
                           campaigns.map((c, i) => {
-                            const goal = c.goal || 0
-                            const raised = c.raised || 0
-                            return (
-                              <tr
-                                key={i}
-                                className="pointer"
-                                onClick={() => {
-                                  if (c.can.edit) {
-                                    this.props.router.push(`/my/campaigns/${c.id}/edit#stage_four`)
-                                  } else {
+                            const submitted = _.get(c, 'status.submitted')
+                            if (submitted === "accepted") {
+                              const goal = c.goal || 0
+                              const raised = c.raised || 0
+                              return (
+                                <tr
+                                  key={i}
+                                  className="pointer"
+                                  onClick={() => {
                                     this.props.router.push(`/my/campaigns/${c.id}`)
-                                  }
-                                }}
-                              >
-                                <td>{c.startup.name}</td>
-                                <td>{moment(c.end_date).diff(moment(), 'days')}</td>
-                                <td>${goal.currency()}</td>
-                                <td>${raised.currency()}</td>
-                                <td>{c.number_of_investors}</td>
-                                <td>{c.has_reached_goal ? "Yes" : "No"}</td>
-                              </tr>
-                            )
+                                  }}
+                                >
+                                  <td>{c.startup.name}</td>
+                                  <td>{moment(c.end_date).diff(moment(), 'days')}</td>
+                                  <td>${goal.currency()}</td>
+                                  <td>${raised.currency()}</td>
+                                  <td>{c.number_of_investors}</td>
+                                  <td>{c.has_reached_goal ? "Yes" : "No"}</td>
+                                </tr>
+                              )
+                            } else {
+                              return (
+                                <tr
+                                  key={i}
+                                  className="pointer"
+                                  onClick={() => {
+                                    this.props.router.push(`/my/campaigns/${c.id}/edit#stage_four`)
+                                  }}
+                                >
+                                  <td>{c.startup.name}</td>
+                                  <td colSpan="5" className="text-center">{submitted.splitCap("_")}</td>
+                                </tr>
+                              )
+                            }
                           })
                         }
                       </tbody>

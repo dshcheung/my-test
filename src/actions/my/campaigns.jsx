@@ -62,11 +62,12 @@ export const resetMyCampaign = () => {
 }
 
 export const MERGE_MY_CAMPAIGN_ATTRIBUTE = "MERGE_MY_CAMPAIGN_ATTRIBUTE"
-export const mergeMyCampaignAttribute = (data, targetPath) => {
+export const mergeMyCampaignAttribute = (data, targetPath, overrideTargetType) => {
   return {
     type: MERGE_MY_CAMPAIGN_ATTRIBUTE,
     targetPath,
-    data
+    data,
+    overrideTargetType
   }
 }
 

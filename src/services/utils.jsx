@@ -44,12 +44,12 @@ export const getType = (v) => {
   return toString.call(v).slice(8, -1)
 }
 
-export const mergeAttribute = (base, { data, targetPath }) => {
+export const mergeAttribute = (base, { data, targetPath, overrideTargetType }) => {
   if (base === null) return base
 
   const target = _.get(base, targetPath)
-  const targetType = getType(target)
-  const dataType = getType(data)
+  const targetType = overrideTargetType || getType(target)
+  // const dataType = getType(data)
 
   if (targetType === "Array") {
     _.set(base, targetPath, mergeData(target, [data]))
@@ -59,7 +59,7 @@ export const mergeAttribute = (base, { data, targetPath }) => {
     _.set(base, targetPath, data)
   }
 
-  if (targetType === "Null" && dataType === "Object") {
+  if (targetType === "Null") {
     _.set(base, targetPath, data)
   }
 

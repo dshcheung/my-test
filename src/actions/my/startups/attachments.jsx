@@ -22,7 +22,7 @@ export const cMyStartupAttachment = (values, params, cb) => {
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()
-      dispatch(mergeMyCampaignAttribute(data, 'startup.attachment'))
+      dispatch(mergeMyCampaignAttribute(data, 'startup.attachments', 'Array'))
       notySuccess("Document Added!")
     }
   }
@@ -45,7 +45,7 @@ export const uMyStartupAttachment = (values, params, cb) => {
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()
-      dispatch(mergeMyCampaignAttribute(data, 'startup.attachment'))
+      dispatch(mergeMyCampaignAttribute(data, 'startup.attachments', 'Array'))
       notySuccess("Document Updated!")
     }
   }
@@ -63,7 +63,7 @@ export const dMyStartupAttachment = (params) => {
     type: `${D_MY_STARTUP_ATTACHMENT}_${params.attachmentID}`,
     request,
     successCB: (dispatch) => {
-      dispatch(deleteMyCampaignAttributeEntry(params.attachmentID, 'startup.attachment'))
+      dispatch(deleteMyCampaignAttributeEntry(params.attachmentID, 'startup.attachments'))
       notySuccess("Document Deleted!")
     }
   }

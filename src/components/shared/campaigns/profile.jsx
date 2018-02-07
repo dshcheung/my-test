@@ -39,8 +39,6 @@ export default class SharedCampaignsProfile extends Component {
     const modalEditable = editMode && editable
     const canPledge = _.get(campaign, 'can.pledge', false)
     const hasPledged = _.get(campaign, 'can.view_pledge', false)
-    // TODO: dataroom...remind gram to add is_owner flag
-    // const canViewDataRoom = _.get(campaign, 'can.view_data_room', null)
 
     const routeParams = { ...this.props.routeParams, startupID: startup.id }
 
@@ -179,7 +177,7 @@ export default class SharedCampaignsProfile extends Component {
                           className="btn btn-primary btn-block btn-lg"
                           onClick={() => { this.setState({ nPledge: true }) }}
                           disabled={hasPledged}
-                        >{canPledge && "Pledge Now"}{hasPledged && "You Have Pledged"}</button>
+                        >{canPledge && !hasPledged && "Pledge Now"}{hasPledged && "You Have Pledged"}</button>
                       </div>
                     </div>
                   )
@@ -273,7 +271,7 @@ export default class SharedCampaignsProfile extends Component {
               {(modalEditable || marketScopeExist) && <SharedStartupsMarketScope marketScope={marketScope} editable={modalEditable} routeParams={routeParams} />}
               {(modalEditable || riskExist) && <SharedStartupsRisk risk={risk} editable={modalEditable} routeParams={routeParams} />}
               {(modalEditable || mediaExist) && <SharedStartupsMedia media={media} editable={modalEditable} routeParams={routeParams} />}
-              {(modalEditable || attachmentsExist) && <SharedStartupsAttachments attachments={attachments} editable={modalEditable} routeParams={routeParams} />}
+              {(modalEditable || attachmentsExist) && <SharedStartupsAttachments attachments={attachments} editable={modalEditable} routeParams={routeParams} viewDataRoom={campaign.can.view_data_room} />}
             </div>
           </div>
         </div>

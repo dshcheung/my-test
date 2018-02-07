@@ -23,7 +23,7 @@ export const cMyStartupFund = (values, params, cb) => {
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()
-      dispatch(mergeMyCampaignAttribute(data, 'startup.funds', 'received_at'))
+      dispatch(mergeMyCampaignAttribute(data, 'startup.funds'))
       notySuccess("Fund Added!")
     }
   }
@@ -47,7 +47,7 @@ export const uMyStartupFund = (values, params, cb) => {
     request,
     successCB: (dispatch, data) => {
       if (cb) cb()
-      dispatch(mergeMyCampaignAttribute(data, 'startup.funds', 'received_at'))
+      dispatch(mergeMyCampaignAttribute(data, 'startup.funds'))
       notySuccess("Fund Updated!")
     }
   }
@@ -65,7 +65,7 @@ export const dMyStartupFund = (params) => {
     type: `${D_MY_STARTUP_FUND}_${params.fundID}`,
     request,
     successCB: (dispatch) => {
-      dispatch(deleteMyCampaignAttributeEntry(params.fundID, 'startup.funds', 'received_at'))
+      dispatch(deleteMyCampaignAttributeEntry(params.fundID, 'startup.funds'))
     }
   }
 }

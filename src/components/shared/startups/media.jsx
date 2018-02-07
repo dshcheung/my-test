@@ -25,20 +25,20 @@ export default class SharedStartupsMedia extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { neMedia: false, editMode: false, highlight: null }
+    this.state = { neMedia: false, editMode: false, medium: null }
 
     this.dMyStartupMedia = this.dMyStartupMedia.bind(this)
     this.open = this.open.bind(this)
     this.close = this.close.bind(this)
   }
 
-  dMyStartupMedia(highlightID) {
+  dMyStartupMedia(mediaID) {
     const { routeParams } = this.props
-    this.props.dMyStartupMedia({ ...routeParams, highlightID })
+    this.props.dMyStartupMedia({ ...routeParams, mediaID })
   }
 
-  open(editMode, highlight) {
-    this.setState({ neMedia: true, editMode, editInfo: highlight })
+  open(editMode, medium) {
+    this.setState({ neMedia: true, editMode, editInfo: medium })
   }
 
   close() {
@@ -108,7 +108,7 @@ export default class SharedStartupsMedia extends Component {
               close={this.close}
               params={routeParams}
               editMode={editMode}
-              highlight={editInfo}
+              medium={editInfo}
             />
           )
         }
