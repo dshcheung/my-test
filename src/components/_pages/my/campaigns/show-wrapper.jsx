@@ -26,7 +26,9 @@ const mapDispatchToProps = (dispatch) => {
 @connect(mapStateToProps, mapDispatchToProps)
 export default class MyCampaigns extends Component {
   componentWillMount() {
-    this.props.gMyCampaign({ params: this.props.router.params })
+    if (!this.props.myCampaign) {
+      this.props.gMyCampaign({ params: this.props.router.params })
+    }
   }
 
   componentWillUnmount() {
@@ -38,7 +40,9 @@ export default class MyCampaigns extends Component {
 
     if (gMyCampaignInProcess) return <LoadingSpinner />
 
-    if (myCampaign) return this.props.children
+    if (myCampaign) {
+      return this.props.children
+    }
 
     return (
       <div className="text-center">

@@ -49,7 +49,7 @@ export default class SharedMyCampaignsStages extends Component {
   }
 
   changeStage(stage) {
-    this.props.router.push(`${this.props.location.pathname}#${stage}`)
+    this.props.router.replace(`${this.props.location.pathname}#${stage}`)
     this.setState({ currentStage: stage })
   }
 

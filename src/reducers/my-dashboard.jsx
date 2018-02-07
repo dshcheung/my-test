@@ -1,3 +1,5 @@
+import { mergeData } from '../services/utils'
+
 import {
   SET_MY_DASHBOARD,
   RESET_MY_DASHBOARD,
@@ -8,7 +10,11 @@ const initialState = []
 export default function(state = initialState, action) {
   switch (action.type) {
     case SET_MY_DASHBOARD:
-      return action.data
+      if (action.reset) {
+        return action.data
+      } else {
+        return { ...state, campaigns: mergeData(_.get(state, 'campaigns') || [], action.data.campaigns) }
+      }
     case RESET_MY_DASHBOARD:
       return initialState
   }

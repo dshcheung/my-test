@@ -12,7 +12,8 @@ import LoadingSpinner from '../../shared/loading-spinner'
 const mapStateToProps = (state) => {
   return {
     gMyDashboardInProcess: _.get(state.requestStatus, G_MY_DASHBOARD),
-    myDashboard: _.get(state, 'myDashboard', [])
+    myDashboard: _.get(state, 'myDashboard', []),
+    gMyDashBoardNextHref: _.get(state.pagination, G_MY_DASHBOARD)
   }
 }
 
@@ -29,18 +30,16 @@ export default class MyPortfolio extends Component {
     this.props.gMyDashboard()
   }
 
-  componentWillReceiveProps
-
   componentWillUnmount() {
     this.props.resetMyDashboard()
   }
 
   render() {
-    const { myDashboard, gMyDashboardInProcess } = this.props
-
-    if (gMyDashboardInProcess) return <LoadingSpinner />
+    const { myDashboard, gMyDashboardInProcess, gMyDashBoardNextHref } = this.props
 
     const campaigns = _.get(myDashboard, 'campaigns', [])
+
+    if (gMyDashboardInProcess && campaigns.length === 0) return <LoadingSpinner />
 
     return (
       <div id="page-my-portfolio" className="container">
@@ -70,7 +69,13 @@ export default class MyPortfolio extends Component {
                             // TODO: User your own campaign_pledges
                             const pledgedAmount = _.get(c, 'campaign_pledges[0].amount')
                             return (
-                              <tr key={i}>
+                              <tr
+                                key={i}
+                                className="pointer"
+                                onClick={() => {
+                                  this.props.router.push(`/campaigns/${c.id}`)
+                                }}
+                              >
                                 <td>{c.startup.name}</td>
                                 <td>{moment(c.end_date).diff(moment(), 'days')}</td>
                                 <td>${goal.currency()}</td>
@@ -83,6 +88,19 @@ export default class MyPortfolio extends Component {
                       </tbody>
                     </table>
                   </div>
+                  {
+                    gMyDashBoardNextHref && (
+                      <div className="col-xs-12 text-center">
+                        <button
+                          className={`btn btn-info ${gMyDashboardInProcess && "m-progress"}`}
+                          disabled={gMyDashboardInProcess}
+                          onClick={() => {
+                            this.props.gMyDashboard({ nextHref: gMyDashBoardNextHref })
+                          }}
+                        >Load More</button>
+                      </div>
+                    )
+                  }
                 </div>
               </Tab>
               <Tab eventKey={2} title="Diversification Analysis">

@@ -12,7 +12,8 @@ import LoadingSpinner from '../../shared/loading-spinner'
 const mapStateToProps = (state) => {
   return {
     gMyDashboardInProcess: _.get(state.requestStatus, G_MY_DASHBOARD),
-    myDashboard: _.get(state, 'myDashboard')
+    myDashboard: _.get(state, 'myDashboard'),
+    gMyDashBoardNextHref: _.get(state.pagination, G_MY_DASHBOARD)
   }
 }
 
@@ -34,11 +35,11 @@ export default class MyDashboard extends Component {
   }
 
   render() {
-    const { myDashboard, gMyDashboardInProcess } = this.props
-
-    if (gMyDashboardInProcess) return <LoadingSpinner />
+    const { myDashboard, gMyDashboardInProcess, gMyDashBoardNextHref } = this.props
 
     const campaigns = _.get(myDashboard, 'campaigns', [])
+
+    if (gMyDashboardInProcess && campaigns.length === 0) return <LoadingSpinner />
 
     return (
       <div id="page-my-dashboard" className="container">
@@ -50,7 +51,6 @@ export default class MyDashboard extends Component {
               <Tab eventKey={1} title="My Campaigns">
                 <div className="row">
                   <div className="col-xs-12">
-                    <div>Note for internal demo: Only show approved campaigns right now, but later on we will show a special row for incomplete campaigns</div>
                     <table className="table table-hover">
                       <thead>
                         <tr>
@@ -65,12 +65,20 @@ export default class MyDashboard extends Component {
                       <tbody>
                         {
                           campaigns.map((c, i) => {
-                            if (!c.approved) return null
-
                             const goal = c.goal || 0
                             const raised = c.raised || 0
                             return (
-                              <tr key={i}>
+                              <tr
+                                key={i}
+                                className="pointer"
+                                onClick={() => {
+                                  if (c.can.edit) {
+                                    this.props.router.push(`/my/campaigns/${c.id}/edit#stage_four`)
+                                  } else {
+                                    this.props.router.push(`/my/campaigns/${c.id}`)
+                                  }
+                                }}
+                              >
                                 <td>{c.startup.name}</td>
                                 <td>{moment(c.end_date).diff(moment(), 'days')}</td>
                                 <td>${goal.currency()}</td>
@@ -84,6 +92,20 @@ export default class MyDashboard extends Component {
                       </tbody>
                     </table>
                   </div>
+
+                  {
+                    gMyDashBoardNextHref && (
+                      <div className="col-xs-12 text-center">
+                        <button
+                          className={`btn btn-info ${gMyDashboardInProcess && "m-progress"}`}
+                          disabled={gMyDashboardInProcess}
+                          onClick={() => {
+                            this.props.gMyDashboard({ nextHref: gMyDashBoardNextHref })
+                          }}
+                        >Load More</button>
+                      </div>
+                    )
+                  }
                 </div>
               </Tab>
               <Tab eventKey={2} title="Some Analysis">

@@ -1,4 +1,4 @@
-import { push } from 'react-router-redux'
+import { replace } from 'react-router-redux'
 
 import { genApiUrl, addParamsToUrl, genAxios } from '../../services/api-request'
 import { getFormData } from '../../services/get-form-data'
@@ -120,7 +120,7 @@ export const uMyCampaign = (values, params) => {
     request,
     successCB: (dispatch, data) => {
       dispatch(setMyCampaign(data))
-      dispatch(push(`/my/campaigns/${data.id}/edit#stage_four`))
+      dispatch(replace(`/my/campaigns/${data.id}/edit#stage_four`))
       notySuccess("Submitted")
     }
   }
@@ -138,6 +138,7 @@ export const markMyCampaignForReview = (params) => {
     request,
     successCB: (dispatch, data) => {
       dispatch(setMyCampaign(data))
+      notySuccess("Submitted")
     }
   }
 }

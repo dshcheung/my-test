@@ -1,4 +1,4 @@
-import { push } from 'react-router-redux'
+import { push, replace } from 'react-router-redux'
 
 import { genApiUrl, genAxios } from '../../../services/api-request'
 import { getFormData } from '../../../services/get-form-data'
@@ -43,7 +43,7 @@ export const uMyStartup = (values, params) => {
     request,
     successCB: (dispatch, { startup }) => {
       dispatch(setMyCampaignFromStartup({ startup: _.omit(startup, 'campaign'), campaign: startup.campaign }))
-      dispatch(push(`/my/campaigns/${startup.campaign.id}/edit#stage_two`))
+      dispatch(replace(`/my/campaigns/${startup.campaign.id}/edit#stage_two`))
       notySuccess("Submitted")
     }
   }
