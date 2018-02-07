@@ -40,7 +40,7 @@ export default class SharedCampaignsProfile extends Component {
     const modalEditable = editMode && editable
     const canPledge = _.get(campaign, 'can.pledge', false)
     const hasPledged = _.get(campaign, 'can.view_pledge', false)
-    // TODO: remind gram to add is_owner flag
+    // TODO: dataroom...remind gram to add is_owner flag
     // const canViewDataRoom = _.get(campaign, 'can.view_data_room', null)
 
     if (loadingInProcess) return <LoadingSpinner />

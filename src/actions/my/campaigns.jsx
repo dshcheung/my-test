@@ -1,3 +1,5 @@
+import { push } from 'react-router-redux'
+
 import { genApiUrl, addParamsToUrl, genAxios } from '../../services/api-request'
 import { getFormData } from '../../services/get-form-data'
 import { apiMyCampaignsIndex, apiMyCampaignsShow, apiMyCampaignsShowMFR } from '../../services/api-path'
@@ -93,39 +95,8 @@ export const gMyCampaign = ({ params = {}, queries = {} }) => {
   }
 }
 
-export const C_MY_CAMPAIGN = "C_MY_CAMPAIGN"
-export const cMyCampaign = (values, cb) => {
-  const request = genAxios({
-    method: "post",
-    url: genApiUrl(apiMyCampaignsIndex()),
-    data: getFormData({
-      startup_id: _.get(values, 'startup.id', null),
-      goal: _.get(values, 'goal', null),
-      start_date: _.get(values, 'startDate', null),
-      end_date: _.get(values, 'endDate', null),
-      campaign_type_attributes: {
-        name: _.get(values, 'name', null),
-        maturity_date: _.get(values, 'maturityDate', null),
-        interest_rate: _.get(values, 'interestRate', null),
-        amount: _.get(values, 'amount', null),
-        amount_type: _.get(values, 'amountType', null)
-      }
-    }, 'campaign')
-  })
-
-  return {
-    type: C_MY_CAMPAIGN,
-    request,
-    successCB: (dispatch, data) => {
-      if (cb) cb()
-      dispatch(mergeMyCampaigns({ campaigns: [data] }))
-      notySuccess("Created!")
-    }
-  }
-}
-
 export const U_MY_CAMPAIGN = "U_MY_CAMPAIGN"
-export const uMyCampaign = (values, params, cb) => {
+export const uMyCampaign = (values, params) => {
   const request = genAxios({
     method: "put",
     url: genApiUrl(apiMyCampaignsShow(params)),
@@ -148,8 +119,8 @@ export const uMyCampaign = (values, params, cb) => {
     type: U_MY_CAMPAIGN,
     request,
     successCB: (dispatch, data) => {
-      if (cb) cb()
       dispatch(setMyCampaign(data))
+      dispatch(push(`/my/campaigns/${data.id}/edit#stage_four`))
       notySuccess("Submitted")
     }
   }
@@ -165,7 +136,8 @@ export const markMyCampaignForReview = (params) => {
   return {
     type: MARK_MY_CAMPAIGN_FOR_REVIEW,
     request,
-    successCB: () => {
+    successCB: (dispatch, data) => {
+      dispatch(setMyCampaign(data))
     }
   }
 }

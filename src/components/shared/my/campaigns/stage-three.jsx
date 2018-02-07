@@ -30,9 +30,7 @@ export default class SharedMyCampaignsStageThree extends Component {
   }
 
   uMyCampaign(values) {
-    this.props.uMyCampaign(values, this.props.routeParams, () => {
-      if (this.props.nextStage) this.props.nextStage()
-    })
+    this.props.uMyCampaign(values, this.props.routeParams)
   }
 
   render() {

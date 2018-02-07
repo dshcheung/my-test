@@ -29,7 +29,7 @@ export const cMyStartup = (values) => {
 }
 
 export const U_MY_STARTUP = "U_MY_STARTUP"
-export const uMyStartup = (values, params, cb) => {
+export const uMyStartup = (values, params) => {
   const request = genAxios({
     method: "put",
     url: genApiUrl(apiMyStartupsShow(params)),
@@ -42,8 +42,8 @@ export const uMyStartup = (values, params, cb) => {
     type: U_MY_STARTUP,
     request,
     successCB: (dispatch, { startup }) => {
-      if (cb) cb()
       dispatch(setMyCampaignFromStartup({ startup: _.omit(startup, 'campaign'), campaign: startup.campaign }))
+      dispatch(push(`/my/campaigns/${startup.campaign.id}/edit#stage_two`))
       notySuccess("Submitted")
     }
   }

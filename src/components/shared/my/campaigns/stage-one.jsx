@@ -33,9 +33,7 @@ export default class SharedMyCampaignsStageOne extends Component {
 
   cuMyStartup(values) {
     if (this.props.editMode) {
-      this.props.uMyStartup(values, this.props.routeParams, () => {
-        if (this.props.nextStage) this.props.nextStage()
-      })
+      this.props.uMyStartup(values, this.props.routeParams)
     } else {
       this.props.cMyStartup(values)
     }

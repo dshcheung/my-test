@@ -6,6 +6,7 @@ import { notyWarning } from '../../../../services/noty'
 import SharedMyCampaignsStageOne from './stage-one'
 import SharedMyCampaignsStageTwo from './stage-two'
 import SharedMyCampaignsStageThree from './stage-three'
+import SharedMyCampaignsStageFour from './stage-four'
 
 const mapStateToProps = (state) => {
   return {
@@ -86,7 +87,6 @@ export default class SharedMyCampaignsStages extends Component {
             <div className="container">
               <SharedMyCampaignsStageOne
                 editMode={editMode}
-                nextStage={() => { this.changeStage("stage_two") }}
                 routeParams={routeParams}
               />
             </div>
@@ -109,7 +109,17 @@ export default class SharedMyCampaignsStages extends Component {
             <div className="container">
               <SharedMyCampaignsStageThree
                 editMode={editMode}
-                nextStage={() => { this.changeStage("stage_four") }}
+                routeParams={routeParams}
+              />
+            </div>
+          )
+        }
+
+        {
+          this.state.currentStage === "stage_four" && (
+            <div className="container">
+              <SharedMyCampaignsStageFour
+                editMode={editMode}
                 routeParams={routeParams}
               />
             </div>
