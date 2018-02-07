@@ -1,15 +1,54 @@
 #pages-my-questionnaires {
   .stage-nav {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 15px;
-
-    .nav-item:last-child {
-      span {
-        display: none;
+    background-color: #ddd;
+    margin-bottom: 10px;
+    -moz-box-shadow:    inset 0 0 8px #aaa;
+    -webkit-box-shadow: inset 0 0 8px #aaa;
+    box-shadow:         inset 0 0 8px #aaa;
+    .container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .stage-item {
+      flex-grow: 1;
+      text-align: center;
+      padding: 20px 0;
+      color: #444;
+      position: relative;
+      text-transform: uppercase;
+      &.bg-info {
+        font-weight: bold;
+        color: #fff;
+        &:after {
+          content: " ";
+          position: absolute;
+          left: 48%;
+          opacity: 1;
+          margin: 0 auto;
+          bottom: 0px;
+          border: 10px solid transparent;
+          border-bottom-color: #fff;
+        }
+      }
+      &.bg-success {
+        font-weight: bold;
+        &:after {
+          position: absolute;
+          font: normal normal normal 14px/1 FontAwesome;
+          font-size: 20px;
+          left: 48%;
+          bottom: 0;
+          content: "\f00c";
+        }
+      }
+      &:last-child {
+        span {
+          display: none;
+        }
       }
     }
+
   }
 }

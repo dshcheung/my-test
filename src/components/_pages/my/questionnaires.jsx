@@ -154,40 +154,42 @@ export default class ValidationStageOne extends Component {
     const stageStatus = currentUser.investor
 
     return (
-      <div id="pages-my-questionnaires" className="container">
+      <div id="pages-my-questionnaires">
         <div className="stage-nav">
-          {
-            order.map((o, i) => {
-              const isCompleted = stageStatus[o]
-              const color = isCompleted ? "success" : "warning"
-              return (
-                <div className="nav-item" key={i}>
-                  <button
-                    className={`btn btn-${color}`}
+          <div className="container">
+            {
+              order.map((o, i) => {
+                const isCompleted = stageStatus[o]
+                const bgColor = isCompleted ? "bg-success" : ""
+                const activeBgColor = currentStage === o ? "bg-info" : ""
+                return (
+                  <div
+                    key={i}
+                    className={`pointer stage-item ${bgColor} ${activeBgColor}`}
                     onClick={() => { this.setState({ currentStage: o }) }}
-                  >{o.splitCap("_")}</button>
-                  <span><i className="fa fa-arrow-right" /></span>
-                </div>
-              )
-            })
-          }
-          {
-            stagesCompleted && (
-              <div className="nav-item">
-                <button
-                  className="btn btn-success"
+                  >{o.splitCap("_")}</div>
+                )
+              })
+            }
+            {
+              stagesCompleted && (
+                <div
+                  className="pointer stage-item bg-success"
                   onClick={() => { this.setState({ currentStage: "completed" }) }}
-                >Approval Stage</button>
-              </div>
-            )
-          }
+                >Approval Stage</div>
+              )
+            }
+          </div>
         </div>
-
-        {
-          currentStage !== "completed" ? this.questionnaireForm() : (
-            <div>Your Approval Process Has Been Initiated, Please Wait For Our Approval. If Any Information Was Incorrect You Can Still Go Back To Any Stages and Correct It</div>
-          )
-        }
+        <div className="container-fluid">
+          <div className="row">
+            {
+              currentStage !== "completed" ? this.questionnaireForm() : (
+                <div>Your Approval Process Has Been Initiated, Please Wait For Our Approval. If Any Information Was Incorrect You Can Still Go Back To Any Stages and Correct It</div>
+              )
+            }
+          </div>
+        </div>
       </div>
     )
   }
