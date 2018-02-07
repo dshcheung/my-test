@@ -36,14 +36,14 @@ module.exports = function () {
       extensions: ['.js', '.jsx']
     },
     plugins: [
-      // new webpack.optimize.UglifyJsPlugin({
-      //   compress: {
-      //     warnings: false
-      //   },
-      //   comments: false,
-      //   minimize: false,
-      //   sourceMap: true
-      // }),
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false
+        },
+        comments: false,
+        minimize: false,
+        sourceMap: true
+      }),
       new webpack.LoaderOptionsPlugin({
         // debug: false
         debug: true
