@@ -35,7 +35,6 @@ export default class CampaignList extends Component {
                 const avatar = _.get(campaign, 'startup.profile.avatar.original', null) || DEFAULT_STARTUP_AVATAR
                 const styles = { backgroundImage: `url(${banner})` }
 
-                const isApproved = campaign.approved
                 const campaignID = campaign.id
                 const campaignName = campaign.campaign_type.name
                 const amountType = campaign.campaign_type.amount_type === "valuation_cap" ? "Valuation Cap" : "Equity"
@@ -48,7 +47,18 @@ export default class CampaignList extends Component {
 
                 const startupName = campaign.startup.name
 
-                const linkTo = campaign.approved ? `/campaigns/${campaignID}` : `/my/campaigns/${campaignID}/edit`
+                let linkTo = `/campaigns/${campaignID}`
+
+                if (newable) {
+                  if (campaign.can.edit) {
+                    linkTo = `/my/campaigns/${campaignID}/edit#stage_four`
+                  } else {
+                    linkTo = `/my/campaigns/${campaignID}`
+                  }
+                }
+
+                const submitStatus = _.get(campaign, 'status.submitted')
+                const isApproved = submitStatus === "accepted"
 
                 return (
                   <div key={i} className="col-xs-12 col-sm-6 col-md-4 text-center campaign-card">
@@ -87,8 +97,11 @@ export default class CampaignList extends Component {
                         ) : (
                           <div>
                             <hr />
-                            {/* TODO: also show different info depending on submittion status */}
-                            <Link to={linkTo}>Pending Submittion & Pending Approval & Rejected</Link>
+                            <Link to={linkTo}>
+                              { submitStatus === "not_submitted" && <div className="bg-default">{submitStatus.splitCap("_")}</div> }
+                              { submitStatus === "pending" && <div className="bg-warning">{submitStatus.splitCap("_")}</div> }
+                              { submitStatus === "rejected" && <div className="bg-danger">{submitStatus.splitCap("_")}</div> }
+                            </Link>
                           </div>
                         )
                       }

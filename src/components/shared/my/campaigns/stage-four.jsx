@@ -53,7 +53,7 @@ export default class SharedMyCampaignsStageFour extends Component {
           submittedStatus === "rejected" && (
             <div className="rejected">
               <div>Unfortunately We Have Rejected Your Campaign Due To The Following Reason</div>
-              <div dangerouslySetInnerHTML={{ __html: myCampaign.status.remakrs.decode() }} />
+              <div dangerouslySetInnerHTML={{ __html: _.get(myCampaign, 'status.remakrs', '').decode() }} />
             </div>
           )
         }

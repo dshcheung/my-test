@@ -62,7 +62,6 @@ export default class SharedMyCampaignsStages extends Component {
         <div className="stage-nav container">
           {
             this.state.order.map((s, i) => {
-              // TODO: hover cursor
               const bgColor = currentStage === s ? "bg-info" : ""
               const disabledThis = disabled[s] ? "disabled" : ""
               return (

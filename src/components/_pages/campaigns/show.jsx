@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux'
 
 import SharedCampaignsProfile from '../../shared/campaigns/profile'
 
+import LoadingSpinner from '../../shared/loading-spinner'
+
 import {
   getCampaign, GET_CAMPAIGN,
   resetCampaign
@@ -38,14 +40,24 @@ export default class CampaignsShow extends Component {
   render() {
     const { campaign, getCampaignInProcess, routeParams } = this.props
 
+    if (getCampaignInProcess) return <LoadingSpinner />
+
+    if (campaign) {
+      return (
+        <SharedCampaignsProfile
+          startup={_.get(campaign, 'startup', null)}
+          campaign={campaign}
+          loadingInProcess={getCampaignInProcess}
+          routeParams={routeParams}
+          router={this.props.router}
+        />
+      )
+    }
+
     return (
-      <SharedCampaignsProfile
-        startup={_.get(campaign, 'startup', null)}
-        campaign={campaign}
-        loadingInProcess={getCampaignInProcess}
-        routeParams={routeParams}
-        router={this.props.router}
-      />
+      <div className="text-center">
+        <h3>No Such Campaign</h3>
+      </div>
     )
   }
 }

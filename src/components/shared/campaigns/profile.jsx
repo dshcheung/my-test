@@ -5,7 +5,6 @@ import { Link as RouteLink } from 'react-router'
 
 import { DEFAULT_STARTUP_BANNER, DEFAULT_STARTUP_AVATAR } from '../../../constants'
 
-import LoadingSpinner from '../loading-spinner'
 import SharedStartupsHighlights from '../startups/highlights'
 import SharedStartupsOverview from '../startups/overview'
 import SharedStartupsKPIs from '../startups/kpis'
@@ -35,23 +34,13 @@ export default class SharedCampaignsProfile extends Component {
   }
 
   render() {
-    const { campaign, startup, loadingInProcess, editMode } = this.props
+    const { campaign, startup, editMode } = this.props
     const editable = _.get(campaign, 'can.edit', false)
     const modalEditable = editMode && editable
     const canPledge = _.get(campaign, 'can.pledge', false)
     const hasPledged = _.get(campaign, 'can.view_pledge', false)
     // TODO: dataroom...remind gram to add is_owner flag
     // const canViewDataRoom = _.get(campaign, 'can.view_data_room', null)
-
-    if (loadingInProcess) return <LoadingSpinner />
-
-    if (!campaign) {
-      return (
-        <div className="text-center">
-          <h3>No Such Campaign</h3>
-        </div>
-      )
-    }
 
     const routeParams = { ...this.props.routeParams, startupID: startup.id }
 
@@ -108,20 +97,20 @@ export default class SharedCampaignsProfile extends Component {
             </div>
           )
         }
+        {
+          editable && !editMode && (
+            <div className="row margin-top-15 edit-mode-actions">
+              <div className="col-xs-12 text-center">
+                <button
+                  className="btn btn-info"
+                  onClick={() => { this.props.router.push(`/my/campaigns/${campaign.id}/edit#stage_four`) }}
+                ><i className="fa fa-pencil" /> Edit Startup</button>
+              </div>
+            </div>
+          )
+        }
         <div className="row header">
           <div className="col-xs-12 startup-banner" style={bannerStyles}>
-            {
-              editable && !editMode && (
-                <div className="row margin-top-15 edit-mode-actions">
-                  <div className="col-xs-12 text-center">
-                    <button
-                      className="btn btn-info"
-                      onClick={() => { this.props.router.push(`/my/campaigns/${campaign.id}/edit`) }}
-                    ><i className="fa fa-pencil" /> Edit Startup</button>
-                  </div>
-                </div>
-              )
-            }
             {
               modalEditable && <button
                 className="btn btn-info top-15 right-15 position-absolute"

@@ -19,7 +19,6 @@ export default class SharedMyCampaignsStageTwo extends Component {
         <SharedCampaignsProfile
           startup={_.get(myCampaign, 'startup', null)}
           campaign={myCampaign}
-          loadingInProcess={null}
           routeParams={routeParams}
           router={this.props.router}
           editMode={editMode}
