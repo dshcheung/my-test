@@ -7,6 +7,7 @@ import RadioField from '../../shared/form-elements/radio-field'
 import TextField from '../../shared/form-elements/text-field'
 import CheckboxField from '../../shared/form-elements/checkbox-field'
 import DateTimePickerField from '../../shared/form-elements/datetime-picker'
+import FileField from '../../shared/form-elements/file-field'
 
 @reduxForm({
   form: "QuestionnaireForm",
@@ -96,6 +97,21 @@ export default class QuestionnaireForm extends Component {
                         label: question.title,
                         time: false,
                         format: "MMM D, YYYY"
+                      }}
+                    />
+                  )
+                  break
+                }
+                case "file": {
+                  const fileUrl = ""
+                  component = (
+                    <Field
+                      key={i}
+                      name={name}
+                      component={FileField}
+                      fileUrl={fileUrl}
+                      opts={{
+                        label: question.title
                       }}
                     />
                   )

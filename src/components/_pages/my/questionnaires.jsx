@@ -121,7 +121,6 @@ export default class ValidationStageOne extends Component {
       questionnaire_id: currentStage,
       answers: currentQuestionnaire.map((question) => {
         const questionID = question.id
-
         return {
           question_id: questionID,
           answer_type: question.type,

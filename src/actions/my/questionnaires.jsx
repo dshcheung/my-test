@@ -49,7 +49,7 @@ export const cMyQuestionnaire = (values, cb) => {
     params.answers[i] = {
       question_id: _.get(values.answers, `[${i}].question_id`, null),
       answer_type: _.get(values.answers, `[${i}].answer_type`, null),
-      answer: _.get(values.answers, `[${i}].answer`, null)
+      answer: _.get(values.answers, `[${i}].answer[0]`, null) || _.get(values.answers, `[${i}].answer`, null)
     }
   }
 
