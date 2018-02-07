@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Panel from 'react-bootstrap/lib/Panel'
+import { Link } from 'react-router'
 
 import {
   updatePassword, UPDATE_PASSWORD,
@@ -93,11 +94,21 @@ export default class Settings extends Component {
       <div id="page-my-settings" className="container">
         <div className="sidebar">
           <ul>
-            <li className={`pointer hover-underline ${this.state.tab === "general" ? "selected" : ""}`} onClick={() => { this.change("general") }}>General</li>
-            <li className={`pointer hover-underline ${this.state.tab === "privacy" ? "selected" : ""}`} onClick={() => { this.change("privacy") }}>Privacy</li>
-            <li className={`pointer hover-underline ${this.state.tab === "notification" ? "selected" : ""}`} onClick={() => { this.change("notification") }}>Notification</li>
-            <li className={`pointer hover-underline ${this.state.tab === "language" ? "selected" : ""}`} onClick={() => { this.change("language") }}>Language</li>
-            <li className={`pointer hover-underline ${this.state.tab === "security" ? "selected" : ""}`} onClick={() => { this.change("security") }}>Security</li>
+            <li className={this.state.tab === "general" ? "selected" : ""}>
+              <Link onClick={() => { this.change("general") }}>General</Link>
+            </li>
+            <li className={this.state.tab === "privacy" ? "selected" : ""}>
+              <Link onClick={() => { this.change("privacy") }}>Privacy</Link>
+            </li>
+            <li className={this.state.tab === "notification" ? "selected" : ""}>
+              <Link onClick={() => { this.change("notification") }}>Notification</Link>
+            </li>
+            <li className={this.state.tab === "language" ? "selected" : ""}>
+              <Link onClick={() => { this.change("language") }}>Language</Link>
+            </li>
+            <li className={this.state.tab === "security" ? "selected" : ""}>
+              <Link onClick={() => { this.change("security") }}>Security</Link>
+            </li>
           </ul>
         </div>
         <div className="content">

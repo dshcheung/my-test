@@ -13,6 +13,24 @@
       margin: 0;
       li {
         list-style: none;
+        padding: 10px 0;
+        > a {
+          display: block;
+          border-right: 5px solid transparent;
+          &:hover {
+            text-decoration: none;
+            color: #283A88;
+            font-weight: bold;
+            border-right-color: #283A88;
+          }
+        }
+        &.selected {
+          > a {
+            color: #283A88;
+            font-weight: bold;
+            border-right-color: #283A88;
+          }
+        }
       }
     }
   }
@@ -22,7 +40,7 @@
     width: calc(100% - 150px);
     margin-left: 150px;
     min-height: calc(100% - 40px);
-    border-left: 1px solid black;
+    // border-left: 1px solid black;
 
     .tab {
       padding: 0 15px;
