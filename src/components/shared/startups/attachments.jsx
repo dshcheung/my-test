@@ -43,7 +43,7 @@ export default class SharedStartupsAttachments extends Component {
   render() {
     const { attachments, editable, routeParams, viewDataRoom, requestDataAccessInProcess } = this.props
     const { sAttachments } = this.state
-    const title = "Documents"
+    const title = "Data Room"
     const nullAttachments = attachments === null
     const emptyAttachments = attachments && attachments.length === 0
     const noAttachments = nullAttachments || emptyAttachments
@@ -67,7 +67,7 @@ export default class SharedStartupsAttachments extends Component {
 
         {
           emptyAttachments && viewDataRoom !== "accepted" && (
-            <div className="documents text-center">
+            <div className="data-room text-center">
               <button
                 onClick={() => { this.props.requestDataAccess(routeParams) }}
                 className={`btn ${viewDataRoom === "rejected" ? "btn-danger" : "btn-info"} ${requestDataAccessInProcess && "m-progress"}`}
@@ -84,7 +84,7 @@ export default class SharedStartupsAttachments extends Component {
 
         {
           !emptyAttachments && viewDataRoom === "accepted" && (
-            <div className="documents">
+            <div className="data-room">
               <ul>
                 {
                   attachments.map((attachment, i) => {

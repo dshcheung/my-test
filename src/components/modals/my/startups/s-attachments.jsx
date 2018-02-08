@@ -61,7 +61,7 @@ export default class MyStartupsSAttachmentsModal extends Component {
     return (
       <Modal show onHide={close} className={`form-modal ${!this.state.sAttachments && 'hide'}`} id="modals-my-startups-s-attachments">
         <Modal.Header closeButton>
-          <Modal.Title>{keyword} Documents</Modal.Title>
+          <Modal.Title>{keyword} Data Room</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <section className="attachments">

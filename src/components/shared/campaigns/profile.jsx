@@ -244,7 +244,7 @@ export default class SharedCampaignsProfile extends Component {
                     }
                     {
                       (modalEditable || attachmentsExist) && (
-                        <li><Link to="Documents" spy smooth duration={500} offset={-100}>Documents</Link></li>
+                        <li><Link to="Data Room" spy smooth duration={500} offset={-100}>Data Room</Link></li>
                       )
                     }
                   </ul>
