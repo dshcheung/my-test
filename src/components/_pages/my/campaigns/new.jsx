@@ -5,7 +5,7 @@ import SharedMyCampaignsStages from '../../../shared/my/campaigns/stages'
 export default class MyCampaignsNew extends Component {
   render() {
     return (
-      <div id="my-campaigns-new" className="container">
+      <div id="my-campaigns-new">
         <SharedMyCampaignsStages
           router={this.props.router}
           location={this.props.location}
