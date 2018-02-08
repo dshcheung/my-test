@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 
 import { gImmovable, G_IMMOVABLE_INVESTOR_QUESTIONNAIRE } from '../../../actions/immovables'
 import {
-  G_MY_QUESTIONNAIRE, gMyQuestionnaire, resetMyQuestionnaires,
+  G_MY_QUESTIONNAIRES, gMyQuestionnaires, resetMyQuestionnaires,
   C_MY_QUESTIONNAIRE, cMyQuestionnaire
 } from '../../../actions/my/questionnaires'
 
@@ -24,10 +24,28 @@ const formatQuestionnaire = (questionnaires) => {
       myQuestionnaires[questionnaireID] = {}
     }
 
-    myQuestionnaires[questionnaireID][questionID] = {
-      question_id: questionID,
-      answer_type: question.answer_type,
-      answer: (question.answer_type === "datetime" || question.answer_type === "date") ? moment(question.answer).toDate() : question.answer
+    const updatedAt = _.get(myQuestionnaires[questionnaireID][questionID], 'updated_at')
+    if (!updatedAt || updatedAt < question.updated_at) {
+      myQuestionnaires[questionnaireID][questionID] = {
+        question_id: questionID,
+        answer_type: question.answer_type,
+        updated_at: question.updated_at
+      }
+
+      switch (question.answer_type) {
+        case "datetime":
+          myQuestionnaires[questionnaireID][questionID].answer = moment(question.answer).toDate()
+          break
+        case "date":
+          myQuestionnaires[questionnaireID][questionID].answer = moment(question.answer).toDate()
+          break
+        case "file":
+          myQuestionnaires[questionnaireID][questionID].answer = ""
+          myQuestionnaires[questionnaireID][questionID].answer_file = question.answer
+          break
+        default:
+          myQuestionnaires[questionnaireID][questionID].answer = question.answer
+      }
     }
   }
 
@@ -40,7 +58,7 @@ const mapStateToProps = (state) => {
     currentUser: _.get(state, 'session'),
     investorQuestionnaires: _.get(state, 'immovables.investor_questionnaire', []),
     cMyQuestionnaireInProcess: _.get(state.requestStatus, C_MY_QUESTIONNAIRE),
-    gMyQuestionnaireInProcess: _.get(state.requestStatus, G_MY_QUESTIONNAIRE),
+    gMyQuestionnairesInProcess: _.get(state.requestStatus, G_MY_QUESTIONNAIRES),
     myQuestionnaires: formatQuestionnaire(_.get(state, 'myQuestionnaires', []))
   }
 }
@@ -48,7 +66,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     gImmovable: bindActionCreators(gImmovable, dispatch),
-    gMyQuestionnaire: bindActionCreators(gMyQuestionnaire, dispatch),
+    gMyQuestionnaires: bindActionCreators(gMyQuestionnaires, dispatch),
     resetMyQuestionnaires: bindActionCreators(resetMyQuestionnaires, dispatch),
     cMyQuestionnaire: bindActionCreators(cMyQuestionnaire, dispatch)
   }
@@ -71,7 +89,7 @@ export default class ValidationStageOne extends Component {
 
   componentWillMount() {
     this.props.gImmovable({ immovableID: "investor_questionnaire" })
-    this.props.gMyQuestionnaire()
+    this.props.gMyQuestionnaires()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -112,19 +130,24 @@ export default class ValidationStageOne extends Component {
 
     if (currentStage === null) return null
 
+    const title = currentStage.splitCap("_").toUpperCase()
     const currentQuestionnaire = _.get(investorQuestionnaires, `${currentStage}.questions`, [])
     const baseQuestionnaire = _.get(myQuestionnaires, `${currentStage}`, [])
 
-    const title = currentStage.splitCap("_").toUpperCase()
-
+    const fileUrls = {}
     const initialValues = {
       questionnaire_id: currentStage,
-      answers: currentQuestionnaire.map((question) => {
+      answers: currentQuestionnaire.map((question, i) => {
         const questionID = question.id
+
+        if (question.type === "file") {
+          fileUrls[i] = _.get(baseQuestionnaire[questionID], 'answer_file')
+        }
+
         return {
           question_id: questionID,
           answer_type: question.type,
-          answer: (question.type === "datetime" || question.type === "date") ? moment().startOf('day').toDate() : null,
+          answer: question.type === "datetime" || question.type === "date" ? moment().startOf('day').toDate() : null,
           ...baseQuestionnaire[questionID]
         }
       })
@@ -139,16 +162,17 @@ export default class ValidationStageOne extends Component {
           title={title}
           questionnaires={currentQuestionnaire}
           initialValues={initialValues}
+          fileUrls={fileUrls}
         />
       </div>
     )
   }
 
   render() {
-    const { currentUser, gInvestorQInProcess, gMyQuestionnaireInProcess } = this.props
+    const { currentUser, gInvestorQInProcess, gMyQuestionnairesInProcess } = this.props
     const { order, stagesCompleted, currentStage } = this.state
 
-    if (gInvestorQInProcess || gMyQuestionnaireInProcess) return <LoadingSpinner />
+    if (gInvestorQInProcess || gMyQuestionnairesInProcess) return <LoadingSpinner />
 
     const stageStatus = currentUser.investor
 

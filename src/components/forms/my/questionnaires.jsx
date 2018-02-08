@@ -19,7 +19,7 @@ import FileField from '../../shared/form-elements/file-field'
 })
 export default class QuestionnaireForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass, title, questionnaires } = this.props
+    const { handleSubmit, submitInProcess, optClass, title, questionnaires, fileUrls } = this.props
 
     return (
       <div id="forms-my-questionnaire" className={optClass}>
@@ -103,13 +103,12 @@ export default class QuestionnaireForm extends Component {
                   break
                 }
                 case "file": {
-                  const fileUrl = ""
                   component = (
                     <Field
                       key={i}
                       name={name}
                       component={FileField}
-                      fileUrl={fileUrl}
+                      fileUrl={fileUrls[i]}
                       opts={{
                         label: question.title
                       }}

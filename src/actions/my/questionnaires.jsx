@@ -21,15 +21,15 @@ export const resetMyQuestionnaires = () => {
   }
 }
 
-export const G_MY_QUESTIONNAIRE = "G_MY_QUESTIONNAIRE"
-export const gMyQuestionnaire = ({ queries = {}, nextHref = null } = {}) => {
+export const G_MY_QUESTIONNAIRES = "G_MY_QUESTIONNAIRES"
+export const gMyQuestionnaires = ({ queries = {}, nextHref = null } = {}) => {
   const request = genAxios({
     method: "get",
     url: nextHref ? addParamsToUrl(nextHref, queries) : genApiUrl(apiMyQuestionnairesIndex(), queries)
   })
 
   return {
-    type: G_MY_QUESTIONNAIRE,
+    type: G_MY_QUESTIONNAIRES,
     request,
     paginate: true,
     successCB: (dispatch, data) => {
@@ -46,10 +46,13 @@ export const cMyQuestionnaire = (values, cb) => {
   }
 
   for (let i = 0; i < values.answers.length; i += 1) {
+    const type = _.get(values.answers, `[${i}].answer_type`, null)
+    const questionID = _.get(values.answers, `[${i}].question_id`, null)
+
     params.answers[i] = {
-      question_id: _.get(values.answers, `[${i}].question_id`, null),
-      answer_type: _.get(values.answers, `[${i}].answer_type`, null),
-      answer: _.get(values.answers, `[${i}].answer[0]`, null) || _.get(values.answers, `[${i}].answer`, null)
+      question_id: questionID,
+      answer_type: type,
+      answer: type === "file" ? _.get(values.answers, `[${i}].answer[0]`, null) : _.get(values.answers, `[${i}].answer`, null)
     }
   }
 
