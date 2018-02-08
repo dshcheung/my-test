@@ -32,7 +32,7 @@
           border-bottom-color: #fff;
         }
       }
-      &.bg-success {
+      &.bg-success, &.bg-danger {
         font-weight: bold;
         &:after {
           position: absolute;
@@ -40,7 +40,16 @@
           font-size: 20px;
           left: 48%;
           bottom: 0;
+        }
+      }
+      &.bg-success {
+        &:after {
           content: "\f00c";
+        }
+      }
+      &.bg-danger {
+        &:after {
+          content: "\f00d";
         }
       }
       &:last-child {
