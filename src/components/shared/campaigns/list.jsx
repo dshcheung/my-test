@@ -25,7 +25,7 @@ export default class CampaignList extends Component {
                     </div>
                   </Link>
                   <div className="col xs-12 card-info">
-                    <Link className="h3" to="/my/campaigns/new">Create A New Startup</Link>
+                    <Link className="h3" to="/my/campaigns/new">Create A New Campaign</Link>
                   </div>
                 </div>
               ) : false
