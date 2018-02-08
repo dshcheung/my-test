@@ -56,7 +56,7 @@ export default class SharedStartupsPitchDeck extends Component {
         {
           description && (
             <div className="row">
-              <div className="col-xs-12 pitch-deck-description">{description}</div>
+              <div className="col-xs-12 pitch-deck-description"  dangerouslySetInnerHTML={{ __html: description.decode() }} />
             </div>
           )
         }

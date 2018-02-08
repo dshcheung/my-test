@@ -60,7 +60,7 @@ export default class SharedStartupsTeam extends Component {
         {
           storyExists && (
             <div className="row">
-              <div className="col-xs-12 team-story">{story}</div>
+              <div className="col-xs-12 team-story" dangerouslySetInnerHTML={{ __html: story.decode() }} />
             </div>
           )
         }
