@@ -88,7 +88,7 @@ export default class MyStartupsSTeamModal extends Component {
             </div>
             {
               hasStory ? (
-                <div>{story}</div>
+                <div dangerouslySetInnerHTML={{ __html: story.decode() }} />
               ) : (
                 <div>Click Add Icon To Add Story</div>
               )
