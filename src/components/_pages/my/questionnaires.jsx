@@ -79,22 +79,23 @@ export default class ValidationStageOne extends Component {
 
     this.state = {
       order: ["stage_one", "stage_two", "stage_three", "stage_four"],
-      currentStage: null,
-      stagesCompleted: false
+      currentStage: "stage_one"
     }
 
     this.cMyQuestionnaire = this.cMyQuestionnaire.bind(this)
     this.setNextStage = this.setNextStage.bind(this)
+    this.setPathAndState = this.setPathAndState.bind(this)
   }
 
   componentWillMount() {
+    this.setStage(this.props)
     this.props.gImmovable({ immovableID: "investor_questionnaire" })
     this.props.gMyQuestionnaires()
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!this.state.currentStage && nextProps.currentUser) {
-      this.setNextStage(nextProps.currentUser)
+    if (this.props.location.hash !== nextProps.location.hash) {
+      this.setStage(nextProps)
     }
   }
 
@@ -102,19 +103,34 @@ export default class ValidationStageOne extends Component {
     this.props.resetMyQuestionnaires()
   }
 
+  setPathAndState(stage) {
+    this.props.router.replace(`${this.props.location.pathname}#${stage}`)
+    this.setState({ currentStage: stage })
+  }
+
   setNextStage(currentUser) {
     const stageStatus = _.get(currentUser, 'investor')
     const { order } = this.state
 
     if (stageStatus.completed) {
-      this.setState({ stagesCompleted: true, currentStage: "completed" })
+      this.setPathAndState("completed")
     } else {
       for (let i = 0; i < order.length; i += 1) {
         if (!stageStatus[order[i]]) {
-          this.setState({ currentStage: order[i] })
-          i = order.length
+          this.setPathAndState(order[i])
+          break
         }
       }
+    }
+  }
+
+  setStage(props) {
+    const hash = props.location.hash && props.location.hash.split("#")[1]
+    const exists = _.indexOf(this.state.order, hash) >= 0 || (_.get(props, 'currentUser.investor.completed') && hash === "completed")
+    if (hash && exists) {
+      this.setPathAndState(hash)
+    } else {
+      this.setNextStage(props.currentUser)
     }
   }
 
@@ -128,6 +144,7 @@ export default class ValidationStageOne extends Component {
     const { investorQuestionnaires, myQuestionnaires } = this.props
     const currentStage = this.state.currentStage
 
+    // TODO: remove
     if (currentStage === null) return null
 
     const title = currentStage.splitCap("_").toUpperCase()
@@ -170,7 +187,7 @@ export default class ValidationStageOne extends Component {
 
   render() {
     const { currentUser, gInvestorQInProcess, gMyQuestionnairesInProcess } = this.props
-    const { order, stagesCompleted, currentStage } = this.state
+    const { order, currentStage } = this.state
 
     if (gInvestorQInProcess || gMyQuestionnairesInProcess) return <LoadingSpinner />
 
@@ -190,16 +207,16 @@ export default class ValidationStageOne extends Component {
                   <div
                     key={i}
                     className={`pointer stage-item ${bgColor} ${activeBgColor}`}
-                    onClick={() => { this.setState({ currentStage: o }) }}
+                    onClick={() => { this.setPathAndState(o) }}
                   >{o.splitCap("_")}</div>
                 )
               })
             }
             {
-              stagesCompleted && (
+              stageStatus.completed && (
                 <div
                   className="pointer stage-item bg-success"
-                  onClick={() => { this.setState({ currentStage: "completed" }) }}
+                  onClick={() => { this.setPathAndState("completed") }}
                 >Approval Stage</div>
               )
             }

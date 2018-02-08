@@ -66,8 +66,8 @@ export const cMyQuestionnaire = (values, cb) => {
     type: C_MY_QUESTIONNAIRE,
     request,
     successCB: (dispatch, data) => {
-      if (cb) cb(data)
       dispatch(setCurrentUser(data))
+      if (cb) cb(data)
     }
   }
 }
