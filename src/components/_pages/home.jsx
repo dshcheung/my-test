@@ -31,7 +31,7 @@ export default class Home extends Component {
                     <span>SEP<br />1</span>
                   </div>
                   <div className="col-sm-6 col-md-9 news-details">
-                    <Link className="news-link" to="https://www.slideshare.net/WHubio/hong-kong-startup-ecosystem-toolbox-v30">
+                    <Link className="news-link" to="https://www.slideshare.net/WHubio/hong-kong-startup-ecosystem-toolbox-v30" target="_blank">
                       <span className="news-title">Hong Kong Startup Ecosystem White Paper</span>
                       <p className="news-caption">
                         Discover the people that make the Startup Ecosystem, VC, funded Startups, accelerators and incubators...
@@ -46,7 +46,7 @@ export default class Home extends Component {
                     <span>SEP<br />4</span>
                   </div>
                   <div className="col-sm-6 col-md-9 news-details">
-                    <Link className="news-link" to="https://techcrunch.com/2017/09/01/gogovan-becomes-hong-kongs-first-1-billion-startup-following-merger-deal/">
+                    <Link className="news-link" to="https://techcrunch.com/2017/09/01/gogovan-becomes-hong-kongs-first-1-billion-startup-following-merger-deal/" target="_blank">
                       <span className="news-title">Hong Kong’s 1st unicorn is a logistic company</span>
                       <p className="news-caption">GoGoVan becomes Hong Kong’s first $1 billion startup following merger deal</p>
                     </Link>
@@ -60,7 +60,7 @@ export default class Home extends Component {
                     <span>SEP<br />19</span>
                   </div>
                   <div className="col-sm-6 col-md-9 news-details">
-                    <Link className="news-link" to="https://www.eventbrite.hk/e/hong-kong-fintech-ecosystem-toolbox-2017-insights-trends-tickets-36853092592">
+                    <Link className="news-link" to="https://www.eventbrite.hk/e/hong-kong-fintech-ecosystem-toolbox-2017-insights-trends-tickets-36853092592" target="_blank">
                       <span className="news-title">FinTech Toolbox Launch Event</span>
                       <p className="news-caption">
                         Who are the key players in the Hong Kong FinTech sector? What resources can you find in Hong Kong?
