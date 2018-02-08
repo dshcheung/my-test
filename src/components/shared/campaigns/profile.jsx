@@ -271,7 +271,9 @@ export default class SharedCampaignsProfile extends Component {
               {(modalEditable || marketScopeExist) && <SharedStartupsMarketScope marketScope={marketScope} editable={modalEditable} routeParams={routeParams} />}
               {(modalEditable || riskExist) && <SharedStartupsRisk risk={risk} editable={modalEditable} routeParams={routeParams} />}
               {(modalEditable || mediaExist) && <SharedStartupsMedia media={media} editable={modalEditable} routeParams={routeParams} />}
-              {(modalEditable || attachmentsExist) && <SharedStartupsAttachments attachments={attachments} editable={modalEditable} routeParams={routeParams} viewDataRoom={campaign.can.view_data_room} />}
+              {(modalEditable || attachmentsExist) && (
+                <SharedStartupsAttachments attachments={attachments} editable={modalEditable} routeParams={routeParams} viewDataRoom={campaign.can.view_data_room} />
+              )}
             </div>
           </div>
         </div>
