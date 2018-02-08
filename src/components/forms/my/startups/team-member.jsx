@@ -10,8 +10,7 @@ import ImageField from '../../../shared/form-elements/image-field'
   form: "MyStartupsTeamMemberForm",
   validate: (values) => {
     return Validators({
-      name: ["presences"],
-      title: ["presences"]
+      name: ["presences"]
     }, values)
   }
 })
@@ -36,7 +35,7 @@ export default class MyStartupsTeamMemberForm extends Component {
             component={TextField}
             opts={{
               type: "text",
-              label: "Title *"
+              label: "Title"
             }}
           />
 

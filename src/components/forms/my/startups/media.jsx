@@ -13,7 +13,6 @@ import ImageField from '../../../shared/form-elements/image-field'
     return Validators({
       title: ["presences"],
       link: ["presences"],
-      description: ["presences"],
     }, values)
   }
 })
@@ -46,7 +45,7 @@ export default class MyStartupsMediaForm extends Component {
             name="description"
             component={TextArea}
             opts={{
-              label: "Description *"
+              label: "Description"
             }}
           />
 

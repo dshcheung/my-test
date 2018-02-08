@@ -9,7 +9,6 @@ import TextArea from '../../../shared/form-elements/text-area'
   form: "MyStartupsOverviewForm",
   validate: (values) => {
     return Validators({
-      name: ["presences"]
     }, values)
   }
 })

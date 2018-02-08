@@ -9,7 +9,6 @@ import TextArea from '../../../shared/form-elements/text-area'
   form: "MyStartupsRiskDescriptionForm",
   validate: (values) => {
     return Validators({
-      description: ["presences"]
     }, values)
   }
 })
@@ -24,7 +23,7 @@ export default class MyStartupsRiskDescriptionForm extends Component {
             name="description"
             component={TextArea}
             opts={{
-              label: "Description *"
+              label: "Description"
             }}
           />
 

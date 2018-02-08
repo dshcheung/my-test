@@ -1,6 +1,7 @@
 import { genApiUrl, genAxios } from '../../services/api-request'
 import { getFormData } from '../../services/get-form-data'
 import { apiCampaignsPledgesIndex } from '../../services/api-path'
+import { notySuccess } from '../../services/noty'
 
 import { setCampaign } from './index'
 
@@ -19,6 +20,7 @@ export const cPledge = (values, params, cb) => {
     successCB: (dispatch, data) => {
       if (cb) cb()
       dispatch(setCampaign(data))
+      notySuccess("Request Sent")
     }
   }
 }

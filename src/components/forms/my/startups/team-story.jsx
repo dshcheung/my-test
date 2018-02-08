@@ -9,7 +9,6 @@ import TextArea from '../../../shared/form-elements/text-area'
   form: "MyStartupsTeamStoryForm",
   validate: (values) => {
     return Validators({
-      story: ["presences"]
     }, values)
   }
 })
@@ -24,7 +23,7 @@ export default class MyStartupsTeamStoryForm extends Component {
             name="story"
             component={TextArea}
             opts={{
-              label: "Story *"
+              label: "Story"
             }}
           />
 
