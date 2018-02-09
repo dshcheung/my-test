@@ -150,7 +150,7 @@ export default class Navbar extends Component {
                 <NavDropdown
                   title={
                     <div>
-                      <img src={_.get(currentUser, 'profile.avatar.original') || DEFAULT_USER_AVATAR} alt="avatar" className="hidden-xs" />
+                      <img src={_.get(currentUser, 'profile.avatar.t128') || DEFAULT_USER_AVATAR} alt="avatar" className="hidden-xs" />
                       <span className="hidden-sm hidden-md hidden-lg">MY PROFILE</span>
                       <i className="fa fa-caret-down" />
                     </div>
