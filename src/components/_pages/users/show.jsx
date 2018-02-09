@@ -289,11 +289,11 @@ export default class UsersShow extends Component {
         <div className="row">
           <section className="banner">
             <ImageBanner
-              src={_.get(user, "profile.banner.large", null) || DEFAULT_USER_BANNER}
+              src={_.get(user, "profile.banner.original", null) || DEFAULT_USER_BANNER}
             />
             <img
               className="user-avatar"
-              src={_.get(user, "profile.avatar.large", null) || DEFAULT_USER_AVATAR}
+              src={_.get(user, "profile.avatar.original", null) || DEFAULT_USER_AVATAR}
               alt="avatar"
             />
             <div className="details">
