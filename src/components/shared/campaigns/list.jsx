@@ -31,8 +31,8 @@ export default class CampaignList extends Component {
               ) : false
 
               const campaignsItems = campaigns.map((campaign, i) => {
-                const banner = _.get(campaign, 'startup.profile.banner.orignal', null) || DEFAULT_STARTUP_BANNER
-                const avatar = _.get(campaign, 'startup.profile.avatar.original', null) || DEFAULT_STARTUP_AVATAR
+                const banner = _.get(campaign, 'startup.profile.banner.t1600', null) || DEFAULT_STARTUP_BANNER
+                const avatar = _.get(campaign, 'startup.profile.avatar.t128', null) || DEFAULT_STARTUP_AVATAR
                 const styles = { backgroundImage: `url(${banner})` }
 
                 const campaignID = campaign.id
