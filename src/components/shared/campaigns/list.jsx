@@ -82,7 +82,7 @@ export default class CampaignList extends Component {
                             <div className="h4">{amountType}</div>
 
                             <div className="progress">
-                              <div className="progress-bar progress-bar-info" role="progressbar" aria-valuenow={achieved} aria-valuemin="0" aria-valuemax="100" style={{ width: `{achieved}%` }} />
+                              <div className="progress-bar progress-bar-info" role="progressbar" aria-valuenow={achieved} aria-valuemin="0" aria-valuemax="100" style={{ width: `${achieved}%` }} />
                               <div className="progress-start filled" />
                               <div className="progress-end" />
                             </div>
