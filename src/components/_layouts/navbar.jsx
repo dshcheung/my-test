@@ -131,13 +131,15 @@ export default class Navbar extends Component {
           {
             currentUser && (
               <Nav pullRight>
-                <LinkContainer to="/my/conversations" active={false}>
-                  <NavItem className="conversations" eventKey={7}>
-                    <i className="fa fa-comments fa-2x hidden-xs" />
-                    <span className="hidden-sm hidden-md hidden-lg">Conversations</span>
-                    <div className="badge">1</div>
-                  </NavItem>
-                </LinkContainer>
+                {
+                // <LinkContainer to="/my/conversations" active={false}>
+                //   <NavItem className="conversations" eventKey={7}>
+                //     <i className="fa fa-comments fa-2x hidden-xs" />
+                //     <span className="hidden-sm hidden-md hidden-lg">Conversations</span>
+                //     <div className="badge">1</div>
+                //   </NavItem>
+                // </LinkContainer>
+                }
 
                 <LinkContainer to="/my/notifications" active={false}>
                   <NavItem className="notifications" eventKey={8}>
