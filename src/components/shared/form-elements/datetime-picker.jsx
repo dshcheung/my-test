@@ -21,7 +21,8 @@ export default class DateTimePickerField extends Component {
       opts: {
         label, decodeLabel,
         placeholder,
-        min, max, views, date, time, format, step
+        min, max, views, date, time, format, step,
+        hint
       }
     } = this.props
 
@@ -45,9 +46,8 @@ export default class DateTimePickerField extends Component {
           step={step || 30}
           finalView="year"
         />
-        {
-          hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>
-        }
+        { hint && <span className="help-block">{hint}</span> }
+        { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
       </div>
     )
   }

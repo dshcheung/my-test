@@ -6,7 +6,8 @@ export default class TextAreaField extends Component {
       input, meta: { touched, invalid, error },
       opts: {
         label, decodeLabel,
-        placeholder
+        placeholder,
+        hint
       }
     } = this.props
 
@@ -22,9 +23,8 @@ export default class TextAreaField extends Component {
           rows="3"
           {...input}
         />
-        {
-          hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>
-        }
+        { hint && <span className="help-block">{hint}</span> }
+        { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
       </div>
     )
   }

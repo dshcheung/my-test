@@ -8,7 +8,8 @@ export default class TextField extends Component {
       opts: {
         type,
         customLabel, label, decodeLabel,
-        placeholder
+        placeholder,
+        hint
       }
     } = this.props
 
@@ -25,9 +26,8 @@ export default class TextField extends Component {
           type={type || "text"}
           {...input}
         />
-        {
-          hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>
-        }
+        { hint && <span className="help-block">{hint}</span> }
+        { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
       </div>
     )
   }

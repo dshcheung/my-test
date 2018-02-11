@@ -10,7 +10,7 @@ import TextField from './form-elements/text-field'
 
 export default class DynamicQuestionnaires extends Component {
   render() {
-    const { questions, getName, fileUrls } = this.props
+    const { questions, getName, fileUrls, enableHint } = this.props
 
     return (
       <div id="shared-dynamic-questionnaire">
@@ -18,6 +18,7 @@ export default class DynamicQuestionnaires extends Component {
           questions.map((q, i) => {
             let component = null
             const name = getName(i)
+            const hint = enableHint ? q.hint : null
 
             switch (q.type) {
               case "checkbox": {
@@ -27,7 +28,8 @@ export default class DynamicQuestionnaires extends Component {
                     name={name}
                     component={CheckboxField}
                     opts={{
-                      decodeLabel: q.title
+                      decodeLabel: q.title,
+                      hint
                     }}
                   />
                 )
@@ -40,7 +42,8 @@ export default class DynamicQuestionnaires extends Component {
                     name={name}
                     component={DateTimePicker}
                     opts={{
-                      decodeLabel: q.title
+                      decodeLabel: q.title,
+                      hint
                     }}
                   />
                 )
@@ -55,7 +58,8 @@ export default class DynamicQuestionnaires extends Component {
                     opts={{
                       decodeLabel: q.title,
                       time: false,
-                      format: "MMM D, YYYY"
+                      format: "MMM D, YYYY",
+                      hint
                     }}
                   />
                 )
@@ -69,7 +73,8 @@ export default class DynamicQuestionnaires extends Component {
                     component={FileField}
                     opts={{
                       decodeLabel: q.title,
-                      fileUrl: fileUrls[i]
+                      fileUrl: fileUrls[i],
+                      hint
                     }}
                   />
                 )
@@ -90,7 +95,8 @@ export default class DynamicQuestionnaires extends Component {
                         return x[Object.keys(x)[0]]
                       },
                       decodeLabel: q.title,
-                      optItemClass: "display-block"
+                      optItemClass: "display-block",
+                      hint
                     }}
                   />
                 )
@@ -104,7 +110,8 @@ export default class DynamicQuestionnaires extends Component {
                     component={TextArea}
                     opts={{
                       type: q.type,
-                      decodeLabel: q.title
+                      decodeLabel: q.title,
+                      hint
                     }}
                   />
                 )
@@ -118,7 +125,8 @@ export default class DynamicQuestionnaires extends Component {
                     component={TextField}
                     opts={{
                       type: q.type,
-                      decodeLabel: q.title
+                      decodeLabel: q.title,
+                      hint
                     }}
                   />
                 )

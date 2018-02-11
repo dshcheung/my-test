@@ -27,7 +27,8 @@ export default class FileField extends Component {
       opts: {
         label, decodeLabel,
         fileUrl,
-        optClass
+        optClass,
+        hint
       }
     } = this.props
 
@@ -66,9 +67,8 @@ export default class FileField extends Component {
               </div>
             )
           }
-          {
-            hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>
-          }
+          { hint && <span className="help-block">{hint}</span> }
+          { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
         </label>
       </div>
     )

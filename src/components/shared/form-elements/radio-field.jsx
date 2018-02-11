@@ -8,7 +8,8 @@ export default class RadioField extends Component {
         options,
         label, decodeLabel,
         valueKey, nameKey,
-        optItemClass
+        optItemClass,
+        hint
       }
     } = this.props
 
@@ -49,9 +50,8 @@ export default class RadioField extends Component {
             )
           })
         }
-        {
-          hasErrorClass && <span className="help-block">{!pristine ? error.join(", ") : ''}</span>
-        }
+        { hint && <span className="help-block">{hint}</span> }
+        { hasErrorClass && <span className="help-block">{!pristine ? error.join(", ") : ''}</span> }
       </div>
     )
   }

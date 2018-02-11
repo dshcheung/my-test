@@ -5,7 +5,8 @@ export default class CheckboxField extends Component {
     const {
       input, meta: { touched, invalid, error },
       opts: {
-        label, decodeLabel
+        label, decodeLabel,
+        hint
       }
     } = this.props
 
@@ -23,9 +24,8 @@ export default class CheckboxField extends Component {
           { label && <span>{label}</span> }
           { decodeLabel && <span dangerouslySetInnerHTML={{ __html: decodeLabel.decode() }} />}
         </label>
-        {
-          hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>
-        }
+        { hint && <span className="help-block">{hint}</span> }
+        { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
       </div>
     )
   }
