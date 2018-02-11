@@ -51,8 +51,8 @@ export default (
     <Route path="auth" component={AuthContainer}>
       <Route path="login" component={LoginContainer} />
       <Route path="signup" component={SignupContainer} />
-      <Route path="forgot_password" component={ForgotPasswordContainer} />
-      <Route path="reset_password" component={ResetPasswordContainer} />
+      <Route path="forgot-password" component={ForgotPasswordContainer} />
+      <Route path="reset-password" component={ResetPasswordContainer} />
     </Route>
 
     {/* Verify Paths */}
@@ -95,7 +95,7 @@ export default (
 
     <Route path="terms" component={LegalDocumentContainer} docID="terms-of-service" />
     <Route path="privacy" component={LegalDocumentContainer} docID="privacy-policy" />
-    <Route path="investor_agreement" component={LegalDocumentContainer} docID="investor-agreement" />
+    <Route path="investor-agreement" component={LegalDocumentContainer} docID="investor-agreement" />
     <Route path="investor-disclaimer" component={LegalDocumentContainer} docID="investor-warning-statement" />
 
     <Route path="users">

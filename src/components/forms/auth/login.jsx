@@ -45,7 +45,7 @@ export default class AuthLoginForm extends Component {
                 return (
                   <div>
                     <label htmlFor={name}>{label}</label>
-                    <Link to="/auth/forgot_password" className="pull-right forgot-password">Forgot?</Link>
+                    <Link to="/auth/forgot-password" className="pull-right forgot-password">Forgot?</Link>
                   </div>
                 )
               },

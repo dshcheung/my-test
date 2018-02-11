@@ -115,7 +115,7 @@ export const requestForgetPassword = (values) => {
     hasRedirection: true,
     successCB: (dispatch) => {
       notySuccess("Request Sent!")
-      dispatch(push('/auth/reset_password'))
+      dispatch(push('/auth/reset-password'))
     },
     errorCB: (dispatch, data) => {
       handleFormErrors(data)

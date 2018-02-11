@@ -121,7 +121,7 @@ export default class Signup extends Component {
         <div className="row">
           <div className="tnc col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
             <span>By joining AngelHub, you are agreeing to our </span>
-            <Link to="/investor_agreement">Investor Registration Agreement</Link>
+            <Link to="/investor-agreement">Investor Registration Agreement</Link>
             <span> and </span>
             <Link>User Agreement</Link>
             <span>, and you will keep all information presented on this website confidential</span>
