@@ -40,15 +40,15 @@ export default class AuthLoginForm extends Component {
           <Field
             name="password"
             component={TextField}
-            customLabel={(label, name) => {
-              return (
-                <div>
-                  <label htmlFor={name}>{label}</label>
-                  <Link to="/auth/forgot_password" className="pull-right forgot-password">Forgot?</Link>
-                </div>
-              )
-            }}
             opts={{
+              customLabel: (label, name) => {
+                return (
+                  <div>
+                    <label htmlFor={name}>{label}</label>
+                    <Link to="/auth/forgot_password" className="pull-right forgot-password">Forgot?</Link>
+                  </div>
+                )
+              },
               type: "password",
               label: "Password *"
             }}

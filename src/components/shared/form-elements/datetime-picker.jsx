@@ -16,15 +16,21 @@ export default class DateTimePickerField extends Component {
   }
 
   render() {
-    const { input, meta: { invalid, error, touched }, opts: {
-      label, placeholder, noHelp, min, max, views, date, time, format, step
-    } } = this.props
+    const {
+      input, meta: { invalid, error, touched },
+      opts: {
+        label, decodeLabel,
+        placeholder,
+        min, max, views, date, time, format, step
+      }
+    } = this.props
 
     const hasErrorClass = touched && invalid ? 'has-error' : ''
 
     return (
       <div className={`form-group clearfix ${hasErrorClass}`}>
         { label && <label htmlFor={input.name}>{label}</label> }
+        { decodeLabel && <label htmlFor={input.name} dangerouslySetInnerHTML={{ __html: decodeLabel.decode() }} />}
         <DateTimePick
           {...input}
           onChange={this.handleChange}
@@ -40,7 +46,7 @@ export default class DateTimePickerField extends Component {
           finalView="year"
         />
         {
-          hasErrorClass && !noHelp && <span className="help-block">{touched ? error.join(", ") : ''}</span>
+          hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>
         }
       </div>
     )

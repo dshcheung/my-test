@@ -42,11 +42,11 @@ export default class MyStartupsTeamMemberForm extends Component {
           <Field
             name="avatar"
             component={ImageField}
-            imgUrl={avatarUrl}
             opts={{
               label: "Avatar",
+              imgUrl: avatarUrl,
+              optClass: "image-field-avatar"
             }}
-            optClass="image-field-avatar"
           />
 
           <button

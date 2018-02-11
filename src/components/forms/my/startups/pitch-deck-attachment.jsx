@@ -33,9 +33,9 @@ export default class MyStartupsPitchDeckAttachmentForm extends Component {
           <Field
             name="file"
             component={FileField}
-            fileUrl={fileUrl}
             opts={{
-              label: "File"
+              label: "File",
+              fileUrl
             }}
           />
 

@@ -52,11 +52,11 @@ export default class MyStartupsMediaForm extends Component {
           <Field
             name="banner"
             component={ImageField}
-            imgUrl={bannerUrl}
             opts={{
               label: "Banner",
+              imgUrl: bannerUrl,
+              optClass: "image-field-banner"
             }}
-            optClass="image-field-banner"
           />
 
           <button

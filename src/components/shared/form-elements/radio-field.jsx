@@ -2,31 +2,55 @@ import React, { Component } from 'react'
 
 export default class RadioField extends Component {
   render() {
-    const { input, meta: { pristine, invalid, error }, opts, optItemClass, noHelp, title } = this.props
+    const {
+      input, meta: { pristine, invalid, error },
+      opts: {
+        options,
+        label, decodeLabel,
+        valueKey, nameKey,
+        optItemClass
+      }
+    } = this.props
 
     const hasErrorClass = !pristine && invalid ? 'has-error' : ''
 
     return (
       <div className={`form-group clearfix ${hasErrorClass}`}>
-        { title && <label htmlFor={input.name}>{title}</label> }
+        { label && <label htmlFor={input.name}>{label}</label> }
+        { decodeLabel && <label htmlFor={input.name} dangerouslySetInnerHTML={{ __html: decodeLabel.decode() }} />}
         {
-          opts.map((opt, i) => {
+          options.map((opt, i) => {
+            let value = null
+            let name = null
+
+            if (typeof valueKey === "function") {
+              value = valueKey(opt)
+            } else {
+              value = _.get(opt, valueKey)
+            }
+
+            if (typeof nameKey === "function") {
+              name = nameKey(opt)
+            } else {
+              name = _.get(opt, nameKey)
+            }
+
             return (
               <label key={i} className={`${optItemClass}`} htmlFor={input.name}>
                 <input
                   type="radio"
                   name={input.name}
-                  value={opt.value}
+                  value={value}
                   onChange={input.onChange}
-                  checked={input.value === opt.value}
+                  checked={input.value === value}
                 />
-                <span>{opt.label}</span>
+                <span>{name}</span>
               </label>
             )
           })
         }
         {
-          hasErrorClass && !noHelp && <span className="help-block">{!pristine ? error.join(", ") : ''}</span>
+          hasErrorClass && <span className="help-block">{!pristine ? error.join(", ") : ''}</span>
         }
       </div>
     )

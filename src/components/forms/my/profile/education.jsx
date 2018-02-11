@@ -17,9 +17,7 @@ import DatetimePicker from '../../../shared/form-elements/datetime-picker'
 const mapStateToProps = (state) => {
   return {
     getEducationLevelInProcess: _.get(state.requestStatus, G_IMMOVABLE_EDUCATION_LEVEL),
-    educationLevel: _.get(state.immovables, 'education_levels', []).map((el) => {
-      return { ...el, name: el.name_localized }
-    }),
+    educationLevel: _.get(state.immovables, 'education_level.education_levels', []),
     currentUser: _.get(state, 'session'),
   }
 }
@@ -57,6 +55,8 @@ export default class MyProfileEducationForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass, getEducationLevelInProcess, educationLevel } = this.props
 
+    console.log(educationLevel)
+
     return (
       <div id="forms-my-profile-education" className={optClass}>
         <form onSubmit={handleSubmit}>
@@ -72,11 +72,13 @@ export default class MyProfileEducationForm extends Component {
           <Field
             name="educationLevel"
             component={SelectField}
-            options={educationLevel}
-            requestInProcess={getEducationLevelInProcess}
             opts={{
               label: "Education Level *",
-              placeholder: "Select Educuation Level"
+              placeholder: "Select Educuation Level",
+              options: educationLevel,
+              requestInProcess: getEducationLevelInProcess,
+              valueKey: "id",
+              nameKey: "name"
             }}
           />
 

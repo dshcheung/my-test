@@ -2,7 +2,12 @@ import React, { Component } from 'react'
 
 export default class CheckboxField extends Component {
   render() {
-    const { input, meta: { touched, invalid, error }, opts: { label }, noHelp } = this.props
+    const {
+      input, meta: { touched, invalid, error },
+      opts: {
+        label, decodeLabel
+      }
+    } = this.props
 
     const hasErrorClass = touched && invalid ? 'has-error' : ''
 
@@ -15,10 +20,11 @@ export default class CheckboxField extends Component {
             onChange={input.onChange}
             checked={input.value}
           />
-          <span dangerouslySetInnerHTML={{ __html: label.decode() }} />
+          { label && <span>{label}</span> }
+          { decodeLabel && <span dangerouslySetInnerHTML={{ __html: decodeLabel.decode() }} />}
         </label>
         {
-          hasErrorClass && !noHelp && <span className="help-block">{touched ? error.join(", ") : ''}</span>
+          hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>
         }
       </div>
     )

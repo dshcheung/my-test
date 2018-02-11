@@ -22,9 +22,14 @@ export default class FileField extends Component {
   }
 
   render() {
-    const { input, meta: { touched, invalid, error }, fileUrl, optClass, opts: {
-      label, noHelp
-    } } = this.props
+    const {
+      input, meta: { touched, invalid, error },
+      opts: {
+        label, decodeLabel,
+        fileUrl,
+        optClass
+      }
+    } = this.props
 
     const hasErrorClass = touched && invalid ? 'has-error' : ''
     const newInput = _.omit(input, 'value')
@@ -32,6 +37,7 @@ export default class FileField extends Component {
     return (
       <div className={`form-group clearfix ${hasErrorClass}`}>
         { label && <label htmlFor={newInput.name + "-noInteraction"}>{label}</label>}
+        { decodeLabel && <label htmlFor={newInput.name + "-noInteraction"} dangerouslySetInnerHTML={{ __html: decodeLabel.decode() }} />}
         <input
           id={newInput.name}
           className="hide"
@@ -61,7 +67,7 @@ export default class FileField extends Component {
             )
           }
           {
-            hasErrorClass && !noHelp && <span className="help-block">{touched ? error.join(", ") : ''}</span>
+            hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>
           }
         </label>
       </div>

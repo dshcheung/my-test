@@ -53,21 +53,21 @@ export default class MyProfileBasicForm extends Component {
           <Field
             name="avatar"
             component={ImageField}
-            imgUrl={avatarUrl}
             opts={{
               label: "Avatar",
+              imgUrl: avatarUrl,
+              optClass: "image-field-avatar"
             }}
-            optClass="image-field-avatar"
           />
 
           <Field
             name="banner"
             component={ImageField}
-            imgUrl={bannerUrl}
             opts={{
               label: "Banner",
+              imgUrl: bannerUrl,
+              optClass: "image-field-banner"
             }}
-            optClass="image-field-banner"
           />
 
           <button

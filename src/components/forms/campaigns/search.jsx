@@ -67,26 +67,26 @@ export default class CampaignsSearchForm extends Component {
               <Field
                 name="filter"
                 component={SelectField}
-                options={campaignFilterable}
                 opts={{
-                  placeholder: "Category"
+                  placeholder: "Category",
+                  options: campaignFilterable
                 }}
               />
               <Field
                 name="sortBy"
                 component={SelectField}
-                options={[{ id: 'name', name: "Name" }]}
                 opts={{
-                  placeholder: "Sort By"
+                  placeholder: "Sort By",
+                  options: [{ id: 'name', name: "Name" }]
                 }}
               />
 
               <Field
                 name="sort"
                 component={SelectField}
-                options={[{ id: "ASC", name: "ASC" }, { id: "DESC", name: "DESC" }]}
                 opts={{
-                  placeholder: "Direction"
+                  placeholder: "Direction",
+                  options: [{ id: "ASC", name: "ASC" }, { id: "DESC", name: "DESC" }]
                 }}
               />
             */

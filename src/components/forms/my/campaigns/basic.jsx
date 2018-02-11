@@ -46,10 +46,12 @@ export default class MyCampaignBasicForm extends Component {
           <Field
             name="amountType"
             component={SelectField}
-            options={[{ id: "valuation_cap", name: "Valuation Cap" }]}
             opts={{
               label: "Valuation Type *",
-              placeholder: "Select Valuation Type"
+              placeholder: "Select Valuation Type",
+              options: [{ id: "valuation_cap", name: "Valuation Cap" }],
+              valueKey: "id",
+              nameKey: "name"
             }}
           />
 

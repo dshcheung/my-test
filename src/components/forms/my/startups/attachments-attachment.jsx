@@ -33,9 +33,9 @@ export default class MyStartupsAttachmentsAttachmentForm extends Component {
           <Field
             name="file"
             component={FileField}
-            fileUrl={fileUrl}
             opts={{
-              label: "File"
+              label: "File",
+              fileUrl
             }}
           />
 

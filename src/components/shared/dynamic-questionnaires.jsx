@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Field } from 'redux-form'
 
-import RadioField from './form-elements/radio-field'
-import TextField from './form-elements/text-field'
 import CheckboxField from './form-elements/checkbox-field'
-import DateTimePickerField from './form-elements/datetime-picker'
+import DateTimePicker from './form-elements/datetime-picker'
 import FileField from './form-elements/file-field'
+import RadioField from './form-elements/radio-field'
+import TextArea from './form-elements/text-area'
+import TextField from './form-elements/text-field'
 
 export default class DynamicQuestionnaires extends Component {
   render() {
@@ -19,22 +20,6 @@ export default class DynamicQuestionnaires extends Component {
             const name = getName(i)
 
             switch (q.type) {
-              case "radio": {
-                component = (
-                  <Field
-                    key={i}
-                    optItemClass="display-block"
-                    name={name}
-                    component={RadioField}
-                    title={q.title}
-                    opts={q.answers.map((answer) => {
-                      const key = Object.keys(answer)[0]
-                      return { value: key, label: answer[key] }
-                    })}
-                  />
-                )
-                break
-              }
               case "checkbox": {
                 component = (
                   <Field
@@ -42,21 +27,7 @@ export default class DynamicQuestionnaires extends Component {
                     name={name}
                     component={CheckboxField}
                     opts={{
-                      label: q.title
-                    }}
-                  />
-                )
-                break
-              }
-              case "text": {
-                component = (
-                  <Field
-                    key={i}
-                    name={name}
-                    component={TextField}
-                    opts={{
-                      type: q.type,
-                      label: q.title
+                      decodeLabel: q.title
                     }}
                   />
                 )
@@ -67,9 +38,9 @@ export default class DynamicQuestionnaires extends Component {
                   <Field
                     key={i}
                     name={name}
-                    component={DateTimePickerField}
+                    component={DateTimePicker}
                     opts={{
-                      label: q.title
+                      decodeLabel: q.title
                     }}
                   />
                 )
@@ -80,9 +51,9 @@ export default class DynamicQuestionnaires extends Component {
                   <Field
                     key={i}
                     name={name}
-                    component={DateTimePickerField}
+                    component={DateTimePicker}
                     opts={{
-                      label: q.title,
+                      decodeLabel: q.title,
                       time: false,
                       format: "MMM D, YYYY"
                     }}
@@ -96,12 +67,62 @@ export default class DynamicQuestionnaires extends Component {
                     key={i}
                     name={name}
                     component={FileField}
-                    fileUrl={fileUrls[i]}
                     opts={{
-                      label: q.title
+                      decodeLabel: q.title,
+                      fileUrl: fileUrls[i]
                     }}
                   />
                 )
+                break
+              }
+              case "radio": {
+                component = (
+                  <Field
+                    key={i}
+                    name={name}
+                    component={RadioField}
+                    opts={{
+                      options: q.answers,
+                      valueKey: (x) => {
+                        return Object.keys(x)[0]
+                      },
+                      nameKey: (x) => {
+                        return x[Object.keys(x)[0]]
+                      },
+                      decodeLabel: q.title,
+                      optItemClass: "display-block"
+                    }}
+                  />
+                )
+                break
+              }
+              case "textarea": {
+                component = (
+                  <Field
+                    key={i}
+                    name={name}
+                    component={TextArea}
+                    opts={{
+                      type: q.type,
+                      decodeLabel: q.title
+                    }}
+                  />
+                )
+                break
+              }
+              case "text": {
+                component = (
+                  <Field
+                    key={i}
+                    name={name}
+                    component={TextField}
+                    opts={{
+                      type: q.type,
+                      decodeLabel: q.title
+                    }}
+                  />
+                )
+                break
               }
             }
 
