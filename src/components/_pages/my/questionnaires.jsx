@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import { formatQuestionnaire } from '../../../services/utils'
+
 import { gImmovable, G_IMMOVABLE_INVESTOR_QUESTIONNAIRE } from '../../../actions/immovables'
 import {
   G_MY_QUESTIONNAIRES, gMyQuestionnaires, resetMyQuestionnaires,
@@ -11,46 +13,6 @@ import {
 import LoadingSpinner from '../../shared/loading-spinner'
 
 import QuestionnaireForm from '../../forms/my/questionnaires'
-
-const formatQuestionnaire = (questionnaires) => {
-  const myQuestionnaires = {}
-
-  for (let i = 0; i < questionnaires.length; i += 1) {
-    const question = questionnaires[i]
-    const questionnaireID = question.questionnaire_id
-    const questionID = question.question_id
-
-    if (!myQuestionnaires[questionnaireID]) {
-      myQuestionnaires[questionnaireID] = {}
-    }
-
-    const updatedAt = _.get(myQuestionnaires[questionnaireID][questionID], 'updated_at')
-    if (!updatedAt || updatedAt < question.updated_at) {
-      myQuestionnaires[questionnaireID][questionID] = {
-        question_id: questionID,
-        answer_type: question.answer_type,
-        updated_at: question.updated_at
-      }
-
-      switch (question.answer_type) {
-        case "datetime":
-          myQuestionnaires[questionnaireID][questionID].answer = moment(question.answer).toDate()
-          break
-        case "date":
-          myQuestionnaires[questionnaireID][questionID].answer = moment(question.answer).toDate()
-          break
-        case "file":
-          myQuestionnaires[questionnaireID][questionID].answer = ""
-          myQuestionnaires[questionnaireID][questionID].answer_file = question.answer
-          break
-        default:
-          myQuestionnaires[questionnaireID][questionID].answer = question.answer
-      }
-    }
-  }
-
-  return myQuestionnaires
-}
 
 const mapStateToProps = (state) => {
   return {
@@ -143,9 +105,6 @@ export default class ValidationStageOne extends Component {
   questionnaireForm() {
     const { investorQuestionnaires, myQuestionnaires } = this.props
     const currentStage = this.state.currentStage
-
-    // TODO: remove
-    if (currentStage === null) return null
 
     const title = currentStage.splitCap("_").toUpperCase()
     const currentQuestionnaire = _.get(investorQuestionnaires, `${currentStage}.questions`, [])

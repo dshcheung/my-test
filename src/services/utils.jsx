@@ -94,3 +94,43 @@ export const extractAttrFromRoutes = (routes, key) => {
 
   return value
 }
+
+export const formatQuestionnaire = (questionnaires) => {
+  const myQuestionnaires = {}
+
+  for (let i = 0; i < questionnaires.length; i += 1) {
+    const question = questionnaires[i]
+    const questionnaireID = question.questionnaire_id
+    const questionID = question.question_id
+
+    if (!myQuestionnaires[questionnaireID]) {
+      myQuestionnaires[questionnaireID] = {}
+    }
+
+    const updatedAt = _.get(myQuestionnaires[questionnaireID][questionID], 'updated_at')
+    if (!updatedAt || updatedAt < question.updated_at) {
+      myQuestionnaires[questionnaireID][questionID] = {
+        question_id: questionID,
+        answer_type: question.answer_type,
+        updated_at: question.updated_at
+      }
+
+      switch (question.answer_type) {
+        case "datetime":
+          myQuestionnaires[questionnaireID][questionID].answer = moment(question.answer).toDate()
+          break
+        case "date":
+          myQuestionnaires[questionnaireID][questionID].answer = moment(question.answer).toDate()
+          break
+        case "file":
+          myQuestionnaires[questionnaireID][questionID].answer = ""
+          myQuestionnaires[questionnaireID][questionID].answer_file = question.answer
+          break
+        default:
+          myQuestionnaires[questionnaireID][questionID].answer = question.answer
+      }
+    }
+  }
+
+  return myQuestionnaires
+}

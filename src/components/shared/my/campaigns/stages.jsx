@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { notyWarning } from '../../../../services/noty'
-
 import SharedMyCampaignsStageOne from './stage-one'
 import SharedMyCampaignsStageTwo from './stage-two'
 import SharedMyCampaignsStageThree from './stage-three'
 import SharedMyCampaignsStageFour from './stage-four'
+import SharedMyCampaignsStageFive from './stage-five'
 
 const mapStateToProps = (state) => {
   return {
@@ -20,7 +19,7 @@ export default class SharedMyCampaignsStages extends Component {
     super(props)
 
     this.state = {
-      order: ["stage_one", "stage_two", "stage_three", "stage_four"],
+      order: ["stage_one", "stage_two", "stage_three", "stage_four", "stage_five"],
       currentStage: "stage_one"
     }
 
@@ -29,13 +28,12 @@ export default class SharedMyCampaignsStages extends Component {
 
   componentWillMount() {
     this.setStage(this.props)
-    if (this.props.editMode) {
-      notyWarning("You can now skip ahead or go back to change information by clicking on stages")
-    }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.location.hash !== nextProps.location.hash) {
+    const thisHash = this.props.location.hash.split("#")[1]
+    const nextHash = this.props.location.hash.split("#")[1]
+    if (thisHash !== nextHash) {
       this.setStage(nextProps)
     }
   }
@@ -94,10 +92,12 @@ export default class SharedMyCampaignsStages extends Component {
 
         {
           this.state.currentStage === "stage_two" && (
-            <div className="container-fluid">
+            <div className="container">
               <SharedMyCampaignsStageTwo
                 editMode={editMode}
                 routeParams={routeParams}
+                router={this.props.router}
+                changeStage={this.changeStage}
               />
             </div>
           )
@@ -105,7 +105,7 @@ export default class SharedMyCampaignsStages extends Component {
 
         {
           this.state.currentStage === "stage_three" && (
-            <div className="container">
+            <div className="container-fluid">
               <SharedMyCampaignsStageThree
                 editMode={editMode}
                 routeParams={routeParams}
@@ -118,6 +118,17 @@ export default class SharedMyCampaignsStages extends Component {
           this.state.currentStage === "stage_four" && (
             <div className="container">
               <SharedMyCampaignsStageFour
+                editMode={editMode}
+                routeParams={routeParams}
+              />
+            </div>
+          )
+        }
+
+        {
+          this.state.currentStage === "stage_five" && (
+            <div className="container">
+              <SharedMyCampaignsStageFive
                 editMode={editMode}
                 routeParams={routeParams}
               />

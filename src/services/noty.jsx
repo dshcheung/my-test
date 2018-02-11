@@ -35,3 +35,18 @@ export const notySuccess = (text) => {
 
   new Noty(newConfig).show()
 }
+
+export const handleFormErrors = (data) => {
+  const errorMessages = _.get(data, 'data.meta.message')
+  let notyMessage = ""
+
+  if (Array.isArray(errorMessages)) {
+    errorMessages.forEach((message) => {
+      notyMessage += `<div>${message}</div>`
+    })
+  } else {
+    notyMessage = errorMessages
+  }
+
+  notyError(notyMessage)
+}

@@ -6,7 +6,7 @@ import {
   apiMyProfile, apiVerifyMyProfile,
   apiRequestVerification, apiRequestResendPassword
 } from '../../../services/api-path'
-import { notySuccess } from '../../../services/noty'
+import { notySuccess, handleFormErrors } from '../../../services/noty'
 
 import { setCurrentUser, resetAllState } from '../../session'
 
@@ -170,6 +170,9 @@ export const resetPassword = (values) => {
       } else if (data.role === "StartupUser") {
         dispatch(push("/my/dashboard"))
       }
+    },
+    errorCB: (dispatch, data) => {
+      handleFormErrors(data)
     }
   }
 }

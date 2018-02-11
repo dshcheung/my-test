@@ -6,7 +6,7 @@ import { AUTH_TOKEN } from '../constants'
 import { genApiUrl, genAxios } from '../services/api-request'
 import { getFormData } from '../services/get-form-data'
 import { apiAuthenticatesIndex, apiRequestForgetPassword } from '../services/api-path'
-import { notySuccess, notyError } from '../services/noty'
+import { notySuccess, handleFormErrors } from '../services/noty'
 
 export const SET_CURRENT_USER = "SET_CURRENT_USER"
 export const setCurrentUser = (data) => {
@@ -70,8 +70,8 @@ export const createSession = (values) => {
         dispatch(push("/my/dashboard"))
       }
     },
-    errorCB: () => {
-      notyError("Incorrect Credentials")
+    errorCB: (dispatch, data) => {
+      handleFormErrors(data)
     }
   }
 }
@@ -116,6 +116,9 @@ export const requestForgetPassword = (values) => {
     successCB: (dispatch) => {
       notySuccess("Request Sent!")
       dispatch(push('/auth/reset_password'))
+    },
+    errorCB: (dispatch, data) => {
+      handleFormErrors(data)
     }
   }
 }

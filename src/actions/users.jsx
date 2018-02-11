@@ -3,6 +3,7 @@ import { push } from 'react-router-redux'
 import { genApiUrl, genAxios } from '../services/api-request'
 import { getFormData } from '../services/get-form-data'
 import { apiUsersIndex, apiUsersShow } from '../services/api-path'
+import { handleFormErrors } from '../services/noty'
 
 import { setCurrentUser } from './session'
 
@@ -49,6 +50,9 @@ export const createUser = (values) => {
       } else if (data.role === "StartupUser") {
         dispatch(push('/my/campaigns/new'))
       }
+    },
+    errorCB: (dispatch, data) => {
+      handleFormErrors(data)
     }
   }
 }
