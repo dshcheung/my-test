@@ -96,7 +96,7 @@ export default (
     <Route path="terms" component={LegalDocumentContainer} docID="terms-of-service" />
     <Route path="privacy" component={LegalDocumentContainer} docID="privacy-policy" />
     <Route path="investor_agreement" component={LegalDocumentContainer} docID="investor-agreement" />
-    <Route path="investor_statement" component={LegalDocumentContainer} docID="investor-statement" />
+    <Route path="investor-disclaimer" component={LegalDocumentContainer} docID="investor-warning-statement" />
 
     <Route path="users">
       <Route path=":userID" component={UsersShowContainer} />

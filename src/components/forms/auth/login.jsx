@@ -61,13 +61,6 @@ export default class AuthLoginForm extends Component {
           >
             Sign into your account
           </button>
-          <button
-            className={`btn btn-linked-in btn-lg btn-block ${submitInProcess && "m-progress"}`}
-            type="button"
-            disabled={submitInProcess}
-          >
-            <i className="fa fa-linkedin fa-lg" /> Sign in with LinkedIn
-          </button>
         </form>
       </div>
     )

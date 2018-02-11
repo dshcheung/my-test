@@ -8,13 +8,15 @@ export default class CheckboxField extends Component {
 
     return (
       <div className={`form-group clearfix ${hasErrorClass}`}>
-        <input
-          type="checkbox"
-          name={input.name}
-          onChange={input.onChange}
-          checked={input.value}
-        />
-        { label && <label htmlFor={input.name} dangerouslySetInnerHTML={{ __html: label.decode() }} /> }
+        <label htmlFor={input.name}>
+          <input
+            type="checkbox"
+            name={input.name}
+            onChange={input.onChange}
+            checked={input.value}
+          />
+          <span dangerouslySetInnerHTML={{ __html: label.decode() }} /> }
+        </label>
         {
           hasErrorClass && !noHelp && <span className="help-block">{touched ? error.join(", ") : ''}</span>
         }

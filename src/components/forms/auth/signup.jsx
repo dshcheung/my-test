@@ -134,13 +134,13 @@ export default class AuthSignupForm extends Component {
         <div className="row">
           <div className="col-xs-6">
             <button
-              className={`btn btn-block btn-${role === "Investor" ? "info" : "default"}`}
+              className={`margin-bottom-15 btn btn-block btn-${role === "Investor" ? "info" : "default"}`}
               onClick={() => { changeRole("Investor") }}
             >I am an Investor</button>
           </div>
           <div className="col-xs-6">
             <button
-              className={`btn btn-block btn-${role === "StartupUser" ? "info" : "default"}`}
+              className={`margin-bottom-15 btn btn-block btn-${role === "StartupUser" ? "info" : "default"}`}
               onClick={() => { changeRole("StartupUser") }}
             >I am a Founder</button>
           </div>

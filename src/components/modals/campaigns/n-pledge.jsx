@@ -7,17 +7,26 @@ import {
   cPledge, C_PLEDGE
 } from '../../../actions/campaigns/pledges'
 
+import {
+  gImmovable
+} from '../../../actions/immovables'
+
 import CampaignPledgeForm from '../../forms/campaigns/pledge'
+import LoadingSpinner from '../../shared/loading-spinner'
 
 const mapStateToProps = (state) => {
   return {
-    cPledgeInProcess: _.get(state.requestStatus, C_PLEDGE)
+    cPledgeInProcess: _.get(state.requestStatus, C_PLEDGE),
+    disclaimer: _.find(_.get(state.immovables, 'legal_agreement.legal_agreements', []), (la) => {
+      return la.id === "investor-disclaimer"
+    })
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    cPledge: bindActionCreators(cPledge, dispatch)
+    cPledge: bindActionCreators(cPledge, dispatch),
+    gImmovable: bindActionCreators(gImmovable, dispatch)
   }
 }
 
@@ -29,6 +38,10 @@ export default class CampaignsNPledgeModal extends Component {
     this.onSubmit = this.onSubmit.bind(this)
   }
 
+  componentWillMount() {
+    this.props.gImmovable({ immovableID: "legal_agreement" })
+  }
+
   onSubmit(values) {
     this.props.cPledge(values, this.props.params, () => {
       this.props.close()
@@ -36,7 +49,7 @@ export default class CampaignsNPledgeModal extends Component {
   }
 
   render() {
-    const { close, cPledgeInProcess } = this.props
+    const { close, cPledgeInProcess, disclaimer } = this.props
 
     const keyword = "Pledge"
 
@@ -50,6 +63,12 @@ export default class CampaignsNPledgeModal extends Component {
             onSubmit={this.onSubmit}
             submitInProcess={cPledgeInProcess}
           />
+
+          {
+            !_.get(disclaimer, 'content') ? <LoadingSpinner /> : (
+              <div dangerouslySetInnerHTML={{ __html: disclaimer.content.decode() }} />
+            )
+          }
         </Modal.Body>
       </Modal>
     )
