@@ -37,6 +37,8 @@ import CampaignsContainer from './components/_pages/campaigns/wrapper'
 import CampaignsIndexContainer from './components/_pages/campaigns/index'
 import CampaignsShowContainer from './components/_pages/campaigns/show'
 
+import LegalDocumentContainer from './components/_pages/legal-document'
+
 import UsersShowContainer from './components/_pages/users/show'
 
 import PageNotFound from './components/_pages/not-found'
@@ -90,6 +92,11 @@ export default (
       <IndexRoute component={CampaignsIndexContainer} />
       <Route path=":campaignID" component={CampaignsShowContainer} />
     </Route>
+
+    <Route path="terms" component={LegalDocumentContainer} docID="terms-of-service" />
+    <Route path="privacy" component={LegalDocumentContainer} docID="privacy-policy" />
+    <Route path="investor_agreement" component={LegalDocumentContainer} docID="investor-agreement" />
+    <Route path="investor_statement" component={LegalDocumentContainer} docID="investor-statement" />
 
     <Route path="users">
       <Route path=":userID" component={UsersShowContainer} />

@@ -101,7 +101,7 @@ export default class SharedCampaignsProfile extends Component {
               <div className="col-xs-12 text-center">
                 <button
                   className="btn btn-info"
-                  onClick={() => { this.props.router.push(`/my/campaigns/${campaign.id}/edit#stage_five`) }}
+                  onClick={() => { this.props.router.push(`/my/campaigns/${campaign.id}/edit#stage_one`) }}
                 ><i className="fa fa-pencil" /> Edit Startup</button>
               </div>
             </div>

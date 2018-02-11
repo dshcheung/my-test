@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import {
-  gMyCampaign, G_MY_CAMPAIGN
+  gMyCampaign, G_MY_CAMPAIGN, resetMyCampaign
 } from '../../../../actions/my/campaigns'
 
 import {
@@ -28,6 +28,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     gMyCampaign: bindActionCreators(gMyCampaign, dispatch),
+    resetMyCampaign: bindActionCreators(resetMyCampaign, dispatch),
     gImmovable: bindActionCreators(gImmovable, dispatch),
     resetImmovable: bindActionCreators(resetImmovable, dispatch),
     gMyQuestionnaires: bindActionCreators(gMyQuestionnaires, dispatch),

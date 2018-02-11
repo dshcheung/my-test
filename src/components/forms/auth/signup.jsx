@@ -21,8 +21,140 @@ import CheckboxField from '../../shared/form-elements/checkbox-field'
   enableReinitialize: true
 })
 export default class AuthSignupForm extends Component {
+  formComponent() {
+    const { handleSubmit, submitInProcess, questions } = this.props
+
+    return (
+      <form onSubmit={handleSubmit}>
+        <div className="row">
+          <div className="col-xs-12 col-sm-6">
+            <Field
+              name="firstName"
+              component={TextField}
+              opts={{
+                type: "text",
+                label: "First Name *"
+              }}
+            />
+          </div>
+          <div className="col-xs-12 col-sm-6">
+            <Field
+              name="lastName"
+              component={TextField}
+              opts={{
+                type: "text",
+                label: "Last Name *"
+              }}
+            />
+          </div>
+        </div>
+
+        <Field
+          name="email"
+          component={TextField}
+          opts={{
+            type: "email",
+            label: "Email *"
+          }}
+        />
+
+        <Field
+          name="password"
+          component={TextField}
+          opts={{
+            type: "password",
+            label: "Password *"
+          }}
+        />
+
+        {
+          questions && questions.map((q, i) => {
+            let component = null
+            const name = `questionnaire[0].answers.[${i}].answer`
+
+            switch (q.type) {
+              case "radio": {
+                component = (
+                  <Field
+                    key={i}
+                    optItemClass="display-block"
+                    name={name}
+                    component={RadioField}
+                    title={q.title}
+                    opts={q.answers.map((answer) => {
+                      const key = Object.keys(answer)[0]
+                      return { value: key, label: answer[key] }
+                    })}
+                  />
+                )
+                break
+              }
+
+              case "checkbox": {
+                component = (
+                  <Field
+                    key={i}
+                    name={name}
+                    component={CheckboxField}
+                    opts={{
+                      label: q.title
+                    }}
+                  />
+                )
+              }
+            }
+
+            return component
+          })
+        }
+
+        <div className="form-actions">
+          <button
+            className={`btn btn-info btn-lg btn-block ${submitInProcess && "m-progress"}`}
+            type="submit"
+            disabled={submitInProcess}
+          >
+            Continue
+          </button>
+        </div>
+
+      </form>
+    )
+  }
+
+  renderWarningAgreement() {
+    const { investorWarning, agree } = this.props
+
+    return (
+      <div className="warning-agreement">
+        <div className="content" dangerouslySetInnerHTML={{ __html: investorWarning.content.decode() }} />
+
+        <div className="text-center">
+          <button
+            className="btn btn-info"
+            onClick={() => { agree() }}
+          >Agree</button>
+        </div>
+      </div>
+    )
+  }
+
+  renderForm() {
+    const { role, investorWarningAgreement } = this.props
+
+    if (role) {
+      if (role === "Investor" && !investorWarningAgreement) {
+        return this.renderWarningAgreement()
+      }
+
+      return this.formComponent()
+    } else {
+      return null
+    }
+  }
+
   render() {
-    const { handleSubmit, submitInProcess, optClass, changeRole, role, questions } = this.props
+    const { optClass, changeRole, role } = this.props
 
     return (
       <div id="forms-auth-signup" className={optClass}>
@@ -44,104 +176,7 @@ export default class AuthSignupForm extends Component {
           </div>
         </div>
 
-        {
-          role && (
-            <form onSubmit={handleSubmit}>
-              <div className="row">
-                <div className="col-xs-12 col-sm-6">
-                  <Field
-                    name="firstName"
-                    component={TextField}
-                    opts={{
-                      type: "text",
-                      label: "First Name *"
-                    }}
-                  />
-                </div>
-                <div className="col-xs-12 col-sm-6">
-                  <Field
-                    name="lastName"
-                    component={TextField}
-                    opts={{
-                      type: "text",
-                      label: "Last Name *"
-                    }}
-                  />
-                </div>
-              </div>
-
-              <Field
-                name="email"
-                component={TextField}
-                opts={{
-                  type: "email",
-                  label: "Email *"
-                }}
-              />
-
-              <Field
-                name="password"
-                component={TextField}
-                opts={{
-                  type: "password",
-                  label: "Password *"
-                }}
-              />
-
-              {
-                questions && questions.map((q, i) => {
-                  let component = null
-                  const name = `questionnaire.answers.[${i}].answer`
-
-                  switch (q.type) {
-                    case "radio": {
-                      component = (
-                        <Field
-                          key={i}
-                          optItemClass="display-block"
-                          name={name}
-                          component={RadioField}
-                          title={q.title}
-                          opts={q.answers.map((answer) => {
-                            const key = Object.keys(answer)[0]
-                            return { value: key, label: answer[key] }
-                          })}
-                        />
-                      )
-                      break
-                    }
-
-                    case "checkbox": {
-                      component = (
-                        <Field
-                          key={i}
-                          name={name}
-                          component={CheckboxField}
-                          opts={{
-                            label: q.title
-                          }}
-                        />
-                      )
-                    }
-                  }
-
-                  return component
-                })
-              }
-
-              <div className="form-actions">
-                <button
-                  className={`btn btn-info btn-lg btn-block ${submitInProcess && "m-progress"}`}
-                  type="submit"
-                  disabled={submitInProcess}
-                >
-                  Continue
-                </button>
-              </div>
-
-            </form>
-          )
-        }
+        { this.renderForm() }
 
         <hr />
 
