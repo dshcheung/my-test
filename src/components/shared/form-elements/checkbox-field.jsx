@@ -15,7 +15,7 @@ export default class CheckboxField extends Component {
             onChange={input.onChange}
             checked={input.value}
           />
-          <span dangerouslySetInnerHTML={{ __html: label.decode() }} /> }
+          <span dangerouslySetInnerHTML={{ __html: label.decode() }} />
         </label>
         {
           hasErrorClass && !noHelp && <span className="help-block">{touched ? error.join(", ") : ''}</span>
