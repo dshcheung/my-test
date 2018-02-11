@@ -23,34 +23,32 @@ export default class Footer extends Component {
                 <div className="links-section">
                   <span className="header">Account</span>
                   <ul>
-                    <li><Link className="btn-gray">Log In</Link></li>
-                    <li><Link className="btn-gray">Sign up</Link></li>
+                    <li><Link className="btn-gray" to="/auth/login">Log In</Link></li>
+                    <li><Link className="btn-gray" to="/auth/signup">Sign up</Link></li>
                   </ul>
                 </div>
 
                 <div className="links-section">
                   <span className="header">About</span>
                   <ul>
-                    <li><Link className="btn-gray">About Us</Link></li>
-                    <li><Link className="btn-gray">Careers</Link></li>
-                    <li><Link className="btn-gray">Press</Link></li>
-                    <li><Link className="btn-gray">Contact</Link></li>
-                    <li><Link className="btn-gray">Legal & Privacy</Link></li>
-                    <li><Link className="btn-gray">Security</Link></li>
+                    <li><Link className="btn-gray" to="/about-us">About Us</Link></li>
+                    <li><Link className="btn-gray" to="/careers">Careers</Link></li>
+                    <li><Link className="btn-gray" to="/press">Press</Link></li>
+                    <li><Link className="btn-gray" to="/contact-us">Contact</Link></li>
+                    <li><Link className="btn-gray" to="/privacy">Legal & Privacy</Link></li>
+                    <li><Link className="btn-gray" to="/security">Security</Link></li>
                   </ul>
                 </div>
 
                 <div className="links-section">
                   <span className="header">Resources</span>
                   <ul>
-                    <li><Link className="btn-gray">FAQ</Link></li>
-                    <li><Link className="btn-gray">Charts</Link></li>
-                    <li><Link className="btn-gray">Blog</Link></li>
-                    <li><Link className="btn-gray">Fees</Link></li>
-                    <li><Link className="btn-gray">Support</Link></li>
-                    <li><Link className="btn-gray">Trading Guide</Link></li>
-                    <li><Link className="btn-gray">API</Link></li>
-                    <li><Link className="btn-gray">Bug Bounty</Link></li>
+                    <li><Link className="btn-gray" to="/guides">FAQ</Link></li>
+                    <li><Link className="btn-gray" to="https://blog.angelhub.io">Blog</Link></li>
+                    <li><Link className="btn-gray" to="/pricing">Fees</Link></li>
+                    <li><Link className="btn-gray" to="/support">Support</Link></li>
+                    <li><Link className="btn-gray" to="/dev/api">API</Link></li>
+                    <li><Link className="btn-gray" to="/dev/bug-bounty">Bug Bounty</Link></li>
                   </ul>
                 </div>
 
@@ -74,10 +72,10 @@ export default class Footer extends Component {
                 <span className="copy-right">&copy; 2017 AngelHub</span>
 
                 <ul className="social">
-                  <li><Link className="btn-gray"><i className="fa fa-instagram" /></Link></li>
-                  <li><Link className="btn-gray"><i className="fa fa-facebook" /></Link></li>
-                  <li><Link className="btn-gray"><i className="fa fa-twitter" /></Link></li>
-                  <li><Link className="btn-gray"><i className="fa fa-linkedin" /></Link></li>
+                  <li><Link className="btn-gray" to="https://instagram.com/angelhubhk" target="_blank"><i className="fa fa-instagram" /></Link></li>
+                  <li><Link className="btn-gray" to="https://facebook.com/angelhubhk" target="_blank"><i className="fa fa-facebook" /></Link></li>
+                  <li><Link className="btn-gray" to="https://twitter.com/angelhubhk" target="_blank"><i className="fa fa-twitter" /></Link></li>
+                  <li><Link className="btn-gray" to="https://linkedin.com/angelhubhk" target="_blank"><i className="fa fa-linkedin" /></Link></li>
                 </ul>
               </div>
             </div>
