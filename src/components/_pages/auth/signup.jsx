@@ -60,7 +60,7 @@ export default class Signup extends Component {
   }
 
   changeRole(role) {
-    this.setState({ role })
+    this.setState({ role, investorWarningAgreement: false })
   }
 
   agree() {

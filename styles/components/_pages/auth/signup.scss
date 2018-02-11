@@ -25,6 +25,17 @@
       font-size: $font-size-h2;
       color: $brand-primary;
     }
+
+    .warning-agreement {
+      .content {
+        border: 1px solid black;
+        padding: 10px;
+        height: 200px;
+        overflow: auto;
+        margin-bottom: 10px;
+      }
+    }
+
     label {
       color: $gray;
       font-weight: 400;
