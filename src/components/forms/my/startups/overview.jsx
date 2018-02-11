@@ -3,12 +3,14 @@ import { reduxForm, Field } from 'redux-form'
 
 import Validators from '../../../../services/form-validators'
 
-import TextArea from '../../../shared/form-elements/text-area'
+// import TextArea from '../../../shared/form-elements/text-area'
+import RichTextEditorField from '../../../shared/form-elements/rich-text-editor-field'
 
 @reduxForm({
   form: "MyStartupsOverviewForm",
   validate: (values) => {
     return Validators({
+      overview: ["presences"]
     }, values)
   }
 })
@@ -21,7 +23,7 @@ export default class MyStartupsOverviewForm extends Component {
         <form onSubmit={handleSubmit}>
           <Field
             name="overview"
-            component={TextArea}
+            component={RichTextEditorField}
             opts={{
               label: "Overview"
             }}

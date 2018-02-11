@@ -53,7 +53,7 @@ export default class MyStartupsNEOverviewModal extends Component {
     } : undefined
 
     return (
-      <Modal show onHide={close} className="form-modal">
+      <Modal show onHide={close} className="form-modal" bsSize="large">
         <Modal.Header closeButton>
           <Modal.Title>{keyword} Overview</Modal.Title>
         </Modal.Header>
