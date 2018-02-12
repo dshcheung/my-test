@@ -28,7 +28,11 @@ export default class CampaignList extends Component {
                     <Link className="h3" to="/my/campaigns/new">Create A New Campaign</Link>
                   </div>
                 </div>
-              ) : false
+              ) : (
+                <div key="no-campaigns" className="col-xs-12">
+                  <h3>No Campaigns Found</h3>
+                </div>
+              )
 
               const campaignsItems = campaigns.map((campaign, i) => {
                 const banner = _.get(campaign, 'startup.profile.banner.original', null) || DEFAULT_STARTUP_BANNER

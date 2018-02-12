@@ -1,5 +1,6 @@
 import { genApiUrl, addParamsToUrl, genAxios } from '../../services/api-request'
 import { apiCampaignsIndex, apiCampaignsShow, apiCampaignsShowData } from '../../services/api-path'
+import { notyError } from '../../services/noty'
 
 export const MERGE_CAMPAIGNS = "MERGE_CAMPAIGNS"
 export const mergeCampaigns = (data, reset) => {
@@ -45,6 +46,9 @@ export const getCampaigns = ({ queries = {}, nextHref = null } = {}) => {
     paginate: true,
     successCB: (dispatch, data) => {
       dispatch(mergeCampaigns(data, !nextHref))
+    },
+    errorCB: (dispatch, response) => {
+      notyError(response.data.meta.message)
     }
   }
 }
