@@ -13,6 +13,8 @@ import { DEFAULT_USER_AVATAR, AHUB_LOGO } from '../../constants'
 
 import { deleteSession } from '../../actions/session'
 
+import MyProfileEditProfileModal from '../modals/my/profile/edit-profile'
+
 const mapStateToProps = (state) => {
   return {
     currentUser: _.get(state, 'session')
@@ -27,6 +29,24 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps, null, { pure: false })
 export default class Navbar extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      modal: null
+    }
+
+    this.close = this.close.bind(this)
+  }
+
+  open(modal) {
+    this.setState({ modal })
+  }
+
+  close() {
+    this.setState({ modal: null })
+  }
+
   render() {
     const { currentUser } = this.props
 
@@ -196,8 +216,8 @@ export default class Navbar extends Component {
 
                   <MenuItem divider />
 
-                  <LinkContainer to={`/users/${currentUser.id}`} active={false}>
-                    <MenuItem eventKey={9.6}>Edit Profile</MenuItem>
+                  <LinkContainer to="#" active={false}>
+                    <MenuItem eventKey={9.6} onClick={() => { this.open("editProfile") }}>Edit Profile</MenuItem>
                   </LinkContainer>
                   <LinkContainer to="/my/settings" active={false}>
                     <MenuItem eventKey={9.7}>Settings</MenuItem>
@@ -213,6 +233,8 @@ export default class Navbar extends Component {
             )
           }
         </BNavbar.Collapse>
+
+        { this.state.modal === "editProfile" && <MyProfileEditProfileModal profile={currentUser.profile} close={this.close} />}
       </BNavbar>
     )
   }
