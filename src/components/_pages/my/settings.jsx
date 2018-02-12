@@ -80,7 +80,7 @@ export default class Settings extends Component {
 
     const isInvestor = currentUser.is_investor
 
-    const rpq_approved = _.get(currentUser, 'investor.rpq_approved', false)
+    const kyc_aml_approved = _.get(currentUser, 'investor.kyc_aml_approved', false)
 
     const { first_name, last_name } = currentUser.profile
 
@@ -178,8 +178,8 @@ export default class Settings extends Component {
                 </Panel>
                 {
                   isInvestor && (
-                    <Panel header="KYC Status">
-                      <div><strong>KYC Status -</strong> <span className={`${rpq_approved ? "text-success" : "text-warning"}`}>{rpq_approved ? "Approved" : "Pending"}</span></div>
+                    <Panel header="KYC & AML Status">
+                      <div><strong>KYC & AML Status -</strong> <span className={`${kyc_aml_approved ? "text-success" : "text-warning"}`}>{kyc_aml_approved ? "Approved" : "Pending"}</span></div>
                     </Panel>
                   )
                 }

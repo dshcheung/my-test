@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 
 import { formatQuestionnaire } from '../../../services/utils'
 
-import { gImmovable, G_IMMOVABLE_INVESTOR_QUESTIONNAIRE } from '../../../actions/immovables'
+import { gImmovable, G_IMMOVABLE_INVESTOR_QUESTIONNAIRE, G_IMMOVABLE_LEGAL_AGREEMENT } from '../../../actions/immovables'
 import {
   G_MY_QUESTIONNAIRES, gMyQuestionnaires, resetMyQuestionnaires,
   C_MY_QUESTIONNAIRE, cMyQuestionnaire
@@ -17,11 +17,15 @@ import QuestionnaireForm from '../../forms/my/questionnaires'
 const mapStateToProps = (state) => {
   return {
     gInvestorQInProcess: _.get(state, `requestStatus[${G_IMMOVABLE_INVESTOR_QUESTIONNAIRE}]`),
+    gLegalAgreementInProcess: _.get(state, `requestStatus[${G_IMMOVABLE_LEGAL_AGREEMENT}]`),
     currentUser: _.get(state, 'session'),
     investorQuestionnaires: _.get(state, 'immovables.investor_questionnaire', []),
     cMyQuestionnaireInProcess: _.get(state.requestStatus, C_MY_QUESTIONNAIRE),
     gMyQuestionnairesInProcess: _.get(state.requestStatus, G_MY_QUESTIONNAIRES),
-    myQuestionnaires: formatQuestionnaire(_.get(state, 'myQuestionnaires', []))
+    myQuestionnaires: formatQuestionnaire(_.get(state, 'myQuestionnaires', [])),
+    investorAgreement: _.find(_.get(state, 'immovables.legal_agreement.legal_agreements'), (ia) => {
+      return ia.id === "investor-agreement"
+    }),
   }
 }
 
@@ -53,6 +57,7 @@ export default class MyQuestionnaires extends Component {
   componentWillMount() {
     this.setStage(this.props)
     this.props.gImmovable({ immovableID: "investor_questionnaire" })
+    this.props.gImmovable({ immovableID: "legal_agreement" })
     this.props.gMyQuestionnaires()
   }
 
@@ -107,7 +112,7 @@ export default class MyQuestionnaires extends Component {
     const { investorQuestionnaires, myQuestionnaires } = this.props
     const currentStage = this.state.currentStage
 
-    const title = currentStage.splitCap("_").toUpperCase()
+    const title = _.get(investorQuestionnaires, `${currentStage}.title`) || currentStage.splitCap("_").toUpperCase()
     const currentQuestionnaire = _.get(investorQuestionnaires, `${currentStage}.questions`, [])
     const baseQuestionnaire = _.get(myQuestionnaires, `${currentStage}`, [])
 
@@ -149,12 +154,13 @@ export default class MyQuestionnaires extends Component {
   }
 
   render() {
-    const { currentUser, gInvestorQInProcess, gMyQuestionnairesInProcess, investorQuestionnaires } = this.props
+    const { currentUser, gInvestorQInProcess, gMyQuestionnairesInProcess, investorQuestionnaires, gLegalAgreementInProcess, investorAgreement } = this.props
     const { order, currentStage, agreed } = this.state
 
     const stageZeroQuestion = _.get(investorQuestionnaires, 'stage_zero.questions', [])[0]
 
-    if (gInvestorQInProcess || gMyQuestionnairesInProcess || !stageZeroQuestion) return <LoadingSpinner />
+
+    if (gInvestorQInProcess || gMyQuestionnairesInProcess || !stageZeroQuestion || gLegalAgreementInProcess) return <LoadingSpinner />
 
     const stageStatus = currentUser.investor
 
@@ -204,13 +210,24 @@ export default class MyQuestionnaires extends Component {
           </div>
         </div>
         <div className="container">
-          <div className="row">
-            {
-              currentStage !== "completed" ? this.questionnaireForm() : (
-                <div>Your Approval Process Has Been Initiated, Please Wait For Our Approval. If Any Information Was Incorrect You Can Still Go Back To Any Stages and Correct It</div>
-              )
-            }
-          </div>
+          {
+            currentStage !== "completed" ? this.questionnaireForm() : (
+              <div>
+                <div>{"Your Approval Process Has Been Initiated, Please Wait For Our Approval. If Any Information Was Incorrect You Can Still Go Back To Any Stages and Correct It. You can also complete the AML Process by clicking the button below"}</div>
+
+                <div className="text-center">
+                  <button
+                    className="btn btn-info"
+                    onClick={() => { this.props.router.push('/my/aml') }}
+                  >To My AML Process</button>
+                </div>
+
+                <hr />
+
+                <div dangerouslySetInnerHTML={{ __html: investorAgreement.content.decode() }} />
+              </div>
+            )
+          }
         </div>
       </div>
     )
