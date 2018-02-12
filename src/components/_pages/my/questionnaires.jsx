@@ -215,7 +215,7 @@ export default class MyQuestionnaires extends Component {
               <div>
                 <div>{"Your Approval Process Has Been Initiated, Please Wait For Our Approval. If Any Information Was Incorrect You Can Still Go Back To Any Stages and Correct It. You can also complete the AML Process by clicking the button below"}</div>
 
-                <div className="text-center">
+                <div className="text-center margin-top-15">
                   <button
                     className="btn btn-info"
                     onClick={() => { this.props.router.push('/my/aml') }}

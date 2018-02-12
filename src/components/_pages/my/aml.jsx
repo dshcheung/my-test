@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { formatQuestionnaire } from '../../../services/utils'
+import { notySuccess } from '../../../services/noty'
 
 import { gImmovable, G_IMMOVABLE_INVESTOR_QUESTIONNAIRE } from '../../../actions/immovables'
 
@@ -58,7 +59,9 @@ export default class MyAML extends Component {
   }
 
   cMyQuestionnaire(values) {
-    this.props.cMyQuestionnaire(values)
+    this.props.cMyQuestionnaire(values, () => {
+      notySuccess("Submitted")
+    })
   }
 
   render() {
