@@ -42,7 +42,7 @@ export default class CampaignList extends Component {
                 const endDate = moment(campaign.end_date).diff(moment(), 'days')
                 const goal = campaign.goal || 0
                 const raised = campaign.raised || 0
-                const achieved = Math.floor((campaign.raised / goal) * 100)
+                const achieved = Math.floor((raised / goal) * 100)
                 const investorNum = campaign.number_of_investors
 
                 const startupName = campaign.startup.name
