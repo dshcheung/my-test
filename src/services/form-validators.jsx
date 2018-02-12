@@ -19,6 +19,10 @@ const validators = {
   },
   investorStatus: (value) => {
     if (value === "5") return 'AngelHub is accredited investors only at this time.'
+  },
+  numericality: (value, { min, max }) => {
+    if (min && value < min) return `Minimum ${min}`
+    if (max && value > max) return `Maximum ${max}`
   }
 }
 

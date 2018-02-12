@@ -33,7 +33,8 @@ const mapDispatchToProps = (dispatch) => {
     return Validators({
       startup: [{ type: "attrPresences", opts: { key: "id" } }],
       name: ["presences"],
-      goal: ["presences"],
+      goal: ["presences", { type: "numericality", opts: { min: 100000 } }],
+      interestRate: ["presences", { type: "numericality", opts: { max: 20 } }],
       startDate: ["presences"],
       endDate: ["presences"],
       maturityDate: ["presences"]
