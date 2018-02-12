@@ -67,38 +67,36 @@ export default class SharedStartupsHighlights extends Component {
 
         {
           !emptyHighlights && (
-            <div className="row">
-              <ul className="col-xs-12 list highlights">
-                {
-                  highlights.map((highlight, i) => {
-                    const dInProcess = _.get(requestStatus, `${D_MY_STARTUP_HIGHLIGHT}_${highlight.id}`)
+            <ul className="highlights">
+              {
+                highlights.map((highlight, i) => {
+                  const dInProcess = _.get(requestStatus, `${D_MY_STARTUP_HIGHLIGHT}_${highlight.id}`)
 
-                    return (
-                      <li key={i}>
-                        {
-                          editable && (
-                            <button
-                              className="btn btn-info edit pull-right"
-                              onClick={() => { this.open(true, highlight) }}
-                            ><i className="fa fa-pencil" /></button>
-                          )
-                        }
-                        {
-                          editable && (
-                            <button
-                              className="btn btn-danger delete pull-right"
-                              disabled={dInProcess}
-                              onClick={() => { this.dMyStartupHighlight(highlight.id) }}
-                            ><i className="fa fa-trash" /></button>
-                          )
-                        }
-                        <span dangerouslySetInnerHTML={{ __html: highlight.detail.decode() }} />
-                      </li>
-                    )
-                  })
-                }
-              </ul>
-            </div>
+                  return (
+                    <li key={i}>
+                      {
+                        editable && (
+                          <button
+                            className="btn btn-info edit pull-right"
+                            onClick={() => { this.open(true, highlight) }}
+                          ><i className="fa fa-pencil" /></button>
+                        )
+                      }
+                      {
+                        editable && (
+                          <button
+                            className="btn btn-danger delete pull-right"
+                            disabled={dInProcess}
+                            onClick={() => { this.dMyStartupHighlight(highlight.id) }}
+                          ><i className="fa fa-trash" /></button>
+                        )
+                      }
+                      <span dangerouslySetInnerHTML={{ __html: highlight.detail.decode() }} />
+                    </li>
+                  )
+                })
+              }
+            </ul>
           )
         }
 

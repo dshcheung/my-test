@@ -25,8 +25,10 @@ export default class RichTextEditorField extends Component {
 
   render() {
     const {
+      input,
       meta: { touched, invalid, error },
       opts: {
+        label,
         placeholder,
         hint
       }
@@ -38,10 +40,11 @@ export default class RichTextEditorField extends Component {
 
     return (
       <div className={`form-group clearfix ${hasErrorClass}`}>
+        { label && <label htmlFor={input.name}>{label}</label> }
         <RichTextEditor
           value={value}
           onChange={handleChange}
-          placeholder={"Start Typing Here" || placeholder}
+          placeholder={placeholder || "Start Typing Here"}
         />
         { hint && <span className="help-block">{hint}</span> }
         { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }

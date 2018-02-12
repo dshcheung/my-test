@@ -44,7 +44,7 @@ export default class MyStartupsNEMarketScopeDescriptionModal extends Component {
     } : undefined
 
     return (
-      <Modal show onHide={close} className="form-modal">
+      <Modal show onHide={close} className="form-modal" bsSize="large">
         <Modal.Header closeButton>
           <Modal.Title>{keyword} Market Scope Description</Modal.Title>
         </Modal.Header>

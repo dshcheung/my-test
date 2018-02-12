@@ -52,7 +52,7 @@ export default class MyStartupsNEPitchDeckAttachmentModal extends Component {
     } : undefined
 
     return (
-      <Modal show onHide={close} className="form-modal">
+      <Modal show onHide={close} className="form-modal" bsSize="large">
         <Modal.Header closeButton>
           <Modal.Title>{keyword} Pitch Deck Attachment</Modal.Title>
         </Modal.Header>

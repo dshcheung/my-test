@@ -55,9 +55,7 @@ export default class SharedStartupsRisk extends Component {
 
         {
           description && (
-            <div className="row">
-              <div className="col-xs-12 risk-description" dangerouslySetInnerHTML={{ __html: description.decode() }} />
-            </div>
+            <div className="risk-description" dangerouslySetInnerHTML={{ __html: description.decode() }} />
           )
         }
 

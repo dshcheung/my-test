@@ -68,7 +68,7 @@ export default class MyStartupsSMarketScopeModal extends Component {
     const keyword = editMode ? "Edit" : "Add"
 
     return (
-      <Modal show onHide={close} className={`form-modal ${!this.state.sMarketScope && 'hide'}`} id="modals-my-startups-s-market-scope">
+      <Modal show onHide={close} className={`form-modal ${!this.state.sMarketScope && 'hide'}`} id="modals-my-startups-s-market-scope" bsSize="large">
         <Modal.Header closeButton>
           <Modal.Title>{keyword} Market Scope</Modal.Title>
         </Modal.Header>

@@ -4,7 +4,6 @@ import { reduxForm, Field } from 'redux-form'
 import Validators from '../../../../services/form-validators'
 
 import TextField from '../../../shared/form-elements/text-field'
-import TextArea from '../../../shared/form-elements/text-area'
 import ImageField from '../../../shared/form-elements/image-field'
 
 @reduxForm({
@@ -41,13 +40,15 @@ export default class MyStartupsMediaForm extends Component {
             }}
           />
 
-          <Field
-            name="description"
-            component={TextArea}
-            opts={{
-              label: "Description"
-            }}
-          />
+          {
+          // <Field
+          //   name="description"
+          //   component={TextArea}
+          //   opts={{
+          //     label: "Description"
+          //   }}
+          // />
+          }
 
           <Field
             name="banner"

@@ -59,7 +59,7 @@ export default class MyStartupsSAttachmentsModal extends Component {
     const keyword = editMode ? "Edit" : "Add"
 
     return (
-      <Modal show onHide={close} className={`form-modal ${!this.state.sAttachments && 'hide'}`} id="modals-my-startups-s-attachments">
+      <Modal show onHide={close} className={`form-modal ${!this.state.sAttachments && 'hide'}`} id="modals-my-startups-s-attachments" bsSize="large">
         <Modal.Header closeButton>
           <Modal.Title>{keyword} Data Room</Modal.Title>
         </Modal.Header>

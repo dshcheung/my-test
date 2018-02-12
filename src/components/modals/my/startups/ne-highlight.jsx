@@ -56,7 +56,7 @@ export default class MyStartupsNEHighlightModal extends Component {
     } : undefined
 
     return (
-      <Modal show onHide={close} className="form-modal">
+      <Modal show onHide={close} className="form-modal" bsSize="large">
         <Modal.Header closeButton>
           <Modal.Title>{keyword} Highlight</Modal.Title>
         </Modal.Header>

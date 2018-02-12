@@ -44,7 +44,7 @@ export default class MyStartupsNEPitchDeckDescriptionModal extends Component {
     } : undefined
 
     return (
-      <Modal show onHide={close} className="form-modal">
+      <Modal show onHide={close} className="form-modal" bsSize="large">
         <Modal.Header closeButton>
           <Modal.Title>{keyword} Pitch Deck Description</Modal.Title>
         </Modal.Header>

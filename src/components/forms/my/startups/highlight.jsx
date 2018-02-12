@@ -3,7 +3,7 @@ import { reduxForm, Field } from 'redux-form'
 
 import Validators from '../../../../services/form-validators'
 
-import TextArea from '../../../shared/form-elements/text-area'
+import RichTextEditorField from '../../../shared/form-elements/rich-text-editor-field'
 
 @reduxForm({
   form: "MyStartupsHighlightForm",
@@ -22,7 +22,7 @@ export default class MyStartupsHighlightForm extends Component {
         <form onSubmit={handleSubmit}>
           <Field
             name="detail"
-            component={TextArea}
+            component={RichTextEditorField}
             opts={{
               label: "Details *"
             }}

@@ -59,61 +59,55 @@ export default class SharedStartupsTeam extends Component {
 
         {
           storyExists && (
-            <div className="row">
-              <div className="col-xs-12 team-story" dangerouslySetInnerHTML={{ __html: story.decode() }} />
-            </div>
+            <div className="team-story" dangerouslySetInnerHTML={{ __html: story.decode() }} />
           )
         }
 
         {
           !emptyFounders && (
-            <div className="row">
-              <div className="col-xs-12 team-founder margin-bottom-20">
-                <div className="h3">Founders</div>
-                {
-                  founders.map((member, i) => {
-                    return (
-                      <div key={i} className="row margin-bottom-10">
-                        <div className="col-xs-12">
-                          <div className="col-xs-6 col-sm-4 col-md-4">
-                            <img className="full-width" src={member.avatar.original || DEFAULT_USER_AVATAR} alt={member.name} />
-                          </div>
-                          <div className="col-xs-6 col-sm-8 col-md-8">
-                            <p>
-                              <span className="text-bold header">{member.name}</span>
-                              <span className="title">{member.title}</span>
-                              <span className="description" dangerouslySetInnerHTML={{ __html: member.description.decode() }} />
-                            </p>
-                          </div>
+            <div className="team-founder margin-bottom-20">
+              <div className="h3">Founders</div>
+              {
+                founders.map((member, i) => {
+                  return (
+                    <div key={i} className="row margin-bottom-10">
+                      <div className="col-xs-12">
+                        <div className="col-xs-6 col-sm-4 col-md-4">
+                          <img className="full-width" src={member.avatar.original || DEFAULT_USER_AVATAR} alt={member.name} />
+                        </div>
+                        <div className="col-xs-6 col-sm-8 col-md-8">
+                          <p>
+                            <span className="text-bold header">{member.name}</span>
+                            <span className="title">{member.title}</span>
+                            <span className="description" dangerouslySetInnerHTML={{ __html: member.description.decode() }} />
+                          </p>
                         </div>
                       </div>
-                    )
-                  })
-                }
-              </div>
+                    </div>
+                  )
+                })
+              }
             </div>
           )
         }
 
         {
           !emptyMembers && (
-            <div className="row">
-              <div className="col-xs-12 team-member margin-bottom-20">
-                <div className="h3">Important Members</div>
-                {
-                  members.map((member, i) => {
-                    return (
-                      <div key={i} className="col-xs-6 col-sm-4 col-md-2">
-                        <img className="full-width" src={member.avatar.original} alt={member.name} />
-                        <p>
-                          <span className="text-bold header">{member.name}</span>
-                          <span className="title">{member.title}</span>
-                        </p>
-                      </div>
-                    )
-                  })
-                }
-              </div>
+            <div className="team-member margin-bottom-20">
+              <div className="h3">Important Members</div>
+              {
+                members.map((member, i) => {
+                  return (
+                    <div key={i} className="col-xs-6 col-sm-4 col-md-2">
+                      <img className="full-width" src={member.avatar.original} alt={member.name} />
+                      <p>
+                        <span className="text-bold header">{member.name}</span>
+                        <span className="title">{member.title}</span>
+                      </p>
+                    </div>
+                  )
+                })
+              }
             </div>
           )
         }

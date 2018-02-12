@@ -56,7 +56,7 @@ export default class MyStartupsNEAttachmentsAttachmentModal extends Component {
     } : undefined
 
     return (
-      <Modal show onHide={close} className="form-modal">
+      <Modal show onHide={close} className="form-modal" bsSize="large">
         <Modal.Header closeButton>
           <Modal.Title>{keyword} Document Attachment</Modal.Title>
         </Modal.Header>

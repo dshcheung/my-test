@@ -202,11 +202,6 @@
             font-size: ($font-size-base * 1.1);
             font-weight: 200;
           }
-          .highlights {
-            li {
-              color: darken(#FF7538, 20%);
-            }
-          }
           .milestone {
             .h3 {
               margin-top: 0;
@@ -214,11 +209,6 @@
               // border-bottom: 1px solid $brand-primary;
               font-size: ($font-size-base * 1.2);
               margin-bottom: 0.5em;
-            }
-            ul {
-              li {
-                margin-bottom: 10px;
-              }
             }
           }
           &.team {
@@ -278,19 +268,12 @@
           }
 
           ul {
+            padding-left: 0;
             margin: 0;
+            list-style: none;
             li {
-              list-style: none;
               font-size: ($font-size-base * 1.1);
               margin-bottom: 10px;
-              &:before {
-                content: "\f054"; /* FontAwesome Unicode */
-                font-family: FontAwesome;
-                display: inline-block;
-                margin-left: -1.5em; /* same as padding-left set on li */
-                width: 1.5em; /* same as padding-left set on li */
-                font-size: ($font-size-base * 0.9);
-              }
             }
             &.list {
               li {

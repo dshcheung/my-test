@@ -69,7 +69,7 @@ export default class MyStartupsSRiskModal extends Component {
     const keyword = editMode ? "Edit" : "Add"
 
     return (
-      <Modal show onHide={close} className={`form-modal ${!this.state.sRisk && 'hide'}`} id="modals-my-startups-s-risk">
+      <Modal show onHide={close} className={`form-modal ${!this.state.sRisk && 'hide'}`} id="modals-my-startups-s-risk" bsSize="large">
         <Modal.Header closeButton>
           <Modal.Title>{keyword} Risk</Modal.Title>
         </Modal.Header>

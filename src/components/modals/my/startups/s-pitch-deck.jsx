@@ -68,7 +68,7 @@ export default class MyStartupsSPitchDeckModal extends Component {
     const keyword = editMode ? "Edit" : "Add"
 
     return (
-      <Modal show onHide={close} className={`form-modal ${!this.state.sPitchDeck && 'hide'}`} id="modals-my-startups-s-pitch-deck">
+      <Modal show onHide={close} className={`form-modal ${!this.state.sPitchDeck && 'hide'}`} id="modals-my-startups-s-pitch-deck" bsSize="large">
         <Modal.Header closeButton>
           <Modal.Title>{keyword} Pitch Deck</Modal.Title>
         </Modal.Header>

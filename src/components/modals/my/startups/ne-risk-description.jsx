@@ -44,7 +44,7 @@ export default class MyStartupsNERiskDescriptionModal extends Component {
     } : undefined
 
     return (
-      <Modal show onHide={close} className="form-modal">
+      <Modal show onHide={close} className="form-modal" bsSize="large">
         <Modal.Header closeButton>
           <Modal.Title>{keyword} Risk Description</Modal.Title>
         </Modal.Header>

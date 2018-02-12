@@ -67,38 +67,36 @@ export default class SharedStartupsKPIs extends Component {
 
         {
           !emptyKPIs && (
-            <div className="row">
-              <ul className="col-xs-12 list kpis">
-                {
-                  kpis.map((kpi, i) => {
-                    const dInProcess = _.get(requestStatus, `${D_MY_STARTUP_KPI}_${kpi.id}`)
+            <ul className="kpis">
+              {
+                kpis.map((kpi, i) => {
+                  const dInProcess = _.get(requestStatus, `${D_MY_STARTUP_KPI}_${kpi.id}`)
 
-                    return (
-                      <li key={i}>
-                        {
-                          editable && (
-                            <button
-                              className="btn btn-info edit pull-right"
-                              onClick={() => { this.open(true, kpi) }}
-                            ><i className="fa fa-pencil" /></button>
-                          )
-                        }
-                        {
-                          editable && (
-                            <button
-                              className="btn btn-danger delete pull-right"
-                              disabled={dInProcess}
-                              onClick={() => { this.dMyStartupKPI(kpi.id) }}
-                            ><i className="fa fa-trash" /></button>
-                          )
-                        }
-                        <span dangerouslySetInnerHTML={{ __html: kpi.detail.decode() }} />
-                      </li>
-                    )
-                  })
-                }
-              </ul>
-            </div>
+                  return (
+                    <li key={i}>
+                      {
+                        editable && (
+                          <button
+                            className="btn btn-info edit pull-right"
+                            onClick={() => { this.open(true, kpi) }}
+                          ><i className="fa fa-pencil" /></button>
+                        )
+                      }
+                      {
+                        editable && (
+                          <button
+                            className="btn btn-danger delete pull-right"
+                            disabled={dInProcess}
+                            onClick={() => { this.dMyStartupKPI(kpi.id) }}
+                          ><i className="fa fa-trash" /></button>
+                        )
+                      }
+                      <span dangerouslySetInnerHTML={{ __html: kpi.detail.decode() }} />
+                    </li>
+                  )
+                })
+              }
+            </ul>
           )
         }
 

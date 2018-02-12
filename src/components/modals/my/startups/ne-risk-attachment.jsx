@@ -52,7 +52,7 @@ export default class MyStartupsNERiskAttachmentModal extends Component {
     } : undefined
 
     return (
-      <Modal show onHide={close} className="form-modal">
+      <Modal show onHide={close} className="form-modal" bsSize="large">
         <Modal.Header closeButton>
           <Modal.Title>{keyword} Risk Attachment</Modal.Title>
         </Modal.Header>

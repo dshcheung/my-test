@@ -67,39 +67,37 @@ export default class SharedStartupsFunds extends Component {
 
         {
           !emptyFunds && (
-            <div className="row">
-              <ul className="col-xs-12 funds">
-                {
-                  funds.map((fund, i) => {
-                    const dInProcess = _.get(requestStatus, `${D_MY_STARTUP_FUND}_${fund.id}`)
+            <ul className="funds">
+              {
+                funds.map((fund, i) => {
+                  const dInProcess = _.get(requestStatus, `${D_MY_STARTUP_FUND}_${fund.id}`)
 
-                    return (
-                      <div className="fund" key={i}>
-                        {
-                          editable && (
-                            <button
-                              className="btn btn-info edit pull-right"
-                              onClick={() => { this.open(true, fund) }}
-                            ><i className="fa fa-pencil" /></button>
-                          )
-                        }
-                        {
-                          editable && (
-                            <button
-                              className="btn btn-danger delete pull-right"
-                              disabled={dInProcess}
-                              onClick={() => { this.dMyStartupFund(fund.id) }}
-                            ><i className="fa fa-trash" /></button>
-                          )
-                        }
-                        <div className="h3">{moment(fund.received_at).format('MMMM YYYY')}</div>
-                        <p><b>{fund.company}</b> ${fund.amount}</p>
-                      </div>
-                    )
-                  })
-                }
-              </ul>
-            </div>
+                  return (
+                    <div className="fund" key={i}>
+                      {
+                        editable && (
+                          <button
+                            className="btn btn-info edit pull-right"
+                            onClick={() => { this.open(true, fund) }}
+                          ><i className="fa fa-pencil" /></button>
+                        )
+                      }
+                      {
+                        editable && (
+                          <button
+                            className="btn btn-danger delete pull-right"
+                            disabled={dInProcess}
+                            onClick={() => { this.dMyStartupFund(fund.id) }}
+                          ><i className="fa fa-trash" /></button>
+                        )
+                      }
+                      <div className="h3">{moment(fund.received_at).format('MMMM YYYY')}</div>
+                      <p><b>{fund.company}</b> ${fund.amount}</p>
+                    </div>
+                  )
+                })
+              }
+            </ul>
           )
         }
 

@@ -4,7 +4,7 @@ import { reduxForm, Field } from 'redux-form'
 import Validators from '../../../../services/form-validators'
 
 import TextField from '../../../shared/form-elements/text-field'
-import TextArea from '../../../shared/form-elements/text-area'
+import RichTextEditorField from '../../../shared/form-elements/rich-text-editor-field'
 import ImageField from '../../../shared/form-elements/image-field'
 
 @reduxForm({
@@ -42,9 +42,10 @@ export default class MyStartupsTeamFounderForm extends Component {
 
           <Field
             name="description"
-            component={TextArea}
+            component={RichTextEditorField}
             opts={{
-              label: "Description"
+              label: "Description",
+              placeholder: "Add Description Here"
             }}
           />
 

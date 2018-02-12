@@ -67,39 +67,37 @@ export default class SharedStartupsMilestones extends Component {
 
         {
           !emptyMilestones && (
-            <div className="row">
-              <ul className="col-xs-12 milestones">
-                {
-                  milestones.map((milestone, i) => {
-                    const dInProcess = _.get(requestStatus, `${D_MY_STARTUP_MILESTONE}_${milestone.id}`)
+            <ul className="milestones">
+              {
+                milestones.map((milestone, i) => {
+                  const dInProcess = _.get(requestStatus, `${D_MY_STARTUP_MILESTONE}_${milestone.id}`)
 
-                    return (
-                      <div className="milestone" key={i}>
-                        {
-                          editable && (
-                            <button
-                              className="btn btn-info edit pull-right"
-                              onClick={() => { this.open(true, milestone) }}
-                            ><i className="fa fa-pencil" /></button>
-                          )
-                        }
-                        {
-                          editable && (
-                            <button
-                              className="btn btn-danger delete pull-right"
-                              disabled={dInProcess}
-                              onClick={() => { this.dMyStartupMilestone(milestone.id) }}
-                            ><i className="fa fa-trash" /></button>
-                          )
-                        }
-                        <div className="h3">{moment(milestone.completed_on).format('MMMM YYYY')}</div>
-                        <p dangerouslySetInnerHTML={{ __html: milestone.detail.decode() }} />
-                      </div>
-                    )
-                  })
-                }
-              </ul>
-            </div>
+                  return (
+                    <div className="milestone" key={i}>
+                      {
+                        editable && (
+                          <button
+                            className="btn btn-info edit pull-right"
+                            onClick={() => { this.open(true, milestone) }}
+                          ><i className="fa fa-pencil" /></button>
+                        )
+                      }
+                      {
+                        editable && (
+                          <button
+                            className="btn btn-danger delete pull-right"
+                            disabled={dInProcess}
+                            onClick={() => { this.dMyStartupMilestone(milestone.id) }}
+                          ><i className="fa fa-trash" /></button>
+                        )
+                      }
+                      <div className="h3">{moment(milestone.completed_on).format('MMMM YYYY')}</div>
+                      <p dangerouslySetInnerHTML={{ __html: milestone.detail.decode() }} />
+                    </div>
+                  )
+                })
+              }
+            </ul>
           )
         }
 

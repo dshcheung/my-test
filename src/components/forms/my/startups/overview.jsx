@@ -25,7 +25,7 @@ export default class MyStartupsOverviewForm extends Component {
             name="overview"
             component={RichTextEditorField}
             opts={{
-              label: "Overview"
+              placeholder: "Add Overview Here"
             }}
           />
 

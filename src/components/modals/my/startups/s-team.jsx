@@ -73,7 +73,7 @@ export default class MyStartupsSTeamModal extends Component {
     const keyword = editMode ? "Edit" : "Add"
 
     return (
-      <Modal show onHide={close} className={`form-modal ${!this.state.sTeam && 'hide'}`} id="modals-my-startups-s-team">
+      <Modal show onHide={close} className={`form-modal ${!this.state.sTeam && 'hide'}`} id="modals-my-startups-s-team" bsSize="large">
         <Modal.Header closeButton>
           <Modal.Title>{keyword} Team</Modal.Title>
         </Modal.Header>

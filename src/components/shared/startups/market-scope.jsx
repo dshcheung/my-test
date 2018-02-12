@@ -55,9 +55,7 @@ export default class SharedStartupsMarketScope extends Component {
 
         {
           description && (
-            <div className="row">
-              <div className="col-xs-12 market-scope-description" dangerouslySetInnerHTML={{ __html: description.decode() }} />
-            </div>
+            <div className="market-scope-description" dangerouslySetInnerHTML={{ __html: description.decode() }} />
           )
         }
 

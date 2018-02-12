@@ -55,8 +55,6 @@ export default class MyProfileEducationForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass, getEducationLevelInProcess, educationLevel } = this.props
 
-    console.log(educationLevel)
-
     return (
       <div id="forms-my-profile-education" className={optClass}>
         <form onSubmit={handleSubmit}>

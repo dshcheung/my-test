@@ -54,7 +54,7 @@ export default class MyStartupsNEMemberModal extends Component {
     } : undefined
 
     return (
-      <Modal show onHide={close} className="form-modal">
+      <Modal show onHide={close} className="form-modal" bsSize="large">
         <Modal.Header closeButton>
           <Modal.Title>{keyword} Team Member</Modal.Title>
         </Modal.Header>

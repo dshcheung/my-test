@@ -44,7 +44,7 @@ export default class MyStartupsNETeamStoryModal extends Component {
     } : undefined
 
     return (
-      <Modal show onHide={close} className="form-modal">
+      <Modal show onHide={close} className="form-modal" bsSize="large">
         <Modal.Header closeButton>
           <Modal.Title>{keyword} Team Story</Modal.Title>
         </Modal.Header>

@@ -57,7 +57,7 @@ export default class MyStartupsNEMilestoneModal extends Component {
     } : undefined
 
     return (
-      <Modal show onHide={close} className="form-modal">
+      <Modal show onHide={close} className="form-modal" bsSize="large">
         <Modal.Header closeButton>
           <Modal.Title>{keyword} Milestone</Modal.Title>
         </Modal.Header>
