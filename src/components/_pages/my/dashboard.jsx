@@ -120,9 +120,11 @@ export default class MyDashboard extends Component {
                   }
                 </div>
               </Tab>
-              <Tab eventKey={2} title="Some Analysis">
-                In Development
-              </Tab>
+              {
+                // <Tab eventKey={2} title="Some Analysis">
+                //   In Development
+                // </Tab>
+              }
             </Tabs>
           )
         }
