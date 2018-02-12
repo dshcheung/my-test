@@ -279,7 +279,7 @@ export default class SharedCampaignsProfile extends Component {
         </div>
 
         {this.state.eHeader && <MyStartupsEHeaderModal close={this.close} params={routeParams} /> }
-        {this.state.nPledge && <CampaignsNPledgeModal close={this.close} params={routeParams} />}
+        {this.state.nPledge && <CampaignsNPledgeModal close={this.close} params={routeParams} campaign={campaign} />}
       </div>
     )
   }

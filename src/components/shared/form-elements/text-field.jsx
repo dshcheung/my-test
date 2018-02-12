@@ -10,7 +10,8 @@ export default class TextField extends Component {
         type,
         customLabel, label, decodeLabel,
         placeholder,
-        hint
+        hint,
+        step, min
       }
     } = this.props
 
@@ -25,6 +26,8 @@ export default class TextField extends Component {
           className="form-control"
           placeholder={placeholder}
           type={type || "text"}
+          step={step}
+          min={min}
           {...input}
         />
         { hint && <span className="help-block">{hint}</span> }

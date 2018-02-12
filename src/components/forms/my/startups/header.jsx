@@ -17,7 +17,7 @@ export default class MyStartupsHeaderForm extends Component {
     const { handleSubmit, submitInProcess, optClass, avatarUrl, bannerUrl } = this.props
 
     return (
-      <div id="forms-my-profile-basic" className={optClass}>
+      <div id="forms-my-startups-header" className={optClass}>
         <form onSubmit={handleSubmit}>
           <Field
             name="avatar"

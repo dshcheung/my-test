@@ -30,7 +30,7 @@ export default class MyCampaignBasicForm extends Component {
     const { handleSubmit, submitInProcess, optClass, title } = this.props
 
     return (
-      <div id="forms-my-profile-basic" className={optClass}>
+      <div id="forms-campaigns-basic" className={optClass}>
         { title && <h1 className="form-title margin-bottom-20 margin-top-0">{title}</h1>}
 
         <form onSubmit={handleSubmit}>
