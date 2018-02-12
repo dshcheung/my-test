@@ -32,7 +32,7 @@ export default class SharedMyCampaignsStages extends Component {
 
   componentWillReceiveProps(nextProps) {
     const thisHash = this.props.location.hash.split("#")[1]
-    const nextHash = this.props.location.hash.split("#")[1]
+    const nextHash = nextProps.location.hash.split("#")[1]
     if (thisHash !== nextHash) {
       this.setStage(nextProps)
     }

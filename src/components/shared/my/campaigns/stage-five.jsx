@@ -28,42 +28,54 @@ export default class SharedMyCampaignsStageFive extends Component {
     return (
       <div className="stage-five row text-center">
         {
-          submittedStatus === "not_submitted" && (
-            <div className="not-submitted">
-              <div>When You Are Ready To Submit Your Campaign For Us To Review, Click The Button Below</div>
-              <button
-                className={`btn btn-info btn-lg ${markMyCampaignForReviewInProcess && "m-progress"}`}
-                type="submit"
-                disabled={markMyCampaignForReviewInProcess}
-                onClick={() => { this.props.markMyCampaignForReview(this.props.routeParams) }}
-              >
-                Request Admin Approval
-              </button>
-            </div>
-          )
-        }
+          (() => {
+            let component = null
 
-        {
-          submittedStatus === "pending" && (
-            <div className="pending">Please Wait Patiently For Our Approval. We Will Get Back To You Soon</div>
-          )
-        }
+            if (submittedStatus === "not_submitted") {
+              component = (
+                <div>
+                  <div className="margin-bottom-15">When You Are Ready To Submit Your Campaign For Us To Review, Click The Button Below</div>
+                  <button
+                    className={`btn btn-info btn-lg ${markMyCampaignForReviewInProcess && "m-progress"}`}
+                    type="submit"
+                    disabled={markMyCampaignForReviewInProcess}
+                    onClick={() => { this.props.markMyCampaignForReview(this.props.routeParams) }}
+                  >
+                    Request Admin Approval
+                  </button>
+                </div>
+              )
+            } else if (submittedStatus === "rejected" || submittedStatus === "waiting_for_update") {
+              const remarks = _.get(myCampaign, 'status.remarks', '')
+              component = (
+                <div>
+                  { submittedStatus === "rejected" && <div>Unfortunately We Have Rejected Your Campaign {remarks && "Due To The Following Reason(s)"}</div> }
+                  { submittedStatus === "waiting_for_update" && <div>Unfortunately We Are Waiting For More Information On Your Campaign {remarks && "On The Following"}</div> }
+                  { remarks && <div className="margin-top-15" dangerouslySetInnerHTML={{ __html: remarks.decode() }} /> }
+                </div>
+              )
+            } else if (submittedStatus === "accepted") {
+              component = (
+                <div>
+                  <div>Your Campaign Is Now Accpeted And Ready For Investors</div>
+                </div>
+              )
+            } else {
+              component = (
+                <div>
+                  <div>Please Wait Patiently For Our Approval. We Will Get Back To You Soon</div>
+                </div>
+              )
+            }
 
-        {
-          submittedStatus === "rejected" && (
-            <div className="rejected">
-              <div>Unfortunately We Have Rejected Your Campaign Due To The Following Reason</div>
-              <div dangerouslySetInnerHTML={{ __html: _.get(myCampaign, 'status.remakrs', '').decode() }} />
-            </div>
-          )
-        }
+            return (
+              <div>
+                <div className="margin-bottom-15"><strong>Review Status -</strong> <span>{submittedStatus.splitCap("_")}</span></div>
 
-        {
-          submittedStatus === "accepted" && (
-            <div className="accepted">
-              We Are Pleased To Inform You That Your Campaign Has Been Approved And Is Now Active For Investors To Invest
-            </div>
-          )
+                {component}
+              </div>
+            )
+          })()
         }
       </div>
     )

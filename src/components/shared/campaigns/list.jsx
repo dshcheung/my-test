@@ -58,7 +58,7 @@ export default class CampaignList extends Component {
                 }
 
                 const submitStatus = _.get(campaign, 'status.submitted')
-                const isApproved = submitStatus === "accepted" || investorViewable
+                const isAccepted = submitStatus === "accepted" || investorViewable
 
                 return (
                   <div key={i} className="col-xs-12 col-sm-6 col-md-4 text-center campaign-card">
@@ -75,7 +75,7 @@ export default class CampaignList extends Component {
                       </div>
 
                       {
-                        isApproved ? (
+                        isAccepted ? (
                           <div className="stats">
                             <hr />
 
@@ -98,9 +98,7 @@ export default class CampaignList extends Component {
                           <div>
                             <hr />
                             <Link to={linkTo}>
-                              { submitStatus === "not_submitted" && <div className="bg-warning">{submitStatus.splitCap("_")}</div> }
-                              { submitStatus === "pending" && <div className="bg-warning">{submitStatus.splitCap("_")}</div> }
-                              { submitStatus === "rejected" && <div className="bg-danger">{submitStatus.splitCap("_")}</div> }
+                              <div className={`${submitStatus === "rejected" || submitStatus === "waiting_for_update" ? "bg-danger" : "bg-warning"}`}>{submitStatus.splitCap("_")}</div>
                             </Link>
                           </div>
                         )
