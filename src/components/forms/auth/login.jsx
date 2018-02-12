@@ -41,18 +41,15 @@ export default class AuthLoginForm extends Component {
             name="password"
             component={TextField}
             opts={{
-              customLabel: (label, name) => {
-                return (
-                  <div>
-                    <label htmlFor={name}>{label}</label>
-                    <Link to="/auth/forgot-password" className="pull-right forgot-password">Forgot?</Link>
-                  </div>
-                )
-              },
+              optClass: "margin-bottom-0",
               type: "password",
               label: "Password *"
             }}
           />
+
+          <div className="form-group clearfix margin-bottom-20">
+            <Link to="/auth/forgot-password" className="pull-right forgot-password">Forgot?</Link>
+          </div>
 
           <button
             className={`btn btn-info btn-lg btn-block ${submitInProcess && "m-progress"}`}

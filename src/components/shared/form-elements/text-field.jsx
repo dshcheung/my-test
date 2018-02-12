@@ -6,6 +6,7 @@ export default class TextField extends Component {
     const {
       input, meta: { touched, invalid, error },
       opts: {
+        optClass,
         type,
         customLabel, label, decodeLabel,
         placeholder,
@@ -16,7 +17,7 @@ export default class TextField extends Component {
     const hasErrorClass = touched && invalid ? 'has-error' : ''
 
     return (
-      <div className={`form-group clearfix ${hasErrorClass}`}>
+      <div className={`form-group clearfix ${hasErrorClass} ${optClass}`}>
         { customLabel && label && customLabel(label, input.name) }
         { !customLabel && label && <label htmlFor={input.name}>{label}</label> }
         { decodeLabel && <label htmlFor={input.name} dangerouslySetInnerHTML={{ __html: decodeLabel.decode() }} />}
