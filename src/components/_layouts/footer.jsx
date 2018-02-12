@@ -36,6 +36,7 @@ export default class Footer extends Component {
                     <li><Link className="btn-gray" to="/press">Press</Link></li>
                     <li><Link className="btn-gray" to="/contact-us">Contact</Link></li>
                     <li><Link className="btn-gray" to="/privacy">Legal & Privacy</Link></li>
+                    <li><Link className="btn-gray" to="/fair-dealing-policy">Fair Deal Policy</Link></li>
                     <li><Link className="btn-gray" to="/security">Security</Link></li>
                   </ul>
                 </div>
