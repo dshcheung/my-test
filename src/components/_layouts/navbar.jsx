@@ -208,8 +208,16 @@ export default class Navbar extends Component {
 
                   {
                     currentUser.role === "Investor" && (
-                      <LinkContainer to="/my/questionnaires" active={false}>
-                        <MenuItem eventKey={9.5}>My RPQ Process</MenuItem>
+                      <LinkContainer to="/my/aml" active={false}>
+                        <MenuItem eventKey={9.5}>My AML Process</MenuItem>
+                      </LinkContainer>
+                    )
+                  }
+
+                  {
+                    currentUser.role === "Investor" && (
+                      <LinkContainer to="/my/kyc" active={false}>
+                        <MenuItem eventKey={9.5}>My KYC Process</MenuItem>
                       </LinkContainer>
                     )
                   }

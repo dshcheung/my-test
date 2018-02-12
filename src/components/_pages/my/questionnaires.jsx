@@ -35,7 +35,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class ValidationStageOne extends Component {
+export default class MyQuestionnaires extends Component {
   constructor(props) {
     super(props)
 
@@ -179,7 +179,7 @@ export default class ValidationStageOne extends Component {
           <div className="container">
             {
               order.map((o, i) => {
-                // TODO: add in an invalid state for the RPQ stage
+                // TODO: add in an invalid state for the KYC stage
                 const isCompleted = stageStatus[o]
                 const bgColor = isCompleted ? "bg-success" : ""
                 const activeBgColor = currentStage === o ? "bg-info" : ""

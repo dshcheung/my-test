@@ -31,7 +31,7 @@ export default class SharedMyCampaignsStageTwo extends Component {
     super(props)
 
     this.state = {
-      order: ["highlights", "story_and_history", "business_model", "market_scope", "go_to_market", "team", "financial_and_kpi", "investment_proposition"],
+      order: ["highlights", "story_and_history", "business_model", "industry_analysis", "go_to_market", "team", "financial_and_kpi", "investment_proposition"],
       currentStage: "highlights"
     }
 

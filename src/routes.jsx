@@ -22,6 +22,7 @@ import MyConversationsIndexContainer from './components/_pages/my/conversations'
 import MyNotificationsIndexContainer from './components/_pages/my/notifications/index'
 
 import MyQuestionnairesContainer from './components/_pages/my/questionnaires'
+import MyAMLContainer from './components/_pages/my/aml'
 import MyPortfolioContainer from './components/_pages/my/portfolio'
 
 import MyCampaignsContainer from './components/_pages/my/campaigns/wrapper'
@@ -72,7 +73,8 @@ export default (
       </Route>
 
       {/* Investor Paths */}
-      <Route path="questionnaires" component={MyQuestionnairesContainer} roleAccess="Investor" />
+      <Route path="kyc" component={MyQuestionnairesContainer} roleAccess="Investor" />
+      <Route path="aml" component={MyAMLContainer} roleAccess="Investor" />
       <Route path="portfolio" component={MyPortfolioContainer} roleAccess="Investor" />
 
       {/* StartupUser Paths */}

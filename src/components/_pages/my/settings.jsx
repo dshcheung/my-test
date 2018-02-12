@@ -178,8 +178,8 @@ export default class Settings extends Component {
                 </Panel>
                 {
                   isInvestor && (
-                    <Panel header="RPQ Status">
-                      <div><strong>RPQ Status -</strong> <span className={`${rpq_approved ? "text-success" : "text-warning"}`}>{rpq_approved ? "Approved" : "Pending"}</span></div>
+                    <Panel header="KYC Status">
+                      <div><strong>KYC Status -</strong> <span className={`${rpq_approved ? "text-success" : "text-warning"}`}>{rpq_approved ? "Approved" : "Pending"}</span></div>
                     </Panel>
                   )
                 }

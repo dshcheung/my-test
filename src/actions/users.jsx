@@ -46,7 +46,7 @@ export const createUser = (values) => {
     successCB: (dispatch, data) => {
       dispatch(setCurrentUser(data))
       if (data.role === "Investor") {
-        dispatch(push('/my/questionnaires'))
+        dispatch(push('/my/kyc'))
       } else if (data.role === "StartupUser") {
         dispatch(push('/my/campaigns/new'))
       }
