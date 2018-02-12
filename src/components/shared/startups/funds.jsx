@@ -48,7 +48,7 @@ export default class SharedStartupsFunds extends Component {
   render() {
     const { funds, editable, requestStatus, routeParams } = this.props
     const { neFund, editMode, editInfo } = this.state
-    const title = "Funds"
+    const title = "Use of Funds"
     const emptyFunds = funds.length === 0
 
     return (

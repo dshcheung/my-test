@@ -62,7 +62,7 @@ export default class CampaignsNPledgeModal extends Component {
   render() {
     const { close } = this.props
 
-    const keyword = "Pledge"
+    const keyword = "Invest"
 
     return (
       <Modal show onHide={close} className="form-modal">

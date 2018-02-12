@@ -67,7 +67,7 @@ export default class SharedStartupsPitchDeck extends Component {
                   attachments.map((attachment, i) => {
                     return (
                       <li key={i}>
-                        <a href={attachment.file.original} className="btn btn-success">
+                        <a href={attachment.file.original} className="btn btn-success" target="_blank">
                           {attachment.title}
                           <i className="fa fa-fw fa-download" />
                         </a>

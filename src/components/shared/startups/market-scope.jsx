@@ -26,7 +26,7 @@ export default class SharedStartupsMarketScope extends Component {
   render() {
     const { marketScope, editable, routeParams } = this.props
     const { sMarketScope } = this.state
-    const title = "Market Scope"
+    const title = "Industry Analysis"
 
     const description = _.get(marketScope, 'description', null)
     const descriptionExists = !!description
@@ -67,7 +67,7 @@ export default class SharedStartupsMarketScope extends Component {
                   attachments.map((attachment, i) => {
                     return (
                       <li key={i}>
-                        <a href={attachment.file.original} className="btn btn-success">
+                        <a href={attachment.file.original} className="btn btn-success" target="_blank">
                           {attachment.title}
                           <i className="fa fa-fw fa-download" />
                         </a>

@@ -37,7 +37,7 @@ export default class CampaignList extends Component {
 
                 const campaignID = campaign.id
                 const campaignName = campaign.campaign_type.name
-                const amountType = campaign.campaign_type.amount_type === "valuation_cap" ? "Valuation Cap" : "Equity"
+                const amountType = campaign.campaign_type.amount_type.splitCap("_")
 
                 const endDate = moment(campaign.end_date).diff(moment(), 'days')
                 const goal = campaign.goal || 0

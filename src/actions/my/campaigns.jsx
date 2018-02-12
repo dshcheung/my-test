@@ -110,7 +110,6 @@ export const uMyCampaign = (values, params) => {
         name: _.get(values, 'name', null),
         maturity_date: _.get(values, 'maturityDate', null),
         interest_rate: _.get(values, 'interestRate', null),
-        amount: _.get(values, 'amount', null),
         amount_type: _.get(values, 'amountType', null)
       }
     }, 'campaign')

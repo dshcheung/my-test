@@ -177,7 +177,7 @@ export default class SharedCampaignsProfile extends Component {
                           className="btn btn-primary btn-block btn-lg"
                           onClick={() => { this.setState({ nPledge: true }) }}
                           disabled={hasPledged}
-                        >{canPledge && !hasPledged && "Pledge Now"}{hasPledged && "You Have Pledged"}</button>
+                        >{canPledge && !hasPledged && "Invest Now"}{hasPledged && "You Have Invested"}</button>
                       </div>
                     </div>
                   )
@@ -214,7 +214,7 @@ export default class SharedCampaignsProfile extends Component {
                     }
                     {
                       (modalEditable || fundsExist) && (
-                        <li><Link to="Funds" spy smooth duration={500} offset={-100}>Funds</Link></li>
+                        <li><Link to="Use of Funds" spy smooth duration={500} offset={-100}>Use of Funds</Link></li>
                       )
                     }
                     {
@@ -229,7 +229,7 @@ export default class SharedCampaignsProfile extends Component {
                     }
                     {
                       (modalEditable || marketScopeExist) && (
-                        <li><Link to="Market Scope" spy smooth duration={500} offset={-100}>Market Scope</Link></li>
+                        <li><Link to="Industry Analysis" spy smooth duration={500} offset={-100}>Industry Analysis</Link></li>
                       )
                     }
                     {

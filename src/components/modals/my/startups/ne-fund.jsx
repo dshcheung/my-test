@@ -60,7 +60,7 @@ export default class MyStartupsNEFundModal extends Component {
     return (
       <Modal show onHide={close} className="form-modal" bsSize="large">
         <Modal.Header closeButton>
-          <Modal.Title>{keyword} Fund</Modal.Title>
+          <Modal.Title>{keyword} Use Of Fund</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <MyStartupsFundForm

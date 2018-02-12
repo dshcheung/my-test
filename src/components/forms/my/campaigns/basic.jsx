@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+import {
+  gImmovable, G_IMMOVABLE_CAMPAIGN_TYPE_OPTIONS
+} from '../../../../actions/immovables'
 
 import Validators from '../../../../services/form-validators'
 
@@ -7,8 +13,22 @@ import TextField from '../../../shared/form-elements/text-field'
 import SelectField from '../../../shared/form-elements/select-field'
 import DatetimePicker from '../../../shared/form-elements/datetime-picker'
 
+const mapStateToProps = (state) => {
+  return {
+    campaignTypes: _.get(state.immovables, 'campaign_type_options', []),
+    gImmovableInProcess: _.get(state.requestStatus, G_IMMOVABLE_CAMPAIGN_TYPE_OPTIONS),
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    gImmovable: bindActionCreators(gImmovable, dispatch)
+  }
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 @reduxForm({
-  form: "MyCampaignBasicForm",
+  form: "MyCampaignsBasicForm",
   validate: (values) => {
     return Validators({
       startup: [{ type: "attrPresences", opts: { key: "id" } }],
@@ -25,9 +45,13 @@ import DatetimePicker from '../../../shared/form-elements/datetime-picker'
     maturityDate: moment().startOf('day').toDate()
   }
 })
-export default class MyCampaignBasicForm extends Component {
+export default class MyCampaignsBasicForm extends Component {
+  componentWillMount() {
+    this.props.gImmovable({ immovableID: "campaign_type_options" })
+  }
+
   render() {
-    const { handleSubmit, submitInProcess, optClass, title } = this.props
+    const { handleSubmit, submitInProcess, optClass, title, campaignTypes, gImmovableInProcess } = this.props
 
     return (
       <div id="forms-campaigns-basic" className={optClass}>
@@ -47,9 +71,10 @@ export default class MyCampaignBasicForm extends Component {
             name="amountType"
             component={SelectField}
             opts={{
+              requestInProcess: gImmovableInProcess,
               label: "Valuation Type *",
               placeholder: "Select Valuation Type",
-              options: [{ id: "valuation_cap", name: "Valuation Cap" }],
+              options: campaignTypes,
               valueKey: "id",
               nameKey: "name"
             }}
@@ -61,15 +86,6 @@ export default class MyCampaignBasicForm extends Component {
             opts={{
               type: "number",
               label: "Goal Amount *"
-            }}
-          />
-
-          <Field
-            name="amount"
-            component={TextField}
-            opts={{
-              type: "number",
-              label: "Min Amount *"
             }}
           />
 

@@ -70,7 +70,7 @@ export default class MyStartupsSMarketScopeModal extends Component {
     return (
       <Modal show onHide={close} className={`form-modal ${!this.state.sMarketScope && 'hide'}`} id="modals-my-startups-s-market-scope" bsSize="large">
         <Modal.Header closeButton>
-          <Modal.Title>{keyword} Market Scope</Modal.Title>
+          <Modal.Title>{keyword} Industry Analysis</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <section className="description">

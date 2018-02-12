@@ -48,7 +48,7 @@ export default class MyPortfolio extends Component {
             <div>No Campaigns Found, Click <Link to="/campaigns">Here</Link> To Browse</div>
           ) : (
             <Tabs defaultActiveKey={1} id="portfolio-tabs">
-              <Tab eventKey={1} title="Pledged Campaigns">
+              <Tab eventKey={1} title="Invested Campaigns">
                 <div className="row">
                   <div className="col-xs-12">
                     <table className="table table-hover">
@@ -58,7 +58,7 @@ export default class MyPortfolio extends Component {
                           <th>Days Left</th>
                           <th>Goal</th>
                           <th>Raised</th>
-                          <th>Pledged</th>
+                          <th>Invested</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -103,7 +103,7 @@ export default class MyPortfolio extends Component {
                   }
                 </div>
               </Tab>
-              <Tab eventKey={2} title="Diversification Analysis">
+              <Tab eventKey={2} title="Portfolio Analysis">
                 In Development
               </Tab>
             </Tabs>

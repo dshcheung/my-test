@@ -61,7 +61,7 @@ export default class SharedMyCampaignsStageFive extends Component {
         {
           submittedStatus === "accepted" && (
             <div className="accepted">
-              We Are Pleased To Inform You That Your Campaign Has Been Approved And Is Now Active For Investors To Pledge
+              We Are Pleased To Inform You That Your Campaign Has Been Approved And Is Now Active For Investors To Invest
             </div>
           )
         }

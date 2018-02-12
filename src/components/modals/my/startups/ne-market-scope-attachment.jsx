@@ -54,7 +54,7 @@ export default class MyStartupsNEMarketScopeAttachmentModal extends Component {
     return (
       <Modal show onHide={close} className="form-modal" bsSize="large">
         <Modal.Header closeButton>
-          <Modal.Title>{keyword} Market Scope Attachment</Modal.Title>
+          <Modal.Title>{keyword} Industry Analysis Attachment</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <MyStartupsMarketScopeAttachmentForm

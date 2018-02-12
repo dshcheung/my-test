@@ -72,10 +72,10 @@ export default class SharedStartupsAttachments extends Component {
                 onClick={() => { this.props.requestDataAccess(routeParams) }}
                 className={`btn ${viewDataRoom === "rejected" ? "btn-danger" : "btn-info"} ${requestDataAccessInProcess && "m-progress"}`}
                 type="submit"
-                disabled={requestDataAccessInProcess || viewDataRoom === "rejected"}
+                disabled={requestDataAccessInProcess || viewDataRoom === "rejected" || viewDataRoom === "pending"}
               >
-                {viewDataRoom === null && "Request Data"}
-                {viewDataRoom === "pending" && "Request Sent"}
+                {(viewDataRoom === null || viewDataRoom === false) && "Request Dataroom Access"}
+                {viewDataRoom === "pending" && "Request Access Sent"}
                 {viewDataRoom === "rejected" && "Your Request Has Been Rejected"}
               </button>
             </div>
@@ -90,7 +90,7 @@ export default class SharedStartupsAttachments extends Component {
                   attachments.map((attachment, i) => {
                     return (
                       <li key={i}>
-                        <a href={attachment.file.original} className="btn btn-success">
+                        <a href={attachment.file.original} className="btn btn-success" target="_blank">
                           {attachment.title}
                           <i className="fa fa-fw fa-download" />
                         </a>

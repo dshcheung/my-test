@@ -24,7 +24,7 @@ export const cMyStartupFund = (values, params, cb) => {
     successCB: (dispatch, data) => {
       if (cb) cb()
       dispatch(mergeMyCampaignAttribute(data, 'startup.funds'))
-      notySuccess("Fund Added!")
+      notySuccess("Use of Funds Added")
     }
   }
 }
@@ -48,7 +48,7 @@ export const uMyStartupFund = (values, params, cb) => {
     successCB: (dispatch, data) => {
       if (cb) cb()
       dispatch(mergeMyCampaignAttribute(data, 'startup.funds'))
-      notySuccess("Fund Updated!")
+      notySuccess("Use of Funds Updated")
     }
   }
 }
