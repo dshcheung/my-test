@@ -139,6 +139,7 @@ export default class ValidationStageOne extends Component {
         questionnaires={currentQuestionnaire}
         initialValues={initialValues}
         fileUrls={fileUrls}
+        hideHintBtn
       />
     )
   }
