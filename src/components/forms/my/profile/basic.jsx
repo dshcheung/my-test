@@ -4,7 +4,7 @@ import { reduxForm, Field } from 'redux-form'
 import Validators from '../../../../services/form-validators'
 
 import TextField from '../../../shared/form-elements/text-field'
-import TextArea from '../../../shared/form-elements/text-area'
+// import TextArea from '../../../shared/form-elements/text-area'
 import ImageField from '../../../shared/form-elements/image-field'
 
 @reduxForm({
@@ -42,13 +42,16 @@ export default class MyProfileBasicForm extends Component {
             }}
           />
 
-          <Field
-            name="bio"
-            component={TextArea}
-            opts={{
-              label: "Bio"
-            }}
-          />
+          {
+            // TODO: Remove?
+            // <Field
+            //   name="bio"
+            //   component={TextArea}
+            //   opts={{
+            //     label: "Bio"
+            //   }}
+            // />
+          }
 
           <Field
             name="avatar"

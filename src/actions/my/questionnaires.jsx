@@ -67,6 +67,7 @@ export const cMyQuestionnaire = (values, cb) => {
     request,
     successCB: (dispatch, data) => {
       dispatch(setCurrentUser(data))
+      dispatch(mergeMyQuestionnaires(data, true))
       if (cb) cb(data)
     }
   }

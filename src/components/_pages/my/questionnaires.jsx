@@ -41,7 +41,8 @@ export default class ValidationStageOne extends Component {
 
     this.state = {
       order: ["stage_one", "stage_two", "stage_three", "stage_four"],
-      currentStage: "stage_one"
+      currentStage: "stage_one",
+      agreed: false
     }
 
     this.cMyQuestionnaire = this.cMyQuestionnaire.bind(this)
@@ -130,27 +131,46 @@ export default class ValidationStageOne extends Component {
     }
 
     return (
-      <div className="row">
-        <QuestionnaireForm
-          optClass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
-          onSubmit={this.cMyQuestionnaire}
-          submitInProcess={this.props.cMyQuestionnaireInProcess}
-          title={title}
-          questionnaires={currentQuestionnaire}
-          initialValues={initialValues}
-          fileUrls={fileUrls}
-        />
-      </div>
+      <QuestionnaireForm
+        optClass="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2"
+        onSubmit={this.cMyQuestionnaire}
+        submitInProcess={this.props.cMyQuestionnaireInProcess}
+        title={title}
+        questionnaires={currentQuestionnaire}
+        initialValues={initialValues}
+        fileUrls={fileUrls}
+      />
     )
   }
 
-  render() {
-    const { currentUser, gInvestorQInProcess, gMyQuestionnairesInProcess } = this.props
-    const { order, currentStage } = this.state
+  agree() {
+    this.setState({ agreed: true })
+  }
 
-    if (gInvestorQInProcess || gMyQuestionnairesInProcess) return <LoadingSpinner />
+  render() {
+    const { currentUser, gInvestorQInProcess, gMyQuestionnairesInProcess, investorQuestionnaires } = this.props
+    const { order, currentStage, agreed } = this.state
+
+    const stageZeroQuestion = _.get(investorQuestionnaires, 'stage_zero.questions', [])[0]
+
+    if (gInvestorQInProcess || gMyQuestionnairesInProcess || !stageZeroQuestion) return <LoadingSpinner />
 
     const stageStatus = currentUser.investor
+
+    if (!stageStatus.stage_one && !agreed) {
+      return (
+        <div id="pages-my-questionnaires" className="container padding-bottom-15">
+          <div className="content" dangerouslySetInnerHTML={{ __html: stageZeroQuestion.title.decode() }} />
+
+          <div className="text-center">
+            <button
+              className="btn btn-info"
+              onClick={() => { this.agree() }}
+            >Agree</button>
+          </div>
+        </div>
+      )
+    }
 
     return (
       <div id="pages-my-questionnaires">
@@ -181,7 +201,7 @@ export default class ValidationStageOne extends Component {
             }
           </div>
         </div>
-        <div className="container-fluid">
+        <div className="container">
           <div className="row">
             {
               currentStage !== "completed" ? this.questionnaireForm() : (
