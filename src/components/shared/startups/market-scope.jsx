@@ -38,7 +38,7 @@ export default class SharedStartupsMarketScope extends Component {
     const editMode = !isEmpty
 
     return (
-      <Element name={title} className="section">
+      <Element name={title} className="section clearfix">
         <SharedStartupsTitle
           title={title}
           editable={editable}

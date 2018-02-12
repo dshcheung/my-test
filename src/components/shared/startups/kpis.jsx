@@ -52,7 +52,7 @@ export default class SharedStartupsKPIs extends Component {
     const emptyKPIs = kpis.length === 0
 
     return (
-      <Element name={title} className="section">
+      <Element name={title} className="section clearfix">
         <SharedStartupsTitle
           title={title}
           editable={editable}

@@ -42,7 +42,7 @@ export default class SharedStartupsTeam extends Component {
     const editMode = !isEmpty
 
     return (
-      <Element name={title} className="section team">
+      <Element name={title} className="section team clearfix">
         <SharedStartupsTitle
           title={title}
           editable={editable}

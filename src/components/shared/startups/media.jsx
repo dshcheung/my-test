@@ -52,7 +52,7 @@ export default class SharedStartupsMedia extends Component {
     const emptyMedia = media.length === 0
 
     return (
-      <Element name={title} className="section">
+      <Element name={title} className="section clearfix">
         <SharedStartupsTitle
           title={title}
           editable={editable}

@@ -31,7 +31,7 @@ export default class SharedStartupsOverview extends Component {
     const editMode = overviewExist
 
     return (
-      <Element name={title} className="section">
+      <Element name={title} className="section clearfix">
         <SharedStartupsTitle
           title={title}
           editable={editable}

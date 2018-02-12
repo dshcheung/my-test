@@ -52,7 +52,7 @@ export default class SharedStartupsMilestones extends Component {
     const emptyMilestones = milestones.length === 0
 
     return (
-      <Element name={title} className="section">
+      <Element name={title} className="section clearfix">
         <SharedStartupsTitle
           title={title}
           editable={editable}

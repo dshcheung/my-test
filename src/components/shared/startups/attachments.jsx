@@ -50,7 +50,7 @@ export default class SharedStartupsAttachments extends Component {
     const editMode = !emptyAttachments
 
     return (
-      <Element name={title} className="section">
+      <Element name={title} className="section clearfix">
         <SharedStartupsTitle
           title={title}
           editable={editable}
