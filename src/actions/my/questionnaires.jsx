@@ -39,20 +39,24 @@ export const gMyQuestionnaires = ({ queries = {}, nextHref = null } = {}) => {
 }
 
 export const C_MY_QUESTIONNAIRE = "C_MY_QUESTIONNAIRE"
-export const cMyQuestionnaire = (values, cb) => {
+export const cMyQuestionnaire = (values, cb, routeParams) => {
   const params = {
     questionnaire_id: _.get(values, 'questionnaire_id', null),
+    startup_id: _.get(routeParams, 'myStartupID', null),
     answers: {}
   }
 
   for (let i = 0; i < values.answers.length; i += 1) {
     const type = _.get(values.answers, `[${i}].answer_type`, null)
     const questionID = _.get(values.answers, `[${i}].question_id`, null)
+    const answer = type === "file" ? _.get(values.answers, `[${i}].answer[0]`, null) : _.get(values.answers, `[${i}].answer`, null)
 
-    params.answers[i] = {
-      question_id: questionID,
-      answer_type: type,
-      answer: type === "file" ? _.get(values.answers, `[${i}].answer[0]`, null) : _.get(values.answers, `[${i}].answer`, null)
+    if (answer) {
+      params.answers[i] = {
+        question_id: questionID,
+        answer_type: type,
+        answer
+      }
     }
   }
 

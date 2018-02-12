@@ -57,7 +57,7 @@ export default class SharedMyCampaignsStageTwo extends Component {
   cMyQuestionnaire(values) {
     this.props.cMyQuestionnaire(values, () => {
       this.setNextStage()
-    })
+    }, this.props.routeParams)
   }
 
   questionnaireForm() {
