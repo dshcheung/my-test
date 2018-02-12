@@ -41,6 +41,7 @@
     "react-router-redux": "^4.0.8",
     "react-rte": "^0.16.0",
     "react-scroll": "^1.7.3",
+    "react-stripe-elements": "^1.4.1",
     "react-widgets": "^4.1.1",
     "react-widgets-moment": "^4.0.4",
     "redux": "^3.7.2",

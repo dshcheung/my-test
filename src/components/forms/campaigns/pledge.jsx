@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { injectStripe, CardElement } from 'react-stripe-elements'
 
 import Validators from '../../../services/form-validators'
 
@@ -27,6 +28,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
+@injectStripe
 @connect(mapStateToProps, mapDispatchToProps)
 @reduxForm({
   form: "CampaignPledgeForm",
@@ -54,14 +56,17 @@ export default class CampaignPledgeForm extends Component {
     const { handleSubmit, submitInProcess, step, min, gLegalAgreementInProcess, disclaimer } = this.props
     const { paymentMode } = this.state
 
-
     if (paymentMode) {
       if (gLegalAgreementInProcess) return <LoadingSpinner />
 
       return (
         <div className="row">
           <form onSubmit={handleSubmit} className="col-xs-12 col-sm-6 col-sm-offset-3">
-            <div>
+            {
+              paymentMode === "stripe" && <CardElement style={{ base: { fontSize: '18px' } }} />
+            }
+
+            <div className="margin-top-15">
               <Field
                 name="amount"
                 component={TextField}

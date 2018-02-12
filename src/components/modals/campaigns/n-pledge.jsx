@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Modal from 'react-bootstrap/lib/Modal'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { StripeProvider, Elements } from 'react-stripe-elements'
 
 import {
   cPledge, C_PLEDGE
@@ -42,12 +43,16 @@ export default class CampaignsNPledgeModal extends Component {
       <Modal.Body>
         <div className="row">
           <div className="col-xs-12">
-            <CampaignPledgeForm
-              onSubmit={this.onSubmit}
-              submitInProcess={cPledgeInProcess}
-              step={campaign.minimum_increment}
-              min={campaign.minimum_pledge}
-            />
+            <StripeProvider apiKey="pk_test_12345">
+              <Elements>
+                <CampaignPledgeForm
+                  onSubmit={this.onSubmit}
+                  submitInProcess={cPledgeInProcess}
+                  step={campaign.minimum_increment}
+                  min={campaign.minimum_pledge}
+                />
+              </Elements>
+            </StripeProvider>
           </div>
         </div>
       </Modal.Body>
@@ -60,7 +65,7 @@ export default class CampaignsNPledgeModal extends Component {
     const keyword = "Pledge"
 
     return (
-      <Modal show onHide={close} className="form-modal">
+      <Modal show onHide={close} className="form-modal" bsSize="large">
         <Modal.Header closeButton>
           <Modal.Title>{keyword}</Modal.Title>
         </Modal.Header>
