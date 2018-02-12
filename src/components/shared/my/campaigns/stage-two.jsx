@@ -9,10 +9,12 @@ import {
 
 import QuestionnaireForm from '../../../forms/my/questionnaires'
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
+  const startupID = _.get(props, 'routeParams.myStartupID')
+
   return {
     startupQuestionnaires: _.get(state.immovables, 'startup_user_questionnaire'),
-    myQuestionnaires: formatQuestionnaire(_.get(state, 'myQuestionnaires', [])),
+    myQuestionnaires: formatQuestionnaire(_.get(state, 'myQuestionnaires', []), startupID),
     cMyQuestionnaireInProcess: _.get(state.requestStatus, C_MY_QUESTIONNAIRE)
   }
 }

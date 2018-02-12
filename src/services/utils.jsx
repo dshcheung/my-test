@@ -95,7 +95,7 @@ export const extractAttrFromRoutes = (routes, key) => {
   return value
 }
 
-export const formatQuestionnaire = (questionnaires) => {
+export const formatQuestionnaire = (questionnaires, startupID) => {
   const myQuestionnaires = {}
 
   for (let i = 0; i < questionnaires.length; i += 1) {
@@ -109,25 +109,37 @@ export const formatQuestionnaire = (questionnaires) => {
 
     const updatedAt = _.get(myQuestionnaires[questionnaireID][questionID], 'updated_at')
     if (!updatedAt || updatedAt < question.updated_at) {
-      myQuestionnaires[questionnaireID][questionID] = {
-        question_id: questionID,
-        answer_type: question.answer_type,
-        updated_at: question.updated_at
+      let update = false
+
+      if (startupID) {
+        if (startupID === question.startup_id) {
+          update = true
+        }
+      } else {
+        update = true
       }
 
-      switch (question.answer_type) {
-        case "datetime":
-          myQuestionnaires[questionnaireID][questionID].answer = moment(question.answer).toDate()
-          break
-        case "date":
-          myQuestionnaires[questionnaireID][questionID].answer = moment(question.answer).toDate()
-          break
-        case "file":
-          myQuestionnaires[questionnaireID][questionID].answer = ""
-          myQuestionnaires[questionnaireID][questionID].answer_file = question.answer
-          break
-        default:
-          myQuestionnaires[questionnaireID][questionID].answer = question.answer
+      if (update) {
+        myQuestionnaires[questionnaireID][questionID] = {
+          question_id: questionID,
+          answer_type: question.answer_type,
+          updated_at: question.updated_at
+        }
+
+        switch (question.answer_type) {
+          case "datetime":
+            myQuestionnaires[questionnaireID][questionID].answer = moment(question.answer).toDate()
+            break
+          case "date":
+            myQuestionnaires[questionnaireID][questionID].answer = moment(question.answer).toDate()
+            break
+          case "file":
+            myQuestionnaires[questionnaireID][questionID].answer = ""
+            myQuestionnaires[questionnaireID][questionID].answer_file = question.answer
+            break
+          default:
+            myQuestionnaires[questionnaireID][questionID].answer = question.answer
+        }
       }
     }
   }
