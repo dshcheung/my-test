@@ -65,6 +65,9 @@ export const getCampaign = ({ params = {}, queries = {} } = {}) => {
     request,
     successCB: (dispatch, data) => {
       dispatch(setCampaign(data))
+    },
+    errorCB: (dispatch, response) => {
+      notyError(response.data.meta.message)
     }
   }
 }
