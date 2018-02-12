@@ -36,8 +36,6 @@ export default class RichTextEditorField extends Component {
 
     const hasErrorClass = touched && invalid ? 'has-error' : ''
 
-    console.log(this.props.meta)
-
     return (
       <div className={`form-group clearfix ${hasErrorClass}`}>
         <RichTextEditor
