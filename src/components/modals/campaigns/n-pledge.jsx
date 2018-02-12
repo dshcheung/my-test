@@ -65,7 +65,7 @@ export default class CampaignsNPledgeModal extends Component {
     const keyword = "Pledge"
 
     return (
-      <Modal show onHide={close} className="form-modal" bsSize="large">
+      <Modal show onHide={close} className="form-modal">
         <Modal.Header closeButton>
           <Modal.Title>{keyword}</Modal.Title>
         </Modal.Header>
