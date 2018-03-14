@@ -28,7 +28,7 @@ export default class Footer extends Component {
                   </ul>
                 </div>
 
-                <div className="links-section">
+                <div className="links-section hide">
                   <span className="header">About</span>
                   <ul>
                     <li><Link className="btn-gray" to="/about-us">About Us</Link></li>
@@ -41,7 +41,7 @@ export default class Footer extends Component {
                   </ul>
                 </div>
 
-                <div className="links-section">
+                <div className="links-section hide">
                   <span className="header">Resources</span>
                   <ul>
                     <li><Link className="btn-gray" to="/guides">FAQ</Link></li>
@@ -53,7 +53,7 @@ export default class Footer extends Component {
                   </ul>
                 </div>
 
-                <div className="links-section">
+                <div className="links-section hide">
                   <span className="header">Stay up-to-date</span>
                   <ul>
                     <li>Sign up to our newsletter to stay up-to-date with our latest news and promotions delivered to your inbox</li>

@@ -110,26 +110,6 @@ export default class Navbar extends Component {
               )
             }
 
-            {
-              !currentUser && (
-                <LinkContainer to="/learn" active={false}>
-                  <NavItem eventKey={3}>
-                    <span>Learn</span>
-                  </NavItem>
-                </LinkContainer>
-              )
-            }
-
-            {
-              !currentUser && (
-                <LinkContainer to="/about" active={false}>
-                  <NavItem eventKey={4}>
-                    <span>About</span>
-                  </NavItem>
-                </LinkContainer>
-              )
-            }
-
           </Nav>
           {
             !currentUser && (
