@@ -56,6 +56,24 @@ export const cMyQuestionnaire = (values, cb, routeParams) => {
         question_id: questionID,
         answer_type: type,
         answer
+        /*
+        simple
+          answer
+        multi date amount
+          answers: [
+            {
+              id: types[x].id,
+              answer_type: types[x].type (date)
+              answer: 1828282828
+            },
+            {
+              id: types[x].id,
+              answer_type: types[x].type (amount)
+              answer: 1000
+            }
+            ... if dynamic push to array
+          ]
+        */
       }
     }
   }

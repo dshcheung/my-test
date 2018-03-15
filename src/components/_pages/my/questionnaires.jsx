@@ -224,7 +224,7 @@ export default class MyQuestionnaires extends Component {
 
                 <hr />
 
-                <div dangerouslySetInnerHTML={{ __html: investorAgreement.content.decode() }} />
+                <div dangerouslySetInnerHTML={{ __html: investorAgreement.title.decode() }} />
               </div>
             )
           }
