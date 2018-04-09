@@ -29,8 +29,8 @@ import MyCampaignsContainer from './components/_pages/my/campaigns/wrapper'
 import MyCampaignsIndexContainer from './components/_pages/my/campaigns/index'
 import MyCampaignsNewContainer from './components/_pages/my/campaigns/new'
 import MyCampaignsShowWrapperContainer from './components/_pages/my/campaigns/show-wrapper'
-import MyCampaignsEditContainer from './components/_pages/my/campaigns/edit'
 import MyCampaignsShowContainer from './components/_pages/my/campaigns/show'
+import MyCampaignsEditContainer from './components/_pages/my/campaigns/edit'
 
 import MyDashboardContainer from './components/_pages/my/dashboard'
 
@@ -81,9 +81,9 @@ export default (
       <Route path="campaigns" component={MyCampaignsContainer} roleAccess="StartupUser">
         <IndexRoute component={MyCampaignsIndexContainer} />
         <Route path="new" component={MyCampaignsNewContainer} />
-        <Route component={MyCampaignsShowWrapperContainer}>
-          <Route path=":myCampaignID/edit" component={MyCampaignsEditContainer} />
-          <Route path=":myCampaignID" component={MyCampaignsShowContainer} />
+        <Route path=":myCampaignID" component={MyCampaignsShowWrapperContainer}>
+          <IndexRoute component={MyCampaignsShowContainer} />
+          <Route path="edit/:stage" component={MyCampaignsEditContainer} />
         </Route>
       </Route>
       <Route path="dashboard" component={MyDashboardContainer} roleAccess="StartupUser" />

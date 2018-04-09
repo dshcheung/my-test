@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { notyWarning } from '../../../../services/noty'
 
 import SharedMyCampaignsStages from '../../../shared/my/campaigns/stages'
+import SharedMyCampaignsStageTwo from '../../../shared/my/campaigns/stage-two'
 
 const mapStateToProps = (state) => {
   return {
@@ -12,37 +13,53 @@ const mapStateToProps = (state) => {
 }
 
 @connect(mapStateToProps, null)
-export default class MyCampaignsEdit extends Component {
-  componentWillMount() {
-    if (this.props.myCampaign && !this.props.myCampaign.can.edit) {
-      this.props.router.push("/my/campaigns")
-      notyWarning("You Cannot Edit")
+export default class MyCampaigns extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      permitted: ["stage_two", "stage_three", "stage_four", "stage_five"]
     }
   }
 
+  componentWillMount() {
+    this.permitRedirection(this.props)
+  }
+
   componentWillReceiveProps(nextProps) {
-    if (nextProps.myCampaign && !nextProps.myCampaign.can.edit) {
-      nextProps.router.push("/my/campaigns")
-      notyWarning("You Cannot Edit")
+    this.permitRedirection(nextProps)
+  }
+
+  permitRedirection(props) {
+    const { router: { params } } = this.props
+
+    // TODO: change stage depending on status
+    if (_.indexOf(this.state.permitted, params.stage) < 0) {
+      this.props.router.push(`/my/campaigns/${params.myCampaignID}/edit/stage_two`)
+    } else {
+      if (props.myCampaign && !props.myCampaign.can.edit) {
+        this.props.router.push("/my/campaigns")
+        notyWarning("You Cannot Edit")
+      }
     }
   }
 
   render() {
-    const { myCampaign } = this.props
+    const { myCampaign, router: { params } } = this.props
 
     if (myCampaign && !myCampaign.can.edit) {
       return null
     }
 
     return (
-      <div id="my-campaigns-edit">
+      <div>
         <SharedMyCampaignsStages
-          router={this.props.router}
-          location={this.props.location}
-          routeParams={{ ...this.props.routeParams, myStartupID: _.get(myCampaign, 'startup.id') }}
-          disabled={{}}
-          editMode
+          currentStage={this.props.router.params.stage}
         />
+
+        {
+          params.stage === "stage_two" && <SharedMyCampaignsStageTwo />
+        }
       </div>
     )
   }

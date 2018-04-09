@@ -13,7 +13,6 @@ export const mergeMyQuestionnaires = (data, reset) => {
   }
 }
 
-
 export const RESET_MY_QUESTIONNAIRES = "RESET_MY_QUESTIONNAIRES"
 export const resetMyQuestionnaires = () => {
   return {
