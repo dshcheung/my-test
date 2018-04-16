@@ -5,17 +5,19 @@ import { Link as RouteLink } from 'react-router'
 
 import { DEFAULT_STARTUP_BANNER, DEFAULT_STARTUP_AVATAR } from '../../../constants'
 
-import SharedStartupsHighlights from '../startups/highlights'
-import SharedStartupsOverview from '../startups/overview'
-import SharedStartupsKPIs from '../startups/kpis'
-import SharedStartupsMilestones from '../startups/milestones'
-import SharedStartupsFunds from '../startups/funds'
-import SharedStartupsTeam from '../startups/team'
-import SharedStartupsPitchDeck from '../startups/pitch-deck'
-import SharedStartupsMarketScope from '../startups/market-scope'
-import SharedStartupsRisk from '../startups/risk'
-import SharedStartupsMedia from '../startups/media'
-import SharedStartupsAttachments from '../startups/attachments'
+
+import SharedStartupsTextSection from '../startups/text-section'
+// import SharedStartupsHighlights from '../startups/highlights'
+// import SharedStartupsOverview from '../startups/overview'
+// import SharedStartupsKPIs from '../startups/kpis'
+// import SharedStartupsMilestones from '../startups/milestones'
+// import SharedStartupsFunds from '../startups/funds'
+// import SharedStartupsTeam from '../startups/team'
+// import SharedStartupsPitchDeck from '../startups/pitch-deck'
+// import SharedStartupsMarketScope from '../startups/market-scope'
+// import SharedStartupsRisk from '../startups/risk'
+// import SharedStartupsMedia from '../startups/media'
+// import SharedStartupsAttachments from '../startups/attachments'
 
 import MyStartupsEHeaderModal from '../../modals/my/startups/e-header'
 import CampaignsNPledgeModal from '../../modals/campaigns/n-pledge'
@@ -63,28 +65,86 @@ export default class SharedCampaignsProfile extends Component {
     const maturityDate = moment(_.get(campaignType, 'maturity_date')).format("YYYY MMMM DD")
 
     // startup content stuff
-    const highlights = _.get(startup, "highlights", null)
-    const highlightsExist = !!highlights
-    const overview = _.get(startup, "profile.overview", null)
-    const overviewExist = !!overview
-    const kpis = _.get(startup, "key_performance_indicators", null)
-    const kpisExist = !!kpis
-    const milestones = _.get(startup, "milestones", null)
-    const milestonesExist = !!milestones
-    const funds = _.get(startup, "funds", null)
-    const fundsExist = !!funds
-    const team = _.get(startup, "team", null)
-    const teamExist = !!team
-    const pitchDeck = _.get(startup, "pitch_deck", null)
-    const pitchDeckExist = !!pitchDeck
-    const marketScope = _.get(startup, "market_scope", null)
-    const marketScopeExist = !!marketScope
-    const risk = _.get(startup, "risk", null)
-    const riskExist = !!risk
-    const media = _.get(startup, "media", [])
-    const mediaExist = media.length < 0
-    const attachments = _.get(startup, "attachments", [])
-    const attachmentsExist = attachments.length < 0
+    const updates = _.get(startup, "profile.updates")
+    const highlights = _.get(startup, "profile.highlights")
+    const overview = _.get(startup, "profile.overview")
+    // const pitchDeck = _.get(startup, "pitch_deck")
+    const market = _.get(startup, "profile.market")
+    const strategy = _.get(startup, "profile.strategy")
+    // const team = _.get(startup, "profile.team")
+    const useOfFunds = _.get(startup, "profile.use_of_funds")
+    // const media = _.get(startup, "media", [])
+    // const attachments = _.get(startup, "attachments")
+
+    const startupData = [
+      {
+        key: "updates",
+        title: "Updates",
+        modal: SharedStartupsTextSection,
+        data: updates,
+        exist: !!updates
+      },
+      {
+        key: "highlights",
+        title: "Highlights",
+        modal: SharedStartupsTextSection,
+        data: highlights,
+        exist: !!highlights
+      },
+      {
+        key: "overview",
+        title: "Overview",
+        modal: SharedStartupsTextSection,
+        data: overview,
+        exist: !!overview
+      },
+      // {
+      //   title: "Pitch Deck",
+      //   modal: "SharedStartupsTextSection",
+      //   data: pitchDeck,
+      //   exist: !!pitchDeck
+      // },
+      {
+        key: "market",
+        title: "Market",
+        modal: SharedStartupsTextSection,
+        data: market,
+        exist: !!market
+      },
+      {
+        key: "strategy",
+        title: "Strategy",
+        modal: SharedStartupsTextSection,
+        data: strategy,
+        exist: !!strategy
+      },
+      // {
+      //   title: "Team",
+      //   modal: "SharedStartupsTextSection",
+      //   data: team,
+      //   exist: !!team
+      // },
+      {
+        key: "useOfFunds",
+        title: "Use of Funds",
+        modal: SharedStartupsTextSection,
+        data: useOfFunds,
+        exist: !!useOfFunds
+      },
+      // {
+      //   title: "Media",
+      //   modal: "SharedStartupsTextSection",
+      //   data: media,
+      //   exist: media.length >= 0
+      // },
+      // {
+      //   title: "Dataroom",
+      //   modal: "SharedStartupsTextSection",
+      //   data: attachments,
+      //   exist: attachments.length >= 0,
+      //   extra: { viewDataRoom: campaign.can.view_data_room }
+      // }
+    ]
 
     return (
       <div id="shared-campaigns-profile" className="container-fluid">
@@ -193,87 +253,24 @@ export default class SharedCampaignsProfile extends Component {
                 <div className="sidebar-wrapper">
                   <ul className="scrollto">
                     {
-                      (modalEditable || highlightsExist) && (
-                        <li><Link to="Highlights" spy smooth duration={500} offset={-100}>Highlights</Link></li>
-                      )
-                    }
-                    {
-                      (modalEditable || overviewExist) && (
-                        <li><Link to="Overview" spy smooth duration={500} offset={-100}>Overview</Link></li>
-                      )
-                    }
-                    {
-                      (modalEditable || kpisExist) && (
-                        <li><Link to="KPIs" spy smooth duration={500} offset={-100}>KPIs</Link></li>
-                      )
-                    }
-                    {
-                      (modalEditable || milestonesExist) && (
-                        <li><Link to="Milestones" spy smooth duration={500} offset={-100}>Milestones</Link></li>
-                      )
-                    }
-                    {
-                      (modalEditable || fundsExist) && (
-                        <li><Link to="Use of Funds" spy smooth duration={500} offset={-100}>Use of Funds</Link></li>
-                      )
-                    }
-                    {
-                      (modalEditable || teamExist) && (
-                        <li><Link to="Team" spy smooth duration={500} offset={-100}>Team</Link></li>
-                      )
-                    }
-                    {
-                      (modalEditable || pitchDeckExist) && (
-                        <li><Link to="Pitch Deck" spy smooth duration={500} offset={-100}>Pitch Deck</Link></li>
-                      )
-                    }
-                    {
-                      (modalEditable || marketScopeExist) && (
-                        <li><Link to="Industry Analysis" spy smooth duration={500} offset={-100}>Industry Analysis</Link></li>
-                      )
-                    }
-                    {
-                      (modalEditable || riskExist) && (
-                        <li><Link to="Risk & Disclosure" spy smooth duration={500} offset={-100}>Risk & Disclosure</Link></li>
-                      )
-                    }
-                    {
-                      (modalEditable || mediaExist) && (
-                        <li><Link to="Media" spy smooth duration={500} offset={-100}>Media</Link></li>
-                      )
-                    }
-                    {
-                      (modalEditable || attachmentsExist) && (
-                        <li><Link to="Data Room" spy smooth duration={500} offset={-100}>Data Room</Link></li>
-                      )
+                      startupData.map((d) => {
+                        return (modalEditable || d.exist) ? (
+                          <li key={d.title}><Link to={d.title} spy smooth duration={500} offset={-100}>{d.title}</Link></li>
+                        ) : null
+                      })
                     }
                   </ul>
-
-                  {/*
-                    <hr />
-
-                    <ul className="links">
-                      <li><i className="fa fa-commenting-o" /><span>Investor Discussion</span></li>
-                      <li><i className="fa fa-envelope-o" /><span>{ `Contact ${startup.name}` }</span></li>
-                    </ul>
-                  */}
                 </div>
               </AutoAffix>
             </div>
             <div className="col-xs-12 col-sm-9 startup-content">
-              {(modalEditable || highlightsExist) && <SharedStartupsHighlights highlights={highlights} editable={modalEditable} routeParams={routeParams} />}
-              {(modalEditable || overviewExist) && <SharedStartupsOverview overview={overview} editable={modalEditable} routeParams={routeParams} />}
-              {(modalEditable || kpisExist) && <SharedStartupsKPIs kpis={kpis} editable={modalEditable} routeParams={routeParams} />}
-              {(modalEditable || milestonesExist) && <SharedStartupsMilestones milestones={milestones} editable={modalEditable} routeParams={routeParams} />}
-              {(modalEditable || fundsExist) && <SharedStartupsFunds funds={funds} editable={modalEditable} routeParams={routeParams} />}
-              {(modalEditable || teamExist) && <SharedStartupsTeam team={team} editable={modalEditable} routeParams={routeParams} />}
-              {(modalEditable || pitchDeckExist) && <SharedStartupsPitchDeck pitchDeck={pitchDeck} editable={modalEditable} routeParams={routeParams} />}
-              {(modalEditable || marketScopeExist) && <SharedStartupsMarketScope marketScope={marketScope} editable={modalEditable} routeParams={routeParams} />}
-              {(modalEditable || riskExist) && <SharedStartupsRisk risk={risk} editable={modalEditable} routeParams={routeParams} />}
-              {(modalEditable || mediaExist) && <SharedStartupsMedia media={media} editable={modalEditable} routeParams={routeParams} />}
-              {(modalEditable || attachmentsExist) && (
-                <SharedStartupsAttachments attachments={attachments} editable={modalEditable} routeParams={routeParams} viewDataRoom={campaign.can.view_data_room} />
-              )}
+              {
+                startupData.map((d) => {
+                  return (modalEditable || d.exist) ? (
+                    <d.modal key={d.title} data={d} editable={modalEditable} routeParams={routeParams} />
+                  ) : null
+                })
+              }
             </div>
           </div>
         </div>
@@ -284,3 +281,15 @@ export default class SharedCampaignsProfile extends Component {
     )
   }
 }
+// {(modalEditable || overviewExist) && <SharedStartupsOverview overview={overview} editable={modalEditable} />}
+// {(modalEditable || kpisExist) && <SharedStartupsKPIs kpis={kpis} editable={modalEditable} />}
+// {(modalEditable || milestonesExist) && <SharedStartupsMilestones milestones={milestones} editable={modalEditable} />}
+// {(modalEditable || fundsExist) && <SharedStartupsFunds funds={funds} editable={modalEditable} />}
+// {(modalEditable || teamExist) && <SharedStartupsTeam team={team} editable={modalEditable} />}
+// {(modalEditable || pitchDeckExist) && <SharedStartupsPitchDeck pitchDeck={pitchDeck} editable={modalEditable} />}
+// {(modalEditable || marketScopeExist) && <SharedStartupsMarketScope marketScope={marketScope} editable={modalEditable} />}
+// {(modalEditable || riskExist) && <SharedStartupsRisk risk={risk} editable={modalEditable} />}
+// {(modalEditable || mediaExist) && <SharedStartupsMedia media={media} editable={modalEditable} />}
+// {(modalEditable || attachmentsExist) && (
+//   <SharedStartupsAttachments attachments={attachments} editable={modalEditable} viewDataRoom={campaign.can.view_data_room} />
+// )}

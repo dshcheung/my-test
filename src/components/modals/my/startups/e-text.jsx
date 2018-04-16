@@ -7,12 +7,11 @@ import {
   cuMyStartupProfile, CU_MY_STARTUP_PROFILE
 } from '../../../../actions/my/startups/profile'
 
-import MyStartupsHeaderForm from '../../../forms/my/startups/header'
+import MyStartupsTextForm from '../../../forms/my/startups/text'
 
 const mapStateToProps = (state) => {
   return {
-    startup: _.get(state, 'myCampaign.startup', null),
-    cuMyStartupProfileInProcess: _.get(state.requestStatus, CU_MY_STARTUP_PROFILE)
+    cuMyStartupProfile: _.get(state.requestStatus, CU_MY_STARTUP_PROFILE)
   }
 }
 
@@ -23,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class MyStartupsEHeaderModal extends Component {
+export default class MyStartupsETextModal extends Component {
   constructor(props) {
     super(props)
 
@@ -31,25 +30,31 @@ export default class MyStartupsEHeaderModal extends Component {
   }
 
   onSubmit(values) {
-    this.props.cuMyStartupProfile(values, this.props.params, () => {
+    this.props.cuMyStartupProfile({
+      [this.props.data.key]: values.text
+    }, this.props.params, () => {
       this.props.close()
-    }, 'Header')
+    })
   }
 
   render() {
-    const { close, cuMyStartupProfileInProcess, startup } = this.props
+    const { close, cuMyStartupProfileInProcess, data } = this.props
+
+    const keyword = "Edit"
+    const initialValues = {
+      text: data.data || ''
+    }
 
     return (
-      <Modal show onHide={close} className="form-modal" id="modals-my-startups-s-risk">
+      <Modal show onHide={close} className="form-modal" bsSize="large">
         <Modal.Header closeButton>
-          <Modal.Title>Edit Header</Modal.Title>
+          <Modal.Title>{keyword} {data.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <MyStartupsHeaderForm
+          <MyStartupsTextForm
             onSubmit={this.onSubmit}
             submitInProcess={cuMyStartupProfileInProcess}
-            bannerUrl={_.get(startup, 'profile.banner.original', '')}
-            avatarUrl={_.get(startup, 'profile.avatar.original', '')}
+            initialValues={initialValues}
           />
         </Modal.Body>
       </Modal>

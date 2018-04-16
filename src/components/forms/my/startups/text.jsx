@@ -6,24 +6,25 @@ import Validators from '../../../../services/form-validators'
 import RichTextEditorField from '../../../shared/form-elements/rich-text-editor-field'
 
 @reduxForm({
-  form: "MyStartupsMarketScopeDescriptionForm",
+  form: "MyStartupsTextForm",
   validate: (values) => {
     return Validators({
+      text: ["presences"]
     }, values)
   }
 })
-export default class MyStartupsMarketScopeDescriptionForm extends Component {
+export default class MyStartupsTextForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass } = this.props
 
     return (
-      <div id="forms-my-startup-market-scope-description" className={optClass}>
+      <div id="forms-my-startups-text" className={optClass}>
         <form onSubmit={handleSubmit}>
           <Field
-            name="description"
+            name="text"
             component={RichTextEditorField}
             opts={{
-              placeholder: "Add Description Here"
+              placeholder: "Edit Here"
             }}
           />
 

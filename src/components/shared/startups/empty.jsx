@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 export default class SharedStartupsEmpty extends Component {
   render() {
-    const { title, condition, editable, editMode } = this.props
-    const keyWord = editMode ? "Edit" : "Add"
+    const { title, condition, editable } = this.props
+    const keyWord = "Edit"
 
 
     if (editable && condition) {
