@@ -42,7 +42,7 @@ export default class MyCampaignsNew extends Component {
           router={this.props.router}
           location={this.props.location}
           currentStage="stage_one"
-          disabledNav
+          disableNav
         />
 
         <MyStartupsNameForm

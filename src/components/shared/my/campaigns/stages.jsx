@@ -12,6 +12,7 @@ export default class SharedMyCampaignsStages extends Component {
 
   render() {
     const { currentStage, disableNav, router } = this.props
+    console.log(this.props)
 
     return (
       <div id="shared-my-campaigns-stages">
