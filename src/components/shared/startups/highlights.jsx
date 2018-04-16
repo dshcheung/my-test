@@ -49,7 +49,7 @@ export default class SharedStartupsHighlights extends Component {
     const { highlights, editable, requestStatus, routeParams } = this.props
     const { neHighlight, editMode, editInfo } = this.state
     const title = "Highlights"
-    const emptyHighlights = highlights.length === 0
+    const emptyHighlights = !highlights
 
     return (
       <Element name={title} className="section clearfix">

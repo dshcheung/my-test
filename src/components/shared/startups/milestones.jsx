@@ -49,7 +49,7 @@ export default class SharedStartupsMilestones extends Component {
     const { milestones, editable, requestStatus, routeParams } = this.props
     const { neMilestone, editMode, editInfo } = this.state
     const title = "Milestones"
-    const emptyMilestones = milestones.length === 0
+    const emptyMilestones = !milestones
 
     return (
       <Element name={title} className="section clearfix">

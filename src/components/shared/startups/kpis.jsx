@@ -49,7 +49,7 @@ export default class SharedStartupsKPIs extends Component {
     const { kpis, editable, requestStatus, routeParams } = this.props
     const { neKPI, editMode, editInfo } = this.state
     const title = "KPIs"
-    const emptyKPIs = kpis.length === 0
+    const emptyKPIs = !kpis
 
     return (
       <Element name={title} className="section clearfix">

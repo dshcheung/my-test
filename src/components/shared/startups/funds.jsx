@@ -49,7 +49,7 @@ export default class SharedStartupsFunds extends Component {
     const { funds, editable, requestStatus, routeParams } = this.props
     const { neFund, editMode, editInfo } = this.state
     const title = "Use of Funds"
-    const emptyFunds = funds.length === 0
+    const emptyFunds = !funds
 
     return (
       <Element name={title} className="section clearfix">

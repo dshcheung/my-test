@@ -63,28 +63,28 @@ export default class SharedCampaignsProfile extends Component {
     const maturityDate = moment(_.get(campaignType, 'maturity_date')).format("YYYY MMMM DD")
 
     // startup content stuff
-    const highlights = _.get(startup, "highlights", [])
-    const highlightsExist = highlights.length > 0
+    const highlights = _.get(startup, "highlights", null)
+    const highlightsExist = !!highlights
     const overview = _.get(startup, "profile.overview", null)
     const overviewExist = !!overview
-    const kpis = _.get(startup, "key_performance_indicators", [])
-    const kpisExist = kpis.length > 0
-    const milestones = _.get(startup, "milestones", [])
-    const milestonesExist = milestones.length > 0
-    const funds = _.get(startup, "funds", [])
-    const fundsExist = funds.length > 0
-    const team = _.get(startup, "team", {})
+    const kpis = _.get(startup, "key_performance_indicators", null)
+    const kpisExist = !!kpis
+    const milestones = _.get(startup, "milestones", null)
+    const milestonesExist = !!milestones
+    const funds = _.get(startup, "funds", null)
+    const fundsExist = !!funds
+    const team = _.get(startup, "team", null)
     const teamExist = !!team
-    const pitchDeck = _.get(startup, "pitch_deck", {})
+    const pitchDeck = _.get(startup, "pitch_deck", null)
     const pitchDeckExist = !!pitchDeck
-    const marketScope = _.get(startup, "market_scope", {})
+    const marketScope = _.get(startup, "market_scope", null)
     const marketScopeExist = !!marketScope
-    const risk = _.get(startup, "risk", {})
+    const risk = _.get(startup, "risk", null)
     const riskExist = !!risk
     const media = _.get(startup, "media", [])
-    const mediaExist = media.length > 0
-    const attachments = _.get(startup, "attachments", null)
-    const attachmentsExist = !!attachments
+    const mediaExist = media.length < 0
+    const attachments = _.get(startup, "attachments", [])
+    const attachmentsExist = attachments.length < 0
 
     return (
       <div id="shared-campaigns-profile" className="container-fluid">
@@ -208,7 +208,7 @@ export default class SharedCampaignsProfile extends Component {
                       )
                     }
                     {
-                      (modalEditable && milestonesExist) && (
+                      (modalEditable || milestonesExist) && (
                         <li><Link to="Milestones" spy smooth duration={500} offset={-100}>Milestones</Link></li>
                       )
                     }
