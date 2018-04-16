@@ -11,7 +11,7 @@ export default class SharedMyCampaignsStages extends Component {
   }
 
   render() {
-    const { currentStage } = this.props
+    const { currentStage, disableNav, router } = this.props
 
     return (
       <div id="shared-my-campaigns-stages">
@@ -19,11 +19,17 @@ export default class SharedMyCampaignsStages extends Component {
           <div className="container">
             {
               this.state.order.map((s, i) => {
-                const stageClass = currentStage === s ? "bg-info" : "disabled"
+                const bgColor = currentStage === s ? "bg-info" : ""
+                const disabledClass = disableNav ? "disabled" : "pointer"
                 return (
                   <div
                     key={i}
-                    className={`stage-item ${stageClass}`}
+                    className={`stage-item ${bgColor} ${disabledClass}`}
+                    onClick={() => {
+                      if (!disableNav) {
+                        router.push(`/my/campaigns/${router.params.myCampaignID}/edit/${s}`)
+                      }
+                    }}
                   >{s.splitCap("_")}</div>
                 )
               })

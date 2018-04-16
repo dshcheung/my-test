@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { notyWarning } from '../../../../services/noty'
 
 import SharedMyCampaignsStages from '../../../shared/my/campaigns/stages'
+import SharedMyCampaignsStageOne from '../../../shared/my/campaigns/stage-one'
 import SharedMyCampaignsStageTwo from '../../../shared/my/campaigns/stage-two'
 import SharedMyCampaignsStageThree from '../../../shared/my/campaigns/stage-three'
 
@@ -32,21 +33,15 @@ export default class MyCampaigns extends Component {
   }
 
   permitRedirection(props) {
-    const { router: { params } } = this.props
-
-    // TODO: change stage depending on status
-    if (_.indexOf(this.state.permitted, params.stage) < 0) {
-      this.props.router.push(`/my/campaigns/${params.myCampaignID}/edit/stage_two`)
-    } else {
-      if (props.myCampaign && !props.myCampaign.can.edit) {
-        this.props.router.push("/my/campaigns")
-        notyWarning("You Cannot Edit")
-      }
+    if (props.myCampaign && !props.myCampaign.can.edit) {
+      this.props.router.push("/my/campaigns")
+      notyWarning("You Cannot Edit")
     }
   }
 
   render() {
     const { myCampaign, router: { params } } = this.props
+    const routeParams = { ...params, myStartupID: _.get(myCampaign, 'startup.id') }
 
     if (myCampaign && !myCampaign.can.edit) {
       return null
@@ -55,8 +50,16 @@ export default class MyCampaigns extends Component {
     return (
       <div>
         <SharedMyCampaignsStages
+          router={this.props.router}
+          location={this.props.location}
           currentStage={this.props.router.params.stage}
         />
+
+        {
+          params.stage === "stage_one" && <SharedMyCampaignsStageOne
+            routeParams={routeParams}
+          />
+        }
 
         {
           params.stage === "stage_two" && <SharedMyCampaignsStageTwo />
@@ -66,7 +69,7 @@ export default class MyCampaigns extends Component {
           params.stage === "stage_three" && <SharedMyCampaignsStageThree
             editMode
             router={this.props.router}
-            routeParams={params}
+            routeParams={routeParams}
           />
         }
       </div>
