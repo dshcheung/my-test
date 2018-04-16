@@ -24,30 +24,29 @@ export default class SharedStartupsPitchDeck extends Component {
   }
 
   render() {
-    const { pitchDeck, editable, routeParams } = this.props
+    const { data, editable, routeParams } = this.props
     const { sPitchDeck } = this.state
-    const title = "Pitch Deck"
 
-    const description = _.get(pitchDeck, 'description', null)
+    const description = _.get(data, 'data.description', null)
     const descriptionExists = !!description
 
-    const attachments = _.get(pitchDeck, 'attachments', [])
+    const attachments = _.get(data, 'data.attachments', [])
     const emptyAttachments = attachments.length === 0
 
     const isEmpty = !descriptionExists && emptyAttachments
     const editMode = !isEmpty
 
     return (
-      <Element name={title} className="section clearfix">
+      <Element name={data.title} className="section clearfix">
         <SharedStartupsTitle
-          title={title}
+          title={data.title}
           editable={editable}
           open={() => { this.open() }}
           editMode={editMode}
         />
 
         <SharedStartupsEmpty
-          title={title}
+          title={data.title}
           condition={isEmpty}
           editable={editable}
           editMode={editMode}
@@ -86,7 +85,7 @@ export default class SharedStartupsPitchDeck extends Component {
               close={this.close}
               params={routeParams}
               editMode={editMode}
-              pitchDeck={pitchDeck}
+              pitchDeck={data.data}
             />
           )
         }

@@ -58,7 +58,7 @@ export default class MyStartupsSTeamModal extends Component {
   }
 
   render() {
-    const { close, editMode, team, params, requestStatus } = this.props
+    const { close, team, params, requestStatus } = this.props
     const { stateEditMode, editInfo } = this.state
 
     const story = _.get(team, 'story', '')
@@ -70,12 +70,11 @@ export default class MyStartupsSTeamModal extends Component {
     const hasMembers = members.length > 0
 
     const storyIconClass = hasStory ? "fa-pencil" : "fa-plus"
-    const keyword = editMode ? "Edit" : "Add"
 
     return (
       <Modal show onHide={close} className={`form-modal ${!this.state.sTeam && 'hide'}`} id="modals-my-startups-s-team" bsSize="large">
         <Modal.Header closeButton>
-          <Modal.Title>{keyword} Team</Modal.Title>
+          <Modal.Title>Team</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <section className="story">

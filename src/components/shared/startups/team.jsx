@@ -26,35 +26,31 @@ export default class SharedStartupsTeam extends Component {
   }
 
   render() {
-    const { team, editable, routeParams } = this.props
+    const { data, editable, routeParams } = this.props
     const { sTeam } = this.state
-    const title = "Team"
-    const story = _.get(team, 'story', null)
+    const story = _.get(data, 'data.story', null)
     const storyExists = !!story
 
-    const founders = _.get(team, 'founders', [])
+    const founders = _.get(data, 'data.founders', [])
     const emptyFounders = founders.length === 0
 
-    const members = _.get(team, 'members', [])
+    const members = _.get(data, 'data.members', [])
     const emptyMembers = members.length === 0
 
     const isEmpty = !storyExists && emptyFounders && emptyMembers
-    const editMode = !isEmpty
 
     return (
-      <Element name={title} className="section team clearfix">
+      <Element name={data.title} className="section team clearfix">
         <SharedStartupsTitle
-          title={title}
+          title={data.title}
           editable={editable}
           open={() => { this.open() }}
-          editMode={editMode}
         />
 
         <SharedStartupsEmpty
-          title={title}
+          title={data.title}
           condition={isEmpty}
           editable={editable}
-          editMode={editMode}
         />
 
         {
@@ -117,8 +113,7 @@ export default class SharedStartupsTeam extends Component {
             <MyStartupsSTeamModal
               close={this.close}
               params={routeParams}
-              editMode={editMode}
-              team={team}
+              team={data.data}
             />
           )
         }

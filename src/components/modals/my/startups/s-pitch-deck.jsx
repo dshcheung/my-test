@@ -55,7 +55,7 @@ export default class MyStartupsSPitchDeckModal extends Component {
   }
 
   render() {
-    const { close, editMode, pitchDeck, params, requestStatus } = this.props
+    const { close, pitchDeck, params, requestStatus } = this.props
     const { stateEditMode, editInfo } = this.state
 
     const description = _.get(pitchDeck, 'description', '')
@@ -65,12 +65,11 @@ export default class MyStartupsSPitchDeckModal extends Component {
     const hasAttachments = attachments.length > 0
 
     const descriptionIconClass = hasDescription ? "fa-pencil" : "fa-plus"
-    const keyword = editMode ? "Edit" : "Add"
 
     return (
       <Modal show onHide={close} className={`form-modal ${!this.state.sPitchDeck && 'hide'}`} id="modals-my-startups-s-pitch-deck" bsSize="large">
         <Modal.Header closeButton>
-          <Modal.Title>{keyword} Pitch Deck</Modal.Title>
+          <Modal.Title>Pitch Deck</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <section className="description">
@@ -102,7 +101,7 @@ export default class MyStartupsSPitchDeckModal extends Component {
             </div>
             {
               hasAttachments ? (
-                <ul className="attachment-list">
+                <ul className="attachment-list padding-0">
                   {
                     attachments.map((attachment, i) => {
                       const file = _.get(attachment, 'file.original')

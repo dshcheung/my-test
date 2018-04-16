@@ -7,8 +7,8 @@ import { DEFAULT_STARTUP_BANNER, DEFAULT_STARTUP_AVATAR } from '../../../constan
 
 
 import SharedStartupsTextSection from '../startups/text-section'
-// import SharedStartupsPitchDeck from '../startups/pitch-deck'
-// import SharedStartupsTeam from '../startups/team'
+import SharedStartupsPitchDeck from '../startups/pitch-deck'
+import SharedStartupsTeam from '../startups/team'
 import SharedStartupsMedia from '../startups/media'
 import SharedStartupsAttachments from '../startups/attachments'
 
@@ -61,10 +61,10 @@ export default class SharedCampaignsProfile extends Component {
     const updates = _.get(startup, "profile.updates")
     const highlights = _.get(startup, "profile.highlights")
     const overview = _.get(startup, "profile.overview")
-    // const pitchDeck = _.get(startup, "pitch_deck")
+    const pitchDeck = _.get(startup, "pitch_deck")
     const market = _.get(startup, "profile.market")
     const strategy = _.get(startup, "profile.strategy")
-    // const team = _.get(startup, "profile.team")
+    const team = _.get(startup, "team")
     const useOfFunds = _.get(startup, "profile.use_of_funds")
     const media = _.get(startup, "media")
     const attachments = _.get(startup, "attachments")
@@ -91,12 +91,12 @@ export default class SharedCampaignsProfile extends Component {
         data: overview,
         exist: !!overview
       },
-      // {
-      //   title: "Pitch Deck",
-      //   modal: "SharedStartupsTextSection",
-      //   data: pitchDeck,
-      //   exist: !!pitchDeck
-      // },
+      {
+        title: "Pitch Deck",
+        modal: SharedStartupsPitchDeck,
+        data: pitchDeck,
+        exist: !!pitchDeck
+      },
       {
         key: "market",
         title: "Market",
@@ -111,12 +111,12 @@ export default class SharedCampaignsProfile extends Component {
         data: strategy,
         exist: !!strategy
       },
-      // {
-      //   title: "Team",
-      //   modal: "SharedStartupsTextSection",
-      //   data: team,
-      //   exist: !!team
-      // },
+      {
+        title: "Team",
+        modal: SharedStartupsTeam,
+        data: team,
+        exist: !!team
+      },
       {
         key: "useOfFunds",
         title: "Use of Funds",
@@ -274,6 +274,3 @@ export default class SharedCampaignsProfile extends Component {
     )
   }
 }
-// {(modalEditable || teamExist) && <SharedStartupsTeam team={team} editable={modalEditable} />}
-// {(modalEditable || pitchDeckExist) && <SharedStartupsPitchDeck pitchDeck={pitchDeck} editable={modalEditable} />}
-// {(modalEditable || mediaExist) && <SharedStartupsMedia media={media} editable={modalEditable} />}
