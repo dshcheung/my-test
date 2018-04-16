@@ -7,17 +7,10 @@ import { DEFAULT_STARTUP_BANNER, DEFAULT_STARTUP_AVATAR } from '../../../constan
 
 
 import SharedStartupsTextSection from '../startups/text-section'
-// import SharedStartupsHighlights from '../startups/highlights'
-// import SharedStartupsOverview from '../startups/overview'
-// import SharedStartupsKPIs from '../startups/kpis'
-// import SharedStartupsMilestones from '../startups/milestones'
-// import SharedStartupsFunds from '../startups/funds'
-// import SharedStartupsTeam from '../startups/team'
 // import SharedStartupsPitchDeck from '../startups/pitch-deck'
-// import SharedStartupsMarketScope from '../startups/market-scope'
-// import SharedStartupsRisk from '../startups/risk'
-// import SharedStartupsMedia from '../startups/media'
-// import SharedStartupsAttachments from '../startups/attachments'
+// import SharedStartupsTeam from '../startups/team'
+import SharedStartupsMedia from '../startups/media'
+import SharedStartupsAttachments from '../startups/attachments'
 
 import MyStartupsEHeaderModal from '../../modals/my/startups/e-header'
 import CampaignsNPledgeModal from '../../modals/campaigns/n-pledge'
@@ -73,8 +66,8 @@ export default class SharedCampaignsProfile extends Component {
     const strategy = _.get(startup, "profile.strategy")
     // const team = _.get(startup, "profile.team")
     const useOfFunds = _.get(startup, "profile.use_of_funds")
-    // const media = _.get(startup, "media", [])
-    // const attachments = _.get(startup, "attachments")
+    const media = _.get(startup, "media")
+    const attachments = _.get(startup, "attachments")
 
     const startupData = [
       {
@@ -131,19 +124,19 @@ export default class SharedCampaignsProfile extends Component {
         data: useOfFunds,
         exist: !!useOfFunds
       },
-      // {
-      //   title: "Media",
-      //   modal: "SharedStartupsTextSection",
-      //   data: media,
-      //   exist: media.length >= 0
-      // },
-      // {
-      //   title: "Dataroom",
-      //   modal: "SharedStartupsTextSection",
-      //   data: attachments,
-      //   exist: attachments.length >= 0,
-      //   extra: { viewDataRoom: campaign.can.view_data_room }
-      // }
+      {
+        title: "Media",
+        modal: SharedStartupsMedia,
+        data: media,
+        exist: media.length >= 0
+      },
+      {
+        title: "Dataroom",
+        modal: SharedStartupsAttachments,
+        data: attachments,
+        exist: attachments.length >= 0,
+        extra: { viewDataRoom: campaign.can.view_data_room }
+      }
     ]
 
     return (
@@ -161,7 +154,7 @@ export default class SharedCampaignsProfile extends Component {
               <div className="col-xs-12 text-center">
                 <button
                   className="btn btn-info"
-                  onClick={() => { this.props.router.push(`/my/campaigns/${campaign.id}/edit#stage_one`) }}
+                  onClick={() => { this.props.router.push(`/my/campaigns/${campaign.id}/edit/stage_three`) }}
                 ><i className="fa fa-pencil" /> Edit Startup</button>
               </div>
             </div>
@@ -267,7 +260,7 @@ export default class SharedCampaignsProfile extends Component {
               {
                 startupData.map((d) => {
                   return (modalEditable || d.exist) ? (
-                    <d.modal key={d.title} data={d} editable={modalEditable} routeParams={routeParams} />
+                    <d.modal key={d.title} data={d} editable={modalEditable} routeParams={routeParams} {...d.extra} />
                   ) : null
                 })
               }
@@ -281,15 +274,6 @@ export default class SharedCampaignsProfile extends Component {
     )
   }
 }
-// {(modalEditable || overviewExist) && <SharedStartupsOverview overview={overview} editable={modalEditable} />}
-// {(modalEditable || kpisExist) && <SharedStartupsKPIs kpis={kpis} editable={modalEditable} />}
-// {(modalEditable || milestonesExist) && <SharedStartupsMilestones milestones={milestones} editable={modalEditable} />}
-// {(modalEditable || fundsExist) && <SharedStartupsFunds funds={funds} editable={modalEditable} />}
 // {(modalEditable || teamExist) && <SharedStartupsTeam team={team} editable={modalEditable} />}
 // {(modalEditable || pitchDeckExist) && <SharedStartupsPitchDeck pitchDeck={pitchDeck} editable={modalEditable} />}
-// {(modalEditable || marketScopeExist) && <SharedStartupsMarketScope marketScope={marketScope} editable={modalEditable} />}
-// {(modalEditable || riskExist) && <SharedStartupsRisk risk={risk} editable={modalEditable} />}
 // {(modalEditable || mediaExist) && <SharedStartupsMedia media={media} editable={modalEditable} />}
-// {(modalEditable || attachmentsExist) && (
-//   <SharedStartupsAttachments attachments={attachments} editable={modalEditable} viewDataRoom={campaign.can.view_data_room} />
-// )}

@@ -49,19 +49,16 @@ export default class MyStartupsSAttachmentsModal extends Component {
     })
   }
 
-
   render() {
-    const { close, editMode, attachments, params, requestStatus } = this.props
+    const { close, attachments, params, requestStatus } = this.props
     const { stateEditMode, editInfo } = this.state
 
     const hasAttachments = !!attachments
 
-    const keyword = editMode ? "Edit" : "Add"
-
     return (
       <Modal show onHide={close} className={`form-modal ${!this.state.sAttachments && 'hide'}`} id="modals-my-startups-s-attachments" bsSize="large">
         <Modal.Header closeButton>
-          <Modal.Title>{keyword} Data Room</Modal.Title>
+          <Modal.Title>Data Room</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <section className="attachments">
@@ -74,7 +71,7 @@ export default class MyStartupsSAttachmentsModal extends Component {
             </div>
             {
               hasAttachments ? (
-                <ul className="attachment-list">
+                <ul className="attachment-list padding-0">
                   {
                     attachments.map((attachment, i) => {
                       const file = _.get(attachment, 'file.original')

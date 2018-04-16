@@ -17,11 +17,11 @@ export const cuMyStartupProfile = (values, params, cb, keyword) => {
       market: _.get(values, 'market', null),
       strategy: _.get(values, 'strategy', null),
       use_of_funds: _.get(values, 'useOfFunds', null),
+      avatar: _.get(values, 'avatar[0]', null),
+      banner: _.get(values, 'banner[0]', null),
       description: _.get(values, 'description', null),
       tagline: _.get(values, 'tagline', null),
-      year_founded: _.get(values, 'yearFounded', null),
-      banner: _.get(values, 'banner[0]', null),
-      avatar: _.get(values, 'avatar[0]', null)
+      year_founded: _.get(values, 'yearFounded', null)
     }, 'profile')
   })
 

@@ -41,28 +41,24 @@ export default class SharedStartupsAttachments extends Component {
   }
 
   render() {
-    const { attachments, editable, routeParams, viewDataRoom, requestDataAccessInProcess } = this.props
+    const { data, editable, routeParams, viewDataRoom, requestDataAccessInProcess } = this.props
     const { sAttachments } = this.state
-    const title = "Data Room"
-    const nullAttachments = attachments === null
-    const emptyAttachments = attachments && attachments.length === 0
+    const nullAttachments = data.data === null
+    const emptyAttachments = data.data && data.data.length === 0
     const noAttachments = nullAttachments || emptyAttachments
-    const editMode = !emptyAttachments
 
     return (
-      <Element name={title} className="section clearfix">
+      <Element name={data.title} className="section clearfix">
         <SharedStartupsTitle
-          title={title}
+          title={data.title}
           editable={editable}
           open={() => { this.open() }}
-          editMode={editMode}
         />
 
         <SharedStartupsEmpty
-          title={title}
+          title={data.title}
           condition={noAttachments}
           editable={editable}
-          editMode={editMode}
         />
 
         {
@@ -87,11 +83,14 @@ export default class SharedStartupsAttachments extends Component {
             <div className="data-room">
               <ul>
                 {
-                  attachments.map((attachment, i) => {
+                  data.data.map((attachment, i) => {
+                    const file = _.get(attachment, 'file.original')
+                    const title = _.get(attachment, 'title')
+
                     return (
                       <li key={i}>
-                        <a href={attachment.file.original} className="btn btn-success" target="_blank">
-                          {attachment.title}
+                        <a href={file} className="btn btn-success" target="_blank">
+                          {title}
                           <i className="fa fa-fw fa-download" />
                         </a>
                       </li>
@@ -108,8 +107,7 @@ export default class SharedStartupsAttachments extends Component {
             <MyStartupsSAttachmentsModal
               close={this.close}
               params={routeParams}
-              editMode={editMode}
-              attachments={attachments}
+              attachments={data.data}
             />
           )
         }
