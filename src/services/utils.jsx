@@ -1,3 +1,11 @@
+export const scrollTop = () => {
+  const element = document.getElementsByTagName("html")[0]
+
+  if (element) {
+    element.scrollTop = 0
+  }
+}
+
 export const mergeData = (currentList, targetList) => {
   targetList.forEach((tl) => {
     const index = _.findIndex(currentList, (cl) => {
@@ -93,6 +101,12 @@ export const extractAttrFromRoutes = (routes, key) => {
   })
 
   return value
+}
+
+export const getQuestionnaire = (myQuestionnaires, myCampaignID) => {
+  return _.find(myQuestionnaires, (q) => {
+    return q && q.campaign && q.campaign.id && q.campaign.id === myCampaignID
+  })
 }
 
 export const formatQuestionnaire = (questionnaires, startupID) => {

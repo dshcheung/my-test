@@ -2,36 +2,37 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { formatQuestionnaire } from '../../../../services/utils'
+import { getQuestionnaire, scrollTop } from '../../../../services/utils'
 import {
-  C_MY_QUESTIONNAIRE, cMyQuestionnaire,
   G_MY_QUESTIONNAIRES, gMyQuestionnaires, resetMyQuestionnaires
 } from '../../../../actions/my/questionnaires'
 
 import {
-  gImmovable, G_IMMOVABLE_STARTUP_USER_QUESTIONNAIRE, resetImmovable
-} from '../../../../actions/immovables'
+  U_MY_STARTUP_QUESTIONNAIRE, uMyStartupQuestionnaire,
+} from '../../../../actions/my/startup-questionnaires'
 
 import LoadingSpinner from '../../../shared/loading-spinner'
-import QuestionnaireForm from '../../../forms/my/questionnaires'
+import MyStartupQuestionnairesHighlightForm from '../../../forms/my/startup-questionnaires/highlights'
+import MyStartupQuestionnairesOverviewForm from '../../../forms/my/startup-questionnaires/overview'
+import MyStartupQuestionnairesMarketForm from '../../../forms/my/startup-questionnaires/market'
+import MyStartupQuestionnairesStrategyForm from '../../../forms/my/startup-questionnaires/strategy'
+import MyStartupQuestionnairesTeamForm from '../../../forms/my/startup-questionnaires/team'
+import MyStartupQuestionnairesFinancialForm from '../../../forms/my/startup-questionnaires/financial'
+import MyStartupQuestionnairesInvestmentForm from '../../../forms/my/startup-questionnaires/investment'
 
 const mapStateToProps = (state, props) => {
-  const startupID = _.get(props, 'routeParams.myStartupID')
+  const myCampaignID = _.get(props, 'routeParams.myCampaignID')
 
   return {
-    startupQuestionnaires: _.get(state.immovables, 'startup_user_questionnaire'),
-    gImmovableInProcess: _.get(state.requestStatus, G_IMMOVABLE_STARTUP_USER_QUESTIONNAIRE),
-    myQuestionnaires: formatQuestionnaire(_.get(state, 'myQuestionnaires', []), startupID),
+    myQuestionnaires: getQuestionnaire(_.get(state, 'myQuestionnaires.startup_questionnaires', []), myCampaignID),
     gMyQuestionnairesInProcess: _.get(state.requestStatus, G_MY_QUESTIONNAIRES),
-    cMyQuestionnaireInProcess: _.get(state.requestStatus, C_MY_QUESTIONNAIRE)
+    uMyStartupQuestionnaireInProcess: _.get(state.requestStatus, U_MY_STARTUP_QUESTIONNAIRE)
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    cMyQuestionnaire: bindActionCreators(cMyQuestionnaire, dispatch),
-    gImmovable: bindActionCreators(gImmovable, dispatch),
-    resetImmovable: bindActionCreators(resetImmovable, dispatch),
+    uMyStartupQuestionnaire: bindActionCreators(uMyStartupQuestionnaire, dispatch),
     gMyQuestionnaires: bindActionCreators(gMyQuestionnaires, dispatch),
     resetMyQuestionnaires: bindActionCreators(resetMyQuestionnaires, dispatch)
   }
@@ -43,16 +44,75 @@ export default class SharedMyCampaignsStageTwo extends Component {
     super(props)
 
     this.state = {
-      order: ["highlights", "overview", "market", "strategy", "team", "financials", "investment_proposition"],
-      currentStage: "highlights"
+      order: [
+        {
+          key: "highlight",
+          title: "Highlights",
+          dataKey: "startup_questionnaire_highlight",
+          model: MyStartupQuestionnairesHighlightForm
+        },
+        {
+          key: "overview",
+          title: "Overview",
+          dataKey: "startup_questionnaire_overview",
+          model: MyStartupQuestionnairesOverviewForm,
+          formatValues: (q) => {
+            const cv = _.get(q, 'startup_questionnaire_past_milestones')
+            if (cv) {
+              const nv = cv.map((v) => {
+                const occurredOn = _.get(v, "occurred_on")
+                return {
+                  ...v,
+                  occurred_on: occurredOn ? moment(occurredOn).toDate() : moment().toDate()
+                }
+              })
+
+              _.set(q, 'startup_questionnaire_past_milestones', nv)
+            }
+
+            return q
+          }
+        },
+        {
+          key: "market",
+          title: "Market",
+          dataKey: "startup_questionnaire_market",
+          model: MyStartupQuestionnairesMarketForm
+        },
+        {
+          key: "strategy",
+          title: "Strategy",
+          dataKey: "startup_questionnaire_strategy",
+          model: MyStartupQuestionnairesStrategyForm
+        },
+        {
+          key: "team",
+          title: "Team",
+          dataKey: "startup_questionnaire_team",
+          model: MyStartupQuestionnairesTeamForm
+        },
+        {
+          key: "financial",
+          title: "Financials",
+          dataKey: "startup_questionnaire_financial",
+          model: MyStartupQuestionnairesFinancialForm
+        },
+        {
+          key: "investment",
+          title: "Investment Proposition",
+          dataKey: "startup_questionnaire_investment",
+          model: MyStartupQuestionnairesInvestmentForm
+        },
+      ],
+      currentStage: "overview"
     }
 
-    this.cMyQuestionnaire = this.cMyQuestionnaire.bind(this)
+    this.uMyStartupQuestionnaire = this.uMyStartupQuestionnaire.bind(this)
+    this.dMSQAttributes = this.dMSQAttributes.bind(this)
     this.setNextStage = this.setNextStage.bind(this)
   }
 
   componentWillMount() {
-    this.props.gImmovable({ immovableID: "startup_user_questionnaire" })
     this.props.gMyQuestionnaires()
   }
 
@@ -63,89 +123,104 @@ export default class SharedMyCampaignsStageTwo extends Component {
   setNextStage() {
     const { order, currentStage } = this.state
 
-    const nextIndex = _.indexOf(order, currentStage) + 1
+    const nextIndex = _.findIndex(order, (o) => {
+      return o.key === currentStage
+    }) + 1
     const nextStage = order[nextIndex]
 
     if (nextStage) {
-      this.changeStage(nextStage)
+      this.changeStage(nextStage.key)
     } else {
       this.props.changeStage("stage_three")
     }
   }
 
   changeStage(stage) {
+    scrollTop()
     this.setState({ currentStage: stage })
   }
 
-  cMyQuestionnaire(values) {
-    this.props.cMyQuestionnaire(values, () => {
+  uMyStartupQuestionnaire(values) {
+    this.props.uMyStartupQuestionnaire({
+      [this.state.currentStage]: values
+    }, () => {
       this.setNextStage()
-    }, this.props.routeParams)
+    }, {
+      ...this.props.routeParams,
+      startupQuestionnaireID: this.props.myQuestionnaires.id
+    })
   }
 
-  questionnaireForm() {
-    const { startupQuestionnaires, myQuestionnaires } = this.props
-    const currentStage = this.state.currentStage
+  dMSQAttributes(index, fields, key) {
+    const fieldValues = fields.get(index)
+    const fieldID = _.get(fieldValues, 'id', null)
 
-    const title = currentStage.splitCap("_").toUpperCase()
-    const currentQuestionnaire = _.get(startupQuestionnaires, `${currentStage}.questions`, [])
-    const baseQuestionnaire = _.get(myQuestionnaires, `${currentStage}`, [])
+    if (fieldID) {
+      const { myQuestionnaires } = this.props
+      const { order, currentStage } = this.state
 
-    const fileUrls = {}
-    const initialValues = {
-      questionnaire_id: currentStage,
-      answers: currentQuestionnaire.map((question, i) => {
-        const questionID = question.id
+      const dataKey = _.find(order, { key: currentStage }).dataKey
+      const myQuestionnaire = myQuestionnaires[`${dataKey}`]
 
-        if (question.type === "file") {
-          fileUrls[i] = _.get(baseQuestionnaire[questionID], 'answer_file')
+      const params = {
+        [this.state.currentStage]: {
+          id: _.get(myQuestionnaire, 'id', null),
+          [key.split("[")[0]]: [{
+            id: _.get(fields.get(index), 'id', null),
+            _destroy: true
+          }]
         }
+      }
 
-        return {
-          question_id: questionID,
-          answer_type: question.type,
-          answer: question.type === "datetime" || question.type === "date" ? moment().startOf('day').toDate() : null,
-          ...baseQuestionnaire[questionID]
-        }
+      this.props.uMyStartupQuestionnaire(params, () => {
+        // fields.remove(index)
+      }, {
+        ...this.props.routeParams,
+        startupQuestionnaireID: this.props.myQuestionnaires.id
       })
+    } else {
+      fields.remove(index)
     }
+  }
+
+  questionnaireForm(myQuestionnaire, baseInfo) {
+    const formatValues = baseInfo.formatValues
+    const initialValues = formatValues ? formatValues(myQuestionnaire) : myQuestionnaire
 
     return (
-      <div className="col-xs-12">
-        <QuestionnaireForm
-          optClass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
-          onSubmit={this.cMyQuestionnaire}
-          submitInProcess={this.props.cMyQuestionnaireInProcess}
-          title={title}
-          questionnaires={currentQuestionnaire}
-          initialValues={initialValues}
-          fileUrls={fileUrls}
-        />
-      </div>
+      <baseInfo.model
+        key={baseInfo.key}
+        initialValues={initialValues}
+        baseInfo={baseInfo}
+        onSubmit={this.uMyStartupQuestionnaire}
+        dMSQAttributes={this.dMSQAttributes}
+        submitInProcess={this.props.uMyStartupQuestionnaireInProcess}
+        optClass="col-xs-12 col-sm-6 col-sm-offset-3"
+      />
     )
   }
 
   render() {
-    const { gImmovableInProcess, gMyQuestionnairesInProcess } = this.props
+    const { myQuestionnaires, gMyQuestionnairesInProcess } = this.props
     const { currentStage } = this.state
 
-    if (gImmovableInProcess || gMyQuestionnairesInProcess) return <LoadingSpinner />
+    if (gMyQuestionnairesInProcess) return <LoadingSpinner />
 
     return (
       <div id="shared-my-campaigns-stage-two">
         <div className="stage-nav">
           <div className="container">
             {
-              this.state.order.map((s, i) => {
-                const bgColor = currentStage === s ? "bg-info" : ""
+              this.state.order.map((o, i) => {
+                const bgColor = currentStage === o.key ? "bg-info" : ""
                 return (
                   <div
                     key={i}
                     className={`pointer stage-item ${bgColor}`}
                     onClick={() => {
-                      this.changeStage(s)
+                      this.changeStage(o.key)
                     }}
-                  >{s.splitCap("_")}</div>
+                  >{o.title.splitCap("_")}</div>
                 )
               })
             }
@@ -153,7 +228,9 @@ export default class SharedMyCampaignsStageTwo extends Component {
         </div>
 
         {
-          this.questionnaireForm()
+          myQuestionnaires && this.state.order.map((o) => {
+            return currentStage === o.key ? this.questionnaireForm(myQuestionnaires[o.dataKey], o) : null
+          })
         }
       </div>
     )

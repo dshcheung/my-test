@@ -8,19 +8,13 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import configureStore from './store-config'
 import currentRoutes from './routes'
 
+import scrollTop from './services/utils'
+
 require('../styles/index.scss')
 require('./prototypes.js')
 
 const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
-
-const scrollTop = () => {
-  const element = document.getElementsByTagName("html")[0]
-
-  if (element) {
-    element.scrollTop = 0
-  }
-}
 
 const render = (routes) => {
   return ReactDOM.render(

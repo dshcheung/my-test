@@ -1,3 +1,5 @@
+import { isEmpty } from '../services/utils'
+
 const validators = {
   presences: (value) => {
     if (!value) return "Required"
@@ -23,26 +25,75 @@ const validators = {
   numericality: (value, { min, max }) => {
     if (min && value < min) return `Minimum ${min}`
     if (max && value > max) return `Maximum ${max}`
+  },
+  complexArrOfObj: (valueArr, { selfPresences, childFields }) => {
+    if (selfPresences) {
+      const selfError = {}
+
+      if (!valueArr) {
+        selfError._error = "Need at least 1"
+      }
+
+      if (!isEmpty(selfError)) {
+        return selfError
+      }
+    }
+
+    const childErrors = []
+
+    // field = "detail"
+    _.forOwn(childFields, (toValidates, field) => {
+      _.forEach(valueArr, (vObj, i) => {
+        const targetV = _.get(vObj, field)
+        const e = []
+
+        _.forEach(toValidates, (toValidate) => {
+          const msg = validators[toValidate.type || toValidate](targetV, toValidate.opts)
+          if (msg) {
+            e.push(msg)
+          }
+        })
+
+        if (e.length > 0) {
+          if (!childErrors[i]) {
+            childErrors[i] = {}
+          }
+
+          _.set(childErrors, `[${i}].${field}`, e)
+        }
+      })
+    })
+
+    if (childErrors.length > 0) {
+      return childErrors
+    }
   }
 }
 
-export default function Validators(fields, values) {
+export default function Validators(fields, values, complexFields) {
   const errorsObj = {}
 
   _.forOwn(fields, (toValidates, field) => {
     const value = _.get(values, field, null)
-    const errorsArr = []
+
+    const isComplex = _.indexOf(complexFields, field) >= 0
+    let error = []
 
     _.forEach(toValidates, (toValidate) => {
-      const msg = validators[toValidate.type || toValidate](value, toValidate.opts)
-      if (msg) errorsArr.push(msg)
+      const msg = validators[toValidate.type || toValidate](value, toValidate.opts, field)
+      if (msg) {
+        if (isComplex) {
+          error = msg
+        } else {
+          error.push(msg)
+        }
+      }
     })
 
-    if (errorsArr.length > 0) {
-      errorsObj[field] = errorsArr
+    if (error.length > 0 || !isEmpty(error)) {
+      errorsObj[field] = error
     }
   })
-
 
   return errorsObj
 }

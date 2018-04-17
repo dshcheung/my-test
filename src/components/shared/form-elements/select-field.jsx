@@ -8,7 +8,8 @@ export default class SelectField extends Component {
         options, requestInProcess,
         label, decodeLabel,
         placeholder,
-        valueKey, nameKey
+        valueKey, nameKey,
+        hint, allowEmptyValue,
       }
     } = this.props
 
@@ -23,7 +24,24 @@ export default class SelectField extends Component {
           disabled={requestInProcess}
           {...input}
         >
-          <option value="" disabled>{ requestInProcess ? "Loading" : placeholder }</option>
+          {
+            requestInProcess && (
+              <option value="" disabled>{ requestInProcess && "Loading" }</option>
+            )
+          }
+
+          {
+            placeholder && (
+              <option value="" disabled>{ placeholder }</option>
+            )
+          }
+
+          {
+            allowEmptyValue && (
+              <option value="">N/A</option>
+            )
+          }
+
           {
             options.map((opt) => {
               let value = null
@@ -50,6 +68,7 @@ export default class SelectField extends Component {
             })
           }
         </select>
+        { hint && <span className="help-block">{hint}</span> }
         {
           hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>
         }

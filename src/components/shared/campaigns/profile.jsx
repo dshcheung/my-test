@@ -70,7 +70,7 @@ export default class SharedCampaignsProfile extends Component {
     const attachments = _.get(startup, "attachments")
 
     const startupData = [
-      {
+      { // TODO: remind gram to add canUpdate? to campaign.can to allow updates to be updated after submittion
         key: "updates",
         title: "Updates",
         modal: SharedStartupsTextSection,

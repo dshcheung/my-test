@@ -8,7 +8,7 @@ export const MERGE_MY_QUESTIONNAIRES = "MERGE_MY_QUESTIONNAIRES"
 export const mergeMyQuestionnaires = (data, reset) => {
   return {
     type: MERGE_MY_QUESTIONNAIRES,
-    data: data.questionnaire_responses,
+    data,
     reset
   }
 }

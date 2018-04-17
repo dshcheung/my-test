@@ -62,7 +62,9 @@ export default class MyCampaigns extends Component {
         }
 
         {
-          params.stage === "stage_two" && <SharedMyCampaignsStageTwo />
+          params.stage === "stage_two" && <SharedMyCampaignsStageTwo
+            routeParams={routeParams}
+          />
         }
 
         {
