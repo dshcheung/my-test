@@ -59,7 +59,9 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
       break_even: _.get(values, 'financial.break_even[0]', null),
       income_statements: _.get(values, 'financial.income_statements[0]', null),
       cash_flow_statements: _.get(values, 'financial.cash_flow_statements[0]', null),
-      current_fund: _.get(values, 'financial.current_fund', null)
+      current_fund: _.get(values, 'financial.current_fund', null),
+      startup_questionnaire_financial_fund_histories_attributes: _.get(values, 'financial.startup_questionnaire_financial_fund_histories', null),
+      startup_questionnaire_financial_use_of_funds_attributes: _.get(values, 'financial.startup_questionnaire_financial_use_of_funds', null)
     },
     startup_questionnaire_investment_attributes: {
       id: _.get(values, 'investment.id', null),

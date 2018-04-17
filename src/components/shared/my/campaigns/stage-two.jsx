@@ -94,10 +94,10 @@ export default class SharedMyCampaignsStageTwo extends Component {
             const cv = _.get(q, 'startup_questionnaire_market_strategies')
             if (cv) {
               const nv = cv.map((v) => {
-                const occurredOn = _.get(v, "planned_for")
+                const plannedFor = _.get(v, "planned_for")
                 return {
                   ...v,
-                  planned_for: occurredOn ? moment(occurredOn).toDate() : moment().toDate()
+                  planned_for: plannedFor ? moment(plannedFor).toDate() : moment().toDate()
                 }
               })
 
@@ -125,6 +125,18 @@ export default class SharedMyCampaignsStageTwo extends Component {
             if (cv2) _.set(q, 'income_statements_url', cv2.original)
             const cv3 = _.get(q, 'cash_flow_statements')
             if (cv3) _.set(q, 'cash_flow_statements_url', cv3.original)
+            const cv4 = _.get(q, 'startup_questionnaire_financial_fund_histories')
+            if (cv4) {
+              const nv4 = cv4.map((v) => {
+                const occurredOn = _.get(v, "occurred_on")
+                return {
+                  ...v,
+                  occurred_on: occurredOn ? moment(occurredOn).toDate() : moment().toDate()
+                }
+              })
+
+              _.set(q, 'startup_questionnaire_financial_fund_histories', nv4)
+            }
 
             return q
           }
