@@ -30,6 +30,7 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
     },
     startup_questionnaire_market_attributes: {
       id: _.get(values, 'market.id', null),
+      market_metrics: _.get(values, 'market.market_metrics[0]', null),
       customer_persona: _.get(values, 'market.customer_persona', null),
       timing: _.get(values, 'market.timing', null),
       risk_factors: _.get(values, 'market.risk_factors', null),
@@ -55,6 +56,9 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
     startup_questionnaire_financial_attributes: {
       id: _.get(values, 'financial.id', null),
       three_kpis: _.get(values, 'financial.three_kpis', null),
+      break_even: _.get(values, 'financial.break_even[0]', null),
+      income_statements: _.get(values, 'financial.income_statements[0]', null),
+      cash_flow_statements: _.get(values, 'financial.cash_flow_statements[0]', null),
       current_fund: _.get(values, 'financial.current_fund', null)
     },
     startup_questionnaire_investment_attributes: {

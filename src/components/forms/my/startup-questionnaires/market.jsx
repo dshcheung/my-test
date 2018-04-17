@@ -4,11 +4,13 @@ import { reduxForm, Field } from 'redux-form'
 import Validators from '../../../../services/form-validators'
 
 import TextArea from '../../../shared/form-elements/text-area'
+import FileField from '../../../shared/form-elements/file-field'
 
 @reduxForm({
   form: "MyStartupQuestionnaireMarketForm",
   validate: (values) => {
     return Validators({
+      market_metrics: [], // TODO: required file validator
       customer_persona: ["presences"],
       timing: [],
       risk_factors: ["presences"],
@@ -21,11 +23,21 @@ import TextArea from '../../../shared/form-elements/text-area'
 
 export default class MyStartupQuestionnaireMarketForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass } = this.props
+    const { handleSubmit, submitInProcess, optClass, initialValues } = this.props
 
     return (
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
+          <Field
+            name="market_metrics"
+            component={FileField}
+            opts={{
+              label: "Define your market & market metrics *",
+              fileUrl: initialValues.market_metrics_url,
+              hint: "Segment, geography, Size & growth, please explain your source or calculation. Any comparable market (other geography, other industry) to support your figures ? Your market share objective ?"
+            }}
+          />
+
           <Field
             name="customer_persona"
             component={TextArea}

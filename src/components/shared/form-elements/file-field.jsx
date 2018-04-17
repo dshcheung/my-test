@@ -43,21 +43,21 @@ export default class FileField extends Component {
           id={newInput.name}
           className="hide"
           type="file"
-          accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+          accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.csv"
           {...newInput}
         />
         <label
           htmlFor={newInput.name}
-          className={`${optClass} file-field-label`}
+          className={`${optClass} file-field-label clearfix`}
         >
           {
             !this.state.previewFileUrl && !fileUrl && (
-              <div><a className="btn btn-primary">Select File</a></div>
+              <div className="clearfix"><a className="btn btn-primary">Select File</a></div>
             )
           }
           {
             (this.state.previewFileUrl || fileUrl) && (
-              <div>
+              <div className="clearfix">
                 <a className="btn btn-warning">Select Replacement File</a>
                 <a
                   href={this.state.previewFileUrl || fileUrl}
@@ -67,7 +67,7 @@ export default class FileField extends Component {
               </div>
             )
           }
-          { hint && <span className="help-block">{hint}</span> }
+          { hint && <span className="help-block clearfix">{hint}</span> }
           { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
         </label>
       </div>

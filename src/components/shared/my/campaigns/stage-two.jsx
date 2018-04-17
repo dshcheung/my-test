@@ -77,7 +77,13 @@ export default class SharedMyCampaignsStageTwo extends Component {
           key: "market",
           title: "Market",
           dataKey: "startup_questionnaire_market",
-          model: MyStartupQuestionnairesMarketForm
+          model: MyStartupQuestionnairesMarketForm,
+          formatValues: (q) => {
+            const cv = _.get(q, 'market_metrics')
+            if (cv) _.set(q, 'market_metrics_url', cv.original)
+
+            return q
+          }
         },
         {
           key: "strategy",
@@ -111,7 +117,17 @@ export default class SharedMyCampaignsStageTwo extends Component {
           key: "financial",
           title: "Financials",
           dataKey: "startup_questionnaire_financial",
-          model: MyStartupQuestionnairesFinancialForm
+          model: MyStartupQuestionnairesFinancialForm,
+          formatValues: (q) => {
+            const cv1 = _.get(q, 'break_even')
+            if (cv1) _.set(q, 'break_even_url', cv1.original)
+            const cv2 = _.get(q, 'income_statements')
+            if (cv2) _.set(q, 'income_statements_url', cv2.original)
+            const cv3 = _.get(q, 'cash_flow_statements')
+            if (cv3) _.set(q, 'cash_flow_statements_url', cv3.original)
+
+            return q
+          }
         },
         {
           key: "investment",
@@ -120,7 +136,7 @@ export default class SharedMyCampaignsStageTwo extends Component {
           model: MyStartupQuestionnairesInvestmentForm
         },
       ],
-      currentStage: "team"
+      currentStage: "financial"
     }
 
     this.uMyStartupQuestionnaire = this.uMyStartupQuestionnaire.bind(this)
