@@ -148,7 +148,7 @@ export default class SharedMyCampaignsStageTwo extends Component {
           model: MyStartupQuestionnairesInvestmentForm
         },
       ],
-      currentStage: "financial"
+      currentStage: "highlight"
     }
 
     this.uMyStartupQuestionnaire = this.uMyStartupQuestionnaire.bind(this)
