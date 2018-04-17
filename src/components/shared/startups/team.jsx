@@ -95,7 +95,7 @@ export default class SharedStartupsTeam extends Component {
                 members.map((member, i) => {
                   return (
                     <div key={i} className="col-xs-6 col-sm-4 col-md-2">
-                      <img className="full-width" src={member.avatar.original} alt={member.name} />
+                      <img className="full-width" src={member.avatar.original || DEFAULT_USER_AVATAR} alt={member.name} />
                       <p>
                         <span className="text-bold header">{member.name}</span>
                         <span className="title">{member.title}</span>
