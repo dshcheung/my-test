@@ -83,7 +83,23 @@ export default class SharedMyCampaignsStageTwo extends Component {
           key: "strategy",
           title: "Strategy",
           dataKey: "startup_questionnaire_strategy",
-          model: MyStartupQuestionnairesStrategyForm
+          model: MyStartupQuestionnairesStrategyForm,
+          formatValues: (q) => {
+            const cv = _.get(q, 'startup_questionnaire_market_strategies')
+            if (cv) {
+              const nv = cv.map((v) => {
+                const occurredOn = _.get(v, "planned_for")
+                return {
+                  ...v,
+                  planned_for: occurredOn ? moment(occurredOn).toDate() : moment().toDate()
+                }
+              })
+
+              _.set(q, 'startup_questionnaire_market_strategies', nv)
+            }
+
+            return q
+          }
         },
         {
           key: "team",
@@ -104,7 +120,7 @@ export default class SharedMyCampaignsStageTwo extends Component {
           model: MyStartupQuestionnairesInvestmentForm
         },
       ],
-      currentStage: "overview"
+      currentStage: "team"
     }
 
     this.uMyStartupQuestionnaire = this.uMyStartupQuestionnaire.bind(this)

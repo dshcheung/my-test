@@ -41,12 +41,16 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
       strategic_positioning: _.get(values, 'strategy.strategic_positioning', null),
       unique_selling_point: _.get(values, 'strategy.unique_selling_point', null),
       customer_acquisition_cost: _.get(values, 'strategy.customer_acquisition_cost', null),
-      customer_life_value: _.get(values, 'strategy.customer_life_value', null)
+      customer_life_value: _.get(values, 'strategy.customer_life_value', null),
+      startup_questionnaire_market_strategies_attributes: _.get(values, 'strategy.startup_questionnaire_market_strategies', null)
     },
     startup_questionnaire_team_attributes: {
       id: _.get(values, 'team.id', null),
       story: _.get(values, 'team.story', null),
       next_hires: _.get(values, 'team.next_hires', null),
+      startup_questionnaire_team_founders_attributes: _.get(values, 'team.startup_questionnaire_team_founders', null),
+      startup_questionnaire_team_members_attributes: _.get(values, 'team.startup_questionnaire_team_members', null),
+      startup_questionnaire_team_advisors_attributes: _.get(values, 'team.startup_questionnaire_team_advisors', null)
     },
     startup_questionnaire_financial_attributes: {
       id: _.get(values, 'financial.id', null),

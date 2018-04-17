@@ -22,6 +22,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
         opts: {
           selfPresences: true,
           childFields: {
+            occurred_on: ["presences"],
             detail: ["presences"]
           }
         }
@@ -94,7 +95,6 @@ export default class MyStartupQuestionnaireOverviewForm extends Component {
           <FieldArray
             name="startup_questionnaire_past_milestones"
             component={DynamicFieldArray}
-            initialize
             opts={{
               label: "Past Milestones *",
               groupName: "Milestone",

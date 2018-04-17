@@ -1,24 +1,67 @@
 import React, { Component } from 'react'
-import { reduxForm, Field } from 'redux-form'
+import { reduxForm, Field, FieldArray } from 'redux-form'
 
 import Validators from '../../../../services/form-validators'
 
 import TextArea from '../../../shared/form-elements/text-area'
+import TextField from '../../../shared/form-elements/text-field'
+import SelectField from '../../../shared/form-elements/select-field'
+import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
+
 
 @reduxForm({
   form: "MyStartupQuestionnaireTeamForm",
   validate: (values) => {
     return Validators({
       story: ["presences"],
-      next_hires: ["presences"]
-    }, values)
+      next_hires: ["presences"],
+      startup_questionnaire_team_founders: [{
+        type: "complexArrOfObj",
+        opts: {
+          selfPresences: true, // TODO: ask gram to see if keep for these
+          childFields: {
+            name: ["presences"],
+            position: ["presences"],
+            contract: ["presences"],
+            salary: ["presences"],
+            years_of_experience: ["presences"],
+            linked_in: ["presences"],
+          }
+        }
+      }],
+      startup_questionnaire_team_members: [{
+        type: "complexArrOfObj",
+        opts: {
+          selfPresences: true,
+          childFields: {
+            name: ["presences"],
+            position: ["presences"],
+            // contract: ["presences"]
+          }
+        }
+      }],
+      startup_questionnaire_team_advisors: [{
+        type: "complexArrOfObj",
+        opts: {
+          selfPresences: true,
+          childFields: {
+            name: ["presences"],
+            expertise: ["presences"]
+          }
+        }
+      }]
+    }, values, [
+      "startup_questionnaire_team_founders",
+      "startup_questionnaire_team_members",
+      "startup_questionnaire_team_advisors"
+    ])
   },
   enableReinitialize: true
 })
 
 export default class MyStartupQuestionnaireTeamForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass } = this.props
+    const { handleSubmit, submitInProcess, optClass, dMSQAttributes } = this.props
 
     return (
       <div className={optClass}>
@@ -38,6 +81,150 @@ export default class MyStartupQuestionnaireTeamForm extends Component {
             opts={{
               label: "Is your team complete ? What would be your next hires ? *",
               hint: "Imagine you can make 2 wishes for free concerning your dream team,... ok,ok let us stick to the legend : make it 3 ! what / who would you like to add to your team ?"
+            }}
+          />
+
+          <FieldArray
+            name="startup_questionnaire_team_founders"
+            component={DynamicFieldArray}
+            opts={{
+              label: "For each of your co-founders and officers, please provide : *",
+              groupName: "Founder/Officer",
+              newFieldInit: {
+                name: '',
+                position: '',
+                contract: '',
+                salary: '',
+                years_of_experience: '',
+                linked_in: ''
+              },
+              onDeleteField: dMSQAttributes,
+              dynamicFields: [
+                {
+                  key: "name",
+                  component: TextField,
+                  opts: {
+                    placeholder: "Name"
+                  }
+                },
+                {
+                  key: "position",
+                  component: TextField,
+                  opts: {
+                    placeholder: "Position"
+                  }
+                },
+                {
+                  key: "contract",
+                  component: SelectField,
+                  opts: {
+                    options: [
+                      { key: "full_time", name: "Full-Time" },
+                      { key: "part_time", name: "Part-Time" }
+                    ],
+                    placeholder: "Contract Type",
+                    valueKey: "key",
+                    nameKey: "name",
+                  }
+                },
+                {
+                  key: "salary",
+                  component: TextField,
+                  opts: {
+                    type: "Number",
+                    placeholder: "Salary"
+                  }
+                },
+                {
+                  key: "years_of_experience",
+                  component: TextField,
+                  opts: {
+                    type: "Number",
+                    placeholder: "Years of Experience"
+                  }
+                },
+                {
+                  key: "linked_in",
+                  component: TextField,
+                  opts: {
+                    placeholder: "Linkedin"
+                  }
+                }
+              ]
+            }}
+          />
+
+          <FieldArray
+            name="startup_questionnaire_team_members"
+            component={DynamicFieldArray}
+            opts={{
+              label: "For each of your Key team members, please provide *",
+              groupName: "Members",
+              newFieldInit: {
+                name: '',
+                position: '',
+                // contract: ''
+              },
+              onDeleteField: dMSQAttributes,
+              dynamicFields: [
+                {
+                  key: "name",
+                  component: TextField,
+                  opts: {
+                    placeholder: "Name"
+                  }
+                },
+                {
+                  key: "position",
+                  component: TextField,
+                  opts: {
+                    placeholder: "Position"
+                  }
+                },
+                // { TODO: Tell gram to add this back to schema
+                //   key: "contract",
+                //   component: SelectField,
+                //   opts: {
+                //     options: [
+                //       { key: "full_time", name: "Full-Time" },
+                //       { key: "part_time", name: "Part-Time" }
+                //     ],
+                //     placeholder: "Contract Type",
+                //     valueKey: "key",
+                //     nameKey: "name",
+                //   }
+                // }
+              ]
+            }}
+          />
+
+          <FieldArray
+            name="startup_questionnaire_team_advisors"
+            component={DynamicFieldArray}
+            opts={{
+              label: "For each of your notable Advisors & Investors, please provide *",
+              groupName: "Advisors/Investors",
+              newFieldInit: {
+                name: '',
+                expertise: ''
+              },
+              onDeleteField: dMSQAttributes,
+              dynamicFields: [
+                {
+                  key: "name",
+                  component: TextField,
+                  opts: {
+                    placeholder: "Name"
+                  }
+                },
+                {
+                  key: "expertise",
+                  component: TextArea,
+                  opts: {
+                    placeholder: "Expertise"
+                  }
+                }
+              ]
             }}
           />
 

@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { reduxForm, Field } from 'redux-form'
+import { reduxForm, Field, FieldArray } from 'redux-form'
 
 import Validators from '../../../../services/form-validators'
 
 import TextArea from '../../../shared/form-elements/text-area'
+import DateTimePicker from '../../../shared/form-elements/datetime-picker'
+import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
 
 @reduxForm({
   form: "MyStartupQuestionnaireStrategyForm",
@@ -12,15 +14,25 @@ import TextArea from '../../../shared/form-elements/text-area'
       strategic_positioning: ["presences"],
       unique_selling_point: ["presences"],
       customer_acquisition_cost: ["presences"],
-      customer_life_value: ["presences"]
-    }, values)
+      customer_life_value: ["presences"],
+      startup_questionnaire_market_strategies: [{
+        type: "complexArrOfObj",
+        opts: {
+          selfPresences: true,
+          childFields: {
+            planned_for: ["presences"],
+            detail: ["presences"]
+          }
+        }
+      }]
+    }, values, ["startup_questionnaire_market_strategies"])
   },
   enableReinitialize: true
 })
 
 export default class MyStartupQuestionnaireStrategyForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass } = this.props
+    const { handleSubmit, submitInProcess, optClass, dMSQAttributes } = this.props
 
     return (
       <div className={optClass}>
@@ -58,6 +70,38 @@ export default class MyStartupQuestionnaireStrategyForm extends Component {
             opts={{
               label: "What is your customer life value ? *",
               hint: "A short and rationale explanation would be appreciated"
+            }}
+          />
+
+          <FieldArray
+            name="startup_questionnaire_market_strategies"
+            component={DynamicFieldArray}
+            opts={{
+              label: "What is your Marketing strategy and your timeline to access your targeted market ? *",
+              groupName: "Strategy",
+              newFieldInit: {
+                planned_for: moment().toDate(),
+                detail: ''
+              },
+              onDeleteField: dMSQAttributes,
+              dynamicFields: [
+                {
+                  key: "planned_for",
+                  component: DateTimePicker,
+                  opts: {
+                    placeholder: "Planned For",
+                    time: false,
+                    format: "YYYY/MM/DD"
+                  }
+                },
+                {
+                  key: "detail",
+                  component: TextArea,
+                  opts: {
+                    placeholder: "Detail"
+                  }
+                }
+              ]
             }}
           />
 

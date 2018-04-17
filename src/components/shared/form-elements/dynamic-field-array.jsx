@@ -32,7 +32,7 @@ export default class DynamicFieldArray extends Component {
                   <button
                     type="button"
                     className="btn btn-danger pull-right"
-                    onClick={() => { onDeleteField(i, fields, objKey, ) }}
+                    onClick={() => { onDeleteField(i, fields, objKey) }}
                   ><i className="fa fa-trash" /></button>
                 </div>
 
