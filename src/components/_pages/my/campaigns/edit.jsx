@@ -7,6 +7,8 @@ import SharedMyCampaignsStages from '../../../shared/my/campaigns/stages'
 import SharedMyCampaignsStageOne from '../../../shared/my/campaigns/stage-one'
 import SharedMyCampaignsStageTwo from '../../../shared/my/campaigns/stage-two'
 import SharedMyCampaignsStageThree from '../../../shared/my/campaigns/stage-three'
+import SharedMyCampaignsStageFour from '../../../shared/my/campaigns/stage-four'
+import SharedMyCampaignsStageFive from '../../../shared/my/campaigns/stage-five'
 
 const mapStateToProps = (state) => {
   return {
@@ -71,6 +73,18 @@ export default class MyCampaigns extends Component {
           params.stage === "stage_three" && <SharedMyCampaignsStageThree
             editMode
             router={this.props.router}
+            routeParams={routeParams}
+          />
+        }
+
+        {
+          params.stage === "stage_four" && <SharedMyCampaignsStageFour
+            routeParams={routeParams}
+          />
+        }
+
+        {
+          params.stage === "stage_five" && <SharedMyCampaignsStageFive
             routeParams={routeParams}
           />
         }
