@@ -111,13 +111,17 @@ export default class CampaignPledgeForm extends Component {
       <div id="forms-campaigns-pledge" className={optClass}>
         <div className="row text-center padding-left-15 padding-right-15 margin-bottom-15">
           <div
-            className={`col-xs-6 pointer padding-15 ${paymentMode === "bank" && "bg-info"}`}
+            className={`col-xs-4 pointer padding-15 ${paymentMode === "bank" && "bg-info"}`}
             onClick={() => { this.setState({ paymentMode: "bank" }) }}
           >Bank Transfer</div>
           <div
-            className={`col-xs-6 pointer padding-15 ${paymentMode === "stripe" && "bg-info"}`}
+            className={`col-xs-4 pointer padding-15 ${paymentMode === "stripe" && "bg-info"}`}
             onClick={() => { this.setState({ paymentMode: "stripe" }) }}
           >Stripe</div>
+          <div
+            className={`col-xs-4 pointer padding-15 ${paymentMode === "token" && "bg-info"}`}
+            onClick={() => { this.setState({ paymentMode: "token" }) }}
+          >Token Transfer</div>
         </div>
         {
           this.renderForm()

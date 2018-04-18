@@ -67,7 +67,7 @@ export default class SharedCampaignsProfile extends Component {
     const team = _.get(startup, "team")
     const useOfFunds = _.get(startup, "profile.use_of_funds")
     const media = _.get(startup, "media")
-    const attachments = _.get(startup, "attachments")
+    const attachments = _.get(startup, "attachments") || []
 
     const startupData = [
       { // TODO: remind gram to add canUpdate? to campaign.can to allow updates to be updated after submittion
@@ -135,7 +135,7 @@ export default class SharedCampaignsProfile extends Component {
         modal: SharedStartupsAttachments,
         data: attachments,
         exist: attachments.length >= 0,
-        extra: { viewDataRoom: campaign.can.view_data_room }
+        extra: { viewDataRoom: _.get(campaign, 'can.view_data_room') }
       }
     ]
 

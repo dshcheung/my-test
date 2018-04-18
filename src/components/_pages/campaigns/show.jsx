@@ -47,7 +47,6 @@ export default class CampaignsShow extends Component {
         <SharedCampaignsProfile
           startup={_.get(campaign, 'startup', null)}
           campaign={campaign}
-          loadingInProcess={getCampaignInProcess}
           routeParams={routeParams}
           router={this.props.router}
         />

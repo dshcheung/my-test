@@ -2,6 +2,8 @@ import { genApiUrl, genAxios } from '../../services/api-request'
 import { getFormData } from '../../services/get-form-data'
 import { apiMyStartupQuestionnairesShow } from '../../services/api-path'
 
+import { notySuccess } from '../../services/noty'
+
 export const MERGE_MY_STARTUP_QUESTIONNAIRES = "MERGE_MY_STARTUP_QUESTIONNAIRES"
 export const mergeMyStartupQuestionnaires = (data) => {
   return {
@@ -81,6 +83,7 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
     request,
     successCB: (dispatch, data) => {
       dispatch(mergeMyStartupQuestionnaires([data]))
+      notySuccess("Saved!")
       if (cb) cb(data)
     }
   }
