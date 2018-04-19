@@ -3,7 +3,7 @@ import { Route, IndexRoute } from 'react-router'
 
 import App from './components/_layouts/app'
 
-// import HomeContainer from './components/_pages/home'
+import HomeContainer from './components/_pages/home'
 
 import AuthContainer from './components/_pages/auth/wrapper'
 import LoginContainer from './components/_pages/auth/login'
@@ -46,7 +46,7 @@ import PageNotFound from './components/_pages/not-found'
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={LoginContainer} />
+    <IndexRoute component={HomeContainer} />
 
     {/* Auth Paths */}
     <Route path="auth" component={AuthContainer}>
