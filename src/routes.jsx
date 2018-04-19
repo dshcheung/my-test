@@ -11,6 +11,8 @@ import SignupContainer from './components/_pages/auth/signup'
 import ForgotPasswordContainer from './components/_pages/auth/forgot-password'
 import ResetPasswordContainer from './components/_pages/auth/reset-password'
 
+import InPersonValidationContainer from './components/_pages/in-person-validation'
+
 import VerifyContainer from './components/_pages/verify/wrapper'
 import VerifyEmailContainer from './components/_pages/verify/email'
 import VerifyMobileContainer from './components/_pages/verify/mobile'
@@ -55,6 +57,8 @@ export default (
       <Route path="forgot-password" component={ForgotPasswordContainer} />
       <Route path="reset-password" component={ResetPasswordContainer} />
     </Route>
+
+    <Route path="in-person-validation" component={InPersonValidationContainer} />
 
     {/* Verify Paths */}
     <Route path="verify" component={VerifyContainer}>
