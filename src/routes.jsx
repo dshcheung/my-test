@@ -58,7 +58,7 @@ export default (
       <Route path="reset-password" component={ResetPasswordContainer} />
     </Route>
 
-    <Route path="in-person-validation" component={InPersonValidationContainer} />
+    <Route path="in-person-validation" component={InPersonValidationContainer} barebone />
 
     {/* Verify Paths */}
     <Route path="verify" component={VerifyContainer}>
