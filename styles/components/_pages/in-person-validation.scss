@@ -1,4 +1,14 @@
 #page-in-person-validation {
+  .video-group, .img-group {
+    max-width: 100vw;
+  }
+
+  .video-group {
+    video {
+      max-width: 100%;
+    }
+  }
+
   .img-group {
     margin: 0 auto;
     position: relative;

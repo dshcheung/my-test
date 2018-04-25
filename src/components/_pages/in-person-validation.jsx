@@ -103,11 +103,11 @@ export default class InPersonValidation extends Component {
           <button
             className={showVideo ? "hide" : "btn btn-warning another"}
             onClick={this.toggleVideo}
-          >Take Another One</button>
+          ><i className="fa fa-redo" /></button>
 
           <button
             className={showVideo ? "hide" : "btn btn-info upload"}
-          >Upload</button>
+          ><i className="fa fa-upload" /></button>
         </div>
       </div>
     )
