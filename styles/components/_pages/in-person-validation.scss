@@ -1,9 +1,16 @@
 #page-in-person-validation {
   .video-group, .img-group {
     max-width: 100vw;
+    position: relative;
   }
 
   .video-group {
+    .help-text {
+      background-color: rgba(0,0,0,0.3);
+      position: relative;
+      top: 0;
+    }
+
     video {
       max-width: 100%;
     }
@@ -11,19 +18,18 @@
 
   .img-group {
     margin: 0 auto;
-    position: relative;
 
     button {
       position: absolute;
-      bottom: 0;
+      bottom: 15%;
     }
 
     .another {
-      left: 0;
+      left: 10%;
     }
 
     .upload {
-      right: 0;
+      right: 10%;
     }
   }
 }

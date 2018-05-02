@@ -95,7 +95,7 @@ export default class MyStartupsSMediaModal extends Component {
                             className="btn btn-info edit pull-left"
                             disabled={_.get(requestStatus, `${D_MY_STARTUP_MEDIA}_${medium.id}`)}
                             onClick={() => { this.open("neMedia", true, medium, i) }}
-                          ><i className="fa fa-pencil" /></button>
+                          ><i className="fa fa-edit" /></button>
 
                           <button
                             className="btn btn-danger delete pull-right"

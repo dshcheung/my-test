@@ -69,7 +69,7 @@ export default class MyStartupsSTeamModal extends Component {
     const hasFounders = founders.length > 0
     const hasMembers = members.length > 0
 
-    const storyIconClass = hasStory ? "fa-pencil" : "fa-plus"
+    const storyIconClass = hasStory ? "fa-edit" : "fa-plus"
 
     return (
       <Modal show onHide={close} className={`form-modal ${!this.state.sTeam && 'hide'}`} id="modals-my-startups-s-team" bsSize="large">
@@ -122,7 +122,7 @@ export default class MyStartupsSTeamModal extends Component {
                             disabled={_.get(requestStatus, `${D_MY_STARTUP_TEAM_MEMBER}_${founder.id}`)}
                             onClick={() => { this.open('neFounder', true, founder, i) }}
                           >
-                            <i className="fa fa-pencil" />
+                            <i className="fa fa-edit" />
                           </button>
                           <button
                             className="btn btn-danger btn-outline delete pull-right"
@@ -170,7 +170,7 @@ export default class MyStartupsSTeamModal extends Component {
                             disabled={_.get(requestStatus, `${D_MY_STARTUP_TEAM_MEMBER}_${member.id}`)}
                             onClick={() => { this.open('neMember', true, member, i) }}
                           >
-                            <i className="fa fa-pencil" />
+                            <i className="fa fa-edit" />
                           </button>
                           <button
                             className="btn btn-danger btn-outline delete pull-right"

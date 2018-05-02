@@ -96,7 +96,7 @@ export default class UsersShow extends Component {
   }
 
   title(title, modalName, editMode, editInfo, editName) {
-    const iconClass = editMode ? "fa-pencil" : "fa-plus"
+    const iconClass = editMode ? "fa-edit" : "fa-plus"
     return (
       <div className="h2">
         {title}
@@ -163,7 +163,7 @@ export default class UsersShow extends Component {
                       {
                         editable && (
                           <button className="btn btn-info edit" onClick={() => { this.open("editExperience", highlight) }}>
-                            <i className="fa fa-pencil" />
+                            <i className="fa fa-edit" />
                           </button>
                         )
                       }
@@ -209,7 +209,7 @@ export default class UsersShow extends Component {
                       <div className="title"><strong>{education.education_level.name}</strong>, {education.school}</div>
                       <div className="year">{education.year && moment(education.year).format('YYYY')}</div>
                       <button className="btn btn-info edit" onClick={() => { open("editEducation", education) }}>
-                        <i className="fa fa-pencil" />
+                        <i className="fa fa-edit" />
                       </button>
                       <button
                         className="btn btn-danger btn-outline delete"
@@ -248,7 +248,7 @@ export default class UsersShow extends Component {
                       <div className="title"><strong>{endorsement.name}</strong></div>
                       <div className="description">{endorsement.description}</div>
                       <button className="btn btn-info edit" onClick={() => { open("editEndorsement", endorsement) }}>
-                        <i className="fa fa-pencil" />
+                        <i className="fa fa-edit" />
                       </button>
                       <button
                         className="btn btn-danger btn-outline delete"
@@ -309,7 +309,7 @@ export default class UsersShow extends Component {
                 <button
                   className="btn btn-info edit"
                   onClick={() => { this.open("editProfile", user.profile) }}
-                ><i className="fa fa-pencil" /></button>
+                ><i className="fa fa-edit" /></button>
               )
             }
           </section>

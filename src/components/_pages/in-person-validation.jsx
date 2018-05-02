@@ -58,7 +58,7 @@ export default class InPersonValidation extends Component {
     const width = video.offsetWidth
     const height = video.offsetHeight
 
-    this.setState({ height, width })
+    this.setState({ width })
 
     const canvas = document.querySelector('#canvas')
     canvas.width = width
@@ -86,6 +86,8 @@ export default class InPersonValidation extends Component {
         <canvas id="canvas" style={{ display: "none" }} />
 
         <div className="video-group">
+          <h4 className={showVideo ? "help-text" : "hide"}>Click Anywhere To Take Photo</h4>
+
           <video
             id="video"
             className={showVideo ? "" : "hide"}
@@ -103,11 +105,11 @@ export default class InPersonValidation extends Component {
           <button
             className={showVideo ? "hide" : "btn btn-warning another"}
             onClick={this.toggleVideo}
-          ><i className="fa fa-redo" /></button>
+          ><i className="fa fa-redo fa-3x" /></button>
 
           <button
             className={showVideo ? "hide" : "btn btn-info upload"}
-          ><i className="fa fa-upload" /></button>
+          ><i className="fa fa-upload fa-3x" /></button>
         </div>
       </div>
     )

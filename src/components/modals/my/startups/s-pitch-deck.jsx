@@ -64,7 +64,7 @@ export default class MyStartupsSPitchDeckModal extends Component {
     const hasDescription = !!description
     const hasAttachments = attachments.length > 0
 
-    const descriptionIconClass = hasDescription ? "fa-pencil" : "fa-plus"
+    const descriptionIconClass = hasDescription ? "fa-edit" : "fa-plus"
 
     return (
       <Modal show onHide={close} className={`form-modal ${!this.state.sPitchDeck && 'hide'}`} id="modals-my-startups-s-pitch-deck" bsSize="large">
@@ -114,7 +114,7 @@ export default class MyStartupsSPitchDeckModal extends Component {
                             disabled={_.get(requestStatus, `${D_MY_STARTUP_PITCH_DECK_ATTACHMENT}_${attachment.id}`)}
                             onClick={() => { this.open("nePitchDeckAttachment", true, attachment, i) }}
                           >
-                            <i className="fa fa-pencil" />
+                            <i className="fa fa-edit" />
                           </button>
                           <button
                             className="btn btn-danger btn-outline delete pull-right"

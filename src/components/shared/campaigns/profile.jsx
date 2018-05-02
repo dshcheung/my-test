@@ -155,7 +155,7 @@ export default class SharedCampaignsProfile extends Component {
                 <button
                   className="btn btn-info"
                   onClick={() => { this.props.router.push(`/my/campaigns/${campaign.id}/edit/stage_three`) }}
-                ><i className="fa fa-pencil" /> Edit Startup</button>
+                ><i className="fa fa-edit" /> Edit Startup</button>
               </div>
             </div>
           )
@@ -166,7 +166,7 @@ export default class SharedCampaignsProfile extends Component {
               modalEditable && <button
                 className="btn btn-info top-15 right-15 position-absolute"
                 onClick={() => { this.setState({ eHeader: true }) }}
-              ><i className="fa fa-pencil" /></button>
+              ><i className="fa fa-edit" /></button>
             }
             <img src={avatar} className="startup-avatar" alt="Startup Avatar" />
             {campaignName && <div className="h1 campaign-name">{campaignName}</div>}

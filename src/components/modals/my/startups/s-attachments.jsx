@@ -84,7 +84,7 @@ export default class MyStartupsSAttachmentsModal extends Component {
                             disabled={_.get(requestStatus, `${D_MY_STARTUP_ATTACHMENT}_${attachment.id}`)}
                             onClick={() => { this.open("neAttachmentsAttachment", true, attachment, i) }}
                           >
-                            <i className="fa fa-pencil" />
+                            <i className="fa fa-edit" />
                           </button>
                           <button
                             className="btn btn-danger btn-outline delete pull-right"
