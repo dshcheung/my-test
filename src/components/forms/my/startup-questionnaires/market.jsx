@@ -33,7 +33,7 @@ export default class MyStartupQuestionnaireMarketForm extends Component {
             component={FileField}
             opts={{
               label: "Define your market & market metrics *",
-              fileUrl: initialValues.market_metrics_url,
+              fileUrl: _.get(initialValues, 'market_metrics_url', null),
               hint: "Segment, geography, Size & growth, please explain your source or calculation. Any comparable market (other geography, other industry) to support your figures ? Your market share objective ?"
             }}
           />

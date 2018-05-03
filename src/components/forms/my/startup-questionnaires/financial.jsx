@@ -69,7 +69,7 @@ export default class MyStartupQuestionnaireFinancialForm extends Component {
             component={FileField}
             opts={{
               label: "When will you reach break-even ? *",
-              fileUrl: initialValues.break_even_url
+              fileUrl: _.get(initialValues, 'break_even_url', null)
             }}
           />
 
@@ -78,7 +78,7 @@ export default class MyStartupQuestionnaireFinancialForm extends Component {
             component={FileField}
             opts={{
               label: "Building a summarized Financial statements projection (Y, Y+1, Y+2) *",
-              fileUrl: initialValues.income_statements_url
+              fileUrl: _.get(initialValues, 'income_statements_url', null)
             }}
           />
 
@@ -87,7 +87,7 @@ export default class MyStartupQuestionnaireFinancialForm extends Component {
             component={FileField}
             opts={{
               label: "Building a summarized Cash-Flow statements projection (Y, Y+1, Y+2) *",
-              fileUrl: initialValues.cash_flow_statements_url
+              fileUrl: _.get(initialValues, 'cash_flow_statements_url', null)
             }}
           />
 
