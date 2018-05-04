@@ -16,12 +16,20 @@ export const U_MY_STARTUP_QUESTIONNAIRE = "U_MY_STARTUP_QUESTIONNAIRE"
 export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
   const checkAvatar = (x) => {
     const file = _.get(x, 'avatar[0]')
-    if (file) _.set(x, 'avatar', file)
+    if (file) {
+      _.set(x, 'avatar', file)
+    } else {
+      _.set(x, 'avatar', null)
+    }
   }
 
   const checkFile = (x) => {
     const file = _.get(x, 'file[0]')
-    if (file) _.set(x, 'file', file)
+    if (file) {
+      _.set(x, 'file', file)
+    } else {
+      _.set(x, 'file', null)
+    }
   }
 
   _.get(values, 'team.startup_questionnaire_team_founders', []).forEach(checkAvatar)
