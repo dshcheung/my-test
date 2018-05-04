@@ -63,6 +63,7 @@ export default class FileField extends Component {
                   href={this.state.previewFileUrl || fileUrl}
                   className="btn btn-primary"
                   download
+                  target="_blank"
                 >View File</a>
               </div>
             )
