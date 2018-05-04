@@ -3,7 +3,7 @@ import { reduxForm, FieldArray } from 'redux-form'
 
 import Validators from '../../../../services/form-validators'
 
-import SelectField from '../../../shared/form-elements/select-field'
+import Select2Field from '../../../shared/form-elements/select2-field'
 import FileField from '../../../shared/form-elements/file-field'
 import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
 
@@ -50,11 +50,11 @@ export default class MyStartupQuestionnaireAttachmentsForm extends Component {
               dynamicFields: [
                 {
                   key: "title",
-                  component: SelectField,
+                  component: Select2Field,
                   opts: {
                     options: [
-                      { name: "Test1" },
-                      { name: "Test2" },
+                      { name: "test1" },
+                      { name: "test2" }
                     ],
                     valueKey: "name",
                     nameKey: "name",
