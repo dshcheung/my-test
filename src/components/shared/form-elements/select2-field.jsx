@@ -41,13 +41,15 @@ export default class SelectField extends Component {
         { decodeLabel && <label htmlFor={input.name} dangerouslySetInnerHTML={{ __html: decodeLabel.decode() }} />}
 
         <Select2
-          style={{ width: "100%" }}
+          // style={{ width: "100%" }}
           disabled={requestInProcess}
           {...input}
           data={data}
           options={{
+            width: "100%",
             placeholder,
-            tags: true
+            tags: true,
+            dropdownAutoWidth: true,
           }}
         />
 
