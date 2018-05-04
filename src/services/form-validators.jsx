@@ -30,7 +30,7 @@ const validators = {
     if (selfPresences) {
       const selfError = {}
 
-      if (!valueArr) {
+      if (!valueArr || valueArr.length === 0) {
         selfError._error = "Need at least 1"
       }
 

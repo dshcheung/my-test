@@ -19,9 +19,15 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
     if (file) _.set(x, 'avatar', file)
   }
 
+  const checkFile = (x) => {
+    const file = _.get(x, 'file[0]')
+    if (file) _.set(x, 'file', file)
+  }
+
   _.get(values, 'team.startup_questionnaire_team_founders', []).forEach(checkAvatar)
   _.get(values, 'team.startup_questionnaire_team_members', []).forEach(checkAvatar)
   _.get(values, 'team.startup_questionnaire_team_advisors', []).forEach(checkAvatar)
+  _.get(values, 'attachments.attachments', []).forEach(checkFile)
 
   const teamAdvisors = {} // TODO: _destroy not working
   _.get(values, 'team.startup_questionnaire_team_advisors', []).forEach((x, i) => {
@@ -73,7 +79,7 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
       next_hires: _.get(values, 'team.next_hires', null),
       startup_questionnaire_team_founders_attributes: _.get(values, 'team.startup_questionnaire_team_founders', null),
       startup_questionnaire_team_members_attributes: _.get(values, 'team.startup_questionnaire_team_members', null),
-      // startup_questionnaire_team_advisors_attributes: teamAdvisors
+      // startup_questionnaire_team_advisors_attributes: teamAdvisors // TODO Remove
       startup_questionnaire_team_advisors_attributes: _.get(values, 'team.startup_questionnaire_team_advisors', null)
     },
     startup_questionnaire_financial_attributes: {
@@ -90,7 +96,8 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
       id: _.get(values, 'investment.id', null),
       fund_amount: _.get(values, 'investment.fund_amount', null),
       exit_strategy: _.get(values, 'investment.exit_strategy', null)
-    }
+    },
+    attachments_attributes: _.get(values, 'attachments.attachments', null)
   }
 
   const request = genAxios({

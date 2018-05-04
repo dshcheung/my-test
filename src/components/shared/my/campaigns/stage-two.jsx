@@ -19,6 +19,7 @@ import MyStartupQuestionnairesStrategyForm from '../../../forms/my/startup-quest
 import MyStartupQuestionnairesTeamForm from '../../../forms/my/startup-questionnaires/team'
 import MyStartupQuestionnairesFinancialForm from '../../../forms/my/startup-questionnaires/financial'
 import MyStartupQuestionnairesInvestmentForm from '../../../forms/my/startup-questionnaires/investment'
+import MyStartupQuestionnairesAttachmentsForm from '../../../forms/my/startup-questionnaires/attachments'
 
 const mapStateToProps = (state, props) => {
   const myCampaignID = _.get(props, 'routeParams.myCampaignID')
@@ -175,6 +176,28 @@ export default class SharedMyCampaignsStageTwo extends Component {
           dataKey: "startup_questionnaire_investment",
           model: MyStartupQuestionnairesInvestmentForm
         },
+        {
+          key: "attachments",
+          title: "Attachments",
+          dataKey: "attachments",
+          model: MyStartupQuestionnairesAttachmentsForm,
+          formatValues: (q) => {
+            const cv = q || []
+            const nv = { attachments: [] }
+            if (cv) {
+              nv.attachments = cv.map((v) => {
+                const file = _.get(v, 'file.original', null)
+
+                return {
+                  ...v,
+                  file_url: file
+                }
+              })
+            }
+
+            return nv
+          }
+        }
       ],
       currentStage: "highlight"
     }
