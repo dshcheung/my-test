@@ -43,7 +43,7 @@ export default class MyProfileBasicForm extends Component {
           />
 
           {
-            // TODO: Remove?
+            // TODO2: Remove?
             // <Field
             //   name="bio"
             //   component={TextArea}

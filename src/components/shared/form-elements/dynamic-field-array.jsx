@@ -7,6 +7,7 @@ export default class DynamicFieldArray extends Component {
       fields, meta: { error },
       opts: {
         label, groupName,
+        initialValues,
         newFieldInit, onDeleteField,
         dynamicFields
       }
@@ -25,6 +26,8 @@ export default class DynamicFieldArray extends Component {
         </div>
         {
           fields.map((objKey, i) => {
+            const objInitialvalues = _.get(initialValues, objKey)
+
             return (
               <div key={i} className="well">
                 <div className="clearfix">
@@ -38,8 +41,17 @@ export default class DynamicFieldArray extends Component {
 
                 {
                   dynamicFields.map((f, n) => {
+                    let newF = f
+                    if (objInitialvalues && f.preRenderFormat) {
+                      newF = f.preRenderFormat(objInitialvalues, f)
+                    }
+
                     return (
-                      <Field key={n} name={`${objKey}.${f.key}`} {...f} />
+                      <Field
+                        key={n}
+                        name={`${objKey}.${f.key}`}
+                        {..._.omit(newF, ['preRenderFormat'])}
+                      />
                     )
                   })
                 }

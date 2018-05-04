@@ -14,6 +14,26 @@ export const mergeMyStartupQuestionnaires = (data) => {
 
 export const U_MY_STARTUP_QUESTIONNAIRE = "U_MY_STARTUP_QUESTIONNAIRE"
 export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
+  const checkAvatar = (x) => {
+    const file = _.get(x, 'avatar[0]')
+    if (file) _.set(x, 'avatar', file)
+  }
+
+  _.get(values, 'team.startup_questionnaire_team_founders', []).forEach(checkAvatar)
+  _.get(values, 'team.startup_questionnaire_team_members', []).forEach(checkAvatar)
+  _.get(values, 'team.startup_questionnaire_team_advisors', []).forEach(checkAvatar)
+
+  const teamAdvisors = {} // TODO: _destroy not working
+  _.get(values, 'team.startup_questionnaire_team_advisors', []).forEach((x, i) => {
+    teamAdvisors[i] = {
+      id: _.get(x, 'id', null),
+      name: _.get(x, 'name', null),
+      expertise: _.get(x, 'expertise', null),
+      _destroy: _.get(x, '_destroy', null),
+      avatar: _.get(x, 'avatar[0]', null)
+    }
+  })
+
   const params = {
     startup_questionnaire_highlight_attributes: {
       id: _.get(values, 'highlight.id', null),
@@ -53,6 +73,7 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
       next_hires: _.get(values, 'team.next_hires', null),
       startup_questionnaire_team_founders_attributes: _.get(values, 'team.startup_questionnaire_team_founders', null),
       startup_questionnaire_team_members_attributes: _.get(values, 'team.startup_questionnaire_team_members', null),
+      // startup_questionnaire_team_advisors_attributes: teamAdvisors
       startup_questionnaire_team_advisors_attributes: _.get(values, 'team.startup_questionnaire_team_advisors', null)
     },
     startup_questionnaire_financial_attributes: {

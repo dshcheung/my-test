@@ -6,6 +6,7 @@ import Validators from '../../../../services/form-validators'
 import TextArea from '../../../shared/form-elements/text-area'
 import TextField from '../../../shared/form-elements/text-field'
 import SelectField from '../../../shared/form-elements/select-field'
+import ImageField from '../../../shared/form-elements/image-field'
 import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
 
 
@@ -20,6 +21,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
         opts: {
           selfPresences: true, // TODO: ask gram to see if keep for these
           childFields: {
+            // avatar: [],
             name: ["presences"],
             position: ["presences"],
             contract: ["presences"],
@@ -34,6 +36,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
         opts: {
           selfPresences: true,
           childFields: {
+            // avatar: [],
             name: ["presences"],
             position: ["presences"],
             // contract: ["presences"]
@@ -45,6 +48,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
         opts: {
           selfPresences: true,
           childFields: {
+            // avatar: [],
             name: ["presences"],
             expertise: ["presences"]
           }
@@ -61,7 +65,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
 
 export default class MyStartupQuestionnaireTeamForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass, dMSQAttributes } = this.props
+    const { handleSubmit, submitInProcess, optClass, initialValues, dMSQAttributes } = this.props
 
     return (
       <div className={optClass}>
@@ -99,7 +103,23 @@ export default class MyStartupQuestionnaireTeamForm extends Component {
                 linked_in: ''
               },
               onDeleteField: dMSQAttributes,
+              initialValues,
               dynamicFields: [
+                {
+                  preRenderFormat: (values, fieldOptions) => {
+                    const newFieldOptions = { ...fieldOptions, opts: { ...fieldOptions.opts } }
+                    const imgUrl = _.get(values, 'avatar_url', null)
+                    _.set(newFieldOptions, 'opts.imgUrl', imgUrl)
+
+                    return newFieldOptions
+                  },
+                  key: "avatar",
+                  component: ImageField,
+                  opts: {
+                    label: "Avatar",
+                    optClass: "image-field-avatar"
+                  }
+                },
                 {
                   key: "name",
                   component: TextField,
@@ -166,7 +186,23 @@ export default class MyStartupQuestionnaireTeamForm extends Component {
                 // contract: ''
               },
               onDeleteField: dMSQAttributes,
+              initialValues,
               dynamicFields: [
+                {
+                  preRenderFormat: (values, fieldOptions) => {
+                    const newFieldOptions = { ...fieldOptions, opts: { ...fieldOptions.opts } }
+                    const imgUrl = _.get(values, 'avatar_url', null)
+                    _.set(newFieldOptions, 'opts.imgUrl', imgUrl)
+
+                    return newFieldOptions
+                  },
+                  key: "avatar",
+                  component: ImageField,
+                  opts: {
+                    label: "Avatar",
+                    optClass: "image-field-avatar"
+                  }
+                },
                 {
                   key: "name",
                   component: TextField,
@@ -198,6 +234,7 @@ export default class MyStartupQuestionnaireTeamForm extends Component {
             }}
           />
 
+
           <FieldArray
             name="startup_questionnaire_team_advisors"
             component={DynamicFieldArray}
@@ -206,10 +243,28 @@ export default class MyStartupQuestionnaireTeamForm extends Component {
               groupName: "Advisors/Investors",
               newFieldInit: {
                 name: '',
-                expertise: ''
+                expertise: '',
+                avatar: null,
+                avatar_url: null
               },
               onDeleteField: dMSQAttributes,
+              initialValues,
               dynamicFields: [
+                {
+                  preRenderFormat: (values, fieldOptions) => {
+                    const newFieldOptions = { ...fieldOptions, opts: { ...fieldOptions.opts } }
+                    const imgUrl = _.get(values, 'avatar_url', null)
+                    _.set(newFieldOptions, 'opts.imgUrl', imgUrl)
+
+                    return newFieldOptions
+                  },
+                  key: "avatar",
+                  component: ImageField,
+                  opts: {
+                    label: "Avatar",
+                    optClass: "image-field-avatar"
+                  }
+                },
                 {
                   key: "name",
                   component: TextField,

@@ -63,7 +63,7 @@ export default class CampaignsSearchForm extends Component {
           />
 
           {
-            /* TODO: Category Immovable
+            /* TODO2: Category Immovable
               <Field
                 name="filter"
                 component={SelectField}

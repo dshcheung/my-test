@@ -185,7 +185,6 @@ export default class MyQuestionnaires extends Component {
           <div className="container">
             {
               order.map((o, i) => {
-                // TODO: add in an invalid state for the KYC stage
                 const isCompleted = stageStatus[o]
                 const bgColor = isCompleted ? "bg-success" : ""
                 const activeBgColor = currentStage === o ? "bg-info" : ""

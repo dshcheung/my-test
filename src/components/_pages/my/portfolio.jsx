@@ -66,7 +66,6 @@ export default class MyPortfolio extends Component {
                           campaigns.map((c, i) => {
                             const goal = c.goal || 0
                             const raised = c.raised || 0
-                            // TODO: User your own campaign_pledges
                             const pledgedAmount = _.get(c, 'campaign_pledges[0].amount')
                             return (
                               <tr

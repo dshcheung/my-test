@@ -105,7 +105,7 @@ export default (
     <Route path="investor-agreement" component={LegalDocumentContainer} docID="investor-agreement" />
     <Route path="investor-disclaimer" component={LegalDocumentContainer} docID="investor-warning-statement" />
 
-    {/* TODO: REMOVE? */}
+    {/* TODO2: REMOVE? */}
     <Route path="users">
       <Route path=":userID" component={UsersShowContainer} />
     </Route>
