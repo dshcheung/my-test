@@ -3,7 +3,7 @@ var webpack = require('webpack');
 module.exports = function () {
   return {
     entry: {
-      main: './src/index.jsx'
+      main: './src/index.prod.jsx'
     },
     output: {
       path: __dirname + '/public',
@@ -37,16 +37,10 @@ module.exports = function () {
     },
     plugins: [
       new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          warnings: false
-        },
-        comments: false,
-        minimize: false,
         sourceMap: true
       }),
       new webpack.LoaderOptionsPlugin({
-        // debug: false
-        debug: true
+        minimize: true
       }),
       new webpack.DefinePlugin({
         'process.env': {

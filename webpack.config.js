@@ -52,7 +52,7 @@ module.exports = function () {
     },
     plugins: [
       new webpack.LoaderOptionsPlugin({
-        debug: true
+        minimize: true
       }),
       new webpack.DefinePlugin({
         'process.env': {
