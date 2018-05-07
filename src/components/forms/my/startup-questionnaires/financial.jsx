@@ -15,9 +15,9 @@ import SelectField from '../../../shared/form-elements/select-field'
   validate: (values) => {
     return Validators({
       three_kpis: ["presences"],
-      break_even: [],
-      income_statements: [],
-      cash_flow_statements: [],
+      break_even: [], // TODO: file validation
+      income_statements: [], // TODO: file validation
+      cash_flow_statements: [], // TODO: file validation
       current_fund: ["presences"],
       startup_questionnaire_financial_fund_histories: [{
         type: "complexArrOfObj",

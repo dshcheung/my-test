@@ -17,7 +17,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
           selfPresences: true,
           childFields: {
             title: ["presences"],
-            // file: []
+            file: [] // TODO: file validation
           }
         }
       }]
@@ -31,6 +31,7 @@ export default class MyStartupQuestionnaireAttachmentsForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass, initialValues, dMSQAttributes } = this.props
 
+    // TODO: Immovables for opations names
     return (
       <div className={optClass}>
         <form onSubmit={handleSubmit}>

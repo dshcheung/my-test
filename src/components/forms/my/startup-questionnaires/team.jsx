@@ -19,9 +19,9 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
       startup_questionnaire_team_founders: [{
         type: "complexArrOfObj",
         opts: {
-          selfPresences: true, // TODO: ask gram to see if keep for these
+          selfPresences: true,
           childFields: {
-            // avatar: [],
+            avatar: [], // TODO: file validation
             name: ["presences"],
             position: ["presences"],
             contract: ["presences"],
@@ -36,7 +36,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
         opts: {
           selfPresences: true,
           childFields: {
-            // avatar: [],
+            avatar: [], // TODO: file validation
             name: ["presences"],
             position: ["presences"],
             // contract: ["presences"]
@@ -48,7 +48,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
         opts: {
           selfPresences: true,
           childFields: {
-            // avatar: [],
+            avatar: [],
             name: ["presences"],
             expertise: ["presences"]
           }
@@ -217,7 +217,7 @@ export default class MyStartupQuestionnaireTeamForm extends Component {
                     placeholder: "Position"
                   }
                 },
-                // { TODO: Tell gram to add this back to schema
+                // { // TODO: Tell gram to add this back to schema
                 //   key: "contract",
                 //   component: SelectField,
                 //   opts: {
@@ -261,7 +261,7 @@ export default class MyStartupQuestionnaireTeamForm extends Component {
                   key: "avatar",
                   component: ImageField,
                   opts: {
-                    label: "Avatar",
+                    label: "Avatar (optional)",
                     optClass: "image-field-avatar"
                   }
                 },

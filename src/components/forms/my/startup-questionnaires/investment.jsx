@@ -21,6 +21,7 @@ export default class MyStartupQuestionnaireInvestmentForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass } = this.props
 
+    // TODO: Equity or Convertable Bond
     return (
       <div className={optClass}>
         <form onSubmit={handleSubmit}>

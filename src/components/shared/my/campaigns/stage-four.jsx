@@ -36,6 +36,8 @@ export default class SharedMyCampaignsStageFour extends Component {
   render() {
     const { uMyCampaignInProcess, myCampaign } = this.props
 
+    // TODO: fix this mess
+
     const startDate = _.get(myCampaign, 'start_date')
     const endDate = _.get(myCampaign, 'end_date')
     const maturityDate = _.get(myCampaign, 'maturity_date')

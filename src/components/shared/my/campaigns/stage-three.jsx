@@ -14,6 +14,8 @@ export default class SharedMyCampaignsStageThree extends Component {
   render() {
     const { editMode, myCampaign, router } = this.props
 
+    // TODO: initiate a refresh of myCampaign
+
     return (
       <div className="stage-three">
         <SharedCampaignsProfile

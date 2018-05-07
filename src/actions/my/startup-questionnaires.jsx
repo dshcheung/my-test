@@ -37,7 +37,7 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
   _.get(values, 'team.startup_questionnaire_team_advisors', []).forEach(checkAvatar)
   _.get(values, 'attachments.attachments', []).forEach(checkFile)
 
-  const teamAdvisors = {} // TODO: _destroy not working
+  const teamAdvisors = {} // TODO: change to this format?
   _.get(values, 'team.startup_questionnaire_team_advisors', []).forEach((x, i) => {
     teamAdvisors[i] = {
       id: _.get(x, 'id', null),
