@@ -48,8 +48,10 @@ export default class MyStartupsEHeaderModal extends Component {
           <MyStartupsHeaderForm
             onSubmit={this.onSubmit}
             submitInProcess={cuMyStartupProfileInProcess}
-            bannerUrl={_.get(startup, 'profile.banner.original', '')}
-            avatarUrl={_.get(startup, 'profile.avatar.original', '')}
+            initialValues={{
+              avatar: _.get(startup, 'profile.avatar', ''),
+              banner: _.get(startup, 'profile.banner', '')
+            }}
           />
         </Modal.Body>
       </Modal>

@@ -52,6 +52,7 @@ export default class MyStartupsNEMediaModal extends Component {
 
     const keyword = editMode ? "Edit" : "Add"
     const initialValues = editMode ? {
+      banner: _.get(medium, 'banner', ''),
       title: _.get(medium, 'title', ''),
       description: _.get(medium, 'description', ''),
       link: _.get(medium, 'link', '')
@@ -67,7 +68,6 @@ export default class MyStartupsNEMediaModal extends Component {
             onSubmit={this.onSubmit}
             submitInProcess={cMyStartupMediaInProcess || uMyStartupMediaInProcess}
             initialValues={initialValues}
-            bannerUrl={_.get(medium, 'banner.original', '')}
           />
         </Modal.Body>
       </Modal>

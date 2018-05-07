@@ -89,13 +89,6 @@ export default class MyStartupQuestionnaireAttachmentsForm extends Component {
                   }
                 },
                 {
-                  preRenderFormat: (values, fieldOptions) => {
-                    const newFieldOptions = { ...fieldOptions, opts: { ...fieldOptions.opts } }
-                    const fileUrl = _.get(values, 'file_url', null)
-                    _.set(newFieldOptions, 'opts.fileUrl', fileUrl)
-
-                    return newFieldOptions
-                  },
                   key: "file",
                   component: FileField,
                   opts: {

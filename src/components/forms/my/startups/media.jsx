@@ -17,7 +17,7 @@ import ImageField from '../../../shared/form-elements/image-field'
 })
 export default class MyStartupsMediaForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass, bannerUrl } = this.props
+    const { handleSubmit, submitInProcess, optClass } = this.props
 
     return (
       <div id="forms-my-startup-media" className={optClass}>
@@ -40,23 +40,13 @@ export default class MyStartupsMediaForm extends Component {
             }}
           />
 
-          {
-          // <Field
-          //   name="description"
-          //   component={TextArea}
-          //   opts={{
-          //     label: "Description"
-          //   }}
-          // />
-          }
-
           <Field
             name="banner"
             component={ImageField}
             opts={{
               label: "Banner",
-              imgUrl: bannerUrl,
-              optClass: "image-field-banner"
+              optClass: "image-field-banner",
+              urlKey: "original"
             }}
           />
 

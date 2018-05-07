@@ -9,7 +9,7 @@ import SelectField from '../../../shared/form-elements/select-field'
 import ImageField from '../../../shared/form-elements/image-field'
 import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
 
-
+// TODO: Investigate why a new advisor's image doesn't get uploaded
 @reduxForm({
   form: "MyStartupQuestionnaireTeamForm",
   validate: (values) => {
@@ -21,7 +21,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
         opts: {
           selfPresences: true,
           childFields: {
-            avatar: [], // TODO: file validation
+            avatar: ["filePresences"],
             name: ["presences"],
             position: ["presences"],
             contract: ["presences"],
@@ -36,10 +36,10 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
         opts: {
           selfPresences: true,
           childFields: {
-            avatar: [], // TODO: file validation
+            avatar: ["filePresences"],
             name: ["presences"],
             position: ["presences"],
-            // contract: ["presences"]
+            contract: ["presences"]
           }
         }
       }],
@@ -65,7 +65,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
 
 export default class MyStartupQuestionnaireTeamForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass, initialValues, dMSQAttributes } = this.props
+    const { handleSubmit, submitInProcess, optClass, dMSQAttributes } = this.props
 
     return (
       <div className={optClass}>
@@ -95,6 +95,7 @@ export default class MyStartupQuestionnaireTeamForm extends Component {
               label: "For each of your co-founders and officers, please provide : *",
               groupName: "Founder/Officer",
               newFieldInit: {
+                avatar: '',
                 name: '',
                 position: '',
                 contract: '',
@@ -103,21 +104,14 @@ export default class MyStartupQuestionnaireTeamForm extends Component {
                 linked_in: ''
               },
               onDeleteField: dMSQAttributes,
-              initialValues,
               dynamicFields: [
                 {
-                  preRenderFormat: (values, fieldOptions) => {
-                    const newFieldOptions = { ...fieldOptions, opts: { ...fieldOptions.opts } }
-                    const imgUrl = _.get(values, 'avatar_url', null)
-                    _.set(newFieldOptions, 'opts.imgUrl', imgUrl)
-
-                    return newFieldOptions
-                  },
                   key: "avatar",
                   component: ImageField,
                   opts: {
                     label: "Avatar",
-                    optClass: "image-field-avatar"
+                    optClass: "image-field-avatar",
+                    urlKey: "original"
                   }
                 },
                 {
@@ -181,26 +175,20 @@ export default class MyStartupQuestionnaireTeamForm extends Component {
               label: "For each of your Key team members, please provide *",
               groupName: "Members",
               newFieldInit: {
+                avatar: '',
                 name: '',
                 position: '',
-                // contract: ''
+                contract: ''
               },
               onDeleteField: dMSQAttributes,
-              initialValues,
               dynamicFields: [
                 {
-                  preRenderFormat: (values, fieldOptions) => {
-                    const newFieldOptions = { ...fieldOptions, opts: { ...fieldOptions.opts } }
-                    const imgUrl = _.get(values, 'avatar_url', null)
-                    _.set(newFieldOptions, 'opts.imgUrl', imgUrl)
-
-                    return newFieldOptions
-                  },
                   key: "avatar",
                   component: ImageField,
                   opts: {
                     label: "Avatar",
-                    optClass: "image-field-avatar"
+                    optClass: "image-field-avatar",
+                    urlKey: "original"
                   }
                 },
                 {
@@ -217,23 +205,22 @@ export default class MyStartupQuestionnaireTeamForm extends Component {
                     placeholder: "Position"
                   }
                 },
-                // { // TODO: Tell gram to add this back to schema
-                //   key: "contract",
-                //   component: SelectField,
-                //   opts: {
-                //     options: [
-                //       { key: "full_time", name: "Full-Time" },
-                //       { key: "part_time", name: "Part-Time" }
-                //     ],
-                //     placeholder: "Contract Type",
-                //     valueKey: "key",
-                //     nameKey: "name",
-                //   }
-                // }
+                {
+                  key: "contract",
+                  component: SelectField,
+                  opts: {
+                    options: [
+                      { key: "full_time", name: "Full-Time" },
+                      { key: "part_time", name: "Part-Time" }
+                    ],
+                    placeholder: "Contract Type",
+                    valueKey: "key",
+                    nameKey: "name",
+                  }
+                }
               ]
             }}
           />
-
 
           <FieldArray
             name="startup_questionnaire_team_advisors"
@@ -242,27 +229,19 @@ export default class MyStartupQuestionnaireTeamForm extends Component {
               label: "For each of your notable Advisors & Investors, please provide *",
               groupName: "Advisors/Investors",
               newFieldInit: {
+                avatar: '',
                 name: '',
-                expertise: '',
-                avatar: null,
-                avatar_url: null
+                expertise: ''
               },
               onDeleteField: dMSQAttributes,
-              initialValues,
               dynamicFields: [
                 {
-                  preRenderFormat: (values, fieldOptions) => {
-                    const newFieldOptions = { ...fieldOptions, opts: { ...fieldOptions.opts } }
-                    const imgUrl = _.get(values, 'avatar_url', null)
-                    _.set(newFieldOptions, 'opts.imgUrl', imgUrl)
-
-                    return newFieldOptions
-                  },
                   key: "avatar",
                   component: ImageField,
                   opts: {
                     label: "Avatar (optional)",
-                    optClass: "image-field-avatar"
+                    optClass: "image-field-avatar",
+                    urlKey: "original"
                   }
                 },
                 {

@@ -50,6 +50,7 @@ export default class MyStartupsNEFounderModal extends Component {
 
     const keyword = editMode ? "Edit" : "Add"
     const initialValues = editMode ? {
+      avatar: _.get(founder, 'avatar', ''),
       name: _.get(founder, 'name', ''),
       title: _.get(founder, 'title', ''),
       description: _.get(founder, 'description', '')
@@ -65,7 +66,6 @@ export default class MyStartupsNEFounderModal extends Component {
             onSubmit={this.cuMyStartupTeam}
             submitInProcess={cuMyStartupTeamInProcess}
             initialValues={initialValues}
-            avatarUrl={_.get(founder, 'avatar.original', '')}
           />
         </Modal.Body>
       </Modal>

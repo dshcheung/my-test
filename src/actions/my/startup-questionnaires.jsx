@@ -37,16 +37,16 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
   _.get(values, 'team.startup_questionnaire_team_advisors', []).forEach(checkAvatar)
   _.get(values, 'attachments.attachments', []).forEach(checkFile)
 
-  const teamAdvisors = {} // TODO: change to this format?
-  _.get(values, 'team.startup_questionnaire_team_advisors', []).forEach((x, i) => {
-    teamAdvisors[i] = {
-      id: _.get(x, 'id', null),
-      name: _.get(x, 'name', null),
-      expertise: _.get(x, 'expertise', null),
-      _destroy: _.get(x, '_destroy', null),
-      avatar: _.get(x, 'avatar[0]', null)
-    }
-  })
+  // const teamAdvisors = {} // TODO: change to this format?
+  // _.get(values, 'team.startup_questionnaire_team_advisors', []).forEach((x, i) => {
+  //   teamAdvisors[i] = {
+  //     id: _.get(x, 'id', null),
+  //     name: _.get(x, 'name', null),
+  //     expertise: _.get(x, 'expertise', null),
+  //     _destroy: _.get(x, '_destroy', null),
+  //     avatar: _.get(x, 'avatar[0]', null)
+  //   }
+  // })
 
   const params = {
     startup_questionnaire_highlight_attributes: {

@@ -16,7 +16,7 @@ import ImageField from '../../../shared/form-elements/image-field'
 })
 export default class MyStartupsTeamMemberForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass, avatarUrl } = this.props
+    const { handleSubmit, submitInProcess, optClass } = this.props
 
     return (
       <div id="forms-my-startup-team-member" className={optClass}>
@@ -44,8 +44,8 @@ export default class MyStartupsTeamMemberForm extends Component {
             component={ImageField}
             opts={{
               label: "Avatar",
-              imgUrl: avatarUrl,
-              optClass: "image-field-avatar"
+              optClass: "image-field-avatar",
+              urlKey: "original"
             }}
           />
 

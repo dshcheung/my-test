@@ -112,35 +112,7 @@ export default class SharedMyCampaignsStageTwo extends Component {
           key: "team",
           title: "Team",
           dataKey: "startup_questionnaire_team",
-          model: MyStartupQuestionnairesTeamForm,
-          formatValues: (q) => {
-            const founders = _.get(q, 'startup_questionnaire_team_founders')
-            const members = _.get(q, 'startup_questionnaire_team_members')
-            const advisors = _.get(q, 'startup_questionnaire_team_advisors')
-
-            if (founders && founders.length > 0) {
-              founders.forEach((f, i) => {
-                const url = _.get(f, 'avatar.original')
-                _.set(founders[i], 'avatar_url', url)
-              })
-            }
-
-            if (members && members.length > 0) {
-              members.forEach((m, i) => {
-                const url = _.get(m, 'avatar.original')
-                _.set(members[i], 'avatar_url', url)
-              })
-            }
-
-            if (advisors && advisors.length > 0) {
-              advisors.forEach((a, i) => {
-                const url = _.get(a, 'avatar.original')
-                _.set(advisors[i], 'avatar_url', url)
-              })
-            }
-
-            return q
-          }
+          model: MyStartupQuestionnairesTeamForm
         },
         {
           key: "financial",
