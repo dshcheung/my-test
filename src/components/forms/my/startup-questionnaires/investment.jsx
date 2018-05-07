@@ -4,12 +4,14 @@ import { reduxForm, Field } from 'redux-form'
 import Validators from '../../../../services/form-validators'
 
 import TextField from '../../../shared/form-elements/text-field'
+import SelectField from '../../../shared/form-elements/select-field'
 import TextArea from '../../../shared/form-elements/text-area'
 
 @reduxForm({
-  form: "MyStartupQuestionnaireInvestmentForm",
+  form: "MyStartupQuestionnairesInvestmentForm",
   validate: (values) => {
     return Validators({
+      fund_type: ["presences"],
       fund_amount: ["presences"],
       exit_strategy: ["presences"]
     }, values)
@@ -17,14 +19,27 @@ import TextArea from '../../../shared/form-elements/text-area'
   enableReinitialize: true
 })
 
-export default class MyStartupQuestionnaireInvestmentForm extends Component {
+export default class MyStartupQuestionnairesInvestmentForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass } = this.props
 
-    // TODO: Equity or Convertable Bond
     return (
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
+          <Field
+            name="fund_type"
+            component={SelectField}
+            opts={{
+              options: [
+                { key: "equity", name: "Equity" },
+                { key: "convertible", name: "Convertable" }
+              ],
+              placeholder: "Fund Type",
+              valueKey: "key",
+              nameKey: "name",
+            }}
+          />
+
           <Field
             name="fund_amount"
             component={TextField}

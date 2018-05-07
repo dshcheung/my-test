@@ -6,7 +6,7 @@ import Validators from '../../../../services/form-validators'
 import TextArea from '../../../shared/form-elements/text-area'
 
 @reduxForm({
-  form: "MyStartupQuestionnaireHighlightForm",
+  form: "MyStartupQuestionnairesHighlightForm",
   validate: (values) => {
     return Validators({
       tagline: ["presences"],
@@ -17,7 +17,7 @@ import TextArea from '../../../shared/form-elements/text-area'
   enableReinitialize: true
 })
 
-export default class MyStartupQuestionnaireHighlightForm extends Component {
+export default class MyStartupQuestionnairesHighlightForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass } = this.props
 

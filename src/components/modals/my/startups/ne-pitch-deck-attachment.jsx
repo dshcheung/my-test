@@ -48,7 +48,8 @@ export default class MyStartupsNEPitchDeckAttachmentModal extends Component {
 
     const keyword = editMode ? "Edit" : "Add"
     const initialValues = editMode ? {
-      title: _.get(attachment, 'title', '')
+      title: _.get(attachment, 'title', ''),
+      file: _.get(attachment, 'file', '')
     } : undefined
 
     return (
@@ -61,7 +62,6 @@ export default class MyStartupsNEPitchDeckAttachmentModal extends Component {
             onSubmit={this.cuMyStartupPitchDeck}
             submitInProcess={cuMyStartupPitchDeckInProcess}
             initialValues={initialValues}
-            fileUrl={_.get(attachment, 'file.original', '')}
           />
         </Modal.Body>
       </Modal>

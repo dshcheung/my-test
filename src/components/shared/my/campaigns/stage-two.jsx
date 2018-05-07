@@ -78,13 +78,7 @@ export default class SharedMyCampaignsStageTwo extends Component {
           key: "market",
           title: "Market",
           dataKey: "startup_questionnaire_market",
-          model: MyStartupQuestionnairesMarketForm,
-          formatValues: (q) => {
-            const cv = _.get(q, 'market_metrics')
-            if (cv) _.set(q, 'market_metrics_url', cv.original)
-
-            return q
-          }
+          model: MyStartupQuestionnairesMarketForm
         },
         {
           key: "strategy",
@@ -120,15 +114,9 @@ export default class SharedMyCampaignsStageTwo extends Component {
           dataKey: "startup_questionnaire_financial",
           model: MyStartupQuestionnairesFinancialForm,
           formatValues: (q) => {
-            const cv1 = _.get(q, 'break_even')
-            if (cv1) _.set(q, 'break_even_url', cv1.original)
-            const cv2 = _.get(q, 'income_statements')
-            if (cv2) _.set(q, 'income_statements_url', cv2.original)
-            const cv3 = _.get(q, 'cash_flow_statements')
-            if (cv3) _.set(q, 'cash_flow_statements_url', cv3.original)
-            const cv4 = _.get(q, 'startup_questionnaire_financial_fund_histories')
-            if (cv4) {
-              const nv4 = cv4.map((v) => {
+            const cv = _.get(q, 'startup_questionnaire_financial_fund_histories')
+            if (cv) {
+              const nv4 = cv.map((v) => {
                 const occurredOn = _.get(v, "occurred_on")
                 return {
                   ...v,
@@ -154,20 +142,8 @@ export default class SharedMyCampaignsStageTwo extends Component {
           dataKey: "attachments",
           model: MyStartupQuestionnairesAttachmentsForm,
           formatValues: (q) => {
-            const cv = q || []
-            const nv = { attachments: [] }
-            if (cv) {
-              nv.attachments = cv.map((v) => {
-                const file = _.get(v, 'file.original', null)
-
-                return {
-                  ...v,
-                  file_url: file
-                }
-              })
-            }
-
-            return nv
+            const cv = { attachments: q || [] }
+            return cv
           }
         }
       ],

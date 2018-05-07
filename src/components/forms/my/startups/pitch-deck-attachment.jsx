@@ -16,7 +16,7 @@ import FileField from '../../../shared/form-elements/file-field'
 })
 export default class MyStartupsPitchDeckAttachmentForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass, fileUrl } = this.props
+    const { handleSubmit, submitInProcess, optClass } = this.props
 
     return (
       <div id="forms-my-startup-pitch-deck-attachment" className={optClass}>
@@ -35,7 +35,7 @@ export default class MyStartupsPitchDeckAttachmentForm extends Component {
             component={FileField}
             opts={{
               label: "File",
-              fileUrl
+              urlKey: "original"
             }}
           />
 

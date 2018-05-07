@@ -7,10 +7,10 @@ import TextArea from '../../../shared/form-elements/text-area'
 import FileField from '../../../shared/form-elements/file-field'
 
 @reduxForm({
-  form: "MyStartupQuestionnaireMarketForm",
+  form: "MyStartupQuestionnairesMarketForm",
   validate: (values) => {
     return Validators({
-      market_metrics: [], // TODO: required file validator
+      market_metrics: ["filePresences"],
       customer_persona: ["presences"],
       timing: [],
       risk_factors: ["presences"],
@@ -21,9 +21,9 @@ import FileField from '../../../shared/form-elements/file-field'
   enableReinitialize: true
 })
 
-export default class MyStartupQuestionnaireMarketForm extends Component {
+export default class MyStartupQuestionnairesMarketForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass, initialValues } = this.props
+    const { handleSubmit, submitInProcess, optClass } = this.props
 
     return (
       <div className={optClass}>
@@ -33,8 +33,8 @@ export default class MyStartupQuestionnaireMarketForm extends Component {
             component={FileField}
             opts={{
               label: "Define your market & market metrics *",
-              fileUrl: _.get(initialValues, 'market_metrics_url', null),
-              hint: "Segment, geography, Size & growth, please explain your source or calculation. Any comparable market (other geography, other industry) to support your figures ? Your market share objective ?"
+              hint: "Segment, geography, Size & growth, please explain your source or calculation. Any comparable market (other geography, other industry) to support your figures ? Your market share objective ?",
+              urlKey: "original"
             }}
           />
 

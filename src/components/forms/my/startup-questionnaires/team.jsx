@@ -11,7 +11,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
 
 // TODO: Investigate why a new advisor's image doesn't get uploaded
 @reduxForm({
-  form: "MyStartupQuestionnaireTeamForm",
+  form: "MyStartupQuestionnairesTeamForm",
   validate: (values) => {
     return Validators({
       story: ["presences"],
@@ -63,7 +63,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
   enableReinitialize: true
 })
 
-export default class MyStartupQuestionnaireTeamForm extends Component {
+export default class MyStartupQuestionnairesTeamForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass, dMSQAttributes } = this.props
 

@@ -11,13 +11,13 @@ import DateTimePicker from '../../../shared/form-elements/datetime-picker'
 import SelectField from '../../../shared/form-elements/select-field'
 
 @reduxForm({
-  form: "MyStartupQuestionnaireFinancialForm",
+  form: "MyStartupQuestionnairesFinancialForm",
   validate: (values) => {
     return Validators({
       three_kpis: ["presences"],
-      break_even: [], // TODO: file validation
-      income_statements: [], // TODO: file validation
-      cash_flow_statements: [], // TODO: file validation
+      break_even: ["filePresences"],
+      income_statements: ["filePresences"],
+      cash_flow_statements: ["filePresences"],
       current_fund: ["presences"],
       startup_questionnaire_financial_fund_histories: [{
         type: "complexArrOfObj",
@@ -48,9 +48,9 @@ import SelectField from '../../../shared/form-elements/select-field'
   enableReinitialize: true
 })
 
-export default class MyStartupQuestionnaireFinancialForm extends Component {
+export default class MyStartupQuestionnairesFinancialForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass, initialValues, dMSQAttributes } = this.props
+    const { handleSubmit, submitInProcess, optClass, dMSQAttributes } = this.props
 
     return (
       <div className={optClass}>
@@ -69,7 +69,7 @@ export default class MyStartupQuestionnaireFinancialForm extends Component {
             component={FileField}
             opts={{
               label: "When will you reach break-even ? *",
-              fileUrl: _.get(initialValues, 'break_even_url', null)
+              urlKey: "original"
             }}
           />
 
@@ -78,7 +78,7 @@ export default class MyStartupQuestionnaireFinancialForm extends Component {
             component={FileField}
             opts={{
               label: "Building a summarized Financial statements projection (Y, Y+1, Y+2) *",
-              fileUrl: _.get(initialValues, 'income_statements_url', null)
+              urlKey: "original"
             }}
           />
 
@@ -87,7 +87,7 @@ export default class MyStartupQuestionnaireFinancialForm extends Component {
             component={FileField}
             opts={{
               label: "Building a summarized Cash-Flow statements projection (Y, Y+1, Y+2) *",
-              fileUrl: _.get(initialValues, 'cash_flow_statements_url', null)
+              urlKey: "original"
             }}
           />
 

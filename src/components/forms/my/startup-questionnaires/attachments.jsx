@@ -29,16 +29,15 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 @reduxForm({
-  form: "MyStartupQuestionnaireAttachmentsForm",
+  form: "MyStartupQuestionnairesAttachmentsForm",
   validate: (values) => {
     return Validators({
       attachments: [{
         type: "complexArrOfObj",
         opts: {
-          selfPresences: true,
           childFields: {
             title: ["presences"],
-            file: [] // TODO: file validation
+            file: ["filePresences"]
           }
         }
       }]
@@ -48,7 +47,7 @@ const mapDispatchToProps = (dispatch) => {
   enableReinitialize: true
 })
 
-export default class MyStartupQuestionnaireAttachmentsForm extends Component {
+export default class MyStartupQuestionnairesAttachmentsForm extends Component {
   componentWillMount() {
     this.props.gImmovable({ immovableID: "attachment_options" })
   }
@@ -58,7 +57,7 @@ export default class MyStartupQuestionnaireAttachmentsForm extends Component {
   }
 
   render() {
-    const { handleSubmit, submitInProcess, optClass, initialValues, dMSQAttributes } = this.props
+    const { handleSubmit, submitInProcess, optClass, dMSQAttributes } = this.props
 
     return (
       <div className={optClass}>
@@ -67,7 +66,7 @@ export default class MyStartupQuestionnaireAttachmentsForm extends Component {
             name="attachments"
             component={DynamicFieldArray}
             opts={{
-              label: "Extra Files",
+              label: "Extra Files (Optional)",
               groupName: "File",
               newFieldInit: {
                 title: '',
@@ -75,7 +74,6 @@ export default class MyStartupQuestionnaireAttachmentsForm extends Component {
                 file_url: ''
               },
               onDeleteField: dMSQAttributes,
-              initialValues,
               dynamicFields: [
                 {
                   key: "title",

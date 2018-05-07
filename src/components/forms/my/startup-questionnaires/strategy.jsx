@@ -8,7 +8,7 @@ import DateTimePicker from '../../../shared/form-elements/datetime-picker'
 import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
 
 @reduxForm({
-  form: "MyStartupQuestionnaireStrategyForm",
+  form: "MyStartupQuestionnairesStrategyForm",
   validate: (values) => {
     return Validators({
       strategic_positioning: ["presences"],
@@ -30,7 +30,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
   enableReinitialize: true
 })
 
-export default class MyStartupQuestionnaireStrategyForm extends Component {
+export default class MyStartupQuestionnairesStrategyForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass, dMSQAttributes } = this.props
 
