@@ -32,13 +32,14 @@ export default class ImageField extends Component {
       input, meta: { touched, invalid, error },
       opts: {
         label, decodeLabel,
-        imgUrl,
-        optClass
+        optClass,
+        urlKey
       }
     } = this.props
 
     const hasErrorClass = touched && invalid ? 'has-error' : ''
     const newInput = _.omit(input, 'value')
+    const imgUrl = _.get(input.value, urlKey)
 
     return (
       <div className={`form-group clearfix ${hasErrorClass}`}>

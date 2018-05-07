@@ -47,12 +47,12 @@ export default class MyProfileEditProfileModal extends Component {
           <MyProfileBasicForm
             onSubmit={this.updateMyProfile}
             submitInProcess={updateMyProfileInProcess}
-            avatarUrl={_.get(profile, "avatar.original")}
-            bannerUrl={_.get(profile, "banner.original")}
             initialValues={{
               firstName: _.get(profile, "first_name", ""),
               lastName: _.get(profile, "last_name", ""),
-              bio: _.get(profile, "bio", "")
+              bio: _.get(profile, "bio", ""),
+              avatar: _.get(profile, "avatar", ""),
+              banner: _.get(profile, "banner", "")
             }}
           />
         </Modal.Body>

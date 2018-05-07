@@ -1,4 +1,4 @@
-import { isEmpty } from '../services/utils'
+import { isEmpty, getType } from '../services/utils'
 
 const validators = {
   presences: (value) => {
@@ -67,6 +67,12 @@ const validators = {
     if (childErrors.length > 0) {
       return childErrors
     }
+  },
+  filePresences: (value) => {
+    const valueType = getType(value)
+    const previewUrl = _.get(value, 'original', null)
+
+    if (!previewUrl && valueType !== "FileList") return "Required"
   }
 }
 
