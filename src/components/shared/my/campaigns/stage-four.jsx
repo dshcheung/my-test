@@ -44,13 +44,17 @@ export default class SharedMyCampaignsStageFour extends Component {
     const initialValues = {
       id: _.get(myCampaign, 'campaign_type.id', ''),
       name: _.get(myCampaign, 'campaign_type.name', ''),
-      amountType: _.get(myCampaign, 'campaign_type.amount_type', ''),
-      goal: _.get(myCampaign, 'goal', 0),
-      amount: parseInt(_.get(myCampaign, 'campaign_type.amount', 0), 10),
       startDate: startDate ? moment(startDate).toDate() : moment().toDate(),
       endDate: endDate ? moment(endDate).toDate() : moment().toDate(),
+      goal: _.get(myCampaign, 'goal', 0),
+      amount: parseInt(_.get(myCampaign, 'campaign_type.amount') || 0, 10),
+      amountType: _.get(myCampaign, 'campaign_type.amount_type', ''),
+      equityType: _.get(myCampaign, 'campaign_type.equity_type', ''),
+      valution: _.get(myCampaign, 'campaign_type.valuation', 0),
+      maturityDate: maturityDate ? moment(maturityDate).toDate() : moment().toDate(),
       interestRate: _.get(myCampaign, 'campaign_type.interest_rate', 0),
-      maturityDate: maturityDate ? moment(maturityDate).toDate() : moment().toDate()
+      discountRate: _.get(myCampaign, 'campaign_type.discount_rate', 0),
+      valuationCap: _.get(myCampaign, 'campaign_type.valuation_cap', 0),
     }
 
     return (
@@ -66,3 +70,20 @@ export default class SharedMyCampaignsStageFour extends Component {
     )
   }
 }
+
+// name
+// start_date
+// end_date
+// goal
+// amount (Integer) ?
+// amount_type (equity/convertable)
+
+// Equity
+// equity_type (:ordinary, :preferred)
+// valuation (Integer)
+
+// Convertiable
+// maturity_date (Date)
+// interest_rate (Integer no precision)
+// discount_rate (Integer no precision)
+// valuation_cap (Integer)

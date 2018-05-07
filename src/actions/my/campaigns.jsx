@@ -102,15 +102,19 @@ export const uMyCampaign = (values, params) => {
     method: "put",
     url: genApiUrl(apiMyCampaignsShow(params)),
     data: getFormData({
-      goal: _.get(values, 'goal', null),
       start_date: _.get(values, 'startDate', null),
       end_date: _.get(values, 'endDate', null),
+      goal: _.get(values, 'goal', null),
       campaign_type_attributes: {
         id: _.get(values, 'id', null),
         name: _.get(values, 'name', null),
+        amount_type: _.get(values, 'amountType', null),
+        equity_type: _.get(values, 'equityType', null),
+        valuation: _.get(values, 'valuation', null),
         maturity_date: _.get(values, 'maturityDate', null),
         interest_rate: _.get(values, 'interestRate', null),
-        amount_type: _.get(values, 'amountType', null)
+        discount_rate: _.get(values, 'discountRate', null),
+        valuation_cap: _.get(values, 'valuation_cap', null)
       }
     }, 'campaign')
   })

@@ -73,6 +73,13 @@ const validators = {
     const previewUrl = _.get(value, 'original', null)
 
     if (!previewUrl && valueType !== "FileList") return "Required"
+  },
+  noDecimal: (value) => {
+    const regex = /\./
+    const result = regex.test(value.toString())
+    if (result) {
+      return "No Decimal Permitted"
+    }
   }
 }
 

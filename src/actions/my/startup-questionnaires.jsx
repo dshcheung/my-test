@@ -12,6 +12,7 @@ export const mergeMyStartupQuestionnaires = (data) => {
   }
 }
 
+// TODO: add a delete one for deleting members, founders...etc
 export const U_MY_STARTUP_QUESTIONNAIRE = "U_MY_STARTUP_QUESTIONNAIRE"
 export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
   const checkAvatar = (x) => {

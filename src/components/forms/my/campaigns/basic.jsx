@@ -17,6 +17,7 @@ const mapStateToProps = (state) => {
   return {
     campaignTypes: _.get(state.immovables, 'campaign_type_options', []),
     gImmovableInProcess: _.get(state.requestStatus, G_IMMOVABLE_CAMPAIGN_TYPE_OPTIONS),
+    values: _.get(state.form, 'MyCampaignsBasicForm.values', {})
   }
 }
 
@@ -26,19 +27,37 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-@connect(mapStateToProps, mapDispatchToProps)
 @reduxForm({
   form: "MyCampaignsBasicForm",
   validate: (values) => {
-    return Validators({
-      startup: [{ type: "attrPresences", opts: { key: "id" } }],
+    let toValidate = {
       name: ["presences"],
-      goal: ["presences", { type: "numericality", opts: { min: 100000 } }],
-      interestRate: ["presences", { type: "numericality", opts: { max: 20 } }],
       startDate: ["presences"],
       endDate: ["presences"],
-      maturityDate: ["presences"]
-    }, values)
+      goal: ["presences", { type: "numericality", opts: { min: 100000 } }],
+      amountType: ["presences"],
+      amount: ["presences", "noDecimal"]
+    }
+
+    if (values.amountType === "equity") {
+      toValidate = {
+        ...toValidate,
+        equityType: ["presences"],
+        valuation: ["presences"]
+      }
+    }
+
+    if (values.amountType === "convertible") {
+      toValidate = {
+        ...toValidate,
+        maturityDate: ["presences"],
+        interestRate: ["presences", "noDecimal"],
+        discountRate: ["presences", "noDecimal"],
+        valuationCap: ["presences"]
+      }
+    }
+
+    return Validators(toValidate, values)
   },
   initialValues: {
     startDate: moment().startOf('day').toDate(),
@@ -46,6 +65,7 @@ const mapDispatchToProps = (dispatch) => {
     maturityDate: moment().startOf('day').toDate()
   }
 })
+@connect(mapStateToProps, mapDispatchToProps)
 export default class MyCampaignsBasicForm extends Component {
   componentWillMount() {
     this.props.gImmovable({ immovableID: "campaign_type_options" })
@@ -53,6 +73,8 @@ export default class MyCampaignsBasicForm extends Component {
 
   render() {
     const { handleSubmit, submitInProcess, optClass, title, campaignTypes, gImmovableInProcess } = this.props
+
+    const amountType = _.get(this.props.values, 'amountType', '')
 
     return (
       <div id="forms-campaigns-basic" className={optClass}>
@@ -67,28 +89,6 @@ export default class MyCampaignsBasicForm extends Component {
             opts={{
               type: "text",
               label: "Campaign Name *"
-            }}
-          />
-
-          <Field
-            name="amountType"
-            component={SelectField}
-            opts={{
-              requestInProcess: gImmovableInProcess,
-              label: "Valuation Type *",
-              placeholder: "Select Valuation Type",
-              options: campaignTypes,
-              valueKey: "id",
-              nameKey: "name"
-            }}
-          />
-
-          <Field
-            name="goal"
-            component={TextField}
-            opts={{
-              type: "number",
-              label: "Goal Amount *"
             }}
           />
 
@@ -113,23 +113,108 @@ export default class MyCampaignsBasicForm extends Component {
           />
 
           <Field
-            name="interestRate"
+            name="goal"
             component={TextField}
             opts={{
               type: "number",
-              label: "Interest Rate (in %) *"
+              label: "Goal Amount *"
             }}
           />
 
           <Field
-            name="maturityDate"
-            component={DatetimePicker}
+            name="amountType"
+            component={SelectField}
             opts={{
-              label: "Maturity Date *",
-              time: false,
-              format: "YYYY/MM/DD"
+              requestInProcess: gImmovableInProcess,
+              label: "Valuation Type *",
+              placeholder: "Select Valuation Type",
+              options: campaignTypes,
+              valueKey: "id",
+              nameKey: "name"
             }}
           />
+
+          <Field
+            name="amount"
+            component={TextField}
+            opts={{
+              type: "number",
+              label: "Equity Amount (in %) *"
+            }}
+          />
+
+          {
+            amountType === "equity" && (
+              <div>
+                <Field
+                  name="equityType"
+                  component={SelectField}
+                  opts={{
+                    label: "Equity Type *",
+                    placeholder: "Select Equity Type",
+                    options: [
+                      { id: "ordinary", name: "Ordinary" },
+                      { id: "preferred", name: "Preferred" }
+                    ],
+                    valueKey: "id",
+                    nameKey: "name"
+                  }}
+                />
+
+                <Field
+                  name="valuation"
+                  component={TextField}
+                  opts={{
+                    type: "number",
+                    label: "Valuation *"
+                  }}
+                />
+              </div>
+            )
+          }
+
+          {
+            amountType === "convertible" && (
+              <div>
+                <Field
+                  name="maturityDate"
+                  component={DatetimePicker}
+                  opts={{
+                    label: "Maturity Date *",
+                    time: false,
+                    format: "YYYY/MM/DD"
+                  }}
+                />
+
+                <Field
+                  name="interestRate"
+                  component={TextField}
+                  opts={{
+                    type: "number",
+                    label: "Interest Rate (in %) *"
+                  }}
+                />
+
+                <Field
+                  name="discountRate"
+                  component={TextField}
+                  opts={{
+                    type: "number",
+                    label: "Discount Rate (in %) *"
+                  }}
+                />
+
+                <Field
+                  name="valuationCap"
+                  component={TextField}
+                  opts={{
+                    type: "number",
+                    label: "Valuation Cap *"
+                  }}
+                />
+              </div>
+            )
+          }
 
           <button
             className={`btn btn-info btn-lg btn-block ${submitInProcess && "m-progress"}`}
