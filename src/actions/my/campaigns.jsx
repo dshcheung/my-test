@@ -109,12 +109,13 @@ export const uMyCampaign = (values, params) => {
         id: _.get(values, 'id', null),
         name: _.get(values, 'name', null),
         amount_type: _.get(values, 'amountType', null),
+        amount: _.get(values, 'amount', null),
         equity_type: _.get(values, 'equityType', null),
         valuation: _.get(values, 'valuation', null),
         maturity_date: _.get(values, 'maturityDate', null),
         interest_rate: _.get(values, 'interestRate', null),
         discount_rate: _.get(values, 'discountRate', null),
-        valuation_cap: _.get(values, 'valuation_cap', null)
+        valuation_cap: _.get(values, 'valuationCap', null)
       }
     }, 'campaign')
   })

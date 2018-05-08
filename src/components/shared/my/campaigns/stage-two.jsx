@@ -3,12 +3,11 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { getQuestionnaire, scrollTop } from '../../../../services/utils'
-import {
-  G_MY_QUESTIONNAIRES, gMyQuestionnaires, resetMyQuestionnaires
-} from '../../../../actions/my/questionnaires'
 
 import {
+  G_MY_STARTUP_QUESTIONNAIRES, gMyStartupQuestionnaires,
   U_MY_STARTUP_QUESTIONNAIRE, uMyStartupQuestionnaire,
+  resetMyStartupQuestionnaire
 } from '../../../../actions/my/startup-questionnaires'
 
 import LoadingSpinner from '../../../shared/loading-spinner'
@@ -25,8 +24,8 @@ const mapStateToProps = (state, props) => {
   const myCampaignID = _.get(props, 'routeParams.myCampaignID')
 
   return {
-    myQuestionnaires: getQuestionnaire(_.get(state, 'myQuestionnaires.startup_questionnaires', []), myCampaignID),
-    gMyQuestionnairesInProcess: _.get(state.requestStatus, G_MY_QUESTIONNAIRES),
+    myQuestionnaires: getQuestionnaire(_.get(state, 'myStartupQuestionnaires', []), myCampaignID),
+    gMyStartupQuestionnairesInProcess: _.get(state.requestStatus, G_MY_STARTUP_QUESTIONNAIRES),
     uMyStartupQuestionnaireInProcess: _.get(state.requestStatus, U_MY_STARTUP_QUESTIONNAIRE)
   }
 }
@@ -34,8 +33,8 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     uMyStartupQuestionnaire: bindActionCreators(uMyStartupQuestionnaire, dispatch),
-    gMyQuestionnaires: bindActionCreators(gMyQuestionnaires, dispatch),
-    resetMyQuestionnaires: bindActionCreators(resetMyQuestionnaires, dispatch)
+    gMyStartupQuestionnaires: bindActionCreators(gMyStartupQuestionnaires, dispatch),
+    resetMyStartupQuestionnaire: bindActionCreators(resetMyStartupQuestionnaire, dispatch)
   }
 }
 
@@ -156,11 +155,11 @@ export default class SharedMyCampaignsStageTwo extends Component {
   }
 
   componentWillMount() {
-    this.props.gMyQuestionnaires()
+    this.props.gMyStartupQuestionnaires()
   }
 
   componentWillUnmount() {
-    this.props.resetMyQuestionnaires()
+    this.props.resetMyStartupQuestionnaire()
   }
 
   setNextStage() {
@@ -244,10 +243,10 @@ export default class SharedMyCampaignsStageTwo extends Component {
   }
 
   render() {
-    const { myQuestionnaires, gMyQuestionnairesInProcess } = this.props
+    const { myQuestionnaires, gMyStartupQuestionnairesInProcess } = this.props
     const { currentStage } = this.state
 
-    if (gMyQuestionnairesInProcess) return <LoadingSpinner />
+    if (gMyStartupQuestionnairesInProcess) return <LoadingSpinner />
 
     return (
       <div id="shared-my-campaigns-stage-two">

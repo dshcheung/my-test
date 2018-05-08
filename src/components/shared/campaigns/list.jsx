@@ -7,7 +7,7 @@ import LoadingSpinner from '../loading-spinner'
 
 export default class CampaignList extends Component {
   render() {
-    const { loadingInProcess, campaigns, newable, investorViewable } = this.props
+    const { loadingInProcess, campaigns, newable } = this.props
 
     return (
       <div className="row" id="shared-campaigns-list">
@@ -41,7 +41,7 @@ export default class CampaignList extends Component {
 
                 const campaignID = campaign.id
                 const campaignName = campaign.campaign_type.name
-                const amountType = campaign.campaign_type.amount_type.splitCap("_")
+                const amountType = _.get(campaign, 'campaign_type.amount_type', '').splitCap("_")
 
                 const endDate = moment(campaign.end_date).diff(moment(), 'days')
                 const goal = campaign.goal || 0
@@ -62,7 +62,28 @@ export default class CampaignList extends Component {
                 }
 
                 const submitStatus = _.get(campaign, 'status.submitted')
-                const isAccepted = submitStatus === "accepted" || investorViewable
+                const isApproved = submitStatus === "approved"
+                const isPending = submitStatus === "pending"
+                // const isAccepted = submitStatus === "accepted"
+
+                // TODO: change tag
+                // Approved
+                // ACCEPTED
+                // COMPLETED
+                // Show stats
+                // if not active, show not active tag
+                // if active, show curretnly active tag
+                // if completed, show completed tag
+
+                // Show Waiting tag (red)
+                // WAITING_FOR_UPDATE
+                // REJECTED
+
+                // Show Pending tag
+                // PENDING
+                // FIRST_APPROVAL=5
+                // INVESTMENT_COMMITTEE=6
+                // SELECTION_COMMITTEE=7
 
                 return (
                   <div key={i} className="col-xs-12 col-sm-6 col-md-4 text-center campaign-card">
@@ -79,7 +100,7 @@ export default class CampaignList extends Component {
                       </div>
 
                       {
-                        isAccepted ? (
+                        isApproved && (
                           <div className="stats">
                             <hr />
 
@@ -98,7 +119,11 @@ export default class CampaignList extends Component {
                               <div>{endDate} days left</div>
                             </div>
                           </div>
-                        ) : (
+                        )
+                      }
+
+                      {
+                        isPending && (
                           <div>
                             <hr />
                             <Link to={linkTo}>

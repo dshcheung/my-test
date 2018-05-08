@@ -74,7 +74,7 @@ export default class CampaignPledgeForm extends Component {
                   type: "number",
                   label: "Amount *",
                   step,
-                  min, // TODO: change to validator
+                  min, // TODO3: change to validator
                   placeholder: `Minimum Amount Is $${min}`
                 }}
               />

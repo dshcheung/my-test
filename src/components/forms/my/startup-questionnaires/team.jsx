@@ -9,7 +9,6 @@ import SelectField from '../../../shared/form-elements/select-field'
 import ImageField from '../../../shared/form-elements/image-field'
 import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
 
-// TODO: Investigate why a new advisor's image doesn't get uploaded
 @reduxForm({
   form: "MyStartupQuestionnairesTeamForm",
   validate: (values) => {
@@ -26,7 +25,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
             position: ["presences"],
             contract: ["presences"],
             salary: ["presences"],
-            years_of_experience: ["presences"],
+            years_of_experience: ["presences", "noDecimal"],
             linked_in: ["presences"],
           }
         }

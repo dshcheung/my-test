@@ -76,7 +76,6 @@ export default class CampaignsIndex extends Component {
           <CampaignsList
             loadingInProcess={getCampaignsInProcess}
             campaigns={campaigns}
-            investorViewable
           />
         </section>
       </div>

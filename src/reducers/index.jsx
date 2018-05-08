@@ -13,6 +13,7 @@ import myConversationsReducer from './my-conversations'
 import myDashboardReducer from './my-dashboard'
 import myNotificationsReducer from './my-notifications'
 import myQuestionnairesReducers from './my-questionnaires'
+import myStartupQuestionnairesReducers from './my-startup-questionnaires'
 import paginationReducer from './pagination'
 import redirectionReducer from './redirection'
 import requestStatusReducer from './request-status'
@@ -29,6 +30,7 @@ const appReducer = combineReducers({
   myDashboard: myDashboardReducer,
   myNotifications: myNotificationsReducer,
   myQuestionnaires: myQuestionnairesReducers,
+  myStartupQuestionnaires: myStartupQuestionnairesReducers,
   pagination: paginationReducer,
   redirectionInProcess: redirectionReducer,
   requestStatus: requestStatusReducer,

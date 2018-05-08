@@ -30,8 +30,9 @@ export default class SharedCampaignsProfile extends Component {
 
   render() {
     const { campaign, startup, editMode } = this.props
+    const canUpdate = _.get(campaign, 'can.update', false)
     const editable = _.get(campaign, 'can.edit', false)
-    const modalEditable = editMode && editable
+    const modalEditable = editMode || editable
     const canPledge = _.get(campaign, 'can.pledge', false)
     const hasPledged = _.get(campaign, 'can.view_pledge', false)
 
@@ -70,12 +71,13 @@ export default class SharedCampaignsProfile extends Component {
     const attachments = _.get(startup, "attachments") || []
 
     const startupData = [
-      { // TODO: remind gram to add canUpdate? to campaign.can to allow updates to be updated after submittion
+      {
         key: "updates",
         title: "Updates",
         modal: SharedStartupsTextSection,
         data: updates,
-        exist: !!updates
+        exist: !!updates,
+        canUpdate: !editable
       },
       {
         key: "highlights",
@@ -247,7 +249,7 @@ export default class SharedCampaignsProfile extends Component {
                   <ul className="scrollto">
                     {
                       startupData.map((d) => {
-                        return (modalEditable || d.exist) ? (
+                        return (modalEditable || d.exist || canUpdate) ? (
                           <li key={d.title}><Link to={d.title} spy smooth duration={500} offset={-100}>{d.title}</Link></li>
                         ) : null
                       })
@@ -259,8 +261,8 @@ export default class SharedCampaignsProfile extends Component {
             <div className="col-xs-12 col-sm-9 startup-content">
               {
                 startupData.map((d) => {
-                  return (modalEditable || d.exist) ? (
-                    <d.modal key={d.title} data={d} editable={modalEditable} routeParams={routeParams} {...d.extra} />
+                  return (modalEditable || d.exist || d.canUpdate) ? (
+                    <d.modal key={d.title} data={d} editable={modalEditable || d.canUpdate} routeParams={routeParams} {...d.extra} />
                   ) : null
                 })
               }

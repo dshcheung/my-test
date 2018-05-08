@@ -32,6 +32,12 @@ export default class MyCampaigns extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.permitRedirection(nextProps)
+
+    // TODO: initiate a refresh of myCampaign
+    // console.log(nextProps)
+
+    // TODO: if accepted/pending, disallow
+    // TODO: if waiting_for_update can allow edit
   }
 
   permitRedirection(props) {

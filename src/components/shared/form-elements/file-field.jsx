@@ -28,7 +28,8 @@ export default class FileField extends Component {
         label, decodeLabel,
         optClass,
         hint,
-        urlKey
+        urlKey,
+        templateUrl
       }
     } = this.props
 
@@ -51,6 +52,18 @@ export default class FileField extends Component {
           htmlFor={newInput.name}
           className={`${optClass} file-field-label clearfix`}
         >
+          {
+            templateUrl && (
+              <div className="clearfix">
+                <a
+                  href={templateUrl}
+                  className="btn btn-info template-url"
+                  download
+                  target="_blank"
+                >Download Template</a>
+              </div>
+            )
+          }
           {
             !this.state.previewFileUrl && !fileUrl && (
               <div className="clearfix"><a className="btn btn-primary">Select File</a></div>

@@ -31,7 +31,7 @@ export default class MyStartupsMediaForm extends Component {
             }}
           />
 
-          <Field
+          <Field // TODO: http(s) prefix
             name="link"
             component={TextField}
             opts={{

@@ -1,14 +1,41 @@
-import { genApiUrl, genAxios } from '../../services/api-request'
+import { genApiUrl, genAxios, addParamsToUrl } from '../../services/api-request'
 import { getFormData } from '../../services/get-form-data'
-import { apiMyStartupQuestionnairesShow } from '../../services/api-path'
+import { apiMyStartupQuestionnairesShow, apiMyStartupQuestionnairesIndex } from '../../services/api-path'
 
 import { notySuccess } from '../../services/noty'
 
 export const MERGE_MY_STARTUP_QUESTIONNAIRES = "MERGE_MY_STARTUP_QUESTIONNAIRES"
-export const mergeMyStartupQuestionnaires = (data) => {
+export const mergeMyStartupQuestionnaires = (data, reset) => {
   return {
     type: MERGE_MY_STARTUP_QUESTIONNAIRES,
-    data
+    data,
+    reset
+  }
+}
+
+export const RESET_MY_STARTUP_QUESTIONNAIRES = "RESET_MY_STARTUP_QUESTIONNAIRES"
+export const resetMyStartupQuestionnaire = () => {
+  return {
+    type: RESET_MY_STARTUP_QUESTIONNAIRES
+  }
+}
+
+export const G_MY_STARTUP_QUESTIONNAIRES = "G_MY_STARTUP_QUESTIONNAIRES"
+export const gMyStartupQuestionnaires = ({ queries = {}, nextHref = null } = {}) => {
+  const request = genAxios({
+    method: "get",
+    url: nextHref ? addParamsToUrl(nextHref, queries) : genApiUrl(apiMyStartupQuestionnairesIndex(), queries)
+  })
+
+  return {
+    type: G_MY_STARTUP_QUESTIONNAIRES,
+    request,
+    paginate: true,
+    successCB: (dispatch, data) => {
+      // debugger
+      dispatch(mergeMyStartupQuestionnaires(data, !nextHref))
+      dispatch(resetMyStartupQuestionnaire())
+    }
   }
 }
 
@@ -119,7 +146,7 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
     type: U_MY_STARTUP_QUESTIONNAIRE,
     request,
     successCB: (dispatch, data) => {
-      dispatch(mergeMyStartupQuestionnaires([data]))
+      dispatch(mergeMyStartupQuestionnaires({ startup_questionnaires: [data] }))
       notySuccess("Saved!")
       if (cb) cb(data)
     }

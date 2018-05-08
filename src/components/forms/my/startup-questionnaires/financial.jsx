@@ -36,7 +36,7 @@ import SelectField from '../../../shared/form-elements/select-field'
           selfPresences: true,
           childFields: {
             section: ["presences"],
-            percentage: ["presences"]
+            percentage: ["presences", "noDecimal"]
           }
         }
       }]
@@ -78,7 +78,8 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             component={FileField}
             opts={{
               label: "Building a summarized Financial statements projection (Y, Y+1, Y+2) *",
-              urlKey: "original"
+              urlKey: "original",
+              templateUrl: "https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/templates/income+statement+template.xlsx"
             }}
           />
 
@@ -87,7 +88,8 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             component={FileField}
             opts={{
               label: "Building a summarized Cash-Flow statements projection (Y, Y+1, Y+2) *",
-              urlKey: "original"
+              urlKey: "original",
+              templateUrl: "https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/templates/cash-flow+statement+template.xlsx"
             }}
           />
 
@@ -105,7 +107,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             component={DynamicFieldArray}
             opts={{
               label: "Funding History *",
-              groupName: "Strategy",
+              groupName: "History",
               newFieldInit: {
                 occurred_on: moment().toDate(),
                 amount: '',
@@ -152,7 +154,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             component={DynamicFieldArray}
             opts={{
               label: "What will be the use of the funds? *",
-              groupName: "Strategy",
+              groupName: "Use of Fund",
               newFieldInit: {
                 section: '',
                 percentage: ''

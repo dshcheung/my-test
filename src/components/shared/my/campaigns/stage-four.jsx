@@ -36,8 +36,6 @@ export default class SharedMyCampaignsStageFour extends Component {
   render() {
     const { uMyCampaignInProcess, myCampaign } = this.props
 
-    // TODO: fix this mess
-
     const startDate = _.get(myCampaign, 'start_date')
     const endDate = _.get(myCampaign, 'end_date')
     const maturityDate = _.get(myCampaign, 'maturity_date')
@@ -52,9 +50,9 @@ export default class SharedMyCampaignsStageFour extends Component {
       equityType: _.get(myCampaign, 'campaign_type.equity_type', ''),
       valution: _.get(myCampaign, 'campaign_type.valuation', 0),
       maturityDate: maturityDate ? moment(maturityDate).toDate() : moment().toDate(),
-      interestRate: _.get(myCampaign, 'campaign_type.interest_rate', 0),
-      discountRate: _.get(myCampaign, 'campaign_type.discount_rate', 0),
-      valuationCap: _.get(myCampaign, 'campaign_type.valuation_cap', 0),
+      interestRate: _.get(myCampaign, 'campaign_type.interest_rate') || 0,
+      discountRate: _.get(myCampaign, 'campaign_type.discount_rate') || 0,
+      valuationCap: _.get(myCampaign, 'campaign_type.valuation_cap') || 0,
     }
 
     return (
@@ -70,20 +68,3 @@ export default class SharedMyCampaignsStageFour extends Component {
     )
   }
 }
-
-// name
-// start_date
-// end_date
-// goal
-// amount (Integer) ?
-// amount_type (equity/convertable)
-
-// Equity
-// equity_type (:ordinary, :preferred)
-// valuation (Integer)
-
-// Convertiable
-// maturity_date (Date)
-// interest_rate (Integer no precision)
-// discount_rate (Integer no precision)
-// valuation_cap (Integer)

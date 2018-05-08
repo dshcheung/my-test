@@ -16,8 +16,8 @@ export const appendFormValue = (formData, base, v) => {
     case 'Undefined':
       return true
     case 'Array':
-      v.forEach((v2) => {
-        appendFormValue(formData, `${base}[]`, v2)
+      v.forEach((v2, i) => {
+        appendFormValue(formData, `${base}[${i}]`, v2)
       })
       return true
     case 'Object':

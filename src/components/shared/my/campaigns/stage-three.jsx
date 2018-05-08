@@ -12,9 +12,7 @@ const mapStateToProps = (state) => {
 @connect(mapStateToProps, null)
 export default class SharedMyCampaignsStageThree extends Component {
   render() {
-    const { editMode, myCampaign, router } = this.props
-
-    // TODO: initiate a refresh of myCampaign
+    const { myCampaign, router } = this.props
 
     return (
       <div className="stage-three">
@@ -23,7 +21,7 @@ export default class SharedMyCampaignsStageThree extends Component {
           campaign={myCampaign}
           routeParams={router.params}
           router={router}
-          editMode={editMode}
+          editMode
         />
       </div>
     )
