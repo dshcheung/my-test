@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+import {
+  gMyCampaign
+} from '../../../../actions/my/campaigns'
 
 import { notyWarning } from '../../../../services/noty'
 
@@ -16,7 +21,13 @@ const mapStateToProps = (state) => {
   }
 }
 
-@connect(mapStateToProps, null)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    gMyCampaign: bindActionCreators(gMyCampaign, dispatch)
+  }
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 export default class MyCampaigns extends Component {
   constructor(props) {
     super(props)
@@ -32,12 +43,13 @@ export default class MyCampaigns extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.permitRedirection(nextProps)
+    this.refreshCampaignOnStageThree(nextProps)
+  }
 
-    // TODO: initiate a refresh of myCampaign
-    // console.log(nextProps)
-
-    // TODO: if accepted/pending, disallow
-    // TODO: if waiting_for_update can allow edit
+  refreshCampaignOnStageThree(props) {
+    if (props.routeParams.stage === "stage_three") {
+      this.props.gMyCampaign({ params: props.params, refresh: true })
+    }
   }
 
   permitRedirection(props) {

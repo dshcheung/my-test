@@ -81,14 +81,15 @@ export const deleteMyCampaignAttributeEntry = (id, targetPath) => {
 }
 
 export const G_MY_CAMPAIGN = "G_MY_CAMPAIGN"
-export const gMyCampaign = ({ params = {}, queries = {} }) => {
+export const REFRESH_G_MY_CAMPAIGN = "REFRESH_G_MY_CAMPAIGN"
+export const gMyCampaign = ({ params = {}, queries = {}, refresh = false }) => {
   const request = genAxios({
     method: "get",
     url: genApiUrl(apiMyCampaignsShow(params), queries)
   })
 
   return {
-    type: G_MY_CAMPAIGN,
+    type: refresh ? REFRESH_G_MY_CAMPAIGN : G_MY_CAMPAIGN,
     request,
     successCB: (dispatch, data) => {
       dispatch(setMyCampaign(data))

@@ -71,13 +71,13 @@ export default class SharedCampaignsProfile extends Component {
     const attachments = _.get(startup, "attachments") || []
 
     const startupData = [
-      {
+      { // TODO: do not display on edit.
         key: "updates",
         title: "Updates",
         modal: SharedStartupsTextSection,
         data: updates,
         exist: !!updates,
-        canUpdate: !editable
+        canUpdate
       },
       {
         key: "highlights",
@@ -249,7 +249,7 @@ export default class SharedCampaignsProfile extends Component {
                   <ul className="scrollto">
                     {
                       startupData.map((d) => {
-                        return (modalEditable || d.exist || canUpdate) ? (
+                        return (modalEditable || d.exist || d.canUpdate) ? (
                           <li key={d.title}><Link to={d.title} spy smooth duration={500} offset={-100}>{d.title}</Link></li>
                         ) : null
                       })
