@@ -61,29 +61,20 @@ export default class CampaignList extends Component {
                   }
                 }
 
+                const displayPermissions = {
+                  stats: ["approved", "accepted", "completed"],
+                  danger: ["waiting_for_update", "rejected"],
+                  warning: ["pending", "first_approval", "investment_committee", "selection_committee"],
+                  info: ["not_submitted"]
+                }
+
                 const submitStatus = _.get(campaign, 'status.submitted')
-                const isApproved = submitStatus === "approved"
-                const isPending = submitStatus === "pending"
-                // const isAccepted = submitStatus === "accepted"
-
-                // TODO: change tag
-                // Approved
-                // ACCEPTED
-                // COMPLETED
-                // Show stats
-                // if not active, show not active tag
-                // if active, show curretnly active tag
-                // if completed, show completed tag
-
-                // Show Waiting tag (red)
-                // WAITING_FOR_UPDATE
-                // REJECTED
-
-                // Show Pending tag
-                // PENDING
-                // FIRST_APPROVAL=5
-                // INVESTMENT_COMMITTEE=6
-                // SELECTION_COMMITTEE=7
+                const isActive = campaign.active
+                const isCompleted = submitStatus === "completed"
+                const displayStats = _.indexOf(displayPermissions.stats, submitStatus) >= 0
+                const displayDanger = _.indexOf(displayPermissions.danger, submitStatus) >= 0
+                const displayWarning = _.indexOf(displayPermissions.warning, submitStatus) >= 0
+                const displayInfo = _.indexOf(displayPermissions.info, submitStatus) >= 0
 
                 return (
                   <div key={i} className="col-xs-12 col-sm-6 col-md-4 text-center campaign-card">
@@ -100,9 +91,15 @@ export default class CampaignList extends Component {
                       </div>
 
                       {
-                        isApproved && (
+                        displayStats && (
                           <div className="stats">
                             <hr />
+
+                            <div className="status-bubble">
+                              { isActive && <span className="label label-success">Live</span> }
+                              { isCompleted && <span className="label label-success">Completed</span> }
+                              { !isActive && !isCompleted && <span className="label label-warning">To Be Live Soon</span>}
+                            </div>
 
                             <div className="h4">{amountType}</div>
 
@@ -122,16 +119,15 @@ export default class CampaignList extends Component {
                         )
                       }
 
-                      {
-                        isPending && (
-                          <div>
-                            <hr />
-                            <Link to={linkTo}>
-                              <div className={`${submitStatus === "rejected" || submitStatus === "waiting_for_update" ? "bg-danger" : "bg-warning"}`}>{submitStatus.splitCap("_")}</div>
-                            </Link>
-                          </div>
-                        )
-                      }
+                      <div>
+                        <hr />
+
+                        <div className="status-bubble">
+                          { displayDanger && <span className="label label-danger">{submitStatus.splitCap("_")}</span> }
+                          { displayWarning && <span className="label label-warning">Pending Review</span> }
+                          { displayInfo && <span className="label label-info">Not Submitted For Review</span> }
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )

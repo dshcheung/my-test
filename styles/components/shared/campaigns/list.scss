@@ -63,6 +63,12 @@
         font-size: ($font-size-base * 1.2);
       }
 
+      .status-bubble {
+        .label:not(:last-child) {
+          margin-right: 5px;
+        }
+      }
+
       .stats {
         .progress {
           border: 2px solid $brand-info;
