@@ -11,7 +11,7 @@ import ImageField from '../../../shared/form-elements/image-field'
   validate: (values) => {
     return Validators({
       title: ["presences"],
-      link: ["presences"],
+      link: ["presences", "httpLink"],
     }, values)
   }
 })
@@ -31,7 +31,7 @@ export default class MyStartupsMediaForm extends Component {
             }}
           />
 
-          <Field // TODO: http(s) prefix
+          <Field
             name="link"
             component={TextField}
             opts={{

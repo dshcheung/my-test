@@ -80,6 +80,13 @@ const validators = {
     if (result) {
       return "No Decimal Permitted"
     }
+  },
+  httpLink: (value) => {
+    const regex = /^https?:\/\//
+    const result = regex.test(value)
+    if (!result) {
+      return "Please Include http:// or https:// in front of the link"
+    }
   }
 }
 
