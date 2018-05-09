@@ -5,10 +5,10 @@ import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 
+import { scrollTop } from './services/utils'
+
 import configureStore from './store-config'
 import currentRoutes from './routes'
-
-import scrollTop from './services/utils'
 
 require('../styles/index.scss')
 require('./prototypes.js')
