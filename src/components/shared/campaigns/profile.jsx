@@ -67,76 +67,85 @@ export default class SharedCampaignsProfile extends Component {
     const strategy = _.get(startup, "profile.strategy")
     const team = _.get(startup, "team")
     const useOfFunds = _.get(startup, "profile.use_of_funds")
-    const media = _.get(startup, "media")
+    const media = _.get(startup, "media") || []
     const attachments = _.get(startup, "attachments") || []
 
     const startupData = [
-      { // TODO: do not display on edit.
+      {
         key: "updates",
         title: "Updates",
         modal: SharedStartupsTextSection,
         data: updates,
-        exist: !!updates,
-        canUpdate
+        shouldRender: !!updates,
+        shouldEdit: canUpdate
       },
       {
         key: "highlights",
         title: "Highlights",
         modal: SharedStartupsTextSection,
         data: highlights,
-        exist: !!highlights
+        shouldRender: modalEditable || !!highlights,
+        shouldEdit: modalEditable
       },
       {
         key: "overview",
         title: "Overview",
         modal: SharedStartupsTextSection,
         data: overview,
-        exist: !!overview
+        shouldRender: modalEditable || !!overview,
+        shouldEdit: modalEditable
       },
       {
         title: "Pitch Deck",
         modal: SharedStartupsPitchDeck,
         data: pitchDeck,
-        exist: !!pitchDeck
+        shouldRender: modalEditable || !!pitchDeck,
+        shouldEdit: modalEditable
       },
       {
         key: "market",
         title: "Market",
         modal: SharedStartupsTextSection,
         data: market,
-        exist: !!market
+        shouldRender: modalEditable || !!market,
+        shouldEdit: modalEditable
       },
       {
         key: "strategy",
         title: "Strategy",
         modal: SharedStartupsTextSection,
         data: strategy,
-        exist: !!strategy
+        shouldRender: modalEditable || !!strategy,
+        shouldEdit: modalEditable
       },
       {
         title: "Team",
         modal: SharedStartupsTeam,
         data: team,
-        exist: !!team
+        shouldRender: modalEditable || !!team,
+        shouldEdit: modalEditable
       },
       {
         key: "useOfFunds",
         title: "Use of Funds",
         modal: SharedStartupsTextSection,
         data: useOfFunds,
-        exist: !!useOfFunds
+        shouldRender: modalEditable || !!useOfFunds,
+        shouldEdit: modalEditable
       },
       {
         title: "Media",
         modal: SharedStartupsMedia,
         data: media,
-        exist: media.length >= 0
+        shouldRender: modalEditable || media.length > 0,
+        shouldEdit: modalEditable
       },
       {
         title: "Dataroom",
         modal: SharedStartupsAttachments,
         data: attachments,
-        exist: attachments.length >= 0,
+        shouldRender: modalEditable || attachments.length > 0,
+        shouldEdit: modalEditable,
         extra: { viewDataRoom: _.get(campaign, 'can.view_data_room') }
       }
     ]
@@ -249,7 +258,7 @@ export default class SharedCampaignsProfile extends Component {
                   <ul className="scrollto">
                     {
                       startupData.map((d) => {
-                        return (modalEditable || d.exist || d.canUpdate) ? (
+                        return (d.shouldRender) ? (
                           <li key={d.title}><Link to={d.title} spy smooth duration={500} offset={-100}>{d.title}</Link></li>
                         ) : null
                       })
@@ -261,8 +270,8 @@ export default class SharedCampaignsProfile extends Component {
             <div className="col-xs-12 col-sm-9 startup-content">
               {
                 startupData.map((d) => {
-                  return (modalEditable || d.exist || d.canUpdate) ? (
-                    <d.modal key={d.title} data={d} editable={modalEditable || d.canUpdate} routeParams={routeParams} {...d.extra} />
+                  return (d.shouldRender) ? (
+                    <d.modal key={d.title} data={d} editable={d.shouldEdit} routeParams={routeParams} {...d.extra} />
                   ) : null
                 })
               }

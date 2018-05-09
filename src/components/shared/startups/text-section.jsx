@@ -37,11 +37,11 @@ export default class SharedStartupsTextSection extends Component {
 
         <SharedStartupsEmpty
           title={data.title}
-          condition={!data.exist}
+          condition={!data.data}
           editable={editable}
         />
         {
-          data.exist && (
+          data.data && (
             <div><p dangerouslySetInnerHTML={{ __html: data.data.decode() }} /></div>
           )
         }
