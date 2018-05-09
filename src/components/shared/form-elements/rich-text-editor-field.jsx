@@ -7,7 +7,7 @@ export default class RichTextEditorField extends Component {
 
     this.state = {
       value: props.input.value ?
-        RichTextEditor.createValueFromString(this.props.input.value, 'markdown') :
+        RichTextEditor.createValueFromString(this.props.input.value, 'html') :
         RichTextEditor.createEmptyValue()
     }
 
