@@ -203,29 +203,6 @@
             font-size: ($font-size-base * 1.1);
             font-weight: 200;
           }
-          &.pitch-deck {
-            #slider {
-              .carousel {
-                height: 100%;
-
-                .carousel-indicators {
-                  background-color: rgba(0,0,0,0.1);
-                }
-
-                .carousel-inner {
-                  height: 100%;
-                  .item {
-                    height: 100%;
-                    background-color: rgba(0,0,0,0.3);
-
-                    img {
-                      margin: 0 auto;
-                    }
-                  }
-                }
-              }
-            }
-          }
           &.team {
             .team-story {
               font-size: $font-size-base;

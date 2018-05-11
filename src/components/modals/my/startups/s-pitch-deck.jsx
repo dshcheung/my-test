@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Modal from 'react-bootstrap/lib/Modal'
 
+import SharedSlider from '../../../shared/slider'
+
 import MyStartupsNEPitchDeckDescriptionModal from './ne-pitch-deck-description'
 import MyStartupsNEPitchDeckAttachmentModal from './ne-pitch-deck-attachment'
 
@@ -30,9 +32,11 @@ export default class MyStartupsSPitchDeckModal extends Component {
 
     const description = _.get(pitchDeck, 'description', '')
     const attachment = _.get(pitchDeck, 'original', '')
+    const attachments = _.get(pitchDeck, 'attachments', [])
 
     const hasDescription = !!description
     const hasAttachment = !!attachment
+    const hasAttachments = attachments.length > 0
 
     const descriptionIconClass = hasDescription ? "fa-edit" : "fa-plus"
     const attachmentIconClass = hasAttachment ? "fa-edit" : "fa-plus"
@@ -64,15 +68,20 @@ export default class MyStartupsSPitchDeckModal extends Component {
 
           <section className="attachments">
             <div className="h3 margin-top-0">
-              Attachments
+              Attachment
               <button
                 className="btn btn-info pull-right"
                 onClick={() => { this.open('nePitchDeckAttachment', hasAttachment, attachment) }}
               ><i className={`fa ${attachmentIconClass}`} /></button>
             </div>
             {
-              hasAttachment ? (
-                <div>Slider Here</div>
+              hasAttachment && hasAttachments ? (
+                <SharedSlider
+                  id="s-modal-pitch-deck-slider"
+                  data={attachments}
+                  srcKey="file.original"
+                  titleKey="title"
+                />
               ) : (
                 <div>Click Edit Icon To Edit Attachment</div>
               )

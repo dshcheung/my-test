@@ -1,0 +1,23 @@
+.shared-slider {
+  width: 100%;
+
+  .carousel {
+    height: 100%;
+
+    .carousel-indicators {
+      background-color: rgba(0,0,0,0.1);
+    }
+
+    .carousel-inner {
+      height: 100%;
+      .item {
+        height: 100%;
+        background-color: rgba(0,0,0,0.3);
+
+        img {
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+}
