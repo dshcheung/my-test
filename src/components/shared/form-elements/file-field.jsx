@@ -28,14 +28,14 @@ export default class FileField extends Component {
         label, decodeLabel,
         optClass,
         hint,
-        urlKey,
+        urlKey, valueIsUrl,
         templateUrl
       }
     } = this.props
 
     const hasErrorClass = touched && invalid ? 'has-error' : ''
     const newInput = _.omit(input, 'value')
-    const fileUrl = _.get(input.value, urlKey)
+    const fileUrl = valueIsUrl ? input.value : _.get(input.value, urlKey)
 
     return (
       <div className={`form-group clearfix ${hasErrorClass}`}>
