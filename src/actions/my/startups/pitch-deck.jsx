@@ -8,13 +8,12 @@ import { mergeMyCampaignAttribute } from '../campaigns'
 // create update
 export const CU_MY_STARTUP_PITCH_DECK = "CU_MY_STARTUP_PITCH_DECK"
 export const cuMyStartupPitchDeck = (values, params, cb, isUpdate, keyword) => {
-  const attachments = _.get(values, 'attachments', null)
   const request = genAxios({
     method: isUpdate ? "put" : "post",
     url: genApiUrl(apiMyStartupsPitchDeckIndex(params)),
     data: getFormData({
       description: _.get(values, 'description', null),
-      attachments_attributes: attachments
+      original: _.get(values, 'file[0]', null)
     }, "pitch_deck")
   })
 

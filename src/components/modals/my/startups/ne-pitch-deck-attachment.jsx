@@ -30,15 +30,7 @@ export default class MyStartupsNEPitchDeckAttachmentModal extends Component {
   }
 
   cuMyStartupPitchDeck(values) {
-    this.props.cuMyStartupPitchDeck({
-      attachments: [
-        {
-          id: _.get(this.props.attachment, 'id', null),
-          title: _.get(values, 'title', null),
-          file: _.get(values, 'file[0]', null)
-        }
-      ]
-    }, this.props.params, () => {
+    this.props.cuMyStartupPitchDeck(values, this.props.params, () => {
       this.props.close()
     }, this.props.editMode, "Attachment")
   }
@@ -48,8 +40,7 @@ export default class MyStartupsNEPitchDeckAttachmentModal extends Component {
 
     const keyword = editMode ? "Edit" : "Add"
     const initialValues = editMode ? {
-      title: _.get(attachment, 'title', ''),
-      file: _.get(attachment, 'file', '')
+      file: attachment || ''
     } : undefined
 
     return (

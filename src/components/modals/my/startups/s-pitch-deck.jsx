@@ -1,28 +1,9 @@
 import React, { Component } from 'react'
 import Modal from 'react-bootstrap/lib/Modal'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-
-import {
-  dMyStartupPitchDeckAttachment, D_MY_STARTUP_PITCH_DECK_ATTACHMENT
-} from '../../../../actions/my/startups/pitch-deck'
 
 import MyStartupsNEPitchDeckDescriptionModal from './ne-pitch-deck-description'
 import MyStartupsNEPitchDeckAttachmentModal from './ne-pitch-deck-attachment'
 
-const mapStateToProps = (state) => {
-  return {
-    requestStatus: _.get(state, 'requestStatus')
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dMyStartupPitchDeckAttachment: bindActionCreators(dMyStartupPitchDeckAttachment, dispatch)
-  }
-}
-
-@connect(mapStateToProps, mapDispatchToProps)
 export default class MyStartupsSPitchDeckModal extends Component {
   constructor(props) {
     super(props)
@@ -43,28 +24,18 @@ export default class MyStartupsSPitchDeckModal extends Component {
     this.setState({ sPitchDeck: true, [modalName]: false, stateEditMode: false, editInfo: null, editIndex: null })
   }
 
-  dMyStartupPitchDeckAttachment(id) {
-    this.props.dMyStartupPitchDeckAttachment({
-      attachments: [
-        {
-          id,
-          _destroy: true
-        }
-      ]
-    }, this.props.params)
-  }
-
   render() {
-    const { close, pitchDeck, params, requestStatus } = this.props
+    const { close, pitchDeck, params } = this.props
     const { stateEditMode, editInfo } = this.state
 
     const description = _.get(pitchDeck, 'description', '')
-    const attachments = _.get(pitchDeck, 'attachments', [])
+    const attachment = _.get(pitchDeck, 'original', '')
 
     const hasDescription = !!description
-    const hasAttachments = attachments.length > 0
+    const hasAttachment = !!attachment
 
     const descriptionIconClass = hasDescription ? "fa-edit" : "fa-plus"
+    const attachmentIconClass = hasAttachment ? "fa-edit" : "fa-plus"
 
     return (
       <Modal show onHide={close} className={`form-modal ${!this.state.sPitchDeck && 'hide'}`} id="modals-my-startups-s-pitch-deck" bsSize="large">
@@ -84,7 +55,7 @@ export default class MyStartupsSPitchDeckModal extends Component {
               hasDescription ? (
                 <div dangerouslySetInnerHTML={{ __html: htmlDecode(description) }} />
               ) : (
-                <div>Click Add Icon To Add Description</div>
+                <div>Click Edit Icon To Edit Description</div>
               )
             }
           </section>
@@ -96,44 +67,14 @@ export default class MyStartupsSPitchDeckModal extends Component {
               Attachments
               <button
                 className="btn btn-info pull-right"
-                onClick={() => { this.open('nePitchDeckAttachment', false) }}
-              ><i className="fa fa-plus" /></button>
+                onClick={() => { this.open('nePitchDeckAttachment', hasAttachment, attachment) }}
+              ><i className={`fa ${attachmentIconClass}`} /></button>
             </div>
             {
-              hasAttachments ? (
-                <ul className="attachment-list padding-0">
-                  {
-                    attachments.map((attachment, i) => {
-                      const file = _.get(attachment, 'file.original')
-                      const title = _.get(attachment, 'title')
-
-                      return (
-                        <li key={i} className="attachment">
-                          <button
-                            className="btn btn-info edit pull-right"
-                            disabled={_.get(requestStatus, `${D_MY_STARTUP_PITCH_DECK_ATTACHMENT}_${attachment.id}`)}
-                            onClick={() => { this.open("nePitchDeckAttachment", true, attachment, i) }}
-                          >
-                            <i className="fa fa-edit" />
-                          </button>
-                          <button
-                            className="btn btn-danger btn-outline delete pull-right"
-                            disabled={_.get(requestStatus, `${D_MY_STARTUP_PITCH_DECK_ATTACHMENT}_${attachment.id}`)}
-                            onClick={() => { this.dMyStartupPitchDeckAttachment(attachment.id) }}
-                          >
-                            <i className="fa fa-trash" />
-                          </button>
-                          <a href={file} className="btn btn-success">
-                            {title}
-                            <i className="fa fa-fw fa-download" />
-                          </a>
-                        </li>
-                      )
-                    })
-                  }
-                </ul>
+              hasAttachment ? (
+                <div>Slider Here</div>
               ) : (
-                <div>Click Add Icon To Add Attachment</div>
+                <div>Click Edit Icon To Edit Attachment</div>
               )
             }
           </section>
