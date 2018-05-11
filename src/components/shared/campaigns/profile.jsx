@@ -71,7 +71,7 @@ export default class SharedCampaignsProfile extends Component {
     const attachments = _.get(startup, "attachments") || []
 
     const startupData = [
-      {
+      { // TODO: figure out why simply "test" word is h1
         key: "updates",
         title: "Updates",
         modal: SharedStartupsTextSection,
