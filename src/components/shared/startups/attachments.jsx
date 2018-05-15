@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Element from 'react-scroll/modules/components/Element'
 
+import { getFileIcon } from '../../../services/utils'
+
 import { REQUEST_DATA_ACCESS, requestDataAccess } from '../../../actions/campaigns'
 
 import SharedStartupsTitle from './title'
@@ -80,24 +82,39 @@ export default class SharedStartupsAttachments extends Component {
 
         {
           !emptyAttachments && viewDataRoom === "accepted" && (
-            <div className="data-room">
-              <ul>
-                {
-                  data.data.map((attachment, i) => {
-                    const file = _.get(attachment, 'file.original')
-                    const title = _.get(attachment, 'title')
+            <div className="data-room row">
+              {
+                data.data.map((a, i) => {
+                  const file = _.get(a, 'file.original')
+                  const cover = _.get(a, 'file.cover')
+                  const title = _.get(a, 'title')
+                  const extension = _.get(a, 'file.extension')
 
-                    return (
-                      <li key={i}>
-                        <a href={file} className="btn btn-success" target="_blank">
-                          {title}
-                          <i className="fa fa-fw fa-download" />
-                        </a>
-                      </li>
-                    )
-                  })
-                }
-              </ul>
+                  const imgStyle = {
+                    "background-image": `url(${cover})`
+                  }
+
+                  const icon = getFileIcon(extension)
+
+                  return (
+                    <div key={i} className="col-xs-12 col-sm-4 attachment">
+                      <div className="cover">
+                        {
+                          cover ? (
+                            <div className="cover-img" style={imgStyle} />
+                          ) : (
+                            <i className={`far ${icon} cover-icon fa-8x`} />
+                          )
+                        }
+                      </div>
+                      <a href={file} target="_blank" className="btn btn-success button">
+                        <i className="fa fa-fw fa-download" />
+                        {title}
+                      </a>
+                    </div>
+                  )
+                })
+              }
             </div>
           )
         }
@@ -115,3 +132,41 @@ export default class SharedStartupsAttachments extends Component {
     )
   }
 }
+
+// EXCEL
+// csv
+// xslx
+// xsl
+
+// PDF
+// pdf
+
+// POWERPOINT
+// pptx
+// ppt
+
+// WORD
+// docx
+// doc
+
+// FILE
+// anything else
+
+
+// <ul>
+//   {
+//     data.data.map((attachment, i) => {
+//       const file = _.get(attachment, 'file.original')
+//       const title = _.get(attachment, 'title')
+
+//       return (
+//         <li key={i}>
+//           <a href={file} className="btn btn-success" target="_blank">
+//             {title}
+//             <i className="fa fa-fw fa-download" />
+//           </a>
+//         </li>
+//       )
+//     })
+//   }
+// </ul>

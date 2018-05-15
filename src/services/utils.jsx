@@ -160,3 +160,32 @@ export const formatQuestionnaire = (questionnaires, startupID) => {
 
   return myQuestionnaires
 }
+
+export const getFileIcon = (ext) => {
+  const excel = "fa-file-excel"
+  const pdf = "fa-file-pdf"
+  const powerpoint = "fa-file-powerpoint"
+  const word = "fa-file-word"
+  const alt = "fa-file-alt"
+
+  switch (ext) {
+    case "csv":
+      return excel
+    case "xslx":
+      return excel
+    case "xsl":
+      return excel
+    case "pdf":
+      return pdf
+    case "pptx":
+      return powerpoint
+    case "ppt":
+      return powerpoint
+    case "docx":
+      return word
+    case "doc":
+      return word
+    default:
+      return alt
+  }
+}
