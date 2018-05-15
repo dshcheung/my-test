@@ -1,5 +1,6 @@
 .shared-slider {
   width: 100%;
+  position: relative;
 
   .carousel {
     height: 100%;
@@ -19,5 +20,11 @@
         }
       }
     }
+  }
+
+  button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
   }
 }
