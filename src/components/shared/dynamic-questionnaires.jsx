@@ -8,7 +8,7 @@ import RadioField from './form-elements/radio-field'
 import TextArea from './form-elements/text-area'
 import TextField from './form-elements/text-field'
 
-// TODO2: remove & anything using it
+// TODO2: remove & anything using this
 export default class DynamicQuestionnaires extends Component {
   render() {
     const { questions, getName, fileUrls, enableHint } = this.props

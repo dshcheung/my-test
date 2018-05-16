@@ -5,7 +5,7 @@ import Validators from '../../../services/form-validators'
 
 import DynamicField from '../../shared/form-elements/dynamic-field'
 
-@reduxForm({ // TODO: custom validations for questionnaires, look at complexArrOfObj
+@reduxForm({
   form: "AuthSignupQuestionnaireForm",
   validate: (values) => {
     return Validators({
