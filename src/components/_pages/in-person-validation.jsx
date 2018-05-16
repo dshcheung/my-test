@@ -80,10 +80,13 @@ export default class InPersonValidation extends Component {
     }
 
     const a = navigator.userAgent
+    const b = navigator.platform
 
     return (
       <div id="page-in-person-validation" className="text-center">
         { a }
+
+        { b }
         { errorMsg && <h4 className="text-danger">{errorMsg}</h4>}
 
         <canvas id="canvas" style={{ display: "none" }} />
