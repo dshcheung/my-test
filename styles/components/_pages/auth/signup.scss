@@ -47,22 +47,23 @@
     }
   }
 
-  // #forms-auth-signup {
-  //   label {
-  //     color: $gray;
-  //     font-weight: 400;
-  //     &.radio-group {
-  //       span {
-  //         margin-left: 10px;
-  //         font-weight: 800;
-  //       }
-  //     }
-  //   }
-  //   .btn {
-  //     font-size: $btn-font-size-base;
-  //     i {
-  //       margin-right: 25px;
-  //     }
-  //   }
-  // }
+  #forms-auth-signup-startup {
+    padding: 30px;
+    border: 2px solid $gray-lighter;
+    .form-title {
+      font-size: $font-size-h2;
+      color: $brand-primary;
+    }
+    label {
+      color: $gray-light;
+      font-weight: 400;
+    }
+    .btn {
+      font-size: $btn-font-size-base;
+      font-weight: 100;
+      i {
+        margin-right: 25px;
+      }
+    }
+  }
 }
