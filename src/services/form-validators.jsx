@@ -41,7 +41,6 @@ const validators = {
 
     const childErrors = []
 
-    // field = "detail"
     _.forOwn(childFields, (toValidates, field) => {
       _.forEach(valueArr, (vObj, i) => {
         const targetV = _.get(vObj, field)
@@ -66,6 +65,36 @@ const validators = {
 
     if (childErrors.length > 0) {
       return childErrors
+    }
+  },
+  questionnaire: (values, { answersKey, answerKey, validationsKey }) => {
+    const answers = _.get(values, answersKey, [])
+    const answersErrors = []
+
+    answers.forEach((a) => {
+      const answerErrors = []
+      const answerValue = _.get(a, answerKey, null)
+      const validations = _.get(a, validationsKey, {})
+
+
+      _.forEach(validations, (v, k) => {
+        if (v && k === "required") {
+          const msg = validators.presences(answerValue)
+          if (msg) {
+            answerErrors.push(msg)
+          }
+        }
+      })
+
+      if (answerErrors.length > 0) {
+        answersErrors.push({ [answerKey]: answerErrors })
+      }
+    })
+
+    if (answersErrors.length > 0) {
+      return {
+        [answersKey]: answersErrors
+      }
     }
   },
   filePresences: (value) => {

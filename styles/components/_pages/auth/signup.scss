@@ -1,4 +1,40 @@
-#page-auth-signup {
+#page-auth-signup, #page-auth-signup-investor, #page-auth-signup-startup {
+  .signup-wrapper {
+    padding: 20px;
+    border: 2px solid $gray-lighter;
+
+    .title {
+      font-size: $font-size-h2;
+      color: $brand-primary;
+    }
+
+    p {
+      color: $gray-light;
+      font-size: $font-size-large;
+    }
+  }
+
+  .selector {
+    .have-account {
+      text-align: center;
+      font-size: $btn-font-size-base;
+      color: $gray-light;
+      a {
+        font-weight: bolder;
+      }
+    }
+  }
+
+  .warning-agreement {
+    .content {
+      border: 1px solid black;
+      padding: 10px;
+      height: 200px;
+      overflow: auto;
+      margin-bottom: 10px;
+    }
+  }
+
   .tnc {
     text-align: center;
     padding: 15px;
@@ -11,57 +47,22 @@
     }
   }
 
-  #forms-auth-signup {
-    padding: 20px;
-    border: 2px solid $gray-lighter;
-    .row + .row {
-      margin-top: 0;
-    }
-    p {
-      color: $gray-light;
-      font-size: $font-size-large;
-    }
-    .form-title {
-      font-size: $font-size-h2;
-      color: $brand-primary;
-    }
-    .warning-agreement {
-      .content {
-        border: 1px solid black;
-        padding: 10px;
-        height: 200px;
-        overflow: auto;
-        margin-bottom: 10px;
-      }
-    }
-    label {
-      color: $gray;
-      font-weight: 400;
-      &.radio-group {
-        span {
-          margin-left: 10px;
-          font-weight: 800;
-        }
-      }
-    }
-    .forgot-password {
-      color: $brand-primary;
-      font-weight: 400;
-    }
-    .btn {
-      font-size: $btn-font-size-base;
-      i {
-        margin-right: 25px;
-      }
-    }
-
-    .have-account {
-      text-align: center;
-      font-size: $btn-font-size-base;
-      color: $gray-light;
-      a {
-        font-weight: bolder;
-      }
-    }
-  }
+  // #forms-auth-signup {
+  //   label {
+  //     color: $gray;
+  //     font-weight: 400;
+  //     &.radio-group {
+  //       span {
+  //         margin-left: 10px;
+  //         font-weight: 800;
+  //       }
+  //     }
+  //   }
+  //   .btn {
+  //     font-size: $btn-font-size-base;
+  //     i {
+  //       margin-right: 25px;
+  //     }
+  //   }
+  // }
 }

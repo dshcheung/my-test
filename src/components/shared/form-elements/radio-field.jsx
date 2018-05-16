@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class RadioField extends Component {
   render() {
     const {
-      input, meta: { pristine, invalid, error },
+      input, meta: { touched, invalid, error },
       opts: {
         options,
         label, decodeLabel,
@@ -13,7 +13,7 @@ export default class RadioField extends Component {
       }
     } = this.props
 
-    const hasErrorClass = !pristine && invalid ? 'has-error' : ''
+    const hasErrorClass = touched && invalid ? 'has-error' : ''
 
     return (
       <div className={`form-group clearfix ${hasErrorClass}`}>
@@ -51,7 +51,7 @@ export default class RadioField extends Component {
           })
         }
         { hint && <span className="help-block">{hint}</span> }
-        { hasErrorClass && <span className="help-block">{!pristine ? error.join(", ") : ''}</span> }
+        { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
       </div>
     )
   }

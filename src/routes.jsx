@@ -8,6 +8,7 @@ import HomeContainer from './components/_pages/home'
 import AuthContainer from './components/_pages/auth/wrapper'
 import LoginContainer from './components/_pages/auth/login'
 import SignupContainer from './components/_pages/auth/signup'
+import SignupInvestorContainer from './components/_pages/auth/signup-investor'
 import ForgotPasswordContainer from './components/_pages/auth/forgot-password'
 import ResetPasswordContainer from './components/_pages/auth/reset-password'
 
@@ -54,6 +55,8 @@ export default (
     <Route path="auth" component={AuthContainer}>
       <Route path="login" component={LoginContainer} />
       <Route path="signup" component={SignupContainer} />
+      <Route path="signup_investor" component={SignupInvestorContainer} />
+      <Route path="signup_startup" component={SignupContainer} />
       <Route path="forgot-password" component={ForgotPasswordContainer} />
       <Route path="reset-password" component={ResetPasswordContainer} />
     </Route>
