@@ -116,6 +116,19 @@ const validators = {
     if (!result) {
       return "Please Include http:// or https:// in front of the link"
     }
+  },
+  mobile: (value) => {
+    const m = value.split("-")
+    const code = m[0] || ''
+    const number = m[1] || ''
+
+    if (!code) return "Please Select An Area Code"
+    if (!number) return "Please Input A Phone Number"
+
+    const regex = /^[0-9]*$/
+    const result = regex.test(number)
+
+    if (!result) return "Please Input A Valid Number"
   }
 }
 

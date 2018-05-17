@@ -31,10 +31,14 @@ export const createUser = (values) => {
     data: getFormData({
       role: _.get(values, 'role', null),
       email: _.get(values, 'email', null),
+      mobile: _.get(values, 'mobile', null),
       password: _.get(values, 'password', null),
       profile: {
         first_name: _.get(values, 'firstName', null),
-        last_name: _.get(values, 'lastName', null)
+        last_name: _.get(values, 'lastName', null),
+        dob: _.get(values, 'dob', null),
+        national_id: _.get(values, 'nationalID', null),
+        address: _.get(values, 'address', null)
       }
     }, 'user')
   })

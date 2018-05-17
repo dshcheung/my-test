@@ -7,6 +7,7 @@ import { createUser, CREATE_USER } from '../../../actions/users'
 import { gImmovable, G_IMMOVABLE_INVESTOR_QUESTIONNAIRE, G_IMMOVABLE_LEGAL_AGREEMENT } from '../../../actions/immovables'
 
 import AuthSignupQuestionnaireForm from '../../forms/auth/signup-questionnaire'
+import AuthSignupInvestorForm from '../../forms/auth/signup-investor'
 
 import LoadingSpinner from '../../shared/loading-spinner'
 
@@ -34,12 +35,12 @@ export default class SignupInvestor extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      agreed: false,
-      score: null,
-      questionnaireCompleted: false,
+    this.state = { // TODO: reset
+      agreed: true,
+      score: 8,
+      questionnaireCompleted: true,
       questionnaires: [],
-      currentQuestionnaireIndex: 0,
+      currentQuestionnaireIndex: 3,
       questionnaireOrder: ["startup_investing_risks", "investing_process", "after_you_invest"]
     }
 
@@ -56,7 +57,7 @@ export default class SignupInvestor extends Component {
   createUser(values) {
     this.props.createUser({
       ...values,
-      role: this.state.role
+      role: "Investor"
     })
   }
 
@@ -144,7 +145,11 @@ export default class SignupInvestor extends Component {
         <div>You do not currently meet the requirements for our investment platform</div>
       )
     } else {
-      return <div>User Form</div>
+      return (
+        <AuthSignupInvestorForm
+          onSubmit={this.createUser}
+        />
+      )
     }
   }
 

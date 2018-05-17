@@ -99,7 +99,6 @@ export default class DynamicQuestionnaires extends Component {
             name={name}
             component={TextArea}
             opts={{
-              type,
               label,
               hint
             }}

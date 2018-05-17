@@ -21,7 +21,6 @@ export default class AuthSignupQuestionnaireForm extends Component {
     return (
       <div id="forms-auth-signup-questionnaire" className={optClass}>
         <form onSubmit={handleSubmit}>
-
           {
             _.get(this.props.initialValues, 'questionnaire.answers', []).map((q, i) => {
               return (
