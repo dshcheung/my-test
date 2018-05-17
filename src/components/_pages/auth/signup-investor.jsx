@@ -35,12 +35,12 @@ export default class SignupInvestor extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { // TODO: reset
-      agreed: true,
-      score: 8,
-      questionnaireCompleted: true,
+    this.state = {
+      agreed: false,
+      score: 0,
+      questionnaireCompleted: false,
       questionnaires: [],
-      currentQuestionnaireIndex: 3,
+      currentQuestionnaireIndex: 0,
       questionnaireOrder: ["startup_investing_risks", "investing_process", "after_you_invest"]
     }
 
