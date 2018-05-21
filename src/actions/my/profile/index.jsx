@@ -3,8 +3,7 @@ import { push } from 'react-router-redux'
 import { genApiUrl, genAxios } from '../../../services/api-request'
 import { getFormData } from '../../../services/get-form-data'
 import {
-  apiMyProfile, apiVerifyMyProfile,
-  apiRequestVerification, apiRequestResendPassword
+  apiMyProfile, apiVerifyMyProfile, apiRequestResendPassword
 } from '../../../services/api-path'
 import { notySuccess, handleFormErrors } from '../../../services/noty'
 
@@ -95,54 +94,6 @@ export const deleteMyProfile = () => {
     successCB: (dispatch) => {
       dispatch(resetAllState(dispatch))
       notySuccess("Profile Deleted!")
-    }
-  }
-}
-
-// verify
-export const VERIFY_MY_PROFILE = "VERIFY_MY_PROFILE"
-export const verifyMyProfile = (values) => {
-  const request = genAxios({
-    method: "put",
-    url: genApiUrl(apiVerifyMyProfile()),
-    data: getFormData({
-      email: _.get(values, 'email', null),
-      code: _.get(values, 'code', null),
-      mobile: _.get(values, 'mobile', null)
-    }, 'user')
-  })
-
-  return {
-    type: VERIFY_MY_PROFILE,
-    request,
-    successCB: (dispatch, data) => {
-      dispatch(setCurrentUser(data))
-      notySuccess("Verified Successful!")
-      if (data.role === "Investor") {
-        dispatch(push("/my/portfolio"))
-      } else if (data.role === "StartupUser") {
-        dispatch(push("/my/dashboard"))
-      }
-    }
-  }
-}
-
-// resend verification
-export const REQUEST_VERIFICATION = "REQUEST_VERIFICATION"
-export const requestVerification = (resendType = null) => {
-  const request = genAxios({
-    method: "put",
-    url: genApiUrl(apiRequestVerification()),
-    data: getFormData({
-      resend_type: resendType
-    }, 'user')
-  })
-
-  return {
-    type: REQUEST_VERIFICATION,
-    request,
-    successCB: () => {
-      notySuccess("Request Sent!")
     }
   }
 }

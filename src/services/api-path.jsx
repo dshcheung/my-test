@@ -214,12 +214,12 @@ export const apiMyStartupQuestionnairesShow = (params) => {
   return `${apiMyStartupQuestionnairesIndex()}/${params.startupQuestionnaireID}`
 }
 
-export const apiVerifyMyProfile = () => {
-  return `${apiMyProfile()}/verify`
+export const apiMyVerificationsIndex = () => {
+  return `${apiMy()}/verifications`
 }
 
-export const apiRequestVerification = () => {
-  return `${apiMyProfile()}/resend_verification`
+export const apiMyVerificationsResend = () => {
+  return `${apiMyVerificationsIndex()}/resend_verification`
 }
 
 export const apiRequestResendPassword = () => {

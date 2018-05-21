@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux'
 import { reduxForm, Field } from 'redux-form'
 
 import {
-  requestVerification, REQUEST_VERIFICATION
-} from '../../../actions/my/profile'
+  resendVerification, RESEND_VERIFICATION
+} from '../../../actions/my/verifications'
 
 import Validators from '../../../services/form-validators'
 
@@ -13,14 +13,14 @@ import TextField from '../../shared/form-elements/text-field'
 
 const mapStateToProps = (state) => {
   return {
-    requestVerificationInProcess: _.get(state.requestStatus, REQUEST_VERIFICATION),
+    resendVerificationInProcess: _.get(state.requestStatus, RESEND_VERIFICATION),
     currentUser: _.get(state, 'session')
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    requestVerification: bindActionCreators(requestVerification, dispatch)
+    resendVerification: bindActionCreators(resendVerification, dispatch)
   }
 }
 
@@ -35,8 +35,21 @@ const mapDispatchToProps = (dispatch) => {
   }
 })
 export default class VerifyEmailForm extends Component {
+  constructor(props) {
+    super(props)
+
+    this.resendVerification = this.resendVerification.bind(this)
+  }
+
+  resendVerification() {
+    this.props.resendVerification({
+      resend_type: "email",
+      resend_for: this.props.currentUser.email || this.props.currentUser.mobile
+    })
+  }
+
   render() {
-    const { handleSubmit, submitInProcess, optClass, currentUser, requestVerificationInProcess } = this.props
+    const { handleSubmit, submitInProcess, optClass, currentUser, resendVerificationInProcess } = this.props
 
     return (
       <div id="forms-verify-email" className={optClass}>
@@ -71,10 +84,10 @@ export default class VerifyEmailForm extends Component {
           {
             currentUser && (
               <button
-                className={`btn btn-info btn-lg btn-block ${requestVerificationInProcess && "m-progress"}`}
+                className={`btn btn-info btn-lg btn-block ${resendVerificationInProcess && "m-progress"}`}
                 type="button"
-                disabled={submitInProcess || requestVerificationInProcess}
-                onClick={() => { this.props.requestVerification("email") }}
+                disabled={submitInProcess || resendVerificationInProcess}
+                onClick={() => { this.resendVerification() }}
               >
                 Resend Email Verification Code
               </button>

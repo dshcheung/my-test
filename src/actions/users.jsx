@@ -39,7 +39,8 @@ export const createUser = (values) => {
         dob: _.get(values, 'dob', null),
         national_id: _.get(values, 'nationalID', null),
         address: _.get(values, 'address', null)
-      }
+      },
+      questionnaire: _.get(values, 'questionnaire', null)
     }, 'user')
   })
 

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import { scrollTop } from '../../../services/utils'
+
 import { createUser, CREATE_USER } from '../../../actions/users'
 
 import { gImmovable, G_IMMOVABLE_INVESTOR_QUESTIONNAIRE, G_IMMOVABLE_LEGAL_AGREEMENT } from '../../../actions/immovables'
@@ -57,7 +59,8 @@ export default class SignupInvestor extends Component {
   createUser(values) {
     this.props.createUser({
       ...values,
-      role: "Investor"
+      role: "Investor",
+      questionnaire: this.state.questionnaires
     })
   }
 
@@ -81,12 +84,12 @@ export default class SignupInvestor extends Component {
     const { questionnaireOrder, currentQuestionnaireIndex, questionnaires } = this.state
     const newQuestionnaires = [...questionnaires, values.questionnaire]
 
-
     if (questionnaireOrder.length === currentQuestionnaireIndex + 1) {
       this.calculateScore(newQuestionnaires)
       this.setState({ questionnaireCompleted: true })
     }
 
+    scrollTop()
     this.setState({ questionnaires: newQuestionnaires, currentQuestionnaireIndex: currentQuestionnaireIndex + 1 })
   }
 

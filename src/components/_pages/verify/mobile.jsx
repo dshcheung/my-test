@@ -3,20 +3,20 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import {
-  verifyMyProfile, VERIFY_MY_PROFILE
-} from '../../../actions/my/profile'
+  uMyVerifications, U_MY_VERIFICATIONS
+} from '../../../actions/my/verifications'
 
 import VerifyMobileForm from '../../forms/verify/mobile'
 
 const mapStateToProps = (state) => {
   return {
-    verifyMyProfileInProcess: _.get(state.requestStatus, VERIFY_MY_PROFILE)
+    uMyVerificationsInProcess: _.get(state.requestStatus, U_MY_VERIFICATIONS)
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    verifyMyProfile: bindActionCreators(verifyMyProfile, dispatch)
+    uMyVerifications: bindActionCreators(uMyVerifications, dispatch)
   }
 }
 
@@ -25,11 +25,14 @@ export default class VerifyEmail extends Component {
   constructor(props) {
     super(props)
 
-    this.verifyMyProfile = this.verifyMyProfile.bind(this)
+    this.uMyVerifications = this.uMyVerifications.bind(this)
   }
 
-  verifyMyProfile(values) {
-    this.props.verifyMyProfile(values)
+  uMyVerifications(values) {
+    this.props.uMyVerifications({
+      ...values,
+      type: "mobile"
+    })
   }
 
   render() {
@@ -38,8 +41,11 @@ export default class VerifyEmail extends Component {
         <div className="row">
           <VerifyMobileForm
             optClass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
-            onSubmit={this.verifyMyProfile}
-            submitInProcess={this.props.verifyMyProfileInProcess}
+            onSubmit={this.uMyVerifications}
+            submitInProcess={this.props.uMyVerificationsInProcess}
+            initialValues={{
+              code: _.get(this.props, 'location.query.code', '')
+            }}
           />
         </div>
       </div>
