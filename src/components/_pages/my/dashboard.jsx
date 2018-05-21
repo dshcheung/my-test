@@ -91,7 +91,7 @@ export default class MyDashboard extends Component {
                                   key={i}
                                   className="pointer"
                                   onClick={() => {
-                                    this.props.router.push(`/my/campaigns/${c.id}/edit/stage_one`)
+                                    this.props.router.push(`/my/campaigns/${c.id}/edit/create`)
                                   }}
                                 >
                                   <td>{c.startup.name}</td>

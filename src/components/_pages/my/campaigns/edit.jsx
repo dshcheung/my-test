@@ -59,8 +59,6 @@ export default class MyCampaigns extends Component {
       return null
     }
 
-    // TODO: change naming title & all file name
-    // Create | Questionnaire | Profile | Campaign | Submission
     return (
       <div>
         <SharedMyCampaignsStages
@@ -70,19 +68,19 @@ export default class MyCampaigns extends Component {
         />
 
         {
-          params.stage === "stage_one" && <SharedMyCampaignsStageOne
+          params.stage === "create" && <SharedMyCampaignsStageOne
             routeParams={routeParams}
           />
         }
 
         {
-          params.stage === "stage_two" && <SharedMyCampaignsStageTwo
+          params.stage === "questionnaire" && <SharedMyCampaignsStageTwo
             routeParams={routeParams}
           />
         }
 
         {
-          params.stage === "stage_three" && <SharedMyCampaignsStageThree
+          params.stage === "profile" && <SharedMyCampaignsStageThree
             editMode
             router={this.props.router}
             routeParams={routeParams}
@@ -90,13 +88,13 @@ export default class MyCampaigns extends Component {
         }
 
         {
-          params.stage === "stage_four" && <SharedMyCampaignsStageFour
+          params.stage === "campaign" && <SharedMyCampaignsStageFour
             routeParams={routeParams}
           />
         }
 
         {
-          params.stage === "stage_five" && <SharedMyCampaignsStageFive
+          params.stage === "submission" && <SharedMyCampaignsStageFive
             routeParams={routeParams}
           />
         }

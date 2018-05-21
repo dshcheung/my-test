@@ -5,8 +5,7 @@ export default class SharedMyCampaignsStages extends Component {
     super(props)
 
     this.state = {
-      order: ["stage_one", "stage_two", "stage_three", "stage_four", "stage_five"],
-      currentStage: "stage_one"
+      order: ["create", "questionnaire", "profile", "campaign", "submission"]
     }
   }
 

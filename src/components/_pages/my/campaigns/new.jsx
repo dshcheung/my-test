@@ -6,7 +6,7 @@ import {
   cMyStartup, C_MY_STARTUP,
 } from '../../../../actions/my/startups'
 
-import SharedMyCampaignsStagesNav from '../../../shared/my/campaigns/stages'
+import SharedMyCampaignsStages from '../../../shared/my/campaigns/stages'
 import MyStartupsNameForm from '../../../forms/my/startups/name'
 
 const mapStateToProps = (state) => {
@@ -38,10 +38,10 @@ export default class MyCampaignsNew extends Component {
 
     return (
       <div id="my-campaigns-new">
-        <SharedMyCampaignsStagesNav
+        <SharedMyCampaignsStages
           router={this.props.router}
           location={this.props.location}
-          currentStage="stage_one"
+          currentStage="create"
           disableNav
         />
 

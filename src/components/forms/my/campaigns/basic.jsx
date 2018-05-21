@@ -78,8 +78,6 @@ export default class MyCampaignsBasicForm extends Component {
 
     return (
       <div id="forms-campaigns-basic" className={optClass}>
-        <div className="text-center"><h3>Under Development</h3></div>
-
         { title && <h1 className="form-title margin-bottom-20 margin-top-0">{title}</h1>}
 
         <form onSubmit={handleSubmit}>
