@@ -29,6 +29,15 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class MyCampaigns extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      refreshed: false,
+      refreshing: false
+    }
+  }
+
   componentWillMount() {
     this.permitRedirection(this.props)
   }
@@ -38,9 +47,20 @@ export default class MyCampaigns extends Component {
     this.refreshCampaignOnStageThree(nextProps)
   }
 
-  refreshCampaignOnStageThree(props) {
-    if (props.routeParams.stage === "profile") {
-      this.props.gMyCampaign({ params: props.params, refresh: true })
+  refreshCampaignOnStageThree(nextProps) {
+    if (this.props.routeParams.stage === "stage_profile" && this.props.routeParams.stage !== nextProps.routeParams.stage) {
+      this.setState({ refreshed: false })
+    }
+
+    if (nextProps.routeParams.stage === "stage_profile" && !this.state.refreshed && !this.state.refreshing) {
+      this.setState({ refreshing: true })
+      this.props.gMyCampaign({
+        params: nextProps.params,
+        refresh: true,
+        cb: () => {
+          this.setState({ refreshed: true, refreshing: false })
+        }
+      })
     }
   }
 
