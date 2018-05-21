@@ -60,15 +60,36 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
     }
   }
 
-  const founders = _.get(values, 'team.startup_questionnaire_team_founders') || []
-  founders.forEach(checkAvatar)
-  const members = _.get(values, 'team.startup_questionnaire_team_members') || []
-  members.forEach(checkAvatar)
-  const advisors = _.get(values, 'team.startup_questionnaire_team_advisors') || []
-  advisors.forEach(checkAvatar)
+  const checkAvatarList = [
+    'team.startup_questionnaire_team_founders',
+    'team.startup_questionnaire_team_members',
+    'team.startup_questionnaire_team_advisors'
+  ]
 
-  const attachments = _.get(values, 'attachments.attachments') || []
-  attachments.forEach(checkFile)
+  checkAvatarList.forEach((c) => {
+    const arr = _.get(values, c) || []
+    arr.forEach(checkAvatar)
+  })
+
+  const checkFileList = [
+    'attachments.attachments',
+    'highlight.attachments'
+  ]
+
+  checkFileList.forEach((c) => {
+    const arr = _.get(values, c) || []
+    arr.forEach(checkFile)
+  })
+
+  // const founders = _.get(values, 'team.startup_questionnaire_team_founders') || []
+  // founders.forEach(checkAvatar)
+  // const members = _.get(values, 'team.startup_questionnaire_team_members') || []
+  // members.forEach(checkAvatar)
+  // const advisors = _.get(values, 'team.startup_questionnaire_team_advisors') || []
+  // advisors.forEach(checkAvatar)
+
+  // const attachments = _.get(values, 'attachments.attachments') || []
+  // attachments.forEach(checkFile)
 
   // const teamAdvisors = {} // TODO: change to this format?
   // _.get(values, 'team.startup_questionnaire_team_advisors', []).forEach((x, i) => {
@@ -86,7 +107,8 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
       id: _.get(values, 'highlight.id', null),
       tagline: _.get(values, 'highlight.tagline', null),
       mission: _.get(values, 'highlight.mission', null),
-      achievements: _.get(values, 'highlight.achievements', null)
+      achievements: _.get(values, 'highlight.achievements', null),
+      attachments_attributes: _.get(values, 'highlight.attachments', null)
     },
     startup_questionnaire_overview_attributes: {
       id: _.get(values, 'overview.id', null),

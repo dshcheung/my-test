@@ -57,6 +57,7 @@ export default class MyCampaignsIndex extends Component {
   render() {
     const { myCampaigns, gMyCampaignsInProcess } = this.props
 
+    // TODO: modal for first time users
     return (
       <div id="pages-my-campaigns" className="container-fluid">
         <section className="container">
