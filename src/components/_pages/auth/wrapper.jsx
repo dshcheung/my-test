@@ -13,19 +13,24 @@ const mapStateToProps = (state) => {
 @connect(mapStateToProps, null)
 export default class Auth extends Component {
   componentWillMount() {
-    if (this.props.currentUser) {
-      this.alreadyLoggedInRedirect()
+    if (this.props.currentUser && !this.props.redirectionInProcess) {
+      this.alreadyLoggedInRedirect(this.props)
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.currentUser && !nextProps.redirectionInProcess) {
-      this.alreadyLoggedInRedirect()
+      this.alreadyLoggedInRedirect(nextProps)
     }
   }
 
-  alreadyLoggedInRedirect() {
-    this.props.router.push("/")
+  alreadyLoggedInRedirect(props) {
+    const { currentUser } = props
+    if (currentUser && currentUser.role === "StartupUser") {
+      this.props.router.push("/my/campaigns")
+    } else if (currentUser && currentUser.role === "Investor") {
+      this.props.router.push("/my/portfolio")
+    }
     notyWarning("You Are Already Logged In")
   }
 

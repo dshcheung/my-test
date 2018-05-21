@@ -59,7 +59,7 @@ export default class Navbar extends Component {
       >
         <BNavbar.Header>
           <BNavbar.Brand>
-            <Link to="/">
+            <Link to="">
               <img src={AHUB_LOGO} alt="Logo" />
             </Link>
           </BNavbar.Brand>

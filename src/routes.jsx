@@ -1,9 +1,7 @@
 import React from 'react'
-import { Route, IndexRoute } from 'react-router'
+import { Route, IndexRoute, IndexRedirect } from 'react-router'
 
 import App from './components/_layouts/app'
-
-import HomeContainer from './components/_pages/home'
 
 import AuthContainer from './components/_pages/auth/wrapper'
 import LoginContainer from './components/_pages/auth/login'
@@ -48,7 +46,7 @@ import PageNotFound from './components/_pages/not-found'
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={HomeContainer} />
+    <IndexRedirect to="/auth/login" />
 
     {/* Auth Paths TODO: make homepage */}
     <Route path="auth" component={AuthContainer}>

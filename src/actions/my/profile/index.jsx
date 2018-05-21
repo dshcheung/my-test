@@ -7,7 +7,7 @@ import {
 } from '../../../services/api-path'
 import { notySuccess, handleFormErrors } from '../../../services/noty'
 
-import { setCurrentUser, resetAllState } from '../../session'
+import { setCurrentUser } from '../../session'
 
 // show
 export const GET_MY_PROFILE = "GET_MY_PROFILE"
@@ -76,24 +76,6 @@ export const updatePassword = (values, cb) => {
       if (cb) cb()
       dispatch(setCurrentUser(data))
       notySuccess("Password Updated!")
-    }
-  }
-}
-
-// destroy
-export const DELETE_MY_PROFILE = "DELETE_MY_PROFILE"
-export const deleteMyProfile = () => {
-  const request = genAxios({
-    method: "delete",
-    url: genApiUrl(apiMyProfile())
-  })
-
-  return {
-    type: DELETE_MY_PROFILE,
-    request,
-    successCB: (dispatch) => {
-      dispatch(resetAllState(dispatch))
-      notySuccess("Profile Deleted!")
     }
   }
 }

@@ -8,6 +8,8 @@ import { getFormData } from '../services/get-form-data'
 import { apiAuthenticatesIndex, apiRequestForgetPassword } from '../services/api-path'
 import { notySuccess, handleFormErrors } from '../services/noty'
 
+import { setRedirection } from './redirection'
+
 export const SET_CURRENT_USER = "SET_CURRENT_USER"
 export const setCurrentUser = (data) => {
   Cookies.set(AUTH_TOKEN, data.authentication_token)
@@ -39,6 +41,7 @@ export const deleteCurrentUserAttributeEntry = (id, attribute) => {
 export const RESET_ALL_STATE = "RESET_ALL_STATE"
 export const resetAllState = (dispatch) => {
   Cookies.remove(AUTH_TOKEN)
+  dispatch(setRedirection())
   dispatch(push("/"))
 
   return {
