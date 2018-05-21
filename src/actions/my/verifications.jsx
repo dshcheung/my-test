@@ -35,7 +35,7 @@ export const uMyVerifications = (values, cb, routeParams) => {
 }
 
 export const RESEND_VERIFICATION = "RESEND_VERIFICATION"
-export const resendVerification = (values) => {
+export const resendVerification = (values, cb) => {
   const request = genAxios({
     method: "put",
     url: genApiUrl(apiMyVerificationsResend()),
@@ -50,6 +50,7 @@ export const resendVerification = (values) => {
     request,
     successCB: () => {
       notySuccess("Verification Sent!")
+      if (cb) cb()
     }
   }
 }

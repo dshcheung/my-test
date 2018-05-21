@@ -6,7 +6,7 @@ import {
   uMyVerifications, U_MY_VERIFICATIONS
 } from '../../actions/my/verifications'
 
-import VerifyForm from '../forms/verify'
+import VerifyForm from '../forms/verify/index'
 
 const mapStateToProps = (state) => {
   return {

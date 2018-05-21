@@ -57,7 +57,7 @@ export default class MyStartupQuestionnairesStrategyForm extends Component {
             }}
           />
 
-          <Field // TODO: max 300 character
+          <Field
             name="customer_acquisition_cost"
             component={TextArea}
             opts={{
@@ -66,7 +66,7 @@ export default class MyStartupQuestionnairesStrategyForm extends Component {
             }}
           />
 
-          <Field // TODO: max 300 character
+          <Field
             name="customer_life_value"
             component={TextArea}
             opts={{

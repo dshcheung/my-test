@@ -219,7 +219,7 @@ export const apiMyVerificationsIndex = () => {
 }
 
 export const apiMyVerificationsResend = () => {
-  return `${apiMyVerificationsIndex()}/resend_verification`
+  return `${apiMyVerificationsIndex()}/resend`
 }
 
 export const apiRequestResendPassword = () => {

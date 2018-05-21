@@ -1,0 +1,45 @@
+import React, { Component } from 'react'
+import { reduxForm, Field } from 'redux-form'
+
+import Validators from '../../../services/form-validators'
+
+import MobileTextField from '../../shared/form-elements/mobile-text-field'
+
+@reduxForm({
+  form: "VerifyMobileForm",
+  validate: (values) => {
+    return Validators({
+      mobile: ["mobile"]
+    }, values)
+  },
+  initialValues: {
+    mobile: ''
+  }
+})
+export default class VerifyMobileForm extends Component {
+  render() {
+    const { handleSubmit, submitInProcess, optClass } = this.props
+
+    return (
+      <div id="forms-verify-mobile" className={optClass}>
+        <form onSubmit={handleSubmit}>
+          <Field
+            name="mobile"
+            component={MobileTextField}
+            opts={{
+              label: "Mobile Number *"
+            }}
+          />
+
+          <button
+            className={`btn btn-info btn-lg btn-block ${submitInProcess && "m-progress"}`}
+            type="submit"
+            disabled={submitInProcess}
+          >
+            Resend
+          </button>
+        </form>
+      </div>
+    )
+  }
+}
