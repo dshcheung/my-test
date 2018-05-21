@@ -5,7 +5,7 @@ export default class SharedMyCampaignsStages extends Component {
     super(props)
 
     this.state = {
-      order: ["create", "questionnaire", "profile", "campaign", "submission"]
+      order: ["stage_create", "stage_questionnaire", "stage_profile", "stage_campaign", "stage_submission"]
     }
   }
 
@@ -29,7 +29,7 @@ export default class SharedMyCampaignsStages extends Component {
                         router.push(`/my/campaigns/${router.params.myCampaignID}/edit/${s}`)
                       }
                     }}
-                  >{s.splitCap("_")}</div>
+                  >{s.replace("stage_", "").splitCap("_")}</div>
                 )
               })
             }

@@ -97,7 +97,7 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
   // const attachments = _.get(values, 'attachments.attachments') || []
   // attachments.forEach(checkFile)
 
-  // const teamAdvisors = {} // TODO: change to this format?
+  // const teamAdvisors = {} // TODO2: change to this format?
   // _.get(values, 'team.startup_questionnaire_team_advisors', []).forEach((x, i) => {
   //   teamAdvisors[i] = {
   //     id: _.get(x, 'id', null),
@@ -152,7 +152,7 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
       next_hires: _.get(values, 'team.next_hires', null),
       startup_questionnaire_team_founders_attributes: _.get(values, 'team.startup_questionnaire_team_founders', null),
       startup_questionnaire_team_members_attributes: _.get(values, 'team.startup_questionnaire_team_members', null),
-      // startup_questionnaire_team_advisors_attributes: teamAdvisors // TODO Remove
+      // startup_questionnaire_team_advisors_attributes: teamAdvisors // TODO2: Remove
       startup_questionnaire_team_advisors_attributes: _.get(values, 'team.startup_questionnaire_team_advisors', null),
       attachments_attributes: _.get(values, 'team.attachments', null)
     },

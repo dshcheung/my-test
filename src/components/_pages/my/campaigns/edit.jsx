@@ -39,7 +39,7 @@ export default class MyCampaigns extends Component {
   }
 
   refreshCampaignOnStageThree(props) {
-    if (props.routeParams.stage === "stage_three") {
+    if (props.routeParams.stage === "profile") {
       this.props.gMyCampaign({ params: props.params, refresh: true })
     }
   }
@@ -68,19 +68,19 @@ export default class MyCampaigns extends Component {
         />
 
         {
-          params.stage === "create" && <SharedMyCampaignsStageOne
+          params.stage === "stage_create" && <SharedMyCampaignsStageOne
             routeParams={routeParams}
           />
         }
 
         {
-          params.stage === "questionnaire" && <SharedMyCampaignsStageTwo
+          params.stage === "stage_questionnaire" && <SharedMyCampaignsStageTwo
             routeParams={routeParams}
           />
         }
 
         {
-          params.stage === "profile" && <SharedMyCampaignsStageThree
+          params.stage === "stage_profile" && <SharedMyCampaignsStageThree
             editMode
             router={this.props.router}
             routeParams={routeParams}
@@ -88,13 +88,13 @@ export default class MyCampaigns extends Component {
         }
 
         {
-          params.stage === "campaign" && <SharedMyCampaignsStageFour
+          params.stage === "stage_campaign" && <SharedMyCampaignsStageFour
             routeParams={routeParams}
           />
         }
 
         {
-          params.stage === "submission" && <SharedMyCampaignsStageFive
+          params.stage === "stage_submission" && <SharedMyCampaignsStageFive
             routeParams={routeParams}
           />
         }

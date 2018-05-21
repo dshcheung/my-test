@@ -183,8 +183,6 @@ export default class SharedMyCampaignsStageTwo extends Component {
 
     if (nextStage) {
       this.changeStage(nextStage.key)
-    } else {
-      this.props.changeStage("stage_three")
     }
   }
 

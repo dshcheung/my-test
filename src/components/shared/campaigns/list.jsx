@@ -55,7 +55,7 @@ export default class CampaignList extends Component {
 
                 if (newable) {
                   if (campaign.can.edit) {
-                    linkTo = `/my/campaigns/${campaignID}/edit/create`
+                    linkTo = `/my/campaigns/${campaignID}/edit/stage_create`
                   } else {
                     linkTo = `/my/campaigns/${campaignID}`
                   }
