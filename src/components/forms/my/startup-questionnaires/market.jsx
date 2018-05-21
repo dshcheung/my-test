@@ -10,13 +10,12 @@ import FileField from '../../../shared/form-elements/file-field'
   form: "MyStartupQuestionnairesMarketForm",
   validate: (values) => {
     return Validators({
-      define_market: ["presences"],
-      market_metrics: ["filePresences"],
-      customer_persona: ["presences"],
-      timing: [],
-      risk_factors: ["presences"],
-      competitors: ["presences"],
-      barriers: ["presences"]
+      define_market: [{ type: "length", opts: { max: 600 } }],
+      customer_persona: [{ type: "length", opts: { max: 600 } }],
+      timing: [{ type: "length", opts: { max: 600 } }],
+      risk_factors: [{ type: "length", opts: { max: 600 } }],
+      competitors: [{ type: "length", opts: { max: 600 } }],
+      barriers: [{ type: "length", opts: { max: 600 } }],
     }, values)
   },
   enableReinitialize: true
@@ -24,7 +23,7 @@ import FileField from '../../../shared/form-elements/file-field'
 
 export default class MyStartupQuestionnairesMarketForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass } = this.props
+    const { handleSubmit, submitInProcess, optClass, pristine } = this.props
 
     return (
       <div className={optClass}>
@@ -96,9 +95,9 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
           <button
             className={`btn btn-info btn-lg btn-block ${submitInProcess && "m-progress"}`}
             type="submit"
-            disabled={submitInProcess}
+            disabled={submitInProcess || pristine}
           >
-            Submit
+            Save
           </button>
         </form>
       </div>

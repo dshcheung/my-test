@@ -13,8 +13,8 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
   form: "MyStartupQuestionnairesTeamForm",
   validate: (values) => {
     return Validators({
-      story: ["presences"],
-      next_hires: ["presences"],
+      story: [{ type: "length", opts: { max: 600 } }],
+      next_hires: [{ type: "length", opts: { max: 600 } }],
       startup_questionnaire_team_founders: [{
         type: "complexArrOfObj",
         opts: {
@@ -33,7 +33,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
       startup_questionnaire_team_members: [{
         type: "complexArrOfObj",
         opts: {
-          selfPresences: true,
+          selfPresences: false,
           childFields: {
             avatar: ["filePresences"],
             name: ["presences"],
@@ -45,11 +45,11 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
       startup_questionnaire_team_advisors: [{
         type: "complexArrOfObj",
         opts: {
-          selfPresences: true,
+          selfPresences: false,
           childFields: {
             avatar: [],
             name: ["presences"],
-            expertise: ["presences"]
+            expertise: ["presences", { type: "length", opts: { max: 600 } }]
           }
         }
       }]
@@ -64,7 +64,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
 
 export default class MyStartupQuestionnairesTeamForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass, dMSQAttributes } = this.props
+    const { handleSubmit, submitInProcess, optClass, dMSQAttributes, pristine } = this.props
 
     return (
       <div className={optClass}>
@@ -91,7 +91,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
             name="startup_questionnaire_team_founders"
             component={DynamicFieldArray}
             opts={{
-              label: "For each of your co-founders and officers, please provide : *",
+              label: "Co-founders and Officers",
               groupName: "Founder/Officer",
               newFieldInit: {
                 avatar: '',
@@ -171,7 +171,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
             name="startup_questionnaire_team_members"
             component={DynamicFieldArray}
             opts={{
-              label: "For each of your Key team members, please provide *",
+              label: "Team Members",
               groupName: "Members",
               newFieldInit: {
                 avatar: '',
@@ -225,7 +225,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
             name="startup_questionnaire_team_advisors"
             component={DynamicFieldArray}
             opts={{
-              label: "For each of your notable Advisors & Investors, please provide *",
+              label: "Notable Advisors & Investors",
               groupName: "Advisors/Investors",
               newFieldInit: {
                 avatar: '',
@@ -264,9 +264,9 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
           <button
             className={`btn btn-info btn-lg btn-block ${submitInProcess && "m-progress"}`}
             type="submit"
-            disabled={submitInProcess}
+            disabled={submitInProcess || pristine}
           >
-            Submit
+            Save
           </button>
         </form>
       </div>

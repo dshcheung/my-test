@@ -61,12 +61,17 @@ export default class SharedStartupsPitchDeck extends Component {
           )
         }
 
-        <SharedSlider
-          id="pitch-deck-slider"
-          data={attachments}
-          srcKey="file.original"
-          titleKey="title"
-        />
+        {
+          !emptyAttachments && (
+            <SharedSlider
+              id="pitch-deck-slider"
+              data={attachments}
+              srcKey="file.original"
+              titleKey="title"
+            />
+          )
+        }
+
 
         {
           sPitchDeck && (

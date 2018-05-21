@@ -11,17 +11,17 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
   form: "MyStartupQuestionnairesStrategyForm",
   validate: (values) => {
     return Validators({
-      // strategic_positioning: ["presences"],
-      unique_selling_point: ["presences"],
-      customer_acquisition_cost: ["presences"],
-      customer_life_value: ["presences"],
+      tagline: [{ type: "length", opts: { max: 600 } }],
+      unique_selling_point: [{ type: "length", opts: { max: 300 } }],
+      customer_acquisition_cost: [{ type: "length", opts: { max: 300 } }],
+      customer_life_value: [{ type: "length", opts: { max: 600 } }],
       startup_questionnaire_market_strategies: [{
         type: "complexArrOfObj",
         opts: {
-          selfPresences: true,
+          selfPresences: false,
           childFields: {
             planned_for: ["presences"],
-            detail: ["presences"]
+            detail: ["presences", { type: "length", opts: { max: 600 } }]
           }
         }
       }]
@@ -32,12 +32,12 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
 
 export default class MyStartupQuestionnairesStrategyForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass, dMSQAttributes } = this.props
+    const { handleSubmit, submitInProcess, optClass, dMSQAttributes, pristine } = this.props
 
     return (
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
-          {
+          { // TODO2: remove?
             // <Field
             //   name="strategic_positioning"
             //   component={TextArea}
@@ -57,21 +57,21 @@ export default class MyStartupQuestionnairesStrategyForm extends Component {
             }}
           />
 
-          <Field
+          <Field // TODO: max 300 character
             name="customer_acquisition_cost"
             component={TextArea}
             opts={{
               label: "What is your customer acquisition cost ? *",
-              hint: "A short and rationale explanation would be appreciated"
+              hint: "A short and rational explanation would be appreciated"
             }}
           />
 
-          <Field
+          <Field // TODO: max 300 character
             name="customer_life_value"
             component={TextArea}
             opts={{
               label: "What is your customer life value ? *",
-              hint: "A short and rationale explanation would be appreciated"
+              hint: "A short and rational explanation would be appreciated"
             }}
           />
 
@@ -110,9 +110,9 @@ export default class MyStartupQuestionnairesStrategyForm extends Component {
           <button
             className={`btn btn-info btn-lg btn-block ${submitInProcess && "m-progress"}`}
             type="submit"
-            disabled={submitInProcess}
+            disabled={submitInProcess || pristine}
           >
-            Submit
+            Save
           </button>
         </form>
       </div>

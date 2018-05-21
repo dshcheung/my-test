@@ -57,7 +57,7 @@ export default class MyStartupQuestionnairesAttachmentsForm extends Component {
   }
 
   render() {
-    const { handleSubmit, submitInProcess, optClass, dMSQAttributes } = this.props
+    const { handleSubmit, submitInProcess, optClass, dMSQAttributes, pristine } = this.props
 
     return (
       <div className={optClass}>
@@ -90,7 +90,7 @@ export default class MyStartupQuestionnairesAttachmentsForm extends Component {
                   key: "file",
                   component: FileField,
                   opts: {
-                    placeholder: "File"
+                    urlKey: "original"
                   }
                 }
               ]
@@ -100,9 +100,9 @@ export default class MyStartupQuestionnairesAttachmentsForm extends Component {
           <button
             className={`btn btn-info btn-lg btn-block ${submitInProcess && "m-progress"}`}
             type="submit"
-            disabled={submitInProcess}
+            disabled={submitInProcess || pristine}
           >
-            Submit
+            Save
           </button>
         </form>
       </div>

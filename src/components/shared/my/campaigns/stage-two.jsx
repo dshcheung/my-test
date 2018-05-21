@@ -137,7 +137,7 @@ export default class SharedMyCampaignsStageTwo extends Component {
         },
         {
           key: "attachments",
-          title: "Attachments",
+          title: "Due Diligence Document",
           dataKey: "attachments",
           model: MyStartupQuestionnairesAttachmentsForm,
           formatValues: (q) => {

@@ -29,14 +29,6 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class MyCampaigns extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      permitted: ["stage_two", "stage_three", "stage_four", "stage_five"]
-    }
-  }
-
   componentWillMount() {
     this.permitRedirection(this.props)
   }
@@ -67,6 +59,8 @@ export default class MyCampaigns extends Component {
       return null
     }
 
+    // TODO: change naming title & all file name
+    // Create | Questionnaire | Profile | Campaign | Submission
     return (
       <div>
         <SharedMyCampaignsStages

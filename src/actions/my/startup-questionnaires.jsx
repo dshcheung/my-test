@@ -60,10 +60,15 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
     }
   }
 
-  _.get(values, 'team.startup_questionnaire_team_founders', []).forEach(checkAvatar)
-  _.get(values, 'team.startup_questionnaire_team_members', []).forEach(checkAvatar)
-  _.get(values, 'team.startup_questionnaire_team_advisors', []).forEach(checkAvatar)
-  _.get(values, 'attachments.attachments', []).forEach(checkFile)
+  const founders = _.get(values, 'team.startup_questionnaire_team_founders') || []
+  founders.forEach(checkAvatar)
+  const members = _.get(values, 'team.startup_questionnaire_team_members') || []
+  members.forEach(checkAvatar)
+  const advisors = _.get(values, 'team.startup_questionnaire_team_advisors') || []
+  advisors.forEach(checkAvatar)
+
+  const attachments = _.get(values, 'attachments.attachments') || []
+  attachments.forEach(checkFile)
 
   // const teamAdvisors = {} // TODO: change to this format?
   // _.get(values, 'team.startup_questionnaire_team_advisors', []).forEach((x, i) => {

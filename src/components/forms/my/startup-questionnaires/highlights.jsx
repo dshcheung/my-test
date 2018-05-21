@@ -9,9 +9,9 @@ import TextArea from '../../../shared/form-elements/text-area'
   form: "MyStartupQuestionnairesHighlightForm",
   validate: (values) => {
     return Validators({
-      tagline: ["presences"],
-      mission: ["presences"],
-      achievements: ["presences"]
+      tagline: [{ type: "length", opts: { max: 140 } }],
+      mission: [{ type: "length", opts: { max: 600 } }],
+      achievements: [{ type: "length", opts: { max: 600 } }],
     }, values)
   },
   enableReinitialize: true
@@ -19,7 +19,7 @@ import TextArea from '../../../shared/form-elements/text-area'
 
 export default class MyStartupQuestionnairesHighlightForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass } = this.props
+    const { handleSubmit, submitInProcess, optClass, pristine } = this.props
 
     return (
       <div className={optClass}>
@@ -29,7 +29,7 @@ export default class MyStartupQuestionnairesHighlightForm extends Component {
             component={TextArea}
             opts={{
               label: "Tag Line *",
-              hint: "Describe your startup in 140 signs max."
+              hint: "Describe your startup in 140 characters max."
             }}
           />
 
@@ -54,9 +54,9 @@ export default class MyStartupQuestionnairesHighlightForm extends Component {
           <button
             className={`btn btn-info btn-lg btn-block ${submitInProcess && "m-progress"}`}
             type="submit"
-            disabled={submitInProcess}
+            disabled={submitInProcess || pristine}
           >
-            Submit
+            Save
           </button>
         </form>
       </div>

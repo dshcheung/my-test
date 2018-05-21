@@ -12,18 +12,17 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
   form: "MyStartupQuestionnairesOverviewForm",
   validate: (values) => {
     return Validators({
-      problem: ["presences"],
-      value_proposition: ["presences"],
-      revenue_model: ["presences"],
-      key_kpis: [],
-      business_model: [],
+      problem: [{ type: "length", opts: { max: 600 } }],
+      value_proposition: [{ type: "length", opts: { max: 600 } }],
+      revenue_model: [{ type: "length", opts: { max: 600 } }],
+      key_kpis: [{ type: "length", opts: { max: 600 } }],
       startup_questionnaire_past_milestones: [{
         type: "complexArrOfObj",
         opts: {
-          selfPresences: true,
+          selfPresences: false,
           childFields: {
             occurred_on: ["presences"],
-            detail: ["presences"]
+            detail: ["presences", { type: "length", opts: { max: 600 } }]
           }
         }
       }]
@@ -35,7 +34,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
 
 export default class MyStartupQuestionnairesOverviewForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass, dMSQAttributes } = this.props
+    const { handleSubmit, submitInProcess, optClass, dMSQAttributes, pristine } = this.props
 
     return (
       <div className={optClass}>
@@ -127,9 +126,9 @@ export default class MyStartupQuestionnairesOverviewForm extends Component {
           <button
             className={`btn btn-info btn-lg btn-block ${submitInProcess && "m-progress"}`}
             type="submit"
-            disabled={submitInProcess}
+            disabled={submitInProcess || pristine}
           >
-            Submit
+            Save
           </button>
         </form>
       </div>

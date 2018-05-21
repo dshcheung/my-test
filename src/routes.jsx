@@ -50,7 +50,7 @@ export default (
   <Route path="/" component={App}>
     <IndexRoute component={HomeContainer} />
 
-    {/* Auth Paths */}
+    {/* Auth Paths TODO: make homepage */}
     <Route path="auth" component={AuthContainer}>
       <Route path="login" component={LoginContainer} />
       <Route path="signup" component={SignupContainer} />
@@ -62,7 +62,7 @@ export default (
 
     <Route path="in-person-validation" component={InPersonValidationContainer} barebone />
 
-    {/* Verify Paths  */}
+    {/* Verify Paths */}
     <Route path="verify" component={VerifyContainer} />
 
     {/* My Paths */}

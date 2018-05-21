@@ -16,11 +16,11 @@ export default class RichTextEditorField extends Component {
 
   handleChange(value) {
     this.setState({ value })
-    let markdown = value.toString('markdown')
-    if (markdown.length === 2 && markdown.charCodeAt(0) === 8203 && markdown.charCodeAt(1) === 10) {
-      markdown = ''
+    let html = value.toString('html')
+    if (html.length === 2 && html.charCodeAt(0) === 8203 && html.charCodeAt(1) === 10) {
+      html = ''
     }
-    this.props.input.onChange(markdown)
+    this.props.input.onChange(html)
   }
 
   render() {

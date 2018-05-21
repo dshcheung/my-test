@@ -11,9 +11,7 @@ import TextArea from '../../../shared/form-elements/text-area'
   form: "MyStartupQuestionnairesInvestmentForm",
   validate: (values) => {
     return Validators({
-      fund_type: ["presences"],
-      fund_amount: ["presences"],
-      exit_strategy: ["presences"]
+      exit_strategy: [{ type: "length", opts: { max: 600 } }]
     }, values)
   },
   enableReinitialize: true
@@ -21,7 +19,7 @@ import TextArea from '../../../shared/form-elements/text-area'
 
 export default class MyStartupQuestionnairesInvestmentForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass } = this.props
+    const { handleSubmit, submitInProcess, optClass, pristine } = this.props
 
     return (
       <div className={optClass}>
@@ -61,9 +59,9 @@ export default class MyStartupQuestionnairesInvestmentForm extends Component {
           <button
             className={`btn btn-info btn-lg btn-block ${submitInProcess && "m-progress"}`}
             type="submit"
-            disabled={submitInProcess}
+            disabled={submitInProcess || pristine}
           >
-            Submit
+            Save
           </button>
         </form>
       </div>

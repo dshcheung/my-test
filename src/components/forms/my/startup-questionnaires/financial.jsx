@@ -14,15 +14,12 @@ import SelectField from '../../../shared/form-elements/select-field'
   form: "MyStartupQuestionnairesFinancialForm",
   validate: (values) => {
     return Validators({
-      three_kpis: ["presences"],
-      break_even: ["presences"],
-      income_statements: ["filePresences"],
-      cash_flow_statements: ["filePresences"],
-      current_fund: ["presences"],
+      three_kpis: [{ type: "length", opts: { max: 600 } }],
+      break_even: [{ type: "length", opts: { max: 600 } }],
       startup_questionnaire_financial_fund_histories: [{
         type: "complexArrOfObj",
         opts: {
-          selfPresences: true,
+          selfPresences: false,
           childFields: {
             occurred_on: ["presences"],
             amount: ["presences"],
@@ -33,9 +30,9 @@ import SelectField from '../../../shared/form-elements/select-field'
       startup_questionnaire_financial_use_of_funds: [{
         type: "complexArrOfObj",
         opts: {
-          selfPresences: true,
+          selfPresences: false,
           childFields: {
-            section: ["presences"],
+            section: ["presences", { type: "length", opts: { max: 600 } }],
             percentage: ["presences", "noDecimal"]
           }
         }
@@ -184,7 +181,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             type="submit"
             disabled={submitInProcess}
           >
-            Submit
+            Save
           </button>
         </form>
       </div>
