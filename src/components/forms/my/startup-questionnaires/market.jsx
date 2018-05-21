@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { reduxForm, Field } from 'redux-form'
+import { reduxForm, Field, FieldArray } from 'redux-form'
 
 import Validators from '../../../../services/form-validators'
 
 import TextArea from '../../../shared/form-elements/text-area'
+import Select2Field from '../../../shared/form-elements/select2-field'
 import FileField from '../../../shared/form-elements/file-field'
+import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
 
 @reduxForm({
   form: "MyStartupQuestionnairesMarketForm",
@@ -16,14 +18,24 @@ import FileField from '../../../shared/form-elements/file-field'
       risk_factors: [{ type: "length", opts: { max: 600 } }],
       competitors: [{ type: "length", opts: { max: 600 } }],
       barriers: [{ type: "length", opts: { max: 600 } }],
-    }, values)
+      attachments: [{
+        type: "complexArrOfObj",
+        opts: {
+          selfPresences: false,
+          childFields: {
+            title: ["presences"],
+            file: ["filePresences"]
+          }
+        }
+      }]
+    }, values, ["attachments"])
   },
   enableReinitialize: true
 })
 
 export default class MyStartupQuestionnairesMarketForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass, pristine } = this.props
+    const { handleSubmit, submitInProcess, optClass, dMSQAttributes, pristine } = this.props
 
     return (
       <div className={optClass}>
@@ -89,6 +101,40 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             opts={{
               label: "What are the barriers to entry in your market for new competitors ? *",
               hint: "Patent, regulation, time to market, execution complexity, resource scarcity... It is important also to explain if YOU are building them and if they will be sustainable in time"
+            }}
+          />
+
+          <FieldArray
+            name="attachments"
+            component={DynamicFieldArray}
+            opts={{
+              label: "Extra Files (Optional)",
+              groupName: "File",
+              newFieldInit: {
+                title: '',
+                file: '',
+                file_url: ''
+              },
+              onDeleteField: dMSQAttributes,
+              dynamicFields: [
+                {
+                  key: "title",
+                  component: Select2Field,
+                  opts: {
+                    options: this.props.attachmentOptions,
+                    valueKey: "name",
+                    nameKey: "name",
+                    placeholder: "Title"
+                  }
+                },
+                {
+                  key: "file",
+                  component: FileField,
+                  opts: {
+                    urlKey: "original"
+                  }
+                }
+              ]
             }}
           />
 

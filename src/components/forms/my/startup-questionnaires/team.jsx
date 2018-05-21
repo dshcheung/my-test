@@ -5,8 +5,10 @@ import Validators from '../../../../services/form-validators'
 
 import TextArea from '../../../shared/form-elements/text-area'
 import TextField from '../../../shared/form-elements/text-field'
-import SelectField from '../../../shared/form-elements/select-field'
 import ImageField from '../../../shared/form-elements/image-field'
+import SelectField from '../../../shared/form-elements/select-field'
+import Select2Field from '../../../shared/form-elements/select2-field'
+import FileField from '../../../shared/form-elements/file-field'
 import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
 
 @reduxForm({
@@ -52,11 +54,22 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
             expertise: ["presences", { type: "length", opts: { max: 600 } }]
           }
         }
+      }],
+      attachments: [{
+        type: "complexArrOfObj",
+        opts: {
+          selfPresences: false,
+          childFields: {
+            title: ["presences"],
+            file: ["filePresences"]
+          }
+        }
       }]
     }, values, [
       "startup_questionnaire_team_founders",
       "startup_questionnaire_team_members",
-      "startup_questionnaire_team_advisors"
+      "startup_questionnaire_team_advisors",
+      "attachments"
     ])
   },
   enableReinitialize: true
@@ -255,6 +268,40 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   component: TextArea,
                   opts: {
                     placeholder: "Expertise"
+                  }
+                }
+              ]
+            }}
+          />
+
+          <FieldArray
+            name="attachments"
+            component={DynamicFieldArray}
+            opts={{
+              label: "Extra Files (Optional)",
+              groupName: "File",
+              newFieldInit: {
+                title: '',
+                file: '',
+                file_url: ''
+              },
+              onDeleteField: dMSQAttributes,
+              dynamicFields: [
+                {
+                  key: "title",
+                  component: Select2Field,
+                  opts: {
+                    options: this.props.attachmentOptions,
+                    valueKey: "name",
+                    nameKey: "name",
+                    placeholder: "Title"
+                  }
+                },
+                {
+                  key: "file",
+                  component: FileField,
+                  opts: {
+                    urlKey: "original"
                   }
                 }
               ]

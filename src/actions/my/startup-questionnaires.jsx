@@ -73,7 +73,13 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
 
   const checkFileList = [
     'attachments.attachments',
-    'highlight.attachments'
+    'highlight.attachments',
+    'overview.attachments',
+    'market.attachments',
+    'strategy.attachments',
+    'team.attachments',
+    'financial.attachments',
+    'investment.attachments'
   ]
 
   checkFileList.forEach((c) => {
@@ -117,7 +123,8 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
       revenue_model: _.get(values, 'overview.revenue_model', null),
       key_kpis: _.get(values, 'overview.key_kpis', null),
       business_model: _.get(values, 'overview.business_model', null),
-      startup_questionnaire_past_milestones_attributes: _.get(values, 'overview.startup_questionnaire_past_milestones', null)
+      startup_questionnaire_past_milestones_attributes: _.get(values, 'overview.startup_questionnaire_past_milestones', null),
+      attachments_attributes: _.get(values, 'overview.attachments', null)
     },
     startup_questionnaire_market_attributes: {
       id: _.get(values, 'market.id', null),
@@ -127,7 +134,8 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
       timing: _.get(values, 'market.timing', null),
       risk_factors: _.get(values, 'market.risk_factors', null),
       competitors: _.get(values, 'market.competitors', null),
-      barriers: _.get(values, 'market.barriers', null)
+      barriers: _.get(values, 'market.barriers', null),
+      attachments_attributes: _.get(values, 'market.attachments', null)
     },
     startup_questionnaire_strategy_attributes: {
       id: _.get(values, 'strategy.id', null),
@@ -135,7 +143,8 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
       unique_selling_point: _.get(values, 'strategy.unique_selling_point', null),
       customer_acquisition_cost: _.get(values, 'strategy.customer_acquisition_cost', null),
       customer_life_value: _.get(values, 'strategy.customer_life_value', null),
-      startup_questionnaire_market_strategies_attributes: _.get(values, 'strategy.startup_questionnaire_market_strategies', null)
+      startup_questionnaire_market_strategies_attributes: _.get(values, 'strategy.startup_questionnaire_market_strategies', null),
+      attachments_attributes: _.get(values, 'strategy.attachments', null)
     },
     startup_questionnaire_team_attributes: {
       id: _.get(values, 'team.id', null),
@@ -144,7 +153,8 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
       startup_questionnaire_team_founders_attributes: _.get(values, 'team.startup_questionnaire_team_founders', null),
       startup_questionnaire_team_members_attributes: _.get(values, 'team.startup_questionnaire_team_members', null),
       // startup_questionnaire_team_advisors_attributes: teamAdvisors // TODO Remove
-      startup_questionnaire_team_advisors_attributes: _.get(values, 'team.startup_questionnaire_team_advisors', null)
+      startup_questionnaire_team_advisors_attributes: _.get(values, 'team.startup_questionnaire_team_advisors', null),
+      attachments_attributes: _.get(values, 'team.attachments', null)
     },
     startup_questionnaire_financial_attributes: {
       id: _.get(values, 'financial.id', null),
@@ -154,12 +164,14 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
       cash_flow_statements: _.get(values, 'financial.cash_flow_statements[0]', null),
       current_fund: _.get(values, 'financial.current_fund', null),
       startup_questionnaire_financial_fund_histories_attributes: _.get(values, 'financial.startup_questionnaire_financial_fund_histories', null),
-      startup_questionnaire_financial_use_of_funds_attributes: _.get(values, 'financial.startup_questionnaire_financial_use_of_funds', null)
+      startup_questionnaire_financial_use_of_funds_attributes: _.get(values, 'financial.startup_questionnaire_financial_use_of_funds', null),
+      attachments_attributes: _.get(values, 'financial.attachments', null)
     },
     startup_questionnaire_investment_attributes: {
       id: _.get(values, 'investment.id', null),
       fund_amount: _.get(values, 'investment.fund_amount', null),
-      exit_strategy: _.get(values, 'investment.exit_strategy', null)
+      exit_strategy: _.get(values, 'investment.exit_strategy', null),
+      attachments_attributes: _.get(values, 'investment.attachments', null)
     },
     attachments_attributes: _.get(values, 'attachments.attachments', null)
   }

@@ -4,11 +4,12 @@ import { reduxForm, Field, FieldArray } from 'redux-form'
 import Validators from '../../../../services/form-validators'
 
 import TextArea from '../../../shared/form-elements/text-area'
-import FileField from '../../../shared/form-elements/file-field'
 import TextField from '../../../shared/form-elements/text-field'
-import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
 import DateTimePicker from '../../../shared/form-elements/datetime-picker'
 import SelectField from '../../../shared/form-elements/select-field'
+import Select2Field from '../../../shared/form-elements/select2-field'
+import FileField from '../../../shared/form-elements/file-field'
+import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
 
 @reduxForm({
   form: "MyStartupQuestionnairesFinancialForm",
@@ -36,10 +37,21 @@ import SelectField from '../../../shared/form-elements/select-field'
             percentage: ["presences", "noDecimal"]
           }
         }
+      }],
+      attachments: [{
+        type: "complexArrOfObj",
+        opts: {
+          selfPresences: false,
+          childFields: {
+            title: ["presences"],
+            file: ["filePresences"]
+          }
+        }
       }]
     }, values, [
       "startup_questionnaire_financial_fund_histories",
-      "startup_questionnaire_financial_use_of_funds"
+      "startup_questionnaire_financial_use_of_funds",
+      "attachments"
     ])
   },
   enableReinitialize: true
@@ -170,6 +182,40 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   opts: {
                     type: "number",
                     placeholder: "Percentage"
+                  }
+                }
+              ]
+            }}
+          />
+
+          <FieldArray
+            name="attachments"
+            component={DynamicFieldArray}
+            opts={{
+              label: "Extra Files (Optional)",
+              groupName: "File",
+              newFieldInit: {
+                title: '',
+                file: '',
+                file_url: ''
+              },
+              onDeleteField: dMSQAttributes,
+              dynamicFields: [
+                {
+                  key: "title",
+                  component: Select2Field,
+                  opts: {
+                    options: this.props.attachmentOptions,
+                    valueKey: "name",
+                    nameKey: "name",
+                    placeholder: "Title"
+                  }
+                },
+                {
+                  key: "file",
+                  component: FileField,
+                  opts: {
+                    urlKey: "original"
                   }
                 }
               ]

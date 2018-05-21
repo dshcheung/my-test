@@ -10,6 +10,10 @@ import {
   resetMyStartupQuestionnaire
 } from '../../../../actions/my/startup-questionnaires'
 
+import {
+  gImmovable, G_IMMOVABLE_ATTACHMENT_OPTIONS, resetImmovable
+} from '../../../../actions/immovables'
+
 import LoadingSpinner from '../../../shared/loading-spinner'
 import MyStartupQuestionnairesHighlightForm from '../../../forms/my/startup-questionnaires/highlights'
 import MyStartupQuestionnairesOverviewForm from '../../../forms/my/startup-questionnaires/overview'
@@ -26,7 +30,9 @@ const mapStateToProps = (state, props) => {
   return {
     myQuestionnaires: getQuestionnaire(_.get(state, 'myStartupQuestionnaires', []), myCampaignID),
     gMyStartupQuestionnairesInProcess: _.get(state.requestStatus, G_MY_STARTUP_QUESTIONNAIRES),
-    uMyStartupQuestionnaireInProcess: _.get(state.requestStatus, U_MY_STARTUP_QUESTIONNAIRE)
+    uMyStartupQuestionnaireInProcess: _.get(state.requestStatus, U_MY_STARTUP_QUESTIONNAIRE),
+    gImmovableInProcess: _.get(state.requestStatus, G_IMMOVABLE_ATTACHMENT_OPTIONS),
+    attachmentOptions: _.get(state, 'immovables.attachment_options', [])
   }
 }
 
@@ -34,7 +40,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     uMyStartupQuestionnaire: bindActionCreators(uMyStartupQuestionnaire, dispatch),
     gMyStartupQuestionnaires: bindActionCreators(gMyStartupQuestionnaires, dispatch),
-    resetMyStartupQuestionnaire: bindActionCreators(resetMyStartupQuestionnaire, dispatch)
+    resetMyStartupQuestionnaire: bindActionCreators(resetMyStartupQuestionnaire, dispatch),
+    gImmovable: bindActionCreators(gImmovable, dispatch),
+    resetImmovable: bindActionCreators(resetImmovable, dispatch),
   }
 }
 
@@ -143,7 +151,8 @@ export default class SharedMyCampaignsStageTwo extends Component {
           formatValues: (q) => {
             const cv = { attachments: q || [] }
             return cv
-          }
+          },
+          allAttachmentOptions: true
         }
       ],
       currentStage: "highlight"
@@ -156,10 +165,12 @@ export default class SharedMyCampaignsStageTwo extends Component {
 
   componentWillMount() {
     this.props.gMyStartupQuestionnaires()
+    this.props.gImmovable({ immovableID: "attachment_options" })
   }
 
   componentWillUnmount() {
     this.props.resetMyStartupQuestionnaire()
+    this.props.resetImmovable()
   }
 
   setNextStage() {
@@ -226,6 +237,7 @@ export default class SharedMyCampaignsStageTwo extends Component {
   }
 
   questionnaireForm(myQuestionnaire, baseInfo) {
+    const { attachmentOptions } = this.props
     const formatValues = baseInfo.formatValues
     const initialValues = formatValues ? formatValues(myQuestionnaire) : myQuestionnaire
 
@@ -238,15 +250,18 @@ export default class SharedMyCampaignsStageTwo extends Component {
         dMSQAttributes={this.dMSQAttributes}
         submitInProcess={this.props.uMyStartupQuestionnaireInProcess}
         optClass="col-xs-12 col-sm-6 col-sm-offset-3"
+        attachmentOptions={baseInfo.allAttachmentOptions ? attachmentOptions : _.filter(attachmentOptions, (o) => {
+          return o.section === baseInfo.dataKey
+        })}
       />
     )
   }
 
   render() {
-    const { myQuestionnaires, gMyStartupQuestionnairesInProcess } = this.props
+    const { myQuestionnaires, gMyStartupQuestionnairesInProcess, gImmovableInProcess } = this.props
     const { currentStage } = this.state
 
-    if (gMyStartupQuestionnairesInProcess) return <LoadingSpinner />
+    if (gMyStartupQuestionnairesInProcess || gImmovableInProcess) return <LoadingSpinner />
 
     return (
       <div id="shared-my-campaigns-stage-two">
