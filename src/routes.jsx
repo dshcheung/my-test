@@ -15,9 +15,7 @@ import ResetPasswordContainer from './components/_pages/auth/reset-password'
 
 import InPersonValidationContainer from './components/_pages/in-person-validation'
 
-import VerifyContainer from './components/_pages/verify/wrapper'
-import VerifyEmailContainer from './components/_pages/verify/email'
-import VerifyMobileContainer from './components/_pages/verify/mobile'
+import VerifyContainer from './components/_pages/verify'
 
 import MyContainer from './components/_pages/my/wrapper'
 
@@ -64,11 +62,8 @@ export default (
 
     <Route path="in-person-validation" component={InPersonValidationContainer} barebone />
 
-    {/* Verify Paths */}
-    <Route path="verify" component={VerifyContainer}>
-      <Route path="email" component={VerifyEmailContainer} />
-      <Route path="mobile" component={VerifyMobileContainer} />
-    </Route>
+    {/* Verify Paths  */}
+    <Route path="verify" component={VerifyContainer} />
 
     {/* My Paths */}
     <Route path="my" component={MyContainer}>

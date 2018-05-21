@@ -4,9 +4,9 @@ import { bindActionCreators } from 'redux'
 
 import {
   uMyVerifications, U_MY_VERIFICATIONS
-} from '../../../actions/my/verifications'
+} from '../../actions/my/verifications'
 
-import VerifyMobileForm from '../../forms/verify/mobile'
+import VerifyForm from '../forms/verify'
 
 const mapStateToProps = (state) => {
   return {
@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class VerifyEmail extends Component {
+export default class Verify extends Component {
   constructor(props) {
     super(props)
 
@@ -29,17 +29,14 @@ export default class VerifyEmail extends Component {
   }
 
   uMyVerifications(values) {
-    this.props.uMyVerifications({
-      ...values,
-      type: "mobile"
-    })
+    this.props.uMyVerifications(values)
   }
 
   render() {
     return (
-      <div id="page-verify-mobile" className="container padding-top-20 padding-bottom-20">
+      <div id="page-verify" className="container padding-top-20 padding-bottom-20">
         <div className="row">
-          <VerifyMobileForm
+          <VerifyForm
             optClass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
             onSubmit={this.uMyVerifications}
             submitInProcess={this.props.uMyVerificationsInProcess}

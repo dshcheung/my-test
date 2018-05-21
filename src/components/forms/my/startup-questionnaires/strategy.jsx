@@ -11,7 +11,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
   form: "MyStartupQuestionnairesStrategyForm",
   validate: (values) => {
     return Validators({
-      strategic_positioning: ["presences"],
+      // strategic_positioning: ["presences"],
       unique_selling_point: ["presences"],
       customer_acquisition_cost: ["presences"],
       customer_life_value: ["presences"],
@@ -37,14 +37,16 @@ export default class MyStartupQuestionnairesStrategyForm extends Component {
     return (
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
-          <Field
-            name="strategic_positioning"
-            component={TextArea}
-            opts={{
-              label: "What is your strategic positionning ? *",
-              hint: "variety-based positioning / need-based positionning / access-based positionning"
-            }}
-          />
+          {
+            // <Field
+            //   name="strategic_positioning"
+            //   component={TextArea}
+            //   opts={{
+            //     label: "What is your strategic positionning ? *",
+            //     hint: "variety-based positioning / need-based positionning / access-based positionning"
+            //   }}
+            // />
+          }
 
           <Field
             name="unique_selling_point"

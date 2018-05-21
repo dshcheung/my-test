@@ -3,7 +3,7 @@ import { push } from 'react-router-redux'
 import { genApiUrl, genAxios } from '../../../services/api-request'
 import { getFormData } from '../../../services/get-form-data'
 import {
-  apiMyProfile, apiVerifyMyProfile, apiRequestResendPassword
+  apiMyProfile, apiRequestResendPassword
 } from '../../../services/api-path'
 import { notySuccess, handleFormErrors } from '../../../services/noty'
 
@@ -119,7 +119,7 @@ export const resetPassword = (values) => {
       if (data.role === "Investor") {
         dispatch(push("/my/portfolio"))
       } else if (data.role === "StartupUser") {
-        dispatch(push("/my/dashboard"))
+        dispatch(push("/my/campaigns"))
       }
     },
     errorCB: (dispatch, data) => {

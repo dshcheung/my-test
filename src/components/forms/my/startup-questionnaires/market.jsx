@@ -10,6 +10,7 @@ import FileField from '../../../shared/form-elements/file-field'
   form: "MyStartupQuestionnairesMarketForm",
   validate: (values) => {
     return Validators({
+      define_market: ["presences"],
       market_metrics: ["filePresences"],
       customer_persona: ["presences"],
       timing: [],
@@ -29,11 +30,20 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
           <Field
+            name="define_market"
+            component={TextArea}
+            opts={{
+              label: "Define your market *",
+              hint: "Any comparable market (other than geography, other industry) to support your figures? Your market share objective ?"
+            }}
+          />
+
+          <Field
             name="market_metrics"
             component={FileField}
             opts={{
-              label: "Define your market & market metrics *",
-              hint: "Segment, geography, Size & growth, please explain your source or calculation. Any comparable market (other geography, other industry) to support your figures ? Your market share objective ?",
+              label: "Market metrics *",
+              hint: "Segment, geography, Size & growth, please explain your source or calculation.",
               urlKey: "original"
             }}
           />

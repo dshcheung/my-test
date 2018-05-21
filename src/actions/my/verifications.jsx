@@ -1,8 +1,12 @@
+import { push } from 'react-router-redux'
+
 import { genApiUrl, genAxios } from '../../services/api-request'
 import { getFormData } from '../../services/get-form-data'
 import { apiMyVerificationsIndex, apiMyVerificationsResend } from '../../services/api-path'
 
 import { notySuccess } from '../../services/noty'
+
+import { setCurrentUser } from '../session'
 
 export const U_MY_VERIFICATIONS = "U_MY_VERIFICATIONS"
 export const uMyVerifications = (values, cb, routeParams) => {
@@ -10,7 +14,6 @@ export const uMyVerifications = (values, cb, routeParams) => {
     method: "put",
     url: genApiUrl(apiMyVerificationsIndex(routeParams)),
     data: getFormData({
-      type: _.get(values, 'type', null),
       photo: _.get(values, 'photo[0]', null),
       code: _.get(values, 'code', null)
     }, 'user')
@@ -20,8 +23,12 @@ export const uMyVerifications = (values, cb, routeParams) => {
     type: U_MY_VERIFICATIONS,
     request,
     successCB: (dispatch, data) => {
-      // TODO: have gram return user object
-      notySuccess("Saved!")
+      dispatch(setCurrentUser(data))
+      if (data.role === "Investor") {
+        dispatch(push("/my/portfolio"))
+      } else if (data.role === "StartupUser") {
+        dispatch(push("/my/campaigns"))
+      }
       if (cb) cb(data)
     }
   }

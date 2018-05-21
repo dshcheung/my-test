@@ -15,7 +15,7 @@ import SelectField from '../../../shared/form-elements/select-field'
   validate: (values) => {
     return Validators({
       three_kpis: ["presences"],
-      break_even: ["filePresences"],
+      break_even: ["presences"],
       income_statements: ["filePresences"],
       cash_flow_statements: ["filePresences"],
       current_fund: ["presences"],
@@ -66,10 +66,9 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
 
           <Field
             name="break_even"
-            component={FileField}
+            component={TextArea}
             opts={{
-              label: "When will you reach break-even ? *",
-              urlKey: "original"
+              label: "When will you reach break-even ? *"
             }}
           />
 

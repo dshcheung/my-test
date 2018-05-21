@@ -5,11 +5,11 @@ import { reduxForm, Field } from 'redux-form'
 
 import {
   resendVerification, RESEND_VERIFICATION
-} from '../../../actions/my/verifications'
+} from '../../actions/my/verifications'
 
-import Validators from '../../../services/form-validators'
+import Validators from '../../services/form-validators'
 
-import TextField from '../../shared/form-elements/text-field'
+import TextField from '../shared/form-elements/text-field'
 
 const mapStateToProps = (state) => {
   return {
@@ -26,15 +26,14 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 @reduxForm({
-  form: "VerifyEmailForm",
+  form: "VerifyForm",
   validate: (values) => {
     return Validators({
-      mobile: ["presences"],
       code: ["presences"]
     }, values)
   }
 })
-export default class VerifyEmailForm extends Component {
+export default class VerifyForm extends Component {
   constructor(props) {
     super(props)
 
@@ -43,7 +42,6 @@ export default class VerifyEmailForm extends Component {
 
   resendVerification() {
     this.props.resendVerification({
-      resend_type: "mobile",
       resend_for: this.props.currentUser.email || this.props.currentUser.mobile
     })
   }
@@ -52,19 +50,10 @@ export default class VerifyEmailForm extends Component {
     const { handleSubmit, submitInProcess, optClass, currentUser, resendVerificationInProcess } = this.props
 
     return (
-      <div id="forms-verify-mobile" className={optClass}>
-        <h1 className="form-title margin-bottom-20 margin-top-0">VERIFY MOBILE</h1>
+      <div id="forms-verify" className={optClass}>
+        <h1 className="form-title margin-bottom-20 margin-top-0">VERIFY</h1>
 
         <form onSubmit={handleSubmit}>
-          <Field
-            name="mobile"
-            component={TextField}
-            opts={{
-              type: "text",
-              label: "Mobile *"
-            }}
-          />
-
           <Field
             name="code"
             component={TextField}
@@ -79,17 +68,17 @@ export default class VerifyEmailForm extends Component {
             type="submit"
             disabled={submitInProcess}
           >
-            Verify Your Mobile
+            Verify
           </button>
-          {
+          { // TODO: change to modal with select mobile/email resend type depends on what they select
             currentUser && (
               <button
                 className={`btn btn-info btn-lg btn-block ${resendVerificationInProcess && "m-progress"}`}
                 type="button"
                 disabled={submitInProcess || resendVerificationInProcess}
-                onClick={() => { this.resendVerification("email") }}
+                onClick={() => { this.resendVerification() }}
               >
-                Resend Mobile Verification Code
+                Resend Verification Code
               </button>
             )
           }

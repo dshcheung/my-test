@@ -67,7 +67,7 @@ export const createSession = (values) => {
       if (data.role === "Investor") {
         dispatch(push("/my/portfolio"))
       } else if (data.role === "StartupUser") {
-        dispatch(push("/my/dashboard"))
+        dispatch(push("/my/campaigns"))
       }
     },
     errorCB: (dispatch, data) => {

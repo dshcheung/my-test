@@ -32,7 +32,7 @@ export default class MyStartupQuestionnairesInvestmentForm extends Component {
             opts={{
               options: [
                 { key: "equity", name: "Equity" },
-                { key: "convertible", name: "Convertable" }
+                { key: "convertible", name: "Convertible" }
               ],
               placeholder: "Fund Type",
               valueKey: "key",
