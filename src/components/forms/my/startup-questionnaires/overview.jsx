@@ -14,7 +14,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
   form: "MyStartupQuestionnairesOverviewForm",
   validate: (values) => {
     return Validators({
-      problem: [{ type: "length", opts: { max: 600 } }],
+      problem: [{ type: "length", opts: { max: 150 } }],
       value_proposition: [{ type: "length", opts: { max: 600 } }],
       revenue_model: [{ type: "length", opts: { max: 600 } }],
       key_kpis: [{ type: "length", opts: { max: 600 } }],
@@ -55,7 +55,7 @@ export default class MyStartupQuestionnairesOverviewForm extends Component {
             component={TextArea}
             opts={{
               label: "The Problem you solve ? *",
-              hint: "Concise version. More can be explained in Overview section"
+              hint: "Concise version. More can be explained in Overview section (150 character)"
             }}
           />
 
