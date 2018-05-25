@@ -87,7 +87,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
             component={TextArea}
             opts={{
               label: "Your Team Story *",
-              hint: "You and your co-founders / co-leaders. When did you meet ? How long have you been working together on this venture ? on other projects ? What is your passion and your definition of success ?"
+              hint: "Feel free to upload in the Extra files section below any detailed slide/story you want to show us."
             }}
           />
 

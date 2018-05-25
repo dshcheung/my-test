@@ -74,7 +74,7 @@ export default class MyStartupQuestionnairesStrategyForm extends Component {
             component={TextArea}
             opts={{
               label: "What is your customer acquisition cost ? *",
-              hint: "A short and rational explanation would be appreciated"
+              hint: "Just state here the number. Explanation slide/excel can be uploaded in the Extra Files section below"
             }}
           />
 
@@ -91,7 +91,7 @@ export default class MyStartupQuestionnairesStrategyForm extends Component {
             name="startup_questionnaire_market_strategies"
             component={DynamicFieldArray}
             opts={{
-              label: "What is your Marketing strategy and your timeline to access your targeted market ? *",
+              label: "What is your Marketing Strategy roadmap *",
               groupName: "Strategy",
               newFieldInit: {
                 planned_for: moment().toDate(),

@@ -130,7 +130,6 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
       id: _.get(values, 'market.id', null),
       define_market: _.get(values, 'market.define_market', null),
       market_metrics: _.get(values, 'market.market_metrics[0]', null),
-      customer_persona: _.get(values, 'market.customer_persona', null),
       timing: _.get(values, 'market.timing', null),
       risk_factors: _.get(values, 'market.risk_factors', null),
       competitors: _.get(values, 'market.competitors', null),

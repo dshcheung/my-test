@@ -45,7 +45,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             component={TextArea}
             opts={{
               label: "Define your market *",
-              hint: "Any comparable market (other than geography, other industry) to support your figures? Your market share objective ?"
+              hint: "Describe your own targeted market : Who is your customer, what particular segment you are addressing, which geography, what will be the next market to ensure your growth (if applicable)"
             }}
           />
 
@@ -54,17 +54,8 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             component={FileField}
             opts={{
               label: "Market metrics *",
-              hint: "Segment, geography, Size & growth, please explain your source or calculation.",
+              hint: "Please upload your market metrics slide/excel. Size & Growth rate of the global market (precise currency), of your targeted segment, your market share (in % of your targeted segment, and in value)",
               urlKey: "original"
-            }}
-          />
-
-          <Field
-            name="customer_persona"
-            component={TextArea}
-            opts={{
-              label: "Who is your customer persona ? *",
-              hint: "For whom you are creating value. Please also tell us who is the paying customer, who may not be the same... A customer persona is a semi-fictional representation of your ideal customer based on market research and real data about your existing customers. "
             }}
           />
 
@@ -72,7 +63,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             name="timing"
             component={TextArea}
             opts={{
-              label: "Why is your timing right in entering this market ? (Optional)",
+              label: "Why is your timing right in entering this market ? (For assessment purpose only)",
               hint: "because of course it IS right, no ? ;))"
             }}
           />
@@ -91,7 +82,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             component={TextArea}
             opts={{
               label: "Who are your actual and potential competitors ? *",
-              hint: "Come on, there should be ! and you'd better know them."
+              hint: "List here your 3 main competitors names and brief description. Please upload in Extra files below any more detailed Competition analysis slide/doc you may have"
             }}
           />
 

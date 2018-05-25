@@ -69,6 +69,12 @@ export default class My extends Component {
       )
     }
 
-    return this.props.children
+    console.log(this.props.currentUser.new_user)
+
+    return (
+      <div>
+        { this.props.children }
+      </div>
+    )
   }
 }

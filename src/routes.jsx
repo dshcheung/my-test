@@ -48,7 +48,7 @@ export default (
   <Route path="/" component={App}>
     <IndexRedirect to="/auth/login" />
 
-    {/* Auth Paths TODO: make homepage */}
+    {/* Auth Paths */}
     <Route path="auth" component={AuthContainer}>
       <Route path="login" component={LoginContainer} />
       <Route path="signup" component={SignupContainer} />
