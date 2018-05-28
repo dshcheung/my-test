@@ -78,10 +78,28 @@ export default class MyStartupQuestionnairesOverviewForm extends Component {
           />
 
           <Field
-            name="key_kpis"
+            name="key_resources"
             component={TextArea}
             opts={{
-              label: "What are you key resource, key partner, key access channel to your market ? (Optional)",
+              label: "What are your key resource? (for assessment only)",
+              hint: "Just state one of each if applicable."
+            }}
+          />
+
+          <Field
+            name="key_partners"
+            component={TextArea}
+            opts={{
+              label: "What are your key partner? (for assessment only)",
+              hint: "Just state one of each if applicable."
+            }}
+          />
+
+          <Field
+            name="key_channels"
+            component={TextArea}
+            opts={{
+              label: "What are your key access channel to your market ? (for assessment only)",
               hint: "Just state one of each if applicable."
             }}
           />

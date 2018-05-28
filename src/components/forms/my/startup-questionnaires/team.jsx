@@ -20,7 +20,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
       startup_questionnaire_team_founders: [{
         type: "complexArrOfObj",
         opts: {
-          selfPresences: true,
+          selfPresences: false,
           childFields: {
             avatar: ["filePresences"],
             name: ["presences"],

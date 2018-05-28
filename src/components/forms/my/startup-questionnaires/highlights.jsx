@@ -3,7 +3,9 @@ import { reduxForm, Field, FieldArray } from 'redux-form'
 
 import Validators from '../../../../services/form-validators'
 
+import DateTimePicker from '../../../shared/form-elements/datetime-picker'
 import TextArea from '../../../shared/form-elements/text-area'
+import SelectField from '../../../shared/form-elements/select-field'
 import Select2Field from '../../../shared/form-elements/select2-field'
 import FileField from '../../../shared/form-elements/file-field'
 import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
@@ -38,6 +40,49 @@ export default class MyStartupQuestionnairesHighlightForm extends Component {
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
           <Field
+            name="founded"
+            component={DateTimePicker}
+            opts={{
+              label: "When was your company founded? *",
+              hint: "The year your startup was founded",
+              time: false,
+              format: "MM/YYYY"
+            }}
+          />
+
+          <Field
+            name="current_stage"
+            component={SelectField}
+            opts={{
+              options: [
+                { id: 0, name: "Idea" },
+                { id: 1, name: "Development" },
+                { id: 2, name: "Adoption" },
+                { id: 3, name: "Growth" }
+              ],
+              valueKey: "id",
+              nameKey: "name",
+              label: "What is the current stage of development? *",
+              hint: "The stage of development of your startup"
+            }}
+          />
+
+          <Field
+            name="company_vertical"
+            component={SelectField}
+            opts={{
+              options: [
+                { id: 0, name: "Need" },
+                { id: 1, name: "Input" },
+              ],
+              valueKey: "id",
+              nameKey: "name",
+              label: "In which vertical do you place your company? *",
+              hint: "The vertical of your startup"
+            }}
+          />
+
+          <Field
             name="tagline"
             component={TextArea}
             opts={{
@@ -59,8 +104,8 @@ export default class MyStartupQuestionnairesHighlightForm extends Component {
             name="achievements"
             component={TextArea}
             opts={{
-              label: "Your main achievements and current stage of development *",
-              hint: "Be concise and selective : product lifecycle stage, team size, revenue level, funds gathered/used since inception, time spent . Imagine you want to strike your reader with 5 figures/ bullet points... Our advice : use nominal sentences"
+              label: "Your main achievements *",
+              hint: "5 bullet points describing the 5 achievements you are most proud of"
             }}
           />
 

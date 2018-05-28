@@ -57,7 +57,13 @@ export default class SharedMyCampaignsStageTwo extends Component {
           key: "highlight",
           title: "Highlights",
           dataKey: "startup_questionnaire_highlight",
-          model: MyStartupQuestionnairesHighlightForm
+          model: MyStartupQuestionnairesHighlightForm,
+          formatValues: (q) => {
+            const founded = _.get(q, "founded")
+            _.set(q, 'founded', founded ? moment(founded).toDate() : moment().toDate())
+
+            return q
+          }
         },
         {
           key: "overview",

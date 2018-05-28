@@ -87,7 +87,8 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             opts={{
               label: "Building a summarized Financial statements projection (Y, Y+1, Y+2) *",
               urlKey: "original",
-              templateUrl: "https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/templates/income+statement+template.xlsx"
+              templateUrl: "https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/templates/income+statement+template.xlsx",
+              hint: "Please use \"select file\" to upload your own projections statements. Otherwise you can use \"download template\" to fill in our excel model"
             }}
           />
 
@@ -97,7 +98,8 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             opts={{
               label: "Building a summarized Cash-Flow statements projection (Y, Y+1, Y+2) *",
               urlKey: "original",
-              templateUrl: "https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/templates/cash-flow+statement+template.xlsx"
+              templateUrl: "https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/templates/cash-flow+statement+template.xlsx",
+              hint: "Please use \"select file\" to upload your own projections statements. Otherwise you can use \"download template\" to fill in our excel model"
             }}
           />
 
@@ -106,7 +108,16 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             component={TextField}
             opts={{
               type: "number",
-              label: "Present fund round amount *"
+              label: "How much funds are you raising ? *"
+            }}
+          />
+
+          <Field
+            name="monthly_cash_burn"
+            component={TextField}
+            opts={{
+              type: "number",
+              label: "What is your average monthly cash burning rate ? *"
             }}
           />
 
@@ -115,6 +126,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             component={DynamicFieldArray}
             opts={{
               label: "Funding History *",
+              hint: "Please use + button to enter dates and amounts of previous funding rounds if applicable",
               groupName: "History",
               newFieldInit: {
                 occurred_on: moment().toDate(),
@@ -162,6 +174,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             component={DynamicFieldArray}
             opts={{
               label: "What will be the use of the funds? *",
+              hint: "Please use + button to enter % and uses. We’ll do a nice chart for you",
               groupName: "Use of Fund",
               newFieldInit: {
                 section: '',

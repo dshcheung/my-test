@@ -122,6 +122,10 @@ export const uMyCampaign = (values, params) => {
     }, 'campaign')
   })
 
+  // TODO: add these
+  // :equity_percentage, :integer, default: 0
+  // :conditions, :integer, default: 0
+
   return {
     type: U_MY_CAMPAIGN,
     request,

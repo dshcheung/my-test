@@ -8,25 +8,21 @@ export default class DynamicFieldArray extends Component {
       opts: {
         label, groupName,
         newFieldInit, onDeleteField,
-        dynamicFields
+        dynamicFields, hint
       }
     } = this.props
 
     return (
       <div className="clearfix">
-        <div className={`form-group clearfix ${error && "has-error"}`}>
+        <div className={`form-group clearfix ${error && "has-error"} margin-0`}>
           { label && <label htmlFor={fields.name}>{label}</label> }
-          <button
-            type="button"
-            className="btn btn-info pull-right"
-            onClick={() => fields.push(newFieldInit)}
-          ><i className="fa fa-plus" /></button>
           { error && <span className="help-block">{error}</span> }
         </div>
+        { hint && <span className="help-block clearfix margin-bottom-5">{hint}</span> }
         {
           fields.map((objKey, i) => {
             return (
-              <div key={i} className="well">
+              <div key={i} className="well margin-0">
                 <div className="clearfix">
                   <h5 className="pull-left">{groupName} #{i + 1}</h5>
                   <button
@@ -51,6 +47,11 @@ export default class DynamicFieldArray extends Component {
             )
           })
         }
+        <button
+          type="button"
+          className="btn btn-info btn-block margin-bottom-20"
+          onClick={() => fields.push(newFieldInit)}
+        ><i className="fa fa-plus" /> Add Another</button>
       </div>
     )
   }

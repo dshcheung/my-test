@@ -69,7 +69,8 @@ export default class My extends Component {
       )
     }
 
-    console.log(this.props.currentUser.new_user)
+    // TODO: new user modal introduction
+    // console.log(this.props.currentUser.new_user)
 
     return (
       <div>

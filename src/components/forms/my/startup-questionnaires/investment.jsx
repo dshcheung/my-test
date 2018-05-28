@@ -3,7 +3,6 @@ import { reduxForm, Field, FieldArray } from 'redux-form'
 
 import Validators from '../../../../services/form-validators'
 
-import TextField from '../../../shared/form-elements/text-field'
 import SelectField from '../../../shared/form-elements/select-field'
 import TextArea from '../../../shared/form-elements/text-area'
 import Select2Field from '../../../shared/form-elements/select2-field'
@@ -46,18 +45,9 @@ export default class MyStartupQuestionnairesInvestmentForm extends Component {
                 { key: "equity", name: "Equity" },
                 { key: "convertible", name: "Convertible" }
               ],
-              placeholder: "Fund Type",
+              label: "Fund Type",
               valueKey: "key",
               nameKey: "name",
-            }}
-          />
-
-          <Field
-            name="fund_amount"
-            component={TextField}
-            opts={{
-              type: "number",
-              label: "Fund Round Amount *",
             }}
           />
 
@@ -75,6 +65,7 @@ export default class MyStartupQuestionnairesInvestmentForm extends Component {
             component={DynamicFieldArray}
             opts={{
               label: "Extra Files (Optional)",
+              hint: "Should you have any document you would like to share concerning your investment proposition, the valuation of your company, etc… please upload them using the + button",
               groupName: "File",
               newFieldInit: {
                 title: '',

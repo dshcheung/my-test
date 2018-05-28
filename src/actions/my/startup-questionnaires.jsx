@@ -111,6 +111,9 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
   const params = {
     startup_questionnaire_highlight_attributes: {
       id: _.get(values, 'highlight.id', null),
+      founded: _.get(values, 'highlight.founded', null),
+      current_stage: _.get(values, 'highlight.current_stage', null),
+      company_vertical: _.get(values, 'highlight.company_vertical', null),
       tagline: _.get(values, 'highlight.tagline', null),
       mission: _.get(values, 'highlight.mission', null),
       achievements: _.get(values, 'highlight.achievements', null),
@@ -121,7 +124,9 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
       problem: _.get(values, 'overview.problem', null),
       value_proposition: _.get(values, 'overview.value_proposition', null),
       revenue_model: _.get(values, 'overview.revenue_model', null),
-      key_kpis: _.get(values, 'overview.key_kpis', null),
+      key_resources: _.get(values, 'overview.key_resources', null),
+      key_partners: _.get(values, 'overview.key_partners', null),
+      key_channels: _.get(values, 'overview.key_channels', null),
       business_model: _.get(values, 'overview.business_model', null),
       startup_questionnaire_past_milestones_attributes: _.get(values, 'overview.startup_questionnaire_past_milestones', null),
       attachments_attributes: _.get(values, 'overview.attachments', null)
@@ -162,13 +167,13 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
       income_statements: _.get(values, 'financial.income_statements[0]', null),
       cash_flow_statements: _.get(values, 'financial.cash_flow_statements[0]', null),
       current_fund: _.get(values, 'financial.current_fund', null),
+      monthly_cash_burn: _.get(values, 'financial.monthly_cash_burn', null),
       startup_questionnaire_financial_fund_histories_attributes: _.get(values, 'financial.startup_questionnaire_financial_fund_histories', null),
       startup_questionnaire_financial_use_of_funds_attributes: _.get(values, 'financial.startup_questionnaire_financial_use_of_funds', null),
       attachments_attributes: _.get(values, 'financial.attachments', null)
     },
     startup_questionnaire_investment_attributes: {
       id: _.get(values, 'investment.id', null),
-      fund_amount: _.get(values, 'investment.fund_amount', null),
       exit_strategy: _.get(values, 'investment.exit_strategy', null),
       attachments_attributes: _.get(values, 'investment.attachments', null)
     },
