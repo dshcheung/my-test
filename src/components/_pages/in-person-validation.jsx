@@ -1,5 +1,24 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
+import {
+  uMyVerifications, U_MY_VERIFICATIONS
+} from '../../actions/my/verifications'
+
+const mapStateToProps = (state) => {
+  return {
+    uMyVerificationsInProcess: _.get(state.requestStatus, U_MY_VERIFICATIONS)
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    uMyVerifications: bindActionCreators(uMyVerifications, dispatch)
+  }
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 export default class InPersonValidation extends Component {
   constructor(props) {
     super(props)
@@ -8,16 +27,23 @@ export default class InPersonValidation extends Component {
       showVideo: true,
       video: null,
       videoReady: false,
-      errorMsg: null
+      errorMsg: null,
+      base64: null,
+      stream: null
     }
 
     this.startCamera = this.startCamera.bind(this)
     this.toggleVideo = this.toggleVideo.bind(this)
     this.takeSnapshot = this.takeSnapshot.bind(this)
+    this.uMyVerifications = this.uMyVerifications.bind(this)
   }
 
   componentDidMount() {
     this.startCamera()
+  }
+
+  componentWillUnmount() {
+    this.state.stream.getTracks()[0].stop()
   }
 
   toggleVideo() {
@@ -40,11 +66,12 @@ export default class InPersonValidation extends Component {
           showVideo: true,
           video,
           videoReady: true,
-          errorMsg: null
+          errorMsg: null,
+          stream
         })
-      }).catch((error) => {
+      }).catch(() => {
         this.setState({
-          errorMsg: "Could not access the camera. Error: " + error.name
+          errorMsg: "Could not access Camera. Please allow browser to access your Camera"
         })
       })
     } else {
@@ -69,30 +96,40 @@ export default class InPersonValidation extends Component {
     context.drawImage(video, 0, 0, width, height)
 
     const img = document.querySelector('#photo')
-    img.src = canvas.toDataURL('image/png')
+    const base64 = canvas.toDataURL('image/png')
+    img.src = base64
+    this.setState({ base64 })
+  }
+
+  uMyVerifications() {
+    this.props.uMyVerifications({
+      photo: this.state.base64,
+      code: _.get(this.props.location, 'query.code', null)
+    })
   }
 
   render() {
+    const { uMyVerificationsInProcess } = this.props
     const { showVideo, errorMsg, width } = this.state
 
     const style = {
       width
     }
 
-    const a = navigator.userAgent
-    const b = navigator.platform
+    const isHTTPS = window.location.protocol === "https:" || window.location.hostname === "localhost"
+    // const isMobile = false
+
+    window.stream = this.state.stream
 
     return (
       <div id="page-in-person-validation" className="text-center">
-        { a }
-
-        { b }
+        { !isHTTPS && <h4 className="text-danger">For security reasons, please use https://</h4>}
         { errorMsg && <h4 className="text-danger">{errorMsg}</h4>}
 
         <canvas id="canvas" style={{ display: "none" }} />
 
         <div className="video-group">
-          <h4 className={showVideo ? "help-text" : "hide"}>Click Anywhere To Take Photo</h4>
+          <h3 className={showVideo ? "help-text" : "hide"}>Click Anywhere To Take Photo</h3>
 
           <video
             id="video"
@@ -109,12 +146,15 @@ export default class InPersonValidation extends Component {
           />
 
           <button
-            className={showVideo ? "hide" : "btn btn-warning another"}
+            className={showVideo ? "hide" : `btn btn-warning another ${uMyVerificationsInProcess && "m-progress"}`}
             onClick={this.toggleVideo}
+            disabled={uMyVerificationsInProcess}
           ><i className="fa fa-redo fa-3x" /></button>
 
           <button
-            className={showVideo ? "hide" : "btn btn-info upload"}
+            className={showVideo ? "hide" : `btn btn-info upload ${uMyVerificationsInProcess && "m-progress"}`}
+            onClick={this.uMyVerifications}
+            disabled={uMyVerificationsInProcess}
           ><i className="fa fa-upload fa-3x" /></button>
         </div>
       </div>

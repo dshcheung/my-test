@@ -10,6 +10,7 @@ import {
 import Validators from '../../../../services/form-validators'
 
 import TextField from '../../../shared/form-elements/text-field'
+import TextArea from '../../../shared/form-elements/text-area'
 import SelectField from '../../../shared/form-elements/select-field'
 import DatetimePicker from '../../../shared/form-elements/datetime-picker'
 
@@ -43,6 +44,7 @@ const mapDispatchToProps = (dispatch) => {
       toValidate = {
         ...toValidate,
         equityType: ["presences"],
+        equityPercentage: ["presences", "noDecimal"],
         valuation: ["presences"]
       }
     }
@@ -50,6 +52,7 @@ const mapDispatchToProps = (dispatch) => {
     if (values.amountType === "convertible") {
       toValidate = {
         ...toValidate,
+        conditions: ["presences"],
         maturityDate: ["presences"],
         interestRate: ["presences", "noDecimal"],
         discountRate: ["presences", "noDecimal"],
@@ -160,6 +163,15 @@ export default class MyCampaignsBasicForm extends Component {
                 />
 
                 <Field
+                  name="equityPercentage"
+                  component={TextField}
+                  opts={{
+                    type: "number",
+                    label: "Equity Percentage *"
+                  }}
+                />
+
+                <Field
                   name="valuation"
                   component={TextField}
                   opts={{
@@ -174,6 +186,15 @@ export default class MyCampaignsBasicForm extends Component {
           {
             amountType === "convertible" && (
               <div>
+                <Field
+                  name="conditions"
+                  component={TextArea}
+                  opts={{
+                    type: "number",
+                    label: "Equity Percentage *"
+                  }}
+                />
+
                 <Field
                   name="maturityDate"
                   component={DatetimePicker}

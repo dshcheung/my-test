@@ -82,7 +82,7 @@ export default class MyStartupQuestionnairesOverviewForm extends Component {
             component={TextArea}
             opts={{
               label: "What are your key resource? (for assessment only)",
-              hint: "Just state one of each if applicable."
+              hint: "What do you need to produce and deliver your product"
             }}
           />
 
@@ -91,7 +91,7 @@ export default class MyStartupQuestionnairesOverviewForm extends Component {
             component={TextArea}
             opts={{
               label: "What are your key partner? (for assessment only)",
-              hint: "Just state one of each if applicable."
+              hint: "Who do you need to partner with"
             }}
           />
 
@@ -100,7 +100,7 @@ export default class MyStartupQuestionnairesOverviewForm extends Component {
             component={TextArea}
             opts={{
               label: "What are your key access channel to your market ? (for assessment only)",
-              hint: "Just state one of each if applicable."
+              hint: "What will you be using to reach out to your customer"
             }}
           />
 

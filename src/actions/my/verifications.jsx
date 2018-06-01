@@ -9,12 +9,12 @@ import { notySuccess } from '../../services/noty'
 import { setCurrentUser } from '../session'
 
 export const U_MY_VERIFICATIONS = "U_MY_VERIFICATIONS"
-export const uMyVerifications = (values, cb, routeParams) => {
+export const uMyVerifications = (values, cb) => {
   const request = genAxios({
     method: "put",
-    url: genApiUrl(apiMyVerificationsIndex(routeParams)),
+    url: genApiUrl(apiMyVerificationsIndex()),
     data: getFormData({
-      photo: _.get(values, 'photo[0]', null),
+      photo: _.get(values, 'photo', null),
       code: _.get(values, 'code', null)
     }, 'user')
   })

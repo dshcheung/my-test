@@ -92,6 +92,7 @@ export default class MyStartupQuestionnairesStrategyForm extends Component {
             component={DynamicFieldArray}
             opts={{
               label: "What is your Marketing Strategy roadmap *",
+              hint: "Use + button to add the main milestones and objective dates of your strategy",
               groupName: "Strategy",
               newFieldInit: {
                 planned_for: moment().toDate(),

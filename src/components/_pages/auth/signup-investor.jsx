@@ -98,7 +98,7 @@ export default class SignupInvestor extends Component {
   }
 
   renderStages() {
-    const { investorWarning } = this.props
+    const { investorWarning, createUserInProcess } = this.props
     const { agreed, questionnaireCompleted, score } = this.state
 
     if (!agreed && investorWarning) { // TODO: make as modal
@@ -151,6 +151,7 @@ export default class SignupInvestor extends Component {
       return (
         <AuthSignupInvestorForm
           onSubmit={this.createUser}
+          submitInProcess={createUserInProcess}
         />
       )
     }

@@ -113,7 +113,9 @@ export const uMyCampaign = (values, params) => {
         amount_type: _.get(values, 'amountType', null),
         amount: _.get(values, 'amount', null),
         equity_type: _.get(values, 'equityType', null),
+        equity_percentage: _.get(values, 'equityPercentage', null),
         valuation: _.get(values, 'valuation', null),
+        conditions: _.get(values, 'conditions', null),
         maturity_date: _.get(values, 'maturityDate', null),
         interest_rate: _.get(values, 'interestRate', null),
         discount_rate: _.get(values, 'discountRate', null),
@@ -121,10 +123,6 @@ export const uMyCampaign = (values, params) => {
       }
     }, 'campaign')
   })
-
-  // TODO: add these
-  // :equity_percentage, :integer, default: 0
-  // :conditions, :integer, default: 0
 
   return {
     type: U_MY_CAMPAIGN,
