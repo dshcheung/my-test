@@ -2,6 +2,7 @@ import { mergeRequestInProcess } from './actions/request-status'
 import { mergePaginate } from './actions/pagination'
 import { resetAllState } from './actions/session'
 import { setRedirection, resetRedirection } from './actions/redirection'
+import { scrollTop } from './services/utils'
 
 export default function promiseMiddleware() {
   return next => (action) => {
@@ -22,6 +23,7 @@ export default function promiseMiddleware() {
 
       return request.then((resp) => {
         if (successCB) { successCB(dispatch, resp.data.data, resp.data) }
+        scrollTop()
         if (paginate) { dispatch(mergePaginate(resp.data.links, type)) }
         dispatch(mergeRequestInProcess(false, type))
         if (hasRedirection) { dispatch(resetRedirection()) }

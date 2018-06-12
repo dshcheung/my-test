@@ -32,7 +32,6 @@ export const gMyStartupQuestionnaires = ({ queries = {}, nextHref = null } = {})
     request,
     paginate: true,
     successCB: (dispatch, data) => {
-      // debugger
       dispatch(mergeMyStartupQuestionnaires(data, !nextHref))
       dispatch(resetMyStartupQuestionnaire())
     }

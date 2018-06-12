@@ -196,8 +196,8 @@ export default class Navbar extends Component {
 
                   {
                     currentUser.role === "Investor" && (
-                      <LinkContainer to="/my/kyc" active={false}>
-                        <MenuItem eventKey={9.5}>My KYC Process</MenuItem>
+                      <LinkContainer to="/my/profile-suitability" active={false}>
+                        <MenuItem eventKey={9.5}>My Profile Suitability</MenuItem>
                       </LinkContainer>
                     )
                   }

@@ -225,3 +225,7 @@ export const apiMyVerificationsResend = () => {
 export const apiRequestResendPassword = () => {
   return `${apiMyProfile()}/reset_password`
 }
+
+export const apiMyProfileSuitabilityIndex = () => {
+  return `${apiMy()}/investor_profile_suitability`
+}

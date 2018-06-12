@@ -23,6 +23,7 @@ import MyNotificationsIndexContainer from './components/_pages/my/notifications/
 
 import MyQuestionnairesContainer from './components/_pages/my/questionnaires'
 import MyAMLContainer from './components/_pages/my/aml'
+import MyProfileSuitability from './components/_pages/my/profile-suitability'
 import MyPortfolioContainer from './components/_pages/my/portfolio'
 
 import MyCampaignsContainer from './components/_pages/my/campaigns/wrapper'
@@ -73,9 +74,12 @@ export default (
         <Route path=":notificationID" />
       </Route>
 
-      {/* Investor Paths */}
+      {/* TODO2: REMOVE? */}
       <Route path="kyc" component={MyQuestionnairesContainer} roleAccess="Investor" />
       <Route path="aml" component={MyAMLContainer} roleAccess="Investor" />
+
+      {/* Investor Paths */}
+      <Route path="profile-suitability" component={MyProfileSuitability} roleAccess="Investor" />
       <Route path="portfolio" component={MyPortfolioContainer} roleAccess="Investor" />
 
       {/* StartupUser Paths */}
