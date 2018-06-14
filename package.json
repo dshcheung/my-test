@@ -57,7 +57,7 @@
     "react-widgets": "^4.1.1",
     "react-widgets-moment": "^4.0.4",
     "redux": "^3.7.2",
-    "redux-form": "^7.2.0",
+    "redux-form": "7.3.0",
     "redux-thunk": "^2.2.0",
     "resolve-url-loader": "^2.2.1",
     "sass-loader": "^6.0.6",

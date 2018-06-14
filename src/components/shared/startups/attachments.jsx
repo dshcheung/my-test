@@ -107,7 +107,7 @@ export default class SharedStartupsAttachments extends Component {
                           )
                         }
                       </div>
-                      <a href={file} target="_blank" className="btn btn-success button">
+                      <a href={file} target="_blank" rel="noopener noreferrer" className="btn btn-success button">
                         <i className="fa fa-fw fa-download" />
                         {title}
                       </a>
@@ -161,7 +161,7 @@ export default class SharedStartupsAttachments extends Component {
 
 //       return (
 //         <li key={i}>
-//           <a href={file} className="btn btn-success" target="_blank">
+//           <a href={file} className="btn btn-success" target="_blank" rel="noopener noreferrer">
 //             {title}
 //             <i className="fa fa-fw fa-download" />
 //           </a>

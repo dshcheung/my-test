@@ -243,7 +243,7 @@ export default class SharedMyCampaignsStageTwo extends Component {
   questionnaireForm(myQuestionnaire, baseInfo) {
     const { attachmentOptions } = this.props
     const formatValues = baseInfo.formatValues
-    const initialValues = formatValues ? formatValues(myQuestionnaire) : myQuestionnaire
+    const initialValues = formatValues ? formatValues(myQuestionnaire || {}) : myQuestionnaire
 
     return (
       <baseInfo.model

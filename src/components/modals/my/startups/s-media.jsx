@@ -79,7 +79,7 @@ export default class MyStartupsSMediaModal extends Component {
 
                       return (
                         <div key={i} className="col-md-2 col-sm-3 col-xs-6">
-                          <a href={link} target="_blank">
+                          <a href={link} target="_blank" rel="noopener noreferrer">
                             <div
                               style={{
                                 backgroundImage: `url(${banner})`,

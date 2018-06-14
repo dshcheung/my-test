@@ -60,6 +60,7 @@ export default class FileField extends Component {
                   className="btn btn-info template-url"
                   download
                   target="_blank"
+                  rel="noopener noreferrer"
                 >Download Template</a>
               </div>
             )
@@ -78,6 +79,7 @@ export default class FileField extends Component {
                   className="btn btn-primary"
                   download
                   target="_blank"
+                  rel="noopener noreferrer"
                 >View File</a>
               </div>
             )

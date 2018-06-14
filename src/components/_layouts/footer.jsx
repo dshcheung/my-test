@@ -73,10 +73,10 @@ export default class Footer extends Component {
                 <span className="copy-right">&copy; 2017 AngelHub</span>
 
                 <ul className="social">
-                  <li><Link className="btn-gray" to="https://instagram.com/angelhubhk" target="_blank"><i className="fa fa-instagram" /></Link></li>
-                  <li><Link className="btn-gray" to="https://facebook.com/angelhubhk" target="_blank"><i className="fa fa-facebook" /></Link></li>
-                  <li><Link className="btn-gray" to="https://twitter.com/angelhubhk" target="_blank"><i className="fa fa-twitter" /></Link></li>
-                  <li><Link className="btn-gray" to="https://linkedin.com/angelhubhk" target="_blank"><i className="fa fa-linkedin" /></Link></li>
+                  <li><Link className="btn-gray" to="https://instagram.com/angelhubhk" target="_blank" rel="noopener noreferrer"><i className="fa fa-instagram" /></Link></li>
+                  <li><Link className="btn-gray" to="https://facebook.com/angelhubhk" target="_blank" rel="noopener noreferrer"><i className="fa fa-facebook" /></Link></li>
+                  <li><Link className="btn-gray" to="https://twitter.com/angelhubhk" target="_blank" rel="noopener noreferrer"><i className="fa fa-twitter" /></Link></li>
+                  <li><Link className="btn-gray" to="https://linkedin.com/angelhubhk" target="_blank" rel="noopener noreferrer"><i className="fa fa-linkedin" /></Link></li>
                 </ul>
               </div>
             </div>
