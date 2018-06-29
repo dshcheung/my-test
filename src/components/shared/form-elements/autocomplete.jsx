@@ -35,6 +35,9 @@ export default class AutocompleteField extends Component {
     return (
       <div className={`form-group clearfix ${hasErrorClass}`}>
         { label && <label htmlFor={input.name}>{label}</label> }
+        {
+          hasErrorClass && !noHelp && <span className="help-block">{touched ? error.join(", ") : ''}</span>
+        }
 
         <Combobox
           {...input}
@@ -46,10 +49,6 @@ export default class AutocompleteField extends Component {
           valueField={valueField}
           textField={textField}
         />
-
-        {
-          hasErrorClass && !noHelp && <span className="help-block">{touched ? error.join(", ") : ''}</span>
-        }
       </div>
     )
   }

@@ -32,7 +32,7 @@ export default class ImageField extends Component {
       input, meta: { touched, invalid, error },
       opts: {
         label, decodeLabel,
-        title,
+        title, hint,
         optClass,
         urlKey
       }
@@ -60,6 +60,9 @@ export default class ImageField extends Component {
         >
           {
             !this.state.previewImgUrl && !imgUrl && <span>Click to upload image for {title}</span>
+          }
+          {
+            hint && <span className="help-block">{hint}</span>
           }
           {
             hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>

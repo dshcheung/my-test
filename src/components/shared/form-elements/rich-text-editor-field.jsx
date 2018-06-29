@@ -41,13 +41,13 @@ export default class RichTextEditorField extends Component {
     return (
       <div className={`form-group clearfix ${hasErrorClass}`}>
         { label && <label htmlFor={input.name}>{label}</label> }
+        { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
+        { hint && <span className="help-block">{hint}</span> }
         <RichTextEditor
           value={value}
           onChange={handleChange}
           placeholder={placeholder || "Start Typing Here"}
         />
-        { hint && <span className="help-block">{hint}</span> }
-        { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
       </div>
     )
   }

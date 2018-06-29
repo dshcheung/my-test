@@ -24,8 +24,8 @@ export default class CheckboxField extends Component {
           { label && <span>{label}</span> }
           { decodeLabel && <span dangerouslySetInnerHTML={{ __html: decodeLabel.decode() }} />}
         </label>
-        { hint && <span className="help-block">{hint}</span> }
         { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
+        { hint && <span className="help-block">{hint}</span> }
       </div>
     )
   }

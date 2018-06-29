@@ -41,6 +41,8 @@ export default class FileField extends Component {
       <div className={`form-group clearfix ${hasErrorClass}`}>
         { label && <label htmlFor={newInput.name + "-noInteraction"}>{label}</label>}
         { decodeLabel && <label htmlFor={newInput.name + "-noInteraction"} dangerouslySetInnerHTML={{ __html: decodeLabel.decode() }} />}
+        { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
+        { hint && <span className="help-block clearfix">{hint}</span> }
         <input
           id={newInput.name}
           className="hide"
@@ -84,8 +86,6 @@ export default class FileField extends Component {
               </div>
             )
           }
-          { hint && <span className="help-block clearfix">{hint}</span> }
-          { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
         </label>
       </div>
     )

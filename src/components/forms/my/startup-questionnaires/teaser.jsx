@@ -19,7 +19,8 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
       startup_questionnaire_achievements: [{
         type: "complexArrOfObj",
         opts: {
-          selfPresences: false,
+          selfPresences: true,
+          selfMax: 5,
           childFields: {
             title: ["presences", { type: "lengthWord", opts: { max: 4 } }],
             content: ["presences", { type: "lengthWord", opts: { max: 20 } }]

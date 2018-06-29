@@ -22,6 +22,8 @@ export default class TextField extends Component {
         { customLabel && label && customLabel(label, input.name) }
         { !customLabel && label && <label htmlFor={input.name}>{label}</label> }
         { decodeLabel && <label htmlFor={input.name} dangerouslySetInnerHTML={{ __html: decodeLabel.decode() }} />}
+        { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
+        { hint && <span className="help-block">{hint}</span> }
         <input
           className="form-control"
           placeholder={placeholder}
@@ -30,8 +32,6 @@ export default class TextField extends Component {
           min={min}
           {...input}
         />
-        { hint && <span className="help-block">{hint}</span> }
-        { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
       </div>
     )
   }

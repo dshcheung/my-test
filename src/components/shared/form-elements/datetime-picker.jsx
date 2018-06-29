@@ -32,6 +32,8 @@ export default class DateTimePickerField extends Component {
       <div className={`form-group clearfix ${hasErrorClass}`}>
         { label && <label htmlFor={input.name}>{label}</label> }
         { decodeLabel && <label htmlFor={input.name} dangerouslySetInnerHTML={{ __html: decodeLabel.decode() }} />}
+        { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
+        { hint && <span className="help-block">{hint}</span> }
         <DateTimePick
           {...input}
           onChange={this.handleChange}
@@ -46,8 +48,6 @@ export default class DateTimePickerField extends Component {
           step={step || 30}
           finalView="year"
         />
-        { hint && <span className="help-block">{hint}</span> }
-        { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
       </div>
     )
   }

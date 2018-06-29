@@ -56,7 +56,8 @@ export default class MobileTextField extends Component {
       <div className={`form-group clearfix ${hasErrorClass}`}>
         {label && <label htmlFor={rest.name}>{label}</label> }
         { decodeLabel && <label htmlFor={rest.name} dangerouslySetInnerHTML={{ __html: decodeLabel.decode() }} />}
-
+        { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
+        { hint && <span className="help-block">{hint}</span> }
         <div className="input-group">
           <div className="input-group-btn">
             <DropdownButton
@@ -82,8 +83,6 @@ export default class MobileTextField extends Component {
             {...rest}
           />
         </div>
-        { hint && <span className="help-block">{hint}</span> }
-        { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
       </div>
     )
   }

@@ -31,17 +31,22 @@ const validators = {
     if (min && value < min) return `Minimum ${min}`
     if (max && value > max) return `Maximum ${max}`
   },
-  complexArrOfObj: (valueArr, { selfPresences, childFields }) => {
+  complexArrOfObj: (valueArr, { selfPresences, selfMax, childFields }) => {
+    const selfError = {}
     if (selfPresences) {
-      const selfError = {}
-
       if (!valueArr || valueArr.length === 0) {
         selfError._error = "Need at least 1"
       }
+    }
 
-      if (!isEmpty(selfError)) {
-        return selfError
+    if (selfMax) {
+      if (valueArr && valueArr.length > 5) {
+        selfError._error = `Too Many, Maximum is ${selfMax}`
       }
+    }
+
+    if (!isEmpty(selfError)) {
+      return selfError
     }
 
     const childErrors = []
