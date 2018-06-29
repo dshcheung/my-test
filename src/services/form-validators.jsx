@@ -16,6 +16,11 @@ const validators = {
     if (min && length < min) return `Minimum ${min} Characters`
     if (max && length > max) return `Maximum ${max} Characters`
   },
+  lengthWord: (value, { min, max }) => {
+    const length = value ? value.split(" ").length : 0
+    if (min && length < min) return `Minimum ${min} Words`
+    if (max && length > max) return `Maximum ${max} Words`
+  },
   confirmPassword: (value, { password }) => {
     if (value !== password) return "Please Enter The Same Password"
   },

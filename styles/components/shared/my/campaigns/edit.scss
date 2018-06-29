@@ -1,5 +1,5 @@
-#shared-my-campaigns-stages, #shared-my-campaigns-stage-two {
-  .stage-nav {
+#my-campaigns-edit {
+  .tab-nav {
     background-color: #ddd;
     margin-bottom: 10px;
     -moz-box-shadow:    inset 0 0 8px #aaa;
@@ -11,7 +11,7 @@
       justify-content: spaced-between;
     }
 
-    .stage-item {
+    .tab-item {
       flex-grow: 1;
       text-align: center;
       padding: 20px 0;

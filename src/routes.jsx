@@ -88,7 +88,7 @@ export default (
         <Route path="new" component={MyCampaignsNewContainer} />
         <Route path=":myCampaignID" component={MyCampaignsShowWrapperContainer}>
           <IndexRoute component={MyCampaignsShowContainer} />
-          <Route path="edit/:stage" component={MyCampaignsEditContainer} />
+          <Route path="edit/:tab" component={MyCampaignsEditContainer} />
         </Route>
       </Route>
       <Route path="dashboard" component={MyDashboardContainer} roleAccess="StartupUser" />

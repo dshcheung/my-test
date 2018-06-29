@@ -6,14 +6,18 @@ import {
   gMyCampaign
 } from '../../../../actions/my/campaigns'
 
-import { notyWarning } from '../../../../services/noty'
+import {
+  gMyStartupQuestionnaires, resetMyStartupQuestionnaire
+} from '../../../../actions/my/startup-questionnaires'
 
-import SharedMyCampaignsStages from '../../../shared/my/campaigns/stages'
-import SharedMyCampaignsStageOne from '../../../shared/my/campaigns/stage-one'
-import SharedMyCampaignsStageTwo from '../../../shared/my/campaigns/stage-two'
-import SharedMyCampaignsStageThree from '../../../shared/my/campaigns/stage-three'
-import SharedMyCampaignsStageFour from '../../../shared/my/campaigns/stage-four'
-import SharedMyCampaignsStageFive from '../../../shared/my/campaigns/stage-five'
+import {
+  gImmovable, resetImmovable
+} from '../../../../actions/immovables'
+
+import { notyWarning } from '../../../../services/noty'
+import { scrollTop } from '../../../../services/utils'
+
+import SharedMyCampaignsQuestionnaires from '../../../shared/my/campaigns/questionnaires'
 
 const mapStateToProps = (state) => {
   return {
@@ -23,7 +27,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    gMyCampaign: bindActionCreators(gMyCampaign, dispatch)
+    gMyCampaign: bindActionCreators(gMyCampaign, dispatch),
+    gMyStartupQuestionnaires: bindActionCreators(gMyStartupQuestionnaires, dispatch),
+    resetMyStartupQuestionnaire: bindActionCreators(resetMyStartupQuestionnaire, dispatch),
+    gImmovable: bindActionCreators(gImmovable, dispatch),
+    resetImmovable: bindActionCreators(resetImmovable, dispatch),
   }
 }
 
@@ -33,35 +41,57 @@ export default class MyCampaigns extends Component {
     super(props)
 
     this.state = {
-      refreshed: false,
-      refreshing: false
+      order: [
+        {
+          key: "basic",
+          title: "Basic",
+        },
+        {
+          key: "teaser",
+          title: "Teaser",
+        },
+        {
+          key: "product",
+          title: "Product"
+        },
+        {
+          key: "market",
+          title: "Market"
+        },
+        {
+          key: "team",
+          title: "Team"
+        },
+        {
+          key: "financials",
+          title: "Financials"
+        },
+        {
+          key: "campaign",
+          title: "Campaign"
+        },
+        {
+          key: "dataroom",
+          title: "Dataroom"
+        }
+      ],
+      currentTab: props.params.tab
     }
   }
 
   componentWillMount() {
     this.permitRedirection(this.props)
+    this.props.gMyStartupQuestionnaires()
+    this.props.gImmovable({ immovableID: "attachment_options" })
   }
 
   componentWillReceiveProps(nextProps) {
     this.permitRedirection(nextProps)
-    this.refreshCampaignOnStageThree(nextProps)
   }
 
-  refreshCampaignOnStageThree(nextProps) {
-    if (this.props.routeParams.stage === "stage_profile" && this.props.routeParams.stage !== nextProps.routeParams.stage) {
-      this.setState({ refreshed: false })
-    }
-
-    if (nextProps.routeParams.stage === "stage_profile" && !this.state.refreshed && !this.state.refreshing) {
-      this.setState({ refreshing: true })
-      this.props.gMyCampaign({
-        params: nextProps.params,
-        refresh: true,
-        cb: () => {
-          this.setState({ refreshed: true, refreshing: false })
-        }
-      })
-    }
+  componentWillUnmount() {
+    this.props.resetMyStartupQuestionnaire()
+    this.props.resetImmovable()
   }
 
   permitRedirection(props) {
@@ -71,53 +101,58 @@ export default class MyCampaigns extends Component {
     }
   }
 
-  render() {
-    const { myCampaign, router: { params } } = this.props
+  changeTab(tab) {
+    const { router } = this.props
+    scrollTop()
+    this.setState({ currentTab: tab })
+    router.push(`/my/campaigns/${router.params.myCampaignID}/edit/${tab}`)
+  }
+
+  renderTab() {
+    const { router, router: { params }, myCampaign } = this.props
+    const { currentTab } = this.state
     const routeParams = { ...params, myStartupID: _.get(myCampaign, 'startup.id') }
+
+    return (
+      <SharedMyCampaignsQuestionnaires
+        currentTab={currentTab}
+        routeParams={routeParams}
+        router={router}
+      />
+    )
+  }
+
+  render() {
+    const { myCampaign, disableNav } = this.props
+    const { currentTab } = this.state
 
     if (myCampaign && !myCampaign.can.edit) {
       return null
     }
 
     return (
-      <div>
-        <SharedMyCampaignsStages
-          router={this.props.router}
-          location={this.props.location}
-          currentStage={this.props.router.params.stage}
-        />
+      <div id="my-campaigns-edit">
+        <div className="tab-nav">
+          <div className="container">
+            {
+              this.state.order.map((t, i) => {
+                const bgColor = currentTab === t.key ? "bg-info" : ""
+                const disabledClass = disableNav ? "disabled" : "pointer"
+                return (
+                  <div
+                    key={i}
+                    className={`pointer tab-item ${bgColor} ${disabledClass}`}
+                    onClick={() => {
+                      this.changeTab(t.key)
+                    }}
+                  >{t.title}</div>
+                )
+              })
+            }
+          </div>
+        </div>
 
-        {
-          params.stage === "stage_create" && <SharedMyCampaignsStageOne
-            routeParams={routeParams}
-          />
-        }
-
-        {
-          params.stage === "stage_questionnaire" && <SharedMyCampaignsStageTwo
-            routeParams={routeParams}
-          />
-        }
-
-        {
-          params.stage === "stage_profile" && <SharedMyCampaignsStageThree
-            editMode
-            router={this.props.router}
-            routeParams={routeParams}
-          />
-        }
-
-        {
-          params.stage === "stage_campaign" && <SharedMyCampaignsStageFour
-            routeParams={routeParams}
-          />
-        }
-
-        {
-          params.stage === "stage_submission" && <SharedMyCampaignsStageFive
-            routeParams={routeParams}
-          />
-        }
+        { this.renderTab() }
       </div>
     )
   }
