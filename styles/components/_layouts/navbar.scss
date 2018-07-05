@@ -1,33 +1,62 @@
+$navbar-height: 100px;
+$navbar-lr-padding: 30px;
+$navbar-brand-padding: 10px;
+$navbar-tb-margin: 30.5px;
+$navbar-brand-line-height: $navbar-height;
+
 #layouts-navbar {
   height: $navbar-height;
-  background-color: white;
-  border-bottom: 1px solid $gray-lighter;
-  margin-bottom: 0;
-  padding: 0 10px;
+  background-color: $ahub-blue;
+  border: none;
+  margin: 0;
   > div {
+    height: $navbar-height;
+    padding: 0 $navbar-lr-padding;
+
     .navbar-header {
+      position: absolute;
+      width: calc(100% - (2 * #{$navbar-lr-padding}));
+      margin: 0;
+      height: $navbar-height;
+      background-color: $ahub-blue;
+      text-align: center;
+
+      // logo
       .navbar-brand {
-        padding: 15px;
-        img {
-          max-height: 70px;
-        }
+        padding: $navbar-brand-padding;
+        font-size: 40px;
+        line-height: $navbar-brand-line-height;
+        float: none;
+        color: $white;
       }
+
+      // button on collapse
       .navbar-toggle {
-        margin-top: 33px;
-        margin-bottom: 33px;
+        margin: $navbar-tb-margin 0;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .navbar-collapse {
+        height: $navbar-height !important;
       }
     }
 
     .navbar-collapse {
-      background-color: white;
+      background-color: #0b1641;
+
       .navbar-nav {
+        height: $navbar-height;
+
         > li {
           padding: 0;
           border-top: 5px solid transparent;
           height: 100%;
+
           &:hover:not(.get-started) {
-            border-top: 5px solid $brand-primary;
+            border-top: 5px solid $white;
           }
+
           &.get-started {
             a {
               padding: 28px 15px;
@@ -35,17 +64,17 @@
                 color: $white-text;
                 padding: 5px 10px;
                 font-weight: 100;
-                background-color: $brand-info;
+                background-color: $ahub-pink;
+                line-height: 29px;
               }
               &:hover, &:focus {
                 div {
-                  color: $white-text;
-                  background-color: $btn-info-hover-bg;
-                  border-color: $btn-info-hover-border;
+                  background-color: darken($ahub-pink, 10%);
                 }
               }
             }
           }
+
           &.profile {
             > a {
               padding: 15px;
@@ -57,13 +86,18 @@
                 }
                 i {
                   margin-left: 5px;
+                  color: $white;
                 }
               }
             }
           }
-          &.conversations, &.notifications {
+
+          &.notifications {
             position: relative;
             > a {
+              i {
+                color: $white;
+              }
               padding: 32px 5px;
               .badge {
                 position: absolute;
@@ -73,6 +107,7 @@
               }
             }
           }
+
           > a {
             padding: 35px 15px;
             height: 100%;
@@ -80,8 +115,9 @@
             text-transform: uppercase;
             cursor: pointer;
             font-weight: 400;
+
             >span {
-              color: $brand-primary;
+              color: $white;
             }
           }
         }
@@ -89,8 +125,13 @@
     }
 
     .navbar-collapse.in, .navbar-collapse.collapsing {
-      width: inherit;
-      border-bottom: 1px solid $gray-lighter;
+      position: absolute;
+      margin: 0px;
+      left: 0px;
+      right: 0px;
+      top: $navbar-height;
+      border-bottom: 1px solid $white;
+
       .navbar-nav {
         height: inherit;
         > li {
