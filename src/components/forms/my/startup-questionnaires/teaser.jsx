@@ -5,7 +5,9 @@ import Validators from '../../../../services/form-validators'
 
 import TextArea from '../../../shared/form-elements/text-area'
 import DateTimePicker from '../../../shared/form-elements/datetime-picker'
+import TextField from '../../../shared/form-elements/text-field'
 import FileField from '../../../shared/form-elements/file-field'
+import ImageField from '../../../shared/form-elements/image-field'
 import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
 
 @reduxForm({
@@ -14,9 +16,9 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
     return Validators({
       problem: [{ type: "lengthWord", opts: { max: 100 } }],
       solution: [{ type: "lengthWord", opts: { max: 100 } }],
-      revenue_model: [{ type: "lengthWord", opts: { max: 100 } }],
-      value_proposition: [{ type: "lengthWord", opts: { max: 200 } }],
-      startup_questionnaire_achievements: [{
+      make_money: [{ type: "lengthWord", opts: { max: 100 } }],
+      unique_selling_point: [{ type: "lengthWord", opts: { max: 200 } }],
+      startup_questionnaire_highlights: [{
         type: "complexArrOfObj",
         opts: {
           selfPresences: true,
@@ -26,8 +28,18 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
             content: ["presences", { type: "lengthWord", opts: { max: 20 } }]
           }
         }
+      }],
+      startup_questionnaire_media: [{
+        type: "complexArrOfObj",
+        opts: {
+          selfPresences: false,
+          childFields: {
+            logo: ["presences"],
+            link: ["presences", "httpLink"]
+          }
+        }
       }]
-    }, values, ["startup_questionnaire_achievements"])
+    }, values, ["startup_questionnaire_highlights", "startup_questionnaire_media"])
   },
   enableReinitialize: true
 })
@@ -39,12 +51,64 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
     return (
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
+          <Field
+            name="problem"
+            component={TextArea}
+            opts={{
+              label: "Problem"
+            }}
+          />
+
+          <Field
+            name="solution"
+            component={TextArea}
+            opts={{
+              label: "Solution"
+            }}
+          />
+
+          <Field
+            name="make_money"
+            component={TextArea}
+            opts={{
+              label: "How do you make money",
+              hint: "and how much...."
+            }}
+          />
+
+          <Field
+            name="unique_selling_point"
+            component={TextArea}
+            opts={{
+              label: "Unique selling point",
+              hint: "Show us how your Selling Proposition is unique. Can be Product features, Market segment addressed, Marketing strategy.... Be precise."
+            }}
+          />
+
+          <Field
+            name="pitch_deck"
+            component={FileField}
+            opts={{
+              label: "Pitch Deck",
+              urlKey: "original"
+            }}
+          />
+
+          <Field
+            name="business_plan"
+            component={FileField}
+            opts={{
+              label: "Business Plan (optional)",
+              urlKey: "original"
+            }}
+          />
+
           <FieldArray
-            name="startup_questionnaire_achievements"
+            name="startup_questionnaire_highlights"
             component={DynamicFieldArray}
             opts={{
-              label: "Achievements *",
-              groupName: "Achievement",
+              label: "Highlights *",
+              groupName: "Highlight",
               newFieldInit: {
                 occurred_on: moment().toDate(),
                 title: '',
@@ -64,7 +128,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                 },
                 {
                   key: "title",
-                  component: TextArea,
+                  component: TextField,
                   opts: {
                     placeholder: "Title"
                   }
@@ -80,37 +144,37 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             }}
           />
 
-          <Field
-            name="problem"
-            component={TextArea}
+          <FieldArray
+            name="startup_questionnaire_media"
+            component={DynamicFieldArray}
             opts={{
-              label: "Problem"
-            }}
-          />
-
-          <Field
-            name="solution"
-            component={TextArea}
-            opts={{
-              label: "Solution"
-            }}
-          />
-
-          <Field
-            name="revenue_model"
-            component={TextArea}
-            opts={{
-              label: "How do you make money",
-              hint: "and how much...."
-            }}
-          />
-
-          <Field
-            name="value_proposition"
-            component={TextArea}
-            opts={{
-              label: "Unique selling point",
-              hint: "Show us how your Selling Proposition is unique. Can be Product features, Market segment addressed, Marketing strategy.... Be precise."
+              label: "Media (optional) *",
+              groupName: "Medium",
+              newFieldInit: {
+                occurred_on: moment().toDate(),
+                title: '',
+                content: ''
+              },
+              onDeleteField: dMSQAttributes,
+              hint: "Provide us with the link to the article and the logo of the media",
+              dynamicFields: [
+                {
+                  key: "logo",
+                  component: ImageField,
+                  opts: {
+                    title: "Logo",
+                    urlKey: "original",
+                    optClass: "image-field-avatar"
+                  }
+                },
+                // {
+                //   key: "link",
+                //   component: LinkField,
+                //   opts: {
+                //     placeholder: "Link"
+                //   }
+                // }
+              ]
             }}
           />
 

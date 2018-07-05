@@ -54,8 +54,8 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
           dataKey: "startup_questionnaire_basic",
           model: MyStartupQuestionnairesBasicForm,
           formatValues: (q) => {
-            const founded = _.get(q, "founded")
-            _.set(q, 'founded', founded ? moment(founded).toDate() : moment().toDate())
+            const founded = _.get(q, "founded_year")
+            _.set(q, 'founded_year', founded ? moment(founded).toDate() : moment().toDate())
 
             return q
           }
@@ -65,7 +65,7 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
           dataKey: "startup_questionnaire_teaser",
           model: MyStartupQuestionnairesTeaserForm,
           formatValues: (q) => {
-            const cv = _.get(q, 'startup_questionnaire_achievements')
+            const cv = _.get(q, 'startup_questionnaire_highlights')
             if (cv) {
               const nv = cv.map((v) => {
                 const occurredOn = _.get(v, "occurred_on")
@@ -75,7 +75,28 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
                 }
               })
 
-              _.set(q, 'startup_questionnaire_achievements', nv)
+              _.set(q, 'startup_questionnaire_highlights', nv)
+            }
+
+            return q
+          }
+        },
+        {
+          key: "product",
+          dataKey: "startup_questionnaire_product",
+          // model: MyStartupQuestionnairesProductForm,
+          formatValues: (q) => {
+            const cv = _.get(q, 'startup_questionnaire_patents')
+            if (cv) {
+              const nv = cv.map((v) => {
+                const date = _.get(v, "registration_date")
+                return {
+                  ...v,
+                  registration_date: date ? moment(date).toDate() : moment().toDate()
+                }
+              })
+
+              _.set(q, 'startup_questionnaire_patents', nv)
             }
 
             return q
@@ -173,7 +194,7 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
       const { order } = this.state
 
       const dataKey = _.find(order, { key: currentTab }).dataKey
-      const myQuestionnaire = myQuestionnaires[`${dataKey}`]
+      const myQuestionnaire = _.get(myQuestionnaires, dataKey, {})
 
       const params = {
         [this.state.currentTab]: {
@@ -207,7 +228,7 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
 
     const baseInfo = _.find(order, { key: currentTab })
 
-    const myQuestionnaire = myQuestionnaires[baseInfo.dataKey]
+    const myQuestionnaire = _.get(myQuestionnaires, baseInfo.dataKey, {})
     const formatValues = baseInfo.formatValues
     const initialValues = formatValues ? formatValues(myQuestionnaire || {}) : myQuestionnaire
 

@@ -6,7 +6,6 @@ import Cookies from 'js-cookie'
 import { AUTH_TOKEN } from '../../constants'
 
 import { getMyProfile } from '../../actions/my/profile'
-import { gMyConversations, gMyConversation } from '../../actions/my/conversations'
 import { gMyNotifications } from '../../actions/my/notifications'
 
 import Navbar from './navbar'
@@ -21,8 +20,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getMyProfile: bindActionCreators(getMyProfile, dispatch),
-    gMyConversations: bindActionCreators(gMyConversations, dispatch),
-    gMyConversation: bindActionCreators(gMyConversation, dispatch),
     gMyNotifications: bindActionCreators(gMyNotifications, dispatch)
   }
 }
@@ -32,7 +29,6 @@ export default class App extends Component {
   componentWillMount() {
     if (Cookies.get(AUTH_TOKEN)) {
       this.props.getMyProfile()
-      this.props.gMyConversations()
       this.props.gMyNotifications()
     }
   }

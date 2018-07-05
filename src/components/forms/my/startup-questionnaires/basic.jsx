@@ -26,7 +26,7 @@ export default class MyStartupQuestionnairesBasicForm extends Component {
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
           <Field
-            name="name"
+            name="company_name"
             component={TextField}
             opts={{
               label: "Company name",
@@ -35,17 +35,7 @@ export default class MyStartupQuestionnairesBasicForm extends Component {
           />
 
           <Field
-            name="logo"
-            component={ImageField}
-            opts={{
-              title: "Logo",
-              urlKey: "original",
-              optClass: "image-field-avatar"
-            }}
-          />
-
-          <Field
-            name="founded"
+            name="founded_year"
             component={DateTimePicker}
             opts={{
               label: "Founded year",
@@ -56,7 +46,7 @@ export default class MyStartupQuestionnairesBasicForm extends Component {
           />
 
           <Field
-            name="company_hq"
+            name="country_of_incorporation"
             component={SelectField}
             opts={{
               options: [
@@ -70,7 +60,7 @@ export default class MyStartupQuestionnairesBasicForm extends Component {
           />
 
           <Field
-            name="company_vertical"
+            name="vertical"
             component={SelectField}
             opts={{
               options: [
@@ -94,12 +84,23 @@ export default class MyStartupQuestionnairesBasicForm extends Component {
           />
 
           <Field
-            name="visual_identity"
+            name="logo"
             component={ImageField}
             opts={{
-              title: "Visual Identity",
+              title: "Logo",
               urlKey: "original",
               optClass: "image-field-avatar"
+            }}
+          />
+
+          <Field
+            name="banner"
+            component={ImageField}
+            opts={{
+              title: "Visual Identity (optional)",
+              urlKey: "original",
+              optClass: "image-field-banner",
+              hint: "Banner"
             }}
           />
 
