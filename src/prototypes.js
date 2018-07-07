@@ -32,6 +32,10 @@ String.prototype.decode = function(){
   return e.innerHTML;
 };
 
+String.prototype.truncate = function(targetLength){
+  return this.substring(0, targetLength) + '...';
+};
+
 String.prototype.capitalize = function(){
   return this.charAt(0).toUpperCase() + this.slice(1);
 };

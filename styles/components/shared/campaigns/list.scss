@@ -1,3 +1,8 @@
+$list-status-bubble-spacing: 5px;
+$list-campaign-logo-size: 90px;
+$list-overlap-bot-space: -30px;
+$list-campaign-name-left-space: 100px;
+
 @media (min-width: 768px) {
   #shared-campaigns-list {
     display: flex;
@@ -19,6 +24,9 @@
       border: 1px solid $gray-text;
       border-bottom-color: transparent;
       padding: 0;
+      position: relative;
+      z-index: 999;
+
       .card-banner {
         height: 200px;
         background-position: center;
@@ -28,14 +36,45 @@
           text-decoration: none;
           box-shadow: 1px 1px 5px $gray-lighter;
         }
+      }
 
-        .campaign-logo {
-          border-radius: 5px;
-          width: 100px;
-          padding: 5px;
-          height: auto;
-          background-color: $white;
+      .campaign-logo {
+        position: absolute;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: $white;
+        width: $list-campaign-logo-size;
+        height: $list-campaign-logo-size;
+        left: $list-status-bubble-spacing;
+        bottom: $list-overlap-bot-space;
+      }
+
+      .status-bubble {
+        position: absolute;
+        right: $list-status-bubble-spacing;
+        bottom: $list-status-bubble-spacing;
+        span {
+          border-radius: 0;
         }
+      }
+
+      .active-bubble {
+        position: absolute;
+        right: $list-status-bubble-spacing;
+        top: $list-status-bubble-spacing;
+        border-radius: 0;
+        span {
+          border-radius: 0;
+        }
+      }
+
+      .name {
+        position: absolute;
+        left: $list-campaign-name-left-space;
+        bottom: $list-overlap-bot-space;
+        color: black;
+        margin: 0;
       }
     }
 
@@ -45,14 +84,9 @@
       flex: 1 auto;
       display: flex;
       flex-flow: column nowrap;
-      padding: 15px;
-      color: $gray-light;
+      padding: 38px 15px 15px;
 
-      hr {
-        margin: 10px auto;
-      }
-
-      .name, .stats {
+      .stats {
         flex: 0 1 auto;
         font-weight: 100;
         width: 100%;
@@ -63,45 +97,74 @@
         font-size: ($font-size-base * 1.2);
       }
 
-      .status-bubble {
-        .label:not(:last-child) {
-          margin-right: 5px;
-        }
-      }
-
       .stats {
+        > div {
+          margin: 0 0 8px;
+        }
+
         .progress {
-          border: 2px solid $brand-info;
-          border-radius: 2px;
           height: 10px;
-          margin: 15px auto;
-          background-color: $white;
+          border-radius: 5px;
+
           .progress-bar {
+            background-color: $ahub-pink;
+          }
+        }
+
+        .investment-stat {
+          div:first-child {
             float: left;
-            width: 0;
-            height: 100%;
-            text-align: center;
-            background-color: $brand-info;
+            color: $ahub-pink;
           }
-          .progress-start, .progress-end {
-            position: absolute;
-            margin-top: -11px;
-            padding: 12px;
-            border-radius: 20px;
-            border: 2px solid $brand-info;
-            background-color: $white;
-            &.filled {
-              background-color: $brand-info;
-            }
+
+          div:last-child {
+            float: right;
           }
-          .progress-start {
-            left: 15px;
-            border-right-width: 0;
+        }
+
+        .description {
+          overflow: hidden;
+          height: 40px;
+          line-height: 20px;
+          text-align: left;
+
+          &:before {
+            content:"";
+            float: left;
+            width: 5px;
+            height: 40px;
           }
-          .progress-end {
-            right: 15px;
-            border-left-width: 0;
+
+          & > *:first-child {
+            float: right;
+            width: 100%;
+            margin-left: -5px;
           }
+
+          &:after {
+            content:"\02026";
+            box-sizing: content-box;
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            float: right;
+            position: relative;
+            top: -20px;
+            left: 100%;
+            width: 50px;
+            margin-left: -50px;
+            padding-right: 5px;
+            text-align: right;
+            background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), to(white), color-stop(50%, white));
+            background: -moz-linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
+            background: -o-linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
+            background: -ms-linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
+            background: linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
+          }
+        }
+
+        .read-more {
+          margin: 0 -15px -15px;
+          width: initial;
         }
       }
     }
