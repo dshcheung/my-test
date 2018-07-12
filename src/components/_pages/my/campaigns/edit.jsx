@@ -63,8 +63,8 @@ export default class MyCampaigns extends Component {
           title: "Team"
         },
         {
-          key: "financials",
-          title: "Financials"
+          key: "financial",
+          title: "Financial"
         },
         {
           key: "campaign",
@@ -136,7 +136,7 @@ export default class MyCampaigns extends Component {
           <div className="container">
             {
               this.state.order.map((t, i) => {
-                const bgColor = currentTab === t.key ? "bg-info" : ""
+                const bgColor = currentTab === t.key ? "active" : ""
                 const disabledClass = disableNav ? "disabled" : "pointer"
                 return (
                   <div

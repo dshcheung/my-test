@@ -57,6 +57,17 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
   enableReinitialize: true
 })
 
+// startup_questionnaire_financial_attributes: [
+//   :id,
+//   :income_statement,
+//   :cash_flow_statement,
+//   startup_questionnaire_break_even_attributes: [ :id, :quarter, :year, :_destroy ],
+//   startup_questionnaire_cash_burn_attributes: [ :id, :amount, :currency, :_destroy ],
+//   startup_questionnaire_use_of_funds_attributes: [ :id, :amount, :currency, :_destroy ],
+//   startup_questionnaire_previous_funds_attributes: [ :id, :occurred_on, :amount, :currency, :fund_type, :_destroy ],
+//   startup_questionnaire_cap_tables_attributes: [ :id, :percentage_of_shares, :first_name, :last_name, :_destroy ]
+// ],
+
 export default class MyStartupQuestionnairesFinancialForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass, dMSQAttributes } = this.props
@@ -65,11 +76,24 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
           <Field
-            name="three_kpis"
-            component={TextArea}
+            name="income_statements"
+            component={FileField}
             opts={{
-              label: "What are your three most critical KPIs for you and your business model ? *",
-              hint: "variables that you will monitor and will use to gauge your progression vs your objectives"
+              label: "Income Statement Projection",
+              urlKey: "original",
+              templateUrl: "https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/templates/income+statement+template.xlsx",
+              hint: "See Template"
+            }}
+          />
+
+          <Field
+            name="cash_flow_statements"
+            component={FileField}
+            opts={{
+              label: "Cash-Flow Statement Projection",
+              urlKey: "original",
+              templateUrl: "https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/templates/cash-flow+statement+template.xlsx",
+              hint: "See Template"
             }}
           />
 
@@ -81,27 +105,6 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             }}
           />
 
-          <Field
-            name="income_statements"
-            component={FileField}
-            opts={{
-              label: "Building a summarized Financial statements projection (Y, Y+1, Y+2) *",
-              urlKey: "original",
-              templateUrl: "https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/templates/income+statement+template.xlsx",
-              hint: "Please use \"select file\" to upload your own projections statements. Otherwise you can use \"download template\" to fill in our excel model"
-            }}
-          />
-
-          <Field
-            name="cash_flow_statements"
-            component={FileField}
-            opts={{
-              label: "Building a summarized Cash-Flow statements projection (Y, Y+1, Y+2) *",
-              urlKey: "original",
-              templateUrl: "https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/templates/cash-flow+statement+template.xlsx",
-              hint: "Please use \"select file\" to upload your own projections statements. Otherwise you can use \"download template\" to fill in our excel model"
-            }}
-          />
 
           <Field
             name="current_fund"

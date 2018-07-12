@@ -19,7 +19,6 @@ import MyStartupQuestionnairesBasicForm from '../../../forms/my/startup-question
 import MyStartupQuestionnairesTeaserForm from '../../../forms/my/startup-questionnaires/teaser'
 import MyStartupQuestionnairesProductForm from '../../../forms/my/startup-questionnaires/product'
 import MyStartupQuestionnairesMarketForm from '../../../forms/my/startup-questionnaires/market'
-import MyStartupQuestionnairesStrategyForm from '../../../forms/my/startup-questionnaires/strategy'
 import MyStartupQuestionnairesTeamForm from '../../../forms/my/startup-questionnaires/team'
 import MyStartupQuestionnairesFinancialForm from '../../../forms/my/startup-questionnaires/financial'
 import MyStartupQuestionnairesInvestmentForm from '../../../forms/my/startup-questionnaires/investment'
@@ -106,27 +105,20 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
         {
           key: "market",
           dataKey: "startup_questionnaire_market",
-          model: MyStartupQuestionnairesMarketForm
-        },
-        {
-          key: "strategy",
-          dataKey: "startup_questionnaire_strategy",
-          model: MyStartupQuestionnairesStrategyForm,
+          model: MyStartupQuestionnairesMarketForm,
           formatValues: (q) => {
-            const cv = _.get(q, 'startup_questionnaire_market_strategies')
+            const cv = _.get(q, 'go_to_market_strategies')
             if (cv) {
               const nv = cv.map((v) => {
-                const plannedFor = _.get(v, "planned_for")
+                const date = _.get(v, "occurs_on")
                 return {
                   ...v,
-                  planned_for: plannedFor ? moment(plannedFor).toDate() : moment().toDate()
+                  occurs_on: date ? moment(date).toDate() : moment().toDate()
                 }
               })
 
-              _.set(q, 'startup_questionnaire_market_strategies', nv)
+              _.set(q, 'go_to_market_strategies', nv)
             }
-
-            return q
           }
         },
         {

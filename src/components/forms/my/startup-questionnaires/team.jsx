@@ -75,6 +75,16 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
   enableReinitialize: true
 })
 
+// startup_questionnaire_team_attributes: [
+//   :id,
+//   :story,
+//   :next_hires,
+//   startup_questionnaire_team_founders_attributes: [ :id, :name, :position, :avatar, :contract, :salary, :years_of_experience, :linked_in, :_destroy ],
+//   startup_questionnaire_team_members_attributes: [ :id, :name, :position, :avatar, :contract, :_destroy ],
+//   startup_questionnaire_team_advisors_attributes: [ :id, :name, :expertise, :avatar, :_destroy ],
+//   attachments_attributes: [ :id, :title, :file, :remove_file, :_destroy ]
+// ],
+
 export default class MyStartupQuestionnairesTeamForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass, dMSQAttributes, pristine } = this.props
@@ -86,17 +96,8 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
             name="story"
             component={TextArea}
             opts={{
-              label: "Your Team Story *",
-              hint: "Feel free to upload in the Extra files section below any detailed slide/story you want to show us."
-            }}
-          />
-
-          <Field
-            name="next_hires"
-            component={TextArea}
-            opts={{
-              label: "Is your team complete ? What would be your next hires ? *",
-              hint: "Imagine you can make 2 wishes for free concerning your dream team,... ok,ok let us stick to the legend : make it 3 ! what / who would you like to add to your team ?"
+              label: "Team story",
+              hint: "When did you meet ? What have you done together ? what is the alchimy you experienced ? Why are you the best team to conduct your mission ? Be reflective and personal "
             }}
           />
 
@@ -121,7 +122,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "avatar",
                   component: ImageField,
                   opts: {
-                    label: "Avatar",
+                    title: "Avatar",
                     optClass: "image-field-avatar",
                     urlKey: "original"
                   }
@@ -198,7 +199,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "avatar",
                   component: ImageField,
                   opts: {
-                    label: "Avatar",
+                    title: "Avatar",
                     optClass: "image-field-avatar",
                     urlKey: "original"
                   }
@@ -251,7 +252,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "avatar",
                   component: ImageField,
                   opts: {
-                    label: "Avatar (optional)",
+                    title: "Avatar (optional)",
                     optClass: "image-field-avatar",
                     urlKey: "original"
                   }
