@@ -9,6 +9,7 @@ export default class CurrencyField extends Component {
     super(props)
 
     this.state = {
+      id: props.input.value.id || null,
       currency: props.input.value.currency,
       amount: props.input.value.amount
     }

@@ -128,7 +128,7 @@ export default class MyCampaigns extends Component {
   }
 
   render() {
-    const { myCampaign, disableNav } = this.props
+    const { myCampaign } = this.props
     const { currentTab } = this.state
 
     if (myCampaign && !myCampaign.can.edit) {
@@ -142,11 +142,10 @@ export default class MyCampaigns extends Component {
             {
               this.state.order.map((t, i) => {
                 const bgColor = currentTab === t.key ? "active" : ""
-                const disabledClass = disableNav ? "disabled" : "pointer"
                 return (
                   <div
                     key={i}
-                    className={`pointer tab-item ${bgColor} ${disabledClass}`}
+                    className={`pointer tab-item ${bgColor}`}
                     onClick={() => {
                       this.changeTab(t.key)
                     }}

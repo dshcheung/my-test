@@ -21,7 +21,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
         opts: {
           selfPresences: true,
           childFields: {
-            money_attributes: ["presences"], // TODO: currency_presenses
+            money: ["presences"], // TODO: currency_presenses
           }
         }
       }],
@@ -40,7 +40,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
         opts: {
           selfPresences: true,
           childFields: {
-            percentage: ["presences", "noDecimal"],
+            percentage: ["presences"],
             description: ["presences", { type: "lengthWord", opts: { max: 50 } }]
           }
         }
@@ -51,7 +51,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
           selfPresences: false,
           childFields: {
             occurred_on: ["presences"],
-            money_attributes: ["presences"],
+            money: ["presences"],
             contract_type: ["presences"],
             date_of_investment: ["presences"],
             class_of_shares: ["presences"],
@@ -81,12 +81,12 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
         }
       }]
     }, values, [
-      // "startup_questionnaire_cash_burns",
-      // "startup_questionnaire_break_even",
-      // "startup_questionnaire_use_of_funds",
+      "startup_questionnaire_cash_burns",
+      "startup_questionnaire_break_even",
+      "startup_questionnaire_use_of_funds",
       // "startup_questionnaire_previous_funds",
-      // "startup_questionnaire_cap_tables_attributes",
-      // "attachments"
+      "startup_questionnaire_cap_tables_attributes",
+      "attachments"
     ])
   },
   enableReinitialize: true
@@ -100,7 +100,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
           <Field
-            name="income_statements"
+            name="income_statement"
             component={FileField}
             opts={{
               label: "Income Statement Projection",
@@ -111,7 +111,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
           />
 
           <Field
-            name="cash_flow_statements"
+            name="cash_flow_statement"
             component={FileField}
             opts={{
               label: "Cash-Flow Statement Projection",
@@ -128,14 +128,15 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
               label: "Average monthly cash burn-rate",
               staticGroup: true,
               newFieldInit: {
-                money_attributes: {
+                money: {
+                  id: '',
                   amount: '',
                   currency: "HKD"
                 }
               },
               dynamicFields: [
                 {
-                  key: "money_attributes",
+                  key: "money",
                   component: CurrencyField,
                   opts: {
                     label: "Amount"
@@ -162,12 +163,12 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   component: SelectField,
                   opts: {
                     options: [
-                      { name: "Q1" },
-                      { name: "Q2" },
-                      { name: "Q3" },
-                      { name: "Q4" }
+                      { value: 1, name: "Q1" },
+                      { value: 2, name: "Q2" },
+                      { value: 3, name: "Q3" },
+                      { value: 4, name: "Q4" }
                     ],
-                    valueKey: "name",
+                    valueKey: "value",
                     nameKey: "name",
                     label: "Quarter",
                     placeholder: "Select a Quarter"
@@ -229,7 +230,8 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
               groupName: "Round",
               newFieldInit: {
                 occurred_on: moment().toDate(),
-                money_attributes: {
+                money: {
+                  id: '',
                   amount: '',
                   currency: "HKD"
                 },
@@ -248,7 +250,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   }
                 },
                 {
-                  key: "money_attributes",
+                  key: "money",
                   component: CurrencyField,
                   opts: {
                     type: "number",

@@ -38,17 +38,60 @@ export const gMyStartupQuestionnaires = ({ queries = {}, nextHref = null } = {})
   }
 }
 
+export const C_MY_STARTUP_QUESTIONNAIRE = "C_MY_STARTUP_QUESTIONNAIRE"
+export const cMyStartupQuestionnaire = (values, cb) => {
+  const params = generateParams(values)
+
+  const request = genAxios({
+    method: "post",
+    url: genApiUrl(apiMyStartupQuestionnairesIndex()),
+    data: getFormData(params, 'startup_questionnaire')
+  })
+
+  return {
+    type: C_MY_STARTUP_QUESTIONNAIRE,
+    request,
+    successCB: (dispatch, data) => {
+      dispatch(mergeMyStartupQuestionnaires({ startup_questionnaires: [data] }))
+      notySuccess("Saved!")
+      if (cb) cb(data)
+    }
+  }
+}
+
 // TODO: add a delete one for deleting members, founders...etc
 export const U_MY_STARTUP_QUESTIONNAIRE = "U_MY_STARTUP_QUESTIONNAIRE"
 export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
-  const checkFile = (x, key) => {
-    const file = _.get(x, `${key}[0]`)
-    if (file) {
-      _.set(x, key, file)
-    } else {
-      _.set(x, key, null)
+  const params = generateParams(values)
+
+  const request = genAxios({
+    method: "put",
+    url: genApiUrl(apiMyStartupQuestionnairesShow(routeParams)),
+    data: getFormData(params, 'startup_questionnaire')
+  })
+
+  return {
+    type: U_MY_STARTUP_QUESTIONNAIRE,
+    request,
+    successCB: (dispatch, data) => {
+      dispatch(mergeMyStartupQuestionnaires({ startup_questionnaires: [data] }))
+      notySuccess("Saved!")
+      if (cb) cb(data)
     }
   }
+}
+
+const checkFile = (x, key) => {
+  const file = _.get(x, `${key}[0]`)
+  if (file) {
+    _.set(x, key, file)
+  } else {
+    _.set(x, key, null)
+  }
+}
+
+const generateParams = (values) => {
+  console.log(values)
 
   const checkFileList = [
     { target: 'teaser.startup_questionnaire_media', key: 'logo' },
@@ -72,7 +115,15 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
     })
   })
 
-  console.log(values)
+  let startup_questionnaire_previous_funds_attributes = _.get(values, 'financial.startup_questionnaire_previous_funds', null)
+  if (startup_questionnaire_previous_funds_attributes) {
+    startup_questionnaire_previous_funds_attributes = startup_questionnaire_previous_funds_attributes.map((pf) => {
+      return {
+        ...pf,
+        money_attributes: _.get(pf, 'money', null)
+      }
+    })
+  }
 
   const params = {
     startup_questionnaire_basic_attributes: {
@@ -82,7 +133,7 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
       country_of_incorporation: _.get(values, 'basic.country_of_incorporation', null),
       vertical: _.get(values, 'basic.vertical', null),
       tagline: _.get(values, 'basic.tagline', null),
-      hashtags_attributes: _.get(values, 'basic.hashtag', null),
+      hashtags_attributes: _.get(values, 'basic.hashtags', null),
       logo: _.get(values, 'basic.logo[0]', null),
       banner: _.get(values, 'basic.banner[0]', null)
     },
@@ -92,8 +143,8 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
       solution: _.get(values, 'teaser.solution', null),
       make_money: _.get(values, 'teaser.make_money', null),
       solution_benchmark: _.get(values, 'teaser.solution_benchmark', null),
-      pitch_deck: _.get(values, 'teaser.pitch_deck', null),
-      business_plan: _.get(values, 'teaser.business_plan', null),
+      // pitch_deck: _.get(values, 'teaser.pitch_deck', null),
+      // business_plan: _.get(values, 'teaser.business_plan', null),
       startup_questionnaire_highlights_attributes: _.get(values, 'teaser.startup_questionnaire_highlights', null),
       startup_questionnaire_media_attributes: _.get(values, 'teaser.startup_questionnaire_media', null),
       attachments_attributes: _.get(values, 'teaser.attachments', null)
@@ -130,10 +181,13 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
       id: _.get(values, 'financial.id', null),
       income_statement: _.get(values, 'financial.income_statement[0]', null),
       cash_flow_statement: _.get(values, 'financial.cash_flow_statement[0]', null),
-      startup_questionnaire_cash_burn_attributes: _.get(values, 'financial.startup_questionnaire_cash_burns[0]', null),
+      startup_questionnaire_cash_burn_attributes: {
+        id: _.get(values, 'financial.startup_questionnaire_cash_burns[0].id', null),
+        money_attributes: _.get(values, 'financial.startup_questionnaire_cash_burns[0].money', null),
+      },
       startup_questionnaire_break_even_attributes: _.get(values, 'financial.startup_questionnaire_break_even[0]', null),
-      // startup_questionnaire_use_of_funds_attributes: _.get(values, 'financial.startup_questionnaire_use_of_funds', null),
-      // startup_questionnaire_previous_funds_attributes: _.get(values, 'financial.startup_questionnaire_previous_funds', null),
+      startup_questionnaire_use_of_funds_attributes: _.get(values, 'financial.startup_questionnaire_use_of_funds', null),
+      startup_questionnaire_previous_funds_attributes,
       startup_questionnaire_cap_tables_attributes: _.get(values, 'financial.startup_questionnaire_cap_tables', null),
       attachments_attributes: _.get(values, 'financial.attachments', null)
     },
@@ -147,19 +201,16 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
 
   console.log(params)
 
-  const request = genAxios({
-    method: "put",
-    url: genApiUrl(apiMyStartupQuestionnairesShow(routeParams)),
-    data: getFormData(params, 'startup_questionnaire')
-  })
-
-  return {
-    type: U_MY_STARTUP_QUESTIONNAIRE,
-    request,
-    successCB: (dispatch, data) => {
-      dispatch(mergeMyStartupQuestionnaires({ startup_questionnaires: [data] }))
-      notySuccess("Saved!")
-      if (cb) cb(data)
-    }
-  }
+  return params
 }
+
+// :id,
+// :campaign_type,
+// :discount_rate,
+// :interest_rate,
+// :maturity_date,
+// :equity_percentage,
+// raised_attributes: [:id, :amount, :currency, :_destroy],
+// pre_money_valuation_attributes: [:id, :amount, :currency, :_destroy],
+// valuation_cap_attributes: [:id, :amount, :currency, :_destroy],
+// attachments_attributes: [ :id, :title, :file, :remove_file, :_destroy ]

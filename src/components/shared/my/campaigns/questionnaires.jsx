@@ -164,20 +164,29 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
             const cv2 = _.get(q, 'startup_questionnaire_cap_tables')
             if (cv2) {
               const nv2 = cv2.map((v) => {
-                const date = _.get(v, "date_of_investment")
+                const date = _.get(v, "date_of_investment_as_i")
                 return {
                   ...v,
                   date_of_investment: date ? moment(date).toDate() : moment().toDate()
                 }
               })
 
-              _.set(q, 'startup_questionnaire_financial_fund_histories', nv2)
+              _.set(q, 'startup_questionnaire_cap_tables', nv2)
             }
 
             const cv3 = _.get(q, 'startup_questionnaire_break_even')
-            if (cv3) {
+            if (cv3 && !cv3.length) {
               const nv3 = { ...cv3, year: cv3.year ? moment(cv3.year).toDate() : moment().toDate() }
               _.set(q, 'startup_questionnaire_break_even', [nv3])
+            }
+
+            const cv4 = _.get(q, 'startup_questionnaire_cash_burns')
+            if (cv4 && !cv4.length) {
+              const money = _.get(cv4, 'money')
+              const amount = _.get(money, 'amount') || ''
+              const nv4 = { ...cv4, money: { ...money, amount } }
+
+              _.set(q, 'startup_questionnaire_cash_burns', [nv4])
             }
 
             return q
@@ -191,7 +200,7 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
           nextTab: "attachments"
         },
         {
-          key: "attachments",
+          key: "dataroom",
           dataKey: "attachments",
           model: MyStartupQuestionnairesAttachmentsForm,
           prevTab: "campaign",

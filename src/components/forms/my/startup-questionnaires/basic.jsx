@@ -13,8 +13,9 @@ import MultiselectField from '../../../shared/form-elements/multiselect-field'
   form: "MyStartupQuestionnairesBasicForm",
   validate: (values) => {
     return Validators({
+      company_name: ["presences"],
       tagline: [{ type: "length", opts: { max: 140 } }],
-      hashtag: [{ type: "amount", opts: { max: 5 } }]
+      hashtags: [{ type: "amount", opts: { max: 5 } }]
     }, values)
   },
   enableReinitialize: true
@@ -86,7 +87,7 @@ export default class MyStartupQuestionnairesBasicForm extends Component {
           />
 
           <Field
-            name="hashtag"
+            name="hashtags"
             component={MultiselectField}
             opts={{
               label: "Hashtags",

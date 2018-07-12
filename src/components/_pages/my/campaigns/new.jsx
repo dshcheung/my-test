@@ -3,21 +3,20 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import {
-  cMyStartup, C_MY_STARTUP,
-} from '../../../../actions/my/startups'
+  cMyStartupQuestionnaire, C_MY_STARTUP_QUESTIONNAIRE,
+} from '../../../../actions/my/startup-questionnaires'
 
-import SharedMyCampaignsStages from '../../../shared/my/campaigns/stages'
-import MyStartupsNameForm from '../../../forms/my/startups/name'
+import MyStartupQuestionnairesBasicForm from '../../../forms/my/startup-questionnaires/basic'
 
 const mapStateToProps = (state) => {
   return {
-    cMyStartupInProcess: _.get(state.requestStatus, C_MY_STARTUP)
+    cMyStartupQuestionnaireInProcess: _.get(state.requestStatus, C_MY_STARTUP_QUESTIONNAIRE)
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    cMyStartup: bindActionCreators(cMyStartup, dispatch)
+    cMyStartupQuestionnaire: bindActionCreators(cMyStartupQuestionnaire, dispatch)
   }
 }
 
@@ -26,30 +25,84 @@ export default class MyCampaignsNew extends Component {
   constructor(props) {
     super(props)
 
-    this.cMyStartup = this.cMyStartup.bind(this)
+    this.state = {
+      order: [
+        {
+          key: "basic",
+          title: "Basic",
+        },
+        {
+          key: "teaser",
+          title: "Teaser",
+        },
+        {
+          key: "product",
+          title: "Product"
+        },
+        {
+          key: "market",
+          title: "Market"
+        },
+        {
+          key: "team",
+          title: "Team"
+        },
+        {
+          key: "financial",
+          title: "Financial"
+        },
+        {
+          key: "campaign",
+          title: "Campaign"
+        },
+        {
+          key: "dataroom",
+          title: "Dataroom"
+        }
+      ],
+      currentTab: 'basic',
+      disableNav: true
+    }
+
+    this.cMyStartupQuestionnaire = this.cMyStartupQuestionnaire.bind(this)
   }
 
-  cMyStartup(values) {
-    this.props.cMyStartup(values)
+  cMyStartupQuestionnaire(values) {
+    this.props.cMyStartupQuestionnaire({ basic: values }, (data) => {
+      this.props.router.push(`/my/campaigns/${data.campaign.id}/edit/teaser`)
+    })
   }
 
   render() {
-    const { cMyStartupInProcess } = this.props
+    const { currentTab, disableNav } = this.state
 
     return (
       <div id="my-campaigns-new">
-        <SharedMyCampaignsStages
-          router={this.props.router}
-          location={this.props.location}
-          currentStage="create"
-          disableNav
-        />
+        <div className="tab-nav">
+          <div className="container">
+            {
+              this.state.order.map((t, i) => {
+                const bgColor = currentTab === t.key ? "active" : ""
+                const disabledClass = disableNav ? "disabled" : "pointer"
+                return (
+                  <div
+                    key={i}
+                    className={`tab-item ${bgColor} ${disabledClass}`}
+                  >{t.title}</div>
+                )
+              })
+            }
+          </div>
+        </div>
 
-        <MyStartupsNameForm
-          optClass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
-          onSubmit={this.cMyStartup}
-          submitInProcess={cMyStartupInProcess}
-          title="Create Startup"
+        <MyStartupQuestionnairesBasicForm
+          initialValues={{
+            founded_year: moment().toDate(),
+            hashtags: []
+          }}
+          onSubmit={this.cMyStartupQuestionnaire}
+          submitInProcess={this.props.cMyStartupQuestionnaireInProcess}
+          optClass="col-xs-12 col-sm-6 col-sm-offset-3"
         />
       </div>
     )
