@@ -128,14 +128,13 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
     },
     startup_questionnaire_financial_attributes: {
       id: _.get(values, 'financial.id', null),
-      three_kpis: _.get(values, 'financial.three_kpis', null),
-      break_even: _.get(values, 'financial.break_even', null),
-      income_statements: _.get(values, 'financial.income_statements[0]', null),
-      cash_flow_statements: _.get(values, 'financial.cash_flow_statements[0]', null),
-      current_fund: _.get(values, 'financial.current_fund', null),
-      monthly_cash_burn: _.get(values, 'financial.monthly_cash_burn', null),
-      startup_questionnaire_financial_fund_histories_attributes: _.get(values, 'financial.startup_questionnaire_financial_fund_histories', null),
-      startup_questionnaire_financial_use_of_funds_attributes: _.get(values, 'financial.startup_questionnaire_financial_use_of_funds', null),
+      income_statement: _.get(values, 'financial.income_statement[0]', null),
+      cash_flow_statement: _.get(values, 'financial.cash_flow_statement[0]', null),
+      startup_questionnaire_cash_burn_attributes: _.get(values, 'financial.startup_questionnaire_cash_burns[0]', null),
+      startup_questionnaire_break_even_attributes: _.get(values, 'financial.startup_questionnaire_break_even[0]', null),
+      // startup_questionnaire_use_of_funds_attributes: _.get(values, 'financial.startup_questionnaire_use_of_funds', null),
+      // startup_questionnaire_previous_funds_attributes: _.get(values, 'financial.startup_questionnaire_previous_funds', null),
+      startup_questionnaire_cap_tables_attributes: _.get(values, 'financial.startup_questionnaire_cap_tables', null),
       attachments_attributes: _.get(values, 'financial.attachments', null)
     },
     startup_questionnaire_investment_attributes: {

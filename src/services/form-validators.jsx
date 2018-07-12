@@ -125,10 +125,12 @@ const validators = {
     if (!previewUrl && valueType !== "FileList") return "Required"
   },
   noDecimal: (value) => {
-    const regex = /\./
-    const result = regex.test(value.toString())
-    if (result) {
-      return "No Decimal Permitted"
+    if (value) {
+      const regex = /\./
+      const result = regex.test(value.toString())
+      if (result) {
+        return "No Decimal Permitted"
+      }
     }
   },
   httpLink: (value) => {

@@ -23,7 +23,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
         opts: {
           selfPresences: true,
           childFields: {
-            title: ["presences"],
+            name: ["presences"],
             website: ["presences", "httpLink"]
           }
         }
@@ -48,7 +48,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
           }
         }
       }]
-    }, values, ["competitors", "attachments"])
+    }, values, ["competitors", "go_to_market_strategies", "attachments"])
   },
   enableReinitialize: true
 })
@@ -171,13 +171,13 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
               label: "Go-To-Market Strategies",
               groupName: "Strategy",
               newFieldInit: {
-                date: moment().toDate(),
+                occurs_on: moment().toDate(),
                 action: '',
               },
               onDeleteField: dMSQAttributes,
               dynamicFields: [
                 {
-                  key: "date",
+                  key: "occurs_on",
                   component: DateTimePicker,
                   opts: {
                     label: "Date",

@@ -3,7 +3,7 @@ import { Field } from 'redux-form'
 
 export default class DynamicFieldArray extends Component {
   componentWillMount() {
-    if (this.props.opts.staticGroup) {
+    if (this.props.opts.staticGroup && this.props.fields.length === 0) {
       this.props.fields.push(this.props.opts.newFieldInit)
     }
   }

@@ -21,6 +21,7 @@ import MyStartupQuestionnairesProductForm from '../../../forms/my/startup-questi
 import MyStartupQuestionnairesMarketForm from '../../../forms/my/startup-questionnaires/market'
 import MyStartupQuestionnairesTeamForm from '../../../forms/my/startup-questionnaires/team'
 import MyStartupQuestionnairesFinancialForm from '../../../forms/my/startup-questionnaires/financial'
+import MyStartupQuestionnairesCampaignForm from '../../../forms/my/startup-questionnaires/campaign'
 import MyStartupQuestionnairesAttachmentsForm from '../../../forms/my/startup-questionnaires/attachments'
 
 const mapStateToProps = (state, props) => {
@@ -145,11 +146,11 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
           dataKey: "startup_questionnaire_financial",
           model: MyStartupQuestionnairesFinancialForm,
           prevTab: "team",
-          nextTab: "attachments",
+          nextTab: "campaign",
           formatValues: (q) => {
             const cv = _.get(q, 'startup_questionnaire_financial_fund_histories')
             if (cv) {
-              const nv4 = cv.map((v) => {
+              const nv = cv.map((v) => {
                 const occurredOn = _.get(v, "occurred_on")
                 return {
                   ...v,
@@ -157,17 +158,43 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
                 }
               })
 
-              _.set(q, 'startup_questionnaire_financial_fund_histories', nv4)
+              _.set(q, 'startup_questionnaire_financial_fund_histories', nv)
+            }
+
+            const cv2 = _.get(q, 'startup_questionnaire_cap_tables')
+            if (cv2) {
+              const nv2 = cv2.map((v) => {
+                const date = _.get(v, "date_of_investment")
+                return {
+                  ...v,
+                  date_of_investment: date ? moment(date).toDate() : moment().toDate()
+                }
+              })
+
+              _.set(q, 'startup_questionnaire_financial_fund_histories', nv2)
+            }
+
+            const cv3 = _.get(q, 'startup_questionnaire_break_even')
+            if (cv3) {
+              const nv3 = { ...cv3, year: cv3.year ? moment(cv3.year).toDate() : moment().toDate() }
+              _.set(q, 'startup_questionnaire_break_even', [nv3])
             }
 
             return q
           }
         },
         {
+          key: "campaign",
+          dataKey: "startup_questionnaire_campaign",
+          model: MyStartupQuestionnairesCampaignForm,
+          prevTab: "financial",
+          nextTab: "attachments"
+        },
+        {
           key: "attachments",
           dataKey: "attachments",
           model: MyStartupQuestionnairesAttachmentsForm,
-          prevTab: "financial",
+          prevTab: "campaign",
           nextTab: null,
           formatValues: (q) => {
             const cv = { attachments: q || [] }

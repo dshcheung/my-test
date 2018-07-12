@@ -16,26 +16,57 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
   form: "MyStartupQuestionnairesFinancialForm",
   validate: (values) => {
     return Validators({
-      three_kpis: [{ type: "length", opts: { max: 600 } }],
-      break_even: [{ type: "length", opts: { max: 600 } }],
-      startup_questionnaire_financial_fund_histories: [{
+      startup_questionnaire_cash_burns: [{
+        type: "complexArrOfObj",
+        opts: {
+          selfPresences: true,
+          childFields: {
+            money_attributes: ["presences"], // TODO: currency_presenses
+          }
+        }
+      }],
+      startup_questionnaire_break_even: [{
+        type: "complexArrOfObj",
+        opts: {
+          selfPresences: true,
+          childFields: {
+            quarter: ["presences"],
+            year: ["presences"],
+          }
+        }
+      }],
+      startup_questionnaire_use_of_funds: [{
+        type: "complexArrOfObj",
+        opts: {
+          selfPresences: true,
+          childFields: {
+            percentage: ["presences", "noDecimal"],
+            description: ["presences", { type: "lengthWord", opts: { max: 50 } }]
+          }
+        }
+      }],
+      startup_questionnaire_previous_funds: [{
         type: "complexArrOfObj",
         opts: {
           selfPresences: false,
           childFields: {
             occurred_on: ["presences"],
-            amount: ["presences"],
-            contract_type: ["presences"]
+            money_attributes: ["presences"],
+            contract_type: ["presences"],
+            date_of_investment: ["presences"],
+            class_of_shares: ["presences"],
+            comment: ["presences"]
           }
         }
       }],
-      startup_questionnaire_financial_use_of_funds: [{
+      startup_questionnaire_cap_tables_attributes: [{
         type: "complexArrOfObj",
         opts: {
-          selfPresences: false,
+          selfPresences: true,
           childFields: {
-            section: ["presences", { type: "length", opts: { max: 600 } }],
-            percentage: ["presences", "noDecimal"]
+            first_name: ["presences"],
+            last_name: ["presences"],
+            percentage_of_shares: ["presences", "noDecimal"]
           }
         }
       }],
@@ -50,17 +81,16 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
         }
       }]
     }, values, [
-      "startup_questionnaire_financial_fund_histories",
-      "startup_questionnaire_financial_use_of_funds",
-      "attachments"
+      // "startup_questionnaire_cash_burns",
+      // "startup_questionnaire_break_even",
+      // "startup_questionnaire_use_of_funds",
+      // "startup_questionnaire_previous_funds",
+      // "startup_questionnaire_cap_tables_attributes",
+      // "attachments"
     ])
   },
   enableReinitialize: true
 })
-
-// startup_questionnaire_financial_attributes: [
-//   startup_questionnaire_use_of_funds_attributes: [ :id, :amount, :currency, :_destroy ], // TODO: description, percentage
-// ],
 
 export default class MyStartupQuestionnairesFinancialForm extends Component {
   render() {
@@ -98,14 +128,14 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
               label: "Average monthly cash burn-rate",
               staticGroup: true,
               newFieldInit: {
-                currency_amount: {
-                  amount: 0,
+                money_attributes: {
+                  amount: '',
                   currency: "HKD"
                 }
               },
               dynamicFields: [
                 {
-                  key: "currency_amount",
+                  key: "money_attributes",
                   component: CurrencyField,
                   opts: {
                     label: "Amount"
@@ -165,13 +195,10 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
               hint: "How you will use the money you are going to raise",
               groupName: "Use",
               newFieldInit: {
-                date: 0,
-                currency_amount: {
-                  amount: 0,
-                  currency: "HKD"
-                },
-                fund_type: ""
+                percentage: "",
+                description: ""
               },
+              onDeleteField: dMSQAttributes,
               dynamicFields: [
                 {
                   key: "percentage",
@@ -202,8 +229,8 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
               groupName: "Round",
               newFieldInit: {
                 occurred_on: moment().toDate(),
-                currency_amount: {
-                  amount: 0,
+                money_attributes: {
+                  amount: '',
                   currency: "HKD"
                 },
                 fund_type: ''
@@ -221,7 +248,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   }
                 },
                 {
-                  key: "currency_amount",
+                  key: "money_attributes",
                   component: CurrencyField,
                   opts: {
                     type: "number",
@@ -247,7 +274,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
           />
 
           <FieldArray
-            name="startup_questionnaire_cap_tables_attributes"
+            name="startup_questionnaire_cap_tables"
             component={DynamicFieldArray}
             opts={{
               label: "Cap Table",
@@ -256,7 +283,10 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
               newFieldInit: {
                 first_name: '',
                 last_name: '',
-                percentage_of_shares: 0
+                percentage_of_shares: '',
+                date_of_investment: moment().toDate(),
+                class_of_shares: '',
+                comment: ''
               },
               onDeleteField: dMSQAttributes,
               dynamicFields: [
@@ -282,6 +312,38 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                     inputGroup: true,
                     backInputGroup: "%",
                     label: "Percentage of Shares"
+                  }
+                },
+                {
+                  key: "date_of_investment",
+                  component: DateTimePicker,
+                  opts: {
+                    label: "Date of Investment",
+                    time: false,
+                    format: "YYYY/MM/DD",
+                  }
+                },
+                {
+                  key: "class_of_shares",
+                  component: SelectField,
+                  opts: {
+                    options: [
+                      { name: "Preferred" },
+                      { name: "Ordinary" },
+                      { name: "Non-voting" },
+                      { name: "Redeemable" }
+                    ],
+                    valueKey: "name",
+                    nameKey: "name",
+                    label: "Class of Shares",
+                    placeholder: "Select a class"
+                  }
+                },
+                {
+                  key: "comment",
+                  component: TextField,
+                  opts: {
+                    label: "Comment"
                   }
                 }
               ]
