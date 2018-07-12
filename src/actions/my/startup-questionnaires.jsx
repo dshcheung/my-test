@@ -72,8 +72,7 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
 
   const checkFileList = [
     'attachments.attachments',
-    'highlight.attachments',
-    'overview.attachments',
+    'teaser.attachments',
     'market.attachments',
     'strategy.attachments',
     'team.attachments',
@@ -86,76 +85,57 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
     arr.forEach(checkFile)
   })
 
-  // const founders = _.get(values, 'team.startup_questionnaire_team_founders') || []
-  // founders.forEach(checkAvatar)
-  // const members = _.get(values, 'team.startup_questionnaire_team_members') || []
-  // members.forEach(checkAvatar)
-  // const advisors = _.get(values, 'team.startup_questionnaire_team_advisors') || []
-  // advisors.forEach(checkAvatar)
-
-  // const attachments = _.get(values, 'attachments.attachments') || []
-  // attachments.forEach(checkFile)
-
-  // const teamAdvisors = {} // TODO2: change to this format?
-  // _.get(values, 'team.startup_questionnaire_team_advisors', []).forEach((x, i) => {
-  //   teamAdvisors[i] = {
-  //     id: _.get(x, 'id', null),
-  //     name: _.get(x, 'name', null),
-  //     expertise: _.get(x, 'expertise', null),
-  //     _destroy: _.get(x, '_destroy', null),
-  //     avatar: _.get(x, 'avatar[0]', null)
-  //   }
-  // })
+  console.log(params)
 
   const params = {
-    startup_questionnaire_highlight_attributes: {
-      id: _.get(values, 'highlight.id', null),
-      founded: _.get(values, 'highlight.founded', null),
-      current_stage: _.get(values, 'highlight.current_stage', null),
-      company_vertical: _.get(values, 'highlight.company_vertical', null),
-      tagline: _.get(values, 'highlight.tagline', null),
-      mission: _.get(values, 'highlight.mission', null),
-      achievements: _.get(values, 'highlight.achievements', null),
-      attachments_attributes: _.get(values, 'highlight.attachments', null)
+    startup_questionnaire_basic_attributes: {
+      id: _.get(values, 'basic.id', null),
+      company_name: _.get(values, 'basic.company_name', null),
+      founded_year: _.get(values, 'basic.founded_year', null),
+      country_of_incorporation: _.get(values, 'basic.country_of_incorporation', null),
+      vertical: _.get(values, 'basic.vertical', null),
+      tagline: _.get(values, 'basic.tagline', null),
+      hashtags: _.get(values, 'basic.hashtags', null),
+      logo: _.get(values, 'basic.logo', null),
+      banner: _.get(values, 'basic.banner', null)
     },
-    startup_questionnaire_overview_attributes: {
-      id: _.get(values, 'overview.id', null),
-      problem: _.get(values, 'overview.problem', null),
-      value_proposition: _.get(values, 'overview.value_proposition', null),
-      revenue_model: _.get(values, 'overview.revenue_model', null),
-      key_resources: _.get(values, 'overview.key_resources', null),
-      key_partners: _.get(values, 'overview.key_partners', null),
-      key_channels: _.get(values, 'overview.key_channels', null),
-      business_model: _.get(values, 'overview.business_model', null),
-      startup_questionnaire_past_milestones_attributes: _.get(values, 'overview.startup_questionnaire_past_milestones', null),
-      attachments_attributes: _.get(values, 'overview.attachments', null)
+    startup_questionnaire_teaser_attributes: {
+      id: _.get(values, 'teaser.id', null),
+      problem: _.get(values, 'teaser.problem', null),
+      solution: _.get(values, 'teaser.solution', null),
+      make_money: _.get(values, 'teaser.make_money', null),
+      unique_selling_point: _.get(values, 'teaser.unique_selling_point', null),
+      pitch_deck: _.get(values, 'teaser.pitch_deck', null),
+      business_plan: _.get(values, 'teaser.business_plan', null),
+      startup_questionnaire_highlights_attributes: _.get(values, 'teaser.startup_questionnaire_highlights', null),
+      startup_questionnaire_media_attributes: _.get(values, 'teaser.startup_questionnaire_media', null),
+      attachments_attributes: _.get(values, 'teaser.attachments', null)
+    },
+    startup_questionnaire_product_attributes: {
+      id: _.get(values, 'product.id', null),
+      product: _.get(values, 'product.product', null),
+      startup_questionnaire_patents_attributes: _.get(values, 'product.startup_questionnaire_patents', null),
+      attachments_attributes: _.get(values, 'product.attachments', null)
     },
     startup_questionnaire_market_attributes: {
       id: _.get(values, 'market.id', null),
-      define_market: _.get(values, 'market.define_market', null),
-      market_metrics: _.get(values, 'market.market_metrics[0]', null),
-      timing: _.get(values, 'market.timing', null),
-      risk_factors: _.get(values, 'market.risk_factors', null),
-      competitors: _.get(values, 'market.competitors', null),
-      barriers: _.get(values, 'market.barriers', null),
+      global_market: _.get(values, 'market.global_market', null),
+      global_market_metrics: _.get(values, 'market.global_market_metrics[0]', null),
+      target_market: _.get(values, 'market.target_market', null),
+      target_market_metrics: _.get(values, 'market.target_market_metrics[0]', null),
+      unique_selling_point: _.get(values, 'market.unique_selling_point', null),
+      barriers_to_entry: _.get(values, 'market.barriers_to_entry', null),
+      traction: _.get(values, 'market.traction', null),
+      competition_landscape: _.get(values, 'market.competition_landscape', null),
+      competitors_attributes: _.get(values, 'market.competitors', null),
+      go_to_market_strategies_attributes: _.get(values, 'market.go_to_market_strategies', null),
       attachments_attributes: _.get(values, 'market.attachments', null)
-    },
-    startup_questionnaire_strategy_attributes: {
-      id: _.get(values, 'strategy.id', null),
-      strategic_positioning: _.get(values, 'strategy.strategic_positioning', null),
-      unique_selling_point: _.get(values, 'strategy.unique_selling_point', null),
-      customer_acquisition_cost: _.get(values, 'strategy.customer_acquisition_cost', null),
-      customer_life_value: _.get(values, 'strategy.customer_life_value', null),
-      startup_questionnaire_market_strategies_attributes: _.get(values, 'strategy.startup_questionnaire_market_strategies', null),
-      attachments_attributes: _.get(values, 'strategy.attachments', null)
     },
     startup_questionnaire_team_attributes: {
       id: _.get(values, 'team.id', null),
       story: _.get(values, 'team.story', null),
-      next_hires: _.get(values, 'team.next_hires', null),
       startup_questionnaire_team_founders_attributes: _.get(values, 'team.startup_questionnaire_team_founders', null),
       startup_questionnaire_team_members_attributes: _.get(values, 'team.startup_questionnaire_team_members', null),
-      // startup_questionnaire_team_advisors_attributes: teamAdvisors // TODO2: Remove
       startup_questionnaire_team_advisors_attributes: _.get(values, 'team.startup_questionnaire_team_advisors', null),
       attachments_attributes: _.get(values, 'team.attachments', null)
     },

@@ -8,6 +8,8 @@ import CheckboxField from '../../../shared/form-elements/checkbox-field'
 import DateTimePicker from '../../../shared/form-elements/datetime-picker'
 import TextField from '../../../shared/form-elements/text-field'
 import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
+import Select2Field from '../../../shared/form-elements/select2-field'
+import FileField from '../../../shared/form-elements/file-field'
 
 @reduxForm({
   form: "MyStartupQuestionnairesTeaserForm",
@@ -22,20 +24,21 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
             link: ["presences"]
           }
         }
+      }],
+      attachments: [{
+        type: "complexArrOfObj",
+        opts: {
+          selfPresences: false,
+          childFields: {
+            title: ["presences"],
+            file: ["filePresences"]
+          }
+        }
       }]
-    }, values, ["startup_questionnaire_patents"])
+    }, values, ["startup_questionnaire_patents", "attachments"])
   },
   enableReinitialize: true
 })
-
-// TODO: add title to patents
-
-// startup_questionnaire_product_attributes: [
-//   :id,
-//   :product,
-//   startup_questionnaire_patents_attributes: [ :id, :registration_date, :registration_in_progess, :_destroy ],
-//   attachments_attributes: [ :id, :title, :file, :remove_file, :_destroy ]
-// ],
 
 export default class MyStartupQuestionnairesTeaserForm extends Component {
   render() {
@@ -88,6 +91,41 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                   component: CheckboxField,
                   opts: {
                     label: "Registration In Progress"
+                  }
+                }
+              ]
+            }}
+          />
+
+          <FieldArray
+            name="attachments"
+            component={DynamicFieldArray}
+            opts={{
+              label: "You have something to add? (optional)",
+              hint: "Upload Pictures or Slides describing your product/service",
+              groupName: "File",
+              newFieldInit: {
+                title: '',
+                file: ''
+              },
+              onDeleteField: dMSQAttributes,
+              dynamicFields: [
+                {
+                  key: "title",
+                  component: Select2Field,
+                  opts: {
+                    label: "Title",
+                    options: this.props.attachmentOptions,
+                    valueKey: "name",
+                    nameKey: "name",
+                  }
+                },
+                {
+                  key: "file",
+                  component: FileField,
+                  opts: {
+                    label: "File",
+                    urlKey: "original"
                   }
                 }
               ]

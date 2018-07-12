@@ -75,16 +75,6 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
   enableReinitialize: true
 })
 
-// startup_questionnaire_team_attributes: [
-//   :id,
-//   :story,
-//   :next_hires,
-//   startup_questionnaire_team_founders_attributes: [ :id, :name, :position, :avatar, :contract, :salary, :years_of_experience, :linked_in, :_destroy ],
-//   startup_questionnaire_team_members_attributes: [ :id, :name, :position, :avatar, :contract, :_destroy ],
-//   startup_questionnaire_team_advisors_attributes: [ :id, :name, :expertise, :avatar, :_destroy ],
-//   attachments_attributes: [ :id, :title, :file, :remove_file, :_destroy ]
-// ],
-
 export default class MyStartupQuestionnairesTeamForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass, dMSQAttributes, pristine } = this.props
@@ -279,12 +269,12 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
             name="attachments"
             component={DynamicFieldArray}
             opts={{
-              label: "Extra Files (Optional)",
+              label: "You have a some pictures to share about your team story",
+              hint: "Upload your document - a picture says more than a thousand words",
               groupName: "File",
               newFieldInit: {
                 title: '',
                 file: '',
-                file_url: ''
               },
               onDeleteField: dMSQAttributes,
               dynamicFields: [
@@ -292,16 +282,17 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "title",
                   component: Select2Field,
                   opts: {
+                    label: "Title",
                     options: this.props.attachmentOptions,
                     valueKey: "name",
                     nameKey: "name",
-                    placeholder: "Title"
                   }
                 },
                 {
                   key: "file",
                   component: FileField,
                   opts: {
+                    label: "File",
                     urlKey: "original"
                   }
                 }

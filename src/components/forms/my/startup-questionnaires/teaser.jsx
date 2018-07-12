@@ -6,9 +6,10 @@ import Validators from '../../../../services/form-validators'
 import TextArea from '../../../shared/form-elements/text-area'
 import DateTimePicker from '../../../shared/form-elements/datetime-picker'
 import TextField from '../../../shared/form-elements/text-field'
-import FileField from '../../../shared/form-elements/file-field'
 import ImageField from '../../../shared/form-elements/image-field'
 import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
+import Select2Field from '../../../shared/form-elements/select2-field'
+import FileField from '../../../shared/form-elements/file-field'
 
 @reduxForm({
   form: "MyStartupQuestionnairesTeaserForm",
@@ -38,8 +39,18 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
             link: ["presences", "httpLink"]
           }
         }
+      }],
+      attachments: [{
+        type: "complexArrOfObj",
+        opts: {
+          selfPresences: false,
+          childFields: {
+            title: ["presences"],
+            file: ["filePresences"]
+          }
+        }
       }]
-    }, values, ["startup_questionnaire_highlights", "startup_questionnaire_media"])
+    }, values, ["startup_questionnaire_highlights", "startup_questionnaire_media", "attachments"])
   },
   enableReinitialize: true
 })
@@ -162,9 +173,8 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
               label: "Media (optional) *",
               groupName: "Medium",
               newFieldInit: {
-                occurred_on: moment().toDate(),
-                title: '',
-                content: ''
+                logo: '',
+                link: ''
               },
               onDeleteField: dMSQAttributes,
               hint: "Provide us with the link to the article and the logo of the media",
@@ -185,6 +195,41 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                     type: 'url',
                     label: "Link",
                     placeholder: "https://angelhub.com"
+                  }
+                }
+              ]
+            }}
+          />
+
+          <FieldArray
+            name="attachments"
+            component={DynamicFieldArray}
+            opts={{
+              label: "Can you share with us some more shining visuals to illustrate your teaser ? (optional)",
+              hint: "A video or pictures showing your company, your team, your product, your vision, your story... all of them... that is your show. As long as it stays shorter than 1min and 30 seconds / 5 pictures",
+              groupName: "File",
+              newFieldInit: {
+                title: '',
+                file: ''
+              },
+              onDeleteField: dMSQAttributes,
+              dynamicFields: [
+                {
+                  key: "title",
+                  component: Select2Field,
+                  opts: {
+                    label: "Title",
+                    options: this.props.attachmentOptions,
+                    valueKey: "name",
+                    nameKey: "name"
+                  }
+                },
+                {
+                  key: "file",
+                  component: FileField,
+                  opts: {
+                    label: "File",
+                    urlKey: "original"
                   }
                 }
               ]

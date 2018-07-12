@@ -208,12 +208,12 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             name="attachments"
             component={DynamicFieldArray}
             opts={{
-              label: "Extra Files (Optional)",
+              label: "You have been doing your homework on financials and want to share an instrumental document(s) with us ? (Optional)",
+              hint: "Upload your documents",
               groupName: "File",
               newFieldInit: {
                 title: '',
                 file: '',
-                file_url: ''
               },
               onDeleteField: dMSQAttributes,
               dynamicFields: [
@@ -221,16 +221,17 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   key: "title",
                   component: Select2Field,
                   opts: {
+                    label: "Title",
                     options: this.props.attachmentOptions,
                     valueKey: "name",
                     nameKey: "name",
-                    placeholder: "Title"
                   }
                 },
                 {
                   key: "file",
                   component: FileField,
                   opts: {
+                    label: "File",
                     urlKey: "original"
                   }
                 }

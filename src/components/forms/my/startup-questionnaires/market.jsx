@@ -53,22 +53,6 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
   enableReinitialize: true
 })
 
-// TODO: need to take description out of competitors
-
-// startup_questionnaire_market_attributes: [
-//   :id,
-//   :global_market,
-//   :global_market_metrics,
-//   :target_market,
-//   :target_market_metrics,
-//   :unique_selling_point,
-//   :barriers_to_entry,
-//   :traction,
-//   competitors_attributes: [ :id, :description, :name, :website, :_destroy ],
-//   go_to_market_strategies_attributes: [ :id, :occurs_on, :action, :_destroy ],
-//   attachments_attributes: [ :id, :title, :file, :remove_file, :_destroy ]
-// ],
-
 export default class MyStartupQuestionnairesMarketForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass, dMSQAttributes, pristine } = this.props
@@ -216,12 +200,12 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             name="attachments"
             component={DynamicFieldArray}
             opts={{
-              label: "Extra Files (Optional)",
+              label: "You want to show us more ? (optional)",
+              hint: "Upload Slides, Graphs, research summary, link to sources",
               groupName: "File",
               newFieldInit: {
                 title: '',
-                file: '',
-                file_url: ''
+                file: ''
               },
               onDeleteField: dMSQAttributes,
               dynamicFields: [
@@ -229,16 +213,17 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
                   key: "title",
                   component: Select2Field,
                   opts: {
+                    label: "Title",
                     options: this.props.attachmentOptions,
                     valueKey: "name",
                     nameKey: "name",
-                    placeholder: "Title"
                   }
                 },
                 {
                   key: "file",
                   component: FileField,
                   opts: {
+                    label: "File",
                     urlKey: "original"
                   }
                 }

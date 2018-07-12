@@ -7,6 +7,7 @@ import DateTimePicker from '../../../shared/form-elements/datetime-picker'
 import TextField from '../../../shared/form-elements/text-field'
 import SelectField from '../../../shared/form-elements/select-field'
 import ImageField from '../../../shared/form-elements/image-field'
+import MultiselectField from '../../../shared/form-elements/multiselect-field'
 
 @reduxForm({
   form: "MyStartupQuestionnairesBasicForm",
@@ -17,20 +18,6 @@ import ImageField from '../../../shared/form-elements/image-field'
   },
   enableReinitialize: true
 })
-
-// startup_questionnaire_basic_attributes: [
-//   :id,
-//   :company_name,
-//   :founded_year,
-//   :country_of_incorporation,
-//   :vertical,
-//   :tagline,
-//   :banner,
-//   :remove_banner,
-//   :logo,
-//   :remove_logo,
-//   hashtags_attributes: [ :id, :tag, :_destroy]
-// ],
 
 export default class MyStartupQuestionnairesBasicForm extends Component {
   render() {
@@ -98,6 +85,21 @@ export default class MyStartupQuestionnairesBasicForm extends Component {
           />
 
           <Field
+            name="hashtags"
+            component={MultiselectField}
+            opts={{
+              label: "Hashtags",
+              hint: "Give us up to 5 hashtags that best describe your solution, technology or add to the buzz",
+              options: [
+                { id: 0, name: "Need" },
+                { id: 1, name: "Input" }
+              ],
+              valueField: 'id',
+              textField: 'name'
+            }}
+          />
+
+          <Field
             name="logo"
             component={ImageField}
             opts={{
@@ -119,7 +121,7 @@ export default class MyStartupQuestionnairesBasicForm extends Component {
           />
 
           <button
-            className={`btn btn-info btn-lg btn-block ${submitInProcess && "m-progress"}`}
+            className={`btn btn-danger btn-lg btn-block ${submitInProcess && "m-progress"}`}
             type="submit"
             disabled={submitInProcess || pristine}
           >

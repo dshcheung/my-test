@@ -57,6 +57,9 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
             const founded = _.get(q, "founded_year")
             _.set(q, 'founded_year', founded ? moment(founded).toDate() : moment().toDate())
 
+            const hashtags = _.get(q, "hashtags")
+            _.set(q, 'hashtags', hashtags || [])
+
             return q
           }
         },
