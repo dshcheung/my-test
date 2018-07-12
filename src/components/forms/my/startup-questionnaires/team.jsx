@@ -20,7 +20,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
       startup_questionnaire_team_founders: [{
         type: "complexArrOfObj",
         opts: {
-          selfPresences: false,
+          selfPresences: true,
           childFields: {
             avatar: ["filePresences"],
             name: ["presences"],
@@ -177,7 +177,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
             name="startup_questionnaire_team_members"
             component={DynamicFieldArray}
             opts={{
-              label: "Team Members",
+              label: "Team Members (optional)",
               groupName: "Members",
               newFieldInit: {
                 avatar: '',
@@ -232,7 +232,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
             name="startup_questionnaire_team_advisors"
             component={DynamicFieldArray}
             opts={{
-              label: "Notable Advisors & Investors",
+              label: "Notable Advisors & Investors (optional)",
               groupName: "Advisors/Investors",
               newFieldInit: {
                 avatar: '',
@@ -272,7 +272,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
             name="attachments"
             component={DynamicFieldArray}
             opts={{
-              label: "You have a some pictures to share about your team story",
+              label: "You have a some pictures to share about your team story (optional)",
               hint: "Upload your document - a picture says more than a thousand words",
               groupName: "File",
               newFieldInit: {

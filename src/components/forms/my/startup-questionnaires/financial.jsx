@@ -9,6 +9,7 @@ import DateTimePicker from '../../../shared/form-elements/datetime-picker'
 import SelectField from '../../../shared/form-elements/select-field'
 import Select2Field from '../../../shared/form-elements/select2-field'
 import FileField from '../../../shared/form-elements/file-field'
+import CurrencyField from '../../../shared/form-elements/currency-field'
 import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
 
 @reduxForm({
@@ -58,14 +59,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
 })
 
 // startup_questionnaire_financial_attributes: [
-//   :id,
-//   :income_statement,
-//   :cash_flow_statement,
-//   startup_questionnaire_break_even_attributes: [ :id, :quarter, :year, :_destroy ],
-//   startup_questionnaire_cash_burn_attributes: [ :id, :amount, :currency, :_destroy ],
-//   startup_questionnaire_use_of_funds_attributes: [ :id, :amount, :currency, :_destroy ],
-//   startup_questionnaire_previous_funds_attributes: [ :id, :occurred_on, :amount, :currency, :fund_type, :_destroy ],
-//   startup_questionnaire_cap_tables_attributes: [ :id, :percentage_of_shares, :first_name, :last_name, :_destroy ]
+//   startup_questionnaire_use_of_funds_attributes: [ :id, :amount, :currency, :_destroy ], // TODO: description, percentage
 // ],
 
 export default class MyStartupQuestionnairesFinancialForm extends Component {
@@ -97,44 +91,122 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             }}
           />
 
-          <Field
-            name="break_even"
-            component={TextArea}
+          <FieldArray
+            name="startup_questionnaire_cash_burns"
+            component={DynamicFieldArray}
             opts={{
-              label: "When will you reach break-even ? *"
-            }}
-          />
-
-
-          <Field
-            name="current_fund"
-            component={TextField}
-            opts={{
-              type: "number",
-              label: "How much funds are you raising ? *"
-            }}
-          />
-
-          <Field
-            name="monthly_cash_burn"
-            component={TextField}
-            opts={{
-              type: "number",
-              label: "What is your average monthly cash burning rate ? *"
+              label: "Average monthly cash burn-rate",
+              staticGroup: true,
+              newFieldInit: {
+                currency_amount: {
+                  amount: 0,
+                  currency: "HKD"
+                }
+              },
+              dynamicFields: [
+                {
+                  key: "currency_amount",
+                  component: CurrencyField,
+                  opts: {
+                    label: "Amount"
+                  }
+                }
+              ]
             }}
           />
 
           <FieldArray
-            name="startup_questionnaire_financial_fund_histories"
+            name="startup_questionnaire_break_even"
             component={DynamicFieldArray}
             opts={{
-              label: "Funding History *",
-              hint: "Please use + button to enter dates and amounts of previous funding rounds if applicable",
-              groupName: "History",
+              label: "Break-even point",
+              hint: "State a Quarter and a year",
+              staticGroup: true,
+              newFieldInit: {
+                quarter: '',
+                year: moment().toDate()
+              },
+              dynamicFields: [
+                {
+                  key: "quarter",
+                  component: SelectField,
+                  opts: {
+                    options: [
+                      { name: "Q1" },
+                      { name: "Q2" },
+                      { name: "Q3" },
+                      { name: "Q4" }
+                    ],
+                    valueKey: "name",
+                    nameKey: "name",
+                    label: "Quarter",
+                    placeholder: "Select a Quarter"
+                  }
+                },
+                {
+                  key: "year",
+                  component: DateTimePicker,
+                  opts: {
+                    label: "Year",
+                    time: false,
+                    format: "YYYY",
+                    views: ["decade"]
+                  }
+                }
+              ]
+            }}
+          />
+
+          <FieldArray
+            name="startup_questionnaire_use_of_funds"
+            component={DynamicFieldArray}
+            opts={{
+              label: "Use of fund",
+              hint: "How you will use the money you are going to raise",
+              groupName: "Use",
+              newFieldInit: {
+                date: 0,
+                currency_amount: {
+                  amount: 0,
+                  currency: "HKD"
+                },
+                fund_type: ""
+              },
+              dynamicFields: [
+                {
+                  key: "percentage",
+                  component: TextField,
+                  opts: {
+                    label: "Percentage",
+                    type: "number",
+                    backInputGroup: "%"
+                  }
+                },
+                {
+                  key: "description",
+                  component: TextArea,
+                  opts: {
+                    label: "Description"
+                  }
+                }
+              ]
+            }}
+          />
+
+          <FieldArray
+            name="startup_questionnaire_previous_funds"
+            component={DynamicFieldArray}
+            opts={{
+              label: "Previous funding round(s) (optional)",
+              hint: "Date and Amount and type (Equity / Convertible)",
+              groupName: "Round",
               newFieldInit: {
                 occurred_on: moment().toDate(),
-                amount: '',
-                contract_type: ''
+                currency_amount: {
+                  amount: 0,
+                  currency: "HKD"
+                },
+                fund_type: ''
               },
               onDeleteField: dMSQAttributes,
               dynamicFields: [
@@ -142,21 +214,22 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   key: "occurred_on",
                   component: DateTimePicker,
                   opts: {
-                    placeholder: "Occurred On",
+                    Label: "Occurred On",
                     time: false,
-                    format: "YYYY/MM/DD"
+                    format: "YYYY/MM",
+                    views: ["year", "decade"]
                   }
                 },
                 {
-                  key: "amount",
-                  component: TextField,
+                  key: "currency_amount",
+                  component: CurrencyField,
                   opts: {
                     type: "number",
-                    placeholder: "Amount"
+                    Label: "Amount"
                   }
                 },
                 {
-                  key: "contract_type",
+                  key: "fund_type",
                   component: SelectField,
                   opts: {
                     options: [
@@ -165,7 +238,8 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                     ],
                     valueKey: "key",
                     nameKey: "name",
-                    placeholder: "Contract Type"
+                    Label: "Contract Type",
+                    placeholder: "Select a type"
                   }
                 }
               ]
@@ -173,31 +247,41 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
           />
 
           <FieldArray
-            name="startup_questionnaire_financial_use_of_funds"
+            name="startup_questionnaire_cap_tables_attributes"
             component={DynamicFieldArray}
             opts={{
-              label: "What will be the use of the funds? *",
-              hint: "Please use + button to enter % and uses. We’ll do a nice chart for you",
-              groupName: "Use of Fund",
+              label: "Cap Table",
+              hint: "In addition to your current investors, please state if you have created an ESOP and teh equity share it represents",
+              groupName: "Investor",
               newFieldInit: {
-                section: '',
-                percentage: ''
+                first_name: '',
+                last_name: '',
+                percentage_of_shares: 0
               },
               onDeleteField: dMSQAttributes,
               dynamicFields: [
                 {
-                  key: "section",
-                  component: TextArea,
+                  key: "first_name",
+                  component: TextField,
                   opts: {
-                    placeholder: "Section"
+                    label: "First Name"
                   }
                 },
                 {
-                  key: "percentage",
+                  key: "last_name",
+                  component: TextField,
+                  opts: {
+                    label: "Last Name"
+                  }
+                },
+                {
+                  key: "percentage_of_shares",
                   component: TextField,
                   opts: {
                     type: "number",
-                    placeholder: "Percentage"
+                    inputGroup: true,
+                    backInputGroup: "%",
+                    label: "Percentage of Shares"
                   }
                 }
               ]

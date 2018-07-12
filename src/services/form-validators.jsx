@@ -36,11 +36,17 @@ const validators = {
     if (min && value < min) return `Minimum ${min}`
     if (max && value > max) return `Maximum ${max}`
   },
-  complexArrOfObj: (valueArr, { selfPresences, selfMax, childFields }) => {
+  complexArrOfObj: (valueArr, { selfPresences, selfMin, selfMax, childFields }) => {
     const selfError = {}
     if (selfPresences) {
       if (!valueArr || valueArr.length === 0) {
         selfError._error = "Need at least 1"
+      }
+    }
+
+    if (selfMin) {
+      if (valueArr && valueArr.length < selfMin) {
+        selfError._error = `Too Little, Minimum is ${selfMin}`
       }
     }
 

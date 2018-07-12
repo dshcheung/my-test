@@ -9,6 +9,12 @@
   }
 }
 
+.dynamic-field {
+  .form-group:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
 span.help-block {
   margin: 0 0 5px;
 }

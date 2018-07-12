@@ -11,7 +11,8 @@ export default class TextField extends Component {
         customLabel, label, decodeLabel,
         placeholder,
         hint,
-        step, min
+        step, min,
+        inputGroup, backInputGroup
       }
     } = this.props
 
@@ -24,14 +25,32 @@ export default class TextField extends Component {
         { decodeLabel && <label htmlFor={input.name} dangerouslySetInnerHTML={{ __html: decodeLabel.decode() }} />}
         { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
         { hint && <span className="help-block">{hint}</span> }
-        <input
-          className="form-control"
-          placeholder={placeholder}
-          type={type || "text"}
-          step={step}
-          min={min}
-          {...input}
-        />
+        {
+          inputGroup ? (
+            <div className="input-group">
+              <input
+                className="form-control"
+                placeholder={placeholder}
+                type={type || "text"}
+                step={step}
+                min={min}
+                {...input}
+              />
+              {
+                backInputGroup && <span className="input-group-addon">{backInputGroup}</span>
+              }
+            </div>
+          ) : (
+            <input
+              className="form-control"
+              placeholder={placeholder}
+              type={type || "text"}
+              step={step}
+              min={min}
+              {...input}
+            />
+          )
+        }
       </div>
     )
   }

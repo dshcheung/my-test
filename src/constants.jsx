@@ -8,3 +8,7 @@ export const DEFAULT_STARTUP_BANNER = "https://s3-ap-northeast-1.amazonaws.com/a
 export const COUNTRY_CODES = [
   { name: "+852" }
 ]
+export const CURRENCIES = [
+  { name: "HKD" },
+  { name: "USD" },
+]

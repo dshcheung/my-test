@@ -207,7 +207,7 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
       const myQuestionnaire = _.get(myQuestionnaires, dataKey, {})
 
       const params = {
-        [this.state.currentTab]: {
+        [this.props.currentTab]: {
           id: _.get(myQuestionnaire, 'id', null),
           [key.split("[")[0]]: [{
             id: _.get(fields.get(index), 'id', null),
