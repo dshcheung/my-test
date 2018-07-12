@@ -44,6 +44,17 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
   enableReinitialize: true
 })
 
+// startup_questionnaire_teaser_attributes: [
+//   :id,
+//   :problem,
+//   :solution,
+//   :make_money,
+//   :unique_selling_point,
+//   startup_questionnaire_highlights_attributes: [ :id, :occurred_on, :title, :content, :_destroy ],
+//   startup_questionnaire_media_attributes: [ :id, :logo, :link, :_destroy ],
+//   attachments_attributes: [ :id, :title, :file, :remove_file, :_destroy ]
+// ],
+
 export default class MyStartupQuestionnairesTeaserForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass, dMSQAttributes, pristine } = this.props
@@ -167,13 +178,15 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                     optClass: "image-field-avatar"
                   }
                 },
-                // {
-                //   key: "link",
-                //   component: LinkField,
-                //   opts: {
-                //     placeholder: "Link"
-                //   }
-                // }
+                {
+                  key: "link",
+                  component: TextField,
+                  opts: {
+                    type: 'url',
+                    label: "Link",
+                    placeholder: "https://angelhub.com"
+                  }
+                }
               ]
             }}
           />

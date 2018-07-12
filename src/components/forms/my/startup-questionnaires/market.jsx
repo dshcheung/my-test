@@ -3,8 +3,10 @@ import { reduxForm, Field, FieldArray } from 'redux-form'
 
 import Validators from '../../../../services/form-validators'
 
+import TextField from '../../../shared/form-elements/text-field'
 import TextArea from '../../../shared/form-elements/text-area'
 import Select2Field from '../../../shared/form-elements/select2-field'
+import DateTimePicker from '../../../shared/form-elements/datetime-picker'
 import FileField from '../../../shared/form-elements/file-field'
 import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
 
@@ -12,12 +14,30 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
   form: "MyStartupQuestionnairesMarketForm",
   validate: (values) => {
     return Validators({
-      define_market: [{ type: "length", opts: { max: 600 } }],
-      customer_persona: [{ type: "length", opts: { max: 600 } }],
-      timing: [{ type: "length", opts: { max: 600 } }],
-      risk_factors: [{ type: "length", opts: { max: 600 } }],
-      competitors: [{ type: "length", opts: { max: 600 } }],
-      barriers: [{ type: "length", opts: { max: 600 } }],
+      unique_selling_point: [{ type: "lengthWord", opts: { max: 30 } }],
+      barriers_to_entry: [{ type: "lengthWord", opts: { max: 200 } }],
+      traction: [{ type: "lengthWord", opts: { max: 200 } }],
+      competition_landscape: [{ type: "lengthWord", opts: { max: 200 } }],
+      startup_questionnaire_competitors: [{
+        type: "complexArrOfObj",
+        opts: {
+          selfPresences: true,
+          childFields: {
+            title: ["presences"],
+            link: ["presences", "httpLink"]
+          }
+        }
+      }],
+      go_to_market_strategies: [{
+        type: "complexArrOfObj",
+        opts: {
+          selfPresences: true,
+          childFields: {
+            occurs_on: ["presences"],
+            action: ["presences", { type: "lengthWord", opts: { max: 40 } }]
+          }
+        }
+      }],
       attachments: [{
         type: "complexArrOfObj",
         opts: {
@@ -28,10 +48,26 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
           }
         }
       }]
-    }, values, ["attachments"])
+    }, values, ["startup_questionnaire_competitors", "attachments"])
   },
   enableReinitialize: true
 })
+
+// TODO: need to take description out of competitors
+
+// startup_questionnaire_market_attributes: [
+//   :id,
+//   :global_market,
+//   :global_market_metrics,
+//   :target_market,
+//   :target_market_metrics,
+//   :unique_selling_point,
+//   :barriers_to_entry,
+//   :traction,
+//   competitors_attributes: [ :id, :description, :name, :website, :_destroy ],
+//   go_to_market_strategies_attributes: [ :id, :occurs_on, :action, :_destroy ],
+//   attachments_attributes: [ :id, :title, :file, :remove_file, :_destroy ]
+// ],
 
 export default class MyStartupQuestionnairesMarketForm extends Component {
   render() {
@@ -41,57 +77,138 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
           <Field
-            name="define_market"
+            name="global_market"
             component={TextArea}
             opts={{
-              label: "Define your market *",
-              hint: "Describe your own targeted market : Who is your customer, what particular segment you are addressing, which geography, what will be the next market to ensure your growth (if applicable)"
+              label: "Global market",
+              hint: "Worldwide, or any global reference point : that is the all market you could address eventually, after scaling up "
             }}
           />
 
           <Field
-            name="market_metrics"
+            name="global_market_metrics"
             component={FileField}
             opts={{
-              label: "Market metrics *",
-              hint: "Please upload your market metrics slide/excel. Size & Growth rate of the global market (precise currency), of your targeted segment, your market share (in % of your targeted segment, and in value)",
+              label: "Global market metrics (optional)",
+              hint: "Current Size, projected CAGR",
               urlKey: "original"
             }}
           />
 
           <Field
-            name="timing"
+            name="target_market"
             component={TextArea}
             opts={{
-              label: "Why is your timing right in entering this market ? (For assessment purpose only)",
-              hint: "because of course it IS right, no ? ;))"
+              label: "Targeted market (your customers)",
+              hint: "Your entry market that you are targeting in the coming months. Remember that its definition should give us a precise description of your targeted customer."
             }}
           />
 
           <Field
-            name="risk_factors"
-            component={TextArea}
+            name="target_market_metrics"
+            component={FileField}
             opts={{
-              label: "What are the risk factors specific to this market ? *",
-              hint: "Solvability, security, consumer safety, regulation & liability, political / legal stability...."
+              label: "Targeted market metrics (optional)",
+              hint: "Current Size, projected CAGR",
+              urlKey: "original"
             }}
           />
 
           <Field
-            name="competitors"
+            name="unique_selling_point"
             component={TextArea}
             opts={{
-              label: "Who are your actual and potential competitors ? *",
-              hint: "List here your 3 main competitors names and brief description. Please upload in Extra files below any more detailed Competition analysis slide/doc you may have"
+              label: "Unique selling point",
+              hint: "Strategy is about difference : give one, and only one"
             }}
           />
 
           <Field
-            name="barriers"
+            name="barriers_to_entry"
             component={TextArea}
             opts={{
-              label: "What are the barriers to entry in your market for new competitors ? *",
-              hint: "Patent, regulation, time to market, execution complexity, resource scarcity... It is important also to explain if YOU are building them and if they will be sustainable in time"
+              label: "Barriers to entry",
+              hint: "Main reasons why a company will find it difficult to conquer your customers when entering your market"
+            }}
+          />
+
+          <Field
+            name="traction"
+            component={TextArea}
+            opts={{
+              label: "Traction",
+              hint: "Users and/or validated feedback"
+            }}
+          />
+
+          <Field
+            name="competition_landscape"
+            component={TextArea}
+            opts={{
+              label: "Describe your competition landcape",
+            }}
+          />
+
+          <FieldArray
+            name="startup_questionnaire_competitors"
+            component={DynamicFieldArray}
+            opts={{
+              label: "Competitors",
+              groupName: "Competitor",
+              newFieldInit: {
+                name: '',
+                link: '',
+              },
+              onDeleteField: dMSQAttributes,
+              dynamicFields: [
+                {
+                  key: "name",
+                  component: TextField,
+                  opts: {
+                    label: "Name"
+                  }
+                },
+                {
+                  key: "link",
+                  component: TextField,
+                  opts: {
+                    label: "Link"
+                  }
+                }
+              ]
+            }}
+          />
+
+          <FieldArray
+            name="go_to_market_strategies"
+            component={DynamicFieldArray}
+            opts={{
+              label: "Go-To-Market Strategies",
+              groupName: "Strategy",
+              newFieldInit: {
+                date: moment().toDate(),
+                action: '',
+              },
+              onDeleteField: dMSQAttributes,
+              dynamicFields: [
+                {
+                  key: "date",
+                  component: DateTimePicker,
+                  opts: {
+                    label: "Date",
+                    time: false,
+                    format: "MM/YYYY",
+                    views: ["year", "decade"]
+                  }
+                },
+                {
+                  key: "action",
+                  component: TextArea,
+                  opts: {
+                    label: "Action"
+                  }
+                }
+              ]
             }}
           />
 

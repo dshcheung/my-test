@@ -18,6 +18,20 @@ import ImageField from '../../../shared/form-elements/image-field'
   enableReinitialize: true
 })
 
+// startup_questionnaire_basic_attributes: [
+//   :id,
+//   :company_name,
+//   :founded_year,
+//   :country_of_incorporation,
+//   :vertical,
+//   :tagline,
+//   :banner,
+//   :remove_banner,
+//   :logo,
+//   :remove_logo,
+//   hashtags_attributes: [ :id, :tag, :_destroy]
+// ],
+
 export default class MyStartupQuestionnairesBasicForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass, pristine } = this.props

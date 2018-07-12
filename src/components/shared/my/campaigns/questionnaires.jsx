@@ -17,6 +17,7 @@ import LoadingSpinner from '../../../shared/loading-spinner'
 
 import MyStartupQuestionnairesBasicForm from '../../../forms/my/startup-questionnaires/basic'
 import MyStartupQuestionnairesTeaserForm from '../../../forms/my/startup-questionnaires/teaser'
+import MyStartupQuestionnairesProductForm from '../../../forms/my/startup-questionnaires/product'
 import MyStartupQuestionnairesMarketForm from '../../../forms/my/startup-questionnaires/market'
 import MyStartupQuestionnairesStrategyForm from '../../../forms/my/startup-questionnaires/strategy'
 import MyStartupQuestionnairesTeamForm from '../../../forms/my/startup-questionnaires/team'
@@ -84,7 +85,7 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
         {
           key: "product",
           dataKey: "startup_questionnaire_product",
-          // model: MyStartupQuestionnairesProductForm,
+          model: MyStartupQuestionnairesProductForm,
           formatValues: (q) => {
             const cv = _.get(q, 'startup_questionnaire_patents')
             if (cv) {
