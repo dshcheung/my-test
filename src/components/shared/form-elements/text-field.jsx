@@ -12,9 +12,11 @@ export default class TextField extends Component {
         placeholder,
         hint,
         step, min,
-        inputGroup, backInputGroup
+        frontInputGroup, backInputGroup
       }
     } = this.props
+
+    const inputGroup = backInputGroup || frontInputGroup
 
     const hasErrorClass = touched && invalid ? 'has-error' : ''
 

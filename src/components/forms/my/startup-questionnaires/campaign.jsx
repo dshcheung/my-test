@@ -9,7 +9,6 @@ import {
 
 import Validators from '../../../../services/form-validators'
 
-import TextArea from '../../../shared/form-elements/text-area'
 import TextField from '../../../shared/form-elements/text-field'
 import DateTimePicker from '../../../shared/form-elements/datetime-picker'
 import SelectField from '../../../shared/form-elements/select-field'
@@ -68,9 +67,8 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
         <form onSubmit={handleSubmit}>
           <Field
             name="raised"
-            component={TextField}
+            component={CurrencyField}
             opts={{
-              type: "number",
               label: "Amount raised"
             }}
           />
@@ -96,15 +94,15 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
                   component={TextField}
                   opts={{
                     type: "number",
-                    label: "Equity Percentage"
+                    label: "Equity Percentage",
+                    backInputGroup: "%"
                   }}
                 />
 
                 <Field
                   name="pre_money_valuation"
-                  component={TextField}
+                  component={CurrencyField}
                   opts={{
-                    type: "number",
                     label: "Pre money valuation"
                   }}
                 />
@@ -120,7 +118,8 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
                   component={TextField}
                   opts={{
                     type: "number",
-                    label: "Discount rate"
+                    label: "Discount rate",
+                    backInputGroup: "%"
                   }}
                 />
 
@@ -129,7 +128,8 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
                   component={TextField}
                   opts={{
                     type: "number",
-                    label: "Interest rate"
+                    label: "Interest rate",
+                    backInputGroup: "%"
                   }}
                 />
 
@@ -145,9 +145,8 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
 
                 <Field
                   name="valuation_cap"
-                  component={TextField}
+                  component={CurrencyField}
                   opts={{
-                    type: "number",
                     label: "Valuation Cap"
                   }}
                 />
@@ -159,7 +158,7 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
             name="attachments"
             component={DynamicFieldArray}
             opts={{
-              label: "upload Term sheet / Investor right agreement / Shareholder agreement (Optional)",
+              label: "Upload Term sheet / Investor right agreement / Shareholder agreement (Optional)",
               groupName: "File",
               newFieldInit: {
                 title: '',

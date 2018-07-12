@@ -191,26 +191,22 @@ const generateParams = (values) => {
       startup_questionnaire_cap_tables_attributes: _.get(values, 'financial.startup_questionnaire_cap_tables', null),
       attachments_attributes: _.get(values, 'financial.attachments', null)
     },
-    startup_questionnaire_investment_attributes: {
-      id: _.get(values, 'investment.id', null),
-      exit_strategy: _.get(values, 'investment.exit_strategy', null),
-      attachments_attributes: _.get(values, 'investment.attachments', null)
+    startup_questionnaire_campaign_attributes: {
+      id: _.get(values, 'campaign.id', null),
+      raised_attributes: _.get(values, 'campaign.raised', null),
+      campaign_type: _.get(values, 'campaign.campaign_type', null),
+      equity_percentage: _.get(values, 'campaign.equity_percentage', null),
+      pre_money_valuation_attributes: _.get(values, 'campaign.pre_money_valuation', null),
+      discount_rate: _.get(values, 'campaign.discount_rate', null),
+      interest_rate: _.get(values, 'campaign.interest_rate', null),
+      maturity_date: _.get(values, 'campaign.maturity_date', null),
+      valuation_cap_attributes: _.get(values, 'campaign.valuation_cap', null),
+      attachments_attributes: _.get(values, 'campaign.attachments', null)
     },
-    attachments_attributes: _.get(values, 'attachments.attachments', null)
+    attachments_attributes: _.get(values, 'dataroom.attachments', null)
   }
 
   console.log(params)
 
   return params
 }
-
-// :id,
-// :campaign_type,
-// :discount_rate,
-// :interest_rate,
-// :maturity_date,
-// :equity_percentage,
-// raised_attributes: [:id, :amount, :currency, :_destroy],
-// pre_money_valuation_attributes: [:id, :amount, :currency, :_destroy],
-// valuation_cap_attributes: [:id, :amount, :currency, :_destroy],
-// attachments_attributes: [ :id, :title, :file, :remove_file, :_destroy ]

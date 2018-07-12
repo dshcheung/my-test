@@ -24,6 +24,8 @@ import MyStartupQuestionnairesFinancialForm from '../../../forms/my/startup-ques
 import MyStartupQuestionnairesCampaignForm from '../../../forms/my/startup-questionnaires/campaign'
 import MyStartupQuestionnairesAttachmentsForm from '../../../forms/my/startup-questionnaires/attachments'
 
+const timeNow = moment().toDate()
+
 const mapStateToProps = (state, props) => {
   const myCampaignID = _.get(props, 'routeParams.myCampaignID')
 
@@ -56,13 +58,17 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
           prevTab: null,
           nextTab: "teaser",
           formatValues: (q) => {
-            const founded = _.get(q, "founded_year")
-            _.set(q, 'founded_year', founded ? moment(founded).toDate() : moment().toDate())
+            const nq = {
+              ...q,
+              company_name: _.get(q, 'company_name') || '',
+              country_of_incorporation: _.get(q, 'country_of_incorporation') || '',
+              founded_year: _.get(q, 'founded_year') ? moment(_.get(q, 'founded_year')).toDate : timeNow,
+              hashtags: _.get(q, 'hashtags') || [],
+              tagline: _.get(q, 'tagline') || '',
+              vertical: _.get(q, 'vertical') || ''
+            }
 
-            const hashtags = _.get(q, "hashtags")
-            _.set(q, 'hashtags', hashtags || [])
-
-            return q
+            return nq
           }
         },
         {
@@ -72,20 +78,27 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
           prevTab: "basic",
           nextTab: "product",
           formatValues: (q) => {
-            const cv = _.get(q, 'startup_questionnaire_highlights')
-            if (cv) {
-              const nv = cv.map((v) => {
-                const occurredOn = _.get(v, "occurred_on")
-                return {
-                  ...v,
-                  occurred_on: occurredOn ? moment(occurredOn).toDate() : moment().toDate()
-                }
-              })
+            const startup_questionnaire_highlights = _.get(q, 'startup_questionnaire_highlights') || []
+            const startup_questionnaire_media = _.get(q, 'startup_questionnaire_media') || []
 
-              _.set(q, 'startup_questionnaire_highlights', nv)
+            const nq = {
+              ...q,
+              make_money: _.get(q, 'make_money') || '',
+              problem: _.get(q, 'problem') || '',
+              solution: _.get(q, 'solution') || '',
+              solution_benchmark: _.get(q, 'solution_benchmark') || '',
+              startup_questionnaire_highlights: startup_questionnaire_highlights.map((h) => {
+                const occurred_on = _.get(h, "occurred_on")
+
+                return {
+                  ...h,
+                  occurred_on: occurred_on ? moment(occurred_on).toDate() : timeNow
+                }
+              }),
+              startup_questionnaire_media
             }
 
-            return q
+            return nq
           }
         },
         {
@@ -95,20 +108,21 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
           prevTab: "teaser",
           nextTab: "market",
           formatValues: (q) => {
-            const cv = _.get(q, 'startup_questionnaire_patents')
-            if (cv) {
-              const nv = cv.map((v) => {
-                const date = _.get(v, "registration_date")
+            const startup_questionnaire_patents = _.get(q, 'startup_questionnaire_patents') || []
+
+            const nq = {
+              ...q,
+              product: _.get(q, 'product') || '',
+              startup_questionnaire_patents: startup_questionnaire_patents.map((p) => {
+                const registration_date = _.get(p, 'registration_date')
                 return {
-                  ...v,
-                  registration_date: date ? moment(date).toDate() : moment().toDate()
+                  ...p,
+                  registration_date: registration_date ? moment(registration_date).toDate() : timeNow
                 }
               })
-
-              _.set(q, 'startup_questionnaire_patents', nv)
             }
 
-            return q
+            return nq
           }
         },
         {
@@ -118,20 +132,26 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
           prevTab: "product",
           nextTab: "team",
           formatValues: (q) => {
-            const cv = _.get(q, 'go_to_market_strategies')
-            if (cv) {
-              const nv = cv.map((v) => {
-                const date = _.get(v, "occurs_on")
+            const go_to_market_strategies = _.get(q, 'go_to_market_strategies') || []
+
+            const nq = {
+              ...q,
+              barriers_to_entry: _.get(q, 'barriers_to_entry') || '',
+              competition_landscape: _.get(q, 'competition_landscape') || '',
+              global_market: _.get(q, 'global_market') || '',
+              solution_benchmark: _.get(q, 'solution_benchmark') || '',
+              target_market: _.get(q, 'target_market') || '',
+              traction: _.get(q, 'traction') || '',
+              go_to_market_strategies: go_to_market_strategies.map((s) => {
+                const occurs_on = _.get(s, 'occurs_on')
                 return {
-                  ...v,
-                  occurs_on: date ? moment(date).toDate() : moment().toDate()
+                  ...s,
+                  occurs_on: occurs_on ? moment(occurs_on).toDate() : timeNow
                 }
               })
-
-              _.set(q, 'go_to_market_strategies', nv)
             }
 
-            return q
+            return nq
           }
         },
         {
@@ -148,48 +168,43 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
           prevTab: "team",
           nextTab: "campaign",
           formatValues: (q) => {
-            const cv = _.get(q, 'startup_questionnaire_financial_fund_histories')
-            if (cv) {
-              const nv = cv.map((v) => {
-                const occurredOn = _.get(v, "occurred_on")
-                return {
-                  ...v,
-                  occurred_on: occurredOn ? moment(occurredOn).toDate() : moment().toDate()
-                }
-              })
-
-              _.set(q, 'startup_questionnaire_financial_fund_histories', nv)
+            // TODO: change break_even and cash_burn from array to object, use Field instead of FieldArray
+            const startup_questionnaire_previous_funds = _.get(q, 'startup_questionnaire_previous_funds') || []
+            const startup_questionnaire_cap_tables = _.get(q, 'startup_questionnaire_cap_tables') || []
+            const startup_questionnaire_break_even = _.get(q, 'startup_questionnaire_break_even')
+            if (startup_questionnaire_break_even && !startup_questionnaire_break_even.length) {
+              const year = startup_questionnaire_break_even.year
+              startup_questionnaire_break_even.year = year ? moment(year).toDate() : timeNow
             }
 
-            const cv2 = _.get(q, 'startup_questionnaire_cap_tables')
-            if (cv2) {
-              const nv2 = cv2.map((v) => {
-                const date = _.get(v, "date_of_investment_as_i")
-                return {
-                  ...v,
-                  date_of_investment: date ? moment(date).toDate() : moment().toDate()
-                }
-              })
-
-              _.set(q, 'startup_questionnaire_cap_tables', nv2)
-            }
-
-            const cv3 = _.get(q, 'startup_questionnaire_break_even')
-            if (cv3 && !cv3.length) {
-              const nv3 = { ...cv3, year: cv3.year ? moment(cv3.year).toDate() : moment().toDate() }
-              _.set(q, 'startup_questionnaire_break_even', [nv3])
-            }
-
-            const cv4 = _.get(q, 'startup_questionnaire_cash_burns')
-            if (cv4 && !cv4.length) {
-              const money = _.get(cv4, 'money')
+            const startup_questionnaire_cash_burns = _.get(q, 'startup_questionnaire_cash_burns')
+            if (startup_questionnaire_cash_burns && !startup_questionnaire_cash_burns.length) {
+              const money = _.get(startup_questionnaire_cash_burns, 'money')
               const amount = _.get(money, 'amount') || ''
-              const nv4 = { ...cv4, money: { ...money, amount } }
-
-              _.set(q, 'startup_questionnaire_cash_burns', [nv4])
+              startup_questionnaire_cash_burns.money = { ...money, amount }
             }
 
-            return q
+            const nq = {
+              ...q,
+              startup_questionnaire_previous_funds: startup_questionnaire_previous_funds.map((pf) => {
+                const occurred_on = _.get(pf, 'occurred_on')
+                return {
+                  ...pf,
+                  occurred_on: occurred_on ? moment(occurred_on).toDate() : timeNow
+                }
+              }),
+              startup_questionnaire_cap_tables: startup_questionnaire_cap_tables.map((ct) => {
+                const date_of_investment = _.get(ct, 'date_of_investment_as_i')
+                return {
+                  ...ct,
+                  date_of_investment: date_of_investment ? moment(date_of_investment).toDate() : timeNow
+                }
+              }),
+              startup_questionnaire_break_even: [startup_questionnaire_break_even],
+              startup_questionnaire_cash_burns: [startup_questionnaire_cash_burns]
+            }
+
+            return nq
           }
         },
         {
@@ -197,7 +212,27 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
           dataKey: "startup_questionnaire_campaign",
           model: MyStartupQuestionnairesCampaignForm,
           prevTab: "financial",
-          nextTab: "attachments"
+          nextTab: "attachments",
+          formatValues: (q) => {
+            const nq = {
+              ...q,
+              maturity_date: _.get(q, 'maturity_date') ? moment(_.get(q, 'maturity_date')).toDate() : timeNow,
+              pre_money_valuation: {
+                ..._.get(q, 'pre_money_valuation'),
+                amount: _.get(q, 'pre_money_valuation.amount') || '',
+              },
+              raised: {
+                ..._.get(q, 'raised'),
+                amount: _.get(q, 'raised.amount') || '',
+              },
+              valuation_cap: {
+                ..._.get(q, 'valuation_cap'),
+                amount: _.get(q, 'valuation_cap.amount') || '',
+              }
+            }
+
+            return nq
+          }
         },
         {
           key: "dataroom",
@@ -206,8 +241,10 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
           prevTab: "campaign",
           nextTab: null,
           formatValues: (q) => {
-            const cv = { attachments: q || [] }
-            return cv
+            const nq = {
+              attachments: q || []
+            }
+            return nq
           },
           allAttachmentOptions: true
         }

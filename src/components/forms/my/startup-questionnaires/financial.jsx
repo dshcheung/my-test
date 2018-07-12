@@ -66,7 +66,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
           childFields: {
             first_name: ["presences"],
             last_name: ["presences"],
-            percentage_of_shares: ["presences", "noDecimal"]
+            percentage_of_shares: ["presences"]
           }
         }
       }],
@@ -243,7 +243,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   key: "occurred_on",
                   component: DateTimePicker,
                   opts: {
-                    Label: "Occurred On",
+                    label: "Occurred On",
                     time: false,
                     format: "YYYY/MM",
                     views: ["year", "decade"]
@@ -253,8 +253,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   key: "money",
                   component: CurrencyField,
                   opts: {
-                    type: "number",
-                    Label: "Amount"
+                    label: "Amount"
                   }
                 },
                 {
@@ -267,7 +266,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                     ],
                     valueKey: "key",
                     nameKey: "name",
-                    Label: "Contract Type",
+                    label: "Contract Type",
                     placeholder: "Select a type"
                   }
                 }
@@ -311,7 +310,6 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   component: TextField,
                   opts: {
                     type: "number",
-                    inputGroup: true,
                     backInputGroup: "%",
                     label: "Percentage of Shares"
                   }
