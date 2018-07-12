@@ -7,6 +7,8 @@ export default class MultiselectField extends Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleCreate = this.handleCreate.bind(this)
+    this.handleBlur = this.handleBlur.bind(this)
+    this.handleFocus = this.handleFocus.bind(this)
   }
 
   handleChange(tags) {
@@ -14,8 +16,16 @@ export default class MultiselectField extends Component {
   }
 
   handleCreate(tag) {
-    const newTags = [...this.props.input.value, { name: tag }]
+    const newTags = [...this.props.input.value, { [this.props.opts.textField]: tag }]
     this.props.input.onChange(newTags)
+  }
+
+  handleBlur() {
+    this.props.input.onBlur(this.props.input.value)
+  }
+
+  handleFocus() {
+    this.props.input.onFocus(this.props.input.value)
   }
 
   render() {
@@ -40,7 +50,8 @@ export default class MultiselectField extends Component {
           {...input}
           onChange={this.handleChange}
           onCreate={this.handleCreate}
-          onBlur={() => {}}
+          onBlur={this.handleBlur}
+          onFocus={this.handleFocus}
           placeholder={placeholder}
           allowCreate={'onFilter'}
           data={options}

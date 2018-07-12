@@ -77,6 +77,8 @@ export default class MyCampaigns extends Component {
       ],
       currentTab: props.params.tab
     }
+
+    this.changeTab = this.changeTab.bind(this)
   }
 
   componentWillMount() {
@@ -102,10 +104,12 @@ export default class MyCampaigns extends Component {
   }
 
   changeTab(tab) {
-    const { router } = this.props
-    scrollTop()
-    this.setState({ currentTab: tab })
-    router.push(`/my/campaigns/${router.params.myCampaignID}/edit/${tab}`)
+    if (tab) {
+      const { router } = this.props
+      scrollTop()
+      this.setState({ currentTab: tab })
+      router.push(`/my/campaigns/${router.params.myCampaignID}/edit/${tab}`)
+    }
   }
 
   renderTab() {
@@ -118,6 +122,7 @@ export default class MyCampaigns extends Component {
         currentTab={currentTab}
         routeParams={routeParams}
         router={router}
+        changeTab={this.changeTab}
       />
     )
   }

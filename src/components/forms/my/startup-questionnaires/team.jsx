@@ -28,7 +28,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
             contract: ["presences"],
             salary: ["presences"],
             years_of_experience: ["presences", "noDecimal"],
-            linked_in: ["presences"],
+            linked_in: ["presences", "httpLink"],
           }
         }
       }],
@@ -121,14 +121,14 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "name",
                   component: TextField,
                   opts: {
-                    placeholder: "Name"
+                    label: "Name"
                   }
                 },
                 {
                   key: "position",
                   component: TextField,
                   opts: {
-                    placeholder: "Position"
+                    label: "Position"
                   }
                 },
                 {
@@ -140,6 +140,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                       { key: "part_time", name: "Part-Time" }
                     ],
                     placeholder: "Contract Type",
+                    label: "Contract Type",
                     valueKey: "key",
                     nameKey: "name",
                   }
@@ -149,7 +150,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   component: TextField,
                   opts: {
                     type: "Number",
-                    placeholder: "Salary"
+                    label: "Salary"
                   }
                 },
                 {
@@ -157,14 +158,15 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   component: TextField,
                   opts: {
                     type: "Number",
-                    placeholder: "Years of Experience"
+                    label: "Years of Experience"
                   }
                 },
                 {
                   key: "linked_in",
                   component: TextField,
                   opts: {
-                    placeholder: "Linkedin"
+                    label: "Linkedin",
+                    placeholder: "https://www.linkedin.com/in/example-person"
                   }
                 }
               ]
@@ -198,14 +200,14 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "name",
                   component: TextField,
                   opts: {
-                    placeholder: "Name"
+                    label: "Name"
                   }
                 },
                 {
                   key: "position",
                   component: TextField,
                   opts: {
-                    placeholder: "Position"
+                    label: "Position"
                   }
                 },
                 {
@@ -216,6 +218,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                       { key: "full_time", name: "Full-Time" },
                       { key: "part_time", name: "Part-Time" }
                     ],
+                    label: "Contract Type",
                     placeholder: "Contract Type",
                     valueKey: "key",
                     nameKey: "name",
@@ -251,14 +254,14 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "name",
                   component: TextField,
                   opts: {
-                    placeholder: "Name"
+                    label: "Name"
                   }
                 },
                 {
                   key: "expertise",
                   component: TextArea,
                   opts: {
-                    placeholder: "Expertise"
+                    label: "Expertise"
                   }
                 }
               ]

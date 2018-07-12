@@ -14,17 +14,17 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
   form: "MyStartupQuestionnairesMarketForm",
   validate: (values) => {
     return Validators({
-      unique_selling_point: [{ type: "lengthWord", opts: { max: 30 } }],
+      solution_benchmark: [{ type: "lengthWord", opts: { max: 200 } }],
       barriers_to_entry: [{ type: "lengthWord", opts: { max: 200 } }],
       traction: [{ type: "lengthWord", opts: { max: 200 } }],
       competition_landscape: [{ type: "lengthWord", opts: { max: 200 } }],
-      startup_questionnaire_competitors: [{
+      competitors: [{
         type: "complexArrOfObj",
         opts: {
           selfPresences: true,
           childFields: {
             title: ["presences"],
-            link: ["presences", "httpLink"]
+            website: ["presences", "httpLink"]
           }
         }
       }],
@@ -48,7 +48,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
           }
         }
       }]
-    }, values, ["startup_questionnaire_competitors", "attachments"])
+    }, values, ["competitors", "attachments"])
   },
   enableReinitialize: true
 })
@@ -99,11 +99,11 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
           />
 
           <Field
-            name="unique_selling_point"
+            name="solution_benchmark"
             component={TextArea}
             opts={{
-              label: "Unique selling point",
-              hint: "Strategy is about difference : give one, and only one"
+              label: "Solution Benchmark",
+              hint: "Features that differentiate your solution from this competitor’s solution"
             }}
           />
 
@@ -129,19 +129,19 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             name="competition_landscape"
             component={TextArea}
             opts={{
-              label: "Describe your competition landcape",
+              label: "Describe your competition landscape",
             }}
           />
 
           <FieldArray
-            name="startup_questionnaire_competitors"
+            name="competitors"
             component={DynamicFieldArray}
             opts={{
               label: "Competitors",
               groupName: "Competitor",
               newFieldInit: {
                 name: '',
-                link: '',
+                website: '',
               },
               onDeleteField: dMSQAttributes,
               dynamicFields: [
@@ -153,10 +153,11 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
                   }
                 },
                 {
-                  key: "link",
+                  key: "website",
                   component: TextField,
                   opts: {
-                    label: "Link"
+                    label: "Link",
+                    placeholder: "https://competitor.com"
                   }
                 }
               ]

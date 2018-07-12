@@ -21,7 +21,6 @@ import MyStartupQuestionnairesProductForm from '../../../forms/my/startup-questi
 import MyStartupQuestionnairesMarketForm from '../../../forms/my/startup-questionnaires/market'
 import MyStartupQuestionnairesTeamForm from '../../../forms/my/startup-questionnaires/team'
 import MyStartupQuestionnairesFinancialForm from '../../../forms/my/startup-questionnaires/financial'
-import MyStartupQuestionnairesInvestmentForm from '../../../forms/my/startup-questionnaires/investment'
 import MyStartupQuestionnairesAttachmentsForm from '../../../forms/my/startup-questionnaires/attachments'
 
 const mapStateToProps = (state, props) => {
@@ -53,6 +52,8 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
           key: "basic",
           dataKey: "startup_questionnaire_basic",
           model: MyStartupQuestionnairesBasicForm,
+          prevTab: null,
+          nextTab: "teaser",
           formatValues: (q) => {
             const founded = _.get(q, "founded_year")
             _.set(q, 'founded_year', founded ? moment(founded).toDate() : moment().toDate())
@@ -67,6 +68,8 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
           key: "teaser",
           dataKey: "startup_questionnaire_teaser",
           model: MyStartupQuestionnairesTeaserForm,
+          prevTab: "basic",
+          nextTab: "product",
           formatValues: (q) => {
             const cv = _.get(q, 'startup_questionnaire_highlights')
             if (cv) {
@@ -88,6 +91,8 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
           key: "product",
           dataKey: "startup_questionnaire_product",
           model: MyStartupQuestionnairesProductForm,
+          prevTab: "teaser",
+          nextTab: "market",
           formatValues: (q) => {
             const cv = _.get(q, 'startup_questionnaire_patents')
             if (cv) {
@@ -109,6 +114,8 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
           key: "market",
           dataKey: "startup_questionnaire_market",
           model: MyStartupQuestionnairesMarketForm,
+          prevTab: "product",
+          nextTab: "team",
           formatValues: (q) => {
             const cv = _.get(q, 'go_to_market_strategies')
             if (cv) {
@@ -122,17 +129,23 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
 
               _.set(q, 'go_to_market_strategies', nv)
             }
+
+            return q
           }
         },
         {
           key: "team",
           dataKey: "startup_questionnaire_team",
-          model: MyStartupQuestionnairesTeamForm
+          model: MyStartupQuestionnairesTeamForm,
+          prevTab: "market",
+          nextTab: "financial",
         },
         {
           key: "financial",
           dataKey: "startup_questionnaire_financial",
           model: MyStartupQuestionnairesFinancialForm,
+          prevTab: "team",
+          nextTab: "attachments",
           formatValues: (q) => {
             const cv = _.get(q, 'startup_questionnaire_financial_fund_histories')
             if (cv) {
@@ -151,21 +164,18 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
           }
         },
         {
-          key: "investment",
-          dataKey: "startup_questionnaire_investment",
-          model: MyStartupQuestionnairesInvestmentForm
-        },
-        {
           key: "attachments",
           dataKey: "attachments",
           model: MyStartupQuestionnairesAttachmentsForm,
+          prevTab: "financial",
+          nextTab: null,
           formatValues: (q) => {
             const cv = { attachments: q || [] }
             return cv
           },
           allAttachmentOptions: true
         }
-      ],
+      ]
     }
 
     this.uMyStartupQuestionnaire = this.uMyStartupQuestionnaire.bind(this)
@@ -173,9 +183,13 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
   }
 
   uMyStartupQuestionnaire(values) {
+    const baseInfo = _.find(this.state.order, { key: this.props.currentTab })
+
     this.props.uMyStartupQuestionnaire({
       [this.props.currentTab]: values
-    }, null, {
+    }, () => {
+      this.props.changeTab(baseInfo.nextTab)
+    }, {
       ...this.props.routeParams,
       startupQuestionnaireID: this.props.myQuestionnaires.id
     })
@@ -213,6 +227,7 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
     }
   }
 
+  // TODO: add next and previous button to forms
   render() {
     const {
       currentTab, attachmentOptions, myQuestionnaires,

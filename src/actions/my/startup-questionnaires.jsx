@@ -41,51 +41,38 @@ export const gMyStartupQuestionnaires = ({ queries = {}, nextHref = null } = {})
 // TODO: add a delete one for deleting members, founders...etc
 export const U_MY_STARTUP_QUESTIONNAIRE = "U_MY_STARTUP_QUESTIONNAIRE"
 export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
-  const checkAvatar = (x) => {
-    const file = _.get(x, 'avatar[0]')
+  const checkFile = (x, key) => {
+    const file = _.get(x, `${key}[0]`)
     if (file) {
-      _.set(x, 'avatar', file)
+      _.set(x, key, file)
     } else {
-      _.set(x, 'avatar', null)
+      _.set(x, key, null)
     }
   }
-
-  const checkFile = (x) => {
-    const file = _.get(x, 'file[0]')
-    if (file) {
-      _.set(x, 'file', file)
-    } else {
-      _.set(x, 'file', null)
-    }
-  }
-
-  const checkAvatarList = [
-    'team.startup_questionnaire_team_founders',
-    'team.startup_questionnaire_team_members',
-    'team.startup_questionnaire_team_advisors'
-  ]
-
-  checkAvatarList.forEach((c) => {
-    const arr = _.get(values, c) || []
-    arr.forEach(checkAvatar)
-  })
 
   const checkFileList = [
-    'attachments.attachments',
-    'teaser.attachments',
-    'market.attachments',
-    'strategy.attachments',
-    'team.attachments',
-    'financial.attachments',
-    'investment.attachments'
+    { target: 'teaser.startup_questionnaire_media', key: 'logo' },
+    { target: 'team.startup_questionnaire_team_founders', key: 'avatar' },
+    { target: 'team.startup_questionnaire_team_members', key: 'avatar' },
+    { target: 'team.startup_questionnaire_team_advisors', key: 'avatar' },
+    { target: 'attachments.attachments', key: 'file' },
+    { target: 'teaser.attachments', key: 'file' },
+    { target: 'market.attachments', key: 'file' },
+    { target: 'strategy.attachments', key: 'file' },
+    { target: 'team.attachments', key: 'file' },
+    { target: 'financial.attachments', key: 'file' },
+    { target: 'investment.attachments', key: 'file' },
   ]
 
   checkFileList.forEach((c) => {
-    const arr = _.get(values, c) || []
-    arr.forEach(checkFile)
+    const arr = _.get(values, c.target) || []
+
+    arr.forEach((el) => {
+      checkFile(el, c.key)
+    })
   })
 
-  console.log(params)
+  console.log(values)
 
   const params = {
     startup_questionnaire_basic_attributes: {
@@ -95,16 +82,16 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
       country_of_incorporation: _.get(values, 'basic.country_of_incorporation', null),
       vertical: _.get(values, 'basic.vertical', null),
       tagline: _.get(values, 'basic.tagline', null),
-      hashtags: _.get(values, 'basic.hashtags', null),
-      logo: _.get(values, 'basic.logo', null),
-      banner: _.get(values, 'basic.banner', null)
+      hashtags_attributes: _.get(values, 'basic.hashtag', null),
+      logo: _.get(values, 'basic.logo[0]', null),
+      banner: _.get(values, 'basic.banner[0]', null)
     },
     startup_questionnaire_teaser_attributes: {
       id: _.get(values, 'teaser.id', null),
       problem: _.get(values, 'teaser.problem', null),
       solution: _.get(values, 'teaser.solution', null),
       make_money: _.get(values, 'teaser.make_money', null),
-      unique_selling_point: _.get(values, 'teaser.unique_selling_point', null),
+      solution_benchmark: _.get(values, 'teaser.solution_benchmark', null),
       pitch_deck: _.get(values, 'teaser.pitch_deck', null),
       business_plan: _.get(values, 'teaser.business_plan', null),
       startup_questionnaire_highlights_attributes: _.get(values, 'teaser.startup_questionnaire_highlights', null),
@@ -123,7 +110,7 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
       global_market_metrics: _.get(values, 'market.global_market_metrics[0]', null),
       target_market: _.get(values, 'market.target_market', null),
       target_market_metrics: _.get(values, 'market.target_market_metrics[0]', null),
-      unique_selling_point: _.get(values, 'market.unique_selling_point', null),
+      solution_benchmark: _.get(values, 'market.solution_benchmark', null),
       barriers_to_entry: _.get(values, 'market.barriers_to_entry', null),
       traction: _.get(values, 'market.traction', null),
       competition_landscape: _.get(values, 'market.competition_landscape', null),
@@ -158,6 +145,8 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
     },
     attachments_attributes: _.get(values, 'attachments.attachments', null)
   }
+
+  console.log(params)
 
   const request = genAxios({
     method: "put",

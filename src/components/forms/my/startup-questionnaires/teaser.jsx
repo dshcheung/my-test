@@ -18,7 +18,7 @@ import FileField from '../../../shared/form-elements/file-field'
       problem: [{ type: "lengthWord", opts: { max: 100 } }],
       solution: [{ type: "lengthWord", opts: { max: 100 } }],
       make_money: [{ type: "lengthWord", opts: { max: 100 } }],
-      unique_selling_point: [{ type: "lengthWord", opts: { max: 200 } }],
+      solution_benchmark: [{ type: "lengthWord", opts: { max: 200 } }],
       startup_questionnaire_highlights: [{
         type: "complexArrOfObj",
         opts: {
@@ -55,17 +55,6 @@ import FileField from '../../../shared/form-elements/file-field'
   enableReinitialize: true
 })
 
-// startup_questionnaire_teaser_attributes: [
-//   :id,
-//   :problem,
-//   :solution,
-//   :make_money,
-//   :unique_selling_point,
-//   startup_questionnaire_highlights_attributes: [ :id, :occurred_on, :title, :content, :_destroy ],
-//   startup_questionnaire_media_attributes: [ :id, :logo, :link, :_destroy ],
-//   attachments_attributes: [ :id, :title, :file, :remove_file, :_destroy ]
-// ],
-
 export default class MyStartupQuestionnairesTeaserForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass, dMSQAttributes, pristine } = this.props
@@ -99,29 +88,11 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
           />
 
           <Field
-            name="unique_selling_point"
+            name="solution_benchmark"
             component={TextArea}
             opts={{
-              label: "Unique selling point",
-              hint: "Show us how your Selling Proposition is unique. Can be Product features, Market segment addressed, Marketing strategy.... Be precise."
-            }}
-          />
-
-          <Field
-            name="pitch_deck"
-            component={FileField}
-            opts={{
-              label: "Pitch Deck",
-              urlKey: "original"
-            }}
-          />
-
-          <Field
-            name="business_plan"
-            component={FileField}
-            opts={{
-              label: "Business Plan (optional)",
-              urlKey: "original"
+              label: "Solution Benchmark",
+              hint: "Features that differentiate your solution from this competitor’s solution"
             }}
           />
 
@@ -152,14 +123,14 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                   key: "title",
                   component: TextField,
                   opts: {
-                    placeholder: "Title"
+                    label: "Title"
                   }
                 },
                 {
                   key: "content",
                   component: TextArea,
                   opts: {
-                    placeholder: "Content"
+                    label: "Content"
                   }
                 }
               ]
