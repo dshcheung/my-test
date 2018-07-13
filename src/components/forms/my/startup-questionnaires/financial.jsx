@@ -103,18 +103,12 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             }}
           />
 
-          <StaticFields
-            name="startup_questionnaire_cash_burns"
-            label="Average monthly cash burn-rate"
-            fields={[
-              {
-                name: "money",
-                component: CurrencyField,
-                opts: {
-                  label: "Amount"
-                }
-              }
-            ]}
+          <Field
+            name="cash_burn"
+            component={CurrencyField}
+            opts={{
+              label: "Amount"
+            }}
           />
 
           <StaticFields
@@ -194,7 +188,6 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
               newFieldInit: {
                 occurred_on: moment().toDate(),
                 money: {
-                  id: '',
                   amount: '',
                   currency: "HKD"
                 },

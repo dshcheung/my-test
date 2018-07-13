@@ -91,7 +91,7 @@ const checkFile = (x, key) => {
 }
 
 const generateParams = (values) => {
-  console.log(values)
+  // console.log(values)
 
   const checkFileList = [
     { target: 'teaser.startup_questionnaire_media', key: 'logo' },
@@ -119,7 +119,9 @@ const generateParams = (values) => {
   if (startup_questionnaire_previous_funds_attributes) {
     startup_questionnaire_previous_funds_attributes = startup_questionnaire_previous_funds_attributes.map((pf) => {
       return {
-        ...pf,
+        id: _.get(pf, 'id', null),
+        occurred_on: _.get(pf, 'occurred_on', null),
+        fund_type: _.get(pf, 'fund_type', null),
         money_attributes: _.get(pf, 'money', null)
       }
     })
@@ -181,10 +183,7 @@ const generateParams = (values) => {
       id: _.get(values, 'financial.id', null),
       income_statement: _.get(values, 'financial.income_statement[0]', null),
       cash_flow_statement: _.get(values, 'financial.cash_flow_statement[0]', null),
-      startup_questionnaire_cash_burn_attributes: {
-        id: _.get(values, 'financial.startup_questionnaire_cash_burns.id', null),
-        money_attributes: _.get(values, 'financial.startup_questionnaire_cash_burns.money', null),
-      },
+      cash_burn_attributes: _.get(values, 'financial.cash_burn', null),
       startup_questionnaire_break_even_attributes: _.get(values, 'financial.startup_questionnaire_break_even', null),
       startup_questionnaire_use_of_funds_attributes: _.get(values, 'financial.startup_questionnaire_use_of_funds', null),
       startup_questionnaire_previous_funds_attributes,
@@ -206,7 +205,7 @@ const generateParams = (values) => {
     attachments_attributes: _.get(values, 'dataroom.attachments', null)
   }
 
-  console.log(params)
+  // console.log(params)
 
   return params
 }

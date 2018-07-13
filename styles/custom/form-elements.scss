@@ -46,23 +46,19 @@ span.help-block {
   height: 150px;
 }
 
-.file-field-label {
-  margin: 0;
-  display: block;
+.file-field {
+  > a {
+    margin: 0 0 5px;
+    display: block;
+  }
 
-  a {
-    float: left;
-
-    &:not(:first-child) {
-      clear: both;
-      margin-top: 10px;
-    }
-
-    &.template-url {
-      margin-bottom: 10px;
-    }
+  .file-field-label {
+    margin: 0;
+    display: block;
   }
 }
+
+
 .input-wide {
   width: 200px;
 }

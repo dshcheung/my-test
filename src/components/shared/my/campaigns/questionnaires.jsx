@@ -169,17 +169,11 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
           prevTab: "team",
           nextTab: "campaign",
           formatValues: (q) => {
-            // TODO: change break_even and cash_burn from array to object, use Field instead of FieldArray
             const startup_questionnaire_previous_funds = _.get(q, 'startup_questionnaire_previous_funds') || []
             const startup_questionnaire_cap_tables = _.get(q, 'startup_questionnaire_cap_tables') || []
             const startup_questionnaire_break_even = _.get(q, 'startup_questionnaire_break_even')
-            const year = startup_questionnaire_break_even.year
-            startup_questionnaire_break_even.year = year ? moment(year).toDate() : timeNow
-
-            const startup_questionnaire_cash_burns = _.get(q, 'startup_questionnaire_cash_burns')
-            const money = _.get(startup_questionnaire_cash_burns, 'money')
-            const amount = _.get(money, 'amount') || ''
-            startup_questionnaire_cash_burns.money = { ...money, amount }
+            const year = _.get(startup_questionnaire_break_even, 'year')
+            _.set(startup_questionnaire_break_even, 'year', year ? moment(year).toDate() : timeNow)
 
             const nq = {
               ...q,
@@ -198,7 +192,10 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
                 }
               }),
               startup_questionnaire_break_even,
-              startup_questionnaire_cash_burns
+              cash_burn: {
+                ..._.get(q, 'cash_burn'),
+                amount: _.get(q, 'cash_burn.amount') || ''
+              }
             }
 
             return nq
@@ -216,15 +213,15 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
               maturity_date: _.get(q, 'maturity_date') ? moment(_.get(q, 'maturity_date')).toDate() : timeNow,
               pre_money_valuation: {
                 ..._.get(q, 'pre_money_valuation'),
-                amount: _.get(q, 'pre_money_valuation.amount') || '',
+                amount: _.get(q, 'pre_money_valuation.amount') || ''
               },
               raised: {
                 ..._.get(q, 'raised'),
-                amount: _.get(q, 'raised.amount') || '',
+                amount: _.get(q, 'raised.amount') || ''
               },
               valuation_cap: {
                 ..._.get(q, 'valuation_cap'),
-                amount: _.get(q, 'valuation_cap.amount') || '',
+                amount: _.get(q, 'valuation_cap.amount') || ''
               }
             }
 
@@ -304,7 +301,6 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
     }
   }
 
-  // TODO: add next and previous button to forms
   render() {
     const {
       currentTab, attachmentOptions, myQuestionnaires,

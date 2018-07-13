@@ -37,12 +37,30 @@ export default class FileField extends Component {
     const newInput = _.omit(input, 'value')
     const fileUrl = valueIsUrl ? input.value : _.get(input.value, urlKey)
 
+    let fileName = ''
+
+    if (this.state.previewFileUrl) {
+      fileName = input.value[0].name
+    } else if (fileUrl) {
+      fileName = fileUrl.split('/').reverse()[0]
+    }
+
     return (
-      <div className={`form-group clearfix ${hasErrorClass}`}>
+      <div className={`form-group clearfix ${hasErrorClass} file-field`}>
         { label && <label htmlFor={newInput.name + "-noInteraction"}>{label}</label>}
         { decodeLabel && <label htmlFor={newInput.name + "-noInteraction"} dangerouslySetInnerHTML={{ __html: decodeLabel.decode() }} />}
         { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
         { hint && <span className="help-block clearfix">{hint}</span> }
+        {
+          templateUrl && (
+            <a
+              href={templateUrl}
+              download
+              target="_blank"
+              rel="noopener noreferrer"
+            >Download Template</a>
+          )
+        }
         <input
           id={newInput.name}
           className="hide"
@@ -54,38 +72,36 @@ export default class FileField extends Component {
           htmlFor={newInput.name}
           className={`${optClass} file-field-label clearfix`}
         >
-          {
-            templateUrl && (
-              <div className="clearfix">
-                <a
-                  href={templateUrl}
-                  className="btn btn-info template-url"
-                  download
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >Download Template</a>
-              </div>
-            )
-          }
-          {
-            !this.state.previewFileUrl && !fileUrl && (
-              <div className="clearfix"><a className="btn btn-primary">Select File</a></div>
-            )
-          }
-          {
-            (this.state.previewFileUrl || fileUrl) && (
-              <div className="clearfix">
-                <a className="btn btn-warning">Select Replacement File</a>
-                <a
-                  href={this.state.previewFileUrl || fileUrl}
-                  className="btn btn-primary"
-                  download
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >View File</a>
-              </div>
-            )
-          }
+          <div className="input-group">
+            <input type="text" className="form-control" value={fileName} disabled />
+            {
+              !this.state.previewFileUrl && !fileUrl && (
+                <div className="input-group-btn">
+                  <a className="btn btn-primary"><i className="fa fa-upload" /></a>
+                </div>
+              )
+            }
+            {
+              (this.state.previewFileUrl || fileUrl) && (
+                <div className="input-group-btn">
+                  <a className="btn btn-warning"><i className="fa fa-redo" /></a>
+                </div>
+              )
+            }
+            {
+              (this.state.previewFileUrl || fileUrl) && (
+                <div className="input-group-btn">
+                  <a
+                    href={this.state.previewFileUrl || fileUrl}
+                    className="btn btn-primary"
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  ><i className="fa fa-eye" /></a>
+                </div>
+              )
+            }
+          </div>
         </label>
       </div>
     )

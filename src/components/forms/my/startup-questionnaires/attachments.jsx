@@ -39,7 +39,8 @@ export default class MyStartupQuestionnairesAttachmentsForm extends Component {
             name="attachments"
             component={DynamicFieldArray}
             opts={{
-              label: "Extra Files (Optional)",
+              label: "You still have somtehing more you want to share with us ? (optional)",
+              hint: "Please upload here any document not related to the previous tabs data rooms",
               groupName: "File",
               newFieldInit: {
                 title: '',
