@@ -98,13 +98,13 @@ const generateParams = (values) => {
     { target: 'team.startup_questionnaire_team_founders', key: 'avatar' },
     { target: 'team.startup_questionnaire_team_members', key: 'avatar' },
     { target: 'team.startup_questionnaire_team_advisors', key: 'avatar' },
-    { target: 'attachments.attachments', key: 'file' },
     { target: 'teaser.attachments', key: 'file' },
+    { target: 'product.attachments', key: 'file' },
     { target: 'market.attachments', key: 'file' },
-    { target: 'strategy.attachments', key: 'file' },
     { target: 'team.attachments', key: 'file' },
     { target: 'financial.attachments', key: 'file' },
-    { target: 'investment.attachments', key: 'file' },
+    { target: 'campaign.attachments', key: 'file' },
+    { target: 'dataroom.attachments', key: 'file' },
   ]
 
   checkFileList.forEach((c) => {

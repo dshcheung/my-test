@@ -102,7 +102,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="startup_questionnaire_highlights"
             component={DynamicFieldArray}
             opts={{
-              label: "Highlights *",
+              label: "Top 5 highlighs / achievements",
               groupName: "Highlight",
               newFieldInit: {
                 occurred_on: moment().toDate(),

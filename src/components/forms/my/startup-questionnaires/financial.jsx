@@ -7,7 +7,7 @@ import TextArea from '../../../shared/form-elements/text-area'
 import TextField from '../../../shared/form-elements/text-field'
 import DateTimePicker from '../../../shared/form-elements/datetime-picker'
 import SelectField from '../../../shared/form-elements/select-field'
-import Select2Field from '../../../shared/form-elements/select2-field'
+// import Select2Field from '../../../shared/form-elements/select2-field'
 import FileField from '../../../shared/form-elements/file-field'
 import CurrencyField from '../../../shared/form-elements/currency-field'
 import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
@@ -178,6 +178,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             }}
           />
 
+          {/* // TODO: re-enable after demo and debug why create doesn't work, inverse_of?
           <FieldArray
             name="startup_questionnaire_previous_funds"
             component={DynamicFieldArray}
@@ -229,6 +230,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
               ]
             }}
           />
+          */}
 
           <FieldArray
             name="startup_questionnaire_cap_tables"
@@ -307,7 +309,8 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             }}
           />
 
-          <FieldArray
+          {/*
+          <FieldArray // TODO: re-enable when attachment params is available
             name="attachments"
             component={DynamicFieldArray}
             opts={{
@@ -341,6 +344,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
               ]
             }}
           />
+          */}
 
           <SharedMyCampaignsBackAndSaveBTN
             submitInProcess={submitInProcess}

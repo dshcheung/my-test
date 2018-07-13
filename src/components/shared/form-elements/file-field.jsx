@@ -40,7 +40,7 @@ export default class FileField extends Component {
     let fileName = ''
 
     if (this.state.previewFileUrl) {
-      fileName = input.value[0].name
+      fileName = input.value && input.value[0] && input.value[0].name
     } else if (fileUrl) {
       fileName = fileUrl.split('/').reverse()[0]
     }
