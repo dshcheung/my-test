@@ -11,6 +11,8 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
 import Select2Field from '../../../shared/form-elements/select2-field'
 import FileField from '../../../shared/form-elements/file-field'
 
+import SharedMyCampaignsBackAndSaveBTN from '../../../shared/my/campaigns/back-and-save-btn'
+
 @reduxForm({
   form: "MyStartupQuestionnairesTeaserForm",
   validate: (values) => {
@@ -207,13 +209,12 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             }}
           />
 
-          <button
-            className={`btn btn-info btn-lg btn-block ${submitInProcess && "m-progress"}`}
-            type="submit"
-            disabled={submitInProcess || pristine}
-          >
-            Save
-          </button>
+          <SharedMyCampaignsBackAndSaveBTN
+            submitInProcess={submitInProcess}
+            pristine={pristine}
+            toBackTab={this.props.toBackTab}
+            hasBack={this.props.hasBack}
+          />
         </form>
       </div>
     )

@@ -17,6 +17,8 @@ import FileField from '../../../shared/form-elements/file-field'
 import CurrencyField from '../../../shared/form-elements/currency-field'
 import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
 
+import SharedMyCampaignsBackAndSaveBTN from '../../../shared/my/campaigns/back-and-save-btn'
+
 const mapStateToProps = (state) => {
   return {
     campaignTypes: _.get(state.immovables, 'campaign_type_options', []),
@@ -58,7 +60,7 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
   }
 
   render() {
-    const { handleSubmit, submitInProcess, optClass, dMSQAttributes, campaignTypes, gImmovableInProcess } = this.props
+    const { handleSubmit, submitInProcess, optClass, dMSQAttributes, campaignTypes, gImmovableInProcess, pristine } = this.props
 
     const campaignType = _.get(this.props.values, 'campaign_type', '')
 
@@ -188,13 +190,12 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
             }}
           />
 
-          <button
-            className={`btn btn-info btn-lg btn-block ${submitInProcess && "m-progress"}`}
-            type="submit"
-            disabled={submitInProcess}
-          >
-            Save
-          </button>
+          <SharedMyCampaignsBackAndSaveBTN
+            submitInProcess={submitInProcess}
+            pristine={pristine}
+            toBackTab={this.props.toBackTab}
+            hasBack={this.props.hasBack}
+          />
         </form>
       </div>
     )

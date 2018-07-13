@@ -11,30 +11,14 @@ import Select2Field from '../../../shared/form-elements/select2-field'
 import FileField from '../../../shared/form-elements/file-field'
 import CurrencyField from '../../../shared/form-elements/currency-field'
 import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
+import StaticFields from '../../../shared/form-elements/static-fields'
+
+import SharedMyCampaignsBackAndSaveBTN from '../../../shared/my/campaigns/back-and-save-btn'
 
 @reduxForm({
   form: "MyStartupQuestionnairesFinancialForm",
   validate: (values) => {
     return Validators({
-      startup_questionnaire_cash_burns: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: true,
-          childFields: {
-            money: ["presences"], // TODO: currency_presenses
-          }
-        }
-      }],
-      startup_questionnaire_break_even: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: true,
-          childFields: {
-            quarter: ["presences"],
-            year: ["presences"],
-          }
-        }
-      }],
       startup_questionnaire_use_of_funds: [{
         type: "complexArrOfObj",
         opts: {
@@ -59,7 +43,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
           }
         }
       }],
-      startup_questionnaire_cap_tables_attributes: [{
+      startup_questionnaire_cap_tables: [{
         type: "complexArrOfObj",
         opts: {
           selfPresences: true,
@@ -81,11 +65,9 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
         }
       }]
     }, values, [
-      "startup_questionnaire_cash_burns",
-      "startup_questionnaire_break_even",
       "startup_questionnaire_use_of_funds",
       // "startup_questionnaire_previous_funds",
-      "startup_questionnaire_cap_tables_attributes",
+      "startup_questionnaire_cap_tables",
       "attachments"
     ])
   },
@@ -94,7 +76,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
 
 export default class MyStartupQuestionnairesFinancialForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass, dMSQAttributes } = this.props
+    const { handleSubmit, submitInProcess, optClass, dMSQAttributes, pristine } = this.props
 
     return (
       <div className={optClass}>
@@ -121,71 +103,52 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             }}
           />
 
-          <FieldArray
+          <StaticFields
             name="startup_questionnaire_cash_burns"
-            component={DynamicFieldArray}
-            opts={{
-              label: "Average monthly cash burn-rate",
-              staticGroup: true,
-              newFieldInit: {
-                money: {
-                  id: '',
-                  amount: '',
-                  currency: "HKD"
+            label="Average monthly cash burn-rate"
+            fields={[
+              {
+                name: "money",
+                component: CurrencyField,
+                opts: {
+                  label: "Amount"
                 }
-              },
-              dynamicFields: [
-                {
-                  key: "money",
-                  component: CurrencyField,
-                  opts: {
-                    label: "Amount"
-                  }
-                }
-              ]
-            }}
+              }
+            ]}
           />
 
-          <FieldArray
+          <StaticFields
             name="startup_questionnaire_break_even"
-            component={DynamicFieldArray}
-            opts={{
-              label: "Break-even point",
-              hint: "State a Quarter and a year",
-              staticGroup: true,
-              newFieldInit: {
-                quarter: '',
-                year: moment().toDate()
-              },
-              dynamicFields: [
-                {
-                  key: "quarter",
-                  component: SelectField,
-                  opts: {
-                    options: [
-                      { value: 1, name: "Q1" },
-                      { value: 2, name: "Q2" },
-                      { value: 3, name: "Q3" },
-                      { value: 4, name: "Q4" }
-                    ],
-                    valueKey: "value",
-                    nameKey: "name",
-                    label: "Quarter",
-                    placeholder: "Select a Quarter"
-                  }
-                },
-                {
-                  key: "year",
-                  component: DateTimePicker,
-                  opts: {
-                    label: "Year",
-                    time: false,
-                    format: "YYYY",
-                    views: ["decade"]
-                  }
+            label="Break-even point"
+            hint="State a Quarter and a year"
+            fields={[
+              {
+                name: "quarter",
+                component: SelectField,
+                opts: {
+                  options: [
+                    { value: 1, name: "Q1" },
+                    { value: 2, name: "Q2" },
+                    { value: 3, name: "Q3" },
+                    { value: 4, name: "Q4" }
+                  ],
+                  valueKey: "value",
+                  nameKey: "name",
+                  label: "Quarter",
+                  placeholder: "Select a Quarter"
                 }
-              ]
-            }}
+              },
+              {
+                name: "year",
+                component: DateTimePicker,
+                opts: {
+                  label: "Year",
+                  time: false,
+                  format: "YYYY",
+                  views: ["decade"]
+                }
+              }
+            ]}
           />
 
           <FieldArray
@@ -331,7 +294,8 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                       { name: "Preferred" },
                       { name: "Ordinary" },
                       { name: "Non-voting" },
-                      { name: "Redeemable" }
+                      { name: "Redeemable" },
+                      { name: "Other" }
                     ],
                     valueKey: "name",
                     nameKey: "name",
@@ -385,13 +349,12 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             }}
           />
 
-          <button
-            className={`btn btn-info btn-lg btn-block ${submitInProcess && "m-progress"}`}
-            type="submit"
-            disabled={submitInProcess}
-          >
-            Save
-          </button>
+          <SharedMyCampaignsBackAndSaveBTN
+            submitInProcess={submitInProcess}
+            pristine={pristine}
+            toBackTab={this.props.toBackTab}
+            hasBack={this.props.hasBack}
+          />
         </form>
       </div>
     )

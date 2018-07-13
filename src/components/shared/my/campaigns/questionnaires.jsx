@@ -23,6 +23,7 @@ import MyStartupQuestionnairesTeamForm from '../../../forms/my/startup-questionn
 import MyStartupQuestionnairesFinancialForm from '../../../forms/my/startup-questionnaires/financial'
 import MyStartupQuestionnairesCampaignForm from '../../../forms/my/startup-questionnaires/campaign'
 import MyStartupQuestionnairesAttachmentsForm from '../../../forms/my/startup-questionnaires/attachments'
+import SharedMyCampaignsSubmission from './submission'
 
 const timeNow = moment().toDate()
 
@@ -172,17 +173,13 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
             const startup_questionnaire_previous_funds = _.get(q, 'startup_questionnaire_previous_funds') || []
             const startup_questionnaire_cap_tables = _.get(q, 'startup_questionnaire_cap_tables') || []
             const startup_questionnaire_break_even = _.get(q, 'startup_questionnaire_break_even')
-            if (startup_questionnaire_break_even && !startup_questionnaire_break_even.length) {
-              const year = startup_questionnaire_break_even.year
-              startup_questionnaire_break_even.year = year ? moment(year).toDate() : timeNow
-            }
+            const year = startup_questionnaire_break_even.year
+            startup_questionnaire_break_even.year = year ? moment(year).toDate() : timeNow
 
             const startup_questionnaire_cash_burns = _.get(q, 'startup_questionnaire_cash_burns')
-            if (startup_questionnaire_cash_burns && !startup_questionnaire_cash_burns.length) {
-              const money = _.get(startup_questionnaire_cash_burns, 'money')
-              const amount = _.get(money, 'amount') || ''
-              startup_questionnaire_cash_burns.money = { ...money, amount }
-            }
+            const money = _.get(startup_questionnaire_cash_burns, 'money')
+            const amount = _.get(money, 'amount') || ''
+            startup_questionnaire_cash_burns.money = { ...money, amount }
 
             const nq = {
               ...q,
@@ -194,14 +191,14 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
                 }
               }),
               startup_questionnaire_cap_tables: startup_questionnaire_cap_tables.map((ct) => {
-                const date_of_investment = _.get(ct, 'date_of_investment_as_i')
+                const date_of_investment = _.get(ct, 'date_of_investment')
                 return {
                   ...ct,
                   date_of_investment: date_of_investment ? moment(date_of_investment).toDate() : timeNow
                 }
               }),
-              startup_questionnaire_break_even: [startup_questionnaire_break_even],
-              startup_questionnaire_cash_burns: [startup_questionnaire_cash_burns]
+              startup_questionnaire_break_even,
+              startup_questionnaire_cash_burns
             }
 
             return nq
@@ -212,7 +209,7 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
           dataKey: "startup_questionnaire_campaign",
           model: MyStartupQuestionnairesCampaignForm,
           prevTab: "financial",
-          nextTab: "attachments",
+          nextTab: "dataroom",
           formatValues: (q) => {
             const nq = {
               ...q,
@@ -239,7 +236,7 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
           dataKey: "attachments",
           model: MyStartupQuestionnairesAttachmentsForm,
           prevTab: "campaign",
-          nextTab: null,
+          nextTab: "submission",
           formatValues: (q) => {
             const nq = {
               attachments: q || []
@@ -247,6 +244,13 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
             return nq
           },
           allAttachmentOptions: true
+        },
+        {
+          key: "submission",
+          model: SharedMyCampaignsSubmission,
+          prevTab: "dataroom",
+          nextTab: null,
+          nonForm: true
         }
       ]
     }
@@ -312,22 +316,28 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
 
     const baseInfo = _.find(order, { key: currentTab })
 
-    const myQuestionnaire = _.get(myQuestionnaires, baseInfo.dataKey, {})
-    const formatValues = baseInfo.formatValues
-    const initialValues = formatValues ? formatValues(myQuestionnaire || {}) : myQuestionnaire
+    if (baseInfo.nonForm) {
+      return <baseInfo.model routeParams={this.props.routeParams} />
+    } else {
+      const myQuestionnaire = _.get(myQuestionnaires, baseInfo.dataKey, {})
+      const formatValues = baseInfo.formatValues
+      const initialValues = formatValues ? formatValues(myQuestionnaire || {}) : myQuestionnaire
 
-    return (
-      <baseInfo.model
-        initialValues={initialValues}
-        baseInfo={baseInfo}
-        onSubmit={this.uMyStartupQuestionnaire}
-        dMSQAttributes={this.dMSQAttributes}
-        submitInProcess={this.props.uMyStartupQuestionnaireInProcess}
-        optClass="col-xs-12 col-sm-6 col-sm-offset-3"
-        attachmentOptions={baseInfo.allAttachmentOptions ? attachmentOptions : _.filter(attachmentOptions, (o) => {
-          return o.section === baseInfo.dataKey
-        })}
-      />
-    )
+      return (
+        <baseInfo.model
+          initialValues={initialValues}
+          baseInfo={baseInfo}
+          toBackTab={() => { if (baseInfo.prevTab) this.props.changeTab(baseInfo.prevTab) }}
+          hasBack={baseInfo.prevTab}
+          onSubmit={this.uMyStartupQuestionnaire}
+          dMSQAttributes={this.dMSQAttributes}
+          submitInProcess={this.props.uMyStartupQuestionnaireInProcess}
+          optClass="col-xs-12 col-sm-6 col-sm-offset-3"
+          attachmentOptions={baseInfo.allAttachmentOptions ? attachmentOptions : _.filter(attachmentOptions, (o) => {
+            return o.section === baseInfo.dataKey
+          })}
+        />
+      )
+    }
   }
 }

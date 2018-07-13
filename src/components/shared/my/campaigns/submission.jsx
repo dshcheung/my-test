@@ -20,9 +20,9 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class SharedMyCampaignsStageFive extends Component {
+export default class SharedMyCampaignsSubmission extends Component {
   render() {
-    const { myCampaign, markMyCampaignForReviewInProcess } = this.props
+    const { myCampaign, markMyCampaignForReviewInProcess, routeParams } = this.props
     const submittedStatus = _.get(myCampaign, 'status.submitted')
 
     return (
@@ -36,10 +36,10 @@ export default class SharedMyCampaignsStageFive extends Component {
                 <div>
                   <div className="margin-bottom-15">When You Are Ready To Submit Your Campaign For Us To Review, Click The Button Below</div>
                   <button
-                    className={`btn btn-info btn-lg ${markMyCampaignForReviewInProcess && "m-progress"}`}
+                    className={`btn btn-danger btn-lg ${markMyCampaignForReviewInProcess && "m-progress"}`}
                     type="submit"
                     disabled={markMyCampaignForReviewInProcess}
-                    onClick={() => { this.props.markMyCampaignForReview(this.props.routeParams) }}
+                    onClick={() => { this.props.markMyCampaignForReview(routeParams) }}
                   >
                     Request Admin Approval
                   </button>

@@ -4,58 +4,29 @@ import { Field } from 'redux-form'
 export default class StaticFields extends Component {
   render() {
     const {
-      names,
-      opts: {
-        label, hint, fields
-      }
+      name, label, hint, fields
     } = this.props
 
-    console.log(this.props)
-
-    // const hasErrorClass = touched && invalid ? 'has-error' : ''
-
     return (
-      <div className="static-fields">
-        {
-          names.map((n) => {
+      <div className="clearfix margin-bottom-20 static-fields">
+        { label && <label htmlFor={name}>{label}</label> }
+        { hint && <span className="help-block clearfix margin-bottom-5">{hint}</span>}
 
-          })
-        }
+        <div className="well margin-0">
+          {
+            fields.map((f, i) => {
+              return (
+                <Field
+                  key={i}
+                  {...f}
+                  name={`${name}.${f.name}`}
+                />
+              )
+            })
+          }
+        </div>
       </div>
     )
   }
 }
 
-// <div className={`form-group clearfix ${hasErrorClass} ${optClass}`}>
-//   { customLabel && label && customLabel(label, input.name) }
-//   { !customLabel && label && <label htmlFor={input.name}>{label}</label> }
-//   { decodeLabel && <label htmlFor={input.name} dangerouslySetInnerHTML={{ __html: decodeLabel.decode() }} />}
-//   { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
-//   { hint && <span className="help-block">{hint}</span> }
-//   {
-//     inputGroup ? (
-//       <div className="input-group">
-//         <input
-//           className="form-control"
-//           placeholder={placeholder}
-//           type={type || "text"}
-//           step={step}
-//           min={min}
-//           {...input}
-//         />
-//         {
-//           backInputGroup && <span className="input-group-addon">{backInputGroup}</span>
-//         }
-//       </div>
-//     ) : (
-//       <input
-//         className="form-control"
-//         placeholder={placeholder}
-//         type={type || "text"}
-//         step={step}
-//         min={min}
-//         {...input}
-//       />
-//     )
-//   }
-// </div>

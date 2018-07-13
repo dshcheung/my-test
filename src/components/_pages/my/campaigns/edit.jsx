@@ -14,7 +14,7 @@ import {
   gImmovable, resetImmovable
 } from '../../../../actions/immovables'
 
-import { notyWarning } from '../../../../services/noty'
+// import { notyWarning } from '../../../../services/noty'
 import { scrollTop } from '../../../../services/utils'
 
 import SharedMyCampaignsQuestionnaires from '../../../shared/my/campaigns/questionnaires'
@@ -73,6 +73,10 @@ export default class MyCampaigns extends Component {
         {
           key: "dataroom",
           title: "Dataroom"
+        },
+        {
+          key: 'submission',
+          title: "Submission"
         }
       ],
       currentTab: props.params.tab
@@ -96,11 +100,11 @@ export default class MyCampaigns extends Component {
     this.props.resetImmovable()
   }
 
-  permitRedirection(props) {
-    if (props.myCampaign && !props.myCampaign.can.edit) {
-      this.props.router.push("/my/campaigns")
-      notyWarning("You Cannot Edit")
-    }
+  permitRedirection() {
+    // if (props.myCampaign && !props.myCampaign.can.edit) { // TODO: re-endable when profile is complete
+    //   this.props.router.push("/my/campaigns")
+    //   notyWarning("You Cannot Edit")
+    // }
   }
 
   changeTab(tab) {
@@ -128,12 +132,12 @@ export default class MyCampaigns extends Component {
   }
 
   render() {
-    const { myCampaign } = this.props
+    // const { myCampaign } = this.props
     const { currentTab } = this.state
 
-    if (myCampaign && !myCampaign.can.edit) {
-      return null
-    }
+    // if (myCampaign && !myCampaign.can.edit) { // TODO: re-endable when profile is complete
+    //   return null
+    // }
 
     return (
       <div id="my-campaigns-edit">

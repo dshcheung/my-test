@@ -2,12 +2,15 @@ import React, { Component } from 'react'
 import { reduxForm, Field } from 'redux-form'
 
 import Validators from '../../../../services/form-validators'
+import { COUNTRIES } from '../../../../constants'
 
 import DateTimePicker from '../../../shared/form-elements/datetime-picker'
 import TextField from '../../../shared/form-elements/text-field'
 import SelectField from '../../../shared/form-elements/select-field'
 import ImageField from '../../../shared/form-elements/image-field'
 import MultiselectField from '../../../shared/form-elements/multiselect-field'
+
+import SharedMyCampaignsBackAndSaveBTN from '../../../shared/my/campaigns/back-and-save-btn'
 
 @reduxForm({
   form: "MyStartupQuestionnairesBasicForm",
@@ -52,17 +55,15 @@ export default class MyStartupQuestionnairesBasicForm extends Component {
             name="country_of_incorporation"
             component={SelectField}
             opts={{
-              options: [
-                { id: 0, name: "Need" },
-                { id: 1, name: "Input" }
-              ],
-              valueKey: "id",
+              options: COUNTRIES,
+              valueKey: "name",
               nameKey: "name",
               label: "Country of incorporation"
             }}
           />
 
-          <Field
+          {/*
+          <Field // TODO: re-enable when vertical list is ready
             name="vertical"
             component={SelectField}
             opts={{
@@ -75,6 +76,7 @@ export default class MyStartupQuestionnairesBasicForm extends Component {
               label: "Vertical",
             }}
           />
+          */}
 
           <Field
             name="tagline"
@@ -122,13 +124,12 @@ export default class MyStartupQuestionnairesBasicForm extends Component {
             }}
           />
 
-          <button
-            className={`btn btn-danger btn-lg btn-block ${submitInProcess && "m-progress"}`}
-            type="submit"
-            disabled={submitInProcess || pristine}
-          >
-            Save
-          </button>
+          <SharedMyCampaignsBackAndSaveBTN
+            submitInProcess={submitInProcess}
+            pristine={pristine}
+            toBackTab={this.props.toBackTab}
+            hasBack={this.props.hasBack}
+          />
         </form>
       </div>
     )

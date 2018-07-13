@@ -2,19 +2,13 @@ import React, { Component } from 'react'
 import { Field } from 'redux-form'
 
 export default class DynamicFieldArray extends Component {
-  componentWillMount() {
-    if (this.props.opts.staticGroup && this.props.fields.length === 0) {
-      this.props.fields.push(this.props.opts.newFieldInit)
-    }
-  }
-
   render() {
     const {
       fields, meta: { error },
       opts: {
         label, groupName,
         newFieldInit, onDeleteField,
-        dynamicFields, hint, staticGroup
+        dynamicFields, hint
       }
     } = this.props
 
@@ -30,18 +24,12 @@ export default class DynamicFieldArray extends Component {
             return (
               <div key={i} className="well margin-0">
                 <div className="clearfix">
-                  {
-                    !staticGroup && <h5 className="pull-left">{groupName} #{i + 1}</h5>
-                  }
-                  {
-                    !staticGroup && (
-                      <button
-                        type="button"
-                        className="btn btn-danger pull-right"
-                        onClick={() => { onDeleteField(i, fields, objKey) }}
-                      ><i className="fa fa-trash" /></button>
-                    )
-                  }
+                  <h5 className="pull-left">{groupName} #{i + 1}</h5>
+                  <button
+                    type="button"
+                    className="btn btn-danger pull-right"
+                    onClick={() => { onDeleteField(i, fields, objKey) }}
+                  ><i className="fa fa-trash" /></button>
                 </div>
 
                 {
@@ -59,15 +47,11 @@ export default class DynamicFieldArray extends Component {
             )
           })
         }
-        {
-          !staticGroup && (
-            <button
-              type="button"
-              className="btn btn-info btn-block"
-              onClick={() => fields.push(newFieldInit)}
-            ><i className="fa fa-plus" /> Add Another</button>
-          )
-        }
+        <button
+          type="button"
+          className="btn btn-primary btn-block"
+          onClick={() => fields.push(newFieldInit)}
+        ><i className="fa fa-plus" /> Add Another</button>
       </div>
     )
   }

@@ -182,10 +182,10 @@ const generateParams = (values) => {
       income_statement: _.get(values, 'financial.income_statement[0]', null),
       cash_flow_statement: _.get(values, 'financial.cash_flow_statement[0]', null),
       startup_questionnaire_cash_burn_attributes: {
-        id: _.get(values, 'financial.startup_questionnaire_cash_burns[0].id', null),
-        money_attributes: _.get(values, 'financial.startup_questionnaire_cash_burns[0].money', null),
+        id: _.get(values, 'financial.startup_questionnaire_cash_burns.id', null),
+        money_attributes: _.get(values, 'financial.startup_questionnaire_cash_burns.money', null),
       },
-      startup_questionnaire_break_even_attributes: _.get(values, 'financial.startup_questionnaire_break_even[0]', null),
+      startup_questionnaire_break_even_attributes: _.get(values, 'financial.startup_questionnaire_break_even', null),
       startup_questionnaire_use_of_funds_attributes: _.get(values, 'financial.startup_questionnaire_use_of_funds', null),
       startup_questionnaire_previous_funds_attributes,
       startup_questionnaire_cap_tables_attributes: _.get(values, 'financial.startup_questionnaire_cap_tables', null),
