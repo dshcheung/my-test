@@ -7,7 +7,7 @@ import {
 } from '../../../../actions/my/campaigns'
 
 import {
-  gMyStartupQuestionnaires, resetMyStartupQuestionnaire
+  gMyStartupQuestionnaires, resetMyStartupQuestionnaires
 } from '../../../../actions/my/startup-questionnaires'
 
 import {
@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     gMyCampaign: bindActionCreators(gMyCampaign, dispatch),
     gMyStartupQuestionnaires: bindActionCreators(gMyStartupQuestionnaires, dispatch),
-    resetMyStartupQuestionnaire: bindActionCreators(resetMyStartupQuestionnaire, dispatch),
+    resetMyStartupQuestionnaires: bindActionCreators(resetMyStartupQuestionnaires, dispatch),
     gImmovable: bindActionCreators(gImmovable, dispatch),
     resetImmovable: bindActionCreators(resetImmovable, dispatch),
   }
@@ -96,7 +96,7 @@ export default class MyCampaigns extends Component {
   }
 
   componentWillUnmount() {
-    this.props.resetMyStartupQuestionnaire()
+    this.props.resetMyStartupQuestionnaires()
     this.props.resetImmovable()
   }
 

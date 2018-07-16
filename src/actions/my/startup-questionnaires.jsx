@@ -14,7 +14,7 @@ export const mergeMyStartupQuestionnaires = (data, reset) => {
 }
 
 export const RESET_MY_STARTUP_QUESTIONNAIRES = "RESET_MY_STARTUP_QUESTIONNAIRES"
-export const resetMyStartupQuestionnaire = () => {
+export const resetMyStartupQuestionnaires = () => {
   return {
     type: RESET_MY_STARTUP_QUESTIONNAIRES
   }
@@ -33,7 +33,7 @@ export const gMyStartupQuestionnaires = ({ queries = {}, nextHref = null } = {})
     paginate: true,
     successCB: (dispatch, data) => {
       dispatch(mergeMyStartupQuestionnaires(data, !nextHref))
-      dispatch(resetMyStartupQuestionnaire())
+      dispatch(resetMyStartupQuestionnaires())
     }
   }
 }
