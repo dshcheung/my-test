@@ -7,7 +7,7 @@ import TextArea from '../../../shared/form-elements/text-area'
 import TextField from '../../../shared/form-elements/text-field'
 import DateTimePicker from '../../../shared/form-elements/datetime-picker'
 import SelectField from '../../../shared/form-elements/select-field'
-// import Select2Field from '../../../shared/form-elements/select2-field'
+import Select2Field from '../../../shared/form-elements/select2-field'
 import FileField from '../../../shared/form-elements/file-field'
 import CurrencyField from '../../../shared/form-elements/currency-field'
 import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
@@ -22,7 +22,7 @@ import SharedMyCampaignsBackAndSaveBTN from '../../../shared/my/campaigns/back-a
       startup_questionnaire_use_of_funds: [{
         type: "complexArrOfObj",
         opts: {
-          selfPresences: true,
+          selfPresences: false,
           childFields: {
             percentage: ["presences"],
             description: ["presences", { type: "lengthWord", opts: { max: 50 } }]
@@ -46,7 +46,7 @@ import SharedMyCampaignsBackAndSaveBTN from '../../../shared/my/campaigns/back-a
       startup_questionnaire_cap_tables: [{
         type: "complexArrOfObj",
         opts: {
-          selfPresences: true,
+          selfPresences: false,
           childFields: {
             first_name: ["presences"],
             last_name: ["presences"],
@@ -66,7 +66,7 @@ import SharedMyCampaignsBackAndSaveBTN from '../../../shared/my/campaigns/back-a
       }]
     }, values, [
       "startup_questionnaire_use_of_funds",
-      // "startup_questionnaire_previous_funds",
+      "startup_questionnaire_previous_funds",
       "startup_questionnaire_cap_tables",
       "attachments"
     ])
@@ -178,7 +178,6 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             }}
           />
 
-          {/* // TODO: re-enable after demo and debug why create doesn't work, inverse_of?
           <FieldArray
             name="startup_questionnaire_previous_funds"
             component={DynamicFieldArray}
@@ -230,7 +229,6 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
               ]
             }}
           />
-          */}
 
           <FieldArray
             name="startup_questionnaire_cap_tables"
@@ -309,8 +307,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             }}
           />
 
-          {/*
-          <FieldArray // TODO: re-enable when attachment params is available
+          <FieldArray
             name="attachments"
             component={DynamicFieldArray}
             opts={{
@@ -344,7 +341,6 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
               ]
             }}
           />
-          */}
 
           <SharedMyCampaignsBackAndSaveBTN
             submitInProcess={submitInProcess}

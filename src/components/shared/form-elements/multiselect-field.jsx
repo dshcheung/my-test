@@ -33,7 +33,7 @@ export default class MultiselectField extends Component {
       input, meta: { invalid, error, touched },
       opts: {
         label, decodeLabel,
-        placeholder, hint,
+        placeholder, hint, optClass,
         options, valueField, textField
       }
     } = this.props
@@ -41,7 +41,7 @@ export default class MultiselectField extends Component {
     const hasErrorClass = touched && invalid ? 'has-error' : ''
 
     return (
-      <div className={`form-group clearfix ${hasErrorClass}`}>
+      <div className={`form-group clearfix ${hasErrorClass} ${optClass}`}>
         { label && <label htmlFor={input.name}>{label}</label> }
         { decodeLabel && <label htmlFor={input.name} dangerouslySetInnerHTML={{ __html: decodeLabel.decode() }} />}
         { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }

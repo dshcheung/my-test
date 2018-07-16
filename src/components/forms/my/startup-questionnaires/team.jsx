@@ -22,7 +22,7 @@ import SharedMyCampaignsBackAndSaveBTN from '../../../shared/my/campaigns/back-a
       startup_questionnaire_team_founders: [{
         type: "complexArrOfObj",
         opts: {
-          selfPresences: true,
+          selfPresences: false,
           childFields: {
             avatar: ["filePresences"],
             name: ["presences"],

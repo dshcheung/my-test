@@ -24,7 +24,7 @@ import SharedMyCampaignsBackAndSaveBTN from '../../../shared/my/campaigns/back-a
       startup_questionnaire_highlights: [{
         type: "complexArrOfObj",
         opts: {
-          selfPresences: true,
+          selfPresences: false,
           // selfMin: 5, // TODO: re-enable
           childFields: {
             title: ["presences", { type: "lengthWord", opts: { max: 4 } }],
@@ -95,6 +95,24 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             opts={{
               label: "Solution Benchmark",
               hint: "Features that differentiate your solution from this competitor’s solution"
+            }}
+          />
+
+          <Field
+            name="pitch_deck"
+            component={FileField}
+            opts={{
+              label: "Pitch Deck",
+              urlKey: "original"
+            }}
+          />
+
+          <Field
+            name="business_model"
+            component={FileField}
+            opts={{
+              label: "Business Model (optional)",
+              urlKey: "original"
             }}
           />
 

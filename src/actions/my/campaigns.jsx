@@ -129,7 +129,7 @@ export const uMyCampaign = (values, params) => {
     request,
     successCB: (dispatch, data) => {
       dispatch(setMyCampaign(data))
-      dispatch(replace(`/my/campaigns/${data.id}/edit/stage_submission`))
+      dispatch(replace(`/my/campaigns/${data.id}/edit/basic`))
       notySuccess("Submitted")
     }
   }

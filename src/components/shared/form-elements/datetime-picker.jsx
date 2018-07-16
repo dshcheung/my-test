@@ -22,14 +22,14 @@ export default class DateTimePickerField extends Component {
         label, decodeLabel,
         placeholder,
         min, max, views, date, time, format, step,
-        hint
+        hint, optClass
       }
     } = this.props
 
     const hasErrorClass = touched && invalid ? 'has-error' : ''
 
     return (
-      <div className={`form-group clearfix ${hasErrorClass}`}>
+      <div className={`form-group clearfix ${hasErrorClass} ${optClass}`}>
         { label && <label htmlFor={input.name}>{label}</label> }
         { decodeLabel && <label htmlFor={input.name} dangerouslySetInnerHTML={{ __html: decodeLabel.decode() }} />}
         { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }

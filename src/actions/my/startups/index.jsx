@@ -22,7 +22,7 @@ export const cMyStartup = (values) => {
     request,
     successCB: (dispatch, { startup }) => {
       dispatch(setMyCampaignFromStartup({ startup: _.omit(startup, 'campaign'), campaign: startup.campaign }))
-      dispatch(push(`/my/campaigns/${startup.campaign.id}/edit/stage_questionnaire`))
+      dispatch(push(`/my/campaigns/${startup.campaign.id}/edit/basic`))
       notySuccess("Submitted")
     }
   }
@@ -43,7 +43,7 @@ export const uMyStartup = (values, params) => {
     request,
     successCB: (dispatch, { startup }) => {
       dispatch(setMyCampaignFromStartup({ startup: _.omit(startup, 'campaign'), campaign: startup.campaign }))
-      dispatch(replace(`/my/campaigns/${startup.campaign.id}/edit/stage_questionnaire`))
+      dispatch(replace(`/my/campaigns/${startup.campaign.id}/edit/basic`))
       notySuccess("Submitted")
     }
   }

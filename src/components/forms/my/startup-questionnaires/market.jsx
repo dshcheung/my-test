@@ -23,7 +23,7 @@ import SharedMyCampaignsBackAndSaveBTN from '../../../shared/my/campaigns/back-a
       competitors: [{
         type: "complexArrOfObj",
         opts: {
-          selfPresences: true,
+          selfPresences: false,
           childFields: {
             name: ["presences"],
             website: ["presences", "httpLink"]
@@ -33,7 +33,7 @@ import SharedMyCampaignsBackAndSaveBTN from '../../../shared/my/campaigns/back-a
       go_to_market_strategies: [{
         type: "complexArrOfObj",
         opts: {
-          selfPresences: true,
+          selfPresences: false,
           childFields: {
             occurs_on: ["presences"],
             action: ["presences", { type: "lengthWord", opts: { max: 40 } }]

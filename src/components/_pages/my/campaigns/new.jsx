@@ -96,6 +96,7 @@ export default class MyCampaignsNew extends Component {
         </div>
 
         <MyStartupQuestionnairesBasicForm
+          newMode
           initialValues={{
             founded_year: moment().toDate(),
             hashtags: []
