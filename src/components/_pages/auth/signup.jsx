@@ -19,7 +19,7 @@ export default class Signup extends Component {
               <Link
                 to="/auth/signup-startup"
                 className="margin-bottom-15 btn btn-block btn-default"
-              >I am a Founder</Link>
+              >I am a Startup</Link>
             </div>
 
             <hr className="clear-both" />
