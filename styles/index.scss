@@ -32,3 +32,9 @@
 @import "components/_pages/verify";
 @import "components/modals/my/startups";
 @import "components/shared/image-banner";
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+body {
+  font-family: 'Montserrat', sans-serif !important;
+}
