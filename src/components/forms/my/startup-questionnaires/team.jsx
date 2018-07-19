@@ -89,7 +89,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
             component={TextArea}
             opts={{
               label: "Team story",
-              hint: "When did you meet ? What have you done together ? what is the alchimy you experienced ? Why are you the best team to conduct your mission ? Be reflective and personal "
+              hint: "When did you meet ? What have you done together ? what is the alchemy you experienced ? Why are you the best team to conduct your mission ? Be reflective and personal "
             }}
           />
 

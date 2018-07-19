@@ -147,14 +147,14 @@ export default class Settings extends Component {
                         >Edit</button>
                         {
                           email && (
-                            <div>Email - {email || "Null"} <span className={verified_email ? "label label-success" : "pointer btn btn-small btn-success"} onClick={() => { if (!verified_email) this.props.router.push("verify/email") }}>{
+                            <div>Email - {email || "Null"} <span className={verified_email ? "label label-success" : "pointer btn btn-small btn-success"} onClick={() => { if (!verified_email) this.props.router.push("verify") }}>{
                               verified_email ? "Verifed" : "Verify"
                             }</span></div>
                           )
                         }
                         {
                           mobile && (
-                            <div>Mobile - {mobile || "Null"} <span className={verified_mobile ? "label label-success" : "pointer btn btn-small btn-success"} onClick={() => { if (!verified_mobile) this.props.router.push("verify/mobile") }}>{
+                            <div>Mobile - {mobile || "Null"} <span className={verified_mobile ? "label label-success" : "pointer btn btn-small btn-success"} onClick={() => { if (!verified_mobile) this.props.router.push("verify") }}>{
                               verified_mobile ? "Verified" : "Verify"
                             }</span></div>
                           )

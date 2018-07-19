@@ -133,6 +133,7 @@ export default class Navbar extends Component {
           {
             currentUser && (
               <Nav pullRight>
+                {/* // TODO2: re-enable when required
                 <LinkContainer to="/my/notifications" active={false}>
                   <NavItem className="notifications" eventKey={8}>
                     <i className="fa fa-globe fa-2x hidden-xs" />
@@ -140,6 +141,7 @@ export default class Navbar extends Component {
                     <div className="badge">1</div>
                   </NavItem>
                 </LinkContainer>
+                */}
 
                 <NavDropdown
                   title={

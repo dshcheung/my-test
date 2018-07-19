@@ -61,7 +61,7 @@ export default class MyCampaignsIndex extends Component {
     return (
       <div id="pages-my-campaigns" className="container-fluid">
         <section className="container">
-          <div className="row section-search">
+          <div className="row section-search margin-top-15">
             <CampaignsSearchForm
               optClass=""
               onSubmit={this.gMyCampaigns}

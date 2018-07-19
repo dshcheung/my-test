@@ -235,7 +235,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             component={DynamicFieldArray}
             opts={{
               label: "Cap Table",
-              hint: "In addition to your current investors, please state if you have created an ESOP and teh equity share it represents",
+              hint: "In addition to your current investors, please state if you have created an ESOP and the equity share it represents",
               groupName: "Investor",
               newFieldInit: {
                 first_name: '',

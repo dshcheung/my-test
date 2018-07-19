@@ -1,6 +1,5 @@
 #my-campaigns-edit, #my-campaigns-new {
   .tab-nav {
-    margin-bottom: 15px;
     > div {
       display: flex;
       flex-direction: row;
@@ -23,5 +22,9 @@
         color: $ahub-lgray;
       }
     }
+  }
+
+  form {
+    margin: 15px 0;
   }
 }

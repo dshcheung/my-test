@@ -70,7 +70,6 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                 registration_in_progess: false
               },
               onDeleteField: dMSQAttributes,
-              hint: "5 main achievements. For each, we need a 4 words max title, a date (optional, quarter/year), a nominal sentence of 20 words max. Make them count !",
               dynamicFields: [
                 {
                   key: "title",

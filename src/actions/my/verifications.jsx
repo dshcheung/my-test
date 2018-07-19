@@ -24,6 +24,7 @@ export const uMyVerifications = (values, cb) => {
     request,
     successCB: (dispatch, data) => {
       dispatch(setCurrentUser(data))
+      notySuccess("Successfully Verifed!")
       if (data.role === "Investor") {
         dispatch(push("/my/portfolio"))
       } else if (data.role === "StartupUser") {
