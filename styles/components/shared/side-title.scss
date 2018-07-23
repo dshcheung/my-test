@@ -1,0 +1,22 @@
+#shared-others-side-title {
+  text-align: center;
+
+  div {
+    display: inline-block;
+    border-right: 2px solid $ahub-blue;
+    padding-bottom: 15px;
+
+    .number {
+      color: $ahub-blue;
+      border-bottom: 1px solid $ahub-blue;
+    }
+
+    .title {
+      color: $ahub-blue;
+      writing-mode: vertical-rl;
+      transform: rotate(-180deg);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+  }
+}

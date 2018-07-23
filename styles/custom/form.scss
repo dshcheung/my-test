@@ -1,8 +1,13 @@
-.form-title {
+.form-title, .page-title {
   margin-top: 0;
   margin-bottom: 20px;
   color: $brand-primary;
-  font-size: $font-size-h2;
+  font-size: $font-size-h3;
+  text-transform: uppercase;
+}
+
+.page-title {
+  text-align: center;
 }
 
 .form-group {
