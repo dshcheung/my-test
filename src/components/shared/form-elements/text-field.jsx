@@ -20,12 +20,13 @@ export default class TextField extends Component {
 
     return (
       <div className={`form-group clearfix ${hasErrorClass} ${optClass}`}>
+        { hint && <span className="help-block hint">{hint}</span> }
         {
           inputGroup ? (
             <div className="input-group">
               <input
                 className="form-control"
-                placeholder={placeholder}
+                placeholder={placeholder || " "}
                 type={type || "text"}
                 step={step}
                 min={min}
@@ -38,7 +39,7 @@ export default class TextField extends Component {
           ) : (
             <input
               className="form-control"
-              placeholder={placeholder}
+              placeholder={placeholder || " "}
               type={type || "text"}
               step={step}
               min={min}
@@ -46,8 +47,7 @@ export default class TextField extends Component {
             />
           )
         }
-        { label && <label htmlFor={input.name}>{label} { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }</label> }
-        { hint && <span className="help-block">{hint}</span> }
+        { label && <label htmlFor={input.name}>{label} {hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>} </label> }
       </div>
     )
   }

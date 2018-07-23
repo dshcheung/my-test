@@ -25,7 +25,7 @@ export default class AuthLoginForm extends Component {
 
     return (
       <div id="forms-auth-login" className={optClass}>
-        <h1 className="form-title margin-bottom-20 margin-top-0">LOG IN</h1>
+        <h1 className="form-title">LOG IN</h1>
 
         <form onSubmit={handleSubmit}>
           <Field
@@ -33,7 +33,8 @@ export default class AuthLoginForm extends Component {
             component={TextField}
             opts={{
               type: "email",
-              label: "Username / Email *"
+              label: "Username / Email",
+              placeholder: "placeholder"
             }}
           />
 
@@ -41,18 +42,18 @@ export default class AuthLoginForm extends Component {
             name="password"
             component={TextField}
             opts={{
-              optClass: "margin-bottom-0",
               type: "password",
-              label: "Password *"
+              label: "Password",
+              optClass: "margin-bottom-0"
             }}
           />
 
-          <div className="form-group clearfix margin-bottom-20">
+          <div className="form-group margin-bottom-20">
             <Link to="/auth/forgot-password" className="pull-right forgot-password">Forgot?</Link>
           </div>
 
           <button
-            className={`btn btn-info btn-lg btn-block ${submitInProcess && "m-progress"}`}
+            className={`btn btn-danger btn-lg btn-block ${submitInProcess && "m-progress"}`}
             type="submit"
             disabled={submitInProcess}
           >

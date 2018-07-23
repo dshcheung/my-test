@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Cookies from 'js-cookie'
 
-import { AUTH_TOKEN } from '../../constants'
+import { AUTH_TOKEN } from '../../services/constants'
 
 import { getMyProfile } from '../../actions/my/profile'
 

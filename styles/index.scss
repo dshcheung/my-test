@@ -1,37 +1,19 @@
 @import "~react-widgets/dist/css/react-widgets";
 @import '~react-select2-wrapper/css/select2';
 @import "~noty/lib/noty";
+
 @import "base/variables";
 @import "base/bootstrap";
-@import "custom/buttons";
-@import "custom/form-elements";
-@import "custom/loader";
-@import "custom/react-widgets";
-@import "custom/switch";
-@import "custom/utils";
-@import "components/shared/text";
-@import "components/shared/campaigns/list";
-@import "components/shared/campaigns/profile";
-@import "components/shared/my/campaigns/edit";
-@import "components/shared/slider";
+
 @import "components/_layouts/navbar";
-@import "components/_layouts/home";
 @import "components/_layouts/body";
 @import "components/_layouts/footer";
-@import "components/_pages/in-person-validation";
+
 @import "components/_pages/auth/login";
-@import "components/_pages/auth/signup";
-@import "components/_pages/auth/forgot-password";
-@import "components/_pages/auth/reset-password";
-@import "components/_pages/campaigns/index";
-@import "components/_pages/my/campaigns";
-@import "components/_pages/my/questionnaires";
-@import "components/_pages/my/settings";
-@import "components/_pages/my/startups";
-@import "components/_pages/users/show";
-@import "components/_pages/verify";
-@import "components/modals/my/startups";
-@import "components/shared/image-banner";
+
+@import "custom/utils";
+@import "custom/button";
+@import "custom/form";
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 

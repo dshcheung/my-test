@@ -1,14 +1,14 @@
 import Cookies from 'js-cookie'
 import { push } from 'react-router-redux'
 
-import { AUTH_TOKEN } from '../constants'
+import { AUTH_TOKEN } from '../services/constants'
 
 import { genApiUrl, genAxios } from '../services/api-request'
 import { getFormData } from '../services/get-form-data'
 import { apiAuthenticatesIndex, apiRequestForgetPassword } from '../services/api-path'
 import { notySuccess, handleFormErrors } from '../services/noty'
 
-import { setRedirection } from './redirection'
+import { setRedirection } from './system/redirection'
 
 export const SET_CURRENT_USER = "SET_CURRENT_USER"
 export const setCurrentUser = (data) => {

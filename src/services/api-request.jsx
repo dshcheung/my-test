@@ -2,7 +2,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 
 import { isEmpty } from './utils'
-import { BASE_URL, AUTH_TOKEN } from '../constants'
+import { BASE_URL, AUTH_TOKEN } from '../services/constants'
 
 export function generateQueryString(params, startStr) {
   let queries = ""

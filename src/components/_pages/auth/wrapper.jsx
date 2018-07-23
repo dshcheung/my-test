@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
 }
 
 @connect(mapStateToProps, null)
-export default class Auth extends Component {
+export default class AuthWrapper extends Component {
   componentWillMount() {
     if (this.props.currentUser && !this.props.redirectionInProcess) {
       this.alreadyLoggedInRedirect(this.props)

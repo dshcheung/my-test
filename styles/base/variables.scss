@@ -2,8 +2,6 @@ $bootstrap-sass-asset-helper: false !default;
 //
 // Variables
 // --------------------------------------------------
-
-
 @import url('https://fonts.googleapis.com/css?family=Lato');
 @import url('https://fonts.googleapis.com/css?family=Muli');
 
@@ -43,8 +41,6 @@ $border-radius-large:       0px !default;
 $border-radius-small:       0px !default;
 
 $btn-border-radius-base: 0 !default;
-
-$min-body-height: calc(100vh - 100px) !default;
 
 //== Buttons
 //

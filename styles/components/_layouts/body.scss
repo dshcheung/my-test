@@ -1,11 +1,14 @@
+$min-body-height: calc(100vh - #{$navbar-height}) !default;
+
 #layouts-body {
   margin-top: $navbar-height;
   min-height: $min-body-height;
+  padding: 20px 0;
 }
 
 @media (max-width: 992px) {
   #layouts-body {
-    margin-top: 100px;
+    margin-top: $navbar-height;
   }
 }
 

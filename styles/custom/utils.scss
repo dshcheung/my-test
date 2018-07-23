@@ -1,6 +1,43 @@
+$directions: '', '-top', '-left', '-right', '-bottom';
+$paddingSizes: 0, 5, 10, 15, 20, 30, 40, 50;
+@each $direction in $directions {
+  @each $padding in $paddingSizes {
+    .padding#{$direction}-#{$padding} {
+      padding#{$direction}: #{$padding}px !important;
+    }
+  }
+}
+
+$marginSizes: 0, 5, 10, 15, 20, 30, 40, 50;
+@each $direction in $directions {
+  @each $margin in $marginSizes {
+    .margin#{$direction}-#{$margin} {
+      margin#{$direction}: #{$margin}px !important;
+    }
+  }
+}
+
+$directions: 'top', 'left', 'right', 'bottom';
+$spacing: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50;
+@each $direction in $directions {
+  @each $size in $spacing {
+    .#{$direction}-#{$size} {
+      #{$direction}: #{$size}px !important;
+    }
+  }
+}
+
+@each $direction in $directions {
+  @each $size in $spacing {
+    .#{$direction}-minus-#{$size} {
+      #{$direction}: -#{$size}px !important;
+    }
+  }
+}
+
 // auto add margin top when multi row is used
 .row + .row {
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 hr {
@@ -42,43 +79,6 @@ hr {
 
 .clear-both {
   clear: both;
-}
-
-$directions: '', '-top', '-left', '-right', '-bottom';
-$paddingSizes: 0, 5, 10, 15, 20, 30, 40, 50;
-@each $direction in $directions {
-  @each $padding in $paddingSizes {
-    .padding#{$direction}-#{$padding} {
-      padding#{$direction}: #{$padding}px !important;
-    }
-  }
-}
-
-$marginSizes: 0, 5, 10, 15, 20, 30, 40, 50;
-@each $direction in $directions {
-  @each $margin in $marginSizes {
-    .margin#{$direction}-#{$margin} {
-      margin#{$direction}: #{$margin}px !important;
-    }
-  }
-}
-
-$directions: 'top', 'left', 'right', 'bottom';
-$spacing: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50;
-@each $direction in $directions {
-  @each $size in $spacing {
-    .#{$direction}-#{$size} {
-      #{$direction}: #{$size}px !important;
-    }
-  }
-}
-
-@each $direction in $directions {
-  @each $size in $spacing {
-    .#{$direction}-minus-#{$size} {
-      #{$direction}: -#{$size}px !important;
-    }
-  }
 }
 
 .diamond, .diamond-filled {

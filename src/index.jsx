@@ -7,11 +7,11 @@ import { syncHistoryWithStore } from 'react-router-redux'
 
 import { scrollTop } from './services/utils'
 
-import configureStore from './store-config'
-import currentRoutes from './routes'
+import configureStore from './setup/store-config'
+import currentRoutes from './setup/routes'
 
 require('../styles/index.scss')
-require('./prototypes.js')
+require('./setup/prototypes.js')
 
 const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
@@ -36,7 +36,7 @@ render(currentRoutes)
 if (module.hot) {
   module.hot.accept('./routes', () => {
     /* eslint-disable global-require */
-    const nextRoutes = require('./routes').default
+    const nextRoutes = require('./setup/routes').default
     /* eslint-enable global-require */
     render(nextRoutes)
   })

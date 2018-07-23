@@ -8,11 +8,9 @@ import MenuItem from 'react-bootstrap/lib/MenuItem'
 import NavItem from 'react-bootstrap/lib/NavItem'
 import LinkContainer from 'react-router-bootstrap/lib/LinkContainer'
 
-import { DEFAULT_USER_AVATAR } from '../../constants'
+import { DEFAULT_USER_AVATAR } from '../../services/constants'
 
 import { deleteSession } from '../../actions/session'
-
-import MyProfileEditProfileModal from '../modals/my/profile/edit-profile'
 
 const mapStateToProps = (state) => {
   return {
@@ -28,24 +26,6 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps, null, { pure: false })
 export default class Navbar extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      modal: null
-    }
-
-    this.close = this.close.bind(this)
-  }
-
-  open(modal) {
-    this.setState({ modal })
-  }
-
-  close() {
-    this.setState({ modal: null })
-  }
-
   render() {
     const { currentUser } = this.props
 
@@ -133,16 +113,6 @@ export default class Navbar extends Component {
           {
             currentUser && (
               <Nav pullRight>
-                {/* // TODO2: re-enable when required
-                <LinkContainer to="/my/notifications" active={false}>
-                  <NavItem className="notifications" eventKey={8}>
-                    <i className="fa fa-globe fa-2x hidden-xs" />
-                    <span className="hidden-sm hidden-md hidden-lg">Notifications</span>
-                    <div className="badge">1</div>
-                  </NavItem>
-                </LinkContainer>
-                */}
-
                 <NavDropdown
                   title={
                     <div>
@@ -198,9 +168,6 @@ export default class Navbar extends Component {
 
                   <MenuItem divider />
 
-                  <LinkContainer to="#" active={false}>
-                    <MenuItem eventKey={9.6} onClick={() => { this.open("editProfile") }}>Edit Profile</MenuItem>
-                  </LinkContainer>
                   <LinkContainer to="/my/settings" active={false}>
                     <MenuItem eventKey={9.7}>Settings</MenuItem>
                   </LinkContainer>
@@ -216,8 +183,6 @@ export default class Navbar extends Component {
             )
           }
         </BNavbar.Collapse>
-
-        { this.state.modal === "editProfile" && <MyProfileEditProfileModal profile={currentUser.profile} close={this.close} />}
       </BNavbar>
     )
   }

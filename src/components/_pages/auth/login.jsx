@@ -33,17 +33,17 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div id="page-auth-login" className="container padding-top-20 padding-bottom-20">
+      <div id="page-auth-login" className="container-fluid">
         <div className="row">
           <AuthLoginForm
-            optClass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
+            optClass="col-sm-4 col-sm-offset-4"
             onSubmit={this.createSession}
             submitInProcess={this.props.createSessionInProcess}
           />
         </div>
 
         <div className="row">
-          <div className="create-account col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+          <div className="create-account col-sm-4 col-sm-offset-4">
             <span>New to AngelHub? </span>
             <Link to="/auth/signup">Create An Account</Link>
           </div>
