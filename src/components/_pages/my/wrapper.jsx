@@ -17,7 +17,7 @@ const mapStateToProps = (state) => {
 }
 
 @connect(mapStateToProps, null)
-export default class My extends Component {
+export default class MyWrapper extends Component {
   constructor(props) {
     super(props)
 
@@ -69,13 +69,8 @@ export default class My extends Component {
       )
     }
 
-    // TODO: new user modal introduction
+    // TODO2: new user modal introduction
     // console.log(this.props.currentUser.new_user)
-
-    return (
-      <div>
-        { this.props.children }
-      </div>
-    )
+    return this.props.children
   }
 }

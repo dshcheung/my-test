@@ -101,7 +101,7 @@ export default class SignupInvestor extends Component {
     const { investorWarning, createUserInProcess } = this.props
     const { agreed, questionnaireCompleted, score } = this.state
 
-    if (!agreed && investorWarning) { // TODO: make as modal
+    if (!agreed && investorWarning) { // TODO2: make as modal
       return (
         <div className="warning-agreement">
           <div className="content" dangerouslySetInnerHTML={{ __html: investorWarning.content.decode() }} />
@@ -144,7 +144,7 @@ export default class SignupInvestor extends Component {
         />
       )
     } else if (score < 6) {
-      return ( // TODO: log user ip & score
+      return ( // TODO2: log user ip & score
         <div>You do not currently meet the requirements for our investment platform</div>
       )
     } else {

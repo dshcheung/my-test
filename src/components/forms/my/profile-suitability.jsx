@@ -64,7 +64,7 @@ export default class MyProfileSuitabilityForm extends Component {
             }}
           />
 
-          <Field // TODO: Add Immovable
+          <Field // TODO2: Add Immovable
             name="employmentStatus"
             component={SelectField}
             opts={{
@@ -116,7 +116,7 @@ export default class MyProfileSuitabilityForm extends Component {
             }}
           />
 
-          <Field // TODO: Add Immovable
+          <Field // TODO2: Add Immovable
             name="educationLevel"
             component={SelectField}
             opts={{

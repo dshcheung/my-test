@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class MyCampaigns extends Component {
+export default class MyCampaignsShowWrapper extends Component {
   componentWillMount() {
     if (!this.props.myCampaign) {
       this.props.gMyCampaign({ params: this.props.router.params })

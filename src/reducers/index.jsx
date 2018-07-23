@@ -9,9 +9,7 @@ import campaignsReducer from './campaigns'
 import immovablesReducer from './immovables'
 import myCampaignReducer from './my-campaign'
 import myCampaignsReducer from './my-campaigns'
-import myConversationsReducer from './my-conversations'
 import myDashboardReducer from './my-dashboard'
-import myNotificationsReducer from './my-notifications'
 import myProfileSuitabilityReducer from './my-profile-suitability'
 import myQuestionnairesReducers from './my-questionnaires'
 import myStartupQuestionnairesReducers from './my-startup-questionnaires'
@@ -27,9 +25,7 @@ const appReducer = combineReducers({
   immovables: immovablesReducer,
   myCampaign: myCampaignReducer,
   myCampaigns: myCampaignsReducer,
-  myConversations: myConversationsReducer,
   myDashboard: myDashboardReducer,
-  myNotifications: myNotificationsReducer,
   myProfileSuitability: myProfileSuitabilityReducer,
   myQuestionnaires: myQuestionnairesReducers,
   myStartupQuestionnaires: myStartupQuestionnairesReducers,

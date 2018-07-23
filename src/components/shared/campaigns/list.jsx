@@ -62,11 +62,11 @@ export default class CampaignList extends Component {
 
                 if (newable) {
                   linkTo = `/my/campaigns/${campaignID}/edit/basic`
-                  // if (campaign.can.edit) { // TODO: re-enable when profile is completed
-                  //   linkTo = `/my/campaigns/${campaignID}/edit/basic`
-                  // } else {
-                  //   linkTo = `/my/campaigns/${campaignID}`
-                  // }
+                  if (campaign.can.edit) {
+                    linkTo = `/my/campaigns/${campaignID}/edit/basic`
+                  } else {
+                    linkTo = `/my/campaigns/${campaignID}`
+                  }
                 }
 
                 const displayPermissions = {

@@ -7,7 +7,6 @@ import {
   resetMyCampaigns
 } from '../../../../actions/my/campaigns'
 
-import CampaignsSearchForm from '../../../forms/campaigns/search'
 import CampaignList from '../../../shared/campaigns/list'
 
 const mapStateToProps = (state) => {
@@ -26,14 +25,6 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class MyCampaignsIndex extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {}
-
-    this.gMyCampaigns = this.gMyCampaigns.bind(this)
-  }
-
   componentWillMount() {
     this.props.gMyCampaigns()
   }
@@ -42,33 +33,13 @@ export default class MyCampaignsIndex extends Component {
     this.props.resetMyCampaigns()
   }
 
-  gMyCampaigns(values) {
-    this.props.gMyCampaigns({
-      queries: {
-        q: _.get(values, "keyword"),
-        filter_by: _.get(values, "filter") ? "category_id" : "",
-        filter: _.get(values, "filter"),
-        sort_by: _.get(values, "sortBy"),
-        sort: _.get(values, "sort")
-      }
-    })
-  }
-
   render() {
     const { myCampaigns, gMyCampaignsInProcess } = this.props
 
-    // TODO: modal for first time users
+    // TODO2: modal for first time users
     return (
       <div id="pages-my-campaigns" className="container-fluid">
         <section className="container">
-          <div className="row section-search margin-top-15">
-            <CampaignsSearchForm
-              optClass=""
-              onSubmit={this.gMyCampaigns}
-              submitInProcess={gMyCampaignsInProcess}
-            />
-          </div>
-
           <CampaignList
             loadingInProcess={gMyCampaignsInProcess}
             campaigns={myCampaigns}

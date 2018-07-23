@@ -8,9 +8,7 @@ export default class TextField extends Component {
       opts: {
         optClass,
         type,
-        customLabel, label, decodeLabel,
-        placeholder,
-        hint,
+        label, placeholder, hint,
         step, min,
         frontInputGroup, backInputGroup
       }
@@ -22,11 +20,6 @@ export default class TextField extends Component {
 
     return (
       <div className={`form-group clearfix ${hasErrorClass} ${optClass}`}>
-        { customLabel && label && customLabel(label, input.name) }
-        { !customLabel && label && <label htmlFor={input.name}>{label}</label> }
-        { decodeLabel && <label htmlFor={input.name} dangerouslySetInnerHTML={{ __html: decodeLabel.decode() }} />}
-        { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }
-        { hint && <span className="help-block">{hint}</span> }
         {
           inputGroup ? (
             <div className="input-group">
@@ -53,6 +46,8 @@ export default class TextField extends Component {
             />
           )
         }
+        { label && <label htmlFor={input.name}>{label} { hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span> }</label> }
+        { hint && <span className="help-block">{hint}</span> }
       </div>
     )
   }

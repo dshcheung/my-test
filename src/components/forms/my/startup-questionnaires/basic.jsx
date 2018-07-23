@@ -94,8 +94,7 @@ export default class MyStartupQuestionnairesBasicForm extends Component {
             }}
           />
 
-          {/*
-          <Field // TODO: re-enable when vertical list is ready
+          <Field
             name="vertical"
             component={SelectField}
             opts={{
@@ -108,7 +107,6 @@ export default class MyStartupQuestionnairesBasicForm extends Component {
               label: "Vertical",
             }}
           />
-          */}
 
           <Field
             name="tagline"

@@ -15,18 +15,14 @@ import InPersonValidationContainer from './components/_pages/in-person-validatio
 
 import VerifyContainer from './components/_pages/verify'
 
-import MyContainer from './components/_pages/my/wrapper'
+import MyWrapperContainer from './components/_pages/my/wrapper'
 
 import MySettingsContainer from './components/_pages/my/settings'
-import MyConversationsIndexContainer from './components/_pages/my/conversations'
-import MyNotificationsIndexContainer from './components/_pages/my/notifications/index'
 
-import MyQuestionnairesContainer from './components/_pages/my/questionnaires'
-import MyAMLContainer from './components/_pages/my/aml'
 import MyProfileSuitability from './components/_pages/my/profile-suitability'
 import MyPortfolioContainer from './components/_pages/my/portfolio'
 
-import MyCampaignsContainer from './components/_pages/my/campaigns/wrapper'
+import MyCampaignsWrapperContainer from './components/_pages/my/campaigns/wrapper'
 import MyCampaignsIndexContainer from './components/_pages/my/campaigns/index'
 import MyCampaignsNewContainer from './components/_pages/my/campaigns/new'
 import MyCampaignsShowWrapperContainer from './components/_pages/my/campaigns/show-wrapper'
@@ -40,8 +36,6 @@ import CampaignsIndexContainer from './components/_pages/campaigns/index'
 import CampaignsShowContainer from './components/_pages/campaigns/show'
 
 import LegalDocumentContainer from './components/_pages/legal-document'
-
-import UsersShowContainer from './components/_pages/users/show'
 
 import PageNotFound from './components/_pages/not-found'
 
@@ -65,25 +59,16 @@ export default (
     <Route path="verify" component={VerifyContainer} />
 
     {/* My Paths */}
-    <Route path="my" component={MyContainer}>
+    <Route path="my" component={MyWrapperContainer}>
       {/* Shared Paths */}
       <Route path="settings" component={MySettingsContainer} />
-      <Route path="conversations" component={MyConversationsIndexContainer} />
-      <Route path="notifications">
-        <IndexRoute component={MyNotificationsIndexContainer} />
-        <Route path=":notificationID" />
-      </Route>
-
-      {/* TODO2: REMOVE? */}
-      <Route path="kyc" component={MyQuestionnairesContainer} roleAccess="Investor" />
-      <Route path="aml" component={MyAMLContainer} roleAccess="Investor" />
 
       {/* Investor Paths */}
       <Route path="profile-suitability" component={MyProfileSuitability} roleAccess="Investor" />
       <Route path="portfolio" component={MyPortfolioContainer} roleAccess="Investor" />
 
       {/* StartupUser Paths */}
-      <Route path="campaigns" component={MyCampaignsContainer} roleAccess="StartupUser">
+      <Route path="campaigns" component={MyCampaignsWrapperContainer} roleAccess="StartupUser">
         <IndexRoute component={MyCampaignsIndexContainer} />
         <Route path="new" component={MyCampaignsNewContainer} />
         <Route path=":myCampaignID" component={MyCampaignsShowWrapperContainer}>
@@ -105,11 +90,6 @@ export default (
     <Route path="fair-dealing-policy" component={LegalDocumentContainer} docID="fair-dealing-policy" />
     <Route path="investor-agreement" component={LegalDocumentContainer} docID="investor-agreement" />
     <Route path="investor-disclaimer" component={LegalDocumentContainer} docID="investor-warning-statement" />
-
-    {/* TODO2: REMOVE? */}
-    <Route path="users">
-      <Route path=":userID" component={UsersShowContainer} />
-    </Route>
 
     <Route path="about" />
     <Route path="learn" />

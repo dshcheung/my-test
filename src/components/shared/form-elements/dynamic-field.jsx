@@ -59,7 +59,7 @@ export default class DynamicQuestionnaires extends Component {
           />
         )
       }
-      case "file": { // TODO: reconfigure for new filefield
+      case "file": { // TODO2: reconfigure for new filefield
         return (
           <Field
             name={name}

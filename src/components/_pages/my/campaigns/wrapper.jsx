@@ -1,6 +1,6 @@
 import { Component } from 'react'
 
-export default class MyCampaigns extends Component {
+export default class MyCampaignsWrapper extends Component {
   render() {
     return this.props.children
   }

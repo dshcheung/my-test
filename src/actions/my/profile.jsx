@@ -1,13 +1,13 @@
 import { push } from 'react-router-redux'
 
-import { genApiUrl, genAxios } from '../../../services/api-request'
-import { getFormData } from '../../../services/get-form-data'
+import { genApiUrl, genAxios } from '../../services/api-request'
+import { getFormData } from '../../services/get-form-data'
 import {
   apiMyProfile, apiRequestResendPassword
-} from '../../../services/api-path'
-import { notySuccess, handleFormErrors } from '../../../services/noty'
+} from '../../services/api-path'
+import { notySuccess, handleFormErrors } from '../../services/noty'
 
-import { setCurrentUser } from '../../session'
+import { setCurrentUser } from '../session'
 
 // show
 export const GET_MY_PROFILE = "GET_MY_PROFILE"

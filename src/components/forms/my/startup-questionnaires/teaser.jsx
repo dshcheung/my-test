@@ -25,7 +25,6 @@ import SharedMyCampaignsBackAndSaveBTN from '../../../shared/my/campaigns/back-a
         type: "complexArrOfObj",
         opts: {
           selfPresences: false,
-          // selfMin: 5, // TODO: re-enable
           childFields: {
             title: ["presences", { type: "lengthWord", opts: { max: 4 } }],
             content: ["presences", { type: "lengthWord", opts: { max: 20 } }]
