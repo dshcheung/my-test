@@ -6,9 +6,9 @@ import { COUNTRIES } from '../../../../services/constants'
 
 import TextField from '../../../shared/form-elements/text-field'
 import SelectField from '../../../shared/form-elements/select-field'
-// import DateTimePicker from '../../../shared/form-elements/datetime-picker'
+import MultiselectField from '../../../shared/form-elements/multiselect-field'
+import DateTimePicker from '../../../shared/form-elements/datetime-picker'
 // import ImageField from '../../../shared/form-elements/image-field'
-// import MultiselectField from '../../../shared/form-elements/multiselect-field'
 
 @reduxForm({
   form: "MyStartupQuestionnairesBasicForm",
@@ -16,7 +16,7 @@ import SelectField from '../../../shared/form-elements/select-field'
     return Validators({
       company_name: ["presences"],
       tagline: [{ type: "length", opts: { max: 140 } }],
-      // hashtags: [{ type: "amount", opts: { max: 5 } }]
+      hashtags: [{ type: "amount", opts: { max: 5 } }]
     }, values)
   },
   enableReinitialize: true
@@ -32,15 +32,22 @@ export default class MyStartupQuestionnairesBasicForm extends Component {
           title: "company name"
         },
         {
+          title: "founded year"
+        },
+        {
           title: "country of incorporation"
         },
         {
           title: "tagline",
           hint: "A crisp definition of your Company"
+        },
+        {
+          title: "hashtags",
+          hint: "Give us up to 5 hashtags that best describe your solution, technology or add to the buzz"
         }
       ],
-      currentQuestionIndex: 0,
-      maxIndex: 2,
+      currentQuestionIndex: 1,
+      maxIndex: 4,
       animateClass: "fadeInRight"
     }
   }
@@ -77,14 +84,26 @@ export default class MyStartupQuestionnairesBasicForm extends Component {
           />
 
           <Field
+            name="founded_year"
+            component={DateTimePicker}
+            opts={{
+              optClass: currentQuestionIndex !== 1 && `${hideable} ${animateable}`,
+              label: "Founded year",
+              placeholder: "Select the year",
+              time: false,
+              format: "YYYY",
+              views: ["decade"]
+            }}
+          />
+
+          <Field
             name="country_of_incorporation"
             component={SelectField}
             opts={{
-              optClass: currentQuestionIndex !== 1 && `${hideable} ${animateable}`,
+              optClass: currentQuestionIndex !== 2 && `${hideable} ${animateable}`,
               options: COUNTRIES,
-              valueKey: "name",
-              nameKey: "name",
-              label: "Country of incorporation",
+              valueField: "name",
+              textField: "name",
               placeholder: "Select a country"
             }}
           />
@@ -93,9 +112,23 @@ export default class MyStartupQuestionnairesBasicForm extends Component {
             name="tagline"
             component={TextField}
             opts={{
-              optClass: currentQuestionIndex !== 2 && `${hideable} ${animateable}`,
-              type: "text",
+              optClass: currentQuestionIndex !== 3 && `${hideable} ${animateable}`,
               placeholder: "Tagline"
+            }}
+          />
+
+          <Field
+            name="hashtags"
+            component={MultiselectField}
+            opts={{
+              optClass: currentQuestionIndex !== 4 && `${hideable} ${animateable}`,
+              placeholder: "Hashtags",
+              options: [
+                { tag: "Need" },
+                { tag: "Input" }
+              ],
+              valueField: 'tag',
+              textField: 'tag'
             }}
           />
 

@@ -77,20 +77,26 @@ $input-placeholder-transition: all 0.2s;
     }
   }
 
-  .rw-dropdown-list {
-    .rw-widget-input {
+  .rw-datetime-picker {
+
+  }
+
+  .rw-dropdown-list, .rw-multiselect, .rw-datetime-picker {
+    .rw-widget-picker {
       padding: 0;
       border: 0;
       border-bottom: 1px solid #ccc;
       border-radius: 0;
       box-shadow: none !important;
       height: 28px;
-      .rw-input {
+      .rw-input, input {
+        height: 28px;
         padding: 0;
+        border: 0;
       }
 
       &.has-label {
-        .rw-placeholder {
+        .rw-placeholder, ::placeholder {
           opacity: 0;
           transition: $input-placeholder-transition;
         }
@@ -114,11 +120,11 @@ $input-placeholder-transition: all 0.2s;
     }
 
     &.rw-open {
-      .rw-widget-input {
+      .rw-widget-picker {
         border-bottom: 1px solid #666;
 
         &.has-label {
-          .rw-placeholder {
+          .rw-placeholder, ::placeholder {
             opacity: 1;
           }
         }

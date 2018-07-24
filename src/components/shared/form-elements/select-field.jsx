@@ -8,9 +8,9 @@ export default class SelectField extends Component {
       opts: {
         options, requestInProcess,
         label,
-        placeholder, optClass,
-        valueKey, nameKey,
-        hint, allowEmptyValue
+        placeholder, optClass, hint,
+        valueField, textField,
+        allowEmptyValue
       }
     } = this.props
 
@@ -19,23 +19,23 @@ export default class SelectField extends Component {
     let emptyValue = null
 
     if (allowEmptyValue) {
-      emptyValue = { [valueKey]: "", [nameKey]: "N/A" }
+      emptyValue = { [valueField]: "", [textField]: "N/A" }
     }
 
     const nOptions = emptyValue ? [emptyValue, ...options] : options
 
     return (
       <div className={`form-group clearfix ${hasErrorClass} ${optClass}`}>
-        { hint && <span className="help-block">{hint}</span> }
+        { hint && <span className="help-block hint">{hint}</span> }
         <DropdownList
           containerClassName={`${label && "has-label"} ${input.value && "has-value"}`}
           busy={requestInProcess}
           data={nOptions}
           placeholder={placeholder}
-          valueField={valueKey}
-          textField={nameKey}
+          valueField={valueField}
+          textField={textField}
           {...input}
-          onChange={(value) => { input.onChange(value[valueKey]) }}
+          onChange={(value) => { input.onChange(value[valueField]) }}
         />
         { label && <label className={input.value && 'has-value'} htmlFor={input.name}>{label} {hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>} </label> }
         { !label && <span className="help-block">{touched && hasErrorClass && error.join(", ")}&nbsp;</span>}
