@@ -1,0 +1,75 @@
+#my-campaigns-edit, #my-campaigns-new {
+  .tab-nav {
+    > div {
+      display: flex;
+      flex-direction: row;
+      justify-content: spaced-between;
+    }
+
+    .tab-item {
+      flex-grow: 1;
+      text-align: center;
+      padding: 20px 0;
+      color: #444;
+      position: relative;
+      text-transform: uppercase;
+      font-size: 12px;
+      &.active {
+        font-weight: bold;
+        color: $ahub-blue;
+      }
+
+      &:not(.active) {
+        color: $ahub-lgray;
+      }
+    }
+  }
+
+  form {
+    margin: 15px 0;
+  }
+}
+
+#my-campaigns-new {
+  &.remove-margin {
+    margin-top: -20px;
+  }
+
+  .intro {
+    .info-row {
+      display: flex;
+      flex-wrap: wrap;
+
+      .info-card {
+        display: flex;
+        flex-direction: column;
+
+        .number {
+          span {
+            padding: 0 4px;
+            border-bottom: 1px solid $ahub-blue;
+          }
+        }
+
+        .content {
+          flex: 1 1 auto;
+          display: flex;
+          flex-direction: column;
+
+          b {
+            flex: 1 1 auto;
+            margin-bottom: 20px;
+            font-size: 13px;
+          }
+
+          p {
+            flex: 0 1 auto;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}

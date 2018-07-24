@@ -10,6 +10,11 @@ import ResetPasswordContainer from '../components/_pages/auth/reset-password'
 import SignupContainer from '../components/_pages/auth/signup'
 import SignupStartupContainer from '../components/_pages/auth/signup-startup'
 
+import MyWrapperContainer from '../components/_pages/my/wrapper'
+
+import MyCampaignsIndexContainer from '../components/_pages/my/campaigns/index'
+import MyCampaignsNewContainer from '../components/_pages/my/campaigns/new'
+
 export default (
   <Route path="/" component={App}>
     <IndexRedirect to="/auth/login" />
@@ -21,6 +26,13 @@ export default (
 
       <Route path="signup" component={SignupContainer} />
       <Route path="signup-startup" component={SignupStartupContainer} sideTitle={{ title: "startup" }} />
+    </Route>
+
+    <Route path="my" component={MyWrapperContainer}>
+      <Route path="campaigns" roleAccess="StartupUser">
+        <IndexRoute component={MyCampaignsIndexContainer} />
+        <Route path="new" component={MyCampaignsNewContainer} />
+      </Route>
     </Route>
   </Route>
 )

@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import { createUser, CREATE_USER } from '../../../actions/users'
 
 import AuthSignupStartupForm from '../../forms/auth/signup-startup'
-import SideTitle from '../../shared/others/side-title'
+import SharedOthersSideTitle from '../../shared/others/side-title'
 
 const mapStateToProps = (state) => {
   return {
@@ -35,7 +35,7 @@ export default class SignupStartup extends Component {
     return (
       <div id="page-auth-signup-startup">
         <div className="row">
-          <SideTitle title="startup" optClass="col-sm-3 col-md-4" />
+          <SharedOthersSideTitle title="startup" optClass="col-sm-3 col-md-4" />
 
           <AuthSignupStartupForm
             optClass="col-sm-6 col-md-4"

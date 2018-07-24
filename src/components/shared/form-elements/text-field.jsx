@@ -25,7 +25,7 @@ export default class TextField extends Component {
           inputGroup ? (
             <div className="input-group">
               <input
-                className="form-control"
+                className={`form-control ${label && 'has-label'}`}
                 placeholder={placeholder || " "}
                 type={type || "text"}
                 step={step}
@@ -38,7 +38,7 @@ export default class TextField extends Component {
             </div>
           ) : (
             <input
-              className="form-control"
+              className={`form-control ${label && 'has-label'}`}
               placeholder={placeholder || " "}
               type={type || "text"}
               step={step}
@@ -48,6 +48,7 @@ export default class TextField extends Component {
           )
         }
         { label && <label htmlFor={input.name}>{label} {hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>} </label> }
+        { !label && <span className="help-block">{touched && hasErrorClass && error.join(", ")}&nbsp;</span>}
       </div>
     )
   }

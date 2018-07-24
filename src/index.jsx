@@ -34,7 +34,7 @@ const render = (routes) => {
 render(currentRoutes)
 
 if (module.hot) {
-  module.hot.accept('./routes', () => {
+  module.hot.accept('./setup/routes', () => {
     /* eslint-disable global-require */
     const nextRoutes = require('./setup/routes').default
     /* eslint-enable global-require */
