@@ -53,6 +53,7 @@ export default class MultiselectField extends Component {
           valueField={valueField}
           textField={textField}
           {...input}
+          value={input.value || []}
           onChange={this.handleChange}
           onCreate={this.handleCreate}
           onBlur={this.handleBlur}

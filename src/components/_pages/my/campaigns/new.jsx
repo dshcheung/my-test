@@ -69,7 +69,7 @@ export default class MyCampaignsNew extends Component {
       ],
       currentTab: 'basic',
       disableNav: true,
-      intro: false
+      intro: true
     }
 
     this.cMyStartupQuestionnaire = this.cMyStartupQuestionnaire.bind(this)
@@ -139,9 +139,6 @@ export default class MyCampaignsNew extends Component {
             !intro && (
               <MyStartupQuestionnairesBasicNewForm
                 optClass="col-sm-6 col-md-4"
-                initialValues={{
-                  hashtags: []
-                }}
                 onSubmit={this.cMyStartupQuestionnaire}
                 submitInProcess={this.props.cMyStartupQuestionnaireInProcess}
               />

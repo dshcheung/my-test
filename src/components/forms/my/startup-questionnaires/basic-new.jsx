@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { reduxForm, Field } from 'redux-form'
+import { reduxForm, Field, FieldArray } from 'redux-form'
+import { connect } from 'react-redux'
 
 import Validators from '../../../../services/form-validators'
 import { COUNTRIES } from '../../../../services/constants'
@@ -8,20 +9,36 @@ import TextField from '../../../shared/form-elements/text-field'
 import SelectField from '../../../shared/form-elements/select-field'
 import MultiselectField from '../../../shared/form-elements/multiselect-field'
 import DateTimePicker from '../../../shared/form-elements/datetime-picker'
-// import ImageField from '../../../shared/form-elements/image-field'
+import FileDropField from '../../../shared/form-elements/file-drop-field'
 
+const mapStateToProps = (state) => {
+  return {
+    formData: _.get(state.form, 'MyStartupQuestionnairesBasicForm')
+  }
+}
+
+@connect(mapStateToProps, null)
 @reduxForm({
   form: "MyStartupQuestionnairesBasicForm",
   validate: (values) => {
     return Validators({
       company_name: ["presences"],
       tagline: [{ type: "length", opts: { max: 140 } }],
-      hashtags: [{ type: "amount", opts: { max: 5 } }]
-    }, values)
+      hashtags: [{ type: "amount", opts: { max: 5 } }],
+      attachments: [{
+        type: "complexArrOfObj",
+        opts: {
+          selfPresences: false,
+          childFields: {
+            title: ["presences"],
+            file: ["filePresences"]
+          }
+        }
+      }]
+    }, values, ["attachments"])
   },
   enableReinitialize: true
 })
-
 export default class MyStartupQuestionnairesBasicForm extends Component {
   constructor(props) {
     super(props)
@@ -29,25 +46,34 @@ export default class MyStartupQuestionnairesBasicForm extends Component {
     this.state = {
       questionOrder: [
         {
-          title: "company name"
+          title: "company name",
+          key: "company_name"
         },
         {
-          title: "founded year"
+          title: "founded year",
+          key: "founded_year"
         },
         {
-          title: "country of incorporation"
+          title: "country of incorporation",
+          key: "country_of_incorporation"
         },
         {
           title: "tagline",
+          key: "tagline",
           hint: "A crisp definition of your Company"
         },
         {
           title: "hashtags",
+          key: "hashtags",
           hint: "Give us up to 5 hashtags that best describe your solution, technology or add to the buzz"
+        },
+        {
+          title: "visual identity",
+          key: "attachments"
         }
       ],
-      currentQuestionIndex: 1,
-      maxIndex: 4,
+      currentQuestionIndex: 0,
+      maxIndex: 5,
       animateClass: "fadeInRight"
     }
   }
@@ -58,7 +84,7 @@ export default class MyStartupQuestionnairesBasicForm extends Component {
   }
 
   render() {
-    const { handleSubmit, submitInProcess, optClass, pristine } = this.props
+    const { handleSubmit, submitInProcess, optClass, pristine, formData } = this.props
     const { currentQuestionIndex, maxIndex, animateClass, questionOrder } = this.state
 
     const isFirst = currentQuestionIndex === 0
@@ -66,7 +92,9 @@ export default class MyStartupQuestionnairesBasicForm extends Component {
     const hideable = "hide"
     const animateable = `${animateClass} animated`
 
-    const { title, hint } = questionOrder[currentQuestionIndex]
+    const { title, hint, key } = questionOrder[currentQuestionIndex]
+
+    const currentQuestionHasValue = _.get(formData, `values[${key}]`)
 
     return (
       <div className={optClass}>
@@ -88,7 +116,6 @@ export default class MyStartupQuestionnairesBasicForm extends Component {
             component={DateTimePicker}
             opts={{
               optClass: currentQuestionIndex !== 1 && `${hideable} ${animateable}`,
-              label: "Founded year",
               placeholder: "Select the year",
               time: false,
               format: "YYYY",
@@ -132,35 +159,62 @@ export default class MyStartupQuestionnairesBasicForm extends Component {
             }}
           />
 
-          <div className="btn-group btn-group-justified back-and-save-btn">
-            <button
-              className="btn btn-default"
-              type="button"
-              disabled={submitInProcess || isFirst}
-              onClick={() => { this.changeQuestion(currentQuestionIndex - 1) }}
-            >Back</button>
+          <FieldArray
+            name="attachments"
+            component={FileDropField}
+            opts={{
+              optClass: currentQuestionIndex !== 5 && `${hideable} ${animateable}`,
+              selectOpts: {
+                options: [
+                  {
+                    id: "logo",
+                    name: "Company Logo",
+                    section: "startup_questionnaire_basic"
+                  },
+                  {
+                    id: "banner",
+                    name: "Banner",
+                    section: "startup_questionnaire_basic"
+                  },
+                ],
+                valueField: 'id',
+                textField: 'name',
+                placeholder: 'Select a Title'
+              }
+            }}
+          />
 
-            {
-              !isLast && (
-                <button
-                  className="btn btn-danger"
-                  type="button"
-                  disabled={submitInProcess}
-                  onClick={() => { this.changeQuestion(currentQuestionIndex + 1) }}
-                >next</button>
-              )
-            }
+          {
+            !isFirst && (
+              <button
+                className="btn btn-default pull-left border-none"
+                type="button"
+                disabled={submitInProcess || isFirst}
+                onClick={() => { this.changeQuestion(currentQuestionIndex - 1) }}
+              ><i className="fa fas fa-long-arrow-alt-left fa-2x text-danger" /></button>
+            )
+          }
 
-            {
-              isLast && (
-                <button
-                  className={`btn btn-danger ${submitInProcess && "m-progress"}`}
-                  type="submit"
-                  disabled={submitInProcess || pristine}
-                >Save</button>
-              )
-            }
-          </div>
+          {
+            !isLast && (
+              <button
+                className="btn btn-default pull-right border-none"
+                type="button"
+                disabled={submitInProcess || !currentQuestionHasValue}
+                onClick={() => { this.changeQuestion(currentQuestionIndex + 1) }}
+              ><i className="fa fas fa-long-arrow-alt-right fa-2x text-danger" /></button>
+            )
+          }
+
+          {
+            isLast && (
+              <button
+                className={`btn btn-danger pull-right ${submitInProcess && "m-progress"}`}
+                type="submit"
+                disabled={submitInProcess || pristine || !currentQuestionHasValue}
+              >SAVE</button>
+            )
+          }
         </form>
       </div>
     )
