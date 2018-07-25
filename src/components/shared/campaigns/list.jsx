@@ -60,12 +60,12 @@ export default class CampaignList extends Component {
 
                 let linkTo = `/campaigns/${campaignID}`
 
+                // TODO: change behaviour when profile is done
                 if (newable) {
-                  linkTo = `/my/campaigns/${campaignID}/edit/basic`
                   if (campaign.can.edit) {
                     linkTo = `/my/campaigns/${campaignID}/edit/basic`
                   } else {
-                    linkTo = `/my/campaigns/${campaignID}`
+                    linkTo = `/my/campaigns/${campaignID}/edit/success`
                   }
                 }
 

@@ -17,7 +17,7 @@ import {
 import { notyWarning } from '../../../../services/noty'
 import { scrollTop } from '../../../../services/utils'
 
-import SharedMyCampaignsQuestionnaires from '../../../shared/startup-questionnaires'
+import SharedStartupQuestionnaires from '../../../shared/startup-questionnaires'
 
 const mapStateToProps = (state) => {
   return {
@@ -128,7 +128,7 @@ export default class MyCampaigns extends Component {
     const routeParams = { ...params, myStartupID: _.get(myCampaign, 'startup.id') }
 
     return (
-      <SharedMyCampaignsQuestionnaires
+      <SharedStartupQuestionnaires
         currentTab={currentTab}
         routeParams={routeParams}
         router={router}
@@ -141,7 +141,7 @@ export default class MyCampaigns extends Component {
     const { myCampaign } = this.props
     const { currentTab } = this.state
 
-    if (myCampaign && !myCampaign.can.edit) {
+    if (myCampaign && !myCampaign.can.edit && currentTab !== "success") {
       return null
     }
 

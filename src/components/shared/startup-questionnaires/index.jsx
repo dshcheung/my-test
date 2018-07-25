@@ -22,8 +22,8 @@ import MyStartupQuestionnairesTeamForm from '../../forms/my/startup-questionnair
 import MyStartupQuestionnairesFinancialForm from '../../forms/my/startup-questionnaires/financial'
 import MyStartupQuestionnairesCampaignForm from '../../forms/my/startup-questionnaires/campaign'
 import MyStartupQuestionnairesAttachmentsForm from '../../forms/my/startup-questionnaires/attachments'
-import SharedMyStartupQuestionnairesSubmission from './submission'
-import SharedMyStartupQuestionnairesSuccess from './success'
+import SharedStartupQuestionnairesSubmission from './submission'
+import SharedStartupQuestionnairesSuccess from './success'
 
 const mapStateToProps = (state) => {
   return {
@@ -42,7 +42,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class SharedMyCampaignsQuestionnaires extends Component {
+export default class SharedStartupQuestionnaires extends Component {
   constructor(props) {
     super(props)
 
@@ -234,12 +234,12 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
         },
         {
           key: "submission",
-          model: SharedMyStartupQuestionnairesSubmission,
+          model: SharedStartupQuestionnairesSubmission,
           nextTab: null,
           nonForm: true
         }, {
           key: "success",
-          model: SharedMyStartupQuestionnairesSuccess,
+          model: SharedStartupQuestionnairesSuccess,
           nextTab: null,
           nonForm: true
         }

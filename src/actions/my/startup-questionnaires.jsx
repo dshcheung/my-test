@@ -55,8 +55,6 @@ export const resetMyStartupQuestionnaire = () => {
 
 export const G_MY_STARTUP_QUESTIONNAIRE = "G_MY_STARTUP_QUESTIONNAIRE"
 export const gMyStartupQuestionnaire = ({ queries = {}, params = {} } = {}) => {
-  console.log(queries)
-
   const request = genAxios({
     method: "get",
     url: genApiUrl(apiMyStartupQuestionnairesShow(params), queries)

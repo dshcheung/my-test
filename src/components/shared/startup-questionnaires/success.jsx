@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class SharedMyStartupQuestionnairesSuccess extends Component {
+export default class SharedStartupQuestionnairesSuccess extends Component {
   render() {
     return (
       <div

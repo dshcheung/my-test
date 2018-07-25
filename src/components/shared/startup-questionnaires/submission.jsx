@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class SharedMyStartupQuestionnairesSubmission extends Component {
+export default class SharedStartupQuestionnairesSubmission extends Component {
   render() {
     const { myCampaign, markMyCampaignForReviewInProcess, routeParams } = this.props
     const submittedStatus = _.get(myCampaign, 'status.submitted')
