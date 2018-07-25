@@ -8,7 +8,8 @@ import TextField from '../../../shared/form-elements/text-field'
 import SelectField from '../../../shared/form-elements/select-field'
 import MultiselectField from '../../../shared/form-elements/multiselect-field'
 import DateTimePicker from '../../../shared/form-elements/datetime-picker'
-import FileDropField from '../../../shared/form-elements/file-drop-field'
+import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
+import FileField from '../../../shared/form-elements/file-field'
 
 @reduxForm({
   form: "MyStartupQuestionnairesBasicEditForm",
@@ -33,7 +34,7 @@ import FileDropField from '../../../shared/form-elements/file-drop-field'
 })
 export default class MyStartupQuestionnairesBasicEditForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass, pristine } = this.props
+    const { handleSubmit, submitInProcess, optClass, dMSQAttributes, pristine } = this.props
 
     return (
       <div className={optClass}>
@@ -43,7 +44,7 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
             component={TextField}
             opts={{
               placeholder: "Name",
-              label: "Company Name"
+              label: "1. Company Name"
             }}
           />
 
@@ -52,7 +53,7 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
             component={DateTimePicker}
             opts={{
               placeholder: "Select the year",
-              label: "Founded Year",
+              label: "2. Founded Year",
               time: false,
               format: "YYYY",
               views: ["decade"]
@@ -66,7 +67,7 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
               options: COUNTRIES,
               valueField: "name",
               textField: "name",
-              label: "Country of Incorporation",
+              label: "3. Country of Incorporation",
               placeholder: "Select a country"
             }}
           />
@@ -75,7 +76,7 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
             name="tagline"
             component={TextField}
             opts={{
-              label: "Tagline",
+              label: "4. Tagline",
               placeholder: "Tagline"
             }}
           />
@@ -84,7 +85,7 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
             name="hashtags"
             component={MultiselectField}
             opts={{
-              label: "Hashtags",
+              label: "5. Hashtags",
               placeholder: "Hashtags",
               options: [
                 { tag: "Need" },
@@ -97,25 +98,37 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
 
           <FieldArray
             name="attachments"
-            component={FileDropField}
+            component={DynamicFieldArray}
             opts={{
-              selectOpts: {
-                options: [
-                  {
-                    id: "logo",
-                    name: "Company Logo",
-                    section: "startup_questionnaire_basic"
-                  },
-                  {
-                    id: "banner",
-                    name: "Banner",
-                    section: "startup_questionnaire_basic"
-                  },
-                ],
-                valueField: 'id',
-                textField: 'name',
-                placeholder: 'Select a Title'
-              }
+              label: "6. Visual Identity",
+              groupName: "File",
+              newFieldInit: {
+                title: '',
+                file: ''
+              },
+              onDeleteField: dMSQAttributes,
+              dynamicFields: [
+                {
+                  key: "title",
+                  component: SelectField,
+                  opts: {
+                    label: "Title",
+                    options: this.props.attachmentOptions,
+                    valueField: "name",
+                    textField: "name",
+                    filter: true,
+                    allowCreate: true
+                  }
+                },
+                {
+                  key: "file",
+                  component: FileField,
+                  opts: {
+                    label: "File",
+                    urlKey: "original"
+                  }
+                }
+              ]
             }}
           />
 

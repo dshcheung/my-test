@@ -86,6 +86,7 @@ export default class MyCampaigns extends Component {
   }
 
   componentWillMount() {
+    window.test = this.props
     this.permitRedirection(this.props)
     this.props.gMyStartupQuestionnaire({
       queries: { campaign_id: this.props.myCampaign.id },
@@ -104,7 +105,9 @@ export default class MyCampaigns extends Component {
   }
 
   permitRedirection(props) {
-    if (props.myCampaign && !props.myCampaign.can.edit) {
+    if (props.params.tab !== "success" &&
+      props.myCampaign &&
+      !props.myCampaign.can.edit) {
       this.props.router.push("/my/campaigns")
       notyWarning("You Cannot Edit")
     }
@@ -143,25 +146,29 @@ export default class MyCampaigns extends Component {
     }
 
     return (
-      <div id="my-campaigns-edit" className="remove-body-top-padding">
-        <div className="tab-nav">
-          <div className="container">
-            {
-              this.state.order.map((t, i) => {
-                const bgColor = currentTab === t.key ? "active" : ""
-                return (
-                  <div
-                    key={i}
-                    className={`pointer tab-item ${bgColor}`}
-                    onClick={() => {
-                      this.changeTab(t.key)
-                    }}
-                  >{t.title}</div>
-                )
-              })
-            }
-          </div>
-        </div>
+      <div id="my-campaigns-edit" className={currentTab !== "success" && "remove-body-top-padding"}>
+        {
+          currentTab !== "success" && (
+            <div className="tab-nav">
+              <div className="container">
+                {
+                  this.state.order.map((t, i) => {
+                    const bgColor = currentTab === t.key ? "active" : ""
+                    return (
+                      <div
+                        key={i}
+                        className={`pointer tab-item ${bgColor}`}
+                        onClick={() => {
+                          this.changeTab(t.key)
+                        }}
+                      >{t.title}</div>
+                    )
+                  })
+                }
+              </div>
+            </div>
+          )
+        }
 
         { this.renderTab() }
       </div>

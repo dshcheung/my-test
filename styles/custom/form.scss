@@ -11,6 +11,10 @@ $input-placeholder-transition: all 0.2s;
 
 .page-title-c {
   text-align: center;
+
+  &.capitalize {
+    text-transform: capitalize;
+  }
 }
 
 .page-title-l {
@@ -42,6 +46,28 @@ $input-placeholder-transition: all 0.2s;
       display: block;
     }
   }
+
+  .input-group {
+    border-bottom: 1px solid #ccc;
+
+    input, .dropdown-toggle {
+      border: 0;
+
+      &:focus {
+        border: 0;
+      }
+    }
+
+    .input-group-addon {
+      background-color: white;
+      border: 0;
+    }
+
+    &:focus-within {
+      border-bottom: 1px solid #666;
+    }
+  }
+
 
   // Floating Label Start
   label, input, select {
@@ -257,8 +283,15 @@ $input-placeholder-transition: all 0.2s;
   }
 }
 
-.dynamic-field {
+.dynamic-field, .static-field {
   margin-bottom: 30px;
+
+  .field-header {
+    margin-bottom: 20px;
+    label, span {
+      margin: 0;
+    }
+  }
 
   .group-header {
     margin-bottom: 15px;
@@ -293,5 +326,13 @@ $input-placeholder-transition: all 0.2s;
     .btn {
       padding: 3.5px 10px;
     }
+  }
+}
+
+.currency-field {
+  .dropdown-toggle {
+    padding: 4px 10px 4px 0;
+    border-top: 0;
+    border-left: 0;
   }
 }

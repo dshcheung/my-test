@@ -5,36 +5,36 @@ import Validators from '../../../../services/form-validators'
 
 import TextField from '../../../shared/form-elements/text-field'
 import TextArea from '../../../shared/form-elements/text-area'
-import DateTimePicker from '../../../shared/form-elements/datetime-picker'
-import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
 import SelectField from '../../../shared/form-elements/select-field'
+import DateTimePicker from '../../../shared/form-elements/datetime-picker'
 import FileField from '../../../shared/form-elements/file-field'
+import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
 
 @reduxForm({
-  form: "MyStartupQuestionnairesTeaserForm",
+  form: "MyStartupQuestionnairesMarketForm",
   validate: (values) => {
     return Validators({
-      problem: [{ type: "lengthWord", opts: { max: 100 } }],
-      solution: [{ type: "lengthWord", opts: { max: 100 } }],
-      make_money: [{ type: "lengthWord", opts: { max: 100 } }],
       solution_benchmark: [{ type: "lengthWord", opts: { max: 200 } }],
-      startup_questionnaire_highlights: [{
+      barriers_to_entry: [{ type: "lengthWord", opts: { max: 200 } }],
+      traction: [{ type: "lengthWord", opts: { max: 200 } }],
+      competition_landscape: [{ type: "lengthWord", opts: { max: 200 } }],
+      competitors: [{
         type: "complexArrOfObj",
         opts: {
           selfPresences: false,
           childFields: {
-            title: ["presences", { type: "lengthWord", opts: { max: 4 } }],
-            content: ["presences", { type: "lengthWord", opts: { max: 20 } }]
+            name: ["presences"],
+            website: ["presences", "httpLink"]
           }
         }
       }],
-      startup_questionnaire_media: [{
+      go_to_market_strategies: [{
         type: "complexArrOfObj",
         opts: {
           selfPresences: false,
           childFields: {
-            logo: ["presences"],
-            link: ["presences", "httpLink"]
+            occurs_on: ["presences"],
+            action: ["presences", { type: "lengthWord", opts: { max: 40 } }]
           }
         }
       }],
@@ -48,16 +48,12 @@ import FileField from '../../../shared/form-elements/file-field'
           }
         }
       }]
-    }, values, [
-      "startup_questionnaire_highlights",
-      "startup_questionnaire_media",
-      "attachments"
-    ])
+    }, values, ["competitors", "go_to_market_strategies", "attachments"])
   },
   enableReinitialize: true
 })
 
-export default class MyStartupQuestionnairesTeaserForm extends Component {
+export default class MyStartupQuestionnairesMarketForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass, dMSQAttributes, pristine } = this.props
 
@@ -65,26 +61,40 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
           <Field
-            name="problem"
+            name="global_market"
             component={TextArea}
             opts={{
-              label: "1. Problem"
+              label: "1. Global market",
+              hint: "Worldwide, or any global reference point : that is the all market you could address eventually, after scaling up "
             }}
           />
 
           <Field
-            name="solution"
-            component={TextArea}
+            name="global_market_metrics"
+            component={FileField}
             opts={{
-              label: "2. Solution"
+              label: "2. Global market metrics (optional)",
+              hint: "Current Size, projected CAGR",
+              urlKey: "original"
             }}
           />
 
           <Field
-            name="make_money"
+            name="target_market"
             component={TextArea}
             opts={{
-              label: "3. How do you make money? and how much?"
+              label: "3. Targeted market (your customers)",
+              hint: "Your entry market that you are targeting in the coming months. Remember that its definition should give us a precise description of your targeted customer."
+            }}
+          />
+
+          <Field
+            name="target_market_metrics"
+            component={FileField}
+            opts={{
+              label: "4. Targeted market metrics (optional)",
+              hint: "Current Size, projected CAGR",
+              urlKey: "original"
             }}
           />
 
@@ -92,64 +102,62 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="solution_benchmark"
             component={TextArea}
             opts={{
-              label: "4. Solution Benchmark",
+              label: "5. Solution Benchmark",
               hint: "Features that differentiate your solution from this competitor’s solution"
             }}
           />
 
           <Field
-            name="pitch_deck"
-            component={FileField}
+            name="barriers_to_entry"
+            component={TextArea}
             opts={{
-              label: "5. Pitch Deck",
-              urlKey: "original"
+              label: "6. Barriers to entry",
+              hint: "Main reasons why a company will find it difficult to conquer your customers when entering your market"
             }}
           />
 
           <Field
-            name="business_model"
-            component={FileField}
+            name="traction"
+            component={TextArea}
             opts={{
-              label: "6. Business Model (optional)",
-              urlKey: "original"
+              label: "7. Traction",
+              hint: "Users and/or validated feedback"
+            }}
+          />
+
+          <Field
+            name="competition_landscape"
+            component={TextArea}
+            opts={{
+              label: "8. Describe your competition landscape",
             }}
           />
 
           <FieldArray
-            name="startup_questionnaire_highlights"
+            name="competitors"
             component={DynamicFieldArray}
             opts={{
-              label: "7. Top 5 highlighs / achievements",
-              groupName: "Highlight",
+              label: "9. Competitors",
+              groupName: "Competitor",
               newFieldInit: {
-                occurred_on: '',
-                title: '',
-                content: ''
+                name: '',
+                website: '',
               },
               onDeleteField: dMSQAttributes,
-              hint: "5 main achievements. For each, we need a 4 words max title, a date (optional, quarter/year), a nominal sentence of 20 words max. Make them count !",
               dynamicFields: [
                 {
-                  key: "occurred_on",
-                  component: DateTimePicker,
-                  opts: {
-                    label: "Occured On",
-                    time: false,
-                    format: "DD/MM/YYYY"
-                  }
-                },
-                {
-                  key: "title",
+                  key: "name",
                   component: TextField,
                   opts: {
-                    label: "Title"
+                    label: "Name"
                   }
                 },
                 {
-                  key: "content",
-                  component: TextArea,
+                  key: "website",
+                  component: TextField,
                   opts: {
-                    label: "Content"
+                    label: "Link",
+                    placeholder: "https://competitor.com"
                   }
                 }
               ]
@@ -157,33 +165,32 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
           />
 
           <FieldArray
-            name="startup_questionnaire_media"
+            name="go_to_market_strategies"
             component={DynamicFieldArray}
             opts={{
-              label: "8. Media (optional)",
-              groupName: "Medium",
+              label: "10. Go-To-Market Strategies",
+              groupName: "Strategy",
               newFieldInit: {
-                logo: '',
-                link: ''
+                occurs_on: '',
+                action: '',
               },
               onDeleteField: dMSQAttributes,
-              hint: "Provide us with the link to the article and the logo of the media",
               dynamicFields: [
                 {
-                  key: "logo",
-                  component: FileField,
+                  key: "occurs_on",
+                  component: DateTimePicker,
                   opts: {
-                    label: "Upload Image for logo",
-                    urlKey: "original"
+                    label: "Date",
+                    time: false,
+                    format: "MM/YYYY",
+                    views: ["year", "decade"]
                   }
                 },
                 {
-                  key: "link",
-                  component: TextField,
+                  key: "action",
+                  component: TextArea,
                   opts: {
-                    type: 'url',
-                    label: "Link",
-                    placeholder: "https://website.com"
+                    label: "Action"
                   }
                 }
               ]
@@ -194,8 +201,8 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="attachments"
             component={DynamicFieldArray}
             opts={{
-              label: "9. Can you share with us some more shining visuals to illustrate your teaser? (optional)",
-              hint: "A video or pictures showing your company, your team, your product, your vision, your story... all of them... that is your show. As long as it stays shorter than 1min and 30 seconds / 5 pictures",
+              label: "11. You want to show us more ? (optional)",
+              hint: "Upload Slides, Graphs, research summary, link to sources",
               groupName: "File",
               newFieldInit: {
                 title: '',

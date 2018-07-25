@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { getQuestionnaire } from '../../../services/utils'
-
 import {
   G_MY_STARTUP_QUESTIONNAIRE,
   U_MY_STARTUP_QUESTIONNAIRE, uMyStartupQuestionnaire
@@ -18,19 +16,18 @@ import SharedOthersSideTitle from '../../shared/others/side-title'
 
 import MyStartupQuestionnairesBasicEditForm from '../../forms/my/startup-questionnaires/basic-edit'
 import MyStartupQuestionnairesTeaserForm from '../../forms/my/startup-questionnaires/teaser'
-// import MyStartupQuestionnairesProductForm from '../../forms/my/startup-questionnaires/product'
-// import MyStartupQuestionnairesMarketForm from '../../forms/my/startup-questionnaires/market'
-// import MyStartupQuestionnairesTeamForm from '../../forms/my/startup-questionnaires/team'
-// import MyStartupQuestionnairesFinancialForm from '../../forms/my/startup-questionnaires/financial'
-// import MyStartupQuestionnairesCampaignForm from '../../forms/my/startup-questionnaires/campaign'
-// import MyStartupQuestionnairesAttachmentsForm from '../../forms/my/startup-questionnaires/attachments'
-// import SharedMyCampaignsSubmission from './submission'
+import MyStartupQuestionnairesProductForm from '../../forms/my/startup-questionnaires/product'
+import MyStartupQuestionnairesMarketForm from '../../forms/my/startup-questionnaires/market'
+import MyStartupQuestionnairesTeamForm from '../../forms/my/startup-questionnaires/team'
+import MyStartupQuestionnairesFinancialForm from '../../forms/my/startup-questionnaires/financial'
+import MyStartupQuestionnairesCampaignForm from '../../forms/my/startup-questionnaires/campaign'
+import MyStartupQuestionnairesAttachmentsForm from '../../forms/my/startup-questionnaires/attachments'
+import SharedMyStartupQuestionnairesSubmission from './submission'
+import SharedMyStartupQuestionnairesSuccess from './success'
 
-const mapStateToProps = (state, props) => {
-  const myCampaignID = _.get(props, 'routeParams.myCampaignID')
-
+const mapStateToProps = (state) => {
   return {
-    myQuestionnaires: getQuestionnaire(_.get(state, 'myStartupQuestionnaires', []), myCampaignID),
+    myStartupQuestionnaire: _.get(state, 'myStartupQuestionnaire', {}),
     gMyStartupQuestionnaireInProcess: _.get(state.requestStatus, G_MY_STARTUP_QUESTIONNAIRE),
     uMyStartupQuestionnaireInProcess: _.get(state.requestStatus, U_MY_STARTUP_QUESTIONNAIRE),
     gImmovableInProcess: _.get(state.requestStatus, G_IMMOVABLE_ATTACHMENT_OPTIONS),
@@ -55,7 +52,6 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
           key: "basic",
           dataKey: "startup_questionnaire_basic",
           model: MyStartupQuestionnairesBasicEditForm,
-          prevTab: null,
           nextTab: "teaser",
           formatValues: (q) => {
             const nq = {
@@ -76,7 +72,6 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
           key: "teaser",
           dataKey: "startup_questionnaire_teaser",
           model: MyStartupQuestionnairesTeaserForm,
-          prevTab: "basic",
           nextTab: "product",
           formatValues: (q) => {
             const startup_questionnaire_highlights = _.get(q, 'startup_questionnaire_highlights') || []
@@ -103,153 +98,151 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
             return nq
           }
         },
-        // {
-        //   key: "product",
-        //   dataKey: "startup_questionnaire_product",
-        //   model: MyStartupQuestionnairesProductForm,
-        //   prevTab: "teaser",
-        //   nextTab: "market",
-        //   formatValues: (q) => {
-        //     const startup_questionnaire_patents = _.get(q, 'startup_questionnaire_patents') || []
+        {
+          key: "product",
+          dataKey: "startup_questionnaire_product",
+          model: MyStartupQuestionnairesProductForm,
+          nextTab: "market",
+          formatValues: (q) => {
+            const startup_questionnaire_patents = _.get(q, 'startup_questionnaire_patents') || []
 
-        //     const nq = {
-        //       ...q,
-        //       product: _.get(q, 'product') || '',
-        //       startup_questionnaire_patents: startup_questionnaire_patents.map((p) => {
-        //         const registration_date = _.get(p, 'registration_date')
-        //         return {
-        //           ...p,
-        //           registration_date: registration_date ? moment(registration_date).toDate() : timeNow
-        //         }
-        //       })
-        //     }
+            const nq = {
+              ...q,
+              product: _.get(q, 'product') || '',
+              startup_questionnaire_patents: startup_questionnaire_patents.map((p) => {
+                const registration_date = _.get(p, 'registration_date')
+                return {
+                  ...p,
+                  registration_date: registration_date ? moment(registration_date).toDate() : ''
+                }
+              })
+            }
 
-        //     return nq
-        //   }
-        // },
-        // {
-        //   key: "market",
-        //   dataKey: "startup_questionnaire_market",
-        //   model: MyStartupQuestionnairesMarketForm,
-        //   prevTab: "product",
-        //   nextTab: "team",
-        //   formatValues: (q) => {
-        //     const go_to_market_strategies = _.get(q, 'go_to_market_strategies') || []
+            return nq
+          }
+        },
+        {
+          key: "market",
+          dataKey: "startup_questionnaire_market",
+          model: MyStartupQuestionnairesMarketForm,
+          nextTab: "team",
+          formatValues: (q) => {
+            const go_to_market_strategies = _.get(q, 'go_to_market_strategies') || []
 
-        //     const nq = {
-        //       ...q,
-        //       barriers_to_entry: _.get(q, 'barriers_to_entry') || '',
-        //       competition_landscape: _.get(q, 'competition_landscape') || '',
-        //       global_market: _.get(q, 'global_market') || '',
-        //       solution_benchmark: _.get(q, 'solution_benchmark') || '',
-        //       target_market: _.get(q, 'target_market') || '',
-        //       traction: _.get(q, 'traction') || '',
-        //       go_to_market_strategies: go_to_market_strategies.map((s) => {
-        //         const occurs_on = _.get(s, 'occurs_on')
-        //         return {
-        //           ...s,
-        //           occurs_on: occurs_on ? moment(occurs_on).toDate() : timeNow
-        //         }
-        //       })
-        //     }
+            const nq = {
+              ...q,
+              barriers_to_entry: _.get(q, 'barriers_to_entry') || '',
+              competition_landscape: _.get(q, 'competition_landscape') || '',
+              global_market: _.get(q, 'global_market') || '',
+              solution_benchmark: _.get(q, 'solution_benchmark') || '',
+              target_market: _.get(q, 'target_market') || '',
+              traction: _.get(q, 'traction') || '',
+              go_to_market_strategies: go_to_market_strategies.map((s) => {
+                const occurs_on = _.get(s, 'occurs_on')
+                return {
+                  ...s,
+                  occurs_on: occurs_on ? moment(occurs_on).toDate() : ''
+                }
+              })
+            }
 
-        //     return nq
-        //   }
-        // },
-        // {
-        //   key: "team",
-        //   dataKey: "startup_questionnaire_team",
-        //   model: MyStartupQuestionnairesTeamForm,
-        //   prevTab: "market",
-        //   nextTab: "financial",
-        // },
-        // {
-        //   key: "financial",
-        //   dataKey: "startup_questionnaire_financial",
-        //   model: MyStartupQuestionnairesFinancialForm,
-        //   prevTab: "team",
-        //   nextTab: "campaign",
-        //   formatValues: (q) => {
-        //     const startup_questionnaire_previous_funds = _.get(q, 'startup_questionnaire_previous_funds') || []
-        //     const startup_questionnaire_cap_tables = _.get(q, 'startup_questionnaire_cap_tables') || []
-        //     const startup_questionnaire_break_even = _.get(q, 'startup_questionnaire_break_even')
-        //     const year = _.get(startup_questionnaire_break_even, 'year')
-        //     _.set(startup_questionnaire_break_even, 'year', year ? moment(year).toDate() : timeNow)
+            return nq
+          }
+        },
+        {
+          key: "team",
+          dataKey: "startup_questionnaire_team",
+          model: MyStartupQuestionnairesTeamForm,
+          nextTab: "financial",
+        },
+        {
+          key: "financial",
+          dataKey: "startup_questionnaire_financial",
+          model: MyStartupQuestionnairesFinancialForm,
+          nextTab: "campaign",
+          formatValues: (q) => {
+            const startup_questionnaire_previous_funds = _.get(q, 'startup_questionnaire_previous_funds') || []
+            const startup_questionnaire_cap_tables = _.get(q, 'startup_questionnaire_cap_tables') || []
+            const startup_questionnaire_break_even = _.get(q, 'startup_questionnaire_break_even')
+            const year = _.get(startup_questionnaire_break_even, 'year')
+            _.set(startup_questionnaire_break_even, 'year', year ? moment(year).toDate() : '')
 
-        //     const nq = {
-        //       ...q,
-        //       startup_questionnaire_previous_funds: startup_questionnaire_previous_funds.map((pf) => {
-        //         const occurred_on = _.get(pf, 'occurred_on')
-        //         return {
-        //           ...pf,
-        //           occurred_on: occurred_on ? moment(occurred_on).toDate() : timeNow
-        //         }
-        //       }),
-        //       startup_questionnaire_cap_tables: startup_questionnaire_cap_tables.map((ct) => {
-        //         const date_of_investment = _.get(ct, 'date_of_investment')
-        //         return {
-        //           ...ct,
-        //           date_of_investment: date_of_investment ? moment(date_of_investment).toDate() : timeNow
-        //         }
-        //       }),
-        //       startup_questionnaire_break_even,
-        //       cash_burn: {
-        //         ..._.get(q, 'cash_burn'),
-        //         amount: _.get(q, 'cash_burn.amount') || ''
-        //       }
-        //     }
+            const nq = {
+              ...q,
+              startup_questionnaire_previous_funds: startup_questionnaire_previous_funds.map((pf) => {
+                const occurred_on = _.get(pf, 'occurred_on')
+                return {
+                  ...pf,
+                  occurred_on: occurred_on ? moment(occurred_on).toDate() : ''
+                }
+              }),
+              startup_questionnaire_cap_tables: startup_questionnaire_cap_tables.map((ct) => {
+                const date_of_investment = _.get(ct, 'date_of_investment')
+                return {
+                  ...ct,
+                  date_of_investment: date_of_investment ? moment(date_of_investment).toDate() : ''
+                }
+              }),
+              startup_questionnaire_break_even,
+              cash_burn: {
+                ..._.get(q, 'cash_burn'),
+                amount: _.get(q, 'cash_burn.amount') || ''
+              }
+            }
 
-        //     return nq
-        //   }
-        // },
-        // {
-        //   key: "campaign",
-        //   dataKey: "startup_questionnaire_campaign",
-        //   model: MyStartupQuestionnairesCampaignForm,
-        //   prevTab: "financial",
-        //   nextTab: "dataroom",
-        //   formatValues: (q) => {
-        //     const nq = {
-        //       ...q,
-        //       maturity_date: _.get(q, 'maturity_date') ? moment(_.get(q, 'maturity_date')).toDate() : timeNow,
-        //       pre_money_valuation: {
-        //         ..._.get(q, 'pre_money_valuation'),
-        //         amount: _.get(q, 'pre_money_valuation.amount') || ''
-        //       },
-        //       raised: {
-        //         ..._.get(q, 'raised'),
-        //         amount: _.get(q, 'raised.amount') || ''
-        //       },
-        //       valuation_cap: {
-        //         ..._.get(q, 'valuation_cap'),
-        //         amount: _.get(q, 'valuation_cap.amount') || ''
-        //       }
-        //     }
+            return nq
+          }
+        },
+        {
+          key: "campaign",
+          dataKey: "startup_questionnaire_campaign",
+          model: MyStartupQuestionnairesCampaignForm,
+          nextTab: "dataroom",
+          formatValues: (q) => {
+            const nq = {
+              ...q,
+              maturity_date: _.get(q, 'maturity_date') ? moment(_.get(q, 'maturity_date')).toDate() : '',
+              pre_money_valuation: {
+                ..._.get(q, 'pre_money_valuation'),
+                amount: _.get(q, 'pre_money_valuation.amount') || ''
+              },
+              raised: {
+                ..._.get(q, 'raised'),
+                amount: _.get(q, 'raised.amount') || ''
+              },
+              valuation_cap: {
+                ..._.get(q, 'valuation_cap'),
+                amount: _.get(q, 'valuation_cap.amount') || ''
+              }
+            }
 
-        //     return nq
-        //   }
-        // },
-        // {
-        //   key: "dataroom",
-        //   dataKey: "attachments",
-        //   model: MyStartupQuestionnairesAttachmentsForm,
-        //   prevTab: "campaign",
-        //   nextTab: "submission",
-        //   formatValues: (q) => {
-        //     const nq = {
-        //       attachments: q || []
-        //     }
-        //     return nq
-        //   },
-        //   allAttachmentOptions: true
-        // },
-        // {
-        //   key: "submission",
-        //   model: SharedMyCampaignsSubmission,
-        //   prevTab: "dataroom",
-        //   nextTab: null,
-        //   nonForm: true
-        // }
+            return nq
+          }
+        },
+        {
+          key: "dataroom",
+          dataKey: "attachments",
+          model: MyStartupQuestionnairesAttachmentsForm,
+          nextTab: "submission",
+          formatValues: (q) => {
+            const nq = {
+              attachments: q || []
+            }
+            return nq
+          },
+          allAttachmentOptions: true
+        },
+        {
+          key: "submission",
+          model: SharedMyStartupQuestionnairesSubmission,
+          nextTab: null,
+          nonForm: true
+        }, {
+          key: "success",
+          model: SharedMyStartupQuestionnairesSuccess,
+          nextTab: null,
+          nonForm: true
+        }
       ]
     }
 
@@ -266,7 +259,7 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
       this.props.changeTab(baseInfo.nextTab)
     }, {
       ...this.props.routeParams,
-      startupQuestionnaireID: this.props.myQuestionnaires.id
+      startupQuestionnaireID: this.props.myStartupQuestionnaire.id
     })
   }
 
@@ -275,15 +268,15 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
     const fieldID = _.get(fieldValues, 'id', null)
 
     if (fieldID) {
-      const { myQuestionnaires, currentTab } = this.props
+      const { myStartupQuestionnaire, currentTab } = this.props
       const { order } = this.state
 
       const dataKey = _.find(order, { key: currentTab }).dataKey
-      const myQuestionnaire = _.get(myQuestionnaires, dataKey, {})
+      const questionnairePiece = _.get(myStartupQuestionnaire, dataKey, {})
 
       const params = {
         [this.props.currentTab]: {
-          id: _.get(myQuestionnaire, 'id', null),
+          id: _.get(questionnairePiece, 'id', null),
           [key.split("[")[0]]: [{
             id: _.get(fields.get(index), 'id', null),
             _destroy: true
@@ -295,7 +288,7 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
         fields.remove(index)
       }, {
         ...this.props.routeParams,
-        startupQuestionnaireID: this.props.myQuestionnaires.id
+        startupQuestionnaireID: this.props.myStartupQuestionnaire.id
       })
     } else {
       fields.remove(index)
@@ -304,7 +297,7 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
 
   renderTab() {
     const {
-      currentTab, attachmentOptions, myQuestionnaires,
+      currentTab, attachmentOptions, myStartupQuestionnaire,
     } = this.props
     const { order } = this.state
     const baseInfo = _.find(order, { key: currentTab })
@@ -312,16 +305,14 @@ export default class SharedMyCampaignsQuestionnaires extends Component {
     if (baseInfo.nonForm) {
       return <baseInfo.model routeParams={this.props.routeParams} />
     } else {
-      const myQuestionnaire = _.get(myQuestionnaires, baseInfo.dataKey, {})
+      const questionnairePiece = _.get(myStartupQuestionnaire, baseInfo.dataKey, {})
       const formatValues = baseInfo.formatValues
-      const initialValues = formatValues ? formatValues(myQuestionnaire || {}) : myQuestionnaire
+      const initialValues = formatValues ? formatValues(questionnairePiece || {}) : questionnairePiece
 
       return (
         <baseInfo.model
           initialValues={initialValues}
           baseInfo={baseInfo}
-          toBackTab={() => { if (baseInfo.prevTab) this.props.changeTab(baseInfo.prevTab) }}
-          hasBack={baseInfo.prevTab}
           onSubmit={this.uMyStartupQuestionnaire}
           dMSQAttributes={this.dMSQAttributes}
           submitInProcess={this.props.uMyStartupQuestionnaireInProcess}

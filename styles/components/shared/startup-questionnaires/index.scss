@@ -1,0 +1,14 @@
+#shared-my-startup-questionnaire-success {
+  .check {
+    background-color: $brand-success;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    i {
+      padding: 22px;
+      color: white;
+    }
+  }
+}

@@ -85,7 +85,7 @@ export const cMyStartupQuestionnaire = (values, cb) => {
     type: C_MY_STARTUP_QUESTIONNAIRE,
     request,
     successCB: (dispatch, data) => {
-      dispatch(mergeMyStartupQuestionnaires({ startup_questionnaires: [data] }))
+      dispatch(setMyStartupQuestionnaire(data))
       notySuccess("Saved!")
       if (cb) cb(data)
     }
@@ -107,7 +107,7 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
     type: U_MY_STARTUP_QUESTIONNAIRE,
     request,
     successCB: (dispatch, data) => {
-      dispatch(mergeMyStartupQuestionnaires({ startup_questionnaires: [data] }))
+      dispatch(setMyStartupQuestionnaire(data))
       notySuccess("Saved!")
       if (cb) cb(data)
     }

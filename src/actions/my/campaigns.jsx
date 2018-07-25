@@ -1,4 +1,4 @@
-import { replace } from 'react-router-redux'
+import { replace, push } from 'react-router-redux'
 
 import { genApiUrl, addParamsToUrl, genAxios } from '../../services/api-request'
 import { getFormData } from '../../services/get-form-data'
@@ -146,6 +146,7 @@ export const markMyCampaignForReview = (params) => {
     type: MARK_MY_CAMPAIGN_FOR_REVIEW,
     request,
     successCB: (dispatch, data) => {
+      dispatch(push(`/my/campaigns/${data.id}/edit/success`))
       dispatch(setMyCampaign(data))
       notySuccess("Submitted")
     }

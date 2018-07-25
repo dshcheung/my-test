@@ -45,12 +45,15 @@ export default class FileField extends Component {
       fileName = fileUrl.split('/').reverse()[0]
     }
 
+    const hasValue = this.state.previewFileUrl || fileUrl
+
     return (
       <div className={`form-group clearfix ${hasErrorClass} file-field`}>
         {
           (hint || templateUrl) && (
             <span className="help-block hint clearfix">
               { templateUrl && <a href={templateUrl} download target="_blank" rel="noopener noreferrer">Download Template</a> }
+              { hint && <br /> }
               {hint}
             </span>
           )
@@ -95,7 +98,7 @@ export default class FileField extends Component {
         {
           label && (
             <label
-              className={input.value && "has-value"}
+              className={hasValue && "has-value"}
               htmlFor={newInput.name + "-noInteraction"}
             >
               {label}

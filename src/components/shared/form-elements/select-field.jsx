@@ -20,7 +20,7 @@ export default class SelectField extends Component {
     let emptyValue = null
 
     if (allowEmptyValue) {
-      emptyValue = { [valueField]: "", [textField]: "N/A" }
+      emptyValue = { [valueField]: "", [textField]: "" }
     }
 
     const nOptions = emptyValue ? [emptyValue, ...options] : options
