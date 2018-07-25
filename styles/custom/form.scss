@@ -1,4 +1,6 @@
 $input-placeholder-transition: all 0.2s;
+$input-border: 1px solid #ccc;
+$input-border-focus: 1px solid #666;
 
 .form-title, .page-title-l, .page-title-c {
   margin-top: 0;
@@ -34,6 +36,19 @@ $input-placeholder-transition: all 0.2s;
     height: 28px;
   }
 
+  textarea.form-control {
+    border: 0;
+    border-bottom: $input-border;
+    box-shadow: none;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #f8f8f8;
+
+    &:focus {
+      border-bottom: $input-border-focus;
+    }
+  }
+
   .help-block {
     margin: 0;
     font-size: 12px;
@@ -48,7 +63,7 @@ $input-placeholder-transition: all 0.2s;
   }
 
   .input-group {
-    border-bottom: 1px solid #ccc;
+    border-bottom: $input-border;
 
     input, .dropdown-toggle {
       border: 0;
@@ -64,12 +79,11 @@ $input-placeholder-transition: all 0.2s;
     }
 
     &:focus-within {
-      border-bottom: 1px solid #666;
+      border-bottom: $input-border-focus;
     }
   }
 
-
-  // Floating Label Start
+  // Normal Floating Label Start
   label, input, select {
     transition: $input-placeholder-transition;
     touch-action: manipulation;
@@ -77,19 +91,18 @@ $input-placeholder-transition: all 0.2s;
 
   label {
     margin: 0;
-
   }
 
   input {
     padding: 0;
     border: 0;
-    border-bottom: 1px solid #ccc;
+    border-bottom: $input-border;
     border-radius: 0;
     box-shadow: none !important;
     cursor: text;
 
     &:focus {
-      border-bottom: 1px solid #666;
+      border-bottom: $input-border-focus;
     }
 
     &.has-label {
@@ -120,99 +133,67 @@ $input-placeholder-transition: all 0.2s;
       cursor: pointer;
     }
   }
+  // Normal Floating Label End
+}
 
-  .file-field-content {
-    height: 28px;
-    border-bottom: 1px solid #ccc;
-
-    .form-control {
-      border: 0;
-      box-shadow: none;
+.rw-dropdown-list, .rw-multiselect, .rw-datetime-picker {
+  .rw-widget-picker {
+    padding: 0;
+    border: 0;
+    border-bottom: $input-border;
+    border-radius: 0;
+    box-shadow: none !important;
+    height: 27px;
+    .rw-input, input {
       height: 27px;
-      padding-left: 0;
-      padding-right: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      padding: 0;
+      border: 0;
     }
 
-    & + label {
-      cursor: text;
-      max-width: 100%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      transform-origin: left bottom;
-      transform: translateY(24px);
-      pointer-events: none;
+    .rw-input[disabled] {
+      background-color: #fff;
     }
 
-    & + label.has-value {
-      transform: translate(0, 0);
-      cursor: pointer;
+    &.has-label {
+      .rw-placeholder, ::placeholder {
+        opacity: 0;
+        transition: $input-placeholder-transition;
+      }
     }
   }
 
-  .rw-dropdown-list, .rw-multiselect, .rw-datetime-picker {
-    .rw-widget-picker {
-      padding: 0;
-      border: 0;
-      border-bottom: 1px solid #ccc;
-      border-radius: 0;
-      box-shadow: none !important;
-      height: 27px;
-      .rw-input, input {
-        height: 27px;
-        padding: 0;
-        border: 0;
-      }
+  & + label {
+    cursor: text;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transform-origin: left bottom;
+    transform: translateY(24px);
+    pointer-events: none;
+  }
 
-      .rw-input[disabled] {
-        background-color: #fff;
-      }
+  & + label.has-value {
+    transform: translate(0, 0);
+    cursor: pointer;
+  }
+
+  &.rw-open {
+    .rw-widget-picker {
+      border-bottom: $input-border-focus;
 
       &.has-label {
         .rw-placeholder, ::placeholder {
-          opacity: 0;
-          transition: $input-placeholder-transition;
+          opacity: 1;
         }
       }
     }
 
     & + label {
-      cursor: text;
-      max-width: 100%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      transform-origin: left bottom;
-      transform: translateY(24px);
-      pointer-events: none;
-    }
-
-    & + label.has-value {
       transform: translate(0, 0);
       cursor: pointer;
     }
-
-    &.rw-open {
-      .rw-widget-picker {
-        border-bottom: 1px solid #666;
-
-        &.has-label {
-          .rw-placeholder, ::placeholder {
-            opacity: 1;
-          }
-        }
-      }
-
-      & + label {
-        transform: translate(0, 0);
-        cursor: pointer;
-      }
-    }
   }
-  // Floating Label End
 }
 
 .file-drop-field {
@@ -244,7 +225,7 @@ $input-placeholder-transition: all 0.2s;
           line-height: 28px;
           height: 28px;
           width: 50px;
-          border: 1px solid #ccc;
+          border: $input-border;
           padding: 0 5px 0;
           overflow: hidden;
           white-space: nowrap;
@@ -255,7 +236,7 @@ $input-placeholder-transition: all 0.2s;
           flex: 2 1 auto;
           width: 50px;
           .rw-dropdown-list {
-            border: 1px solid #ccc;
+            border: $input-border;
             .rw-widget-picker {
               border: 0;
               height: 26px;
@@ -316,15 +297,45 @@ $input-placeholder-transition: all 0.2s;
 }
 
 .file-field {
-  .file-field-label {
-    display: flex;
+  .file-field-content {
+    height: 28px;
+    border-bottom: $input-border;
 
-    .form-control {
-      flex: 1 1 auto;
+    .file-field-label {
+      display: flex;
+
+      .btn {
+        padding: 3.5px 10px;
+      }
+
+      .form-control {
+        flex: 1 1 auto;
+        height: 27px;
+        line-height: 27px;
+        border: 0;
+        box-shadow: none;
+        padding-left: 0;
+        padding-right: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
 
-    .btn {
-      padding: 3.5px 10px;
+    & + label {
+      cursor: text;
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transform-origin: left bottom;
+      transform: translateY(24px);
+      pointer-events: none;
+    }
+
+    & + label.has-value {
+      transform: translate(0, 0);
+      cursor: pointer;
     }
   }
 }
