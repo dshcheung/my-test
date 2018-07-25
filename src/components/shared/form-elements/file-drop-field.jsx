@@ -60,57 +60,61 @@ export default class FileDropField extends Component {
           <p>to upload your files (max 5MB)</p>
         </Dropzone>
 
-        <ul className="file-list">
-          {
-            fields.map((objKey, i) => {
-              const thisMeta = _.get(meta, `[${i}]`, {})
-              const thisError = _.get(errors, `[${i}]`, {})
-              const touched = thisMeta.title || thisMeta.file
-              const invalid = thisError.title || thisError.file
-              const titleErrors = (thisError.title || []).map((e) => {
-                return `Title: ${e}`
-              })
-              const fileErrors = (thisError.file || []).map((e) => {
-                return `File: ${e}`
-              })
+        {
+          fields.length > 0 && (
+            <ul className="file-list">
+              {
+                fields.map((objKey, i) => {
+                  const thisMeta = _.get(meta, `[${i}]`, {})
+                  const thisError = _.get(errors, `[${i}]`, {})
+                  const touched = thisMeta.title || thisMeta.file
+                  const invalid = thisError.title || thisError.file
+                  const titleErrors = (thisError.title || []).map((e) => {
+                    return `Title: ${e}`
+                  })
+                  const fileErrors = (thisError.file || []).map((e) => {
+                    return `File: ${e}`
+                  })
 
-              const combinedErrors = [...titleErrors, ...fileErrors]
+                  const combinedErrors = [...titleErrors, ...fileErrors]
 
-              const hasErrorClass = touched && invalid && 'has-error'
+                  const hasErrorClass = touched && invalid && 'has-error'
 
-              return (
-                <li key={i} className={`file-item-wrapper ${hasErrorClass}`}>
-                  <span className="help-block">{touched && hasErrorClass && combinedErrors.join(', ')}&nbsp;</span>
-                  <div className="file-item">
-                    <Field
-                      name={`${objKey}.file`}
-                      component={FileDropFileField}
-                    />
-                    <Field
-                      name={`${objKey}.title`}
-                      component={FileDropTitleField}
-                      opts={selectOpts}
-                    />
-                    <div className="delete">
-                      <button
-                        className="btn btn-default"
-                        onClick={() => {
-                          if (onDeleteField) {
-                            onDeleteField(i, fields, objKey)
-                          } else {
-                            fields.remove(i)
-                          }
-                        }}
-                      >
-                        <i className="fa fas fa-trash-alt" />
-                      </button>
-                    </div>
-                  </div>
-                </li>
-              )
-            })
-          }
-        </ul>
+                  return (
+                    <li key={i} className={`file-item-wrapper ${hasErrorClass}`}>
+                      <span className="help-block">{touched && hasErrorClass && combinedErrors.join(', ')}&nbsp;</span>
+                      <div className="file-item">
+                        <Field
+                          name={`${objKey}.file`}
+                          component={FileDropFileField}
+                        />
+                        <Field
+                          name={`${objKey}.title`}
+                          component={FileDropTitleField}
+                          opts={selectOpts}
+                        />
+                        <div className="delete">
+                          <button
+                            className="btn btn-default"
+                            onClick={() => {
+                              if (onDeleteField) {
+                                onDeleteField(i, fields, objKey)
+                              } else {
+                                fields.remove(i)
+                              }
+                            }}
+                          >
+                            <i className="fa fas fa-trash-alt" />
+                          </button>
+                        </div>
+                      </div>
+                    </li>
+                  )
+                })
+              }
+            </ul>
+          )
+        }
       </div>
     )
   }

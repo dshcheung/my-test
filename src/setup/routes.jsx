@@ -15,6 +15,9 @@ import MyWrapperContainer from '../components/_pages/my/wrapper'
 import MyCampaignsIndexContainer from '../components/_pages/my/campaigns/index'
 import MyCampaignsNewContainer from '../components/_pages/my/campaigns/new'
 
+import MyCampaignsShowWrapperContainer from '../components/_pages/my/campaigns/show-wrapper'
+import MyCampaignsEditContainer from '../components/_pages/my/campaigns/edit'
+
 export default (
   <Route path="/" component={App}>
     <IndexRedirect to="/auth/login" />
@@ -32,6 +35,9 @@ export default (
       <Route path="campaigns" roleAccess="StartupUser">
         <IndexRoute component={MyCampaignsIndexContainer} />
         <Route path="new" component={MyCampaignsNewContainer} />
+        <Route path=":myCampaignID" component={MyCampaignsShowWrapperContainer}>
+          <Route path="edit/:tab" component={MyCampaignsEditContainer} />
+        </Route>
       </Route>
     </Route>
   </Route>

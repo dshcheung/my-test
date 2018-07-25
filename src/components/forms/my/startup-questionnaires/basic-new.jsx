@@ -13,13 +13,13 @@ import FileDropField from '../../../shared/form-elements/file-drop-field'
 
 const mapStateToProps = (state) => {
   return {
-    formData: _.get(state.form, 'MyStartupQuestionnairesBasicForm')
+    formData: _.get(state.form, 'MyStartupQuestionnairesBasicNewForm')
   }
 }
 
 @connect(mapStateToProps, null)
 @reduxForm({
-  form: "MyStartupQuestionnairesBasicForm",
+  form: "MyStartupQuestionnairesBasicNewForm",
   validate: (values) => {
     return Validators({
       company_name: ["presences"],
@@ -39,7 +39,7 @@ const mapStateToProps = (state) => {
   },
   enableReinitialize: true
 })
-export default class MyStartupQuestionnairesBasicForm extends Component {
+export default class MyStartupQuestionnairesBasicNewForm extends Component {
   constructor(props) {
     super(props)
 

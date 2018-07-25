@@ -4,8 +4,13 @@ import { reducer as formReducer } from 'redux-form'
 
 import { RESET_ALL_STATE } from '../actions/session'
 
+import immovablesReducer from './immovables'
+
 import myCampaignReducer from './my/campaign'
 import myCampaignsReducer from './my/campaigns'
+
+import myStartupQuestionnaireReducers from './my/startup-questionnaire'
+import myStartupQuestionnairesReducers from './my/startup-questionnaires'
 
 import paginationReducer from './system/pagination'
 import redirectionReducer from './system/redirection'
@@ -13,8 +18,11 @@ import requestStatusReducer from './system/request-status'
 import sessionReducer from './session'
 
 const appReducer = combineReducers({
+  immovables: immovablesReducer,
   myCampaign: myCampaignReducer,
   myCampaigns: myCampaignsReducer,
+  myStartupQuestionnaire: myStartupQuestionnaireReducers,
+  myStartupQuestionnaires: myStartupQuestionnairesReducers,
   pagination: paginationReducer,
   redirectionInProcess: redirectionReducer,
   requestStatus: requestStatusReducer,

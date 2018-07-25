@@ -45,7 +45,7 @@ export default class MultiselectField extends Component {
       <div className={`form-group clearfix ${hasErrorClass} ${optClass}`}>
         { hint && <span className="help-block hint">{hint}</span> }
         <Multiselect
-          containerClassName={`${label && "has-label"} ${input.value && "has-value"}`}
+          containerClassName={`${label && "has-label"} ${input.value.length > 0 && "has-value"}`}
           allowCreate={'onFilter'}
           busy={requestInProcess}
           data={options}
@@ -59,7 +59,7 @@ export default class MultiselectField extends Component {
           onBlur={this.handleBlur}
           onFocus={this.handleFocus}
         />
-        { label && <label className={input.value.length < 0 && 'has-value'} htmlFor={input.name}>{label} {hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>} </label> }
+        { label && <label className={input.value.length > 0 && 'has-value'} htmlFor={input.name}>{label} {hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>} </label> }
         { !label && <span className="help-block">{touched && hasErrorClass && error.join(", ")}&nbsp;</span>}
       </div>
     )

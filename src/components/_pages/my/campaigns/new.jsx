@@ -90,7 +90,7 @@ export default class MyCampaignsNew extends Component {
     const { currentTab, disableNav, intro } = this.state
 
     return (
-      <div id="my-campaigns-new" className={!intro && "remove-margin"}>
+      <div id="my-campaigns-new" className={!intro && "remove-body-top-padding"}>
         {
           !intro && (
             <div className="tab-nav">
@@ -113,7 +113,7 @@ export default class MyCampaignsNew extends Component {
         }
 
         <div className="row">
-          <SharedOthersSideTitle title="startup" optClass="col-sm-3 col-md-4" />
+          <SharedOthersSideTitle title="startup" optClass="col-sm-3 col-md-4" number={intro ? '' : 1} />
 
           {
             intro && (

@@ -10,6 +10,7 @@ export default class SelectField extends Component {
         label,
         placeholder, optClass, hint,
         valueField, textField,
+        filter, allowCreate,
         allowEmptyValue
       }
     } = this.props
@@ -28,6 +29,8 @@ export default class SelectField extends Component {
       <div className={`form-group clearfix ${hasErrorClass} ${optClass}`}>
         { hint && <span className="help-block hint">{hint}</span> }
         <DropdownList
+          filter={filter}
+          allowCreate={allowCreate && "onFilter"}
           containerClassName={`${label && "has-label"} ${input.value && "has-value"}`}
           busy={requestInProcess}
           data={nOptions}
@@ -35,6 +38,7 @@ export default class SelectField extends Component {
           valueField={valueField}
           textField={textField}
           {...input}
+          onCreate={(text) => { input.onChange(text) }}
           onChange={(value) => { input.onChange(value[valueField]) }}
         />
         { label && <label className={input.value && 'has-value'} htmlFor={input.name}>{label} {hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>} </label> }

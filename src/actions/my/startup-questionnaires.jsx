@@ -38,6 +38,39 @@ export const gMyStartupQuestionnaires = ({ queries = {}, nextHref = null } = {})
   }
 }
 
+export const SET_MY_STARTUP_QUESTIONNAIRE = "SET_MY_STARTUP_QUESTIONNAIRE"
+export const setMyStartupQuestionnaire = (data) => {
+  return {
+    type: SET_MY_STARTUP_QUESTIONNAIRE,
+    data
+  }
+}
+
+export const RESET_MY_STARTUP_QUESTIONNAIRE = "RESET_MY_STARTUP_QUESTIONNAIRE"
+export const resetMyStartupQuestionnaire = () => {
+  return {
+    type: RESET_MY_STARTUP_QUESTIONNAIRE
+  }
+}
+
+export const G_MY_STARTUP_QUESTIONNAIRE = "G_MY_STARTUP_QUESTIONNAIRE"
+export const gMyStartupQuestionnaire = ({ queries = {}, params = {} } = {}) => {
+  console.log(queries)
+
+  const request = genAxios({
+    method: "get",
+    url: genApiUrl(apiMyStartupQuestionnairesShow(params), queries)
+  })
+
+  return {
+    type: G_MY_STARTUP_QUESTIONNAIRE,
+    request,
+    successCB: (dispatch, data) => {
+      dispatch(setMyStartupQuestionnaire(data))
+    }
+  }
+}
+
 export const C_MY_STARTUP_QUESTIONNAIRE = "C_MY_STARTUP_QUESTIONNAIRE"
 export const cMyStartupQuestionnaire = (values, cb) => {
   const params = generateParams(values)
