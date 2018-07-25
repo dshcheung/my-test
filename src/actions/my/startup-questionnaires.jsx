@@ -3,6 +3,7 @@ import { getFormData } from '../../services/get-form-data'
 import { apiMyStartupQuestionnairesShow, apiMyStartupQuestionnairesIndex } from '../../services/api-path'
 
 import { notySuccess } from '../../services/noty'
+import { getType } from '../../services/utils'
 
 export const MERGE_MY_STARTUP_QUESTIONNAIRES = "MERGE_MY_STARTUP_QUESTIONNAIRES"
 export const mergeMyStartupQuestionnaires = (data, reset) => {
@@ -113,12 +114,33 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
 }
 
 const checkFile = (x, key) => {
-  const file = _.get(x, `${key}[0]`)
-  if (file) {
-    _.set(x, key, file)
-  } else {
-    _.set(x, key, null)
+  const value = _.get(x, key)
+  const valueType = getType(value)
+
+  _.set(x, key, null)
+
+  console.log(valueType)
+  switch (valueType) {
+    case "Object": {
+      _.set(x, key, null)
+      break
+    }
+    case "FileList": {
+      const file = _.get(value, "[0]")
+      if (file) {
+        _.set(x, key, file)
+      }
+      break
+    }
+    case "File": {
+      _.set(x, key, value)
+    }
   }
+
+  // if (file) {
+  //   _.set(x, key, file)
+  // } else {
+  // }
 }
 
 const generateParams = (values) => {
@@ -129,6 +151,7 @@ const generateParams = (values) => {
     { target: 'team.startup_questionnaire_team_founders', key: 'avatar' },
     { target: 'team.startup_questionnaire_team_members', key: 'avatar' },
     { target: 'team.startup_questionnaire_team_advisors', key: 'avatar' },
+    { target: 'basic.attachments', key: 'file' },
     { target: 'teaser.attachments', key: 'file' },
     { target: 'product.attachments', key: 'file' },
     { target: 'market.attachments', key: 'file' },
@@ -167,8 +190,7 @@ const generateParams = (values) => {
       vertical: _.get(values, 'basic.vertical', null),
       tagline: _.get(values, 'basic.tagline', null),
       hashtags_attributes: _.get(values, 'basic.hashtags', null),
-      logo: _.get(values, 'basic.logo[0]', null),
-      banner: _.get(values, 'basic.banner[0]', null)
+      attachments_attributes: _.get(values, 'basic.attachments', null)
     },
     startup_questionnaire_teaser_attributes: {
       id: _.get(values, 'teaser.id', null),
