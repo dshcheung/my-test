@@ -119,7 +119,6 @@ const checkFile = (x, key) => {
 
   _.set(x, key, null)
 
-  console.log(valueType)
   switch (valueType) {
     case "Object": {
       _.set(x, key, null)
