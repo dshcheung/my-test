@@ -15,7 +15,7 @@ const mapDispatchToProps = () => {
 export default class Footer extends Component {
   render() {
     return (
-      <div id="layouts-footer" className="bg-primary padding-bottom-50 clearfix">
+      <div id="layouts-footer" className="bg-primary px-50 clearfix">
         <div className="container-fluid">
           <div className="row">
             <div className="col-xs-12 col-md-10 col-md-offset-1">

@@ -15,13 +15,13 @@ export default class Signup extends Component {
               <div className="col-xs-6">
                 <Link
                   to="/auth/signup-investor"
-                  className="btn btn-block btn-default"
+                  className="btn btn-block btn-default px-50"
                 >I am an Investor</Link>
               </div>
               <div className="col-xs-6">
                 <Link
                   to="/auth/signup-startup"
-                  className="btn btn-block btn-default"
+                  className="btn btn-block btn-default px-50"
                 >I am a Startup</Link>
               </div>
             </div>
@@ -29,7 +29,8 @@ export default class Signup extends Component {
             <hr className="clear-both" />
 
             <div className="have-account">
-              <span>Already have an account? </span><Link to="/auth/login">Log in here</Link>
+              <span>Already have an account? </span>
+              <Link to="/auth/login" className="text-hover-none border-bottom">Log in here</Link>
             </div>
           </div>
         </div>

@@ -52,13 +52,15 @@ export default class AuthLoginForm extends Component {
             <Link to="/auth/forgot-password" className="pull-right forgot-password">Forgot?</Link>
           </div>
 
-          <button
-            className={`btn btn-danger btn-lg btn-block ${submitInProcess && "m-progress"}`}
-            type="submit"
-            disabled={submitInProcess}
-          >
-            Sign into your account
-          </button>
+          <div className="text-right">
+            <button
+              className={`btn btn-danger btn-lg ${submitInProcess && "m-progress"}`}
+              type="submit"
+              disabled={submitInProcess}
+            >
+              Sign into your account
+            </button>
+          </div>
         </form>
       </div>
     )

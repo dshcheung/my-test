@@ -1,8 +1,8 @@
-$directions: '', '-top', '-left', '-right', '-bottom';
+$directions: '', 'top', 'left', 'right', 'bottom';
 $paddingSizes: 0, 5, 10, 15, 20, 30, 40, 50;
 @each $direction in $directions {
   @each $padding in $paddingSizes {
-    .padding#{$direction}-#{$padding} {
+    .px#{$direction}-#{$padding} {
       padding#{$direction}: #{$padding}px !important;
     }
   }
@@ -11,7 +11,7 @@ $paddingSizes: 0, 5, 10, 15, 20, 30, 40, 50;
 $marginSizes: 0, 5, 10, 15, 20, 30, 40, 50;
 @each $direction in $directions {
   @each $margin in $marginSizes {
-    .margin#{$direction}-#{$margin} {
+    .margin-#{$direction}-#{$margin} {
       margin#{$direction}: #{$margin}px !important;
     }
   }
@@ -162,4 +162,19 @@ hr {
 
 a:hover {
   cursor: pointer;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+.border-bottom {
+  border-bottom: 1px solid $gray-base;
+}
+.text-hover-none {
+  &:hover {
+    text-decoration: none;
+  }
+}
+.padding-lg {
+  padding: 10px;
 }
