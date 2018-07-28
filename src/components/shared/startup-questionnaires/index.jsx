@@ -334,7 +334,7 @@ export default class SharedStartupQuestionnaires extends Component {
 
     return (
       <div>
-        <SharedOthersSideTitle title="startup" optClass="col-sm-3 col-md-4" number="1" />
+        <SharedOthersSideTitle title="startup" optClass="col-sm-3 col-md-offset-1 col-md-2" number="1" />
 
         { this.renderTab() }
       </div>
