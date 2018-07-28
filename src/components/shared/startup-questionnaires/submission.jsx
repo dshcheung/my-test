@@ -34,7 +34,7 @@ export default class SharedStartupQuestionnairesSubmission extends Component {
             if (submittedStatus === "not_submitted") {
               component = (
                 <div>
-                  <div className="margin-bottom-15">When You Are Ready To Submit Your Campaign For Us To Review, Click The Button Below</div>
+                  <div className="text-gray margin-bottom-40">When You Are Ready To Submit Your Campaign For Us To Review, Click The Button Below</div>
                   <button
                     className={`btn btn-danger ${markMyCampaignForReviewInProcess && "m-progress"}`}
                     type="submit"
@@ -70,7 +70,7 @@ export default class SharedStartupQuestionnairesSubmission extends Component {
 
             return (
               <div>
-                <div className="margin-bottom-15"><strong>Review Status -</strong> <span>{submittedStatus.splitCap("_")}</span></div>
+                <div className="margin-top-20 margin-bottom-5"><strong className="fw-500">Review Status - {submittedStatus.splitCap("_")}</strong></div>
 
                 {component}
               </div>

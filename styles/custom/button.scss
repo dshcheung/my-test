@@ -64,9 +64,35 @@
     animation:         ld 1s ease-in-out infinite;
 }
 
-.btn-default.m-progress:before {
+.btn-default {
+  &.m-progress:before {
     border-left-color: #333333;
     border-right-color: #333333;
+  }
+  &.btn-hover-border {
+    border-bottom: 1px solid transparent !important;
+    padding-bottom: 3px;
+    &:active, &:focus, &:hover {
+      background-color: transparent;
+      outline: none;
+      box-shadow: none;
+    }
+    &:hover {
+      border-bottom: 1px solid $ahub-pink !important;
+      // text-decoration: underline;
+    }
+  }
+  &.delete {
+    color: $ahub-pink;
+    &:active, &:focus, &:hover {
+      background-color: transparent !important;
+      outline: none;
+      box-shadow: none;
+    }
+    &:hover {
+      color: darken($ahub-pink, 10%) !important;
+    }
+  }
 }
 
 .btn-lg.m-progress:before {

@@ -56,8 +56,17 @@ export default class FileDropField extends Component {
           onDrop={this.onDrop}
           maxSize={5000000}
         >
-          <b>Drag and drop or click here</b>
-          <p>to upload your files (max 5MB)</p>
+          <div className="row">
+            <div className="col-xs-12 text-center margin-top-50">
+              <div className="">
+                <span className="dp-ib px-10 bg-primary text-uppercase">drag</span> N' <span className="dp-ib px-10 bg-success text-uppercase">drop</span>
+              </div>
+              <div>
+                <strong>Drag and drop or click here</strong>
+                <p>to upload your files (max 5MB)</p>
+              </div>
+            </div>
+          </div>
         </Dropzone>
 
         {

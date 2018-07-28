@@ -99,9 +99,8 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
     return (
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
-          <h1 className={`form-title ${hint && "margin-0"}`}>{title}</h1>
+          <h1 className={`form-title fw-500 margin-bottom-0 ${hint && "margin-0"}`}>{title}</h1>
           <div className="help-text margin-bottom-20">{hint}</div>
-
           <Field
             name="company_name"
             component={TextField}

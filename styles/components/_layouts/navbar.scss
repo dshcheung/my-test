@@ -76,8 +76,16 @@ $navbar-brand-line-height: $navbar-height;
           }
 
           &.profile {
+            &.open {
+              border-top: 5px solid $navbar-inverse-color;
+              > a {
+                i {
+                  color: #444;
+                }
+              }
+            }
             > a {
-              padding: 10px 15px;
+              // padding: 10px 15px;
               div {
                 img {
                   height: 65px;

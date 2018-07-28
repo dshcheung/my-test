@@ -29,9 +29,9 @@ export default class DynamicFieldArray extends Component {
                   <h5 className="group-name">{groupName} #{i + 1}</h5>
                   <button
                     type="button"
-                    className="btn btn-default delete"
+                    className="btn btn-default delete pull-right"
                     onClick={() => { onDeleteField(i, fields, objKey) }}
-                  ><i className="fa fa-trash" /></button>
+                  ><i className="fa fa-trash-alt fa-rotate-35-on-hover" /></button>
                 </div>
 
                 {
@@ -49,11 +49,13 @@ export default class DynamicFieldArray extends Component {
             )
           })
         }
-        <button
-          type="button"
-          className="btn btn-default btn-block add"
-          onClick={() => fields.push(newFieldInit)}
-        ><i className="fa fa-plus" /> Add {groupName}</button>
+        <div className="text-center">
+          <button
+            type="button"
+            className="btn btn-default btn-hover-border add"
+            onClick={() => fields.push(newFieldInit)}
+          ><i className="fa fa-plus" /> Add {groupName}</button>
+        </div>
       </div>
     )
   }

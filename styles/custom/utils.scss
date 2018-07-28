@@ -12,7 +12,7 @@ $marginSizes: 0, 5, 10, 15, 20, 30, 40, 50;
 @each $direction in $directions {
   @each $margin in $marginSizes {
     .margin-#{$direction}-#{$margin} {
-      margin#{$direction}: #{$margin}px !important;
+      margin-#{$direction}: #{$margin}px !important;
     }
   }
 }
@@ -189,4 +189,25 @@ a:hover {
 }
 .padding-lg {
   padding: 10px;
+}
+
+.height-200 {
+  height: 200px !important;
+}
+.dp-ib {
+  display: inline-block;
+}
+
+.fa-rotate-35-on-hover {
+  transition: 300ms ease all;
+  &:hover {
+    -webkit-transform: rotate(35deg);
+    -moz-transform: rotate(35deg);
+    -ms-transform: rotate(35deg);
+    -o-transform: rotate(35deg);
+    transform: rotate(35deg);
+  }
+}
+.text-gray {
+  color: $gray-light;
 }
