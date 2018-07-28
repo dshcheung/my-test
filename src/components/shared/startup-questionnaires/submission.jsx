@@ -26,7 +26,7 @@ export default class SharedStartupQuestionnairesSubmission extends Component {
     const submittedStatus = _.get(myCampaign, 'status.submitted')
 
     return (
-      <div className="col-sm-6 col-md-4 text-center">
+      <div className="col-sm-6 col-md-6 text-center">
         {
           (() => {
             let component = null
@@ -36,7 +36,7 @@ export default class SharedStartupQuestionnairesSubmission extends Component {
                 <div>
                   <div className="text-gray margin-bottom-40">When You Are Ready To Submit Your Campaign For Us To Review, Click The Button Below</div>
                   <button
-                    className={`btn btn-danger ${markMyCampaignForReviewInProcess && "m-progress"}`}
+                    className={`btn btn-danger ${markMyCampaignForReviewInProcess && "m-progress"} margin-top-20`}
                     type="submit"
                     disabled={markMyCampaignForReviewInProcess}
                     onClick={() => { this.props.markMyCampaignForReview(routeParams) }}
@@ -70,7 +70,7 @@ export default class SharedStartupQuestionnairesSubmission extends Component {
 
             return (
               <div>
-                <div className="margin-top-20 margin-bottom-5"><strong className="fw-500">Review Status - {submittedStatus.splitCap("_")}</strong></div>
+                <div className="h4 margin-top-40 margin-bottom-5"><strong className="fw-500">Review Status - {submittedStatus.splitCap("_")}</strong></div>
 
                 {component}
               </div>
