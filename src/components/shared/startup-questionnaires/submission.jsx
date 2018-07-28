@@ -41,7 +41,7 @@ export default class SharedStartupQuestionnairesSubmission extends Component {
                     disabled={markMyCampaignForReviewInProcess}
                     onClick={() => { this.props.markMyCampaignForReview(routeParams) }}
                   >
-                    REQUEST ADMIN APPROVAL
+                    Submit
                   </button>
                 </div>
               )
