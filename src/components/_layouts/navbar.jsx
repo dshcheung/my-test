@@ -8,7 +8,7 @@ import MenuItem from 'react-bootstrap/lib/MenuItem'
 import NavItem from 'react-bootstrap/lib/NavItem'
 import LinkContainer from 'react-router-bootstrap/lib/LinkContainer'
 
-import { DEFAULT_USER_AVATAR } from '../../services/constants'
+// import { DEFAULT_USER_AVATAR } from '../../services/constants'
 
 import { deleteSession } from '../../actions/session'
 
@@ -116,7 +116,7 @@ export default class Navbar extends Component {
                 <NavDropdown
                   title={
                     <div>
-                      <img src={_.get(currentUser, 'profile.avatar.original') || DEFAULT_USER_AVATAR} alt="avatar" className="hidden-xs" />
+                      <i className="far fa-user fa-3x hidden-xs" />
                       <span className="hidden-sm hidden-md hidden-lg">MY PROFILE</span>
                       <i className="fa fa-caret-down" />
                     </div>

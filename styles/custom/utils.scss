@@ -35,6 +35,18 @@ $spacing: 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50;
   }
 }
 
+// Font Weight
+$weights: 400,500,700,800;
+@each $weight in $weights {
+  .fw-#{$weight} {
+    font-weight: #{$weight} !important;
+  }
+}
+
+.fs-28 {
+  font-size: 28px !important;
+}
+
 // auto add margin top when multi row is used
 .row + .row {
   margin-top: 20px;

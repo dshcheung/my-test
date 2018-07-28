@@ -6,21 +6,20 @@ export default class SharedOthersIntro extends Component {
 
     return (
       <div className={`intro ${optClass}`}>
-        <h1 className="page-title-c">{title}</h1>
+        <h1 className="page-title-c fw-500 fs-28">{title}</h1>
 
         <div className="info-row row">
           {
             content.map((c, i) => {
               return (
-                <div key={i} className="col-xs-4 info-card">
+                <div key={i} className="col-xs-6 info-card">
                   <div className="number">
                     <span>{i + 1}</span>
                   </div>
 
                   <div className="content">
-                    <b>{c.title}</b>
-
-                    <p>{c.body}</p>
+                    <strong className="h4">{c.title}</strong>
+                    <p className="fw-500">{c.body}</p>
                   </div>
                 </div>
               )

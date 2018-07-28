@@ -17,7 +17,8 @@
       writing-mode: vertical-rl;
       transform: rotate(-180deg);
       text-transform: uppercase;
-      letter-spacing: 4px;
+      font-size: $font-size-large;
+      letter-spacing: 8px;
     }
   }
 }
