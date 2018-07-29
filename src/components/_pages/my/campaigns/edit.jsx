@@ -97,6 +97,9 @@ export default class MyCampaigns extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.permitRedirection(nextProps)
+    if (this.props.params.tab !== "success" && nextProps.params.tab === "success") {
+      this.setState({ currentTab: "success" })
+    }
   }
 
   componentWillUnmount() {
