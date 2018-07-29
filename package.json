@@ -32,7 +32,7 @@
     "jquery": "^3.3.1",
     "js-cookie": "^2.2.0",
     "moment": "^2.19.4",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.9.2",
     "noty": "^3.1.3",
     "npm": "^6.2.0",
     "react": "^15.6.2",
@@ -58,7 +58,7 @@
     "resolve-url-loader": "^2.2.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
-    "url-loader": "^0.5.9",
+    "url-loader": "^1.0.1",
     "webpack": "^3.10.0",
     "webpack-merge": "^4.1.1"
   },
