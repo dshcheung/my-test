@@ -18,6 +18,8 @@ import MyCampaignsNewContainer from '../components/_pages/my/campaigns/new'
 import MyCampaignsShowWrapperContainer from '../components/_pages/my/campaigns/show-wrapper'
 import MyCampaignsEditContainer from '../components/_pages/my/campaigns/edit'
 
+import MyDashboardContainer from '../components/_pages/my/dashboard'
+
 export default (
   <Route path="/" component={App}>
     <IndexRedirect to="/auth/login" />
@@ -39,6 +41,8 @@ export default (
           <Route path="edit/:tab" component={MyCampaignsEditContainer} />
         </Route>
       </Route>
+
+      <Route path="dashboard" component={MyDashboardContainer} roleAccess="StartupUser" />
     </Route>
   </Route>
 )
