@@ -93,6 +93,7 @@ export default class MyCampaigns extends Component {
     })
     this.props.gImmovable({ immovableID: "attachment_options" })
     this.props.gImmovable({ immovableID: "hashtag_options" })
+    this.props.gImmovable({ immovableID: "startup_questionnaire_cap_table_options" })
   }
 
   componentWillReceiveProps(nextProps) {

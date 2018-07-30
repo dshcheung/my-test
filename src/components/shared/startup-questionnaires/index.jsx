@@ -9,7 +9,7 @@ import {
 } from '../../../actions/my/startup-questionnaires'
 
 import {
-  G_IMMOVABLE_ATTACHMENT_OPTIONS, G_IMMOVABLE_HASHTAG_OPTIONS
+  G_IMMOVABLE_ATTACHMENT_OPTIONS, G_IMMOVABLE_HASHTAG_OPTIONS, G_IMMOVABLE_STARTUP_QUESTIONNAIRE_CAP_TABLE_OPTIONS
 } from '../../../actions/immovables'
 
 import LoadingSpinner from '../../shared/others/loading-spinner'
@@ -34,8 +34,10 @@ const mapStateToProps = (state) => {
     dMyStartupQuestionnaireAttributeInProcess: _.get(state.requestStatus, D_MY_STARTUP_QUESTIONNAIRE_ATTRIBUTE),
     gAttachmentOptionsInProcess: _.get(state.requestStatus, G_IMMOVABLE_ATTACHMENT_OPTIONS),
     gHashtagOptionsInProcess: _.get(state.requestStatus, G_IMMOVABLE_HASHTAG_OPTIONS),
+    gCapTableOptionsInProcess: _.get(state.requestStatus, G_IMMOVABLE_STARTUP_QUESTIONNAIRE_CAP_TABLE_OPTIONS),
     attachmentOptions: _.get(state, 'immovables.attachment_options', []),
-    hashtagOptions: _.get(state, 'immovables.hashtag_options', [])
+    hashtagOptions: _.get(state, 'immovables.hashtag_options', []),
+    capTableOptions: _.get(state, 'immovables.startup_questionnaire_cap_table_options', [])
   }
 }
 
@@ -316,7 +318,7 @@ export default class SharedStartupQuestionnaires extends Component {
 
   renderTab() {
     const {
-      currentTab, attachmentOptions, hashtagOptions, myStartupQuestionnaire,
+      currentTab, attachmentOptions, hashtagOptions, capTableOptions, myStartupQuestionnaire,
     } = this.props
     const { order } = this.state
     const baseInfo = _.find(order, { key: currentTab })
@@ -340,6 +342,7 @@ export default class SharedStartupQuestionnaires extends Component {
             return o.section === baseInfo.dataKey
           })}
           hashtagOptions={hashtagOptions}
+          capTableOptions={capTableOptions}
         />
       )
     }
@@ -347,10 +350,10 @@ export default class SharedStartupQuestionnaires extends Component {
 
   render() {
     const {
-      gMyStartupQuestionnaireInProcess, gAttachmentOptionsInProcess, gHashtagOptionsInProcess
+      gMyStartupQuestionnaireInProcess, gAttachmentOptionsInProcess, gHashtagOptionsInProcess, gCapTableOptionsInProcess
     } = this.props
 
-    if (gMyStartupQuestionnaireInProcess || gAttachmentOptionsInProcess || gHashtagOptionsInProcess) return <LoadingSpinner />
+    if (gMyStartupQuestionnaireInProcess || gAttachmentOptionsInProcess || gHashtagOptionsInProcess || gCapTableOptionsInProcess) return <LoadingSpinner />
 
     return (
       <div>

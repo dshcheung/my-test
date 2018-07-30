@@ -257,6 +257,17 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   }
                 },
                 {
+                  key: "cap_table_type",
+                  component: SelectField,
+                  opts: {
+                    options: this.props.capTableOptions,
+                    valueField: 'id',
+                    textField: 'name',
+                    label: "Investor Type",
+                    placeholder: "Select a Type"
+                  }
+                },
+                {
                   key: "percentage_of_shares",
                   component: TextField,
                   opts: {
