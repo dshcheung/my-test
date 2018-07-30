@@ -180,6 +180,16 @@ const generateParams = (values) => {
     })
   }
 
+  let startup_questionnaire_team_founders_attributes = _.get(values, 'team.startup_questionnaire_team_founders', null)
+  if (startup_questionnaire_team_founders_attributes) {
+    startup_questionnaire_team_founders_attributes = startup_questionnaire_team_founders_attributes.map((tf) => {
+      return {
+        ...tf,
+        salary_attributes: _.get(tf, 'salary', null)
+      }
+    })
+  }
+
   const basicFoundedYear = _.get(values, 'basic.founded_year', null)
 
   const params = {
@@ -228,7 +238,7 @@ const generateParams = (values) => {
     startup_questionnaire_team_attributes: {
       id: _.get(values, 'team.id', null),
       story: _.get(values, 'team.story', null),
-      startup_questionnaire_team_founders_attributes: _.get(values, 'team.startup_questionnaire_team_founders', null),
+      startup_questionnaire_team_founders_attributes,
       startup_questionnaire_team_members_attributes: _.get(values, 'team.startup_questionnaire_team_members', null),
       startup_questionnaire_team_advisors_attributes: _.get(values, 'team.startup_questionnaire_team_advisors', null),
       attachments_attributes: _.get(values, 'team.attachments', null)
