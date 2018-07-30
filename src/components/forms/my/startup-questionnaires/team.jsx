@@ -101,7 +101,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                 name: '',
                 position: '',
                 contract: '',
-                salary: { currency: '' },
+                salary: { currency: '', amount: '' },
                 years_of_experience: '',
                 linked_in: ''
               },

@@ -11,7 +11,7 @@ export default class CurrencyField extends Component {
     this.state = {
       id: props.input.value.id || null,
       currency: props.input.value.currency || "HKD",
-      amount: props.input.value.amount
+      amount: props.input.value.amount || ''
     }
 
     this.onSelect = this.onSelect.bind(this)
@@ -25,13 +25,17 @@ export default class CurrencyField extends Component {
   }
 
   onChange(e) {
-    this.setState({ amount: e.target.value })
-    this.props.input.onChange({ ...this.state, amount: e.target.value })
+    const amount = e.target.value.replace(/[\D]+/g, "")
+
+    this.setState({ amount })
+    this.props.input.onChange({ ...this.state, amount })
   }
 
   onBlur(e) {
-    this.setState({ amount: e.target.value })
-    this.props.input.onBlur({ ...this.state, amount: e.target.value })
+    const amount = e.target.value.replace(/[\D]+/g, "")
+
+    this.setState({ amount })
+    this.props.input.onChange({ ...this.state, amount })
   }
 
   render() {
@@ -69,8 +73,8 @@ export default class CurrencyField extends Component {
           <input
             className="form-control"
             placeholder={placeholder}
-            type="number"
-            value={value.amount}
+            type="text"
+            value={this.state.amount.currency()}
             onChange={this.onChange}
             onBlur={this.onBlur}
             {...rest}
