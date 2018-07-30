@@ -6,7 +6,7 @@ import { scrollTop } from '../services/utils'
 
 export default function promiseMiddleware() {
   return next => (action) => {
-    const { request, type, successCB, errorCB, paginate, preRequestCB, run401, hasRedirection } = action
+    const { request, type, successCB, errorCB, paginate, preRequestCB, run401, hasRedirection, noScrollTop } = action
 
     if (!request) { return next(action) }
 
@@ -23,7 +23,7 @@ export default function promiseMiddleware() {
 
       return request.then((resp) => {
         if (successCB) { successCB(dispatch, resp.data.data, resp.data) }
-        scrollTop()
+        if (!noScrollTop) { scrollTop() }
         if (paginate) { dispatch(mergePaginate(resp.data.links, type)) }
         dispatch(mergeRequestInProcess(false, type))
         if (hasRedirection) { dispatch(resetRedirection()) }

@@ -5,14 +5,38 @@ export default class MultiselectField extends Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      disabled: false
+    }
+
     this.handleChange = this.handleChange.bind(this)
     this.handleCreate = this.handleCreate.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
     this.handleFocus = this.handleFocus.bind(this)
   }
 
-  handleChange(tags) {
-    this.props.input.onChange(tags)
+  handleChange(tags, meta) {
+    const { input: { value }, opts: { textField, onDeleteField } } = this.props
+
+    const unionTags = _.unionBy(value, tags, textField)
+
+    if (meta.action === "remove" && onDeleteField) {
+      this.setState({ disabled: true })
+      const dataValue = _.find(this.props.input.value, (v) => {
+        return v[textField] === meta.dataItem[textField]
+      })
+
+      const newUnionTags = _.remove(value, (v) => {
+        return v[textField] !== dataValue[textField]
+      })
+
+      this.props.opts.onDeleteField(dataValue, this.props.input.name, () => {
+        this.props.input.onChange(newUnionTags)
+        this.setState({ disabled: false })
+      })
+    } else {
+      this.props.input.onChange(unionTags)
+    }
   }
 
   handleCreate(tag) {
@@ -35,7 +59,7 @@ export default class MultiselectField extends Component {
         options, requestInProcess,
         label,
         placeholder, optClass, hint,
-        valueField, textField
+        valueField, textField, TagItem
       }
     } = this.props
 
@@ -45,6 +69,7 @@ export default class MultiselectField extends Component {
       <div className={`form-group clearfix ${hasErrorClass} ${optClass}`}>
         { hint && <span className="help-block hint">{hint}</span> }
         <Multiselect
+          disabled={this.state.disabled}
           containerClassName={`${label && "has-label"} ${input.value.length > 0 && "has-value"}`}
           allowCreate={'onFilter'}
           busy={requestInProcess}
@@ -52,6 +77,9 @@ export default class MultiselectField extends Component {
           placeholder={placeholder}
           valueField={valueField}
           textField={textField}
+          filter="contains"
+          itemComponent={TagItem}
+          tagComponent={TagItem}
           {...input}
           value={input.value || []}
           onChange={this.handleChange}

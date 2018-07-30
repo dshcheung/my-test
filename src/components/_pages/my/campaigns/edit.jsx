@@ -31,7 +31,7 @@ const mapDispatchToProps = (dispatch) => {
     gMyStartupQuestionnaire: bindActionCreators(gMyStartupQuestionnaire, dispatch),
     resetMyStartupQuestionnaire: bindActionCreators(resetMyStartupQuestionnaire, dispatch),
     gImmovable: bindActionCreators(gImmovable, dispatch),
-    resetImmovable: bindActionCreators(resetImmovable, dispatch),
+    resetImmovable: bindActionCreators(resetImmovable, dispatch)
   }
 }
 
@@ -86,13 +86,13 @@ export default class MyCampaigns extends Component {
   }
 
   componentWillMount() {
-    window.test = this.props
     this.permitRedirection(this.props)
     this.props.gMyStartupQuestionnaire({
       queries: { campaign_id: this.props.myCampaign.id },
       params: { startupQuestionnaireID: null }
     })
     this.props.gImmovable({ immovableID: "attachment_options" })
+    this.props.gImmovable({ immovableID: "hashtag_options" })
   }
 
   componentWillReceiveProps(nextProps) {

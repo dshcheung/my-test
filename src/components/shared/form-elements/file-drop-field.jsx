@@ -18,7 +18,8 @@ export default class FileDropField extends Component {
     super(props)
 
     this.state = {
-      attachments: []
+      attachments: [],
+      disabled: false
     }
 
     this.onDrop = this.onDrop.bind(this)
@@ -104,13 +105,14 @@ export default class FileDropField extends Component {
                         />
                         <div className="delete">
                           <button
+                            disabled={this.state.disabled}
                             className="btn btn-default"
                             onClick={() => {
-                              if (onDeleteField) {
-                                onDeleteField(i, fields, objKey)
-                              } else {
+                              this.setState({ disabled: true })
+                              onDeleteField(fields.get(i), objKey, () => {
+                                this.setState({ disabled: false })
                                 fields.remove(i)
-                              }
+                              })
                             }}
                           >
                             <i className="fa fas fa-trash-alt" />

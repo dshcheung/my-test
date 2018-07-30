@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 import { reduxForm, Field, FieldArray } from 'redux-form'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+import {
+  gImmovable, resetImmovable,
+  G_IMMOVABLE_ATTACHMENT_OPTIONS, G_IMMOVABLE_HASHTAG_OPTIONS
+} from '../../../../actions/immovables'
 
 import Validators from '../../../../services/form-validators'
 import { COUNTRIES } from '../../../../services/constants'
@@ -13,11 +19,22 @@ import FileDropField from '../../../shared/form-elements/file-drop-field'
 
 const mapStateToProps = (state) => {
   return {
-    formData: _.get(state.form, 'MyStartupQuestionnairesBasicNewForm')
+    formData: _.get(state.form, 'MyStartupQuestionnairesBasicNewForm'),
+    gAttachmentOptionsInProcess: _.get(state.requestStatus, G_IMMOVABLE_ATTACHMENT_OPTIONS),
+    gHashtagOptionsInProcess: _.get(state.requestStatus, G_IMMOVABLE_HASHTAG_OPTIONS),
+    attachmentOptions: _.get(state, 'immovables.attachment_options', []),
+    hashtagOptions: _.get(state, 'immovables.hashtag_options', [])
   }
 }
 
-@connect(mapStateToProps, null)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    gImmovable: bindActionCreators(gImmovable, dispatch),
+    resetImmovable: bindActionCreators(resetImmovable, dispatch)
+  }
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 @reduxForm({
   form: "MyStartupQuestionnairesBasicNewForm",
   validate: (values) => {
@@ -76,6 +93,15 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
       maxIndex: 5,
       animateClass: "fadeInRight"
     }
+  }
+
+  componentWillMount() {
+    this.props.gImmovable({ immovableID: "attachment_options" })
+    this.props.gImmovable({ immovableID: "hashtag_options" })
+  }
+
+  componentWillUnmount() {
+    this.props.resetImmovable()
   }
 
   changeQuestion(index) {
@@ -149,12 +175,20 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
             opts={{
               optClass: currentQuestionIndex !== 4 && `${hideable} ${animateable}`,
               placeholder: "Hashtags",
-              options: [
-                { tag: "Need" },
-                { tag: "Input" }
-              ],
+              options: this.props.hashtagOptions.map((h) => {
+                return {
+                  tag: h.name
+                }
+              }),
               valueField: 'tag',
-              textField: 'tag'
+              textField: 'tag',
+              onDeleteField: (value, objKey, cb) => {
+                if (cb) cb()
+              },
+              TagItem: ({ item }) => {
+                return <span>#{item.tag}</span>
+              },
+              requestInProcess: this.props.gHashtagOptionsInProcess
             }}
           />
 
@@ -163,22 +197,17 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
             component={FileDropField}
             opts={{
               optClass: currentQuestionIndex !== 5 && `${hideable} ${animateable}`,
+              onDeleteField: (value, objKey, cb) => {
+                if (cb) cb()
+              },
               selectOpts: {
-                options: [
-                  {
-                    id: "logo",
-                    name: "Company Logo",
-                    section: "startup_questionnaire_basic"
-                  },
-                  {
-                    id: "banner",
-                    name: "Banner",
-                    section: "startup_questionnaire_basic"
-                  },
-                ],
+                options: _.filter(this.props.attachmentOptions, (o) => {
+                  return o.section === "startup_questionnaire_basic"
+                }),
                 valueField: 'id',
                 textField: 'name',
-                placeholder: 'Select a Title'
+                placeholder: 'Select a Title',
+                requestInProcess: this.props.gAttachmentOptionsInProcess
               }
             }}
           />

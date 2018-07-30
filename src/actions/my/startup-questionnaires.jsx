@@ -113,6 +113,28 @@ export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
   }
 }
 
+export const D_MY_STARTUP_QUESTIONNAIRE_ATTRIBUTE = "D_MY_STARTUP_QUESTIONNAIRE_ATTRIBUTE"
+export const dMyStartupQuestionnaireAttribute = (values, cb, routeParams) => {
+  const params = generateParams(values)
+
+  const request = genAxios({
+    method: "put",
+    url: genApiUrl(apiMyStartupQuestionnairesShow(routeParams)),
+    data: getFormData(params, 'startup_questionnaire')
+  })
+
+  return {
+    type: U_MY_STARTUP_QUESTIONNAIRE,
+    request,
+    noScrollTop: true,
+    successCB: (dispatch, data) => {
+      dispatch(setMyStartupQuestionnaire(data, true))
+      notySuccess("Deleted!")
+      if (cb) cb(data)
+    }
+  }
+}
+
 const checkFile = (x, key) => {
   const value = _.get(x, key)
   const valueType = getType(value)
@@ -268,8 +290,6 @@ const generateParams = (values) => {
     },
     attachments_attributes: _.get(values, 'dataroom.attachments', null)
   }
-
-  // console.log(params)
 
   return params
 }

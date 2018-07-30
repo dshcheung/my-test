@@ -4,11 +4,12 @@ import { bindActionCreators } from 'redux'
 
 import {
   G_MY_STARTUP_QUESTIONNAIRE,
-  U_MY_STARTUP_QUESTIONNAIRE, uMyStartupQuestionnaire
+  U_MY_STARTUP_QUESTIONNAIRE, uMyStartupQuestionnaire,
+  D_MY_STARTUP_QUESTIONNAIRE_ATTRIBUTE, dMyStartupQuestionnaireAttribute
 } from '../../../actions/my/startup-questionnaires'
 
 import {
-  G_IMMOVABLE_ATTACHMENT_OPTIONS
+  G_IMMOVABLE_ATTACHMENT_OPTIONS, G_IMMOVABLE_HASHTAG_OPTIONS
 } from '../../../actions/immovables'
 
 import LoadingSpinner from '../../shared/others/loading-spinner'
@@ -30,14 +31,18 @@ const mapStateToProps = (state) => {
     myStartupQuestionnaire: _.get(state, 'myStartupQuestionnaire', {}),
     gMyStartupQuestionnaireInProcess: _.get(state.requestStatus, G_MY_STARTUP_QUESTIONNAIRE),
     uMyStartupQuestionnaireInProcess: _.get(state.requestStatus, U_MY_STARTUP_QUESTIONNAIRE),
-    gImmovableInProcess: _.get(state.requestStatus, G_IMMOVABLE_ATTACHMENT_OPTIONS),
-    attachmentOptions: _.get(state, 'immovables.attachment_options', [])
+    dMyStartupQuestionnaireAttributeInProcess: _.get(state.requestStatus, D_MY_STARTUP_QUESTIONNAIRE_ATTRIBUTE),
+    gAttachmentOptionsInProcess: _.get(state.requestStatus, G_IMMOVABLE_ATTACHMENT_OPTIONS),
+    gHashtagOptionsInProcess: _.get(state.requestStatus, G_IMMOVABLE_HASHTAG_OPTIONS),
+    attachmentOptions: _.get(state, 'immovables.attachment_options', []),
+    hashtagOptions: _.get(state, 'immovables.hashtag_options', [])
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     uMyStartupQuestionnaire: bindActionCreators(uMyStartupQuestionnaire, dispatch),
+    dMyStartupQuestionnaireAttribute: bindActionCreators(dMyStartupQuestionnaireAttribute, dispatch)
   }
 }
 
@@ -54,7 +59,7 @@ export default class SharedStartupQuestionnaires extends Component {
           model: MyStartupQuestionnairesBasicEditForm,
           nextTab: "teaser",
           formatValues: (q) => {
-            const year = _.get(q, 'country_of_incorporation')
+            const year = _.get(q, 'founded_year')
             const nq = {
               ...q,
               company_name: _.get(q, 'company_name') || '',
@@ -248,6 +253,7 @@ export default class SharedStartupQuestionnaires extends Component {
     }
 
     this.uMyStartupQuestionnaire = this.uMyStartupQuestionnaire.bind(this)
+    this.dMyStartupQuestionnaireAttribute = this.dMyStartupQuestionnaireAttribute.bind(this)
     this.dMSQAttributes = this.dMSQAttributes.bind(this)
   }
 
@@ -264,11 +270,23 @@ export default class SharedStartupQuestionnaires extends Component {
     })
   }
 
-  dMSQAttributes(index, fields, key) {
-    const fieldValues = fields.get(index)
-    const fieldID = _.get(fieldValues, 'id', null)
+  dMyStartupQuestionnaireAttribute(values) {
+    const baseInfo = _.find(this.state.order, { key: this.props.currentTab })
 
-    if (fieldID) {
+    this.props.dMyStartupQuestionnaireAttribute({
+      [this.props.currentTab]: values
+    }, () => {
+      this.props.changeTab(baseInfo.nextTab)
+    }, {
+      ...this.props.routeParams,
+      startupQuestionnaireID: this.props.myStartupQuestionnaire.id
+    })
+  }
+
+  dMSQAttributes(value, key, cb) {
+    const valueID = _.get(value, 'id', null)
+
+    if (valueID) {
       const { myStartupQuestionnaire, currentTab } = this.props
       const { order } = this.state
 
@@ -279,26 +297,26 @@ export default class SharedStartupQuestionnaires extends Component {
         [this.props.currentTab]: {
           id: _.get(questionnairePiece, 'id', null),
           [key.split("[")[0]]: [{
-            id: _.get(fields.get(index), 'id', null),
+            id: valueID,
             _destroy: true
           }]
         }
       }
 
-      this.props.uMyStartupQuestionnaire(params, () => {
-        fields.remove(index)
-      }, {
+      this.props.dMyStartupQuestionnaireAttribute(params, cb, {
         ...this.props.routeParams,
         startupQuestionnaireID: this.props.myStartupQuestionnaire.id
       })
     } else {
-      fields.remove(index)
+      if (cb) {
+        cb()
+      }
     }
   }
 
   renderTab() {
     const {
-      currentTab, attachmentOptions, myStartupQuestionnaire,
+      currentTab, attachmentOptions, hashtagOptions, myStartupQuestionnaire,
     } = this.props
     const { order } = this.state
     const baseInfo = _.find(order, { key: currentTab })
@@ -316,11 +334,12 @@ export default class SharedStartupQuestionnaires extends Component {
           baseInfo={baseInfo}
           onSubmit={this.uMyStartupQuestionnaire}
           dMSQAttributes={this.dMSQAttributes}
-          submitInProcess={this.props.uMyStartupQuestionnaireInProcess}
+          submitInProcess={this.props.uMyStartupQuestionnaireInProcess || this.props.dMyStartupQuestionnaireAttributeInProcess}
           optClass="col-sm-6 col-md-6"
           attachmentOptions={baseInfo.allAttachmentOptions ? attachmentOptions : _.filter(attachmentOptions, (o) => {
             return o.section === baseInfo.dataKey
           })}
+          hashtagOptions={hashtagOptions}
         />
       )
     }
@@ -328,10 +347,10 @@ export default class SharedStartupQuestionnaires extends Component {
 
   render() {
     const {
-      gMyStartupQuestionnaireInProcess, gImmovableInProcess
+      gMyStartupQuestionnaireInProcess, gAttachmentOptionsInProcess, gHashtagOptionsInProcess
     } = this.props
 
-    if (gMyStartupQuestionnaireInProcess || gImmovableInProcess) return <LoadingSpinner />
+    if (gMyStartupQuestionnaireInProcess || gAttachmentOptionsInProcess || gHashtagOptionsInProcess) return <LoadingSpinner />
 
     return (
       <div>

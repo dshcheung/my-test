@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { reduxForm, Field, FieldArray } from 'redux-form'
+
+import {
+  uMyStartupQuestionnaire
+} from '../../../../actions/my/startup-questionnaires'
 
 import Validators from '../../../../services/form-validators'
 import { COUNTRIES } from '../../../../services/constants'
@@ -11,6 +17,13 @@ import DateTimePicker from '../../../shared/form-elements/datetime-picker'
 import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
 import FileField from '../../../shared/form-elements/file-field'
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    uMyStartupQuestionnaire: bindActionCreators(uMyStartupQuestionnaire, dispatch),
+  }
+}
+
+@connect(null, mapDispatchToProps)
 @reduxForm({
   form: "MyStartupQuestionnairesBasicEditForm",
   validate: (values) => {
@@ -88,12 +101,17 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
             opts={{
               label: "5. Hashtags",
               placeholder: "Hashtags",
-              options: [
-                { tag: "Need" },
-                { tag: "Input" }
-              ],
+              options: this.props.hashtagOptions.map((h) => {
+                return {
+                  tag: h.name
+                }
+              }),
               valueField: 'tag',
-              textField: 'tag'
+              textField: 'tag',
+              onDeleteField: dMSQAttributes,
+              TagItem: ({ item }) => {
+                return <span>#{item.tag}</span>
+              }
             }}
           />
 

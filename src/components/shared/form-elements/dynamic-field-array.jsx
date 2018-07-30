@@ -2,6 +2,14 @@ import React, { Component } from 'react'
 import { Field } from 'redux-form'
 
 export default class DynamicFieldArray extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      disabled: false
+    }
+  }
+
   render() {
     const {
       fields, meta: { error },
@@ -28,9 +36,16 @@ export default class DynamicFieldArray extends Component {
                 <div className="group-header clearfix">
                   <h5 className="group-name">{groupName} #{i + 1}</h5>
                   <button
+                    disabled={this.state.disabled}
                     type="button"
                     className="btn btn-default delete pull-right"
-                    onClick={() => { onDeleteField(i, fields, objKey) }}
+                    onClick={() => {
+                      this.setState({ disabled: true })
+                      onDeleteField(fields.get(i), objKey, () => {
+                        this.setState({ disabled: false })
+                        fields.remove(i)
+                      })
+                    }}
                   ><i className="fa fa-trash-alt fa-rotate-35-on-hover" /></button>
                 </div>
 
