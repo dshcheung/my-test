@@ -21,35 +21,43 @@ export default class Footer extends Component {
             <div className="col-xs-12 col-md-10 col-md-offset-1">
               <div className="links">
                 <div className="links-section">
-                  <span className="header">Account</span>
+                  <span className="header text-uppercase">COMPANY</span>
                   <ul>
-                    <li><Link className="btn-gray" to="/auth/login">Log In</Link></li>
-                    <li><Link className="btn-gray" to="/auth/signup">Sign up</Link></li>
+                    <li><Link className="btn-gray" to="/p/about-us">About AngelHub</Link></li>
+                    <li><Link className="btn-gray" to="/p/our-team">Our Team</Link></li>
+                    <li><Link className="btn-gray" to="/p/careers">Careers</Link></li>
+                    <li><Link className="btn-gray" to="/p/contact-us">Contact Us</Link></li>
                   </ul>
                 </div>
 
-                <div className="links-section hide">
-                  <span className="header">About</span>
+                <div className="links-section">
+                  <span className="header text-uppercase">Get Started</span>
                   <ul>
-                    <li><Link className="btn-gray" to="/about-us">About Us</Link></li>
-                    <li><Link className="btn-gray" to="/careers">Careers</Link></li>
-                    <li><Link className="btn-gray" to="/press">Press</Link></li>
-                    <li><Link className="btn-gray" to="/contact-us">Contact</Link></li>
-                    <li><Link className="btn-gray" to="/privacy">Legal & Privacy</Link></li>
-                    <li><Link className="btn-gray" to="/fair-dealing-policy">Fair Deal Policy</Link></li>
-                    <li><Link className="btn-gray" to="/security">Security</Link></li>
+                    <li><Link className="btn-gray" to="/guide/invest">Invest</Link></li>
+                    <li><Link className="btn-gray" to="/guide/raise">Raise</Link></li>
+                    <li><Link className="btn-gray" to="/guide/types">Types of Equity</Link></li>
                   </ul>
                 </div>
 
-                <div className="links-section hide">
-                  <span className="header">Resources</span>
+                <div className="links-section">
+                  <span className="header text-uppercase">Learn</span>
                   <ul>
-                    <li><Link className="btn-gray" to="/guides">FAQ</Link></li>
+                    <li><Link className="btn-gray" to="/masterclass/case-studies">Case Studies</Link></li>
+                    <li><Link className="btn-gray" to="/masterclass/guides">Guide</Link></li>
                     <li><Link className="btn-gray" to="https://blog.angelhub.io">Blog</Link></li>
-                    <li><Link className="btn-gray" to="/pricing">Fees</Link></li>
-                    <li><Link className="btn-gray" to="/support">Support</Link></li>
-                    <li><Link className="btn-gray" to="/dev/api">API</Link></li>
-                    <li><Link className="btn-gray" to="/dev/bug-bounty">Bug Bounty</Link></li>
+                    <li><Link className="btn-gray" to="/help/invesetor">Investor Help Centre</Link></li>
+                    <li><Link className="btn-gray" to="/help/entrepreneur">Entrepreneur Help Centre</Link></li>
+                    <li><Link className="btn-gray" to="/guide/glossary">Glossary</Link></li>
+                  </ul>
+                </div>
+
+                <div className="links-section">
+                  <span className="header text-uppercase">Legal</span>
+                  <ul>
+                    <li><Link className="btn-gray" to="/legal/risk">Risk Warning</Link></li>
+                    <li><Link className="btn-gray" to="/legal/security">Security</Link></li>
+                    <li><Link className="btn-gray" to="/legal/referral">Referral Fee Terms</Link></li>
+                    <li><Link className="btn-gray" to="/legal/campaign-terms">Campaign Terms</Link></li>
                   </ul>
                 </div>
 
@@ -70,13 +78,11 @@ export default class Footer extends Component {
             <div className="col-xs-12 col-md-10 col-md-offset-1">
               <hr />
               <div className="others clearfix">
-                <span className="copy-right">&copy; 2017 AngelHub</span>
+                <span className="copy-right">&copy; 2018 AngelHub</span>
 
                 <ul className="social">
-                  <li><Link className="btn-gray" to="https://instagram.com/angelhubhk" target="_blank" rel="noopener noreferrer"><i className="fa fa-instagram" /></Link></li>
-                  <li><Link className="btn-gray" to="https://facebook.com/angelhubhk" target="_blank" rel="noopener noreferrer"><i className="fa fa-facebook" /></Link></li>
-                  <li><Link className="btn-gray" to="https://twitter.com/angelhubhk" target="_blank" rel="noopener noreferrer"><i className="fa fa-twitter" /></Link></li>
-                  <li><Link className="btn-gray" to="https://linkedin.com/angelhubhk" target="_blank" rel="noopener noreferrer"><i className="fa fa-linkedin" /></Link></li>
+                  <li><Link className="btn-gray" to="/legal/terms" target="_blank" rel="noopener noreferrer">Terms of Use</Link></li>
+                  <li><Link className="btn-gray" to="/legal/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</Link></li>
                 </ul>
               </div>
             </div>
