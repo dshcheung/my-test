@@ -180,11 +180,13 @@ const generateParams = (values) => {
     })
   }
 
+  const basicFoundedYear = _.get(values, 'basic.founded_year', null)
+
   const params = {
     startup_questionnaire_basic_attributes: {
       id: _.get(values, 'basic.id', null),
       company_name: _.get(values, 'basic.company_name', null),
-      founded_year: _.get(values, 'basic.founded_year', null),
+      founded_year: basicFoundedYear ? moment(basicFoundedYear).year() : null,
       country_of_incorporation: _.get(values, 'basic.country_of_incorporation', null),
       vertical: _.get(values, 'basic.vertical', null),
       tagline: _.get(values, 'basic.tagline', null),

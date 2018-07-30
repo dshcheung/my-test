@@ -54,11 +54,12 @@ export default class SharedStartupQuestionnaires extends Component {
           model: MyStartupQuestionnairesBasicEditForm,
           nextTab: "teaser",
           formatValues: (q) => {
+            const year = _.get(q, 'country_of_incorporation')
             const nq = {
               ...q,
               company_name: _.get(q, 'company_name') || '',
               country_of_incorporation: _.get(q, 'country_of_incorporation') || '',
-              founded_year: _.get(q, 'founded_year') ? moment(_.get(q, 'founded_year')).toDate : '',
+              founded_year: year ? moment(year, "YYYY").toDate() : '',
               hashtags: _.get(q, 'hashtags') || '',
               tagline: _.get(q, 'tagline') || '',
               vertical: _.get(q, 'vertical') || '',
