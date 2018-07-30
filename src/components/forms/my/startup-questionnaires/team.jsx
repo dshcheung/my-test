@@ -7,6 +7,7 @@ import TextArea from '../../../shared/form-elements/text-area'
 import TextField from '../../../shared/form-elements/text-field'
 import SelectField from '../../../shared/form-elements/select-field'
 import FileField from '../../../shared/form-elements/file-field'
+import CurrencyField from '../../../shared/form-elements/currency-field'
 import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
 
 @reduxForm({
@@ -100,7 +101,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                 name: '',
                 position: '',
                 contract: '',
-                salary: '',
+                salary: { currency: '' },
                 years_of_experience: '',
                 linked_in: ''
               },
@@ -145,7 +146,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                 },
                 {
                   key: "salary",
-                  component: TextField,
+                  component: CurrencyField,
                   opts: {
                     type: "Number",
                     label: "Salary"

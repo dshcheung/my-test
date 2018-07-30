@@ -13,6 +13,8 @@ export const CURRENCIES = [
   { name: "USD" },
 ]
 export const COUNTRIES = [
+  { name: "Hong Kong", code: "HK" },
+  { name: "Singapore", code: "SG" },
   { name: "Afghanistan", code: "AF" },
   { name: "land Islands", code: "AX" },
   { name: "Albania", code: "AL" },
@@ -110,7 +112,6 @@ export const COUNTRIES = [
   { name: "Heard Island and Mcdonald Islands", code: "HM" },
   { name: "Holy See (Vatican City State)", code: "VA" },
   { name: "Honduras", code: "HN" },
-  { name: "Hong Kong", code: "HK" },
   { name: "Hungary", code: "HU" },
   { name: "Iceland", code: "IS" },
   { name: "India", code: "IN" },
@@ -209,7 +210,6 @@ export const COUNTRIES = [
   { name: "Serbia", code: "RS" },
   { name: "Seychelles", code: "SC" },
   { name: "Sierra Leone", code: "SL" },
-  { name: "Singapore", code: "SG" },
   { name: "Slovakia", code: "SK" },
   { name: "Slovenia", code: "SI" },
   { name: "Solomon Islands", code: "SB" },
