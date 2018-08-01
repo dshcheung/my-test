@@ -1,0 +1,69 @@
+#page-auth-signup-investor {
+  .pick-investor {
+    .picker {
+      display: flex;
+      justify-content: space-between;
+
+      div {
+        width: 180px;
+      }
+    }
+
+    .picker-result {
+      div {
+        padding: 10px;
+        color: $ahub-pink;
+        border: 1px solid $ahub-pink;
+        margin-bottom: 10px;
+      }
+    }
+
+    .terms-agreement {
+      margin-bottom: 20px;
+
+      label {
+        display: inline;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 12px;
+      }
+    }
+  }
+}
+
+#page-auth-signup-investor-step-1 {
+  .statement-scroll {
+    margin-bottom: 40px;
+    height: 250px;
+    overflow: scroll;
+
+    &::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 7px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-color: rgba(0,0,0,.5);
+        -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+    }
+  }
+
+  .warning-agreement {
+    .warning-label {
+      margin: 0;
+      font-size: 12px;
+    }
+
+    .warning-input {
+      margin-bottom: 20px;
+
+      label {
+        display: inline;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 12px;
+      }
+    }
+  }
+}

@@ -24,7 +24,7 @@ export const resetUser = () => {
 
 // create
 export const CREATE_USER = "CREATE_USER"
-export const createUser = (values) => {
+export const createUser = (values, cb) => {
   const request = genAxios({
     method: "post",
     url: genApiUrl(apiUsersIndex()),
@@ -49,10 +49,10 @@ export const createUser = (values) => {
     request,
     hasRedirection: true,
     successCB: (dispatch, data) => {
+      if (cb) cb()
       dispatch(setCurrentUser(data))
-      if (data.role === "Investor") {
-        dispatch(push('/my/kyc'))
-      } else if (data.role === "StartupUser") {
+
+      if (data.role === "StartupUser") {
         dispatch(push('/my/campaigns/new'))
       }
     },

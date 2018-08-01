@@ -5,7 +5,7 @@ export default class SharedOthersIntro extends Component {
     const { optClass, title, content, onContinue } = this.props
 
     return (
-      <div className={`intro ${optClass}`}>
+      <div id="shared-others-intro" className={`${optClass}`}>
         <h1 className="page-title-c fw-500 fs-28">{title}</h1>
 
         <div className="info-row row">

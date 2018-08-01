@@ -52,7 +52,10 @@ export const updateMyProfile = (values, cb) => {
     successCB: (dispatch, data) => {
       if (cb) cb()
       dispatch(setCurrentUser(data))
-      notySuccess("Profile Updated!")
+
+      if (data.role === "StartupUser") {
+        notySuccess("Profile Updated!")
+      }
     }
   }
 }

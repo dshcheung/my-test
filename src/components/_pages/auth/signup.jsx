@@ -12,15 +12,13 @@ export default class Signup extends Component {
             <p>You need to sign up to get full access. Free to join!</p>
 
             <div className="row">
-              {/* TODO: re-enable when available and change back to col-xs-6
               <div className="col-xs-6">
                 <Link
                   to="/auth/signup-investor"
                   className="btn btn-block btn-default px-50"
                 >I am an Investor</Link>
               </div>
-              */}
-              <div className="col-xs-6 col-xs-offset-3">
+              <div className="col-xs-6">
                 <Link
                   to="/auth/signup-startup"
                   className="btn btn-block btn-default px-50"
