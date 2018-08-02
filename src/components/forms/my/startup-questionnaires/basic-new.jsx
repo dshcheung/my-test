@@ -144,7 +144,8 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
               placeholder: "Select the year",
               time: false,
               format: "YYYY",
-              views: ["decade"]
+              views: ["decade"],
+              max: moment().toDate()
             }}
           />
 
