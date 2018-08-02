@@ -68,7 +68,7 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
             name="raised"
             component={CurrencyField}
             opts={{
-              label: "1. Amount raised"
+              label: "1. Amount raising"
             }}
           />
 
@@ -158,7 +158,7 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
             name="attachments"
             component={DynamicFieldArray}
             opts={{
-              label: `${campaignType === "equity" ? 5 : 7}. Upload Term sheet / Investor right agreement / Shareholder agreement (Optional)`,
+              label: `${campaignType === "equity" ? 5 : 7}. Upload Existing Term Sheets, Investor Right Agreements, Shareholder Agreements, etc. (Optional)`,
               groupName: "File",
               newFieldInit: {
                 title: '',

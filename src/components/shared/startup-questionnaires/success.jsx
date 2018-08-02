@@ -16,6 +16,8 @@ export default class SharedStartupQuestionnairesSuccess extends Component {
           You have submitted your startup for review
         </h1>
 
+        <h2 className="text-uppercase margin-bottom-40">You will hear back from us within 48 hours</h2>
+
         <Link className="btn btn-danger fw-500 text-uppercase" to="/my/dashboard">Go To Dashboard</Link>
       </div>
     )

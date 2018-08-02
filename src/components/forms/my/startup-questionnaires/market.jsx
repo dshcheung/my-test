@@ -65,7 +65,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             component={TextArea}
             opts={{
               label: "1. Global market",
-              hint: "Worldwide, or any global reference point : that is the all market you could address eventually, after scaling up "
+              hint: "Worldwide, or any global reference point : that is the market you could address eventually, after scaling up "
             }}
           />
 
@@ -182,7 +182,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
                   opts: {
                     label: "Date",
                     time: false,
-                    format: "MM/YYYY",
+                    format: "YYYY/MM",
                     views: ["year", "decade"]
                   }
                 },

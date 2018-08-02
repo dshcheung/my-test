@@ -93,7 +93,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             component={TextArea}
             opts={{
               label: "4. Solution Benchmark",
-              hint: "Features that differentiate your solution from this competitor’s solution"
+              hint: "Features that differentiate your solution from this competitor's solution"
             }}
           />
 
@@ -110,7 +110,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="business_model"
             component={FileField}
             opts={{
-              label: "6. Business Model (optional)",
+              label: "6. Business Plan (optional)",
               urlKey: "original"
             }}
           />
@@ -135,7 +135,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                   opts: {
                     label: "Occured On",
                     time: false,
-                    format: "DD/MM/YYYY"
+                    format: "YYYY/MM"
                   }
                 },
                 {
@@ -173,7 +173,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                   key: "logo",
                   component: FileField,
                   opts: {
-                    label: "Upload Image for logo",
+                    label: "Add Image for Thumbnail",
                     urlKey: "original"
                   }
                 },

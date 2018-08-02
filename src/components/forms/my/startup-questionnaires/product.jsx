@@ -82,7 +82,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                   opts: {
                     label: "Registration Date",
                     time: false,
-                    format: "DD/MM/YYYY"
+                    format: "YYYY/MM/DD"
                   }
                 },
                 {

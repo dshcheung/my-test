@@ -102,7 +102,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             name="cash_burn"
             component={CurrencyField}
             opts={{
-              label: "3. Amount"
+              label: "3. Monthly Cash Burn Rate"
             }}
           />
 
@@ -282,7 +282,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   opts: {
                     label: "Date of Investment",
                     time: false,
-                    format: "YYYY/MM/DD",
+                    format: "YYYY/MM",
                   }
                 },
                 {

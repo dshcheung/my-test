@@ -34,6 +34,7 @@ export default class SharedStartupQuestionnairesSubmission extends Component {
             if (submittedStatus === "not_submitted") {
               component = (
                 <div>
+                  <div className="text-gray margin-bottom-40">Once you submit, you will not be able to modify. You can go back to any section and resave now!</div>
                   <div className="text-gray margin-bottom-40">When You Are Ready To Submit Your Campaign For Us To Review, Click The Button Below</div>
                   <button
                     className={`btn btn-danger ${markMyCampaignForReviewInProcess && "m-progress"} margin-top-20`}
