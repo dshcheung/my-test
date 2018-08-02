@@ -249,7 +249,6 @@ const generateParams = (values) => {
       global_market_metrics: _.get(values, 'market.global_market_metrics[0]', null),
       target_market: _.get(values, 'market.target_market', null),
       target_market_metrics: _.get(values, 'market.target_market_metrics[0]', null),
-      solution_benchmark: _.get(values, 'market.solution_benchmark', null),
       barriers_to_entry: _.get(values, 'market.barriers_to_entry', null),
       traction: _.get(values, 'market.traction', null),
       competition_landscape: _.get(values, 'market.competition_landscape', null),

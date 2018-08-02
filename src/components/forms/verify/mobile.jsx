@@ -3,9 +3,7 @@ import { reduxForm, Field } from 'redux-form'
 
 import Validators from '../../../services/form-validators'
 
-// TODO: change back to mobilefield
-// import MobileField from '../../shared/form-elements/mobile-field'
-import TextField from '../../shared/form-elements/text-field'
+import MobileField from '../../shared/form-elements/mobile-field'
 
 @reduxForm({
   form: "VerifyMobileForm",
@@ -27,7 +25,7 @@ export default class VerifyMobileForm extends Component {
         <form onSubmit={handleSubmit}>
           <Field
             name="mobile"
-            component={TextField}
+            component={MobileField}
             opts={{
               label: "Mobile Number"
             }}

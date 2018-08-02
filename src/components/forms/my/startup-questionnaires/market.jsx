@@ -14,7 +14,6 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
   form: "MyStartupQuestionnairesMarketForm",
   validate: (values) => {
     return Validators({
-      solution_benchmark: [{ type: "lengthWord", opts: { max: 200 } }],
       barriers_to_entry: [{ type: "lengthWord", opts: { max: 200 } }],
       traction: [{ type: "lengthWord", opts: { max: 200 } }],
       competition_landscape: [{ type: "lengthWord", opts: { max: 200 } }],
@@ -24,7 +23,8 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
           selfPresences: false,
           childFields: {
             name: ["presences"],
-            website: ["presences", "httpLink"]
+            website: ["presences", "httpLink"],
+            solution_benchmark: [{ type: "lengthWord", opts: { max: 200 } }]
           }
         }
       }],
@@ -99,11 +99,11 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
           />
 
           <Field
-            name="solution_benchmark"
+            name="traction"
             component={TextArea}
             opts={{
-              label: "5. Solution Benchmark",
-              hint: "Max 200 Words. Features that differentiate your solution from this competitor’s solution"
+              label: "5. Traction",
+              hint: "Max 200 Words. Users and/or validated feedback"
             }}
           />
 
@@ -117,19 +117,10 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
           />
 
           <Field
-            name="traction"
-            component={TextArea}
-            opts={{
-              label: "7. Traction",
-              hint: "Max 200 Words. Users and/or validated feedback"
-            }}
-          />
-
-          <Field
             name="competition_landscape"
             component={TextArea}
             opts={{
-              label: "8. Describe your competition landscape",
+              label: "7. Describe your competition landscape",
               hint: "Max 200 Words"
             }}
           />
@@ -138,7 +129,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             name="competitors"
             component={DynamicFieldArray}
             opts={{
-              label: "9. Competitors",
+              label: "8. Competitors",
               groupName: "Competitor",
               newFieldInit: {
                 name: '',
@@ -160,6 +151,14 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
                     label: "Link",
                     placeholder: "https://competitor.com"
                   }
+                },
+                {
+                  key: "solution_benchmark",
+                  component: TextArea,
+                  opts: {
+                    label: "Solution Benchmark",
+                    hint: "Max 200 Words. Features that differentiate your solution from this competitor’s solution"
+                  }
                 }
               ]
             }}
@@ -169,7 +168,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             name="go_to_market_strategies"
             component={DynamicFieldArray}
             opts={{
-              label: "10. Go-To-Market Strategies",
+              label: "9. Go-To-Market Strategies",
               groupName: "Strategy",
               newFieldInit: {
                 occurs_on: '',
@@ -203,7 +202,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             name="attachments"
             component={DynamicFieldArray}
             opts={{
-              label: "11. You want to show us more ? (optional)",
+              label: "10. You want to show us more ? (optional)",
               hint: "Upload Slides, Graphs, research summary, link to sources",
               groupName: "File",
               newFieldInit: {
