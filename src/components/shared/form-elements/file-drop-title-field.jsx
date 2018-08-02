@@ -27,12 +27,26 @@ export default class FileDropTitleField extends Component {
   render() {
     const {
       input,
+      collectionValues,
       opts: {
         requestInProcess, options,
         valueField, textField,
-        placeholder, filter, allowCreate
+        placeholder, filter, allowCreate, uniq
       }
     } = this.props
+
+    let nOptions = options
+
+    if (uniq && collectionValues.length > 0) {
+      nOptions = _.filter(nOptions, (o) => {
+        const showSelfValue = o[valueField] === input.value
+        const valueInUse = _.findIndex(collectionValues, (cv) => {
+          return cv === o[valueField]
+        }) >= 0
+
+        return showSelfValue || !valueInUse
+      })
+    }
 
     return (
       <div className="file-drop-title-field">
@@ -40,7 +54,7 @@ export default class FileDropTitleField extends Component {
           filter={filter}
           allowCreate={allowCreate && "onFilter"}
           busy={requestInProcess}
-          data={options}
+          data={nOptions}
           placeholder={placeholder}
           valueField={valueField}
           textField={textField}

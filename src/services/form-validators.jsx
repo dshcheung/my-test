@@ -38,7 +38,7 @@ const validators = {
     if (min && value < min) return `Minimum ${min}`
     if (max && value > max) return `Maximum ${max}`
   },
-  complexArrOfObj: (valueArr, { selfPresences, selfMin, selfMax, childFields }) => {
+  complexArrOfObj: (valueArr, { selfPresences, selfMin, selfMax, childFields, uniqFields }) => {
     const selfError = {}
     if (selfPresences) {
       if (!valueArr || valueArr.length === 0) {
@@ -53,7 +53,7 @@ const validators = {
     }
 
     if (selfMax) {
-      if (valueArr && valueArr.length > 5) {
+      if (valueArr && valueArr.length > selfMax) {
         selfError._error = `Too Many, Maximum is ${selfMax}`
       }
     }
@@ -64,27 +64,54 @@ const validators = {
 
     const childErrors = []
 
-    _.forOwn(childFields, (toValidates, field) => {
-      _.forEach(valueArr, (vObj, i) => {
-        const targetV = _.get(vObj, field)
-        const e = []
+    if (uniqFields) {
+      _.forEach(uniqFields, (fieldToBeUniq) => {
+        const duplicateIndexes = []
 
-        _.forEach(toValidates, (toValidate) => {
-          const msg = validators[toValidate.type || toValidate](targetV, toValidate.opts)
-          if (msg) {
-            e.push(msg)
+        _.forEach(valueArr, (vObj, i) => {
+          const targetV = _.get(vObj, fieldToBeUniq)
+
+          const firstIndex = _.findIndex(valueArr, (v) => {
+            return v[fieldToBeUniq] === targetV
+          })
+          const lastIndex = _.findLastIndex(valueArr, (v) => {
+            return v[fieldToBeUniq] === targetV
+          })
+
+          if (firstIndex !== lastIndex) {
+            duplicateIndexes.push(i)
           }
         })
 
-        if (e.length > 0) {
-          if (!childErrors[i]) {
-            childErrors[i] = {}
-          }
-
-          _.set(childErrors, `[${i}].${field}`, e)
-        }
+        _.forEach(duplicateIndexes, (di) => {
+          _.set(childErrors, `[${di}].${fieldToBeUniq}`, ["Must Be Uniq"])
+        })
       })
-    })
+    }
+
+    if (childFields) {
+      _.forOwn(childFields, (toValidates, field) => {
+        _.forEach(valueArr, (vObj, i) => {
+          const targetV = _.get(vObj, field)
+          const e = []
+
+          _.forEach(toValidates, (toValidate) => {
+            const msg = validators[toValidate.type || toValidate](targetV, toValidate.opts)
+            if (msg) {
+              e.push(msg)
+            }
+          })
+
+          if (e.length > 0) {
+            if (!childErrors[i]) {
+              childErrors[i] = {}
+            }
+
+            _.set(childErrors, `[${i}].${field}`, e)
+          }
+        })
+      })
+    }
 
     if (childErrors.length > 0) {
       return childErrors

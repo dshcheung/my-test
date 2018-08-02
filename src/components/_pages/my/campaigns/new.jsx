@@ -139,7 +139,7 @@ export default class MyCampaignsNew extends Component {
           {
             !intro && (
               <MyStartupQuestionnairesBasicNewForm
-                optClass="col-sm-12 col-md-6"
+                optClass="col-sm-6 col-md-6"
                 onSubmit={this.cMyStartupQuestionnaire}
                 submitInProcess={this.props.cMyStartupQuestionnaireInProcess}
               />

@@ -40,10 +40,10 @@ export default class FileDropField extends Component {
 
   render() {
     const {
-      fields, formData,
+      fields, formData, meta: { error },
       opts: {
         optClass, onDeleteField,
-        selectOpts
+        selectOpts, maxFields
       }
     } = this.props
 
@@ -56,15 +56,27 @@ export default class FileDropField extends Component {
           className="drop-zone"
           onDrop={this.onDrop}
           maxSize={5000000}
+          disabled={fields.length >= maxFields}
         >
           <div className="row">
             <div className="col-xs-12 text-center margin-top-50">
-              <div className="">
-                <span className="dp-ib px-10 bg-primary text-uppercase">drag</span> N' <span className="dp-ib px-10 bg-success text-uppercase">drop</span>
-              </div>
-              <div>
-                <strong>Drag and drop or click here</strong>
-                <p>to upload your files (max 5MB)</p>
+              <div className={error && "has-error"}>
+                {
+                  (!maxFields || fields.length < maxFields) ? (
+                    <div>
+                      <span className="dp-ib px-10 bg-primary text-uppercase">drag</span> N' <span className="dp-ib px-10 bg-success text-uppercase">drop</span>
+                      <div>
+                        <strong>Drag and drop or click here</strong>
+                        <p>to upload your files (max 5MB) {maxFields && `(max ${maxFields} files)`}</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <div>
+                      <strong>Maximum File Reached</strong>
+                    </div>
+                  )
+                }
+                <span className="help-block">{error}</span>
               </div>
             </div>
           </div>
@@ -102,6 +114,9 @@ export default class FileDropField extends Component {
                           name={`${objKey}.title`}
                           component={FileDropTitleField}
                           opts={selectOpts}
+                          collectionValues={this.props.fields.getAll().map((v) => {
+                            return v.title
+                          })}
                         />
                         <div className="delete">
                           <button

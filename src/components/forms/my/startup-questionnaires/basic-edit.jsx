@@ -35,6 +35,8 @@ const mapDispatchToProps = (dispatch) => {
         type: "complexArrOfObj",
         opts: {
           selfPresences: false,
+          selfMax: 2,
+          uniqFields: ["title"],
           childFields: {
             title: ["presences"],
             file: ["filePresences"]
@@ -126,6 +128,8 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
                 title: '',
                 file: ''
               },
+              maxFields: 2,
+              hint: "Company Logo and Banner",
               onDeleteField: dMSQAttributes,
               dynamicFields: [
                 {
@@ -137,7 +141,7 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
                     valueField: "name",
                     textField: "name",
                     filter: true,
-                    allowCreate: true
+                    uniq: true
                   }
                 },
                 {

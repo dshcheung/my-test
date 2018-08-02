@@ -46,6 +46,8 @@ const mapDispatchToProps = (dispatch) => {
         type: "complexArrOfObj",
         opts: {
           selfPresences: false,
+          selfMax: 2,
+          uniqFields: ["title"],
           childFields: {
             title: ["presences"],
             file: ["filePresences"]
@@ -121,6 +123,7 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
     const { title, hint, key } = questionOrder[currentQuestionIndex]
 
     const currentQuestionHasValue = _.get(formData, `values[${key}]`)
+    const currentQuestionHasError = _.get(formData, `syncErrors[${key}]`)
 
     return (
       <div className={optClass}>
@@ -202,6 +205,7 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
               onDeleteField: (value, objKey, cb) => {
                 if (cb) cb()
               },
+              maxFields: 2,
               selectOpts: {
                 options: _.filter(this.props.attachmentOptions, (o) => {
                   return o.section === "startup_questionnaire_basic"
@@ -209,6 +213,8 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
                 valueField: 'id',
                 textField: 'name',
                 placeholder: 'Select a Title',
+                filter: true,
+                uniq: true,
                 requestInProcess: this.props.gAttachmentOptionsInProcess
               }
             }}
@@ -230,7 +236,7 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
               <button
                 className="btn btn-default pull-right border-none"
                 type="button"
-                disabled={submitInProcess || !currentQuestionHasValue}
+                disabled={submitInProcess || !currentQuestionHasValue || currentQuestionHasError}
                 onClick={() => { this.changeQuestion(currentQuestionIndex + 1) }}
               ><i className="fa fas fa-long-arrow-alt-right fa-2x text-danger" /></button>
             )
@@ -241,7 +247,7 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
               <button
                 className={`btn btn-danger pull-right ${submitInProcess && "m-progress"}`}
                 type="submit"
-                disabled={submitInProcess || pristine || !currentQuestionHasValue}
+                disabled={submitInProcess || pristine || !currentQuestionHasValue || currentQuestionHasError}
               >SAVE</button>
             )
           }

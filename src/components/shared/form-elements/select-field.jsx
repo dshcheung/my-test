@@ -5,25 +5,36 @@ export default class SelectField extends Component {
   render() {
     const {
       input, meta: { touched, invalid, error },
+      collectionValues,
       opts: {
         options, requestInProcess,
         label,
         placeholder, optClass, hint,
         valueField, textField,
         filter, allowCreate,
-        allowEmptyValue
+        allowEmptyValue, uniq
       }
     } = this.props
 
     const hasErrorClass = touched && invalid ? 'has-error' : ''
 
-    let emptyValue = null
+    let nOptions = options
 
     if (allowEmptyValue) {
-      emptyValue = { [valueField]: "", [textField]: "" }
+      const emptyValue = { [valueField]: "", [textField]: "" }
+      nOptions = [emptyValue, ...options]
     }
 
-    const nOptions = emptyValue ? [emptyValue, ...options] : options
+    if (uniq && collectionValues.length > 0) {
+      nOptions = _.filter(nOptions, (o) => {
+        const showSelfValue = o[valueField] === input.value
+        const valueInUse = _.findIndex(collectionValues, (cv) => {
+          return cv === o[valueField]
+        }) >= 0
+
+        return showSelfValue || !valueInUse
+      })
+    }
 
     return (
       <div className={`form-group clearfix ${hasErrorClass} ${optClass}`}>
@@ -37,6 +48,9 @@ export default class SelectField extends Component {
           placeholder={placeholder}
           valueField={valueField}
           textField={textField}
+          messages={{
+            filterPlaceholder: allowCreate ? "Type to Filter or Create / Select One" : "Type to Filter / Select One"
+          }}
           {...input}
           onCreate={(text) => { input.onChange(text) }}
           onChange={(value) => { input.onChange(value[valueField]) }}

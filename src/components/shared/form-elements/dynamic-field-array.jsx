@@ -16,7 +16,7 @@ export default class DynamicFieldArray extends Component {
       opts: {
         label, groupName,
         newFieldInit, onDeleteField,
-        dynamicFields, hint
+        dynamicFields, hint, maxFields
       }
     } = this.props
 
@@ -56,6 +56,9 @@ export default class DynamicFieldArray extends Component {
                         key={n}
                         name={`${objKey}.${f.key}`}
                         {...f}
+                        collectionValues={this.props.fields.getAll().map((v) => {
+                          return v[f.key]
+                        })}
                       />
                     )
                   })
@@ -64,13 +67,17 @@ export default class DynamicFieldArray extends Component {
             )
           })
         }
-        <div className="text-center">
-          <button
-            type="button"
-            className="btn btn-default btn-hover-border add"
-            onClick={() => fields.push(newFieldInit)}
-          ><i className="fa fa-plus" /> Add {groupName}</button>
-        </div>
+        {
+          (!maxFields || fields.length < maxFields) && (
+            <div className="text-center">
+              <button
+                type="button"
+                className="btn btn-default btn-hover-border add"
+                onClick={() => fields.push(newFieldInit)}
+              ><i className="fa fa-plus" /> Add {groupName}</button>
+            </div>
+          )
+        }
       </div>
     )
   }
