@@ -208,6 +208,12 @@ a:hover {
     transform: rotate(35deg);
   }
 }
+
 .text-gray {
   color: $gray-light;
+}
+
+.anchor-link {
+  color: #b73261;
+  text-decoration: underline;
 }

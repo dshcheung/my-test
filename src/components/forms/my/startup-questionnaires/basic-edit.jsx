@@ -91,7 +91,8 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
             component={TextField}
             opts={{
               label: "4. Tagline",
-              placeholder: "Tagline"
+              placeholder: "Tagline",
+              hint: "Max 140 Characters"
             }}
           />
 

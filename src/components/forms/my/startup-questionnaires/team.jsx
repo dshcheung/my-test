@@ -15,7 +15,6 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
   validate: (values) => {
     return Validators({
       story: [{ type: "length", opts: { max: 600 } }],
-      next_hires: [{ type: "length", opts: { max: 600 } }],
       startup_questionnaire_team_founders: [{
         type: "complexArrOfObj",
         opts: {
@@ -86,7 +85,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
             component={TextArea}
             opts={{
               label: "1. Team story",
-              hint: "When did you meet ? What have you done together ? what is the alchemy you experienced ? Why are you the best team to conduct your mission ? Be reflective and personal "
+              hint: "Max 600 Words. When did you meet ? What have you done together ? what is the alchemy you experienced ? Why are you the best team to conduct your mission ? Be reflective and personal "
             }}
           />
 
@@ -260,7 +259,8 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "expertise",
                   component: TextArea,
                   opts: {
-                    label: "Expertise"
+                    label: "Expertise",
+                    hint: "Max 600 Words"
                   }
                 }
               ]

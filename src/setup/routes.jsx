@@ -10,6 +10,8 @@ import ResetPasswordContainer from '../components/_pages/auth/reset-password'
 import SignupContainer from '../components/_pages/auth/signup'
 import SignupStartupContainer from '../components/_pages/auth/signup-startup'
 
+import VerifyContainer from '../components/_pages/verify/index'
+
 import MyWrapperContainer from '../components/_pages/my/wrapper'
 
 import MyCampaignsIndexContainer from '../components/_pages/my/campaigns/index'
@@ -32,6 +34,8 @@ export default (
       <Route path="signup" component={SignupContainer} />
       <Route path="signup-startup" component={SignupStartupContainer} sideTitle={{ title: "startup" }} />
     </Route>
+
+    <Route path="verify" component={VerifyContainer} />
 
     <Route path="my" component={MyWrapperContainer}>
       <Route path="campaigns" roleAccess="StartupUser">

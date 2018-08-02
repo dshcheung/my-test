@@ -166,7 +166,8 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
             component={TextField}
             opts={{
               optClass: currentQuestionIndex !== 3 && `${hideable} ${animateable}`,
-              placeholder: "Tagline"
+              placeholder: "Tagline",
+              hint: "Max 140 Characters"
             }}
           />
 

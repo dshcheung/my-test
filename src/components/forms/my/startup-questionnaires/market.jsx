@@ -103,7 +103,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             component={TextArea}
             opts={{
               label: "5. Solution Benchmark",
-              hint: "Features that differentiate your solution from this competitor’s solution"
+              hint: "Max 200 Words. Features that differentiate your solution from this competitor’s solution"
             }}
           />
 
@@ -112,7 +112,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             component={TextArea}
             opts={{
               label: "6. Barriers to entry",
-              hint: "Main reasons why a company will find it difficult to conquer your customers when entering your market"
+              hint: "Max 200 Words. Main reasons why a company will find it difficult to conquer your customers when entering your market"
             }}
           />
 
@@ -121,7 +121,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             component={TextArea}
             opts={{
               label: "7. Traction",
-              hint: "Users and/or validated feedback"
+              hint: "Max 200 Words. Users and/or validated feedback"
             }}
           />
 
@@ -130,6 +130,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             component={TextArea}
             opts={{
               label: "8. Describe your competition landscape",
+              hint: "Max 200 Words"
             }}
           />
 
@@ -190,7 +191,8 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
                   key: "action",
                   component: TextArea,
                   opts: {
-                    label: "Action"
+                    label: "Action",
+                    hint: "Max 40 Words"
                   }
                 }
               ]

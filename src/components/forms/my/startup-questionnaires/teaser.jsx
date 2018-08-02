@@ -64,11 +64,16 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
     return (
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
+          <div className="margin-bottom-20">
+            <i>Your answers below will be used to create a teaser for the investor and catch his interest. You will have space for details in the following sections of this questionnaire</i>
+          </div>
+
           <Field
             name="problem"
             component={TextArea}
             opts={{
-              label: "1. Problem"
+              label: "1. Problem",
+              hint: "Max 100 Words"
             }}
           />
 
@@ -76,7 +81,8 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="solution"
             component={TextArea}
             opts={{
-              label: "2. Solution"
+              label: "2. Solution",
+              hint: "Max 100 Words"
             }}
           />
 
@@ -84,7 +90,8 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="make_money"
             component={TextArea}
             opts={{
-              label: "3. How do you make money? and how much?"
+              label: "3. How do you make money? and how much?",
+              hint: "Max 100 Words"
             }}
           />
 
@@ -93,7 +100,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             component={TextArea}
             opts={{
               label: "4. Solution Benchmark",
-              hint: "Features that differentiate your solution from this competitor's solution"
+              hint: "Max 200 Words. Features that differentiate your solution from this competitor's solution"
             }}
           />
 
@@ -102,7 +109,8 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             component={FileField}
             opts={{
               label: "5. Pitch Deck",
-              urlKey: "original"
+              urlKey: "original",
+              hint: "Upload your pitch deck"
             }}
           />
 
@@ -144,14 +152,16 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                   key: "title",
                   component: TextField,
                   opts: {
-                    label: "Title"
+                    label: "Title",
+                    hint: "Max 4 Words"
                   }
                 },
                 {
                   key: "content",
                   component: TextArea,
                   opts: {
-                    label: "Content"
+                    label: "Content",
+                    hint: "Max 20 Words"
                   }
                 }
               ]
