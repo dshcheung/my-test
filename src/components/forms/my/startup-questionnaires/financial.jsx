@@ -102,7 +102,8 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             name="cash_burn"
             component={CurrencyField}
             opts={{
-              label: "3. Monthly Cash Burn Rate"
+              label: "3. Monthly Cash Burn Rate",
+              hint: "Amount of HKD/USD burned by month"
             }}
           />
 

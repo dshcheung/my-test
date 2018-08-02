@@ -111,6 +111,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             component={FileField}
             opts={{
               label: "6. Business Plan (optional)",
+              hint: "Upload your business plan",
               urlKey: "original"
             }}
           />
