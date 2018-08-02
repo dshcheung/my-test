@@ -135,7 +135,8 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                   opts: {
                     label: "Occured On",
                     time: false,
-                    format: "YYYY/MM"
+                    format: "YYYY/MM",
+                    views: ["year", "decade"]
                   }
                 },
                 {

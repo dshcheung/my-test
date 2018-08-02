@@ -283,6 +283,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                     label: "Date of Investment",
                     time: false,
                     format: "YYYY/MM",
+                    views: ["year", "decade"]
                   }
                 },
                 {
