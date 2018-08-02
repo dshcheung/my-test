@@ -35,7 +35,7 @@ export default class SignupStartup extends Component {
     return (
       <div id="page-auth-signup-startup">
         <div className="row">
-          <SharedOthersSideTitle title="startup" optClass="col-sm-3 col-md-4" />
+          <SharedOthersSideTitle title="startup" optClass="hidden-xs col-sm-3 col-md-4" />
 
           <AuthSignupStartupForm
             optClass="col-sm-6 col-md-4"
