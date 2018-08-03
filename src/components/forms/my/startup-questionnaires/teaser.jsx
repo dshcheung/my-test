@@ -90,8 +90,8 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="make_money"
             component={TextArea}
             opts={{
-              label: "3. How do you make money? and how much?",
-              hint: "Max 100 Words"
+              label: "3. What is your revenue model?",
+              hint: "Max 100 Words. It identifies which revenue source to pursue, how to price the value, and who pays for the value. It is a key component of a company's business model. ex: Advertising, Freemium model, Subscription model, Licensing, Selling data etc..."
             }}
           />
 
