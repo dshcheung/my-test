@@ -68,7 +68,8 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
             name="raised"
             component={CurrencyField}
             opts={{
-              label: "1. Amount raising"
+              label: "1. Amount looking to raise",
+              placeholder: "5,000,000"
             }}
           />
 
