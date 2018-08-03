@@ -99,8 +99,8 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="solution_benchmark"
             component={TextArea}
             opts={{
-              label: "4. Solution Benchmark",
-              hint: "Max 200 Words. Features that differentiate your solution from this competitor's solution"
+              label: "4. What is your Unique Selling Point USP",
+              hint: "Max 200 Words. Define your company's unique position in the marketplace. A strong USP clearly articulates a specific benefit - one that other competitors don't offer - that makes you stand out."
             }}
           />
 
