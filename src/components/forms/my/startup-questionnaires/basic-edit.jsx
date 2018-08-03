@@ -137,7 +137,10 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
                   component: SelectField,
                   opts: {
                     label: "Title",
-                    options: this.props.attachmentOptions,
+                    options: [
+                      { name: "Company Logo" },
+                      { name: "Visual Identity (Banner)" }
+                    ],
                     valueField: "name",
                     textField: "name",
                     filter: true,

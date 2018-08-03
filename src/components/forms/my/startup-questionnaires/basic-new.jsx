@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 
 import {
   gImmovable, resetImmovable,
-  G_IMMOVABLE_ATTACHMENT_OPTIONS, G_IMMOVABLE_HASHTAG_OPTIONS
+  G_IMMOVABLE_HASHTAG_OPTIONS
 } from '../../../../actions/immovables'
 
 import Validators from '../../../../services/form-validators'
@@ -20,9 +20,7 @@ import FileDropField from '../../../shared/form-elements/file-drop-field'
 const mapStateToProps = (state) => {
   return {
     formData: _.get(state.form, 'MyStartupQuestionnairesBasicNewForm'),
-    gAttachmentOptionsInProcess: _.get(state.requestStatus, G_IMMOVABLE_ATTACHMENT_OPTIONS),
     gHashtagOptionsInProcess: _.get(state.requestStatus, G_IMMOVABLE_HASHTAG_OPTIONS),
-    attachmentOptions: _.get(state, 'immovables.attachment_options', []),
     hashtagOptions: _.get(state, 'immovables.hashtag_options', [])
   }
 }
@@ -98,7 +96,6 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
   }
 
   componentWillMount() {
-    this.props.gImmovable({ immovableID: "attachment_options" })
     this.props.gImmovable({ immovableID: "hashtag_options" })
   }
 
@@ -207,15 +204,15 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
               },
               maxFields: 2,
               selectOpts: {
-                options: _.filter(this.props.attachmentOptions, (o) => {
-                  return o.section === "startup_questionnaire_basic"
-                }),
+                options: [
+                  { name: "Company Logo" },
+                  { name: "Visual Identity (Banner)" }
+                ],
                 valueField: 'id',
                 textField: 'name',
                 placeholder: 'Select a Title',
                 filter: true,
-                uniq: true,
-                requestInProcess: this.props.gAttachmentOptionsInProcess
+                uniq: true
               }
             }}
           />
