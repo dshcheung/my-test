@@ -70,31 +70,11 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
           />
 
           <Field
-            name="global_market_metrics"
-            component={FileField}
-            opts={{
-              label: "2. Global market metrics (optional)",
-              hint: "Current Size, projected CAGR",
-              urlKey: "original"
-            }}
-          />
-
-          <Field
             name="target_market"
             component={TextArea}
             opts={{
-              label: "3. Targeted market (your customers)",
+              label: "2. Targeted market (your customers)",
               hint: "Your entry market that you are targeting in the coming months. Remember that its definition should give us a precise description of your targeted customer."
-            }}
-          />
-
-          <Field
-            name="target_market_metrics"
-            component={FileField}
-            opts={{
-              label: "4. Targeted market metrics (optional)",
-              hint: "Current Size, projected CAGR",
-              urlKey: "original"
             }}
           />
 
@@ -102,7 +82,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             name="traction"
             component={TextArea}
             opts={{
-              label: "5. Traction",
+              label: "3. Traction",
               hint: "Max 200 Words. Users and/or validated feedback"
             }}
           />
@@ -111,7 +91,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             name="barriers_to_entry"
             component={TextArea}
             opts={{
-              label: "6. Barriers to entry",
+              label: "4. Barriers to entry",
               hint: "Max 200 Words. Main reasons why a company will find it difficult to conquer your customers when entering your market"
             }}
           />
@@ -120,7 +100,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             name="competition_landscape"
             component={TextArea}
             opts={{
-              label: "7. Describe your competition landscape",
+              label: "5. Describe your competition landscape",
               hint: "Max 200 Words"
             }}
           />
@@ -129,7 +109,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             name="competitors"
             component={DynamicFieldArray}
             opts={{
-              label: "8. Competitors",
+              label: "6. Competitors",
               groupName: "Competitor",
               newFieldInit: {
                 name: '',
@@ -168,7 +148,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             name="go_to_market_strategies"
             component={DynamicFieldArray}
             opts={{
-              label: "9. Go-To-Market Strategies",
+              label: "7. Go-To-Market Strategies",
               groupName: "Strategy",
               newFieldInit: {
                 occurs_on: '',
@@ -202,7 +182,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             name="attachments"
             component={DynamicFieldArray}
             opts={{
-              label: "10. You want to show us more ? (optional)",
+              label: "8. You want to show us more ? (optional)",
               hint: "Upload Slides, Graphs, research summary, link to sources",
               groupName: "File",
               newFieldInit: {

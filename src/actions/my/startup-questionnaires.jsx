@@ -246,9 +246,7 @@ const generateParams = (values) => {
     startup_questionnaire_market_attributes: {
       id: _.get(values, 'market.id', null),
       global_market: _.get(values, 'market.global_market', null),
-      global_market_metrics: _.get(values, 'market.global_market_metrics[0]', null),
       target_market: _.get(values, 'market.target_market', null),
-      target_market_metrics: _.get(values, 'market.target_market_metrics[0]', null),
       barriers_to_entry: _.get(values, 'market.barriers_to_entry', null),
       traction: _.get(values, 'market.traction', null),
       competition_landscape: _.get(values, 'market.competition_landscape', null),
