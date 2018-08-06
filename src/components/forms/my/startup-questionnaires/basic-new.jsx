@@ -121,12 +121,26 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
 
     const currentQuestionHasValue = _.get(formData, `values[${key}]`)
     const currentQuestionHasError = _.get(formData, `syncErrors[${key}]`)
+    const currentQuestionPercentage = (currentQuestionIndex === 0 ? 0 : (currentQuestionIndex / maxIndex) * 100)
 
     return (
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
           <h1 className={`form-title fw-500 margin-bottom-0 ${hint && "margin-0"}`}>{title}</h1>
           <div className="help-text margin-bottom-20">{hint}</div>
+          <div className="row">
+            <div className="col-sm-12 col-md-8 col-md-offset-2">
+              <div className="progress height-5">
+                <div className="step-dot primary-color zero" />
+                <div className="step-dot primary-color one" />
+                <div className="step-dot primary-color two" />
+                <div className="step-dot primary-color three" />
+                <div className="step-dot primary-color four" />
+                <div className="step-dot primary-color five" />
+                <div className="progress-bar progress-bar-success" style={{ width: `${currentQuestionPercentage}%` }} />
+              </div>
+            </div>
+          </div>
           <Field
             name="company_name"
             component={TextField}

@@ -170,3 +170,36 @@ $list-campaign-name-left-space: 100px;
     }
   }
 }
+
+.progress {
+  .primary-color {
+    background-color: $brand-primary;
+  }
+  .step-dot {
+    position: absolute;
+    margin-top: -5px;
+    z-index: 1;
+    height: 15px;
+    width: 15px;
+    border-radius: 25px;
+    border: 2px solid #fff;
+  }
+  .zero {
+    left: 0%;
+  }
+  .one {
+    left: 20%;
+  }
+  .two {
+    left: 40%;
+  }
+  .three {
+    left: 59%;
+  }
+  .four {
+    left: 78%;
+  }
+  .five {
+    left: 97%;
+  }
+}
