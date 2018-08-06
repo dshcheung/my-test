@@ -65,7 +65,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             component={TextArea}
             opts={{
               label: "1. Global market",
-              hint: "Worldwide, or any global reference point : that is the market you could address eventually, after scaling up "
+              hint: "Worldwide, or any global reference point that is the market you could address eventually, after scaling up. Please provide basic metrics for this market; size and growth rate."
             }}
           />
 
@@ -74,7 +74,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             component={TextArea}
             opts={{
               label: "2. Targeted market (your customers)",
-              hint: "Your entry market that you are targeting in the coming months. Remember that its definition should give us a precise description of your targeted customer."
+              hint: "Your entry market that you are targeting in the coming months. Remember that its definition should give us a precise description of your targeted customer. Please provide basic metrics for this market; size and growth rate"
             }}
           />
 
