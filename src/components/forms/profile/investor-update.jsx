@@ -9,17 +9,17 @@ import SelectField from '../../shared/form-elements/select-field'
 import DateTimePickerField from '../../shared/form-elements/datetime-picker'
 
 @reduxForm({
-  form: "AuthSigupInvestorUpdate",
+  form: "ProfileInvestorUpdateForm",
   validate: (values) => {
     return Validators({
       hkid: ["presences"],
       nationality: ["presences"],
       residence: ["presences"],
-      password: ["presences", { type: "length", opts: { min: 6 } }]
+      date_of_birth: ["presences"]
     }, values)
   }
 })
-export default class AuthSigupInvestorUpdate extends Component {
+export default class ProfileInvestorUpdateForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass } = this.props
 
@@ -86,7 +86,7 @@ export default class AuthSigupInvestorUpdate extends Component {
           <div className="row">
             <div className="col-xs-12 col-sm-6">
               <Field
-                name="password"
+                name="date_of_birth"
                 component={DateTimePickerField}
                 opts={{
                   label: "Date of Birth",

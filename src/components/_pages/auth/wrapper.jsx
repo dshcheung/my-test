@@ -29,11 +29,9 @@ export default class AuthWrapper extends Component {
     if (currentUser && currentUser.role === "StartupUser") {
       this.props.router.push("/my/campaigns")
       notyWarning("You Are Already Logged In")
+    } else if (currentUser && currentUser.role === "Investor") {
+      this.props.router.push("/my/portfolio")
     }
-    // TODO: Gram - add status for me to judge which step to redirect investor to (step 1,2,3)
-    // else if (currentUser && currentUser.role === "Investor") {
-    //   this.props.router.push("/my/portfolio")
-    // }
   }
 
   render() {

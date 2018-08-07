@@ -7,7 +7,7 @@ import TextField from '../../shared/form-elements/text-field'
 import MobileField from '../../shared/form-elements/mobile-field'
 
 @reduxForm({
-  form: "AuthSigupInvestorCreate",
+  form: "AuthSigupInvestorCreateForm",
   validate: (values) => {
     return Validators({
       email: ["presences", "email"],
@@ -18,7 +18,7 @@ import MobileField from '../../shared/form-elements/mobile-field'
     }, values)
   }
 })
-export default class AuthSigupInvestorCreate extends Component {
+export default class AuthSigupInvestorCreateForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass } = this.props
 

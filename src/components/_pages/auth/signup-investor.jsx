@@ -1,13 +1,43 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+import { scrollTop } from '../../../services/utils'
 
 import SharedOthersSideTitle from '../../shared/others/side-title'
 import SharedOthersIntro from '../../shared/others/intro'
+import AuthSigupInvestorCreateForm from '../../forms/auth/signup-investor-create'
 
+import {
+  gImmovable, resetImmovable, G_IMMOVABLE_LEGAL_AGREEMENT
+} from '../../../actions/immovables'
+import { createUser, CREATE_USER } from '../../../actions/users'
+
+import LoadingSpinner from '../../shared/others/loading-spinner'
+
+const mapStateToProps = (state) => {
+  return {
+    legalAgreement: _.get(state, 'immovables.legal_agreement.legal_agreements', []),
+    gLegalAgreementInProcess: _.get(state.requestStatus, G_IMMOVABLE_LEGAL_AGREEMENT),
+    createUserInProcess: _.get(state.requestStatus, CREATE_USER)
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    gImmovable: bindActionCreators(gImmovable, dispatch),
+    resetImmovable: bindActionCreators(resetImmovable, dispatch),
+    createUser: bindActionCreators(createUser, dispatch)
+  }
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 export default class SignupInvestor extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
+      sideTitleNumber: null,
       pickInvestor: true,
       resultSelected: 0,
       pickerResults: {
@@ -22,19 +52,47 @@ export default class SignupInvestor extends Component {
         ]
       },
       termsAgreement: false,
-      intro: false
+      intro: false,
+      warningAgreement: false,
+      read: false,
+      termsAgreed: false,
+      createUserStep: false
     }
 
     this.onPickInvestorContinue = this.onPickInvestorContinue.bind(this)
     this.onIntroContinue = this.onIntroContinue.bind(this)
+    this.onWarningAgreed = this.onWarningAgreed.bind(this)
+    this.onCreateUser = this.onCreateUser.bind(this)
+  }
+
+  componentWillMount() {
+    this.props.gImmovable({ immovableID: "legal_agreement" })
+  }
+
+  componentWillUnmount() {
+    this.props.resetImmovable()
   }
 
   onPickInvestorContinue() {
     this.setState({ pickInvestor: false, intro: true })
+    scrollTop()
   }
 
   onIntroContinue() {
-    this.props.router.push("/auth/signup-investor-step-1")
+    this.setState({ intro: false, sideTitleNumber: 1, warningAgreement: true })
+    scrollTop()
+  }
+
+  onWarningAgreed() {
+    this.setState({ warningAgreement: false, createUserStep: true })
+    scrollTop()
+  }
+
+  onCreateUser(values) {
+    this.props.createUser({
+      ...values,
+      role: "Investor"
+    })
   }
 
   pickerInvestor() {
@@ -107,16 +165,76 @@ export default class SignupInvestor extends Component {
     )
   }
 
+  warningAgreement() {
+    const { read, termsAgreed } = this.state
+    const { legalAgreement, gLegalAgreementInProcess } = this.props
+    const investorWarningStatement = _.find(legalAgreement, { id: "investor-warning-statement" }) || {}
+
+    return (
+      <div className="col-sm-6">
+        <h1 className="page-title-l fw-500 fs-28">important warning</h1>
+        <p className="margin-bottom-40">To view the opportunities on AngelHub, read, and agree to the text below</p>
+
+        {
+          gLegalAgreementInProcess ? (
+            <LoadingSpinner optClass="margin-bottom-20" />
+          ) : (
+            <div
+              onScroll={(e) => {
+                const target = e.target
+                const clientHeight = target.clientHeight
+                const scrollT = target.scrollTop
+                const scrollHeight = target.scrollHeight
+
+                if (scrollT + clientHeight === scrollHeight) {
+                  this.setState({ read: true })
+                }
+              }}
+              className="statement-scroll"
+              dangerouslySetInnerHTML={{ __html: investorWarningStatement.content }}
+            />
+          )
+        }
+
+        <div className="warning-agreement">
+          <label className="warning-label" htmlFor="agreement">Acknowledgement</label>
+          <div className="warning-input">
+            <input type="checkbox" id="agreement" onChange={(e) => { this.setState({ termsAgreed: e.target.checked }) }} />
+            <label htmlFor="agreement">I have read and understood the above "Important Warning"</label>
+          </div>
+        </div>
+
+        <button
+          className="btn btn-danger pull-right"
+          onClick={this.onWarningAgreed}
+          disabled={!read || !termsAgreed}
+        >Continue</button>
+      </div>
+    )
+  }
+
+  createUserRender() {
+    return (
+      <AuthSigupInvestorCreateForm
+        optClass="col-sm-6"
+        onSubmit={this.onCreateUser}
+        submitInProcess={this.props.createUserInProcess}
+      />
+    )
+  }
+
   render() {
-    const { pickInvestor, intro } = this.state
+    const { sideTitleNumber, pickInvestor, intro, warningAgreement, createUserStep } = this.state
 
     return (
       <div id="page-auth-signup-investor">
         <div className="row">
-          <SharedOthersSideTitle title="investor" optClass="hidden-xs col-sm-3 col-md-offset-1 col-md-2" />
+          <SharedOthersSideTitle title="investor" number={sideTitleNumber} optClass="hidden-xs col-sm-3 col-md-offset-1 col-md-2" />
 
           { pickInvestor && this.pickerInvestor() }
           { intro && this.intro() }
+          { warningAgreement && this.warningAgreement() }
+          { createUserStep && this.createUserRender() }
         </div>
       </div>
     )

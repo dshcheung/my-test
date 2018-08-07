@@ -24,7 +24,7 @@ export const resetUser = () => {
 
 // create
 export const CREATE_USER = "CREATE_USER"
-export const createUser = (values, cb) => {
+export const createUser = (values) => {
   const request = genAxios({
     method: "post",
     url: genApiUrl(apiUsersIndex()),
@@ -35,12 +35,8 @@ export const createUser = (values, cb) => {
       password: _.get(values, 'password', null),
       profile: {
         first_name: _.get(values, 'firstName', null),
-        last_name: _.get(values, 'lastName', null),
-        dob: _.get(values, 'dob', null),
-        national_id: _.get(values, 'nationalID', null),
-        address: _.get(values, 'address', null)
-      },
-      questionnaire: _.get(values, 'questionnaire', null)
+        last_name: _.get(values, 'lastName', null)
+      }
     }, 'user')
   })
 
@@ -49,10 +45,11 @@ export const createUser = (values, cb) => {
     request,
     hasRedirection: true,
     successCB: (dispatch, data) => {
-      if (cb) cb()
       dispatch(setCurrentUser(data))
 
-      if (data.role === "StartupUser") {
+      if (data.role === "Investor") {
+        dispatch(push("/my/investor-validations/verification"))
+      } else if (data.role === "StartupUser") {
         dispatch(push('/my/campaigns/new'))
       }
     },
