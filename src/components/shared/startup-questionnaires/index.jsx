@@ -9,8 +9,7 @@ import {
 } from '../../../actions/my/startup-questionnaires'
 
 import {
-  G_IMMOVABLE_ATTACHMENT_OPTIONS, G_IMMOVABLE_HASHTAG_OPTIONS, G_IMMOVABLE_STARTUP_QUESTIONNAIRE_CAP_TABLE_OPTIONS,
-  G_IMMOVABLE_STARTUP_QUESTIONNAIRE_BASIC_OPTIONS
+  G_IMMOVABLE_ATTACHMENT_OPTIONS, G_IMMOVABLE_HASHTAG_OPTIONS, G_IMMOVABLE_STARTUP_QUESTIONNAIRE_CAP_TABLE_OPTIONS
 } from '../../../actions/immovables'
 
 import LoadingSpinner from '../../shared/others/loading-spinner'
@@ -36,11 +35,9 @@ const mapStateToProps = (state) => {
     gAttachmentOptionsInProcess: _.get(state.requestStatus, G_IMMOVABLE_ATTACHMENT_OPTIONS),
     gHashtagOptionsInProcess: _.get(state.requestStatus, G_IMMOVABLE_HASHTAG_OPTIONS),
     gCapTableOptionsInProcess: _.get(state.requestStatus, G_IMMOVABLE_STARTUP_QUESTIONNAIRE_CAP_TABLE_OPTIONS),
-    gBasicOptionsInProcess: _.get(state.requestStatus, G_IMMOVABLE_STARTUP_QUESTIONNAIRE_BASIC_OPTIONS),
     attachmentOptions: _.get(state, 'immovables.attachment_options', []),
     hashtagOptions: _.get(state, 'immovables.hashtag_options', []),
     capTableOptions: _.get(state, 'immovables.startup_questionnaire_cap_table_options', []),
-    basicOptions: _.get(state, 'immovables.startup_questionnaire_basic_options')
   }
 }
 
@@ -321,7 +318,7 @@ export default class SharedStartupQuestionnaires extends Component {
 
   renderTab() {
     const {
-      currentTab, attachmentOptions, hashtagOptions, capTableOptions, basicOptions, myStartupQuestionnaire,
+      currentTab, attachmentOptions, hashtagOptions, capTableOptions, myStartupQuestionnaire,
     } = this.props
     const { order } = this.state
     const baseInfo = _.find(order, { key: currentTab })
@@ -346,7 +343,6 @@ export default class SharedStartupQuestionnaires extends Component {
           })}
           hashtagOptions={hashtagOptions}
           capTableOptions={capTableOptions}
-          basicOptions={basicOptions}
         />
       )
     }
@@ -354,10 +350,10 @@ export default class SharedStartupQuestionnaires extends Component {
 
   render() {
     const {
-      gMyStartupQuestionnaireInProcess, gAttachmentOptionsInProcess, gHashtagOptionsInProcess, gCapTableOptionsInProcess, gBasicOptionsInProcess
+      gMyStartupQuestionnaireInProcess, gAttachmentOptionsInProcess, gHashtagOptionsInProcess, gCapTableOptionsInProcess
     } = this.props
 
-    if (gMyStartupQuestionnaireInProcess || gAttachmentOptionsInProcess || gHashtagOptionsInProcess || gCapTableOptionsInProcess || gBasicOptionsInProcess) return <LoadingSpinner />
+    if (gMyStartupQuestionnaireInProcess || gAttachmentOptionsInProcess || gHashtagOptionsInProcess || gCapTableOptionsInProcess) return <LoadingSpinner />
 
     return (
       <div>

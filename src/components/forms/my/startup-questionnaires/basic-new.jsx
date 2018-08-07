@@ -5,8 +5,7 @@ import { bindActionCreators } from 'redux'
 
 import {
   gImmovable, resetImmovable,
-  G_IMMOVABLE_HASHTAG_OPTIONS,
-  G_IMMOVABLE_STARTUP_QUESTIONNAIRE_CAP_TABLE_OPTIONS
+  G_IMMOVABLE_HASHTAG_OPTIONS
 } from '../../../../actions/immovables'
 
 import Validators from '../../../../services/form-validators'
@@ -22,9 +21,7 @@ const mapStateToProps = (state) => {
   return {
     formData: _.get(state.form, 'MyStartupQuestionnairesBasicNewForm'),
     gHashtagOptionsInProcess: _.get(state.requestStatus, G_IMMOVABLE_HASHTAG_OPTIONS),
-    gBasicOptionsInProcess: _.get(state.requestStatus, G_IMMOVABLE_STARTUP_QUESTIONNAIRE_CAP_TABLE_OPTIONS),
-    hashtagOptions: _.get(state, 'immovables.hashtag_options', []),
-    basicOptions: _.get(state, 'immovables.startup_questionnaire_basic_options')
+    hashtagOptions: _.get(state, 'immovables.hashtag_options', [])
   }
 }
 
@@ -44,7 +41,6 @@ const mapDispatchToProps = (dispatch) => {
       founded_year: ["presences"],
       country_of_incorporation: ["presences"],
       tagline: ["presences", { type: "length", opts: { max: 140 } }],
-      vertical: ["presences"],
       hashtags: ["presences", { type: "amount", opts: { max: 5 } }],
       attachments: [{
         type: "complexArrOfObj",
@@ -86,11 +82,7 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
           hint: "A crisp definition of your Company"
         },
         {
-          title: "vertical",
-          key: "vertical"
-        },
-        {
-          title: "hashtags",
+          title: "verticals & technologies",
           key: "hashtags",
           hint: "Give us up to 5 hashtags that best describe your solution, technology or add to the buzz"
         },
@@ -100,14 +92,13 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
         }
       ],
       currentQuestionIndex: 0,
-      maxIndex: 6,
+      maxIndex: 5,
       animateClass: "fadeInRight"
     }
   }
 
   componentWillMount() {
     this.props.gImmovable({ immovableID: "hashtag_options" })
-    this.props.gImmovable({ immovableID: "startup_questionnaire_basic_options" })
   }
 
   componentWillUnmount() {
@@ -149,7 +140,6 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
                 <div className="step-dot primary-color three" />
                 <div className="step-dot primary-color four" />
                 <div className="step-dot primary-color five" />
-                <div className="step-dot primary-color six" />
                 <div className="progress-bar progress-bar-success" style={{ width: `${currentQuestionPercentage}%` }} />
               </div>
             </div>
@@ -200,24 +190,11 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
           />
 
           <Field
-            name="vertical"
-            component={SelectField}
-            opts={{
-              optClass: currentQuestionIndex !== 4 && `${hideable} ${animateable}`,
-              placeholder: "Select a Vertical",
-              options: this.props.basicOptions,
-              valueField: "name",
-              textField: "name",
-              requestInProcess: this.props.gBasicOptionsInProcess
-            }}
-          />
-
-          <Field
             name="hashtags"
             component={MultiselectField}
             opts={{
-              optClass: currentQuestionIndex !== 5 && `${hideable} ${animateable}`,
-              placeholder: "Hashtags",
+              optClass: currentQuestionIndex !== 4 && `${hideable} ${animateable}`,
+              placeholder: "#FinTech #Blockchain #O2O",
               options: this.props.hashtagOptions.map((h) => {
                 return {
                   tag: h.name
@@ -239,7 +216,7 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
             name="attachments"
             component={FileDropField}
             opts={{
-              optClass: currentQuestionIndex !== 6 && `${hideable} ${animateable}`,
+              optClass: currentQuestionIndex !== 5 && `${hideable} ${animateable}`,
               onDeleteField: (value, objKey, cb) => {
                 if (cb) cb()
               },
