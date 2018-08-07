@@ -15,30 +15,21 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
   validate: (values) => {
     return Validators({
       story: [{ type: "length", opts: { max: 600 } }],
-      startup_questionnaire_team_founders: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: false,
-          childFields: {
-            avatar: ["filePresences"],
-            name: ["presences"],
-            position: ["presences"],
-            contract: ["presences"],
-            salary: ["presences"],
-            years_of_experience: ["presences", "noDecimal"],
-            linked_in: ["presences", "httpLink"],
-          }
-        }
-      }],
       startup_questionnaire_team_members: [{
         type: "complexArrOfObj",
         opts: {
           selfPresences: false,
           childFields: {
             avatar: ["filePresences"],
-            name: ["presences"],
-            position: ["presences"],
-            contract: ["presences"]
+            first_name: ["presences"],
+            last_name: ["presences"],
+            member_type: ["presences"],
+            title: ["presences"],
+            bio: ["presences"],
+            linkedin: ["presences", "httpLink"],
+            commitment: ["presences"],
+            salary: ["currencyPresences"],
+            equity: ["presences"],
           }
         }
       }],
@@ -47,9 +38,11 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
         opts: {
           selfPresences: false,
           childFields: {
-            avatar: [],
-            name: ["presences"],
-            expertise: ["presences", { type: "length", opts: { max: 600 } }]
+            first_name: ["presences"],
+            last_name: ["presences"],
+            role: ["presences"],
+            bio: [{ type: "length", opts: { max: 25 } }],
+            linkedin: ["presences", "httpLink"]
           }
         }
       }],
@@ -64,7 +57,6 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
         }
       }]
     }, values, [
-      "startup_questionnaire_team_founders",
       "startup_questionnaire_team_members",
       "startup_questionnaire_team_advisors",
       "attachments"
@@ -90,19 +82,22 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
           />
 
           <FieldArray
-            name="startup_questionnaire_team_founders"
+            name="startup_questionnaire_team_members"
             component={DynamicFieldArray}
             opts={{
               label: "2. Co-founders and Officers",
               groupName: "Founder/Officer",
               newFieldInit: {
                 avatar: '',
-                name: '',
-                position: '',
-                contract: '',
+                first_name: '',
+                last_name: '',
+                member_type: '',
+                title: '',
+                bio: '',
+                linkedin: '',
+                commitment: '',
                 salary: { currency: '', amount: '' },
-                years_of_experience: '',
-                linked_in: ''
+                equity: ''
               },
               onDeleteField: dMSQAttributes,
               dynamicFields: [
@@ -116,30 +111,66 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   }
                 },
                 {
-                  key: "name",
+                  key: "first_name",
                   component: TextField,
                   opts: {
-                    label: "Name"
+                    label: "First Name"
                   }
                 },
                 {
-                  key: "position",
+                  key: "last_name",
                   component: TextField,
                   opts: {
-                    label: "Position"
+                    label: "Last Name"
                   }
                 },
                 {
-                  key: "contract",
+                  key: "member_type",
+                  component: SelectField,
+                  opts: {
+                    label: "Member Type",
+                    options: [{ id: "founder", name: "Co-Founder" }, { id: "member", name: "Member" }],
+                    valueField: "id",
+                    textField: "name"
+                  }
+                },
+                {
+                  key: "title",
+                  component: TextField,
+                  opts: {
+                    label: "Job Title"
+                  }
+                },
+                {
+                  key: "bio",
+                  component: TextArea,
+                  opts: {
+                    label: "Short Bio (optional)",
+                    hint: "Max 25 Words"
+                  }
+                },
+                {
+                  key: "linkedin",
+                  component: TextField,
+                  opts: {
+                    label: "Linkedin",
+                    placeholder: "https://www.linkedin.com/in/example-person"
+                  }
+                },
+                {
+                  key: "commitment",
                   component: SelectField,
                   opts: {
                     options: [
-                      { key: "full_time", name: "Full-Time" },
-                      { key: "part_time", name: "Part-Time" }
+                      { id: "quarter", name: "25%" },
+                      { id: "half", name: "50%" },
+                      { id: "three_quarters", name: "75%" },
+                      { id: "full", name: "Full Time" }
                     ],
-                    placeholder: "Contract Type",
+                    placeholder: "Select a Commitment",
+                    hint: "25%, 50%, 75% or full-time",
                     label: "Contract Type",
-                    valueField: "key",
+                    valueField: "id",
                     textField: "name",
                   }
                 },
@@ -148,19 +179,79 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   component: CurrencyField,
                   opts: {
                     type: "Number",
-                    label: "Salary"
+                    label: "Salary Amount",
+                    hint: "This info will not appear on your listed profile"
                   }
                 },
                 {
-                  key: "years_of_experience",
+                  key: "equity",
                   component: TextField,
                   opts: {
-                    type: "Number",
-                    label: "Years of Experience"
+                    type: "number",
+                    label: "Equity Interest",
+                    backInputGroup: "%"
+                  }
+                }
+              ]
+            }}
+          />
+
+          <FieldArray
+            name="startup_questionnaire_team_advisors"
+            component={DynamicFieldArray}
+            opts={{
+              label: "3. Notable Advisors & Investors (optional)",
+              groupName: "Advisors/Investors",
+              newFieldInit: {
+                avatar: '',
+                first_name: '',
+                last_name: '',
+                role: '',
+                bio: '',
+                linkedin: ''
+              },
+              onDeleteField: dMSQAttributes,
+              dynamicFields: [
+                {
+                  key: "avatar",
+                  component: FileField,
+                  opts: {
+                    label: "Avatar",
+                    optClass: "image-field-avatar",
+                    urlKey: "original"
                   }
                 },
                 {
-                  key: "linked_in",
+                  key: "first_name",
+                  component: TextField,
+                  opts: {
+                    label: "First Name"
+                  }
+                },
+                {
+                  key: "last_name",
+                  component: TextField,
+                  opts: {
+                    label: "Last Name"
+                  }
+                },
+                {
+                  key: "role",
+                  component: TextField,
+                  opts: {
+                    label: "Role Description"
+                  }
+                },
+                {
+                  key: "bio",
+                  component: TextArea,
+                  opts: {
+                    label: "Short Bio (optional)",
+                    hint: "Max 25 Words"
+                  }
+                },
+                {
+                  key: "linkedin",
                   component: TextField,
                   opts: {
                     label: "Linkedin",
@@ -172,106 +263,10 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
           />
 
           <FieldArray
-            name="startup_questionnaire_team_members"
-            component={DynamicFieldArray}
-            opts={{
-              label: "3. Team Members (optional)",
-              groupName: "Members",
-              newFieldInit: {
-                avatar: '',
-                name: '',
-                position: '',
-                contract: ''
-              },
-              onDeleteField: dMSQAttributes,
-              dynamicFields: [
-                {
-                  key: "avatar",
-                  component: FileField,
-                  opts: {
-                    label: "Avatar",
-                    optClass: "image-field-avatar",
-                    urlKey: "original"
-                  }
-                },
-                {
-                  key: "name",
-                  component: TextField,
-                  opts: {
-                    label: "Name"
-                  }
-                },
-                {
-                  key: "position",
-                  component: TextField,
-                  opts: {
-                    label: "Position"
-                  }
-                },
-                {
-                  key: "contract",
-                  component: SelectField,
-                  opts: {
-                    options: [
-                      { key: "full_time", name: "Full-Time" },
-                      { key: "part_time", name: "Part-Time" }
-                    ],
-                    label: "Contract Type",
-                    placeholder: "Contract Type",
-                    valueField: "key",
-                    textField: "name",
-                  }
-                }
-              ]
-            }}
-          />
-
-          <FieldArray
-            name="startup_questionnaire_team_advisors"
-            component={DynamicFieldArray}
-            opts={{
-              label: "4. Notable Advisors & Investors (optional)",
-              groupName: "Advisors/Investors",
-              newFieldInit: {
-                avatar: '',
-                name: '',
-                expertise: ''
-              },
-              onDeleteField: dMSQAttributes,
-              dynamicFields: [
-                {
-                  key: "avatar",
-                  component: FileField,
-                  opts: {
-                    label: "Avatar (optional)",
-                    optClass: "image-field-avatar",
-                    urlKey: "original"
-                  }
-                },
-                {
-                  key: "name",
-                  component: TextField,
-                  opts: {
-                    label: "Name"
-                  }
-                },
-                {
-                  key: "expertise",
-                  component: TextArea,
-                  opts: {
-                    label: "Expertise",
-                    hint: "Max 600 Words"
-                  }
-                }
-              ]
-            }}
-          />
-
-          <FieldArray
             name="attachments"
             component={DynamicFieldArray}
             opts={{
-              label: "5. You have a some pictures to share about your team story (optional)",
+              label: "4. You have a some pictures to share about your team story (optional)",
               hint: "Upload your document - a picture says more than a thousand words",
               groupName: "File",
               newFieldInit: {

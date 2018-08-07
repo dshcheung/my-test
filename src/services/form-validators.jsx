@@ -169,6 +169,16 @@ const validators = {
       return "Please Include http:// or https:// in front of the link"
     }
   },
+  currencyPresences: (value) => {
+    if (value) {
+      const { currency, amount } = value
+
+      if (!currency) return "Require Currency"
+      if (!amount) return "Require Amount"
+    } else {
+      return "Required"
+    }
+  },
   mobile: (value) => {
     if (value) {
       const m = value.split("-")
