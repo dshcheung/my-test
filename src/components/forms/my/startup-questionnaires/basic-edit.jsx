@@ -99,10 +99,22 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
           />
 
           <Field
+            name="vertical"
+            component={SelectField}
+            opts={{
+              options: this.props.basicOptions,
+              valueField: "name",
+              textField: "name",
+              label: "5. Vertical",
+              placeholder: "Select a vertical"
+            }}
+          />
+
+          <Field
             name="hashtags"
             component={MultiselectField}
             opts={{
-              label: "5. Hashtags",
+              label: "6. Hashtags",
               placeholder: "Hashtags",
               options: this.props.hashtagOptions.map((h) => {
                 return {
@@ -122,7 +134,7 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
             name="attachments"
             component={DynamicFieldArray}
             opts={{
-              label: "6. Visual Identity",
+              label: "7. Visual Identity",
               groupName: "File",
               newFieldInit: {
                 title: '',
