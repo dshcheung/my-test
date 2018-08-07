@@ -179,7 +179,7 @@ const generateParams = (values) => {
     { target: 'team.attachments', key: 'file' },
     { target: 'financial.attachments', key: 'file' },
     { target: 'campaign.attachments', key: 'file' },
-    { target: 'dataroom.attachments', key: 'file' },
+    { target: 'duediligence.attachments', key: 'file' },
   ]
 
   checkFileList.forEach((c) => {
@@ -285,7 +285,7 @@ const generateParams = (values) => {
       valuation_cap_attributes: _.get(values, 'campaign.valuation_cap', null),
       attachments_attributes: _.get(values, 'campaign.attachments', null)
     },
-    attachments_attributes: _.get(values, 'dataroom.attachments', null)
+    attachments_attributes: _.get(values, 'duediligence.attachments', null)
   }
 
   return params

@@ -208,7 +208,7 @@ export default class SharedStartupQuestionnaires extends Component {
           key: "campaign",
           dataKey: "startup_questionnaire_campaign",
           model: MyStartupQuestionnairesCampaignForm,
-          nextTab: "dataroom",
+          nextTab: "duediligence",
           formatValues: (q) => {
             const nq = {
               ...q,
@@ -231,7 +231,7 @@ export default class SharedStartupQuestionnaires extends Component {
           }
         },
         {
-          key: "dataroom",
+          key: "duediligence",
           dataKey: "attachments",
           model: MyStartupQuestionnairesAttachmentsForm,
           nextTab: "submission",

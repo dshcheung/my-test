@@ -60,8 +60,8 @@ export default class MyCampaignsNew extends Component {
           title: "Campaign"
         },
         {
-          key: "dataroom",
-          title: "Dataroom"
+          key: "duediligence",
+          title: "Due Diligence"
         },
         {
           key: "submission",
