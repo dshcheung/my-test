@@ -25,7 +25,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
             last_name: ["presences"],
             member_type: ["presences"],
             title: ["presences"],
-            bio: ["presences"],
+            bio: ["presences", { type: "length", opts: { max: 60 } }],
             linkedin: ["presences", "httpLink"],
             commitment: ["presences"],
             salary: ["currencyPresences"],
@@ -146,7 +146,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   component: TextArea,
                   opts: {
                     label: "Short Bio (optional)",
-                    hint: "Max 25 Words"
+                    hint: "Max 60 Words"
                   }
                 },
                 {
