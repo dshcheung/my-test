@@ -249,7 +249,7 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
                   { name: "Company Logo" },
                   { name: "Visual Identity (Banner)" }
                 ],
-                valueField: 'id',
+                valueField: 'name',
                 textField: 'name',
                 placeholder: 'Select a Title',
                 filter: true,
