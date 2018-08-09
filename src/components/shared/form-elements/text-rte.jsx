@@ -8,7 +8,8 @@ export default class TextRTE extends Component {
     this.state = {
       value: props.input.value ?
         RichTextEditor.createValueFromString(this.props.input.value, 'html') :
-        RichTextEditor.createEmptyValue()
+        RichTextEditor.createEmptyValue(),
+      format: 'html'
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -44,6 +45,9 @@ export default class TextRTE extends Component {
         { hint && <span className="help-block hint">{hint}</span> }
         <RichTextEditor
           value={value}
+          className="rte-editor"
+          toolbarClassName="rte-toolbar"
+          editorClassName="rte-content"
           onChange={handleChange}
           placeholder={placeholder || "Start Typing Here"}
         />

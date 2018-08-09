@@ -355,3 +355,25 @@ $input-border-focus: 1px solid #666;
     border-left: 0;
   }
 }
+
+.rte-editor {
+  &:focus, &:hover {
+    .rte-toolbar {
+      > div {
+        opacity: 1;
+        visibility: visibile;
+      }
+    }
+  }
+  .rte-toolbar {
+    > div {
+      // opacity: 0;
+      // visibility: hidden;
+    }
+  }
+  .rte-content {
+    .public-DraftEditor-content {
+      min-height: 110px;
+    }
+  }
+}
