@@ -2,6 +2,26 @@ import React, { Component } from 'react'
 import { DropdownList } from 'react-widgets'
 
 export default class SelectField extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      searchTerm: ""
+    }
+
+    this.onBlur = this.onBlur.bind(this)
+    this.onSearch = this.onSearch.bind(this)
+  }
+
+  onBlur() {
+    this.setState({ searchTerm: "" })
+    this.props.input.onBlur()
+  }
+
+  onSearch(searchTerm) {
+    this.setState({ searchTerm })
+  }
+
   render() {
     const {
       input, meta: { touched, invalid, error },
@@ -48,12 +68,15 @@ export default class SelectField extends Component {
           placeholder={placeholder}
           valueField={valueField}
           textField={textField}
+          searchTerm={this.state.searchTerm}
           messages={{
             filterPlaceholder: allowCreate ? "Type to Filter or Create / Select One" : "Type to Filter / Select One"
           }}
           {...input}
           onCreate={(text) => { input.onChange(text) }}
           onChange={(value) => { input.onChange(value[valueField]) }}
+          onBlur={this.onBlur}
+          onSearch={this.onSearch}
         />
         { label && <label className={input.value && 'has-value'} htmlFor={input.name}>{label} {hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>} </label> }
         { !label && <span className="help-block">{touched && hasErrorClass && error.join(", ")}&nbsp;</span>}

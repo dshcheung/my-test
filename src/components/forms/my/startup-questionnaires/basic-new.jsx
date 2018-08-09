@@ -91,7 +91,7 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
           key: "attachments"
         }
       ],
-      currentQuestionIndex: 0,
+      currentQuestionIndex: 5,
       maxIndex: 5,
       animateClass: "fadeInRight"
     }

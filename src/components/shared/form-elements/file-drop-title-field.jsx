@@ -6,11 +6,14 @@ export default class FileDropTitleField extends Component {
     super(props)
 
     this.state = {
-      title: null
+      title: null,
+      searchTerm: ""
     }
 
     this.onChange = this.onChange.bind(this)
     this.onCreate = this.onCreate.bind(this)
+    this.onBlur = this.onBlur.bind(this)
+    this.onSearch = this.onSearch.bind(this)
   }
 
   onChange(option) {
@@ -22,6 +25,15 @@ export default class FileDropTitleField extends Component {
   onCreate(title) {
     this.props.input.onChange(title)
     this.setState({ title })
+  }
+
+  onBlur() {
+    this.setState({ searchTerm: "" })
+    this.props.input.onBlur()
+  }
+
+  onSearch(searchTerm) {
+    this.setState({ searchTerm })
   }
 
   render() {
@@ -58,9 +70,15 @@ export default class FileDropTitleField extends Component {
           placeholder={placeholder}
           valueField={valueField}
           textField={textField}
+          searchTerm={this.state.searchTerm}
+          messages={{
+            filterPlaceholder: allowCreate ? "Type to Filter or Create / Select One" : "Type to Filter / Select One"
+          }}
           {...input}
           onCreate={(text) => { this.onCreate(text) }}
           onChange={(value) => { this.onChange(value) }}
+          onBlur={this.onBlur}
+          onSearch={this.onSearch}
         />
       </div>
     )
