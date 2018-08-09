@@ -21,7 +21,7 @@ export default class DynamicFieldArray extends Component {
     } = this.props
 
     return (
-      <div className="clearfix dynamic-field">
+      <div className="clearfix dynamic-field margin-bottom-30">
         <div className="field-header">
           <div className={error && "has-error"}>
             { label && <label htmlFor={fields.name}>{label} {error && <span className="help-block">{error}</span>}</label> }

@@ -8,7 +8,7 @@ export default class StaticField extends Component {
     } = this.props
 
     return (
-      <div className="clearfix margin-bottom-20 static-field">
+      <div className="clearfix static-field margin-bottom-30">
         <div className="field-header">
           { label && <label htmlFor={name}>{label}</label> }
           { hint && <span className="help-block hint">{hint}</span>}
