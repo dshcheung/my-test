@@ -4,7 +4,7 @@ import { reduxForm, Field, FieldArray } from 'redux-form'
 import Validators from '../../../../services/form-validators'
 
 import TextField from '../../../shared/form-elements/text-field'
-import TextArea from '../../../shared/form-elements/text-area'
+import TextRTE from '../../../shared/form-elements/text-rte'
 import DateTimePicker from '../../../shared/form-elements/datetime-picker'
 import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
 import SelectField from '../../../shared/form-elements/select-field'
@@ -70,7 +70,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
 
           <Field
             name="problem"
-            component={TextArea}
+            component={TextRTE}
             opts={{
               label: "1. Problem",
               hint: "Max 100 Words"
@@ -79,7 +79,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
 
           <Field
             name="solution"
-            component={TextArea}
+            component={TextRTE}
             opts={{
               label: "2. Solution",
               hint: "Max 100 Words"
@@ -88,7 +88,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
 
           <Field
             name="make_money"
-            component={TextArea}
+            component={TextRTE}
             opts={{
               label: "3. What is your revenue model?",
               hint: "Max 100 Words. It identifies which revenue source to pursue, how to price the value, and who pays for the value. It is a key component of a company's business model. ex: Advertising, Freemium model, Subscription model, Licensing, Selling data etc..."
@@ -97,7 +97,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
 
           <Field
             name="solution_benchmark"
-            component={TextArea}
+            component={TextRTE}
             opts={{
               label: "4. What is your Unique Selling Point USP",
               hint: "Max 200 Words. Define your company's unique position in the marketplace. A strong USP clearly articulates a specific benefit - one that other competitors don't offer - that makes you stand out."
@@ -158,7 +158,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                 },
                 {
                   key: "content",
-                  component: TextArea,
+                  component: TextRTE,
                   opts: {
                     label: "Content",
                     hint: "Max 20 Words"

@@ -3,7 +3,7 @@ import { reduxForm, Field, FieldArray } from 'redux-form'
 
 import Validators from '../../../../services/form-validators'
 
-import TextArea from '../../../shared/form-elements/text-area'
+import TextRTE from '../../../shared/form-elements/text-rte'
 import TextField from '../../../shared/form-elements/text-field'
 import SelectField from '../../../shared/form-elements/select-field'
 import FileField from '../../../shared/form-elements/file-field'
@@ -74,7 +74,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
         <form onSubmit={handleSubmit}>
           <Field
             name="story"
-            component={TextArea}
+            component={TextRTE}
             opts={{
               label: "1. Team story",
               hint: "Max 600 Words. When did you meet ? What have you done together ? what is the alchemy you experienced ? Why are you the best team to conduct your mission ? Be reflective and personal "
@@ -143,7 +143,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                 },
                 {
                   key: "bio",
-                  component: TextArea,
+                  component: TextRTE,
                   opts: {
                     label: "Short Bio (optional)",
                     hint: "Max 60 Words"
@@ -244,7 +244,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                 },
                 {
                   key: "bio",
-                  component: TextArea,
+                  component: TextRTE,
                   opts: {
                     label: "Short Bio (optional)",
                     hint: "Max 25 Words"

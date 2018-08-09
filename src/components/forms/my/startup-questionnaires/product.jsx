@@ -3,7 +3,7 @@ import { reduxForm, Field, FieldArray } from 'redux-form'
 
 import Validators from '../../../../services/form-validators'
 
-import TextArea from '../../../shared/form-elements/text-area'
+import TextRTE from '../../../shared/form-elements/text-rte'
 import CheckboxField from '../../../shared/form-elements/checkbox-field'
 import DateTimePicker from '../../../shared/form-elements/datetime-picker'
 import TextField from '../../../shared/form-elements/text-field'
@@ -49,7 +49,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
         <form onSubmit={handleSubmit}>
           <Field
             name="product"
-            component={TextArea}
+            component={TextRTE}
             opts={{
               label: "1. Your product or service",
               hint: "Features, Underlying Technology, UI, UX,.... You can here explain in more details how your product will indeed solve the problem for the customer"

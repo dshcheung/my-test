@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class TextAreaField extends Component {
+export default class TextArea extends Component {
   render() {
     const {
       input, meta: { touched, invalid, error },

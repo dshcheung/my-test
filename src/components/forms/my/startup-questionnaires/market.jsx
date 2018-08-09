@@ -4,7 +4,7 @@ import { reduxForm, Field, FieldArray } from 'redux-form'
 import Validators from '../../../../services/form-validators'
 
 import TextField from '../../../shared/form-elements/text-field'
-import TextArea from '../../../shared/form-elements/text-area'
+import TextRTE from '../../../shared/form-elements/text-rte'
 import SelectField from '../../../shared/form-elements/select-field'
 import DateTimePicker from '../../../shared/form-elements/datetime-picker'
 import FileField from '../../../shared/form-elements/file-field'
@@ -62,7 +62,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
         <form onSubmit={handleSubmit}>
           <Field
             name="global_market"
-            component={TextArea}
+            component={TextRTE}
             opts={{
               label: "1. Global market",
               hint: "Worldwide, or any global reference point that is the market you could address eventually, after scaling up. Please provide basic metrics for this market; size and growth rate."
@@ -71,7 +71,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
 
           <Field
             name="target_market"
-            component={TextArea}
+            component={TextRTE}
             opts={{
               label: "2. Targeted market (your customers)",
               hint: "Your entry market that you are targeting in the coming months. Remember that its definition should give us a precise description of your targeted customer. Please provide basic metrics for this market; size and growth rate"
@@ -80,7 +80,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
 
           <Field
             name="traction"
-            component={TextArea}
+            component={TextRTE}
             opts={{
               label: "3. Traction",
               hint: "Max 200 Words. Users and/or validated feedback"
@@ -89,7 +89,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
 
           <Field
             name="barriers_to_entry"
-            component={TextArea}
+            component={TextRTE}
             opts={{
               label: "4. Barriers to entry",
               hint: "Max 200 Words. Main reasons why a company will find it difficult to conquer your customers when entering your market"
@@ -98,7 +98,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
 
           <Field
             name="competition_landscape"
-            component={TextArea}
+            component={TextRTE}
             opts={{
               label: "5. Describe your competition landscape",
               hint: "Max 200 Words"
@@ -134,7 +134,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
                 },
                 {
                   key: "solution_benchmark",
-                  component: TextArea,
+                  component: TextRTE,
                   opts: {
                     label: "Solution Benchmark",
                     hint: "Max 200 Words. Features that differentiate your solution from this competitor’s solution"
@@ -168,7 +168,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
                 },
                 {
                   key: "action",
-                  component: TextArea,
+                  component: TextRTE,
                   opts: {
                     label: "Action",
                     hint: "Max 40 Words"

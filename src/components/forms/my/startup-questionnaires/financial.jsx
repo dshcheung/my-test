@@ -3,7 +3,7 @@ import { reduxForm, Field, FieldArray } from 'redux-form'
 
 import Validators from '../../../../services/form-validators'
 
-import TextArea from '../../../shared/form-elements/text-area'
+import TextRTE from '../../../shared/form-elements/text-rte'
 import TextField from '../../../shared/form-elements/text-field'
 import DateTimePicker from '../../../shared/form-elements/datetime-picker'
 import SelectField from '../../../shared/form-elements/select-field'
@@ -165,7 +165,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                 },
                 {
                   key: "description",
-                  component: TextArea,
+                  component: TextRTE,
                   opts: {
                     label: "Description"
                   }
