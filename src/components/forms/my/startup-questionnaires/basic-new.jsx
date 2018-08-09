@@ -140,7 +140,7 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
                 <div className="step-dot primary-color three" />
                 <div className="step-dot primary-color four" />
                 <div className="step-dot primary-color five" />
-                <div className="progress-bar progress-bar-success" style={{ width: `${currentQuestionPercentage}%` }} />
+                <div className="progress-bar progress-bar-pink" style={{ width: `${currentQuestionPercentage}%` }} />
               </div>
             </div>
           </div>
