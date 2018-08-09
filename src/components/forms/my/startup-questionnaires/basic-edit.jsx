@@ -104,6 +104,7 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
             opts={{
               label: "5. Verticals & Technologies",
               placeholder: "#FinTech #Blockchain",
+              hint: "Max 5 Tags",
               options: this.props.hashtagOptions.map((h) => {
                 return {
                   tag: h.name
@@ -114,7 +115,8 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
               onDeleteField: dMSQAttributes,
               TagItem: ({ item }) => {
                 return <span>#{item.tag}</span>
-              }
+              },
+              max: 5
             }}
           />
 

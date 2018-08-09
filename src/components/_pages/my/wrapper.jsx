@@ -25,21 +25,32 @@ export default class MyWrapper extends Component {
   }
 
   componentWillMount() {
-    if (!this.props.currentUser && !this.props.getMyProfileInProcess) {
-      this.notLoggedInRedirect()
-    }
+    this.checkRedirection(this.props)
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.currentUser && !nextProps.redirectionInProcess && !nextProps.getMyProfileInProcess) {
-      this.notLoggedInRedirect()
-    }
+    this.checkRedirection(nextProps)
+  }
 
-    const roleAccess = extractAttrFromRoutes(nextProps.routes, "roleAccess")
-    if (!this.state.redirecting && roleAccess === "StartupUser" && nextProps.currentUser && nextProps.currentUser.role !== "StartupUser") {
-      this.notStartupUserRedirect()
-    } else if (!this.state.redirecting && roleAccess === "Investor" && nextProps.currentUser && nextProps.currentUser.role !== "Investor") {
-      this.notInvestorRedirect()
+  checkRedirection(props) {
+    if (!props.redirectionInProcess && !props.getMyProfileInProcess) {
+      if (!props.currentUser) {
+        this.notLoggedInRedirect()
+      } else if (!this.state.redirecting && props.currentUser) {
+        const role = props.currentUser.role
+
+        const verifiedEmail = props.currentUser.verified_email
+        if (role === "StartupUser" && !verifiedEmail) {
+          this.notVerifiedEmailRedirect()
+        }
+
+        const roleAccess = extractAttrFromRoutes(props.routes, "roleAccess")
+        if (roleAccess === "StartupUser" && role !== "StartupUser") {
+          this.notStartupUserRedirect()
+        } else if (roleAccess === "Investor" && role !== "Investor") {
+          this.notInvestorRedirect()
+        }
+      }
     }
   }
 
@@ -50,14 +61,20 @@ export default class MyWrapper extends Component {
 
   notStartupUserRedirect() {
     this.setState({ redirecting: true })
-    this.props.router.push("/")
+    this.props.router.push("/my/portfolio")
     notyWarning("You Are Not A Startup user")
   }
 
   notInvestorRedirect() {
     this.setState({ redirecting: true })
-    this.props.router.push("/")
+    this.props.router.push("/my/dashboard")
     notyWarning("You Are Not An Investor")
+  }
+
+  notVerifiedEmailRedirect() {
+    this.setState({ redirecting: true })
+    this.props.router.push("/verify")
+    notyWarning("Please Verify Your Email First")
   }
 
   render() {

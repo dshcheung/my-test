@@ -22,6 +22,7 @@ export const uMyVerifications = (values, cb) => {
   return {
     type: U_MY_VERIFICATIONS,
     request,
+    hasRedirection: true,
     successCB: (dispatch, data) => {
       dispatch(setCurrentUser(data))
       notySuccess("Successfully Verifed!")

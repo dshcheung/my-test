@@ -195,6 +195,7 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
             opts={{
               optClass: currentQuestionIndex !== 4 && `${hideable} ${animateable}`,
               placeholder: "#FinTech #Blockchain #O2O",
+              hint: "Max 5 Tags",
               options: this.props.hashtagOptions.map((h) => {
                 return {
                   tag: h.name
@@ -208,6 +209,7 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
               TagItem: ({ item }) => {
                 return <span>#{item.tag}</span>
               },
+              max: 5,
               requestInProcess: this.props.gHashtagOptionsInProcess
             }}
           />

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Multiselect from 'react-widgets/lib/Multiselect'
 
+import { notyError } from '../../../services/noty'
+
 export default class MultiselectField extends Component {
   constructor(props) {
     super(props)
@@ -16,7 +18,7 @@ export default class MultiselectField extends Component {
   }
 
   handleChange(tags, meta) {
-    const { input: { value }, opts: { textField, onDeleteField } } = this.props
+    const { input: { value }, opts: { textField, onDeleteField, max } } = this.props
 
     const unionTags = _.unionBy(value, tags, textField)
 
@@ -35,13 +37,26 @@ export default class MultiselectField extends Component {
         this.setState({ disabled: false })
       })
     } else {
-      this.props.input.onChange(unionTags)
+      if (!max) {
+        this.props.input.onChange(unionTags)
+      } else if (unionTags.length <= max) {
+        this.props.input.onChange(unionTags)
+      } else {
+        notyError(`Maximum ${max} Tag(s)`)
+      }
     }
   }
 
   handleCreate(tag) {
+    const { opts: { max } } = this.props
     const newTags = [...this.props.input.value, { [this.props.opts.textField]: tag }]
-    this.props.input.onChange(newTags)
+    if (!max) {
+      this.props.input.onChange(newTags)
+    } else if (newTags.length <= max) {
+      this.props.input.onChange(newTags)
+    } else {
+      notyError(`Maximum ${max} Tag(s)`)
+    }
   }
 
   handleBlur() {
@@ -71,7 +86,7 @@ export default class MultiselectField extends Component {
         <Multiselect
           disabled={this.state.disabled}
           containerClassName={`${label && "has-label"} ${input.value.length > 0 && "has-value"}`}
-          allowCreate={'onFilter'}
+          allowCreate="onFilter"
           busy={requestInProcess}
           data={options}
           placeholder={placeholder}
