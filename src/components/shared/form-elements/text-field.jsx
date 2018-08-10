@@ -9,7 +9,7 @@ export default class TextField extends Component {
         optClass,
         type,
         label, placeholder, hint,
-        step, min,
+        step, min, readOnly, overrideValue,
         frontInputGroup, backInputGroup
       }
     } = this.props
@@ -30,7 +30,9 @@ export default class TextField extends Component {
                 type={type || "text"}
                 step={step}
                 min={min}
+                readOnly={readOnly}
                 {...input}
+                value={overrideValue || input.value}
               />
               {
                 backInputGroup && <span className="input-group-addon">{backInputGroup}</span>
@@ -43,7 +45,9 @@ export default class TextField extends Component {
               type={type || "text"}
               step={step}
               min={min}
+              readOnly={readOnly}
               {...input}
+              value={overrideValue || input.value}
             />
           )
         }

@@ -60,25 +60,19 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
     const { handleSubmit, submitInProcess, optClass, dMSQAttributes, campaignTypes, gImmovableInProcess, pristine } = this.props
 
     const campaignType = _.get(this.props.values, 'campaign_type', '')
+    const raised = _.get(this.props.values, 'raised.amount', '') || 0
+    const preMoney = _.get(this.props.values, 'pre_money_valuation.amount', '') || 0
+    const equityPercentage = (preMoney / raised) * 100 || 0
 
     return (
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
           <Field
-            name="raised"
-            component={CurrencyField}
-            opts={{
-              label: "1. Amount looking to raise",
-              placeholder: "5,000,000"
-            }}
-          />
-
-          <Field
             name="campaign_type"
             component={SelectField}
             opts={{
               requestInProcess: gImmovableInProcess,
-              label: "2. Type of Deal",
+              label: "1. Type of Deal",
               placeholder: "Select Valuation Type",
               options: campaignTypes,
               valueField: "id",
@@ -87,24 +81,36 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
             }}
           />
 
+          <Field
+            name="raised"
+            component={CurrencyField}
+            opts={{
+              label: "2. Amount looking to raise",
+              placeholder: "5,000,000"
+            }}
+          />
+
           {
             campaignType === "equity" && (
               <div>
+                <Field
+                  name="pre_money_valuation"
+                  component={CurrencyField}
+                  opts={{
+                    label: "3. Pre money valuation",
+                    placeholder: "1,000,000"
+                  }}
+                />
+
                 <Field
                   name="equity_percentage"
                   component={TextField}
                   opts={{
                     type: "number",
-                    label: "3. Equity Percentage",
-                    backInputGroup: "%"
-                  }}
-                />
-
-                <Field
-                  name="pre_money_valuation"
-                  component={CurrencyField}
-                  opts={{
-                    label: "4. Pre money valuation"
+                    label: "4. Equity Percentage (Calculated Automatically)",
+                    backInputGroup: "%",
+                    readOnly: true,
+                    overrideValue: equityPercentage.toFixed(1)
                   }}
                 />
               </div>
