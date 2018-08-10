@@ -8,17 +8,78 @@ export default class DateTimePickerField extends Component {
   constructor(props) {
     super(props)
 
-    this.handleChange = this.handleChange.bind(this)
+    this.state = {
+      date: null,
+      open: false,
+      buttonClicked: false
+    }
+
+    this.onChange = this.onChange.bind(this)
+    this.onSelect = this.onSelect.bind(this)
+    this.onFocus = this.onFocus.bind(this)
+    this.onBlur = this.onBlur.bind(this)
+    this.onKey = this.onKey.bind(this)
   }
 
   componentDidMount() {
-    if (this.node) {
-      this.node.querySelector('.rw-datetime-picker .rw-widget-picker input').disabled = true
+    this.node.querySelector("input").addEventListener("click", () => {
+      this.setState({ buttonClicked: false, open: "date" })
+    })
+
+    this.node.querySelectorAll("button")[0].addEventListener("click", () => {
+      this.setState({ buttonClicked: true, open: "date" })
+    })
+
+    this.node.querySelectorAll("button")[1].addEventListener("click", () => {
+      this.setState({ buttonClicked: true, open: "time" })
+    })
+  }
+
+  onChange(date) {
+    this.setState({ date })
+    this.props.input.onChange(date)
+  }
+
+  onSelect() {
+    const { open, buttonClicked } = this.state
+    const { opts: { time } } = this.props
+
+    if (open === "date" && (time === undefined || time) && !buttonClicked) {
+      this.setState({ open: "time" })
+    } else {
+      this.setState({ open: false })
     }
   }
 
-  handleChange(date) {
-    this.props.input.onChange(date)
+  onFocus() {
+    setTimeout(() => {
+      const { buttonClicked } = this.state
+      const { opts: { date, time } } = this.props
+
+      if (!buttonClicked) {
+        if (date === undefined || date) {
+          this.setState({ open: "date" })
+        } else if (time === undefined || time) {
+          this.setState({ open: "time" })
+        }
+      }
+    }, 200)
+  }
+
+  onBlur(e) {
+    this.setState({ open: false })
+    if (this.state.date != null) {
+      this.props.input.onBlur(this.state.date)
+    } else {
+      setTimeout(() => {
+        e.target.value = ""
+      }, 0)
+      this.props.input.onBlur()
+    }
+  }
+
+  onKey(e) {
+    e.preventDefault()
   }
 
   render() {
@@ -41,21 +102,27 @@ export default class DateTimePickerField extends Component {
       >
         { hint && <span className="help-block hint">{hint}</span> }
         <DateTimePick
-          autofocus={false}
           containerClassName={`${label && "has-label"} ${input.value && "has-value"}`}
-          {...input}
-          onChange={this.handleChange}
-          onBlur={() => {}}
+          autofocus={false}
           placeholder={placeholder}
           date={date}
           time={time}
           format={format}
           min={min}
           max={max}
-          views={views}
           step={step || 30}
+          views={views}
           finalView="year"
-          value={input.value || null}
+          open={this.state.open}
+          onToggle={() => {}}
+          {...input}
+          value={this.state.date || null}
+          onChange={this.onChange}
+          onSelect={this.onSelect}
+          onFocus={this.onFocus}
+          onBlur={this.onBlur}
+          onKeyDown={this.onKey}
+          onKeyUp={this.onKey}
         />
         { label && <label className={input.value && 'has-value'} htmlFor={input.name}>{label} {hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>} </label> }
         { !label && <span className="help-block">{touched && hasErrorClass && error.join(", ")}&nbsp;</span>}
