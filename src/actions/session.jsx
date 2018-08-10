@@ -70,7 +70,13 @@ export const createSession = (values) => {
       if (data.role === "Investor") {
         dispatch(push("/my/portfolio"))
       } else if (data.role === "StartupUser") {
-        dispatch(push("/my/campaigns"))
+        const lastLocation = window.localStorage.getItem("lastLocation")
+        if (lastLocation) {
+          dispatch(push(lastLocation))
+          window.localStorage.setItem("lastLocation", "")
+        } else {
+          dispatch(push("/my/campaigns"))
+        }
       }
     },
     errorCB: (dispatch, data) => {

@@ -35,46 +35,30 @@ export default class MyWrapper extends Component {
   checkRedirection(props) {
     if (!props.redirectionInProcess && !props.getMyProfileInProcess) {
       if (!props.currentUser) {
-        this.notLoggedInRedirect()
+        this.redirection("/", "Please Login first", true)
       } else if (!this.state.redirecting && props.currentUser) {
         const role = props.currentUser.role
 
         const verifiedEmail = props.currentUser.verified_email
         if (role === "StartupUser" && !verifiedEmail) {
-          this.notVerifiedEmailRedirect()
+          this.redirection("/verify", "Please Verify Your Email First", true)
         }
 
         const roleAccess = extractAttrFromRoutes(props.routes, "roleAccess")
         if (roleAccess === "StartupUser" && role !== "StartupUser") {
-          this.notStartupUserRedirect()
+          this.redirection("/my/portfolio", "You Are Not A Startup user", false)
         } else if (roleAccess === "Investor" && role !== "Investor") {
-          this.notInvestorRedirect()
+          this.redirection("/my/dashboard", "You Are Not An Investor", false)
         }
       }
     }
   }
 
-  notLoggedInRedirect() {
-    this.props.router.push("/")
-    notyWarning("Please Login First")
-  }
-
-  notStartupUserRedirect() {
+  redirection(path, warningText, setLastLocation) {
+    window.localStorage.setItem("lastLocation", setLastLocation ? window.location.pathname : "")
+    if (warningText) notyWarning(warningText)
     this.setState({ redirecting: true })
-    this.props.router.push("/my/portfolio")
-    notyWarning("You Are Not A Startup user")
-  }
-
-  notInvestorRedirect() {
-    this.setState({ redirecting: true })
-    this.props.router.push("/my/dashboard")
-    notyWarning("You Are Not An Investor")
-  }
-
-  notVerifiedEmailRedirect() {
-    this.setState({ redirecting: true })
-    this.props.router.push("/verify")
-    notyWarning("Please Verify Your Email First")
+    this.props.router.push(path)
   }
 
   render() {
