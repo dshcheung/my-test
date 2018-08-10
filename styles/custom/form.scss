@@ -356,23 +356,33 @@ $input-border-focus: 1px solid #666;
 }
 
 .rte-editor {
-  &:focus, &:hover {
+  min-height: 150px;
+  &:focus-within, &:hover {
     .rte-toolbar {
+      height: auto;
+      // border-bottom: none;
       > div {
         opacity: 1;
-        visibility: visibile;
+        visibility: visible;
       }
+    }
+    .rte-content {
+      min-height: 80px;
     }
   }
   .rte-toolbar {
+    transition: height 300ms ease-in;
+    height: 0;
+    border-bottom: none;
     > div {
-      // opacity: 0;
-      // visibility: hidden;
+      transition: all 150ms ease-in;
+      opacity: 0;
+      visibility: hidden;
     }
   }
   .rte-content {
     .public-DraftEditor-content {
-      min-height: 110px;
+      min-height: 90px;
       max-height: 400px;
     }
   }

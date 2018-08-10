@@ -114,12 +114,12 @@ export default class MyCampaignsNew extends Component {
         }
 
         <div className="row">
-          <SharedOthersSideTitle title="startup" optClass="hidden-xs col-sm-3 col-md-offset-1 col-md-2" number={intro ? '' : 1} />
+          <SharedOthersSideTitle title="startup" optClass={`hidden-xs hidden-sm col-md-offset-1 col-md-2`} number={intro ? '' : 1} />
 
           {
             intro && (
               <SharedOthersIntro
-                optClass="col-sm-6 col-md-6"
+                optClass="col-sm-10 col-sm-offset-1 col-md-offset-0 col-md-7"
                 onContinue={this.onContinue}
                 title="what we need from you"
                 content={[
@@ -139,7 +139,7 @@ export default class MyCampaignsNew extends Component {
           {
             !intro && (
               <MyStartupQuestionnairesBasicNewForm
-                optClass="col-sm-6 col-md-6"
+                optClass="col-sm-10 col-sm-offset-1 col-md-offset-0 col-md-8"
                 onSubmit={this.cMyStartupQuestionnaire}
                 submitInProcess={this.props.cMyStartupQuestionnaireInProcess}
               />
