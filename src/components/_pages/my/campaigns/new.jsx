@@ -119,7 +119,7 @@ export default class MyCampaignsNew extends Component {
           {
             intro && (
               <SharedOthersIntro
-                optClass="col-sm-10 col-sm-offset-1 col-md-offset-0 col-md-7"
+                optClass="col-sm-10 col-sm-offset-1 col-md-offset-0 col-md-8"
                 onContinue={this.onContinue}
                 title="what we need from you"
                 content={[

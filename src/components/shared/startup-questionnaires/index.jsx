@@ -337,7 +337,7 @@ export default class SharedStartupQuestionnaires extends Component {
           onSubmit={this.uMyStartupQuestionnaire}
           dMSQAttributes={this.dMSQAttributes}
           submitInProcess={this.props.uMyStartupQuestionnaireInProcess || this.props.dMyStartupQuestionnaireAttributeInProcess}
-          optClass="col-sm-10 col-sm-offset-1 col-md-offset-0 col-md-7"
+          optClass="col-sm-10 col-sm-offset-1 col-md-offset-0 col-md-8"
           attachmentOptions={baseInfo.allAttachmentOptions ? attachmentOptions : _.filter(attachmentOptions, (o) => {
             return o.section === baseInfo.dataKey
           })}
