@@ -26,12 +26,10 @@ export default class DateTimePickerField extends Component {
       this.setState({ buttonClicked: false, open: "date" })
     })
 
-    this.node.querySelectorAll("button")[0].addEventListener("click", () => {
-      this.setState({ buttonClicked: true, open: "date" })
-    })
-
-    this.node.querySelectorAll("button")[1].addEventListener("click", () => {
-      this.setState({ buttonClicked: true, open: "time" })
+    this.node.querySelectorAll("button").forEach((elem) => {
+      elem.addEventListener("click", () => {
+        this.setState({ buttonClicked: true, open: "date" })
+      })
     })
   }
 
