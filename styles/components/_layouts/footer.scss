@@ -1,13 +1,10 @@
 #layouts-footer {
-  background-color: #18264C;
   .links {
-    padding: 50px 0;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: flex-start;
     align-content: space-around;
-
     .links-section {
       padding: 15px 0;
       width: inherit;
@@ -38,24 +35,16 @@
   }
 
   hr {
-    margin: 0;
     border-color: $gray-text;
   }
 
   .others {
     padding: 15px 0;
     font-size: $font-size-base;
-    color: $gray-text;
-    .copy-right {
-      float: left;
-    }
-
     .social {
-      float: right;
       list-style: none;
       padding: 0;
       margin: 0;
-
       li {
         display: inline-block;
         padding: 0 5px;

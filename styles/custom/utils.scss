@@ -182,6 +182,9 @@ a:hover {
 .border-bottom {
   border-bottom: 1px solid $gray-base;
 }
+.text-pink {
+  color: $ahub-pink;
+}
 .text-hover-none {
   &:hover {
     text-decoration: none;
