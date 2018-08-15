@@ -28,4 +28,10 @@ const render = (routes) => {
   )
 }
 
+history.listen(function (location) {
+  window.gtag('create', { trackingId: 'UA-124005113-1', cookieDomain: 'auto' });
+  window.gtag('set', 'page', location.pathname + location.search);
+  window.gtag('send', 'pageview', location.pathname + location.search);
+});
+
 render(currentRoutes)
