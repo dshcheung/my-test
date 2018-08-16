@@ -17,7 +17,9 @@ const validators = {
     if (max && length > max) return `Maximum ${max} Characters`
   },
   lengthWord: (value, { min, max }) => {
-    const length = value ? value.split(" ").length : 0
+    const newValue = value.replace(/(\r\n|\n|\r)/gm, " ").replace(/<[^>]*>/, " ").replace(/\s+/, ' ').trim()
+
+    const length = newValue ? newValue.split(" ").length : 0
     if (min && length < min) return `Minimum ${min} Words`
     if (max && length > max) return `Maximum ${max} Words`
   },
@@ -220,6 +222,7 @@ export default function Validators(fields, values, complexFields) {
 
     if (error.length > 0 || !isEmpty(error)) {
       errorsObj[field] = error
+      errorsObj._error = "Has Errors"
     }
   })
 

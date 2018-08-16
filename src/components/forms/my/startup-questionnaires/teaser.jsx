@@ -14,7 +14,7 @@ import FileField from '../../../shared/form-elements/file-field'
   form: "MyStartupQuestionnairesTeaserForm",
   validate: (values) => {
     return Validators({
-      problem: [{ type: "lengthWord", opts: { max: 100 } }],
+      problem: [{ type: "lengthWord", opts: { max: 5 } }],
       solution: [{ type: "lengthWord", opts: { max: 100 } }],
       make_money: [{ type: "lengthWord", opts: { max: 100 } }],
       solution_benchmark: [{ type: "lengthWord", opts: { max: 200 } }],

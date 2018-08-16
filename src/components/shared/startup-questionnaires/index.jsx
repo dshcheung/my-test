@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
+import { notyError } from '../../../services/noty'
+
 import {
   G_MY_STARTUP_QUESTIONNAIRE,
   U_MY_STARTUP_QUESTIONNAIRE, uMyStartupQuestionnaire,
@@ -335,6 +337,7 @@ export default class SharedStartupQuestionnaires extends Component {
           initialValues={initialValues}
           baseInfo={baseInfo}
           onSubmit={this.uMyStartupQuestionnaire}
+          onSubmitFail={() => { notyError("Submission failed - please review error messages and try again") }}
           dMSQAttributes={this.dMSQAttributes}
           submitInProcess={this.props.uMyStartupQuestionnaireInProcess || this.props.dMyStartupQuestionnaireAttributeInProcess}
           optClass="col-sm-10 col-sm-offset-1 col-md-offset-0 col-md-8"

@@ -49,6 +49,8 @@ export default class TextRTE extends Component {
           toolbarClassName="rte-toolbar"
           editorClassName="rte-content"
           onChange={handleChange}
+          onFocus={input.onFocus}
+          onBlur={input.onBlur}
           placeholder={placeholder || "Start Typing Here"}
         />
       </div>
