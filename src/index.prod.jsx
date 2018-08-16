@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
+import { hotjar } from 'react-hotjar'
 
 import configureStore from './setup/store-config'
 import currentRoutes from './setup/routes'
@@ -27,6 +28,8 @@ const render = (routes) => {
     document.getElementById('root')
   )
 }
+
+hotjar.initialize(982655, 6)
 
 history.listen((location) => {
   window.gtag('create', { trackingId: 'UA-124005113-1', cookieDomain: 'auto' })
