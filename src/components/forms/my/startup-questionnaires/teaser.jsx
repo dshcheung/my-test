@@ -22,6 +22,7 @@ import FileField from '../../../shared/form-elements/file-field'
         type: "complexArrOfObj",
         opts: {
           selfPresences: false,
+          selfMax: 5,
           childFields: {
             title: ["presences", { type: "lengthWord", opts: { max: 4 } }],
             content: ["presences", { type: "lengthWord", opts: { max: 20 } }]
