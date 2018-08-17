@@ -167,7 +167,8 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   key: "description",
                   component: TextRTE,
                   opts: {
-                    label: "Description"
+                    label: "Description",
+                    hint: "Max 50 Words"
                   }
                 }
               ]
