@@ -14,7 +14,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
   form: "MyStartupQuestionnairesTeamForm",
   validate: (values) => {
     return Validators({
-      story: [{ type: "length", opts: { max: 600 } }],
+      story: [{ type: "lengthWord", opts: { max: 600 } }],
       startup_questionnaire_team_members: [{
         type: "complexArrOfObj",
         opts: {
@@ -25,7 +25,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
             last_name: ["presences"],
             member_type: ["presences"],
             title: ["presences"],
-            bio: ["presences", { type: "length", opts: { max: 60 } }],
+            bio: ["presences", { type: "lengthWord", opts: { max: 60 } }],
             linkedin: ["presences", "httpLink"],
             commitment: ["presences"],
             salary: ["currencyPresences"],
@@ -41,7 +41,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
             first_name: ["presences"],
             last_name: ["presences"],
             role: ["presences"],
-            bio: [{ type: "length", opts: { max: 25 } }],
+            bio: [{ type: "lengthWord", opts: { max: 25 } }],
             linkedin: ["presences", "httpLink"]
           }
         }
