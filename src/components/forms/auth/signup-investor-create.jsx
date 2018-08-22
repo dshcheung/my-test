@@ -24,7 +24,7 @@ export default class AuthSigupInvestorCreateForm extends Component {
 
     return (
       <div id="forms-auth-signup-investor-create" className={optClass}>
-        <h1 className="form-title">Join us as an investor</h1>
+        <h1 className="form-title fw-500">Join us as an investor</h1>
 
         <form onSubmit={handleSubmit}>
           <div className="row">

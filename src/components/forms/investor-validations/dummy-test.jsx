@@ -56,7 +56,7 @@ export default class InvestorValidationsDummyTestForm extends Component {
     return (
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
-          <h1 className="form-title fw-500 margin-0">risk assessment</h1>
+          <h1 className="form-title fw-500">risk assessment</h1>
           <div className="help-text margin-bottom-20">As an SFC licensed firm, we are required to assess the risk appetite of all of our potential members, so please take the time to complete the following questionnaire. Thank you.
           </div>
 

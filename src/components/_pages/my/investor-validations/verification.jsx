@@ -47,17 +47,18 @@ export default class MyInvestorValidationsVerification extends Component {
 
     this.state = {
       sideTitleNumber: 1,
-      updateUserStep: false,
+      updateUserStep: true,
       dummyTest: false,
       failureRetry: false,
       successContinue: false,
-      photoUpload: true
+      photoUpload: false
     }
 
     this.onUpdateMyProfile = this.onUpdateMyProfile.bind(this)
     this.onDummyTestSubmit = this.onDummyTestSubmit.bind(this)
     this.onFailureRetryClick = this.onFailureRetryClick.bind(this)
     this.onSuccessContinueClick = this.onSuccessContinueClick.bind(this)
+    this.onPhotoUploadClick = this.onPhotoUploadClick.bind(this)
   }
 
   componentWillMount() {
@@ -91,14 +92,23 @@ export default class MyInvestorValidationsVerification extends Component {
     } else {
       this.setState({ dummyTest: false, successContinue: true })
     }
+
+    scrollTop()
   }
 
   onFailureRetryClick() {
     this.setState({ dummyTest: true, failureRetry: false })
+    scrollTop()
   }
 
   onSuccessContinueClick() {
     this.setState({ successContinue: false, photoUpload: true, sideTitleNumber: 3 })
+    scrollTop()
+  }
+
+  onPhotoUploadClick() {
+    this.props.router.push("/my/investor-validations/overview")
+    scrollTop()
   }
 
   updateUserRender() {
@@ -110,7 +120,7 @@ export default class MyInvestorValidationsVerification extends Component {
 
     return (
       <ProfileInvestorUpdateForm
-        optClass="col-sm-6"
+        optClass="col-xs-12 col-sm-6"
         onSubmit={this.onUpdateMyProfile}
         initialValues={initialValues}
         submitInProcess={this.props.updateMyProfileInProcess}
@@ -121,7 +131,7 @@ export default class MyInvestorValidationsVerification extends Component {
   dummyTestRender() {
     return (
       <InvestorValidationsDummyTestForm
-        optClass="col-sm-6"
+        optClass="col-xs-12 col-sm-6"
         onSubmit={this.onDummyTestSubmit}
         dummyTest={this.props.dummyTestQuestions || []}
       />
@@ -130,9 +140,9 @@ export default class MyInvestorValidationsVerification extends Component {
 
   failureRetryRender() {
     return (
-      <div className="col-sm-6 failure-retry">
-        <div className="cross">
-          <i className="fas fa-times fa-6x" />
+      <div className="col-xs-12 col-sm-6">
+        <div className="status-icon">
+          <i className="fas fa-times fa-6x warning" />
         </div>
 
         <div className="margin-top-20 text-center">
@@ -149,9 +159,9 @@ export default class MyInvestorValidationsVerification extends Component {
 
   successContinueRender() {
     return (
-      <div className="col-sm-6 success-continue">
-        <div className="check">
-          <i className="fas fa-check fa-6x" />
+      <div className="col-xs-12 col-sm-6">
+        <div className="status-icon">
+          <i className="fas fa-check fa-6x success" />
         </div>
 
         <div className="margin-top-20 text-center">
@@ -168,8 +178,8 @@ export default class MyInvestorValidationsVerification extends Component {
 
   photoUploadRender() {
     return (
-      <div className="col-sm-6 photo-upload">
-        <h1 className="form-title fw-500 margin-0">upload your photo</h1>
+      <div className="col-xs-12 col-sm-6 photo-upload">
+        <h1 className="form-title fw-500">upload your photo</h1>
         <div className="help-text margin-bottom-20">For the purposes of Know Your Client requirements under the SFC rules, we require that you submit a photo through the mobile number you have submitted to us. This enables us to confirm your identity and complete your registration as an investor on our platform.</div>
 
         <div className="row clearfix">
@@ -194,6 +204,7 @@ export default class MyInvestorValidationsVerification extends Component {
 
         <button
           className="btn btn-danger pull-right margin-top-20"
+          onClick={this.onPhotoUploadClick}
         >Continue</button>
       </div>
     )

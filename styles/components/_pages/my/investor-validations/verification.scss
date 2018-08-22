@@ -1,27 +1,20 @@
 #page-my-investor-validations-verification {
-  .failure-retry {
-    .cross {
-      text-align: center;
+  .status-icon {
+    text-align: center;
 
-      i {
-        background-color: $ahub-pink;
-        border-radius: 100%;
-        color: white;
-        padding: 15px 25px;
-      }
+    .warning {
+      background-color: $ahub-pink;
+      padding: 15px 25px;
     }
-  }
 
-  .success-continue {
-    .check {
-      text-align: center;
+    .success {
+      background-color: $brand-success;
+    }
 
-      i {
-        background-color: $brand-success;
-        border-radius: 100%;
-        color: white;
-        padding: 15px;
-      }
+    i {
+      border-radius: 100%;
+      color: white;
+      padding: 15px;
     }
   }
 
