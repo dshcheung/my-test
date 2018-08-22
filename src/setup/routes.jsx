@@ -27,6 +27,8 @@ import MyInvestorValidationsWrapperContainer from '../components/_pages/my/inves
 import MyInvestorValidationsOverviewContainer from '../components/_pages/my/investor-validations/overview'
 import MyInvestorValidationsVerificationContainer from '../components/_pages/my/investor-validations/verification'
 
+import InPersonValidationContainer from '../components/_pages/others/in-person-validation'
+
 export default (
   <Route path="/" component={App}>
     <IndexRedirect to="/auth/login" />
@@ -63,5 +65,7 @@ export default (
 
       <Route path="portfolio" roleAccess="Investor" />
     </Route>
+
+    <Route path="in-person-validation" component={InPersonValidationContainer} barebone />
   </Route>
 )
