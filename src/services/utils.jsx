@@ -52,6 +52,30 @@ export const getType = (v) => {
   return toString.call(v).slice(8, -1)
 }
 
+export const checkFile = (x, key) => {
+  const value = _.get(x, key)
+  const valueType = getType(value)
+
+  _.set(x, key, null)
+
+  switch (valueType) {
+    case "Object": {
+      _.set(x, key, null)
+      break
+    }
+    case "FileList": {
+      const file = _.get(value, "[0]")
+      if (file) {
+        _.set(x, key, file)
+      }
+      break
+    }
+    case "File": {
+      _.set(x, key, value)
+    }
+  }
+}
+
 export const mergeAttribute = (base, { data, targetPath, overrideTargetType }) => {
   if (base === null) return base
 

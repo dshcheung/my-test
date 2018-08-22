@@ -110,12 +110,14 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
           <StaticField
             name="startup_questionnaire_break_even"
             label="4. Break-even point"
+            headerNoMargin
             hint="State a Quarter and a year"
             fields={[
               {
                 name: "quarter",
                 component: SelectField,
                 opts: {
+                  optClass: "margin-0",
                   options: [
                     { value: 1, name: "Q1" },
                     { value: 2, name: "Q2" },

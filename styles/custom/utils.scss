@@ -1,18 +1,38 @@
 $directions: '', 'top', 'left', 'right', 'bottom';
 $paddingSizes: 0, 5, 10, 15, 20, 30, 40, 50;
 @each $direction in $directions {
-  @each $padding in $paddingSizes {
-    .px#{$direction}-#{$padding} {
-      padding#{$direction}: #{$padding}px !important;
+  @if $direction == '' {
+    @each $padding in $paddingSizes {
+      .px-#{$padding} {
+        padding: #{$padding}px !important;
+      }
+    }
+  } @else {
+    @each $padding in $paddingSizes {
+      .px-#{$direction}-#{$padding} {
+        padding-#{$direction}: #{$padding}px !important;
+      }
     }
   }
 }
 
 $marginSizes: 0, 5, 10, 15, 20, 30, 40, 50;
 @each $direction in $directions {
-  @each $margin in $marginSizes {
-    .margin-#{$direction}-#{$margin} {
-      margin-#{$direction}: #{$margin}px !important;
+  @if $direction == '' {
+    @each $margin in $marginSizes {
+      .margin-#{$margin} {
+        margin: #{$margin}px !important;
+      }
+    }
+  } @else {
+    @each $margin in $marginSizes {
+      .margin-#{$direction}-#{$margin} {
+        margin-#{$direction}: #{$margin}px !important;
+      }
+
+      .margin-#{$direction}-n-#{$margin} {
+        margin-#{$direction}: -#{$margin}px !important;
+      }
     }
   }
 }

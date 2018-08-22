@@ -22,8 +22,7 @@ export default class MultiselectField extends Component {
 
     const unionTags = _.unionBy(value, tags, textField)
 
-    if (meta.action === "remove" && onDeleteField) {
-      this.setState({ disabled: true })
+    if (meta.action === "remove") {
       const dataValue = _.find(this.props.input.value, (v) => {
         return v[textField] === meta.dataItem[textField]
       })
@@ -32,17 +31,21 @@ export default class MultiselectField extends Component {
         return v[textField] !== dataValue[textField]
       })
 
-      this.props.opts.onDeleteField(dataValue, this.props.input.name, () => {
+      if (onDeleteField) {
+        this.setState({ disabled: true })
+
+        this.props.opts.onDeleteField(dataValue, this.props.input.name, () => {
+          this.props.input.onChange(newUnionTags)
+          this.setState({ disabled: false })
+        })
+      } else {
         this.props.input.onChange(newUnionTags)
-        this.setState({ disabled: false })
-      })
+      }
     } else {
-      if (!max) {
-        this.props.input.onChange(unionTags)
-      } else if (unionTags.length <= max) {
+      if (!max || unionTags.length <= max) {
         this.props.input.onChange(unionTags)
       } else {
-        notyError(`Maximum ${max} Tag(s)`)
+        notyError(`Can Only Select Maximum of ${max}`)
       }
     }
   }
@@ -50,12 +53,10 @@ export default class MultiselectField extends Component {
   handleCreate(tag) {
     const { opts: { max } } = this.props
     const newTags = [...this.props.input.value, { [this.props.opts.textField]: tag }]
-    if (!max) {
-      this.props.input.onChange(newTags)
-    } else if (newTags.length <= max) {
+    if (!max || newTags.length <= max) {
       this.props.input.onChange(newTags)
     } else {
-      notyError(`Maximum ${max} Tag(s)`)
+      notyError(`Can Only Select Maximum of ${max}`)
     }
   }
 

@@ -9,6 +9,7 @@ import immovablesReducer from './immovables'
 import myCampaignReducer from './my/campaign'
 import myCampaignsReducer from './my/campaigns'
 
+import myInvestorQuestionnaireReducers from './my/investor-questionnaire'
 import myStartupQuestionnaireReducers from './my/startup-questionnaire'
 import myStartupQuestionnairesReducers from './my/startup-questionnaires'
 
@@ -21,6 +22,7 @@ const appReducer = combineReducers({
   immovables: immovablesReducer,
   myCampaign: myCampaignReducer,
   myCampaigns: myCampaignsReducer,
+  myInvestorQuestionnaire: myInvestorQuestionnaireReducers,
   myStartupQuestionnaire: myStartupQuestionnaireReducers,
   myStartupQuestionnaires: myStartupQuestionnairesReducers,
   pagination: paginationReducer,

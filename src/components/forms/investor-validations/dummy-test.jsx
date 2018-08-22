@@ -86,7 +86,8 @@ export default class InvestorValidationsDummyTestForm extends Component {
                     nameKey: (x) => {
                       return x[Object.keys(x)[0]]
                     },
-                    label: d.title
+                    label: d.title,
+                    boldLabel: true
                   }}
                 />
               )

@@ -214,6 +214,10 @@ export const apiMyStartupQuestionnairesShow = (params) => {
   return `${apiMyStartupQuestionnairesIndex()}/${params.startupQuestionnaireID}`
 }
 
+export const apiMyInvestorQuestionnaireIndex = () => {
+  return `${apiMy()}/investor_questionnaire`
+}
+
 export const apiMyVerificationsIndex = () => {
   return `${apiMy()}/verifications`
 }

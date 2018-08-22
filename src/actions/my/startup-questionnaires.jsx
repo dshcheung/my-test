@@ -3,7 +3,7 @@ import { getFormData } from '../../services/get-form-data'
 import { apiMyStartupQuestionnairesShow, apiMyStartupQuestionnairesIndex } from '../../services/api-path'
 
 import { notySuccess } from '../../services/noty'
-import { getType } from '../../services/utils'
+import { checkFile } from '../../services/utils'
 
 export const MERGE_MY_STARTUP_QUESTIONNAIRES = "MERGE_MY_STARTUP_QUESTIONNAIRES"
 export const mergeMyStartupQuestionnaires = (data, reset) => {
@@ -133,35 +133,6 @@ export const dMyStartupQuestionnaireAttribute = (values, cb, routeParams) => {
       if (cb) cb(data)
     }
   }
-}
-
-const checkFile = (x, key) => {
-  const value = _.get(x, key)
-  const valueType = getType(value)
-
-  _.set(x, key, null)
-
-  switch (valueType) {
-    case "Object": {
-      _.set(x, key, null)
-      break
-    }
-    case "FileList": {
-      const file = _.get(value, "[0]")
-      if (file) {
-        _.set(x, key, file)
-      }
-      break
-    }
-    case "File": {
-      _.set(x, key, value)
-    }
-  }
-
-  // if (file) {
-  //   _.set(x, key, file)
-  // } else {
-  // }
 }
 
 const generateParams = (values) => {

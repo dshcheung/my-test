@@ -8,7 +8,7 @@ export default class RadioField extends Component {
         optClass, optItemClass,
         options, valueKey, nameKey,
         label, optionNameIsDangerous,
-        hint
+        hint, boldLabel
       }
     } = this.props
 
@@ -16,7 +16,7 @@ export default class RadioField extends Component {
 
     return (
       <div className={`form-group flex-column clearfix ${hasErrorClass} ${optClass}`}>
-        { label && <label className="fw-700 margin-bottom-15" htmlFor={input.name}>{label} {hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>} </label> }
+        { label && <label className={`${boldLabel && "fw-700"} margin-bottom-15`} htmlFor={input.name}>{label} {hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>} </label> }
         { !label && <span className="help-block">{touched && hasErrorClass && error.join(", ")}&nbsp;</span>}
         {
           options.map((opt, i) => {
