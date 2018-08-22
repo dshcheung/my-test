@@ -9,7 +9,7 @@ export default class DateTimePickerField extends Component {
     super(props)
 
     this.state = {
-      date: null,
+      date: this.props.input.value || null,
       open: false,
       buttonClicked: false
     }

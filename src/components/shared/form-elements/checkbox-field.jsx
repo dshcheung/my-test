@@ -22,7 +22,7 @@ export default class CheckboxField extends Component {
             onChange={input.onChange}
             checked={input.value}
           />
-          { label && <span>{label}</span> }
+          { label && <span className="margin-left-10">{label}</span> }
         </label>
         { hint && <span className="help-block hint">{hint}</span> }
       </div>

@@ -12,10 +12,10 @@ import DateTimePickerField from '../../shared/form-elements/datetime-picker'
   form: "ProfileInvestorUpdateForm",
   validate: (values) => {
     return Validators({
-      hkid: ["presences"],
+      national_id: ["presences"],
       nationality: ["presences"],
-      residence: ["presences"],
-      date_of_birth: ["presences"]
+      address: ["presences"],
+      dob: ["presences"]
     }, values)
   }
 })
@@ -42,7 +42,7 @@ export default class ProfileInvestorUpdateForm extends Component {
             </div>
             <div className="col-xs-12 col-sm-6">
               <Field
-                name="hkid"
+                name="national_id"
                 component={TextField}
                 opts={{
                   type: "text",
@@ -70,7 +70,7 @@ export default class ProfileInvestorUpdateForm extends Component {
 
             <div className="col-xs-12 col-sm-6">
               <Field
-                name="residence"
+                name="address"
                 component={SelectField}
                 opts={{
                   label: "Residence Country",
@@ -86,7 +86,7 @@ export default class ProfileInvestorUpdateForm extends Component {
           <div className="row">
             <div className="col-xs-12 col-sm-6">
               <Field
-                name="date_of_birth"
+                name="dob"
                 component={DateTimePickerField}
                 opts={{
                   label: "Date of Birth",

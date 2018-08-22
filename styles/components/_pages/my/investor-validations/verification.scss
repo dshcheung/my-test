@@ -1,0 +1,35 @@
+#page-my-investor-validations-verification {
+  .failure-retry {
+    .cross {
+      text-align: center;
+
+      i {
+        background-color: $ahub-pink;
+        border-radius: 100%;
+        color: white;
+        padding: 15px 25px;
+      }
+    }
+  }
+
+  .success-continue {
+    .check {
+      text-align: center;
+
+      i {
+        background-color: $brand-success;
+        border-radius: 100%;
+        color: white;
+        padding: 15px;
+      }
+    }
+  }
+
+  .photo-upload {
+    .big-number {
+      font-size: 40px;
+      margin: 0;
+      font-weight: bold;
+    }
+  }
+}

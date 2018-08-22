@@ -17,6 +17,8 @@ import MultiselectField from '../../../shared/form-elements/multiselect-field'
 import DateTimePicker from '../../../shared/form-elements/datetime-picker'
 import FileDropField from '../../../shared/form-elements/file-drop-field'
 
+import SharedOthersStepProgress from '../../../shared/others/step-progress'
+
 const mapStateToProps = (state) => {
   return {
     formData: _.get(state.form, 'MyStartupQuestionnairesBasicNewForm'),
@@ -123,7 +125,6 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
 
     const currentQuestionHasValue = _.get(formData, `values[${key}]`)
     const currentQuestionHasError = _.get(formData, `syncErrors[${key}]`)
-    const currentQuestionPercentage = (currentQuestionIndex === 0 ? 0 : (currentQuestionIndex / maxIndex) * 100)
 
     return (
       <div className={optClass}>
@@ -133,15 +134,10 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
 
           <div className="row">
             <div className="col-sm-12 col-md-8 col-md-offset-2 px-0">
-              <div className="progress height-5">
-                <div className="step-dot primary-color zero" />
-                <div className="step-dot primary-color one" />
-                <div className="step-dot primary-color two" />
-                <div className="step-dot primary-color three" />
-                <div className="step-dot primary-color four" />
-                <div className="step-dot primary-color five" />
-                <div className="progress-bar progress-bar-pink" style={{ width: `${currentQuestionPercentage}%` }} />
-              </div>
+              <SharedOthersStepProgress
+                maxIndex={maxIndex}
+                currentIndex={currentQuestionIndex}
+              />
             </div>
           </div>
 
