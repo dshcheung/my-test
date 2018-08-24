@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 
 import SharedOthersSideTitle from '../../../shared/others/side-title'
 
@@ -24,7 +25,9 @@ export default class MyInvestorValidationsIndex extends Component {
             "Address",
             "National ID Copy",
             "Risk Profile Questionnaire"
-          ]
+          ],
+          linkTo: "/my/investor-validations/verfications",
+          linkTitle: "Update Verification"
         },
         {
           dataKey: "suitability_approved",
@@ -40,6 +43,8 @@ export default class MyInvestorValidationsIndex extends Component {
             "Assets Questionnaire",
             "Bank Statement"
           ],
+          linkTo: "/my/investor-validations/Suitability",
+          linkTitle: "Update Suitability"
         },
         {
           dataKey: "aml_approved",
@@ -49,7 +54,9 @@ export default class MyInvestorValidationsIndex extends Component {
             "Certified Document",
             "Signed Agreement",
             "Bank Transfer / Cheque"
-          ]
+          ],
+          linkTo: "/my/investor-validations/aml",
+          linkTitle: "Update AML"
         }
       ]
     }
@@ -113,7 +120,6 @@ export default class MyInvestorValidationsIndex extends Component {
     const { currentUser: { investor } } = this.props
     const { info } = this.state
 
-
     return (
       <div className="row">
         {
@@ -141,6 +147,29 @@ export default class MyInvestorValidationsIndex extends Component {
     )
   }
 
+  genereteNavButtons() {
+    const { currentUser: { investor } } = this.props
+    const { info } = this.state
+
+    return (
+      <div className="row nav-buttons">
+        {
+          info.map((item, i) => {
+            const status = investor[item.dataKey]
+
+            const incomplete = this.checkCompleted(status) === "incomplete"
+
+            return (
+              <div key={i} className="col-xs-4 text-center">
+                { incomplete && <Link className="btn btn-danger" to={item.linkTo}>{item.linkTitle}</Link> }
+              </div>
+            )
+          })
+        }
+      </div>
+    )
+  }
+
   render() {
     return (
       <div id="page-my-investor-validations-index">
@@ -154,6 +183,7 @@ export default class MyInvestorValidationsIndex extends Component {
 
           { this.generateHeads() }
           { this.generateLists() }
+          { this.genereteNavButtons() }
         </div>
       </div>
     )
