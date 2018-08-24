@@ -17,11 +17,13 @@ const validators = {
     if (max && length > max) return `Maximum ${max} Characters`
   },
   lengthWord: (value, { min, max }) => {
-    const newValue = value.replace(/(\r\n|\n|\r)/gm, " ").replace(/<[^>]*>/, " ").replace(/\s+/, ' ').trim()
+    if (value) {
+      const newValue = value.replace(/(\r\n|\n|\r)/gm, " ").replace(/<[^>]*>/, " ").replace(/\s+/, ' ').trim()
 
-    const length = newValue ? newValue.split(" ").length : 0
-    if (min && length < min) return `Minimum ${min} Words`
-    if (max && length > max) return `Maximum ${max} Words`
+      const length = newValue ? newValue.split(" ").length : 0
+      if (min && length < min) return `Minimum ${min} Words`
+      if (max && length > max) return `Maximum ${max} Words`
+    }
   },
   amount: (value, { min, max }) => {
     if (value) {

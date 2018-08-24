@@ -83,6 +83,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             component={FileField}
             opts={{
               label: "1. Income Statement Projection",
+              hint: "CSV Only",
               urlKey: "original",
               templateUrl: "https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/templates/income+statement+template.xlsx"
             }}
@@ -93,6 +94,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             component={FileField}
             opts={{
               label: "2. Cash-Flow Statement Projection",
+              hint: "CSV Only",
               urlKey: "original",
               templateUrl: "https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/templates/cash-flow+statement+template.xlsx"
             }}

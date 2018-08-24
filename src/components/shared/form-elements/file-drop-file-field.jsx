@@ -21,7 +21,7 @@ export default class FileDropFileField extends Component {
 
     return (
       <div className="file-drop-file-field">
-        <label htmlFor={input.name}>{input.value.name}</label>
+        <label htmlFor={input.name}>{input.value.name || input.value.filename}</label>
         <input
           id={input.name}
           className="form-control hidden"

@@ -3,9 +3,7 @@ import { reduxForm, FieldArray } from 'redux-form'
 
 import Validators from '../../../../services/form-validators'
 
-import SelectField from '../../../shared/form-elements/select-field'
-import FileField from '../../../shared/form-elements/file-field'
-import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array'
+import FileDropField from '../../../shared/form-elements/file-drop-field'
 
 @reduxForm({
   form: "MyStartupQuestionnairesAttachmentsForm",
@@ -35,38 +33,18 @@ export default class MyStartupQuestionnairesAttachmentsForm extends Component {
         <form onSubmit={handleSubmit}>
           <FieldArray
             name="attachments"
-            component={DynamicFieldArray}
+            component={FileDropField}
             opts={{
               label: "1. You still have somtehing more you want to share with us ? (optional)",
-              hint: "Please upload here any document not related to the previous tabs data rooms",
-              groupName: "File",
-              newFieldInit: {
-                title: '',
-                file: ''
-              },
               onDeleteField: dMSQAttributes,
-              dynamicFields: [
-                {
-                  key: "title",
-                  component: SelectField,
-                  opts: {
-                    label: "Title",
-                    options: this.props.attachmentOptions,
-                    valueField: "name",
-                    textField: "name",
-                    filter: true,
-                    allowCreate: true
-                  }
-                },
-                {
-                  key: "file",
-                  component: FileField,
-                  opts: {
-                    label: "File",
-                    urlKey: "original"
-                  }
-                }
-              ]
+              hint: "Please upload here any document not related to the previous tabs data rooms",
+              selectOpts: {
+                options: this.props.attachmentOptions,
+                valueField: "name",
+                textField: "name",
+                placeholder: "Select a Title",
+                filter: true
+              }
             }}
           />
 

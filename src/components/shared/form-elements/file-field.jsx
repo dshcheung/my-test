@@ -53,7 +53,6 @@ export default class FileField extends Component {
           (hint || templateUrl) && (
             <span className="help-block hint clearfix">
               { templateUrl && <a href={templateUrl} download target="_blank" rel="noopener noreferrer">Download Template</a> }
-              { templateUrl && hint && <br /> }
               {hint}
             </span>
           )
