@@ -107,7 +107,7 @@ export default class MyInvestorValidationsVerification extends Component {
   }
 
   onPhotoUploadClick() {
-    this.props.router.push("/my/investor-validations/overview")
+    this.props.router.push("/my/investor-validations")
     scrollTop()
   }
 

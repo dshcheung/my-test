@@ -87,7 +87,7 @@ export const uMyInvestorQuestionnaireMarkForReview = () => {
     type: U_MY_INVESTOR_QUESTIONNAIRE_MARK_FOR_REVIEW,
     request,
     successCB: (dispatch, data) => {
-      dispatch(push(`/my/investor-validations/overview`))
+      dispatch(push(`/my/investor-validations`))
       dispatch(setMyInvestorQuestionnaire(data))
       notySuccess("Submitted")
     }

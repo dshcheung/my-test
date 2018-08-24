@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
 }
 
 @connect(mapStateToProps, null)
-export default class MyInvestorValidationsOverview extends Component {
+export default class MyInvestorValidationsIndex extends Component {
   constructor(props) {
     super(props)
 
@@ -143,7 +143,7 @@ export default class MyInvestorValidationsOverview extends Component {
 
   render() {
     return (
-      <div id="page-my-investor-validations-overview">
+      <div id="page-my-investor-validations-index">
         <SharedOthersSideTitle
           title="investor"
           optClass="hidden-xs col-sm-3 col-md-offset-1 col-md-2"

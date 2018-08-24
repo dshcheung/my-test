@@ -23,7 +23,7 @@ import MyCampaignsEditContainer from '../components/_pages/my/campaigns/edit'
 
 import MyDashboardContainer from '../components/_pages/my/dashboard'
 
-import MyInvestorValidationsOverviewContainer from '../components/_pages/my/investor-validations/overview'
+import MyInvestorValidationsIndexContainer from '../components/_pages/my/investor-validations/index'
 import MyInvestorValidationsVerificationContainer from '../components/_pages/my/investor-validations/verification'
 import MyInvestorValidationsSuitabilityContainer from '../components/_pages/my/investor-validations/suitability-wrapper'
 
@@ -57,7 +57,7 @@ export default (
       <Route path="dashboard" component={MyDashboardContainer} roleAccess="StartupUser" />
 
       <Route path="investor-validations" roleAccess="Investor">
-        <Route path="overview" component={MyInvestorValidationsOverviewContainer} />
+        <IndexRoute component={MyInvestorValidationsIndexContainer} />
         <Route path="verification" component={MyInvestorValidationsVerificationContainer} />
         <Route path="suitability/:tab" component={MyInvestorValidationsSuitabilityContainer} />
         <Route path="aml" />
