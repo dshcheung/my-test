@@ -11,18 +11,137 @@ const mapStateToProps = (state) => {
 
 @connect(mapStateToProps, null)
 export default class MyInvestorValidationsOverview extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      info: [
+        {
+          dataKey: "verification_approved",
+          title: "Verification",
+          list: [
+            "World Check",
+            "Address",
+            "National ID Copy",
+            "Risk Profile Questionnaire"
+          ]
+        },
+        {
+          dataKey: "suitability_approved",
+          title: "Suitability",
+          permission: "View all Campaigns on AngelHub",
+          list: [
+            "Source of Funds",
+            "Employment Status",
+            "Occupation",
+            "Current Income",
+            "Education",
+            "Investment Experience",
+            "Assets Questionnaire",
+            "Bank Statement"
+          ],
+        },
+        {
+          dataKey: "aml_approved",
+          title: "AML",
+          permission: "Fund Campaigns",
+          list: [
+            "Certified Document",
+            "Signed Agreement",
+            "Bank Transfer / Cheque"
+          ]
+        }
+      ]
+    }
+  }
+
+  iconCheck(status) {
+    switch (status) {
+      case true:
+        return "fa-check"
+      case "accepted":
+        return "fa-check"
+      case "pending":
+        return "fa-hourglass-half"
+      default:
+        return "fa-times"
+    }
+  }
+
+  checkCompleted(status) {
+    switch (status) {
+      case true:
+        return "completed"
+      case "accepted":
+        return "completed"
+      case "pending":
+        return "pending"
+      default:
+        return "incomplete"
+    }
+  }
+
+  generateHeads() {
+    const { currentUser: { investor } } = this.props
+    const { info } = this.state
+
+    return (
+      <div className="row">
+        {
+          info.map((item, i) => {
+            const status = investor[item.dataKey]
+            const { title, permission } = item
+
+            return (
+              <div key={i} className={`col-xs-4 ${this.checkCompleted(status)}`}>
+                <div className="status-icon">
+                  <i className={`fas fa-2x ${this.iconCheck(status)}`} />
+                </div>
+
+                <h1 className="section-title">{title}</h1>
+
+                { permission && <p className="section-permission">{permission}</p> }
+              </div>
+            )
+          })
+        }
+      </div>
+    )
+  }
+
+  generateLists() {
+    const { currentUser: { investor } } = this.props
+    const { info } = this.state
+
+
+    return (
+      <div className="row">
+        {
+          info.map((item, i) => {
+            const status = investor[item.dataKey]
+            const { list } = item
+            const iconClass = this.iconCheck(status)
+
+            return (
+              <div key={i} className={`col-xs-4 ${this.checkCompleted(status)}`}>
+                <ul className="list">
+                  {
+                    list.map((lItem, j) => {
+                      return (
+                        <li key={j}><i className={`fas ${iconClass}`} /> {lItem}</li>
+                      )
+                    })
+                  }
+                </ul>
+              </div>
+            )
+          })
+        }
+      </div>
+    )
+  }
+
   render() {
-    const {
-      currentUser: {
-        kyc_validation: { world_check, photo },
-        investor: { pi_suitability_approved, kyc_aml_approved }
-      }
-    } = this.props
-
-    const verificationCompleted = photo.original && world_check
-    const suitabilityCompleted = pi_suitability_approved
-    const amlCompleted = kyc_aml_approved
-
     return (
       <div id="page-my-investor-validations-overview">
         <SharedOthersSideTitle
@@ -30,60 +149,11 @@ export default class MyInvestorValidationsOverview extends Component {
           optClass="hidden-xs col-sm-3 col-md-offset-1 col-md-2"
         />
 
-        <div className="col-xs-12 col-sm-6">
+        <div className="col-xs-12 col-sm-6 validations">
           <h1 className="form-title fw-500">Validation Steps</h1>
 
-          <div className="row validations">
-            <div className={`col-xs-4 ${verificationCompleted ? "completed" : "incomplete"}`}>
-              <div className="status-icon">
-                <i className={`fas fa-2x ${verificationCompleted ? "fa-check" : "fa-times"}`} />
-              </div>
-
-              <h1 className="section-title">Verification</h1>
-
-              <ul className="list">
-                <li>World Check</li>
-                <li>Address</li>
-                <li>National ID Copy</li>
-                <li>Risk Profile Questionnaire</li>
-              </ul>
-            </div>
-
-            <div className={`col-xs-4 ${suitabilityCompleted ? "completed" : "incomplete"}`}>
-              <div className="status-icon">
-                <i className={`fas fa-2x ${suitabilityCompleted ? "fa-check" : "fa-times"}`} />
-              </div>
-
-              <h1 className="section-title">Suitability</h1>
-              <p className="section-permission">View all Campaigns on AngelHub</p>
-
-              <ul className="list">
-                <li>Source of Funds</li>
-                <li>Employment Status</li>
-                <li>Occupation</li>
-                <li>Current Income</li>
-                <li>Education</li>
-                <li>Investment Experience</li>
-                <li>Assets Questionnaire</li>
-                <li>Bank Statement</li>
-              </ul>
-            </div>
-
-            <div className={`col-xs-4 ${amlCompleted ? "completed" : "incomplete"}`}>
-              <div className="status-icon">
-                <i className={`fas fa-2x ${amlCompleted ? "fa-check" : "fa-times"}`} />
-              </div>
-
-              <h1 className="section-title">AML</h1>
-              <p className="section-permission">Fund Campaigns</p>
-
-              <ul className="list">
-                <li>Certified Document</li>
-                <li>Signed Agreement</li>
-                <li>Bank Transfer / Cheque</li>
-              </ul>
-            </div>
-          </div>
+          { this.generateHeads() }
+          { this.generateLists() }
         </div>
       </div>
     )

@@ -1,7 +1,6 @@
 #page-my-investor-validations-overview {
   .validations {
-
-    .completed, .incomplete {
+    .completed, .incomplete, .pending {
       text-align: center;
 
       .status-icon i {
@@ -17,6 +16,18 @@
 
       .list {
         text-align: left;
+        list-style: none;
+        padding: 0;
+
+        li {
+          margin-bottom: 5px;
+
+          i {
+            font-size: 9px;
+            border-radius: 100%;
+            color: white;
+          }
+        }
       }
     }
 
@@ -24,6 +35,11 @@
       .status-icon i {
         background-color: $brand-success;
         padding: 15px;
+      }
+
+      .list li i{
+        padding: 3px 2.5px;
+        background-color: $brand-success;
       }
     }
 
@@ -40,6 +56,23 @@
 
       .list {
         opacity: 0.5;
+
+        li i {
+          padding: 3px 3.625px;
+          background-color: $ahub-pink;
+        }
+      }
+    }
+
+    .pending {
+      .status-icon i {
+        background-color: $brand-warning;
+        padding: 15px 18px;
+      }
+
+      .list li i{
+        padding: 3px 3.625px;
+        background-color: $brand-warning;
       }
     }
   }

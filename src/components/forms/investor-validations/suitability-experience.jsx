@@ -101,7 +101,7 @@ export default class InvestorValidationsSuitabilityExperienceForm extends Compon
                 opts: {
                   optClass: "col-xs-12 col-sm-6 margin-left-n-15",
                   type: "number",
-                  placeholder: "Average size of trade"
+                  placeholder: "Average size of trade in USD"
                 }
               },
               {
