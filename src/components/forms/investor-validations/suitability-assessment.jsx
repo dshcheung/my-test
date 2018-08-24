@@ -145,8 +145,6 @@ export default class InvestorValidationsSuitabilityAssessmentForm extends Compon
     return (
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
-          <h1 className="form-title fw-500 margin-bottom-20">Suitability Assessment</h1>
-
           <div className="row">
             <div className="col-sm-12 col-md-8 col-md-offset-2 px-0">
               <SharedOthersStepProgress

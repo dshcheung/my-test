@@ -35,7 +35,7 @@ export default class SharedInvestorQuestionnairesSubmission extends Component {
               component = (
                 <div>
                   <div className="text-gray margin-bottom-40">Once you submit, you will not be able to modify. You can go back to any section and resave now!</div>
-                  <div className="text-gray margin-bottom-40">When You Are Ready To Submit Your Questionnaire For Us To Review, Click The Button Below</div>
+                  <div className="text-gray margin-bottom-40">When You Are Ready To Submit Your Suitability Assessment For Us To Review, Click The Button Below</div>
                   <button
                     className={`btn btn-danger ${uMyInvestorQuestionnaireMarkForReivewInProcess && "m-progress"} margin-top-20`}
                     type="submit"
@@ -49,14 +49,14 @@ export default class SharedInvestorQuestionnairesSubmission extends Component {
             } else if (submittedStatus === "rejected" || submittedStatus === "waiting_for_update") {
               component = (
                 <div>
-                  { submittedStatus === "rejected" && <div>Unfortunately We Have Rejected Your Questionnaire</div> }
-                  { submittedStatus === "waiting_for_update" && <div>Unfortunately We Are Waiting For More Information On Your Questionnaire</div> }
+                  { submittedStatus === "rejected" && <div>Unfortunately We Have Rejected Your Suitability Assessment</div> }
+                  { submittedStatus === "waiting_for_update" && <div>Unfortunately We Are Waiting For More Information On Your Suitability Assessment</div> }
                 </div>
               )
             } else if (submittedStatus === "accepted") {
               component = (
                 <div>
-                  <div>Your Questionnaire Is Now Accpeted</div>
+                  <div>Your Suitability Assessment Is Now Accpeted</div>
                 </div>
               )
             } else {

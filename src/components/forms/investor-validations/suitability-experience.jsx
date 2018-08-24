@@ -37,8 +37,6 @@ export default class InvestorValidationsSuitabilityExperienceForm extends Compon
     return (
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
-          <h1 className="form-title fw-500">Experience</h1>
-
           <StaticField
             noMargin
             label="1. Occupation"

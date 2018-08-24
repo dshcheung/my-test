@@ -36,8 +36,6 @@ export default class InvestorValidationsSuitabilityFinanceForm extends Component
     return (
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
-          <h1 className="form-title fw-500">Finance</h1>
-
           <StaticField
             headerNoMargin
             noMargin
@@ -52,7 +50,7 @@ export default class InvestorValidationsSuitabilityFinanceForm extends Component
                   }),
                   valueField: "detail",
                   textField: "detail",
-                  placeholder: "Type to filter or create your own",
+                  placeholder: "Select or type create your own",
                   onDeleteField: dAttribute
                 }
               }

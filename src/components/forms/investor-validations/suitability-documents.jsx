@@ -40,8 +40,6 @@ export default class InvestorValidationsSuitabilityDocumentsForm extends Compone
     return (
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
-          <h1 className="form-title fw-500">Finance</h1>
-
           <FieldArray
             name="attachments"
             component={FileDropField}
@@ -51,7 +49,7 @@ export default class InvestorValidationsSuitabilityDocumentsForm extends Compone
               selectOpts: {
                 options: [
                   { name: "Financial Statement" },
-                  { name: "cLp Bill" }
+                  { name: "CLP Bill" }
                 ],
                 valueField: 'name',
                 textField: 'name',
