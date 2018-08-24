@@ -63,7 +63,7 @@ export default class FileField extends Component {
             id={newInput.name}
             className="hide"
             type="file"
-            accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.csv"
+            accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.csv,.xsl,.xslx"
             {...newInput}
           />
           <label
