@@ -124,13 +124,13 @@ export const dMyStartupQuestionnaireAttribute = (values, cb, routeParams) => {
   })
 
   return {
-    type: U_MY_STARTUP_QUESTIONNAIRE,
+    type: D_MY_STARTUP_QUESTIONNAIRE_ATTRIBUTE,
     request,
     noScrollTop: true,
     successCB: (dispatch, data) => {
+      if (cb) cb(data)
       dispatch(setMyStartupQuestionnaire(data, true))
       notySuccess("Deleted!")
-      if (cb) cb(data)
     }
   }
 }

@@ -7,9 +7,12 @@ export default class SharedOthersStepProgress extends Component {
     const { maxIndex } = props
     const dots = []
     const stepPercentage = 100 / maxIndex
+    const stepLeft = 15 / maxIndex
 
     _.times(maxIndex + 1, (i) => {
-      dots.push({ left: `${i * stepPercentage}%` })
+      dots.push({
+        left: `calc(${i * stepPercentage}% - ${i * stepLeft}px)`
+      })
     })
 
     this.state = {
@@ -27,11 +30,20 @@ export default class SharedOthersStepProgress extends Component {
         {
           dots.map((d, i) => {
             return (
-              <div key={i} className="step-dot primary-color" style={d} />
+              <div
+                key={i}
+                className="step-dot primary-color"
+                style={d}
+              />
             )
           })
         }
-        <div className="progress-bar progress-bar-pink" style={{ width: `${currentQuestionPercentage}%` }} />
+        <div
+          className="progress-bar progress-bar-pink"
+          style={{
+            width: `${currentQuestionPercentage}%`
+          }}
+        />
       </div>
     )
   }

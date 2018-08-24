@@ -103,12 +103,10 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
             component={MultiselectField}
             opts={{
               label: "5. Verticals & Technologies",
-              placeholder: "#FinTech #Blockchain",
+              placeholder: "Type to filter or create your own",
               hint: "Max 5 Tags",
               options: this.props.hashtagOptions.map((h) => {
-                return {
-                  tag: h.name
-                }
+                return { tag: h.name }
               }),
               valueField: 'tag',
               textField: 'tag',

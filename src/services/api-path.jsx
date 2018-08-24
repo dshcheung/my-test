@@ -218,6 +218,10 @@ export const apiMyInvestorQuestionnaireIndex = () => {
   return `${apiMy()}/investor_questionnaire`
 }
 
+export const apiMyInvestorQuestionnaireMarkForReviewIndex = () => {
+  return `${apiMyInvestorQuestionnaireIndex()}/mark_for_review`
+}
+
 export const apiMyVerificationsIndex = () => {
   return `${apiMy()}/verifications`
 }

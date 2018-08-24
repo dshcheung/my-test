@@ -312,9 +312,7 @@ export default class SharedStartupQuestionnaires extends Component {
         startupQuestionnaireID: this.props.myStartupQuestionnaire.id
       })
     } else {
-      if (cb) {
-        cb()
-      }
+      if (cb) cb()
     }
   }
 
