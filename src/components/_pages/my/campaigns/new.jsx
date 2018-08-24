@@ -9,6 +9,7 @@ import {
 
 import SharedOthersSideTitle from '../../../shared/others/side-title'
 import SharedOthersIntro from '../../../shared/others/intro'
+import SharedOthersTabNav from '../../../shared/others/tab-nav'
 
 import MyStartupQuestionnairesBasicNewForm from '../../../forms/my/startup-questionnaires/basic-new'
 
@@ -88,29 +89,12 @@ export default class MyCampaignsNew extends Component {
   }
 
   render() {
-    const { currentTab, disableNav, intro } = this.state
+    const { currentTab, disableNav, intro, order } = this.state
 
     return (
       <div id="my-campaigns-new" className={!intro && "remove-body-top-padding"}>
         {
-          !intro && (
-            <div className="tab-nav">
-              <div className="container">
-                {
-                  this.state.order.map((t, i) => {
-                    const bgColor = currentTab === t.key ? "active" : ""
-                    const disabledClass = disableNav ? "disabled" : "pointer"
-                    return (
-                      <div
-                        key={i}
-                        className={`tab-item ${bgColor} ${disabledClass}`}
-                      >{t.title}</div>
-                    )
-                  })
-                }
-              </div>
-            </div>
-          )
+          !intro && <SharedOthersTabNav order={order} currentTab={currentTab} disableNav={disableNav} />
         }
 
         <div className="row">

@@ -1,0 +1,25 @@
+.tab-nav {
+  > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: spaced-between;
+  }
+
+  .tab-item {
+    flex-grow: 1;
+    text-align: center;
+    padding: 20px 0;
+    color: #444;
+    position: relative;
+    text-transform: uppercase;
+    font-size: 12px;
+    &.active {
+      font-weight: bold;
+      color: $ahub-blue;
+    }
+
+    &:not(.active) {
+      color: $ahub-lgray;
+    }
+  }
+}

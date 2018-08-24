@@ -18,6 +18,7 @@ import { notyWarning } from '../../../../services/noty'
 import { scrollTop } from '../../../../services/utils'
 
 import SharedStartupQuestionnaires from '../../../shared/startup-questionnaires'
+import SharedOthersTabNav from '../../../shared/others/tab-nav'
 
 const mapStateToProps = (state) => {
   return {
@@ -143,7 +144,7 @@ export default class MyCampaigns extends Component {
 
   render() {
     const { myCampaign } = this.props
-    const { currentTab } = this.state
+    const { currentTab, order } = this.state
 
     if (myCampaign && !myCampaign.can.edit && currentTab !== "success") {
       return null
@@ -152,26 +153,7 @@ export default class MyCampaigns extends Component {
     return (
       <div id="my-campaigns-edit" className={currentTab !== "success" && "remove-body-top-padding"}>
         {
-          currentTab !== "success" && (
-            <div className="tab-nav">
-              <div className="container">
-                {
-                  this.state.order.map((t, i) => {
-                    const bgColor = currentTab === t.key ? "active" : ""
-                    return (
-                      <div
-                        key={i}
-                        className={`pointer tab-item ${bgColor}`}
-                        onClick={() => {
-                          this.changeTab(t.key)
-                        }}
-                      >{t.title}</div>
-                    )
-                  })
-                }
-              </div>
-            </div>
-          )
+          currentTab !== "success" && <SharedOthersTabNav order={order} currentTab={currentTab} handleClick={this.changeTab} />
         }
 
         { this.renderTab() }

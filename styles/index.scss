@@ -13,8 +13,6 @@
 @import "components/_pages/auth/signup";
 @import "components/_pages/auth/signup-investor";
 
-@import "components/_pages/my/campaigns/new-and-edit";
-
 @import "components/_pages/my/investor-validations/overview";
 @import "components/_pages/my/investor-validations/verification";
 
@@ -27,6 +25,7 @@
 @import "components/shared/others/side-title";
 @import "components/shared/others/intro";
 @import "components/shared/others/loading-spinner";
+@import "components/shared/others/tab-nav";
 
 @import "custom/utils";
 @import "custom/button";

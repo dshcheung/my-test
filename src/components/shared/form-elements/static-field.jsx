@@ -19,7 +19,7 @@ export default class StaticField extends Component {
             fields.map((f, i) => {
               if (f.injectTitle) {
                 return (
-                  <label className="margin-0" key={i} htmlFor={i}>{f.injectTitle}</label>
+                  <label className="display-block margin-0" key={i} htmlFor={i}>{f.injectTitle}</label>
                 )
               } else {
                 return (

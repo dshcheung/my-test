@@ -257,7 +257,6 @@ export default class SharedStartupQuestionnaires extends Component {
     }
 
     this.uMyStartupQuestionnaire = this.uMyStartupQuestionnaire.bind(this)
-    this.dMyStartupQuestionnaireAttribute = this.dMyStartupQuestionnaireAttribute.bind(this)
     this.dMSQAttributes = this.dMSQAttributes.bind(this)
   }
 
@@ -265,19 +264,6 @@ export default class SharedStartupQuestionnaires extends Component {
     const baseInfo = _.find(this.state.order, { key: this.props.currentTab })
 
     this.props.uMyStartupQuestionnaire({
-      [this.props.currentTab]: values
-    }, () => {
-      this.props.changeTab(baseInfo.nextTab)
-    }, {
-      ...this.props.routeParams,
-      startupQuestionnaireID: this.props.myStartupQuestionnaire.id
-    })
-  }
-
-  dMyStartupQuestionnaireAttribute(values) {
-    const baseInfo = _.find(this.state.order, { key: this.props.currentTab })
-
-    this.props.dMyStartupQuestionnaireAttribute({
       [this.props.currentTab]: values
     }, () => {
       this.props.changeTab(baseInfo.nextTab)
@@ -335,7 +321,9 @@ export default class SharedStartupQuestionnaires extends Component {
           initialValues={initialValues}
           baseInfo={baseInfo}
           onSubmit={this.uMyStartupQuestionnaire}
-          onSubmitFail={() => { notyError("Submission failed - please review error messages and try again") }}
+          onSubmitFail={() => {
+            notyError("Submission failed - please review error messages and try again")
+          }}
           dMSQAttributes={this.dMSQAttributes}
           submitInProcess={this.props.uMyStartupQuestionnaireInProcess || this.props.dMyStartupQuestionnaireAttributeInProcess}
           optClass="col-sm-10 col-sm-offset-1 col-md-offset-0 col-md-8"

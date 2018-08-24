@@ -23,10 +23,9 @@ import MyCampaignsEditContainer from '../components/_pages/my/campaigns/edit'
 
 import MyDashboardContainer from '../components/_pages/my/dashboard'
 
-import MyInvestorValidationsWrapperContainer from '../components/_pages/my/investor-validations/wrapper'
 import MyInvestorValidationsOverviewContainer from '../components/_pages/my/investor-validations/overview'
 import MyInvestorValidationsVerificationContainer from '../components/_pages/my/investor-validations/verification'
-import MyInvestorValidationsSuitabilityContainer from '../components/_pages/my/investor-validations/suitability'
+import MyInvestorValidationsSuitabilityContainer from '../components/_pages/my/investor-validations/suitability-wrapper'
 
 import InPersonValidationContainer from '../components/_pages/others/in-person-validation'
 
@@ -57,10 +56,10 @@ export default (
 
       <Route path="dashboard" component={MyDashboardContainer} roleAccess="StartupUser" />
 
-      <Route path="investor-validations" component={MyInvestorValidationsWrapperContainer} roleAccess="Investor">
+      <Route path="investor-validations" roleAccess="Investor">
         <Route path="overview" component={MyInvestorValidationsOverviewContainer} />
         <Route path="verification" component={MyInvestorValidationsVerificationContainer} />
-        <Route path="suitability" component={MyInvestorValidationsSuitabilityContainer} />
+        <Route path="suitability/:tab" component={MyInvestorValidationsSuitabilityContainer} />
         <Route path="aml" />
       </Route>
 
