@@ -3,6 +3,8 @@ import Dropzone from 'react-dropzone'
 import { Field } from 'redux-form'
 import { connect } from 'react-redux'
 
+import { getType, openLink } from '../../../services/utils'
+
 import FileDropFileField from './file-drop-file-field'
 import FileDropTitleField from './file-drop-title-field'
 
@@ -19,7 +21,8 @@ export default class FileDropField extends Component {
 
     this.state = {
       attachments: [],
-      disabled: false
+      disabled: false,
+      previews: {}
     }
 
     this.onDrop = this.onDrop.bind(this)
@@ -38,6 +41,21 @@ export default class FileDropField extends Component {
     })
   }
 
+  setPreviewUrl(file, objKey) {
+    const previews = this.state.previews
+    const type = getType(file)
+
+    let fileUrl = null
+
+    if (file && type === "File") {
+      fileUrl = URL.createObjectURL(file)
+    } else if (file && type === "Object") {
+      fileUrl = _.get(file, 'original')
+    }
+
+    this.setState({ previews: { ...previews, [objKey]: fileUrl } })
+  }
+
   render() {
     const {
       fields, formData, meta: { error },
@@ -46,6 +64,8 @@ export default class FileDropField extends Component {
         selectOpts, maxFields
       }
     } = this.props
+
+    const { previews } = this.state
 
     const errors = _.get(formData.syncErrors, fields.name, [])
     const meta = _.get(formData.fields, fields.name, [])
@@ -102,6 +122,8 @@ export default class FileDropField extends Component {
 
                   const hasErrorClass = touched && invalid && 'has-error'
 
+                  const fileUrl = _.get(previews, `${objKey}`, '')
+
                   return (
                     <li key={i} className={`file-item-wrapper ${hasErrorClass}`}>
                       <span className="help-block">{touched && hasErrorClass && combinedErrors.join(', ')}&nbsp;</span>
@@ -109,6 +131,9 @@ export default class FileDropField extends Component {
                         <Field
                           name={`${objKey}.file`}
                           component={FileDropFileField}
+                          setPreviewUrl={(file) => {
+                            this.setPreviewUrl(file, objKey)
+                          }}
                         />
                         <Field
                           name={`${objKey}.title`}
@@ -118,6 +143,19 @@ export default class FileDropField extends Component {
                             return v.title
                           })}
                         />
+                        {
+                          fileUrl && (
+                            <div className="preview">
+                              <button
+                                type="button"
+                                className="btn btn-default pull-right border-none"
+                                onClick={() => {
+                                  openLink(fileUrl)
+                                }}
+                              ><i className="fa fa-eye" /></button>
+                            </div>
+                          )
+                        }
                         <div className="delete">
                           <button
                             disabled={this.state.disabled}
@@ -129,9 +167,7 @@ export default class FileDropField extends Component {
                                 fields.remove(i)
                               })
                             }}
-                          >
-                            <i className="fa fas fa-trash-alt" />
-                          </button>
+                          ><i className="fa fas fa-trash-alt" /></button>
                         </div>
                       </div>
                     </li>

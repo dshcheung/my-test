@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import { openLink } from '../../../services/utils'
+
 export default class FileField extends Component {
   constructor(props) {
     super(props)
@@ -33,19 +35,21 @@ export default class FileField extends Component {
       }
     } = this.props
 
+    const { previewFileUrl } = this.state
+
     const hasErrorClass = touched && invalid ? 'has-error' : ''
     const newInput = _.omit(input, 'value')
     const fileUrl = valueIsUrl ? input.value : _.get(input.value, urlKey)
 
     let fileName = ''
 
-    if (this.state.previewFileUrl) {
+    if (previewFileUrl) {
       fileName = input.value && input.value[0] && input.value[0].name
     } else if (fileUrl) {
       fileName = fileUrl.split('/').reverse()[0]
     }
 
-    const hasValue = this.state.previewFileUrl || fileUrl
+    const hasValue = previewFileUrl || fileUrl
 
     return (
       <div className={`form-group clearfix ${hasErrorClass} file-field`}>
@@ -72,24 +76,24 @@ export default class FileField extends Component {
           >
             <div className="form-control">{fileName}</div>
             {
-              !this.state.previewFileUrl && !fileUrl && (
+              !previewFileUrl && !fileUrl && (
                 <a className="btn btn-default border-none"><i className="fa fa-upload" /></a>
               )
             }
             {
-              (this.state.previewFileUrl || fileUrl) && (
+              (previewFileUrl || fileUrl) && (
                 <a className="btn btn-default border-none"><i className="fa fa-redo" /></a>
               )
             }
             {
-              (this.state.previewFileUrl || fileUrl) && (
-                <a
-                  href={this.state.previewFileUrl || fileUrl}
+              (previewFileUrl || fileUrl) && (
+                <button
+                  type="button"
                   className="btn btn-default border-none"
-                  download
-                  target="_blank"
-                  rel="noopener noreferrer"
-                ><i className="fa fa-eye" /></a>
+                  onClick={() => {
+                    openLink(previewFileUrl || fileUrl)
+                  }}
+                ><i className="fa fa-eye" /></button>
               )
             }
           </label>

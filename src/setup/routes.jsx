@@ -67,5 +67,7 @@ export default (
     </Route>
 
     <Route path="in-person-validation" component={InPersonValidationContainer} barebone />
+
+    <Route path="blank" barebone />
   </Route>
 )

@@ -264,6 +264,13 @@ $input-border-focus: 1px solid #666;
           }
         }
 
+        .preview {
+          flex: 0 1 auto;
+
+          button {
+            padding: 4.5px 10px;
+          }
+        }
 
         .delete {
           flex: 0 1 auto;

@@ -4,16 +4,16 @@ export default class FileDropFileField extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      file: null
-    }
-
     this.onChange = this.onChange.bind(this)
   }
 
+  componentWillMount() {
+    this.props.setPreviewUrl(_.get(this.props, 'input.value'))
+  }
+
   onChange(file) {
+    this.props.setPreviewUrl(file)
     this.props.input.onChange(file)
-    this.setState({ file })
   }
 
   render() {

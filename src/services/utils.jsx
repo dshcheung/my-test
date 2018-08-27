@@ -213,3 +213,11 @@ export const getFileIcon = (ext) => {
       return alt
   }
 }
+
+export const openLink = (url) => {
+  const newWindow = window.open('/blank')
+
+  newWindow.onload = () => {
+    newWindow.location = url
+  }
+}
