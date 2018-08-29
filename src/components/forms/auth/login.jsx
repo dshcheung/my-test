@@ -54,11 +54,11 @@ export default class AuthLoginForm extends Component {
 
           <div className="text-right">
             <button
-              className={`btn btn-danger btn-lg ${submitInProcess && "m-progress"}`}
+              className={`btn btn-primary btn-outline btn-lg ${submitInProcess && "m-progress"}`}
               type="submit"
               disabled={submitInProcess}
             >
-              Sign into your account
+              Sign In
             </button>
           </div>
         </form>

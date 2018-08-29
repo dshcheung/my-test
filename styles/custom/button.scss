@@ -148,22 +148,22 @@
 .btn-outline {
   background-color: transparent;
   color: inherit;
-  .btn-primary {
+  &.btn-primary {
     color: $brand-primary;
   }
-  .btn-success {
+  &.btn-success {
     color: $brand-success;
   }
-  .btn-info {
+  &.btn-info {
     color: $brand-info;
   }
-  .btn-warning {
+  &.btn-warning {
     color: $brand-warning;
   }
-  .btn-danger {
+  &.btn-danger {
     color: $brand-danger;
   }
-  .btn-white {
+  &.btn-white {
     color: $white-text;
   }
 }
