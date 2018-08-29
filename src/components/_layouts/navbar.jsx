@@ -38,7 +38,7 @@ export default class Navbar extends Component {
       >
         <BNavbar.Header>
           <BNavbar.Brand>
-            <span>ANGELHUB</span>
+            <img src="https://whub.io/assets/ahub/logo.png" alt="" />
           </BNavbar.Brand>
           <BNavbar.Toggle>
             <i className="fa fa-signal fa-rotate-90" />
@@ -94,7 +94,28 @@ export default class Navbar extends Component {
 
           {
             !currentUser && (
+
               <Nav pullRight>
+                <LinkContainer to="/help/invest" active={false}>
+                  <NavItem eventKey={1.2}>
+                    <span>Invest</span>
+                  </NavItem>
+                </LinkContainer>
+                <LinkContainer to="/help/learn" active={false}>
+                  <NavItem eventKey={2.1}>
+                    <span>Raise Funding</span>
+                  </NavItem>
+                </LinkContainer>
+                <LinkContainer to="/help/learn" active={false}>
+                  <NavItem eventKey={2.2}>
+                    <span>Learn</span>
+                  </NavItem>
+                </LinkContainer>
+
+                <NavItem className="divider">
+                  <span />
+                </NavItem>
+
                 <LinkContainer to="/auth/login" active={false}>
                   <NavItem eventKey={3.1}>
                     <span>Login</span>
@@ -103,7 +124,7 @@ export default class Navbar extends Component {
 
                 <LinkContainer to="/auth/signup" active={false}>
                   <NavItem className="get-started" eventKey={3.2}>
-                    <div>Get Started</div>
+                    <span>Get Started</span>
                   </NavItem>
                 </LinkContainer>
               </Nav>

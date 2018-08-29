@@ -16,7 +16,7 @@ export default class Footer extends Component {
   render() {
     return (
       <div id="layouts-footer" className="bg-primary px-50 clearfix">
-        <div className="container-fluid">
+        <div className="container">
           <div className="row">
             <div className="col-xs-12 col-md-10 col-md-offset-1">
               <div className="links">
@@ -74,6 +74,8 @@ export default class Footer extends Component {
               </div>
             </div>
           </div>
+        </div>
+        <div className=
           <div className="row">
             <div className="col-xs-12 col-md-10 col-md-offset-1">
               <hr />
@@ -87,7 +89,6 @@ export default class Footer extends Component {
               </div>
             </div>
           </div>
-        </div>
       </div>
     )
   }

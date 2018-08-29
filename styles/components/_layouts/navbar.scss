@@ -6,7 +6,7 @@ $navbar-brand-line-height: $navbar-height;
 
 #layouts-navbar {
   height: $navbar-height;
-  background-color: $ahub-blue;
+  background-color: $ahub-black;
   border: none;
   margin: 0;
   > div {
@@ -18,7 +18,7 @@ $navbar-brand-line-height: $navbar-height;
       width: calc(100% - (2 * #{$navbar-lr-padding}));
       margin: 0;
       height: $navbar-height;
-      background-color: $ahub-blue;
+      background-color: $ahub-black;
       text-align: center;
 
       // logo
@@ -53,23 +53,30 @@ $navbar-brand-line-height: $navbar-height;
           border-top: 5px solid transparent;
           height: 100%;
 
-          &:hover:not(.get-started) {
+          &:hover:not(.get-started):not(.divider) {
             border-top: 5px solid $white;
+          }
+
+          &.divider {
+            a {
+              padding-left: 0;
+              padding-right: 0;
+              span {
+                border-left: 1px solid $brand-primary;
+              }
+            }
           }
 
           &.get-started {
             a {
-              padding: 23px 15px;
-              div {
+              span {
                 color: $white-text;
                 padding: 5px 10px;
-                font-weight: 100;
-                background-color: $ahub-pink;
-                line-height: 29px;
+                border: 1px solid  $brand-primary;
               }
               &:hover, &:focus {
-                div {
-                  background-color: darken($ahub-pink, 10%);
+                span {
+                  background-color: $brand-primary;
                 }
               }
             }
@@ -119,10 +126,12 @@ $navbar-brand-line-height: $navbar-height;
           > a {
             padding: 30px 15px;
             height: 100%;
-            font-size: ($font-size-base * 1.1);
+            // font-size: ($font-size-base * 1.1);
             text-transform: uppercase;
             cursor: pointer;
             font-weight: 400;
+            border: 1px solid transparent;
+            letter-spacing: 5px;
 
             >span {
               color: $white;
