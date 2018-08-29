@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class SharedInvestorQuestionnairesSubmission extends Component {
+export default class SharedInvestorSuitabilitySubmission extends Component {
   render() {
     const { myInvestorQuestionnaire, uMyInvestorQuestionnaireMarkForReivewInProcess, routeParams, optClass } = this.props
     const submittedStatus = _.get(myInvestorQuestionnaire, 'status')

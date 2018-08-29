@@ -23,8 +23,8 @@ import {
 import LoadingSpinner from '../../shared/others/loading-spinner'
 import SharedOthersSideTitle from '../../shared/others/side-title'
 
-import InvestorAMLDocumentsForm from '../../forms/investor-aml/documents'
-import InvestorAMLBankDetailsForm from '../../forms/investor-aml/bank-details'
+import InvestorValidationsAMLDocumentsForm from '../../forms/investor-validations/aml-documents'
+import InvestorValidationsAMLBankDetailsForm from '../../forms/investor-validations/aml-bank-details'
 
 const mapStateToProps = (state) => {
   return {
@@ -51,7 +51,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class SharedInvestorQuestionnaires extends Component {
+export default class SharedInvestorAML extends Component {
   constructor(props) {
     super(props)
 
@@ -59,12 +59,12 @@ export default class SharedInvestorQuestionnaires extends Component {
       order: [
         {
           key: "certified_documents",
-          model: InvestorAMLDocumentsForm,
+          model: InvestorValidationsAMLDocumentsForm,
           nextTab: "bank_details",
         },
         {
           key: "bank_details",
-          model: InvestorAMLBankDetailsForm,
+          model: InvestorValidationsAMLBankDetailsForm,
           nextTab: "null",
         }
       ]

@@ -24,7 +24,7 @@ import InvestorValidationsSuitabilityFinanceForm from '../../forms/investor-vali
 import InvestorValidationsSuitabilityExperienceForm from '../../forms/investor-validations/suitability-experience'
 import InvestorValidationsSuitabilityDocumentsForm from '../../forms/investor-validations/suitability-documents'
 import InvestorValidationsSuitabilityAssessmentForm from '../../forms/investor-validations/suitability-assessment'
-import SharedInvestorQuestionnairesSubmission from '../../shared/investor-questionnaires/submission'
+import SharedInvestorSuitabilitySubmission from '../../shared/investor-suitability/submission'
 
 const mapStateToProps = (state) => {
   return {
@@ -51,7 +51,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class SharedInvestorQuestionnaires extends Component {
+export default class SharedInvestorSuitability extends Component {
   constructor(props) {
     super(props)
 
@@ -79,7 +79,7 @@ export default class SharedInvestorQuestionnaires extends Component {
         },
         {
           key: "submission",
-          model: SharedInvestorQuestionnairesSubmission,
+          model: SharedInvestorSuitabilitySubmission,
           nextTab: null,
           nonForm: true
         }

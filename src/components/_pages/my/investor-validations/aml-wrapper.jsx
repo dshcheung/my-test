@@ -47,14 +47,14 @@ export default class InvestorValidationsAMLWrapper extends Component {
           key: "bank_details",
           title: "Bank Details"
         },
-        {
-          key: "investor_agreement",
-          title: "Investor Agreement"
-        },
-        {
-          key: "submission",
-          title: "Submission"
-        }
+        // {
+        //   key: "investor_agreement",
+        //   title: "Investor Agreement"
+        // },
+        // {
+        //   key: "submission",
+        //   title: "Submission"
+        // }
       ],
       currentTab: props.params.tab
     }

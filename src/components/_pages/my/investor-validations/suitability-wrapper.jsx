@@ -8,7 +8,7 @@ import {
   gMyInvestorQuestionnaire, G_MY_INVESTOR_QUESTIONNAIRE, resetMyInvestorQuestionnaire
 } from '../../../../actions/my/investor-questionnaires'
 
-import SharedInvestorQuestionnaires from '../../../shared/investor-questionnaires/index'
+import SharedInvestorSuitability from '../../../shared/investor-suitability/index'
 import LoadingSpinner from '../../../shared/others/loading-spinner'
 import SharedOthersTabNav from '../../../shared/others/tab-nav'
 
@@ -87,7 +87,7 @@ export default class InvestorValidationsSuitabilityWrapper extends Component {
     const { currentTab } = this.state
 
     return (
-      <SharedInvestorQuestionnaires
+      <SharedInvestorSuitability
         currentTab={currentTab}
         router={router}
         changeTab={this.changeTab}
