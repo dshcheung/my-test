@@ -124,7 +124,7 @@ export default class Navbar extends Component {
 
                 <LinkContainer to="/auth/signup" active={false}>
                   <NavItem className="get-started" eventKey={3.2}>
-                    <span>Get Started</span>
+                    <span>Sign Up</span>
                   </NavItem>
                 </LinkContainer>
               </Nav>
