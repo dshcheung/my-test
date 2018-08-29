@@ -78,19 +78,19 @@
       box-shadow: none;
     }
     &:hover {
-      border-bottom: 1px solid $ahub-pink !important;
+      border-bottom: 1px solid $ahub-gold !important;
       // text-decoration: underline;
     }
   }
   &.delete {
-    color: $ahub-pink;
+    color: $ahub-gold;
     &:active, &:focus, &:hover {
       background-color: transparent !important;
       outline: none;
       box-shadow: none;
     }
     &:hover {
-      color: darken($ahub-pink, 10%) !important;
+      color: darken($ahub-gold, 10%) !important;
     }
   }
 }

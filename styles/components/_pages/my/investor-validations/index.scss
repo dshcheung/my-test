@@ -9,7 +9,7 @@
       }
 
       .section-title {
-        color: $ahub-pink;
+        color: $ahub-gold;
         font-size: 18px;
         font-weight: bold;
       }
@@ -45,7 +45,7 @@
 
     .incomplete {
       .status-icon i {
-        background-color: $ahub-pink;
+        background-color: $ahub-gold;
         padding: 15px 18px;
         opacity: 0.5;
       }
@@ -59,7 +59,7 @@
 
         li i {
           padding: 3px 3.625px;
-          background-color: $ahub-pink;
+          background-color: $ahub-gold;
         }
       }
     }

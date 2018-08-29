@@ -61,7 +61,7 @@ export default class InvestorValidationsSuitabilityDocumentsForm extends Compone
           />
 
           <button
-            className={`btn btn-danger pull-right ${submitInProcess && "m-progress"}`}
+            className={`btn btn-primary btn-outline pull-right ${submitInProcess && "m-progress"}`}
             type="submit"
             disabled={submitInProcess}
           >{pristine ? "Continue" : "Save & Continue"}</button>

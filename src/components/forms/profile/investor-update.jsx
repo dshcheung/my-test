@@ -99,7 +99,7 @@ export default class ProfileInvestorUpdateForm extends Component {
           </div>
 
           <button
-            className={`btn btn-danger pull-right ${submitInProcess && "m-progress"}`}
+            className={`btn btn-primary btn-outline pull-right ${submitInProcess && "m-progress"}`}
             type="submit"
             disabled={submitInProcess}
           >

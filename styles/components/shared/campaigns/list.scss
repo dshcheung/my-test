@@ -107,14 +107,14 @@ $list-campaign-name-left-space: 100px;
           border-radius: 5px;
 
           .progress-bar {
-            background-color: $ahub-pink;
+            background-color: $ahub-gold;
           }
         }
 
         .investment-stat {
           div:first-child {
             float: left;
-            color: $ahub-pink;
+            color: $ahub-gold;
           }
 
           div:last-child {
@@ -173,10 +173,10 @@ $list-campaign-name-left-space: 100px;
 
 .progress {
   .progress-bar-pink {
-    background-color: $ahub-pink;
+    background-color: $ahub-gold;
   }
   .primary-color {
-    background-color: $ahub-pink;
+    background-color: $ahub-gold;
   }
   .step-dot {
     position: absolute;

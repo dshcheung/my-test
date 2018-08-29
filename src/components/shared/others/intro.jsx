@@ -28,7 +28,7 @@ export default class SharedOthersIntro extends Component {
         </div>
 
         <button
-          className="btn btn-danger pull-right"
+          className="btn btn-primary btn-outline pull-right"
           onClick={onContinue}
         >Continue</button>
       </div>
