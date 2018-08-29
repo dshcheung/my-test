@@ -25,7 +25,8 @@ import MyDashboardContainer from '../components/_pages/my/dashboard'
 
 import MyInvestorValidationsIndexContainer from '../components/_pages/my/investor-validations/index'
 import MyInvestorValidationsVerificationContainer from '../components/_pages/my/investor-validations/verification'
-import MyInvestorValidationsSuitabilityContainer from '../components/_pages/my/investor-validations/suitability-wrapper'
+import MyInvestorValidationsSuitabilityWrapperContainer from '../components/_pages/my/investor-validations/suitability-wrapper'
+import MyInvestorValidationsAMLWrapperContainer from '../components/_pages/my/investor-validations/aml-wrapper'
 
 import InPersonValidationContainer from '../components/_pages/others/in-person-validation'
 
@@ -59,8 +60,8 @@ export default (
       <Route path="investor-validations" roleAccess="Investor">
         <IndexRoute component={MyInvestorValidationsIndexContainer} />
         <Route path="verification" component={MyInvestorValidationsVerificationContainer} />
-        <Route path="suitability/:tab" component={MyInvestorValidationsSuitabilityContainer} />
-        <Route path="aml" />
+        <Route path="suitability/:tab" component={MyInvestorValidationsSuitabilityWrapperContainer} />
+        <Route path="aml/:tab" component={MyInvestorValidationsAMLWrapperContainer} />
       </Route>
 
       <Route path="portfolio" roleAccess="Investor" />

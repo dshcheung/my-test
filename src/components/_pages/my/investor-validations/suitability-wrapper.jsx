@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-export default class InvestorValidationsWrapper extends Component {
+export default class InvestorValidationsSuitabilityWrapper extends Component {
   constructor(props) {
     super(props)
 
@@ -60,7 +60,7 @@ export default class InvestorValidationsWrapper extends Component {
   }
 
   componentWillMount() {
-    this.props.gMyInvestorQuestionnaire({ params: this.props.router.params })
+    this.props.gMyInvestorQuestionnaire()
   }
 
   componentWillReceiveProps(nextProps) {

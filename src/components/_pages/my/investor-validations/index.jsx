@@ -55,7 +55,7 @@ export default class MyInvestorValidationsIndex extends Component {
             "Signed Agreement",
             "Bank Transfer / Cheque"
           ],
-          linkTo: "/my/investor-validations/aml",
+          linkTo: "/my/investor-validations/aml/certified_documents",
           linkTitle: "Update AML"
         }
       ]

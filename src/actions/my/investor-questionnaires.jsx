@@ -22,10 +22,10 @@ export const resetMyInvestorQuestionnaire = () => {
 }
 
 export const G_MY_INVESTOR_QUESTIONNAIRE = "G_MY_INVESTOR_QUESTIONNAIRE"
-export const gMyInvestorQuestionnaire = ({ queries = {}, params = {} } = {}) => {
+export const gMyInvestorQuestionnaire = ({ queries = {} } = {}) => {
   const request = genAxios({
     method: "get",
-    url: genApiUrl(apiMyInvestorQuestionnaireIndex(params), queries)
+    url: genApiUrl(apiMyInvestorQuestionnaireIndex(), queries)
   })
 
   return {
