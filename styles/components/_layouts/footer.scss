@@ -1,13 +1,10 @@
 #layouts-footer {
-  background-color: #18264C;
   .links {
-    padding: 50px 0;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: flex-start;
     align-content: space-around;
-
     .links-section {
       padding: 15px 0;
       width: inherit;
@@ -16,6 +13,7 @@
       flex-grow: 1;
       .header {
         font-size: $font-size-large;
+        color: $white;
       }
       ul {
         margin: 20px auto 0;
@@ -23,11 +21,16 @@
         padding-left: 0;
         li {
           font-size: $font-size-base;
-          color: $gray-text;
+          color: $white;
           max-width: 200px;
           padding: 5px 0;
           a {
+            color: $white;
             text-decoration: none;
+            &:hover {
+              // text-decoration: underline;
+              border-bottom: 1px solid $white;
+            }
           }
         }
       }
@@ -38,24 +41,16 @@
   }
 
   hr {
-    margin: 0;
-    border-color: $gray-text;
+    border-color: $white;
   }
 
   .others {
     padding: 15px 0;
     font-size: $font-size-base;
-    color: $gray-text;
-    .copy-right {
-      float: left;
-    }
-
     .social {
-      float: right;
       list-style: none;
       padding: 0;
       margin: 0;
-
       li {
         display: inline-block;
         padding: 0 5px;

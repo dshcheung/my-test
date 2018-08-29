@@ -5,9 +5,10 @@ $input-border-focus: 1px solid #666;
 .form-title, .page-title-l, .page-title-c {
   margin-top: 0;
   margin-bottom: 20px;
-  color: $brand-primary;
-  font-size: $font-size-h3;
-  font-weight: bold;
+  color: $ahub-black;
+  // font-size: $font-size-h3;
+  letter-spacing: 5px;
+  // font-weight: bold;
   text-transform: uppercase;
 }
 
