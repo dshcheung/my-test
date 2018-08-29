@@ -33,6 +33,7 @@ import FileField from '../../../shared/form-elements/file-field'
         type: "complexArrOfObj",
         opts: {
           selfPresences: false,
+          selfMax: 5,
           childFields: {
             logo: ["presences"],
             link: ["presences", "httpLink"]
@@ -66,7 +67,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
           <div className="margin-bottom-20">
-            <i>Your answers below will be used to create a teaser for the investor and catch his interest. You will have space for details in the following sections of this questionnaire</i>
+            <i>Your answers below will be used to create a teaser for the Professional Investors and catch their interests. You will have space for details in the following sections of this questionnaire</i>
           </div>
 
           <Field
@@ -129,6 +130,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="startup_questionnaire_highlights"
             component={DynamicFieldArray}
             opts={{
+              maxFields: 5,
               label: "7. Top 5 highlighs / achievements",
               groupName: "Highlight",
               newFieldInit: {
@@ -137,7 +139,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                 content: ''
               },
               onDeleteField: dMSQAttributes,
-              hint: "5 main achievements. For each, we need a 4 words max title, a date (optional, quarter/year), a nominal sentence of 20 words max. Make them count !",
+              hint: "Max 5 main achievements. For each, we need a 4 words max title, a date (optional, quarter/year), a nominal sentence of 20 words max. Make them count !",
               dynamicFields: [
                 {
                   key: "occurred_on",
@@ -173,14 +175,15 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="startup_questionnaire_media"
             component={DynamicFieldArray}
             opts={{
+              maxFields: 5,
               label: "8. Media (optional)",
-              groupName: "Medium",
+              groupName: "Media",
               newFieldInit: {
                 logo: '',
                 link: ''
               },
               onDeleteField: dMSQAttributes,
-              hint: "Provide us with the link to the article and the logo of the media",
+              hint: "Max 5 media. Provide us with the link to the article and the logo of the media",
               dynamicFields: [
                 {
                   key: "logo",
