@@ -240,7 +240,7 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
                 type="button"
                 disabled={submitInProcess || isFirst}
                 onClick={() => { this.changeQuestion(currentQuestionIndex - 1) }}
-              ><i className="fa fas fa-long-arrow-alt-left fa-2x text-danger" /></button>
+              ><i className="fa fas fa-long-arrow-alt-left fa-2x text-gold" /></button>
             )
           }
 
@@ -251,7 +251,7 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
                 type="button"
                 disabled={submitInProcess || !currentQuestionHasValue || currentQuestionHasError}
                 onClick={() => { this.changeQuestion(currentQuestionIndex + 1) }}
-              ><i className="fa fas fa-long-arrow-alt-right fa-2x text-danger" /></button>
+              ><i className="fa fas fa-long-arrow-alt-right fa-2x text-gold" /></button>
             )
           }
 
