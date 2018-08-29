@@ -42,7 +42,7 @@
     "arrow-body-style": 0,
     "no-use-before-define": 0,
     "space-before-function-paren": [2, { "anonymous": "never", "named": "never" }],
-    "max-len": [1, 200, 2, {"ignoreComments": true, "ignoreRegExpLiterals": true, "ignoreStrings": true}],
+    "max-len": 0,
     "semi": [2, "never"]
   }
 }
