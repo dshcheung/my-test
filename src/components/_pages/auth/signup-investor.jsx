@@ -104,17 +104,17 @@ export default class SignupInvestor extends Component {
         <p className="margin-bottom-20">We are required by the SFC to collect this information to determine if you are able to access. Note, most people are not Professional Investors</p>
         <div className="picker margin-bottom-20">
           <div
-            className={`btn ${resultSelected === 0 ? "btn-danger" : "btn-default"}`}
+            className={`text-uppercase btn ${resultSelected === 0 ? "btn-danger" : "btn-default"}`}
             onClick={() => { this.setState({ resultSelected: 0 }) }}
           >Yes, I AM</div>
           <div
-            className={`btn ${resultSelected === 1 ? "btn-danger" : "btn-default"}`}
+            className={`text-uppercase btn ${resultSelected === 1 ? "btn-danger" : "btn-default"}`}
             onClick={() => { this.setState({ resultSelected: 1 }) }}
           >NO, I AM NOT</div>
           <div
-            className={`btn ${resultSelected === 2 ? "btn-danger" : "btn-default"}`}
+            className={`text-uppercase btn ${resultSelected === 2 ? "btn-danger" : "btn-default"}`}
             onClick={() => { this.setState({ resultSelected: 2 }) }}
-          >I DON"T KNOW YET</div>
+          >I DON'T KNOW YET</div>
         </div>
 
         <div className="picker-result">
