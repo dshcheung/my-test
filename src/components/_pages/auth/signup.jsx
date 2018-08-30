@@ -14,8 +14,8 @@ export default class Signup extends Component {
             <div className="row">
               <div className="col-xs-12 col-md-6 px-50">
                 <div className="text-center">
-                  <i className="fa fa-fw fa-4x fa-hands" />
-                  <p className="fw-500">I am an Investor</p>
+                  <i className="ahub-investor ahub-9x" />
+                  <p className="fw-500 margin-top-20 margin-bottom-20">I am an Investor</p>
                   <Link
                     to="/auth/signup-investor"
                     className="btn btn-primary btn-outline px-10 mt-2 text-uppercase"
@@ -24,8 +24,8 @@ export default class Signup extends Component {
               </div>
               <div className="col-xs-12 col-md-6 px-50 border-before">
                 <div className="text-center">
-                  <i className="fa fa-fw fa-4x fa-rocket" />
-                  <p className="fw-500">I am a Startup</p>
+                  <i className="ahub-startup ahub-9x" />
+                  <p className="fw-500 margin-top-20 margin-bottom-20">I am a Startup</p>
                   <Link
                     to="/auth/signup-startup"
                     className="btn btn-primary btn-outline px-10 mt-2 text-uppercase"

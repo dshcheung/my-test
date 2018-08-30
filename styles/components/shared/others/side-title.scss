@@ -13,17 +13,17 @@
 
   div {
     display: inline-block;
-    border-right: 2px solid $ahub-blue;
+    border-right: 2px solid $ahub-gold;
     padding-bottom: 15px;
 
     .number {
       padding: 0 4px;
-      color: $ahub-blue;
-      border-bottom: 1px solid $ahub-blue;
+      color: $ahub-gold;
+      border-bottom: 1px solid $ahub-gold;
     }
 
     .title {
-      color: $ahub-blue;
+      color: $ahub-gold;
       writing-mode: vertical-rl;
       transform: rotate(-180deg);
       text-transform: uppercase;

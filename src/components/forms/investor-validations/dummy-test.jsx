@@ -56,11 +56,12 @@ export default class InvestorValidationsDummyTestForm extends Component {
     return (
       <div className={optClass}>
         <form onSubmit={handleSubmit}>
-          <h1 className="form-title fw-500">risk assessment</h1>
-          <div className="help-text margin-bottom-20">As an SFC licensed firm, we are required to assess the risk appetite of all of our potential members, so please take the time to complete the following questionnaire. Thank you.
+          <h1 className="form-title fw-500 margin-bottom-20">risk assessment</h1>
+          <div className="help-text margin-bottom-50">
+            As an SFC licensed firm, we are required to assess the risk appetite of all of our potential members, so please take the time to complete the following questionnaire. Thank you.
           </div>
 
-          <div className="row">
+          <div className="row margin-bottom-40">
             <div className="col-sm-12 col-md-8 col-md-offset-2 px-0">
               <SharedOthersStepProgress
                 maxIndex={maxIndex}
@@ -101,7 +102,7 @@ export default class InvestorValidationsDummyTestForm extends Component {
                 type="button"
                 disabled={submitInProcess || isFirst}
                 onClick={() => { this.changeQuestion(currentQuestionIndex - 1) }}
-              ><i className="fa fas fa-long-arrow-alt-left fa-2x text-gold" /></button>
+              ><i className="ahub-arrow flip-horizontal text-gold" /></button>
             )
           }
 
@@ -112,7 +113,7 @@ export default class InvestorValidationsDummyTestForm extends Component {
                 type="button"
                 disabled={submitInProcess || !currentQuestionHasValue || currentQuestionHasError}
                 onClick={() => { this.changeQuestion(currentQuestionIndex + 1) }}
-              ><i className="fa fas fa-long-arrow-alt-right fa-2x text-gold" /></button>
+              ><i className="ahub-arrow text-gold" /></button>
             )
           }
 

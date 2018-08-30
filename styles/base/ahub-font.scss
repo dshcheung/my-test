@@ -1,3 +1,11 @@
+@mixin rotate($degrees) {
+  -webkit-transform: rotate($degrees);
+  -moz-transform: rotate($degrees);
+  -ms-transform: rotate($degrees);
+  -o-transform: rotate($degrees);
+  transform: rotate($degrees);
+}
+
 $ahub-font-family: "AngelHub" !default;
 $ahub-font-path: "/fonts" !default;
 
@@ -55,6 +63,7 @@ $ahub-whitepaper: "\e91e";
   font-variant: normal;
   text-transform: none;
   line-height: 1;
+  display: inline-block;
 
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
@@ -73,6 +82,24 @@ $ahub-whitepaper: "\e91e";
   }
   &.ahub-6x {
     font-size: 6em;
+  }
+  &.ahub-7x {
+    font-size: 7em;
+  }
+  &.ahub-8x {
+    font-size: 8em;
+  }
+  &.ahub-9x {
+    font-size: 9em;
+  }
+  &.ahub-10x {
+    font-size: 10em;
+  }
+  &.flip-horizontal {
+    transform: scaleX(-1);
+  }
+  &.flip-vertical {
+    transform: scaleY(-1);
   }
 }
 
