@@ -114,6 +114,10 @@ $input-border-focus: 1px solid #666;
     margin: 0;
   }
 
+  input[type="radio"], input[type="checkbox"] {
+    cursor: pointer;
+  }
+
   input {
     padding: 0;
     border: 0;

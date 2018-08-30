@@ -149,6 +149,7 @@ hr {
 }
 
 .bg-dark {
+  background-color: $ahub-black;
   color: $white-text;
 }
 .bg-white {
@@ -266,4 +267,9 @@ a:hover {
   border: 0;
   height: 1px;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+}
+
+.box-shadow {
+  padding: 50px;
+  box-shadow: 1px 1px 50px $gray-light;
 }

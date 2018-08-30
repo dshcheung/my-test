@@ -84,7 +84,7 @@ export default class FileDropField extends Component {
                 {
                   (!maxFields || fields.length < maxFields) ? (
                     <div>
-                      <span className="dp-ib px-10 bg-primary text-uppercase">drag</span> N' <span className="dp-ib px-10 bg-success text-uppercase">drop</span>
+                      <span className="dp-ib px-10 bg-primary text-uppercase">drag</span> N' <span className="dp-ib px-10 bg-dark text-uppercase">drop</span>
                       <div>
                         <strong>Drag and drop or click here</strong>
                         <p>to upload your files (max 5MB) {maxFields && `(max ${maxFields} files)`}</p>

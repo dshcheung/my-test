@@ -133,7 +133,7 @@ export default class SignupInvestor extends Component {
         </div>
 
         <button
-          className="btn btn-primary btn-outline pull-right text-uppercase"
+          className="btn btn-primary pull-right text-uppercase"
           onClick={this.onPickInvestorContinue}
           disabled={resultSelected !== 0 || !termsAgreement}
         >Continue</button>

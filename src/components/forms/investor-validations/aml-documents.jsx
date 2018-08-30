@@ -41,7 +41,7 @@ export default class InvestorAMLDocumentsForm extends Component {
 
     const p1 = "Certified means one of the below named persons (“Certifier”), being a person independent of the individual, trust or legal person for which the certification is being provided, has sighted the original documents and confirms in writing in the following manner that the copy is a true and correct copy of the original."
 
-    const p2 = "Certification should bear the following statement “I hereby certify this to be a true copy of the original [and that the photograph bears a true likeness to the individual**]"
+    const p2 = "Certification should bear the following statement “I hereby certify this to be a true copy of the original [and that the photograph bears a true likeness to the individual**"
 
     return (
       <div className={optClass}>
@@ -58,7 +58,7 @@ export default class InvestorAMLDocumentsForm extends Component {
               maxFields: 2,
               selectOpts: {
                 options: [
-                  { name: "Address Proff" },
+                  { name: "Address Proof" },
                   { name: "Identification Document" }
                 ],
                 valueField: 'name',
@@ -71,7 +71,7 @@ export default class InvestorAMLDocumentsForm extends Component {
           />
 
           <button
-            className={`btn btn-primary btn-outline text-uppercase pull-right ${submitInProcess && "m-progress"}`}
+            className={`btn btn-primary text-uppercase pull-right ${submitInProcess && "m-progress"}`}
             type="submit"
             disabled={submitInProcess}
           >{pristine ? "Continue" : "Save & Continue"}</button>

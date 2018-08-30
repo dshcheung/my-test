@@ -140,9 +140,9 @@ export default class MyInvestorValidationsVerification extends Component {
 
   failureRetryRender() {
     return (
-      <div className="col-xs-12 col-sm-6">
+      <div className="col-xs-12 col-sm-6 box-shadow">
         <div className="status-icon">
-          <i className="ahub-lock ahub-6x text-" />
+          <i className="ahub-lock ahub-6x text-dark" />
         </div>
 
         <div className="margin-top-20 text-center">
@@ -162,16 +162,16 @@ export default class MyInvestorValidationsVerification extends Component {
 
   successContinueRender() {
     return (
-      <div className="col-xs-12 col-sm-6">
+      <div className="col-xs-12 col-sm-6 box-shadow">
         <div className="status-icon margin-bottom-40">
-          <i className="ahub-unlock ahub-6x text-gold" />
+          <i className="ahub-unlock ahub-5x text-gold" />
         </div>
 
         <div className="text-center">
           <h1>CONGRATULATIONS</h1>
           <h3>You have passed the Rick Assessment</h3>
         </div>
-        <div className="margin-top-40">
+        <div className="margin-top-40 text-center">
           <button
             className="btn btn-primary text-uppercase margin-top-20"
             onClick={this.onSuccessContinueClick}
@@ -190,25 +190,25 @@ export default class MyInvestorValidationsVerification extends Component {
         <div className="row clearfix">
           <div className="col-xs-12">
             <div className="col-xs-4 text-center">
-              <p>Need Image Here</p>
+              <p><img src="https://whub.io/assets/ahub/images/investor_phone1.png" alt="Notification" /></p>
               <p className="big-number">1</p>
-              <p>Check Your SMS</p>
+              <p>Check Your SMS notification</p>
             </div>
             <div className="col-xs-4 text-center">
-              <p>Need Image Here</p>
+              <p><img src="https://whub.io/assets/ahub/images/investor_phone2.png" alt="Beauty Shot" /></p>
               <p className="big-number">2</p>
-              <p>Take Photo</p>
+              <p>Take photo</p>
             </div>
             <div className="col-xs-4 text-center">
-              <p>Need Image Here</p>
+              <p><img src="https://whub.io/assets/ahub/images/investor_phone3.png" alt="Continue" /></p>
               <p className="big-number">3</p>
-              <p>Come Back Here To Continue</p>
+              <p>Come back here to continue</p>
             </div>
           </div>
         </div>
 
         <button
-          className="btn btn-primary btn-outline text-uppercase pull-right margin-top-20"
+          className="btn btn-primary text-uppercase pull-right margin-top-20"
           onClick={this.onPhotoUploadClick}
         >Continue</button>
       </div>
