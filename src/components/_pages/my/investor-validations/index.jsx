@@ -43,7 +43,7 @@ export default class MyInvestorValidationsIndex extends Component {
             "Assets Questionnaire",
             "Bank Statement"
           ],
-          linkTo: "/my/investor-validations/Suitability",
+          linkTo: "/my/investor-validations/suitability/finance",
           linkTitle: "Update Suitability"
         },
         {

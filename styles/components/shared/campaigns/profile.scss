@@ -1,0 +1,198 @@
+$campaign-header-spacing: 50px;
+$campaign-lower-block-height: 70px;
+$campaign-logo-size: 120px;
+
+#shared-campaigns-profile {
+  .header {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    height: 300px;
+    position: relative;
+    color: white;
+
+    .take-action {
+      position: absolute;
+      bottom: calc(#{$campaign-lower-block-height} + 10px);
+      right: $campaign-header-spacing;
+      text-align: center;
+
+      .invest {
+        width: 150px;
+        padding: 5px;
+        margin-bottom: 10px;
+      }
+
+      .time-left {
+        div:first-child {
+          font-size: 14px;
+          font-weight: bold;
+        }
+
+        div:last-child {
+          font-size: 10px;
+        }
+      }
+    }
+
+    .lower-block {
+      height: $campaign-lower-block-height;
+      background-color: $ahub-black;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 10px;
+
+      .stats {
+        width: 50%;
+        margin-right: $campaign-header-spacing;
+        float: right;
+
+        .progress {
+          background-color: $ahub-lgray;
+          margin-bottom: 10px;
+          height: 8px;
+          border-radius: 20px;
+
+          .progress-bar {
+            background-color: white;
+          }
+        }
+
+        .raised, .goal {
+          div:first-child {
+            font-size: 12px;
+          }
+
+          div:last-child {
+            font-size: 10px;
+          }
+        }
+
+        .raised {
+          float: left;
+        }
+
+        .goal {
+          color: $ahub-lgray;
+          float: right;
+        }
+      }
+    }
+
+    .logo {
+      position: absolute;
+      bottom: 0;
+      left: $campaign-header-spacing;
+      height: $campaign-logo-size;
+      width: $campaign-logo-size;
+      background-color: white;
+    }
+
+    .startup-name {
+      margin-bottom: 0;
+      position: absolute;
+      left: calc(#{$campaign-header-spacing} + #{$campaign-logo-size} + 10px);
+      bottom: calc(#{$campaign-lower-block-height} + 10px);
+    }
+  }
+
+  .body {
+    section {
+      padding-top: 30px;
+      padding-bottom: 30px;
+
+      &.overview {
+        .stats {
+          margin-top: 30px;
+
+          .cards {
+            display: flex;
+
+            .card {
+              text-align: center;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+
+              &:not(:last-child) {
+                border-right: 1px solid $ahub-gray;
+              }
+
+              i {
+                font-size: 40px;
+              }
+
+              > div {
+                margin: 5px 0;
+              }
+            }
+          }
+        }
+      }
+
+      &.quote {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #fee;
+      }
+
+      &.problem-and-solution {
+        .cards {
+          display: flex;
+          flex-wrap: wrap;
+
+          .card {
+            position: relative;
+
+            &.image {
+              > div {
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                height: 100%;
+                width: 100%;
+              }
+            }
+
+            .title {
+              margin-top: 0;
+              margin-bottom: 20px;
+            }
+          }
+        }
+      }
+
+      &.highlights {
+        .card {
+          .title {
+            margin-top: 0;
+            margin-bottom: 20px;
+          }
+        }
+      }
+
+      &.media, &.software {
+        .cards {
+          display: flex;
+          justify-content: space-around;
+
+          a {
+            position: relative;
+
+            img {
+              position: relative;
+              transform: translate(-50%, -50%);
+              top: 50%;
+              left: 50px;
+              width: 80px;
+              height: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+}

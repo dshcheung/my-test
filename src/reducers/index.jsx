@@ -6,6 +6,9 @@ import { RESET_ALL_STATE } from '../actions/session'
 
 import immovablesReducer from './immovables'
 
+import campaignReducer from './campaigns/campaign'
+import campaignsReducer from './campaigns/campaigns'
+
 import myCampaignReducer from './my/campaign'
 import myCampaignsReducer from './my/campaigns'
 
@@ -23,6 +26,8 @@ import sessionReducer from './session'
 
 const appReducer = combineReducers({
   immovables: immovablesReducer,
+  campaign: campaignReducer,
+  campaigns: campaignsReducer,
   myCampaign: myCampaignReducer,
   myCampaigns: myCampaignsReducer,
   myInvestorQuestionnaire: myInvestorQuestionnaireReducers,
