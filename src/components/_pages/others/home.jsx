@@ -8,7 +8,6 @@ export default class Home extends Component {
   render() {
     // use this banner for now until final version is created
     const banner = "https://image.ibb.co/hVFS09/banner.png"
-    const committeImage = "https://media.licdn.com/dms/image/C5103AQG4w-O2qvtp7A/profile-displayphoto-shrink_800_800/0?e=1541030400&v=beta&t=IfXVk8hHFSK46AlYDIdltbMkYKzXSDoi5UqlcFSlDFw"
 
     return (
       <div id="page-home">
@@ -153,44 +152,66 @@ export default class Home extends Component {
             <div className="row">
               <div className="col-xs-12">
                 <div className="row title">
-                  <div className="h4 text-primary">INVESTMENT COMMITTEE</div>
+                  <div className="h4 text-black">INVESTMENT COMMITTEE</div>
 
-                  <div className="col-xs-8 col-xs-offset-2">Our Investment Committee is comprised of highly experienced entrepreneurs, investors, industry experts and top-level business leaders will extensive experience in startup investing and scaling.</div>
+                  <div className="col-xs-12 col-md-6 col-md-offset-3">Our Investment Committee is comprised of highly experienced entrepreneurs, investors, industry experts and top-level business leaders will extensive experience in startup investing and scaling.</div>
                 </div>
 
                 <div className="row committees">
                   <ul className="nav members-list">
                     <li>
-                      <div className="committee-img" style={{ backgroundImage: `url(${committeImage})` }}>
+                      <div className="committee-img" style={{ backgroundImage: `url(https://whub.io/assets/ahub/images/ic-benedicte-nolens.jpg)` }}>
                         <div className="blur">
                           <div>
-                            <p>Yip Wan</p>
-                            <p>Company Position</p>
+                            <strong>Benedicte Nolens</strong>
+                            <p>Head of Regulatory Affairs at Circle</p>
                           </div>
                         </div>
                       </div>
                     </li>
                     <li>
-                      <div className="committee-img" style={{ backgroundImage: `url(${committeImage})` }}>
+                      <div className="committee-img" style={{ backgroundImage: `url(https://whub.io/assets/ahub/images/ic-itai-damti.jpg)` }}>
                         <div className="blur">
                           <div>
-                            <p>Yip Wan</p>
-                            <p>Company Position</p>
+                            <strong>Itai Damti</strong>
+                            <p>Entrepreneur in Residence at 500 Startups</p>
                           </div>
                         </div>
                       </div>
                     </li>
                     <li>
-                      <div className="committee-img" style={{ backgroundImage: `url(${committeImage})` }}>
+                      <div className="committee-img" style={{ backgroundImage: `url(https://whub.io/assets/ahub/images/ic-olivier-motte.jpg)` }}>
                         <div className="blur">
                           <div>
-                            <p>Yip Wan</p>
-                            <p>Company Position</p>
+                            <strong>Olivier MOTTE</strong>
+                            <p>Director of Phileuropa Ltd (HK)</p>
                           </div>
                         </div>
                       </div>
                     </li>
                   </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="partners clearfix text-center">
+          <div className="col-xs-8 col-xs-offset-2 col-lg-6 col-lg-offset-3">
+            <div className="row title">
+              <div className="h4 text-primary">OUR PARTNERS</div>
+            </div>
+
+            <div className="container margin-top-30">
+              <div className="row">
+                <div className="col-xs-6 col-md-3">
+                  <a href="https://www.brinc.io" target="_blank" className="thumbnail" rel="noopener noreferrer"><img src="https://whub.io/assets/ahub/images/landing_partner1.png" alt="brinc" /></a>
+                </div>
+                <div className="col-xs-6 col-md-3">
+                  <a href="https://www.hkvca.com.hk" target="_blank" className="thumbnail" rel="noopener noreferrer"><img src="https://whub.io/assets/ahub/images/landing_partner2.png" alt="HKVCA" /></a>
+                </div>
+                <div className="col-xs-6 col-md-3">
+                  <a href="http://www.familyoffices-asia.org" target="_blank" className="thumbnail" rel="noopener noreferrer"><img src="https://whub.io/assets/ahub/images/landing_partner3.png" alt="AFO" /></a>
                 </div>
               </div>
             </div>

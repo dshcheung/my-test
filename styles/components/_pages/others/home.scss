@@ -45,10 +45,8 @@
     }
 
     &.benefits {
-      background: radial-gradient(circle at bottom left, lighten(#a6c7d2, 10%), transparent),
-                  radial-gradient(circle at bottom center, #f9ece4, transparent),
-                  radial-gradient(circle at top left, lighten(#a6c7d2, 10%), transparent),
-                  radial-gradient(circle at top right, lighten(#a6c7d2, 10%), transparent);
+      background: radial-gradient(circle at bottom left, #f9ece4, #a6c7d2),
+                  radial-gradient(circle at top right, #a6c7d2, #f9ece4);
       padding: 0;
     }
 
@@ -103,9 +101,6 @@
     }
 
     .investment-committee {
-      background: radial-gradient(circle at bottom left, #f9ece4, #a6c7d2),
-                  radial-gradient(circle at top right, #a6c7d2, #f9ece4);
-
       .committees {
         display: flex;
         justify-content: center;
@@ -131,12 +126,13 @@
             position: relative;
 
             > div {
-              width: 50%;
+              width: 100%;
               text-align: left;
               display: none;
               position: absolute;
               bottom: 0;
               padding-left: 10px;
+              padding-right: 10px;
               padding-bottom: 10px;
 
               p {
@@ -163,12 +159,17 @@
         }
       }
     }
-    .partners {
-      background: radial-gradient(ellipse at top right, #a6c7d2, transparent),
-            radial-gradient(ellipse at bottom left, #ecf8fb, transparent);
-      .logos {
-        display: flex;
-        justify-content: space-around;
+    &.partners {
+      background: radial-gradient(circle at bottom left, #f9ece4, #a6c7d2),
+                  radial-gradient(circle at top right, #a6c7d2, #f9ece4);
+
+      .thumbnail {
+        background-color: transparent;
+        border: none;
+        vertical-align: middle;
+        img {
+          height: 80px;
+        }
       }
     }
 
