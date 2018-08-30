@@ -174,21 +174,87 @@ $campaign-logo-size: 120px;
         }
       }
 
-      &.media, &.software {
+      &.media, &.software, &.campaign-pics {
         .cards {
           display: flex;
-          justify-content: space-around;
+          justify-content: center;
+          flex-wrap: wrap;
 
-          a {
-            position: relative;
-
-            img {
+          .card {
+            a {
               position: relative;
-              transform: translate(-50%, -50%);
-              top: 50%;
-              left: 50px;
-              width: 80px;
-              height: auto;
+
+              img {
+                position: relative;
+                transform: translate(-50%, -50%);
+                top: 50%;
+                left: 50%;
+
+                height: auto;
+              }
+            }
+          }
+        }
+      }
+
+      &.media {
+        .cards .card {
+          margin: 10px 20px;
+          a img {
+            width: 80px;
+          }
+        }
+      }
+
+      &.software {
+        .cards .card {
+          margin: 5px;
+          a img {
+            width: 120px;
+          }
+        }
+      }
+
+      &.campaign-pics {
+        .cards .card {
+          margin: 10px;
+          a img {
+            width: 200px;
+          }
+        }
+      }
+
+      &.team {
+        background-color: #edc;
+
+        .cards {
+          display: flex;
+
+          .team-story {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          }
+
+          .team-pics {
+            display: flex;
+            flex-wrap: wrap;
+            align-content: space-between;
+
+            .pic {
+              img {
+                width: 100%;
+                height: auto;
+               }
+
+              .name {
+                font-weight: bold;
+                font-size: 10px;
+              }
+
+              .position {
+                font-size: 10px;
+              }
             }
           }
         }

@@ -219,8 +219,47 @@ export default class SharedCampaignsProfile extends Component {
             </div>
           </section>
 
-          <section className="software clearfix text-center">
+          <section className="team clearfix">
             <div className="col-xs-8 col-xs-offset-2 col-lg-6 col-lg-offset-3">
+              <div className="row cards">
+                <div className="col-xs-6 team-story">
+                  <div className="h4 title text-primary">TEAM STORY</div>
+
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam perspiciatis perferendis, ad nemo porro explicabo mollitia cupiditate aliquam quidem quasi non, facilis, exercitationem praesentium delectus animi laboriosam ea necessitatibus molestiae. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas perferendis ab labore non iusto consectetur debitis ratione, officiis incidunt ut earum dolore quia ipsum, dolorum maiores velit ex minima repudiandae!</p>
+
+                  <a href="" className="btn btn-primary">VIEW MORE</a>
+                </div>
+
+                <div className="col-xs-6 text-center">
+                  <div className="row team-pics">
+                    <div className="col-xs-6 pic">
+                      <img src="https://image.ibb.co/kbbEXp/campaign_team1.png" alt="person" />
+                      <div className="name">ALICE SCHUTT</div>
+                      <div className="position">GENERAL MANAGER</div>
+                    </div>
+                    <div className="col-xs-6 pic">
+                      <img src="https://image.ibb.co/hYv8sp/campaign_team2.png" alt="person" />
+                      <div className="name">NIAMH GIVEN </div>
+                      <div className="position">CHIEF GROWTH OFFICER </div>
+                    </div>
+                    <div className="col-xs-6 pic">
+                      <img src="https://image.ibb.co/kOkPXp/campaign_team3.png" alt="person" />
+                      <div className="name">CHANDMI MOTWANI</div>
+                      <div className="position">HEAD OF PRODUCT </div>
+                    </div>
+                    <div className="col-xs-6 pic">
+                      <img src="https://image.ibb.co/ceqDQ9/campaign_team4.png" alt="person" />
+                      <div className="name">JACKLINE TANG</div>
+                      <div className="position">HEAD OF MEMBERSHIP & COMMUNITY</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="software clearfix text-center">
+            <div className="col-xs-8 col-xs-offset-2">
               <div className="row title">
                 <div className="h4">SOFTWARE STACK</div>
               </div>
@@ -228,34 +267,69 @@ export default class SharedCampaignsProfile extends Component {
               <div className="row cards">
                 <div className="card">
                   <a href="">
-                    <img src="https://image.ibb.co/dFj73U/WSJ_facebook.png" alt="amazon" />
+                    <img src="https://image.ibb.co/chme09/campaign_software1.png" alt="amazon" />
                   </a>
                 </div>
                 <div className="card">
                   <a href="">
-                    <img src="https://image.ibb.co/ck1bdU/landing_media2.png" alt="pipedrive" />
+                    <img src="https://image.ibb.co/dii3Sp/campaign_software2.png" alt="pipedrive" />
                   </a>
                 </div>
                 <div className="card">
                   <a href="">
-                    <img src="https://image.ibb.co/bVRbdU/landing_media3.png" alt="react" />
+                    <img src="https://image.ibb.co/dcKz09/campaign_software3.png" alt="react" />
                   </a>
                 </div>
                 <div className="card">
                   <a href="">
-                    <img src="https://image.ibb.co/igZ7k9/landing_media4.png" alt="slask" />
+                    <img src="https://image.ibb.co/h1CK09/campaign_software4.png" alt="slask" />
                   </a>
                 </div>
                 <div className="card">
                   <a href="">
-                    <img src="https://image.ibb.co/igZ7k9/landing_media4.png" alt="zendesk" />
+                    <img src="https://image.ibb.co/jMsxnp/campaign_software5.png" alt="zendesk" />
                   </a>
                 </div>
                 <div className="card">
                   <a href="">
-                    <img src="https://image.ibb.co/igZ7k9/landing_media4.png" alt="asana" />
+                    <img src="https://image.ibb.co/d4dgDU/campaign_software6.png" alt="asana" />
                   </a>
                 </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="campaign-pics clearfix text-center">
+            <div className="cards">
+              <div className="card">
+                <a href="">
+                  <img src="https://image.ibb.co/dYBXnp/campaign_photos1.png" alt="campaign 1" />
+                </a>
+              </div>
+              <div className="card">
+                <a href="">
+                  <img src="https://image.ibb.co/fX6nL9/campaign_photos2.png" alt="campaign 2" />
+                </a>
+              </div>
+              <div className="card">
+                <a href="">
+                  <img src="https://image.ibb.co/jHd1f9/campaign_photos3.png" alt="campaign 3" />
+                </a>
+              </div>
+              <div className="card">
+                <a href="">
+                  <img src="https://image.ibb.co/eYgySp/campaign_photos4.png" alt="campaign 4" />
+                </a>
+              </div>
+              <div className="card">
+                <a href="">
+                  <img src="https://image.ibb.co/duv3tU/campaign_photos5.png" alt="campaign 5" />
+                </a>
+              </div>
+              <div className="card">
+                <a href="">
+                  <img src="https://image.ibb.co/cA1nL9/campaign_photos6.png" alt="campaign 6" />
+                </a>
               </div>
             </div>
           </section>
