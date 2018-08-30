@@ -2,7 +2,17 @@ import React, { Component } from 'react'
 
 import { DEFAULT_STARTUP_BANNER, DEFAULT_STARTUP_AVATAR } from '../../../services/constants'
 
+import SharedOthersTabNav from '../others/tab-nav'
+
 export default class SharedCampaignsProfile extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      currentTab: "overview"
+    }
+  }
+
   render() {
     // TODO: change this back to using this.props
     const campaign = {
@@ -102,6 +112,24 @@ export default class SharedCampaignsProfile extends Component {
         </section>
 
         <section className="body">
+          <SharedOthersTabNav
+            order={[
+              { key: "overview", title: "OVERVIEW" },
+              { key: "campaign", title: "CAMPAIGN" },
+              { key: "team_story", title: "TEAM STORY" },
+              { key: "product", title: "PRODUCT/SERVICE" },
+              { key: "updates", title: "UPDATES" },
+              { key: "dataroom", title: "DATAROOM" },
+              { key: "faq", title: "FAQs" },
+            ]}
+            currentTab={this.state.currentTab}
+            handleClick={(tab) => {
+              window.location = window.location.origin + window.location.pathname + `#${tab}`
+              this.setState({ currentTab: tab })
+            }}
+          />
+
+          <a id="overview" className="hash-link" />
           <section className="overview clearfix">
             <div className="col-xs-8 col-xs-offset-2 col-lg-6 col-lg-offset-3">
               <div className="row description">

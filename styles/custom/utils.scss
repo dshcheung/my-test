@@ -283,3 +283,10 @@ a:hover {
 .o-90 {
   opacity: 0.9;
 }
+
+.hash-link {
+  display: block;
+  position: relative;
+  top: -$navbar-height;
+  visibility: hidden;
+}
