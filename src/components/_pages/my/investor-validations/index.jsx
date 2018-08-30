@@ -161,7 +161,7 @@ export default class MyInvestorValidationsIndex extends Component {
 
             return (
               <div key={i} className="col-xs-4 text-center">
-                { incomplete && <Link className="btn btn-primary btn-outline" to={item.linkTo}>{item.linkTitle}</Link> }
+                { incomplete && <Link className="btn btn-primary btn-outline text-uppercase" to={item.linkTo}>{item.linkTitle}</Link> }
               </div>
             )
           })

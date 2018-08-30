@@ -142,16 +142,19 @@ export default class MyInvestorValidationsVerification extends Component {
     return (
       <div className="col-xs-12 col-sm-6">
         <div className="status-icon">
-          <i className="fas fa-times fa-6x warning" />
+          <i className="ahub-lock ahub-6x text-" />
         </div>
 
         <div className="margin-top-20 text-center">
-          <h1>UNAVAILABLE</h1>
-          <h3>You do not qualify for Investing on our platform at this time</h3>
+          <h1 className="text-uppercase">THANK YOU FOR TAKING THE ASSESMENT</h1>
+          <h3>
+            You haven't reach the minimun requires <br />
+            Have a look at the education material to learn about the risk associated to startup investment and please retake the quiz
+          </h3>
           <button
-            className="btn btn-primary btn-outline pull-right margin-top-20"
+            className="btn btn-primary text-uppercase margin-top-20"
             onClick={this.onFailureRetryClick}
-          >RETRY ASSESSMENT</button>
+          >Learn More</button>
         </div>
       </div>
     )
@@ -160,15 +163,17 @@ export default class MyInvestorValidationsVerification extends Component {
   successContinueRender() {
     return (
       <div className="col-xs-12 col-sm-6">
-        <div className="status-icon">
-          <i className="fas fa-check fa-6x success" />
+        <div className="status-icon margin-bottom-40">
+          <i className="ahub-unlock ahub-6x text-gold" />
         </div>
 
-        <div className="margin-top-20 text-center">
+        <div className="text-center">
           <h1>CONGRATULATIONS</h1>
           <h3>You have passed the Rick Assessment</h3>
+        </div>
+        <div className="margin-top-40">
           <button
-            className="btn btn-primary btn-outline text-uppercase pull-right margin-top-20"
+            className="btn btn-primary text-uppercase margin-top-20"
             onClick={this.onSuccessContinueClick}
           >Continue</button>
         </div>

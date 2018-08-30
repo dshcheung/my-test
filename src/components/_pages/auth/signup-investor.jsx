@@ -190,7 +190,7 @@ export default class SignupInvestor extends Component {
                   this.setState({ read: true })
                 }
               }}
-              className="statement-scroll"
+              className="statement-scroll margin-bottom-40"
               dangerouslySetInnerHTML={{ __html: investorWarningStatement.content }}
             />
           )
@@ -205,7 +205,7 @@ export default class SignupInvestor extends Component {
         </div>
 
         <button
-          className="btn btn-primary btn-outline text-uppercase pull-right"
+          className="btn btn-primary text-uppercase pull-right"
           onClick={this.onWarningAgreed}
           disabled={!read || !termsAgreed}
         >Continue</button>
