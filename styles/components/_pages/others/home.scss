@@ -1,0 +1,213 @@
+#page-home {
+  section {
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+    &.banner {
+      height: $min-body-height;
+      padding: 20px;
+      position: relative;
+
+      .banner-background {
+        box-shadow: 2px 2px 20px #BBB;
+        background-repeat: no-repeat;
+        background-position: left center;
+        background-size: cover;
+        height: 100%;
+        width: 100%;
+      }
+
+      .header {
+        position: absolute;
+        margin: 70px;
+        top: 0;
+        left: 0;
+      }
+
+      .start {
+        position: absolute;
+        left: 50%;
+        top: 85%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    &.what-we-offer {
+      .cards {
+        display: flex;
+        flex-wrap: wrap;
+
+        .card {
+          margin-bottom: 20px;
+        }
+      }
+    }
+
+    &.benefits {
+      background-color: #eff;
+
+      .images {
+        i {
+          font-size: 40px;
+        }
+      }
+    }
+
+    &.how-to-invest {
+      .steps {
+        .top, .bottom {
+          display: flex;
+
+          .card {
+            position: relative;
+            .water-mark {
+              font-weight: bold;
+              opacity: 0.3;
+              position: absolute;
+              margin: 0;
+            }
+
+            .title {
+              margin-top: 20px;
+            }
+
+            &.special-box {
+              box-shadow: 5px 5px 30px #ccc;
+
+              .water-mark, .title, .text {
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, -50%);
+              }
+
+              .water-mark {
+                top: 40%;
+              }
+
+              .title {
+                top: 35%;
+              }
+
+              .text {
+                top: 60%;
+                width: 100%;
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.investment-committee {
+      background-color: #eff;
+
+      .committees {
+        display: flex;
+        justify-content: center;
+
+        .committee-img {
+          height: 250px;
+          width: 180px;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+
+          .blur {
+            height: 100%;
+            width: 100%;
+            color: white;
+            position: relative;
+
+            > div {
+              width: 50%;
+              text-align: left;
+              display: none;
+              position: absolute;
+              bottom: 0;
+              padding-left: 10px;
+              padding-bottom: 10px;
+
+              p {
+                margin: 0;
+
+                &:first-child {
+                  font-size: 12px;
+                }
+
+                &:last-child {
+                  font-size: 11px;
+                }
+              }
+            }
+
+            &:hover {
+              background-color: rgba(0, 0, 0, 0.5);
+
+              > div {
+                display: block;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.partners {
+      .logos {
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+
+    &.philosophy {
+      background-color: #eff;
+
+      .cards {
+        display: flex;
+        flex-wrap: wrap;
+
+        .card {
+          position: relative;
+          margin-bottom: 30px;
+
+          &.image {
+            > div {
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: cover;
+              height: 100%;
+              width: 100%;
+            }
+          }
+
+          .water-mark {
+            font-weight: bold;
+            opacity: 0.3;
+            position: absolute;
+            margin: 0;
+          }
+
+          .title {
+            margin-top: 20px;
+          }
+        }
+      }
+    }
+
+    &.learn-more {
+      .shadow {
+        padding: 30px;
+        box-shadow: 5px 5px 30px #ccc;
+
+        i {
+          font-size: 40px;
+        }
+      }
+    }
+
+    &.launch-today {
+      background-color: $ahub-black;
+    }
+  }
+}

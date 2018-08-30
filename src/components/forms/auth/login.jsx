@@ -34,7 +34,7 @@ export default class AuthLoginForm extends Component {
             opts={{
               type: "email",
               label: "Username / Email",
-              placeholder: "placeholder"
+              placeholder: "adam.chan@domain.com"
             }}
           />
 

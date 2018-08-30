@@ -1,6 +1,16 @@
 #shared-others-side-title {
   text-align: center;
 
+  &.color-primary {
+    div {
+      border-right: 2px solid $ahub-gold;
+    }
+
+    .title {
+      color: $ahub-gold;
+    }
+  }
+
   div {
     display: inline-block;
     border-right: 2px solid $ahub-blue;

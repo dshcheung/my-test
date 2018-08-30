@@ -33,14 +33,14 @@ export default class App extends Component {
   render() {
     const { routes } = this.props
     const currentRoute = routes[routes.length - 1]
-    const { barebone } = currentRoute
+    const { barebone, optClass } = currentRoute
     const childrenID = barebone ? "layouts-barebone" : "layouts-body"
 
     return (
       <div id="layouts-app">
         { !barebone && <Navbar /> }
 
-        <div id={childrenID} className="clearfix container-fluid">{this.props.children}</div>
+        <div id={childrenID} className={`clearfix container-fluid ${optClass}`}>{this.props.children}</div>
 
         { !barebone && <Footer /> }
       </div>

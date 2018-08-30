@@ -1,7 +1,9 @@
 import React from 'react'
-import { Route, IndexRoute, IndexRedirect } from 'react-router'
+import { Route, IndexRoute } from 'react-router'
 
 import App from '../components/_layouts/app'
+
+import HomeContainer from '../components/_pages/others/home'
 
 import AuthContainer from '../components/_pages/auth/wrapper'
 import LoginContainer from '../components/_pages/auth/login'
@@ -30,9 +32,11 @@ import MyInvestorValidationsAMLWrapperContainer from '../components/_pages/my/in
 
 import InPersonValidationContainer from '../components/_pages/others/in-person-validation'
 
+import PageNotFound from '../components/_pages/others/not-found'
+
 export default (
   <Route path="/" component={App}>
-    <IndexRedirect to="/auth/login" />
+    <IndexRoute component={HomeContainer} optClass="px-0" />
 
     <Route path="auth" component={AuthContainer}>
       <Route path="login" component={LoginContainer} />
@@ -70,5 +74,7 @@ export default (
     <Route path="in-person-validation" component={InPersonValidationContainer} barebone />
 
     <Route path="blank" barebone />
+
+    <Route path="*" component={PageNotFound} />
   </Route>
 )
