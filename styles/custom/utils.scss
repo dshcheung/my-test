@@ -63,6 +63,10 @@ $weights: 400,500,700,800;
   }
 }
 
+@mixin border-radius($pixel...) {
+  border-radius: $pixel;
+}
+
 .fs-28 {
   font-size: 28px !important;
 }
@@ -272,4 +276,10 @@ a:hover {
 .box-shadow {
   padding: 50px;
   box-shadow: 1px 1px 50px $gray-light;
+}
+.rounded-2 {
+  @include border-radius(2px);
+}
+.o-90 {
+  opacity: 0.9;
 }

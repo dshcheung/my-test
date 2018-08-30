@@ -15,11 +15,10 @@ export default class Home extends Component {
       <div id="page-home">
         <section className="banner clearfix">
           <div className="banner-background" style={{ backgroundImage: `url(${banner})` }} />
-          <div className="h2 header">
-            <div>BUILD A DIVERSIFED</div>
-            <div>STARTUP PORTFOLIO</div>
+          <div className="h1 header text-uppercase">
+            <div>Invest in the future</div>
           </div>
-          <a className="btn btn-primary btn-lg start">START INVESTING</a>
+          <a className="btn btn-primary btn-lg px-20 rounded-2 o-90 start">START INVESTING</a>
         </section>
 
         <section className="what-we-offer clearfix">
@@ -289,6 +288,30 @@ export default class Home extends Component {
                 optClass="col-xs-8 col-xs-offset-2 col-lg-6 col-lg-offset-3 dark"
                 onSubmit={() => {}}
               />
+            </div>
+          </div>
+        </section>
+
+        <section className="media clearfix text-center px-top-50 px-bottom-50">
+          <div className="col-xs-12">
+            <div className="row title">
+              <div className="h4 text-uppercase text-gold">Media</div>
+            </div>
+            <div className="container margin-top-30">
+              <div className="row">
+                <div className="col-xs-6 col-md-3">
+                  <a className="thumbnail"><img src="https://whub.io/assets/ahub/images/landing_media2.jpg" alt="NY Times" /></a>
+                </div>
+                <div className="col-xs-6 col-md-3">
+                  <a className="thumbnail"><img src="https://whub.io/assets/ahub/images/landing_media3.png" alt="BBC News" /></a>
+                </div>
+                <div className="col-xs-6 col-md-3">
+                  <a className="thumbnail"><img src="https://whub.io/assets/ahub/images/landing_media1.png" alt="WSJ" /></a>
+                </div>
+                <div className="col-xs-6 col-md-3">
+                  <a className="thumbnail"><img src="https://whub.io/assets/ahub/images/landing_media4.png" alt="HKET" /></a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
