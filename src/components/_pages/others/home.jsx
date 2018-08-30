@@ -9,7 +9,6 @@ export default class Home extends Component {
     // use this banner for now until final version is created
     const banner = "https://image.ibb.co/hVFS09/banner.png"
     const committeImage = "https://media.licdn.com/dms/image/C5103AQG4w-O2qvtp7A/profile-displayphoto-shrink_800_800/0?e=1541030400&v=beta&t=IfXVk8hHFSK46AlYDIdltbMkYKzXSDoi5UqlcFSlDFw"
-    const philosophyImage = "https://agilutions.com/wp-content/uploads/2018/04/team-coding-300x200.jpg"
 
     return (
       <div id="page-home">
@@ -214,11 +213,11 @@ export default class Home extends Component {
               </div>
 
               <div className="col-xs-6 card image">
-                <div style={{ backgroundImage: `url(${philosophyImage})` }} />
+                <div style={{ backgroundImage: `url(https://whub.io/assets/ahub/images/landing_who.jpg)` }} />
               </div>
 
               <div className="col-xs-6 card image">
-                <div style={{ backgroundImage: `url(${philosophyImage})` }} />
+                <div style={{ backgroundImage: `url(https://whub.io/assets/ahub/images/landing_why.jpg)` }} />
               </div>
 
               <div className="col-xs-6 card">
@@ -236,7 +235,7 @@ export default class Home extends Component {
               </div>
 
               <div className="col-xs-6 card image">
-                <div style={{ backgroundImage: `url(${philosophyImage})` }} />
+                <div style={{ backgroundImage: `url(https://whub.io/assets/ahub/images/landing_what.jpg)` }} />
               </div>
             </div>
           </div>
