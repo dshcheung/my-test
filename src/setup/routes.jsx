@@ -30,6 +30,8 @@ import MyInvestorValidationsVerificationContainer from '../components/_pages/my/
 import MyInvestorValidationsSuitabilityWrapperContainer from '../components/_pages/my/investor-validations/suitability-wrapper'
 import MyInvestorValidationsAMLWrapperContainer from '../components/_pages/my/investor-validations/aml-wrapper'
 
+import MyPortfolioContainer from '../components/_pages/my/portfolio'
+
 import CampaignsWrapperContainer from '../components/_pages/campaigns/wrapper'
 import CampaignsIndexContainer from '../components/_pages/campaigns/index'
 import CampaignsShowContainer from '../components/_pages/campaigns/show'
@@ -72,7 +74,7 @@ export default (
         <Route path="aml/:tab" component={MyInvestorValidationsAMLWrapperContainer} />
       </Route>
 
-      <Route path="portfolio" roleAccess="Investor" />
+      <Route path="portfolio" component={MyPortfolioContainer} roleAccess="Investor" />
     </Route>
 
     <Route path="campaigns" component={CampaignsWrapperContainer}>
