@@ -35,6 +35,7 @@ export default class MyStartupQuestionnairesAttachmentsForm extends Component {
             name="attachments"
             component={FileDropField}
             opts={{
+              showErrors: true,
               label: "1. You still have somtehing more you want to share with us ? (optional)",
               onDeleteField: dMSQAttributes,
               hint: "Please upload here any document not related to the previous tabs data rooms",

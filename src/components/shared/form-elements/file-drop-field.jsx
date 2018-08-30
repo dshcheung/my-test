@@ -28,6 +28,14 @@ export default class FileDropField extends Component {
     this.onDrop = this.onDrop.bind(this)
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (this.props.fields.length > nextProps.fields.length) {
+      nextProps.fields.forEach((objKey, i) => {
+        this.setPreviewUrl(_.get(nextProps.fields.get(i), 'file', null), objKey)
+      })
+    }
+  }
+
   onDrop(newFiles) {
     const formattedNewFiles = newFiles.map((f) => {
       return {
@@ -42,7 +50,6 @@ export default class FileDropField extends Component {
   }
 
   setPreviewUrl(file, objKey) {
-    const previews = this.state.previews
     const type = getType(file)
 
     let fileUrl = null
@@ -53,7 +60,7 @@ export default class FileDropField extends Component {
       fileUrl = _.get(file, 'original')
     }
 
-    this.setState({ previews: { ...previews, [objKey]: fileUrl } })
+    if (fileUrl) this.setState({ [objKey]: fileUrl })
   }
 
   render() {
@@ -61,11 +68,11 @@ export default class FileDropField extends Component {
       fields, formData, meta: { error },
       opts: {
         optClass, onDeleteField,
-        selectOpts, maxFields
+        selectOpts, maxFields, showErrors
       }
     } = this.props
 
-    const { previews } = this.state
+    window.test = fields
 
     const errors = _.get(formData.syncErrors, fields.name, [])
     const meta = _.get(formData.fields, fields.name, [])
@@ -120,13 +127,13 @@ export default class FileDropField extends Component {
 
                   const combinedErrors = [...titleErrors, ...fileErrors]
 
-                  const hasErrorClass = touched && invalid && 'has-error'
+                  const hasErrorClass = (showErrors || touched) && invalid && 'has-error'
 
-                  const fileUrl = _.get(previews, `${objKey}`, '')
+                  const fileUrl = _.get(this.state, `${objKey}`, '')
 
                   return (
                     <li key={i} className={`file-item-wrapper ${hasErrorClass}`}>
-                      <span className="help-block">{touched && hasErrorClass && combinedErrors.join(', ')}&nbsp;</span>
+                      <span className="help-block">{(showErrors || touched) && hasErrorClass && combinedErrors.join(', ')}&nbsp;</span>
                       <div className="file-item">
                         <Field
                           name={`${objKey}.file`}
@@ -158,6 +165,7 @@ export default class FileDropField extends Component {
                         }
                         <div className="delete">
                           <button
+                            type="button"
                             disabled={this.state.disabled}
                             className="btn btn-default"
                             onClick={() => {

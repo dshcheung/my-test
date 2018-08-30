@@ -58,6 +58,7 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
             name="company_name"
             component={TextField}
             opts={{
+              showErrors: true,
               placeholder: "Name",
               label: "1. Company Name"
             }}
@@ -67,6 +68,7 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
             name="founded_year"
             component={DateTimePicker}
             opts={{
+              showErrors: true,
               placeholder: "Select the year",
               label: "2. Founded Year",
               time: false,
@@ -80,6 +82,7 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
             name="country_of_incorporation"
             component={SelectField}
             opts={{
+              showErrors: true,
               options: COUNTRIES,
               valueField: "name",
               textField: "name",
@@ -92,9 +95,10 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
             name="tagline"
             component={TextField}
             opts={{
+              showErrors: true,
               label: "4. Tagline",
               placeholder: "Tagline",
-              hint: "Max 140 Characters"
+              validationHint: "Max 140 Characters"
             }}
           />
 
@@ -102,9 +106,10 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
             name="hashtags"
             component={MultiselectField}
             opts={{
+              showErrors: true,
               label: "5. Verticals & Technologies",
               placeholder: "Type to filter or create your own",
-              hint: "Max 5 Tags",
+              validationHint: "Max 5 Tags",
               options: this.props.hashtagOptions.map((h) => {
                 return { tag: h.name }
               }),
@@ -122,6 +127,7 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
             name="attachments"
             component={DynamicFieldArray}
             opts={{
+              showErrors: true,
               label: "6. Visual Identity",
               groupName: "File",
               newFieldInit: {
@@ -136,6 +142,7 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
                   key: "title",
                   component: SelectField,
                   opts: {
+                    showErrors: true,
                     label: "Title",
                     options: [
                       { name: "Company Logo" },
@@ -151,6 +158,7 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
                   key: "file",
                   component: FileField,
                   opts: {
+                    showErrors: true,
                     label: "File",
                     urlKey: "original"
                   }

@@ -76,8 +76,10 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
             name="story"
             component={TextRTE}
             opts={{
+              showErrors: true,
               label: "1. Team story",
-              hint: "Max 600 Words. When did you meet ? What have you done together ? what is the alchemy you experienced ? Why are you the best team to conduct your mission ? Be reflective and personal "
+              validationHint: "Max 600 Words",
+              hint: "When did you meet ? What have you done together ? what is the alchemy you experienced ? Why are you the best team to conduct your mission ? Be reflective and personal "
             }}
           />
 
@@ -85,6 +87,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
             name="startup_questionnaire_team_members"
             component={DynamicFieldArray}
             opts={{
+              showErrors: true,
               label: "2. Co-founders and Officers",
               groupName: "Founder/Officer",
               newFieldInit: {
@@ -105,6 +108,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "avatar",
                   component: FileField,
                   opts: {
+                    showErrors: true,
                     label: "Avatar",
                     optClass: "image-field-avatar",
                     urlKey: "original"
@@ -114,6 +118,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "first_name",
                   component: TextField,
                   opts: {
+                    showErrors: true,
                     label: "First Name"
                   }
                 },
@@ -121,6 +126,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "last_name",
                   component: TextField,
                   opts: {
+                    showErrors: true,
                     label: "Last Name"
                   }
                 },
@@ -128,6 +134,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "member_type",
                   component: SelectField,
                   opts: {
+                    showErrors: true,
                     label: "Member Type",
                     options: [{ id: "founder", name: "Co-Founder" }, { id: "member", name: "Member" }],
                     valueField: "id",
@@ -138,6 +145,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "title",
                   component: TextField,
                   opts: {
+                    showErrors: true,
                     label: "Job Title"
                   }
                 },
@@ -145,14 +153,16 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "bio",
                   component: TextRTE,
                   opts: {
-                    label: "Short Bio (optional)",
-                    hint: "Max 60 Words"
+                    showErrors: true,
+                    label: "Short Bio",
+                    validationHint: "Max 60 Words"
                   }
                 },
                 {
                   key: "linkedin",
                   component: TextField,
                   opts: {
+                    showErrors: true,
                     label: "Linkedin",
                     placeholder: "https://www.linkedin.com/in/example-person"
                   }
@@ -161,6 +171,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "commitment",
                   component: SelectField,
                   opts: {
+                    showErrors: true,
                     options: [
                       { id: "quarter", name: "25%" },
                       { id: "half", name: "50%" },
@@ -178,6 +189,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "salary",
                   component: CurrencyField,
                   opts: {
+                    showErrors: true,
                     type: "Number",
                     label: "Salary Amount",
                     hint: "This info will not appear on your listed profile"
@@ -187,6 +199,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "equity",
                   component: TextField,
                   opts: {
+                    showErrors: true,
                     type: "number",
                     label: "Equity Interest",
                     backInputGroup: "%"
@@ -200,6 +213,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
             name="startup_questionnaire_team_advisors"
             component={DynamicFieldArray}
             opts={{
+              showErrors: true,
               label: "3. Notable Advisors & Investors (optional)",
               groupName: "Advisors/Investors",
               newFieldInit: {
@@ -216,7 +230,8 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "avatar",
                   component: FileField,
                   opts: {
-                    label: "Avatar",
+                    showErrors: true,
+                    label: "Avatar (optional)",
                     optClass: "image-field-avatar",
                     urlKey: "original"
                   }
@@ -225,6 +240,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "first_name",
                   component: TextField,
                   opts: {
+                    showErrors: true,
                     label: "First Name"
                   }
                 },
@@ -232,6 +248,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "last_name",
                   component: TextField,
                   opts: {
+                    showErrors: true,
                     label: "Last Name"
                   }
                 },
@@ -239,6 +256,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "role",
                   component: TextField,
                   opts: {
+                    showErrors: true,
                     label: "Role Description"
                   }
                 },
@@ -246,14 +264,16 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "bio",
                   component: TextRTE,
                   opts: {
+                    showErrors: true,
                     label: "Short Bio (optional)",
-                    hint: "Max 25 Words"
+                    validationHint: "Max 25 Words"
                   }
                 },
                 {
                   key: "linkedin",
                   component: TextField,
                   opts: {
+                    showErrors: true,
                     label: "Linkedin",
                     placeholder: "https://www.linkedin.com/in/example-person"
                   }
@@ -266,6 +286,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
             name="attachments"
             component={DynamicFieldArray}
             opts={{
+              showErrors: true,
               label: "4. You have a some pictures to share about your team story (optional)",
               hint: "Upload your document - a picture says more than a thousand words",
               groupName: "File",
@@ -279,6 +300,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "title",
                   component: SelectField,
                   opts: {
+                    showErrors: true,
                     label: "Title",
                     options: this.props.attachmentOptions,
                     valueField: "name",
@@ -291,6 +313,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                   key: "file",
                   component: FileField,
                   opts: {
+                    showErrors: true,
                     label: "File",
                     urlKey: "original"
                   }

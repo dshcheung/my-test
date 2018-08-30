@@ -75,15 +75,18 @@ export default class MultiselectField extends Component {
         options, requestInProcess,
         label,
         placeholder, optClass, hint,
-        valueField, textField, TagItem
+        valueField, textField, TagItem,
+        showErrors, validationHint
       }
     } = this.props
 
-    const hasErrorClass = touched && invalid ? 'has-error' : ''
+    const hasErrorClass = (showErrors || touched) && invalid ? 'has-error' : ''
 
     return (
       <div className={`form-group clearfix ${hasErrorClass} ${optClass}`}>
         { hint && <span className="help-block hint">{hint}</span> }
+        { validationHint && <span className="help-block hint">{validationHint}</span>}
+
         <Multiselect
           disabled={this.state.disabled}
           containerClassName={`${label && "has-label"} ${input.value.length > 0 && "has-value"}`}
@@ -103,8 +106,9 @@ export default class MultiselectField extends Component {
           onBlur={this.handleBlur}
           onFocus={this.handleFocus}
         />
-        { label && <label className={input.value.length > 0 && 'has-value'} htmlFor={input.name}>{label} {hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>} </label> }
-        { !label && <span className="help-block">{touched && hasErrorClass && error.join(", ")}&nbsp;</span>}
+
+        { label && <label className={input.value.length > 0 && 'has-value'} htmlFor={input.name}>{label} {hasErrorClass && <span className="help-block">{(showErrors || touched) ? error.join(", ") : ''}</span>} </label> }
+        { !label && <span className="help-block">{(showErrors || touched) && hasErrorClass && error.join(", ")}&nbsp;</span>}
       </div>
     )
   }

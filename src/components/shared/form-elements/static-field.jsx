@@ -4,13 +4,14 @@ import { Field } from 'redux-form'
 export default class StaticField extends Component {
   render() {
     const {
-      name, label, hint, fields, headerNoMargin, noMargin,
+      name, label, hint, fields, headerNoMargin, noMargin, validationHint
     } = this.props
 
     return (
       <div className={`clearfix static-field ${!noMargin && "margin-bottom-30"}`}>
         <div className={`field-header ${headerNoMargin && "margin-0"}`}>
           { label && <label htmlFor={name}>{label}</label> }
+          { validationHint && <span className="help-block hint">{validationHint}</span>}
           { hint && <span className="help-block hint">{hint}</span>}
         </div>
 

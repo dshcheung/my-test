@@ -71,6 +71,7 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
             name="campaign_type"
             component={SelectField}
             opts={{
+              showErrors: true,
               requestInProcess: gImmovableInProcess,
               label: "1. Type of Deal",
               placeholder: "Select Valuation Type",
@@ -85,6 +86,7 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
             name="raised"
             component={CurrencyField}
             opts={{
+              showErrors: true,
               label: "2. Amount looking to raise",
               placeholder: "5,000,000"
             }}
@@ -97,6 +99,7 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
                   name="pre_money_valuation"
                   component={CurrencyField}
                   opts={{
+                    showErrors: true,
                     label: "3. Pre money valuation",
                     placeholder: "1,000,000"
                   }}
@@ -106,6 +109,7 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
                   name="equity_percentage"
                   component={TextField}
                   opts={{
+                    showErrors: true,
                     type: "number",
                     label: "4. Equity Percentage (Calculated Automatically)",
                     backInputGroup: "%",
@@ -124,6 +128,7 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
                   name="discount_rate"
                   component={TextField}
                   opts={{
+                    showErrors: true,
                     type: "number",
                     label: "3. Discount rate",
                     backInputGroup: "%"
@@ -134,6 +139,7 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
                   name="interest_rate"
                   component={TextField}
                   opts={{
+                    showErrors: true,
                     type: "number",
                     label: "4. Interest rate",
                     backInputGroup: "%"
@@ -144,6 +150,7 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
                   name="maturity_date"
                   component={DateTimePicker}
                   opts={{
+                    showErrors: true,
                     label: "5. Maturity Date",
                     time: false,
                     format: "YYYY/MM/DD"
@@ -154,6 +161,7 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
                   name="valuation_cap"
                   component={CurrencyField}
                   opts={{
+                    showErrors: true,
                     label: "6. Valuation Cap"
                   }}
                 />
@@ -165,6 +173,7 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
             name="attachments"
             component={DynamicFieldArray}
             opts={{
+              showErrors: true,
               label: `${campaignType === "equity" ? 5 : 7}. Upload Existing Term Sheets, Investor Right Agreements, Shareholder Agreements, etc. (Optional)`,
               groupName: "File",
               newFieldInit: {
@@ -177,6 +186,7 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
                   key: "title",
                   component: SelectField,
                   opts: {
+                    showErrors: true,
                     label: "Title",
                     options: this.props.attachmentOptions,
                     valueField: "name",
@@ -189,6 +199,7 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
                   key: "file",
                   component: FileField,
                   opts: {
+                    showErrors: true,
                     label: "File",
                     urlKey: "original"
                   }

@@ -24,6 +24,7 @@ import FileField from '../../../shared/form-elements/file-field'
           selfPresences: false,
           selfMax: 5,
           childFields: {
+            occurred_on: ["presences"],
             title: ["presences", { type: "lengthWord", opts: { max: 4 } }],
             content: ["presences", { type: "lengthWord", opts: { max: 20 } }]
           }
@@ -74,8 +75,9 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="problem"
             component={TextRTE}
             opts={{
-              label: "1. Problem",
-              hint: "Max 100 Words"
+              showErrors: true,
+              validationHint: "Max 100 Words",
+              label: "1. Problem"
             }}
           />
 
@@ -83,8 +85,9 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="solution"
             component={TextRTE}
             opts={{
+              showErrors: true,
+              validationHint: "Max 100 Words",
               label: "2. Solution",
-              hint: "Max 100 Words"
             }}
           />
 
@@ -92,8 +95,10 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="make_money"
             component={TextRTE}
             opts={{
+              showErrors: true,
+              validationHint: "Max 100 Words",
               label: "3. What is your revenue model?",
-              hint: "Max 100 Words. It identifies which revenue source to pursue, how to price the value, and who pays for the value. It is a key component of a company's business model. ex: Advertising, Freemium model, Subscription model, Licensing, Selling data etc..."
+              hint: "It identifies which revenue source to pursue, how to price the value, and who pays for the value. It is a key component of a company's business model. ex: Advertising, Freemium model, Subscription model, Licensing, Selling data etc..."
             }}
           />
 
@@ -101,8 +106,10 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="solution_benchmark"
             component={TextRTE}
             opts={{
+              showErrors: true,
+              validationHint: "Max 200 Words",
               label: "4. What is your Unique Selling Point USP",
-              hint: "Max 200 Words. Define your company's unique position in the marketplace. A strong USP clearly articulates a specific benefit - one that other competitors don't offer - that makes you stand out."
+              hint: "Define your company's unique position in the marketplace. A strong USP clearly articulates a specific benefit - one that other competitors don't offer - that makes you stand out."
             }}
           />
 
@@ -110,6 +117,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="pitch_deck"
             component={FileField}
             opts={{
+              showErrors: true,
               label: "5. Pitch Deck",
               urlKey: "original",
               hint: "Upload your pitch deck"
@@ -120,6 +128,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="business_model"
             component={FileField}
             opts={{
+              showErrors: true,
               label: "6. Business Plan (optional)",
               hint: "Upload your business plan",
               urlKey: "original"
@@ -130,6 +139,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="startup_questionnaire_highlights"
             component={DynamicFieldArray}
             opts={{
+              showErrors: true,
               maxFields: 5,
               label: "7. Top 5 highlighs / achievements",
               groupName: "Highlight",
@@ -139,12 +149,14 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                 content: ''
               },
               onDeleteField: dMSQAttributes,
-              hint: "Max 5 main achievements. For each, we need a 4 words max title, a date (optional, quarter/year), a nominal sentence of 20 words max. Make them count !",
+              validationHint: "Max 5 main achievements",
+              hint: "For each, we need a 4 words max title, a date (optional, quarter/year), a nominal sentence of 20 words max. Make them count !",
               dynamicFields: [
                 {
                   key: "occurred_on",
                   component: DateTimePicker,
                   opts: {
+                    showErrors: true,
                     label: "Occured On",
                     time: false,
                     format: "YYYY/MM",
@@ -155,16 +167,18 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                   key: "title",
                   component: TextField,
                   opts: {
+                    showErrors: true,
                     label: "Title",
-                    hint: "Max 4 Words"
+                    validationHint: "Max 4 Words"
                   }
                 },
                 {
                   key: "content",
                   component: TextRTE,
                   opts: {
+                    showErrors: true,
                     label: "Content",
-                    hint: "Max 20 Words"
+                    validationHint: "Max 20 Words"
                   }
                 }
               ]
@@ -175,6 +189,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="startup_questionnaire_media"
             component={DynamicFieldArray}
             opts={{
+              showErrors: true,
               maxFields: 5,
               label: "8. Media (optional)",
               groupName: "Media",
@@ -183,12 +198,14 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                 link: ''
               },
               onDeleteField: dMSQAttributes,
-              hint: "Max 5 media. Provide us with the link to the article and the logo of the media",
+              validationHint: "Max 5 media",
+              hint: "Provide us with the link to the article and the logo of the media",
               dynamicFields: [
                 {
                   key: "logo",
                   component: FileField,
                   opts: {
+                    showErrors: true,
                     label: "Add Image for Thumbnail",
                     urlKey: "original"
                   }
@@ -197,6 +214,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                   key: "link",
                   component: TextField,
                   opts: {
+                    showErrors: true,
                     type: 'url',
                     label: "Link",
                     placeholder: "https://website.com"
@@ -210,6 +228,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="attachments"
             component={DynamicFieldArray}
             opts={{
+              showErrors: true,
               label: "9. Can you share with us some more shining visuals to illustrate your teaser? (optional)",
               hint: "A video or pictures showing your company, your team, your product, your vision, your story... all of them... that is your show. As long as it stays shorter than 1min and 30 seconds / 5 pictures",
               groupName: "File",
@@ -223,6 +242,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                   key: "title",
                   component: SelectField,
                   opts: {
+                    showErrors: true,
                     label: "Title",
                     options: this.props.attachmentOptions,
                     valueField: "name",
@@ -235,6 +255,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                   key: "file",
                   component: FileField,
                   opts: {
+                    showErrors: true,
                     label: "File",
                     urlKey: "original"
                   }

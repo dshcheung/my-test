@@ -31,13 +31,14 @@ export default class FileField extends Component {
         optClass,
         hint,
         urlKey, valueIsUrl,
-        templateUrl
+        templateUrl,
+        showErrors, validationHint
       }
     } = this.props
 
     const { previewFileUrl } = this.state
 
-    const hasErrorClass = touched && invalid ? 'has-error' : ''
+    const hasErrorClass = (showErrors || touched) && invalid ? 'has-error' : ''
     const newInput = _.omit(input, 'value')
     const fileUrl = valueIsUrl ? input.value : _.get(input.value, urlKey)
 
@@ -53,11 +54,14 @@ export default class FileField extends Component {
 
     return (
       <div className={`form-group clearfix ${hasErrorClass} file-field`}>
+        { hint && <span className="help-block hint">{hint}</span>}
+        { validationHint && <span className="help-block hint">{validationHint}</span>}
         {
-          (hint || templateUrl) && (
+          templateUrl && (
             <span className="help-block hint clearfix">
               { templateUrl && <a href={templateUrl} download target="_blank" rel="noopener noreferrer">Download Template</a> }
-              {hint}
+              { validationHint }
+              { hint }
             </span>
           )
         }
@@ -103,13 +107,10 @@ export default class FileField extends Component {
             <label
               className={hasValue && "has-value"}
               htmlFor={newInput.name + "-noInteraction"}
-            >
-              {label}
-              {hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>}
-            </label>
+            >{label} {hasErrorClass && <span className="help-block">{(showErrors || touched) ? error.join(", ") : ''}</span>}</label>
           )
         }
-        { !label && <span className="help-block">{touched && hasErrorClass && error.join(", ")}&nbsp;</span>}
+        { !label && <span className="help-block">{(showErrors || touched) && hasErrorClass && error.join(", ")}&nbsp;</span>}
       </div>
     )
   }
