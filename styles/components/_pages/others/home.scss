@@ -45,7 +45,10 @@
     }
 
     &.benefits {
-      background-color: #eff;
+      background: radial-gradient(circle at bottom left, lighten(#a6c7d2, 10%), transparent),
+                  radial-gradient(circle at bottom center, #f9ece4, transparent),
+                  radial-gradient(circle at top left, lighten(#a6c7d2, 10%), transparent),
+                  radial-gradient(circle at top right, lighten(#a6c7d2, 10%), transparent);
       padding: 0;
     }
 
@@ -100,8 +103,8 @@
     }
 
     .investment-committee {
-      background: radial-gradient(ellipse at bottom left, #a6c7d2, transparent),
-                  radial-gradient(ellipse at top right, #ecf8fb, transparent);
+      background: radial-gradient(circle at bottom left, #f9ece4, #a6c7d2),
+                  radial-gradient(circle at top right, #a6c7d2, #f9ece4);
 
       .committees {
         display: flex;

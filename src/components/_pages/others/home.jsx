@@ -27,74 +27,71 @@ export default class Home extends Component {
           <div className="col-xs-8 col-lg-6">
             <div className="row cards">
               <div className="col-xs-6 card">
-                <div className="h5">PROFESSIONALISM OF VENTURE CAPITAL</div>
-
-                <div>Invest in highly Vetted Startup. The startups listed on AngelHub must all passed a screening, due diligence process and Investment committee</div>
+                <div className="h5 text-uppercase">VENTURE AS AN ASSET CLASS</div>
+                <div>Less than 5% of startups that apply get accepted by AngelHub. Listed startups have to get through our rigorous due diligence process</div>
               </div>
 
               <div className="col-xs-6 card">
-                <div className="h5">FLEXIBILITY OF ANGEL INVESTING</div>
+                <div className="h5 text-uppercase">BUILD A DIVERSIFIED STARTUP PORTFOLIO</div>
 
-                <div>Invest a minimum of US$10,000, much lower than any startup investment to diversify yorr portfolio</div>
+                <div>Invest in startups from around the world across industries and sectors starting at a minimum investment of US$ 10,000</div>
               </div>
 
               <div className="col-xs-6 card">
-                <div className="h5">INVEST IN THE FUTURE</div>
+                <div className="h5 text-uppercase">INVEST IN THE FUTURE</div>
 
-                <div>Startups are driving innovation and changing the future and changing the status quo. be part of the digital revolution and empower startups to drive wealth and economic growth</div>
+                <div>Startups are driving innovation and changing the future and changing the status quo. Be a part of the digital revolution and empower startups to drive wealth and economic growth</div>
               </div>
 
               <div className="col-xs-6 card">
-                <div className="h5">POWER OF KEY STRATEGIC PARTNERSHIPS</div>
+                <div className="h5 text-uppercase">POWER OF KEY STRATEGIC PARTNER</div>
 
-                <div>AngelHub's team is emerge in the Startup ecosystem and has build key partnerships with accelerators, incubators, startup communities over the world to foster the most promising startups</div>
+                <div>We are a team of builders and operators, immersed in the startup eco- system and have built strong partnerships with incubators, accelerators and startup communities across the world</div>
               </div>
 
-              <div className="col-xs-6 card">
-                <div className="h5">WORLDWIDE STARTUPS</div>
-
-                <div>Invest a minium of US$10,000, much lower than any startup investment to diversify your portfolio</div>
-              </div>
             </div>
           </div>
         </section>
 
-        <section className="benefits clearfix text-center">
-          <div className="col-xs-12 col-md-11">
-            <div className="row title">
-              <div className="h4 text-green">BENEFITS</div>
-            </div>
+        <section className="benefits clearfix text-center px-top-30 px-bottom-30">
+          <div className="hidden-xs hidden-sm col-md-1">&nbsp;</div>
+          <div className="col-xs-12 col-md-11 box-shadow px-0">
+            <div className="col-xs-12 col-md-11 px-20">
+              <div className="row title">
+                <div className="h4 text-green">BENEFITS</div>
+              </div>
 
-            <div className="row images">
-              <div className="col-xs-4"><i className="ahub-benefit1 ahub-5x" /></div>
-              <div className="col-xs-4"><i className="ahub-benefit2 ahub-5x" /></div>
-              <div className="col-xs-4"><i className="ahub-benefit3 ahub-5x" /></div>
-            </div>
+              <div className="row images">
+                <div className="col-xs-4"><i className="ahub-benefit1 ahub-5x" /></div>
+                <div className="col-xs-4"><i className="ahub-benefit2 ahub-5x" /></div>
+                <div className="col-xs-4"><i className="ahub-benefit3 ahub-5x" /></div>
+              </div>
 
-            <div className="row heading">
-              <div className="h5 col-xs-4">Investment Portal Overview</div>
-              <div className="h5 col-xs-4">Diversified Investment through a multi sector platform</div>
-              <div className="h5 col-xs-4">Gain insights and keep track of your investment</div>
-            </div>
+              <div className="row heading">
+                <div className="h5 col-xs-4">Investment Portal Overview</div>
+                <div className="h5 col-xs-4">Diversified Investment through a multi sector platform</div>
+                <div className="h5 col-xs-4">Gain insights and keep track of your investment</div>
+              </div>
 
-            <div className="row points text-left">
-              <ul className="col-xs-4 list-style-none">
-                <li><span className="text-primary margin-right-5">></span>Gives full flexibility and transparency</li>
-                <li><span className="text-primary margin-right-5">></span>Make informed decisions and build a personalised investment portfolio</li>
-                <li><span className="text-primary margin-right-5">></span>Stay informed anyway anytime</li>
-              </ul>
-              <ul className="col-xs-4 list-style-none">
-                <li><span className="text-primary margin-right-5">></span>Access Vetted Startup with the due dilligence documents</li>
-                <li><span className="text-primary margin-right-5">></span>From discovery and thorough evaluation, to settlement and post investment monitoring</li>
-                <li><span className="text-primary margin-right-5">></span>Centralised portal with direct access to startups and education through master classes</li>
-              </ul>
-              <ul className="col-xs-4 list-style-none">
-                <li><span className="text-primary margin-right-5">></span>Overview at a glance or in depth</li>
-                <li><span className="text-primary margin-right-5">></span>Analytics and post investment report</li>
-              </ul>
+              <div className="row points text-left">
+                <ul className="col-xs-4 list-style-none">
+                  <li><span className="text-primary margin-right-5">></span>Gives full flexibility and transparency</li>
+                  <li><span className="text-primary margin-right-5">></span>Make informed decisions and build a personalised investment portfolio</li>
+                  <li><span className="text-primary margin-right-5">></span>Stay informed anyway anytime</li>
+                </ul>
+                <ul className="col-xs-4 list-style-none">
+                  <li><span className="text-primary margin-right-5">></span>Access Vetted Startup with the due dilligence documents</li>
+                  <li><span className="text-primary margin-right-5">></span>From discovery and thorough evaluation, to settlement and post investment monitoring</li>
+                  <li><span className="text-primary margin-right-5">></span>Centralised portal with direct access to startups and education through master classes</li>
+                </ul>
+                <ul className="col-xs-4 list-style-none">
+                  <li><span className="text-primary margin-right-5">></span>Overview at a glance or in depth</li>
+                  <li><span className="text-primary margin-right-5">></span>Analytics and post investment report</li>
+                </ul>
+              </div>
             </div>
+            <SharedOthersSideTitle title="SFC Licensed Investment Platform" optClass="hidden-xs hidden-sm col-md-1 color-primary bg-white side-text-small px-20" />
           </div>
-          <SharedOthersSideTitle title="SFC Licensed Investment Platform" optClass="hidden-xs hidden-sm col-md-1 color-primary bg-white side-text-small" />
         </section>
 
         <section className="how-to-invest clearfix text-center">
@@ -142,7 +139,7 @@ export default class Home extends Component {
                     <div className="h1 water-mark">04</div>
                     <div className="h4 title">Invest</div>
                     <div className="text">
-                      <strong>Same contract for everybody</strong>
+                      <strong>Same terms for all investors</strong>
                     </div>
                   </div>
                 </div>
