@@ -1,27 +1,40 @@
 $ahub-font-family: "AngelHub" !default;
 $ahub-font-path: "/fonts" !default;
 
-$ahub-bell: "\e900";
-$ahub-user: "\e901";
-$ahub-bellHover: "\e902";
-$ahub-userHover: "\e903";
-$ahub-search: "\e904";
-$ahub-calendar: "\e905";
-$ahub-upload: "\e906";
-$ahub-bin: "\e907";
-$ahub-money: "\e908";
-$ahub-location: "\e909";
-$ahub-start: "\e90a";
-$ahub-like: "\e90b";
-$ahub-upload2: "\e90c";
-$ahub-arrow: "\e90d";
-$ahub-twitter: "\e90e";
-$ahub-linkedin: "\e90f";
-$ahub-fb: "\e910";
-$ahub-binHover: "\e911";
-$ahub-twitterHover: "\e912";
-$ahub-linkedinHover: "\e913";
-$ahub-fbHover: "\e914";
+$ahub-benefit1: "\e91f";
+$ahub-benefit2: "\e920";
+$ahub-benefit3: "\e921";
+$ahub-arrow: "\e900";
+$ahub-basic: "\e901";
+$ahub-calendar: "\e902";
+$ahub-campaign: "\e903";
+$ahub-dataroom: "\e904";
+$ahub-education: "\e905";
+$ahub-facebook: "\e906";
+$ahub-financials: "\e907";
+$ahub-foundation: "\e908";
+$ahub-investor: "\e909";
+$ahub-like: "\e90a";
+$ahub-linkedin: "\e90b";
+$ahub-location: "\e90c";
+$ahub-lock: "\e90d";
+$ahub-market: "\e90e";
+$ahub-newsletter: "\e90f";
+$ahub-notification: "\e910";
+$ahub-product: "\e911";
+$ahub-profile: "\e912";
+$ahub-search: "\e913";
+$ahub-startup: "\e914";
+$ahub-submission: "\e915";
+$ahub-team: "\e916";
+$ahub-teaser: "\e917";
+$ahub-trash: "\e918";
+$ahub-twitter: "\e919";
+$ahub-unlock: "\e91a";
+$ahub-upload: "\e91b";
+$ahub-uploadIcon: "\e91c";
+$ahub-valuation: "\e91d";
+$ahub-whitepaper: "\e91e";
 
 @font-face {
   font-family: '#{$ahub-font-family}';
@@ -46,69 +59,86 @@ $ahub-fbHover: "\e914";
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  &.ahub-2x {
+    font-size: 2em;
+  }
+  &.ahub-3x {
+    font-size: 3em;
+  }
+  &.ahub-4x {
+    font-size: 4em;
+  }
+  &.ahub-5x {
+    font-size: 5em;
+  }
+  &.ahub-6x {
+    font-size: 6em;
+  }
 }
 
-.ahub-bell {
+.ahub-benefit1 {
   &:before {
-    content: $ahub-bell;
-    color: #fff;
+    content: $ahub-benefit1;
   }
 }
-.ahub-user {
+.ahub-benefit2 {
   &:before {
-    content: $ahub-user;
-    color: #fff;
+    content: $ahub-benefit2;
   }
 }
-.ahub-bellHover {
+.ahub-benefit3 {
   &:before {
-    content: $ahub-bellHover;
-    color: #fff;
+    content: $ahub-benefit3;
   }
 }
-.ahub-userHover {
+.ahub-arrow {
   &:before {
-    content: $ahub-userHover;
-    color: #fff;
+    content: $ahub-arrow;
   }
 }
-.ahub-search {
+.ahub-basic {
   &:before {
-    content: $ahub-search;
-    color: #d1d1d1;
+    content: $ahub-basic;
   }
 }
 .ahub-calendar {
   &:before {
     content: $ahub-calendar;
-    color: #d1d1d1;
   }
 }
-.ahub-upload {
+.ahub-campaign {
   &:before {
-    content: $ahub-upload;
-    color: #d1d1d1;
+    content: $ahub-campaign;
   }
 }
-.ahub-bin {
+.ahub-dataroom {
   &:before {
-    content: $ahub-bin;
-    color: #b73261;
+    content: $ahub-dataroom;
   }
 }
-.ahub-money {
+.ahub-education {
   &:before {
-    content: $ahub-money;
+    content: $ahub-education;
   }
 }
-.ahub-location {
+.ahub-facebook {
   &:before {
-    content: $ahub-location;
+    content: $ahub-facebook;
   }
 }
-.ahub-start {
+.ahub-financials {
   &:before {
-    content: $ahub-start;
+    content: $ahub-financials;
+  }
+}
+.ahub-foundation {
+  &:before {
+    content: $ahub-foundation;
+  }
+}
+.ahub-investor {
+  &:before {
+    content: $ahub-investor;
   }
 }
 .ahub-like {
@@ -116,58 +146,103 @@ $ahub-fbHover: "\e914";
     content: $ahub-like;
   }
 }
-.ahub-upload2 {
+.ahub-linkedin {
   &:before {
-    content: $ahub-upload2;
-    color: #b73261;
+    content: $ahub-linkedin;
   }
 }
-.ahub-arrow {
+.ahub-location {
   &:before {
-    content: $ahub-arrow;
-    color: #b73261;
+    content: $ahub-location;
+  }
+}
+.ahub-lock {
+  &:before {
+    content: $ahub-lock;
+  }
+}
+.ahub-market {
+  &:before {
+    content: $ahub-market;
+  }
+}
+.ahub-newsletter {
+  &:before {
+    content: $ahub-newsletter;
+  }
+}
+.ahub-notification {
+  &:before {
+    content: $ahub-notification;
+  }
+}
+.ahub-product {
+  &:before {
+    content: $ahub-product;
+  }
+}
+.ahub-profile {
+  &:before {
+    content: $ahub-profile;
+  }
+}
+.ahub-search {
+  &:before {
+    content: $ahub-search;
+  }
+}
+.ahub-startup {
+  &:before {
+    content: $ahub-startup;
+  }
+}
+.ahub-submission {
+  &:before {
+    content: $ahub-submission;
+  }
+}
+.ahub-team {
+  &:before {
+    content: $ahub-team;
+  }
+}
+.ahub-teaser {
+  &:before {
+    content: $ahub-teaser;
+  }
+}
+.ahub-trash {
+  &:before {
+    content: $ahub-trash;
   }
 }
 .ahub-twitter {
   &:before {
     content: $ahub-twitter;
-    color: #fff;
   }
 }
-.ahub-linkedin {
+.ahub-unlock {
   &:before {
-    content: $ahub-linkedin;
-    color: #fff;
+    content: $ahub-unlock;
   }
 }
-.ahub-fb {
+.ahub-upload {
   &:before {
-    content: $ahub-fb;
-    color: #fff;
+    content: $ahub-upload;
   }
 }
-.ahub-binHover {
+.ahub-uploadIcon {
   &:before {
-    content: $ahub-binHover;
-    color: #b73261;
+    content: $ahub-uploadIcon;
   }
 }
-.ahub-twitterHover {
+.ahub-valuation {
   &:before {
-    content: $ahub-twitterHover;
-    color: #fff;
+    content: $ahub-valuation;
   }
 }
-.ahub-linkedinHover {
+.ahub-whitepaper {
   &:before {
-    content: $ahub-linkedinHover;
-    color: #fff;
+    content: $ahub-whitepaper;
   }
 }
-.ahub-fbHover {
-  &:before {
-    content: $ahub-fbHover;
-    color: #fff;
-  }
-}
-

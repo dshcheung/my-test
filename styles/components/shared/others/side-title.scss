@@ -31,4 +31,10 @@
       letter-spacing: 8px;
     }
   }
+  &.side-text-small {
+    .title {
+      font-size: 0.8em;
+      letter-spacing: 6px;
+    }
+  }
 }

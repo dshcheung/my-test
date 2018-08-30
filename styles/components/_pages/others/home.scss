@@ -46,17 +46,6 @@
     &.benefits {
       background-color: #eff;
       padding: 0;
-      .images {
-        i {
-          font-size: 40px;
-        }
-      }
-      .side-text-small {
-        .title {
-          font-size: 0.8em;
-          letter-spacing: 6px;
-        }
-      }
     }
 
     &.how-to-invest {
@@ -109,12 +98,9 @@
       }
     }
 
-    &.investment-committee {
-      // background-color: #eff;
+    .investment-committee {
       background: radial-gradient(ellipse at bottom left, #a6c7d2, transparent),
                   radial-gradient(ellipse at top right, #ecf8fb, transparent);
-      // -webkit-background-clip: text;
-      // -webkit-text-fill-color: transparent;
 
       .committees {
         display: flex;
@@ -172,13 +158,13 @@
           }
         }
       }
-      .partners {
-        background: radial-gradient(ellipse at bottom left, #a6c7d2, transparent),
-              radial-gradient(ellipse at top right, #ecf8fb, transparent);
-        .logos {
-          display: flex;
-          justify-content: space-around;
-        }
+    }
+    .partners {
+      background: radial-gradient(ellipse at top right, #a6c7d2, transparent),
+            radial-gradient(ellipse at bottom left, #ecf8fb, transparent);
+      .logos {
+        display: flex;
+        justify-content: space-around;
       }
     }
 

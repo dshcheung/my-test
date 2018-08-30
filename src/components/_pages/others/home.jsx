@@ -67,9 +67,9 @@ export default class Home extends Component {
             </div>
 
             <div className="row images">
-              <div className="col-xs-4"><i className="fas fa-laptop" /></div>
-              <div className="col-xs-4"><i className="fas fa-leaf" /></div>
-              <div className="col-xs-4"><i className="fas fa-chart-line" /></div>
+              <div className="col-xs-4"><i className="ahub-benefit1 ahub-5x" /></div>
+              <div className="col-xs-4"><i className="ahub-benefit2 ahub-5x" /></div>
+              <div className="col-xs-4"><i className="ahub-benefit3 ahub-5x" /></div>
             </div>
 
             <div className="row heading">
@@ -153,76 +153,58 @@ export default class Home extends Component {
         </section>
 
         <hr className="w-50" />
-        <section className="investment-committee clearfix text-center">
-          <div className="row">
-            <div className="col-xs-12">
-              <div className="row title">
-                <div className="h4 text-primary">INVESTMENT COMMITTEE</div>
+        <section className=" clearfix text-center">
+          <div className="investment-committee">
+            <div className="row">
+              <div className="col-xs-12">
+                <div className="row title">
+                  <div className="h4 text-primary">INVESTMENT COMMITTEE</div>
 
-                <div className="col-xs-8 col-xs-offset-2">Our Investment Committee is comprised of highly experienced entrepreneurs, investors, industry experts and top-level business leaders will extensive experience in startup investing and scaling.</div>
-              </div>
+                  <div className="col-xs-8 col-xs-offset-2">Our Investment Committee is comprised of highly experienced entrepreneurs, investors, industry experts and top-level business leaders will extensive experience in startup investing and scaling.</div>
+                </div>
 
-              <div className="row committees">
-                <ul className="nav members-list">
-                  <li>
-                    <div className="committee-img" style={{ backgroundImage: `url(${committeImage})` }}>
-                      <div className="blur">
-                        <div>
-                          <p>Yip Wan</p>
-                          <p>Company Position</p>
+                <div className="row committees">
+                  <ul className="nav members-list">
+                    <li>
+                      <div className="committee-img" style={{ backgroundImage: `url(${committeImage})` }}>
+                        <div className="blur">
+                          <div>
+                            <p>Yip Wan</p>
+                            <p>Company Position</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="committee-img" style={{ backgroundImage: `url(${committeImage})` }}>
-                      <div className="blur">
-                        <div>
-                          <p>Yip Wan</p>
-                          <p>Company Position</p>
+                    </li>
+                    <li>
+                      <div className="committee-img" style={{ backgroundImage: `url(${committeImage})` }}>
+                        <div className="blur">
+                          <div>
+                            <p>Yip Wan</p>
+                            <p>Company Position</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="committee-img" style={{ backgroundImage: `url(${committeImage})` }}>
-                      <div className="blur">
-                        <div>
-                          <p>Yip Wan</p>
-                          <p>Company Position</p>
+                    </li>
+                    <li>
+                      <div className="committee-img" style={{ backgroundImage: `url(${committeImage})` }}>
+                        <div className="blur">
+                          <div>
+                            <p>Yip Wan</p>
+                            <p>Company Position</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="partners clearfix text-center">
-          <div className="row partners">
-            <div className="col-xs-12">
-              <div className="row title">
-                <div className="h4 text-primary">OUR PARTNERS</div>
-
-                <div className="col-xs-8 col-xs-offset-2">Our Partners have a deep passion and expertise in the startup ecosystem. Amongst them, we work with leading acceleration programs, family offices and associations involved in scaling and investing in the most promising startups in their respective field, regionally and globally.</div>
-              </div>
-
-              <div className="row logos">
-                <div>Amazon</div>
-                <div>pipedrive</div>
-                <div>React</div>
-                <div>slack</div>
-                <div>zendesk</div>
-                <div>asana</div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         <section className="philosophy clearfix text-center">
-          <div className="col-xs-8 col-xs-offset-2 col-lg-6 col-lg-offset-3">
+          <SharedOthersSideTitle title="SFC Licensed Investment Platform" optClass="hidden-xs hidden-sm col-md-1 color-primary bg-white side-text-small" />
+          <div className="col-xs-12 col-md-6 col-md-offset-2">
             <div className="row title">
               <div className="h4 text-primary">OUR PHILOSOPHY</div>
             </div>
@@ -273,21 +255,21 @@ export default class Home extends Component {
             <div className="row">
               <div className="col-xs-12 col-md-4">
                 <div className="blue-hover first">
-                  <i className="text-primary fas fa-file-alt" />
+                  <i className="text-primary ahub-whitepaper" />
                   <div className="h5 margin-bottom-20">White paper</div>
                   <a className="btn btn-dark btn-block">DOWNLOAD</a>
                 </div>
               </div>
               <div className="col-xs-12 col-md-4">
                 <div className="blue-hover">
-                  <i className="text-primary fas fa-envelope-open" />
+                  <i className="text-primary ahub-newsletter" />
                   <div className="h5 margin-bottom-20">Newsletter</div>
                   <a className="btn btn-dark btn-block">SUBSCRIBE</a>
                 </div>
               </div>
               <div className="col-xs-12 col-md-4">
                 <div className="blue-hover last">
-                  <i className="text-primary fas fa-handshake" />
+                  <i className="text-primary ahub-education" />
                   <div className="h5 margin-bottom-20">Education Centre</div>
                   <a className="btn btn-dark btn-block">START LEARNING</a>
                 </div>

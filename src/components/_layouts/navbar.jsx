@@ -137,7 +137,7 @@ export default class Navbar extends Component {
                 <NavDropdown
                   title={
                     <div>
-                      <i className="far fa-user fa-2x hidden-xs" />
+                      <i className="ahub-profile ahub-2x hidden-xs" />
                       <span className="hidden-sm hidden-md hidden-lg">MY PROFILE</span>
                       <i className="fa fa-chevron-down" />
                     </div>
