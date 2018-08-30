@@ -14,7 +14,7 @@ export default class Home extends Component {
     return (
       <div id="page-home">
         <section className="banner clearfix">
-          <div className="banner-background" style={{ "background-image": `url(${banner})` }} />
+          <div className="banner-background" style={{ backgroundImage: `url(${banner})` }} />
           <div className="h2 header">
             <div>BUILD A DIVERSIFED</div>
             <div>STARTUP PORTFOLIO</div>
@@ -160,7 +160,7 @@ export default class Home extends Component {
             </div>
 
             <div className="row committees">
-              <div className="committee-img margin-left-10 margin-right-10" style={{ "background-image": `url(${committeImage})` }}>
+              <div className="committee-img margin-left-10 margin-right-10" style={{ backgroundImage: `url(${committeImage})` }}>
                 <div className="blur">
                   <div>
                     <p>Yip Wan</p>
@@ -169,7 +169,7 @@ export default class Home extends Component {
                 </div>
               </div>
 
-              <div className="committee-img margin-left-10 margin-right-10" style={{ "background-image": `url(${committeImage})` }}>
+              <div className="committee-img margin-left-10 margin-right-10" style={{ backgroundImage: `url(${committeImage})` }}>
                 <div className="blur">
                   <div>
                     <p>Yip Wan</p>
@@ -178,7 +178,7 @@ export default class Home extends Component {
                 </div>
               </div>
 
-              <div className="committee-img margin-left-10 margin-right-10" style={{ "background-image": `url(${committeImage})` }}>
+              <div className="committee-img margin-left-10 margin-right-10" style={{ backgroundImage: `url(${committeImage})` }}>
                 <div className="blur">
                   <div>
                     <p>Yip Wan</p>
@@ -224,11 +224,11 @@ export default class Home extends Component {
               </div>
 
               <div className="col-xs-6 card image">
-                <div style={{ "background-image": `url(${philosophyImage})` }} />
+                <div style={{ backgroundImage: `url(${philosophyImage})` }} />
               </div>
 
               <div className="col-xs-6 card image">
-                <div style={{ "background-image": `url(${philosophyImage})` }} />
+                <div style={{ backgroundImage: `url(${philosophyImage})` }} />
               </div>
 
               <div className="col-xs-6 card">
@@ -246,7 +246,7 @@ export default class Home extends Component {
               </div>
 
               <div className="col-xs-6 card image">
-                <div style={{ "background-image": `url(${philosophyImage})` }} />
+                <div style={{ backgroundImage: `url(${philosophyImage})` }} />
               </div>
             </div>
           </div>
