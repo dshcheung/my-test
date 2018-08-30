@@ -104,20 +104,20 @@ export default class SignupInvestor extends Component {
         <p className="margin-bottom-20">We are required by the SFC to collect this information to determine if you are able to access. Note, most people are not Professional Investors</p>
         <div className="picker margin-bottom-20">
           <div
-            className={`text-uppercase btn btn-outline ${resultSelected === 0 ? "btn-primary" : "btn-default"}`}
+            className={`text-uppercase btn ${resultSelected === 0 ? "btn-dark" : "btn-default"}`}
             onClick={() => { this.setState({ resultSelected: 0 }) }}
           >Yes, I AM</div>
           <div
-            className={`text-uppercase btn btn-outline ${resultSelected === 1 ? "btn-primary" : "btn-default"}`}
+            className={`text-uppercase btn ${resultSelected === 1 ? "btn-dark" : "btn-default"}`}
             onClick={() => { this.setState({ resultSelected: 1 }) }}
           >NO, I AM NOT</div>
           <div
-            className={`text-uppercase btn btn-outline ${resultSelected === 2 ? "btn-primary" : "btn-default"}`}
+            className={`text-uppercase btn ${resultSelected === 2 ? "btn-dark" : "btn-default"}`}
             onClick={() => { this.setState({ resultSelected: 2 }) }}
           >I DON'T KNOW YET</div>
         </div>
 
-        <div className="picker-result">
+        <div className="picker-result margin-top-50">
           {
             pickerResults[resultSelected].map((r, i) => {
               return (
@@ -127,13 +127,13 @@ export default class SignupInvestor extends Component {
           }
         </div>
 
-        <div className="terms-agreement">
-          <input type="checkbox" id="agreement" onChange={(e) => { this.setState({ termsAgreement: e.target.checked }) }} />
+        <div className="terms-agreement margin-top-50">
+          <input type="checkbox" id="agreement" onChange={(e) => { this.setState({ termsAgreement: e.target.checked }) }} className="margin-right-5" />
           <label htmlFor="agreement">By joining AngelHub, I am agreeing to AngelHub's Terms of Use and Privacy Policy. I furthermore acknowledge that Issuse that successfully raise on AngelHub may pay affiliates of AngelHub fees in the form of cash or securities. Learn more on our FAQs</label>
         </div>
 
         <button
-          className="btn btn-primary btn-outline pull-right"
+          className="btn btn-primary btn-outline pull-right text-uppercase"
           onClick={this.onPickInvestorContinue}
           disabled={resultSelected !== 0 || !termsAgreement}
         >Continue</button>
@@ -144,7 +144,7 @@ export default class SignupInvestor extends Component {
   intro() {
     return (
       <SharedOthersIntro
-        optClass="col-sm-6 col-md-6"
+        optClass="col-xs-12 col-md-6"
         onContinue={this.onIntroContinue}
         title="what we need from you"
         content={[
@@ -199,13 +199,13 @@ export default class SignupInvestor extends Component {
         <div className="warning-agreement">
           <label className="warning-label" htmlFor="agreement">Acknowledgement</label>
           <div className="warning-input">
-            <input type="checkbox" id="agreement" onChange={(e) => { this.setState({ termsAgreed: e.target.checked }) }} />
+            <input type="checkbox" id="agreement" onChange={(e) => { this.setState({ termsAgreed: e.target.checked }) }} className="margin-right-5" />
             <label htmlFor="agreement">I have read and understood the above "Important Warning"</label>
           </div>
         </div>
 
         <button
-          className="btn btn-primary btn-outline pull-right"
+          className="btn btn-primary btn-outline text-uppercase pull-right"
           onClick={this.onWarningAgreed}
           disabled={!read || !termsAgreed}
         >Continue</button>

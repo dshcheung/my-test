@@ -38,7 +38,7 @@ export default class Signup extends Component {
 
             <div className="have-account">
               <span>Already have an account? </span>
-              <Link to="/auth/login" className="text-hover-none border-bottom">Log in here</Link>
+              <Link to="/auth/login" className="text-uppercase">Log in here</Link>
             </div>
           </div>
         </div>

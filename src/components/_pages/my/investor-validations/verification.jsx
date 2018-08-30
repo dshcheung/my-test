@@ -168,7 +168,7 @@ export default class MyInvestorValidationsVerification extends Component {
           <h1>CONGRATULATIONS</h1>
           <h3>You have passed the Rick Assessment</h3>
           <button
-            className="btn btn-primary btn-outline pull-right margin-top-20"
+            className="btn btn-primary btn-outline text-uppercase pull-right margin-top-20"
             onClick={this.onSuccessContinueClick}
           >Continue</button>
         </div>
@@ -203,7 +203,7 @@ export default class MyInvestorValidationsVerification extends Component {
         </div>
 
         <button
-          className="btn btn-primary btn-outline pull-right margin-top-20"
+          className="btn btn-primary btn-outline text-uppercase pull-right margin-top-20"
           onClick={this.onPhotoUploadClick}
         >Continue</button>
       </div>

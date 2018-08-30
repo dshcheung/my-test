@@ -356,10 +356,10 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
           />
 
           <button
-            className={`btn btn-primary btn-outline pull-right ${submitInProcess && "m-progress"}`}
+            className={`btn btn-primary btn-outline text-uppercase pull-right ${submitInProcess && "m-progress"}`}
             type="submit"
             disabled={submitInProcess || pristine}
-          >CONTINUE</button>
+          >Continue</button>
         </form>
       </div>
     )

@@ -12,7 +12,7 @@ export default class SharedOthersIntro extends Component {
           {
             content.map((c, i) => {
               return (
-                <div key={i} className="col-xs-6 info-card">
+                <div key={i} className="col-xs-4 info-card">
                   <div className="number">
                     <span>{i + 1}</span>
                   </div>
@@ -28,7 +28,7 @@ export default class SharedOthersIntro extends Component {
         </div>
 
         <button
-          className="btn btn-primary btn-outline pull-right"
+          className="btn btn-primary btn-outline text-uppercase pull-right"
           onClick={onContinue}
         >Continue</button>
       </div>
