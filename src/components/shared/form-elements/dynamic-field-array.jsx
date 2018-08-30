@@ -46,7 +46,7 @@ export default class DynamicFieldArray extends Component {
                         fields.remove(i)
                       })
                     }}
-                  ><i className="fa fa-trash-alt fa-rotate-35-on-hover" /></button>
+                  ><i className="ahub ahub-bin" /></button>
                 </div>
 
                 {

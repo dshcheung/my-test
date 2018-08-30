@@ -18,7 +18,7 @@ export default class Signup extends Component {
                   <p className="fw-500">I am an Investor</p>
                   <Link
                     to="/auth/signup-investor"
-                    className="btn btn-primary btn-outline px-10 mt-2"
+                    className="btn btn-primary btn-outline px-10 mt-2 text-uppercase"
                   >Sign Up</Link>
                 </div>
               </div>
@@ -28,7 +28,7 @@ export default class Signup extends Component {
                   <p className="fw-500">I am a Startup</p>
                   <Link
                     to="/auth/signup-startup"
-                    className="btn btn-primary btn-outline px-10 mt-2"
+                    className="btn btn-primary btn-outline px-10 mt-2 text-uppercase"
                   >Sign Up</Link>
                 </div>
               </div>

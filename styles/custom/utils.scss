@@ -151,6 +151,9 @@ hr {
 .bg-dark {
   color: $white-text;
 }
+.bg-white {
+  background-color: $white;
+}
 
 // .bg-primary {
 //   background-color: $brand-angelhub-blue;
@@ -213,6 +216,9 @@ a:hover {
 .text-gold {
   color: $brand-primary;
 }
+.text-green {
+  color: $ahub-green;
+}
 .padding-lg {
   padding: 10px;
 }
@@ -251,4 +257,10 @@ a:hover {
 }
 .border-vertical-small {
   border-left: 1px solid $gray-light;
+}
+.w-50 {
+  width: 50%;
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
 }

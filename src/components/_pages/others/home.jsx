@@ -19,7 +19,7 @@ export default class Home extends Component {
             <div>BUILD A DIVERSIFED</div>
             <div>STARTUP PORTFOLIO</div>
           </div>
-          <a className="btn btn-default start">START INVESTING</a>
+          <a className="btn btn-primary btn-lg start">START INVESTING</a>
         </section>
 
         <section className="what-we-offer clearfix">
@@ -61,9 +61,9 @@ export default class Home extends Component {
         </section>
 
         <section className="benefits clearfix text-center">
-          <div className="col-xs-8 col-xs-offset-2 col-lg-6 col-lg-offset-3">
+          <div className="col-xs-12 col-md-11">
             <div className="row title">
-              <div className="h4 text-primary">BENEFITS</div>
+              <div className="h4 text-green">BENEFITS</div>
             </div>
 
             <div className="row images">
@@ -95,6 +95,7 @@ export default class Home extends Component {
               </ul>
             </div>
           </div>
+          <SharedOthersSideTitle title="SFC Licensed Investment Platform" optClass="hidden-xs hidden-sm col-md-1 color-primary bg-white side-text-small" />
         </section>
 
         <section className="how-to-invest clearfix text-center">
@@ -151,60 +152,71 @@ export default class Home extends Component {
           </div>
         </section>
 
+        <hr className="w-50" />
         <section className="investment-committee clearfix text-center">
-          <div className="col-xs-8 col-xs-offset-2 col-lg-6 col-lg-offset-3">
-            <div className="row title">
-              <div className="h4 text-primary">INVESTMENT COMMITTEE</div>
+          <div className="row">
+            <div className="col-xs-12">
+              <div className="row title">
+                <div className="h4 text-primary">INVESTMENT COMMITTEE</div>
 
-              <div className="col-xs-8 col-xs-offset-2">Our Investment Committee is comprised of highly experienced entrepreneurs, investors, industry experts and top-level business leaders will extensive experience in startup investing and scaling.</div>
-            </div>
-
-            <div className="row committees">
-              <div className="committee-img margin-left-10 margin-right-10" style={{ backgroundImage: `url(${committeImage})` }}>
-                <div className="blur">
-                  <div>
-                    <p>Yip Wan</p>
-                    <p>Company Position</p>
-                  </div>
-                </div>
+                <div className="col-xs-8 col-xs-offset-2">Our Investment Committee is comprised of highly experienced entrepreneurs, investors, industry experts and top-level business leaders will extensive experience in startup investing and scaling.</div>
               </div>
 
-              <div className="committee-img margin-left-10 margin-right-10" style={{ backgroundImage: `url(${committeImage})` }}>
-                <div className="blur">
-                  <div>
-                    <p>Yip Wan</p>
-                    <p>Company Position</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="committee-img margin-left-10 margin-right-10" style={{ backgroundImage: `url(${committeImage})` }}>
-                <div className="blur">
-                  <div>
-                    <p>Yip Wan</p>
-                    <p>Company Position</p>
-                  </div>
-                </div>
+              <div className="row committees">
+                <ul className="nav members-list">
+                  <li>
+                    <div className="committee-img" style={{ backgroundImage: `url(${committeImage})` }}>
+                      <div className="blur">
+                        <div>
+                          <p>Yip Wan</p>
+                          <p>Company Position</p>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="committee-img" style={{ backgroundImage: `url(${committeImage})` }}>
+                      <div className="blur">
+                        <div>
+                          <p>Yip Wan</p>
+                          <p>Company Position</p>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="committee-img" style={{ backgroundImage: `url(${committeImage})` }}>
+                      <div className="blur">
+                        <div>
+                          <p>Yip Wan</p>
+                          <p>Company Position</p>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
         </section>
 
         <section className="partners clearfix text-center">
-          <div className="col-xs-8 col-xs-offset-2 col-lg-6 col-lg-offset-3">
-            <div className="row title">
-              <div className="h4 text-primary">OUR PARTNERS</div>
+          <div className="row partners">
+            <div className="col-xs-12">
+              <div className="row title">
+                <div className="h4 text-primary">OUR PARTNERS</div>
 
-              <div className="col-xs-8 col-xs-offset-2">Our Partners have a deep passion and expertise in the startup ecosystem. Amongst them, we work with leading acceleration programs, family offices and associations involved in scaling and investing in the most promising startups in their respective field, regionally and globally.</div>
-            </div>
+                <div className="col-xs-8 col-xs-offset-2">Our Partners have a deep passion and expertise in the startup ecosystem. Amongst them, we work with leading acceleration programs, family offices and associations involved in scaling and investing in the most promising startups in their respective field, regionally and globally.</div>
+              </div>
 
-            <div className="row logos">
-              <div>Amazon</div>
-              <div>pipedrive</div>
-              <div>React</div>
-              <div>slack</div>
-              <div>zendesk</div>
-              <div>asana</div>
+              <div className="row logos">
+                <div>Amazon</div>
+                <div>pipedrive</div>
+                <div>React</div>
+                <div>slack</div>
+                <div>zendesk</div>
+                <div>asana</div>
+              </div>
             </div>
           </div>
         </section>
@@ -255,33 +267,30 @@ export default class Home extends Component {
         <section className="learn-more clearfix text-center">
           <div className="shadow col-xs-8 col-xs-offset-2 col-lg-6 col-lg-offset-3">
             <div className="row title">
-              <div className="h4 text-primary">LEARN MORE</div>
+              <div className="h4 text-black">LEARN MORE</div>
             </div>
 
             <div className="row">
-              <div className="col-xs-4">
-                <i className="text-primary fas fa-file-alt" />
-                <div className="h4">White paper</div>
+              <div className="col-xs-12 col-md-4">
+                <div className="blue-hover first">
+                  <i className="text-primary fas fa-file-alt" />
+                  <div className="h5 margin-bottom-20">White paper</div>
+                  <a className="btn btn-dark btn-block">DOWNLOAD</a>
+                </div>
               </div>
-              <div className="col-xs-4">
-                <i className="text-primary fas fa-envelope-open" />
-                <div className="h4">Newsletter</div>
+              <div className="col-xs-12 col-md-4">
+                <div className="blue-hover">
+                  <i className="text-primary fas fa-envelope-open" />
+                  <div className="h5 margin-bottom-20">Newsletter</div>
+                  <a className="btn btn-dark btn-block">SUBSCRIBE</a>
+                </div>
               </div>
-              <div className="col-xs-4">
-                <i className="text-primary fas fa-handshake" />
-                <div className="h4">Education Centre</div>
-              </div>
-            </div>
-
-            <div className="row">
-              <div className="col-xs-4">
-                <a className="btn btn-default">DOWNLOAD</a>
-              </div>
-              <div className="col-xs-4">
-                <a className="btn btn-default">SUBSCRIBE</a>
-              </div>
-              <div className="col-xs-4">
-                <a className="btn btn-default">START LEARNING</a>
+              <div className="col-xs-12 col-md-4">
+                <div className="blue-hover last">
+                  <i className="text-primary fas fa-handshake" />
+                  <div className="h5 margin-bottom-20">Education Centre</div>
+                  <a className="btn btn-dark btn-block">START LEARNING</a>
+                </div>
               </div>
             </div>
           </div>

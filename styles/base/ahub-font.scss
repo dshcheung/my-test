@@ -1,0 +1,173 @@
+$ahub-font-family: "AngelHub" !default;
+$ahub-font-path: "/fonts" !default;
+
+$ahub-bell: "\e900";
+$ahub-user: "\e901";
+$ahub-bellHover: "\e902";
+$ahub-userHover: "\e903";
+$ahub-search: "\e904";
+$ahub-calendar: "\e905";
+$ahub-upload: "\e906";
+$ahub-bin: "\e907";
+$ahub-money: "\e908";
+$ahub-location: "\e909";
+$ahub-start: "\e90a";
+$ahub-like: "\e90b";
+$ahub-upload2: "\e90c";
+$ahub-arrow: "\e90d";
+$ahub-twitter: "\e90e";
+$ahub-linkedin: "\e90f";
+$ahub-fb: "\e910";
+$ahub-binHover: "\e911";
+$ahub-twitterHover: "\e912";
+$ahub-linkedinHover: "\e913";
+$ahub-fbHover: "\e914";
+
+@font-face {
+  font-family: '#{$ahub-font-family}';
+  src:
+    url('#{$ahub-font-path}/#{$ahub-font-family}.ttf?abeij7') format('truetype'),
+    url('#{$ahub-font-path}/#{$ahub-font-family}.woff?abeij7') format('woff'),
+    url('#{$ahub-font-path}/#{$ahub-font-family}.svg?abeij7##{$ahub-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="ahub-"], [class*=" ahub-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'AngelHub' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ahub-bell {
+  &:before {
+    content: $ahub-bell;
+    color: #fff;
+  }
+}
+.ahub-user {
+  &:before {
+    content: $ahub-user;
+    color: #fff;
+  }
+}
+.ahub-bellHover {
+  &:before {
+    content: $ahub-bellHover;
+    color: #fff;
+  }
+}
+.ahub-userHover {
+  &:before {
+    content: $ahub-userHover;
+    color: #fff;
+  }
+}
+.ahub-search {
+  &:before {
+    content: $ahub-search;
+    color: #d1d1d1;
+  }
+}
+.ahub-calendar {
+  &:before {
+    content: $ahub-calendar;
+    color: #d1d1d1;
+  }
+}
+.ahub-upload {
+  &:before {
+    content: $ahub-upload;
+    color: #d1d1d1;
+  }
+}
+.ahub-bin {
+  &:before {
+    content: $ahub-bin;
+    color: #b73261;
+  }
+}
+.ahub-money {
+  &:before {
+    content: $ahub-money;
+  }
+}
+.ahub-location {
+  &:before {
+    content: $ahub-location;
+  }
+}
+.ahub-start {
+  &:before {
+    content: $ahub-start;
+  }
+}
+.ahub-like {
+  &:before {
+    content: $ahub-like;
+  }
+}
+.ahub-upload2 {
+  &:before {
+    content: $ahub-upload2;
+    color: #b73261;
+  }
+}
+.ahub-arrow {
+  &:before {
+    content: $ahub-arrow;
+    color: #b73261;
+  }
+}
+.ahub-twitter {
+  &:before {
+    content: $ahub-twitter;
+    color: #fff;
+  }
+}
+.ahub-linkedin {
+  &:before {
+    content: $ahub-linkedin;
+    color: #fff;
+  }
+}
+.ahub-fb {
+  &:before {
+    content: $ahub-fb;
+    color: #fff;
+  }
+}
+.ahub-binHover {
+  &:before {
+    content: $ahub-binHover;
+    color: #b73261;
+  }
+}
+.ahub-twitterHover {
+  &:before {
+    content: $ahub-twitterHover;
+    color: #fff;
+  }
+}
+.ahub-linkedinHover {
+  &:before {
+    content: $ahub-linkedinHover;
+    color: #fff;
+  }
+}
+.ahub-fbHover {
+  &:before {
+    content: $ahub-fbHover;
+    color: #fff;
+  }
+}
+

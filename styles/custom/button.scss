@@ -176,6 +176,13 @@
     color: $white-text;
 }
 
+.btn-dark {
+  @extend .btn-default;
+  background-color: $ahub-black;
+  border-color: $ahub-black;
+  color: $white;
+}
+
 .btn {
   &.edit, &.delete {
     background-color: transparent;

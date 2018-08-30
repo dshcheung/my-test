@@ -167,7 +167,7 @@ export default class FileDropField extends Component {
                                 fields.remove(i)
                               })
                             }}
-                          ><i className="fa fas fa-trash-alt" /></button>
+                          ><i className="ahub ahub-bin" /></button>
                         </div>
                       </div>
                     </li>
