@@ -28,7 +28,7 @@ export default class CampaignList extends Component {
                   <Link to="/my/campaigns/new" className="clearfix card-banner-wrapper">
                     <div
                       className="col-xs-12 card-banner clearfix"
-                      style={{ backgroundImage: `url(${DEFAULT_STARTUP_BANNER})` }}
+                      style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${DEFAULT_STARTUP_BANNER})` }}
                     />
                     <div
                       className="campaign-logo"
