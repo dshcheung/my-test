@@ -56,8 +56,9 @@ export default class InvestorValidationsSuitabilityExperienceForm extends Compon
                   options: _.get(investorQOptions, 'occupation_industries', []),
                   valueField: "id",
                   textField: "name",
+                  groupBy: "group",
                   label: "What is the industry?",
-                  placeholder: "Select the industry"
+                  placeholder: "Select the industry",
                 }
               }
             ]}

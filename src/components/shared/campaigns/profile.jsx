@@ -4,13 +4,27 @@ import { DEFAULT_STARTUP_BANNER, DEFAULT_STARTUP_AVATAR } from '../../../service
 
 import SharedOthersTabNav from '../others/tab-nav'
 
+import NInvestModal from '../../modals/campaigns/n-invest'
+
 export default class SharedCampaignsProfile extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      currentTab: "overview"
+      currentTab: "overview",
+      nInvest: false
     }
+
+    this.open = this.open.bind(this)
+    this.close = this.close.bind(this)
+  }
+
+  open() {
+    this.setState({ nInvest: true })
+  }
+
+  close() {
+    this.setState({ nInvest: false })
   }
 
   render() {
@@ -83,7 +97,10 @@ export default class SharedCampaignsProfile extends Component {
           <div className="h1 startup-name">{startupName}</div>
 
           <div className="take-action">
-            <button className="btn btn-primary invest">INVEST</button>
+            <button
+              className="btn btn-primary invest"
+              onClick={this.open}
+            >INVEST</button>
 
             <div className="time-left">
               <div>{endDate}</div>
@@ -362,6 +379,8 @@ export default class SharedCampaignsProfile extends Component {
             </div>
           </section>
         </section>
+
+        { this.state.nInvest && <NInvestModal close={this.close} />}
       </div>
     )
   }
