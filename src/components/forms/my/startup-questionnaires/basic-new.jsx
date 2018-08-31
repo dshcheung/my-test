@@ -133,7 +133,7 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
           <div className="help-text margin-bottom-20">{hint}</div>
 
           <div className="row">
-            <div className="col-sm-12 col-md-8 col-md-offset-2 px-0">
+            <div className="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-2 px-0">
               <SharedOthersStepProgress
                 maxIndex={maxIndex}
                 currentIndex={currentQuestionIndex}
@@ -240,7 +240,7 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
                 type="button"
                 disabled={submitInProcess || isFirst}
                 onClick={() => { this.changeQuestion(currentQuestionIndex - 1) }}
-              ><i className="fa fas fa-long-arrow-alt-left fa-2x text-gold" /></button>
+              ><i className="ahub-arrow flip-horizontal text-gold" /></button>
             )
           }
 
@@ -251,14 +251,14 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
                 type="button"
                 disabled={submitInProcess || !currentQuestionHasValue || currentQuestionHasError}
                 onClick={() => { this.changeQuestion(currentQuestionIndex + 1) }}
-              ><i className="fa fas fa-long-arrow-alt-right fa-2x text-gold" /></button>
+              ><i className="ahub-arrow text-gold" /></button>
             )
           }
 
           {
             isLast && (
               <button
-                className={`btn btn-primary btn-outline pull-right ${submitInProcess && "m-progress"}`}
+                className={`btn btn-primary pull-right ${submitInProcess && "m-progress"}`}
                 type="submit"
                 disabled={submitInProcess || pristine || !currentQuestionHasValue || currentQuestionHasError}
               >SAVE</button>
