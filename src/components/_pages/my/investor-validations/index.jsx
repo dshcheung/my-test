@@ -65,13 +65,13 @@ export default class MyInvestorValidationsIndex extends Component {
   iconCheck(status) {
     switch (status) {
       case true:
-        return "ahub-unlock text-gold"
+        return "ahub-3x ahub-unlock text-gold"
       case "accepted":
         return "ahub-unlock text-gold"
       case "pending":
-        return "fa-hourglass-half"
+        return "fas fa-3x fa-hourglass-half"
       default:
-        return "ahub-lock text-dark"
+        return "ahub-3x ahub-lock text-dark"
     }
   }
 
@@ -101,7 +101,7 @@ export default class MyInvestorValidationsIndex extends Component {
 
             return (
               <div key={i} className={`col-xs-12 col-md-4 ${this.checkCompleted(status)}`}>
-                <i className={`ahub-3x ${this.iconCheck(status)}`} />
+                <i className={`${this.iconCheck(status)}`} />
 
                 <h1 className="section-title">{title}</h1>
 
