@@ -133,7 +133,7 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
           <div className="help-text margin-bottom-20">{hint}</div>
 
           <div className="row">
-            <div className="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-2 px-0">
+            <div className="col-sm-12 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 px-0">
               <SharedOthersStepProgress
                 maxIndex={maxIndex}
                 currentIndex={currentQuestionIndex}

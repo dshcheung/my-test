@@ -205,7 +205,7 @@ const generateParams = (values) => {
       make_money: _.get(values, 'teaser.make_money', null),
       solution_benchmark: _.get(values, 'teaser.solution_benchmark', null),
       pitch_deck: _.get(values, 'teaser.pitch_deck[0]', null),
-      business_plan: _.get(values, 'teaser.business_plan[0]', null),
+      business_model: _.get(values, 'teaser.business_model[0]', null),
       startup_questionnaire_highlights_attributes: _.get(values, 'teaser.startup_questionnaire_highlights', null),
       startup_questionnaire_media_attributes: _.get(values, 'teaser.startup_questionnaire_media', null),
       attachments_attributes: _.get(values, 'teaser.attachments', null)
