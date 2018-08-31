@@ -213,6 +213,9 @@ export default class Home extends Component {
                 <div className="col-xs-6 col-md-3">
                   <a href="http://www.familyoffices-asia.org" target="_blank" className="thumbnail" rel="noopener noreferrer"><img src="https://whub.io/assets/ahub/images/landing_partner3.png" alt="AFO" /></a>
                 </div>
+                <div className="col-xs-6 col-md-3">
+                  <a href="https://whub.io" target="_blank" className="thumbnail" rel="noopener noreferrer"><img src="https://whub.io/assets/ahub/images/landing_partner4.png" alt="WHub" /></a>
+                </div>
               </div>
             </div>
           </div>
