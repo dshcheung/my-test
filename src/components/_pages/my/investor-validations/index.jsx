@@ -1,16 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { Link } from 'react-router'
 
 import SharedOthersSideTitle from '../../../shared/others/side-title'
 
+import { getMyProfile, GET_MY_PROFILE } from '../../../../actions/my/profile'
+
+import LoadingSpinner from '../../../shared/others/loading-spinner'
+
 const mapStateToProps = (state) => {
   return {
-    currentUser: _.get(state, 'session')
+    currentUser: _.get(state, 'session'),
+    getMyProfileInProcess: _.get(state.requestStatus, GET_MY_PROFILE)
   }
 }
 
-@connect(mapStateToProps, null)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getMyProfile: bindActionCreators(getMyProfile, dispatch),
+  }
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 export default class MyInvestorValidationsIndex extends Component {
   constructor(props) {
     super(props)
@@ -62,6 +74,10 @@ export default class MyInvestorValidationsIndex extends Component {
     }
   }
 
+  componentWillMount() {
+    this.props.getMyProfile()
+  }
+
   iconCheck(status) {
     switch (status) {
       case true:
@@ -100,7 +116,7 @@ export default class MyInvestorValidationsIndex extends Component {
             const { title, permission } = item
 
             return (
-              <div key={i} className={`col-xs-12 col-md-4 ${this.checkCompleted(status)}`}>
+              <div key={i} className={`col-xs-4 ${this.checkCompleted(status)}`}>
                 <i className={`ahub-3x ${this.iconCheck(status)}`} />
 
                 <h1 className="section-title">{title}</h1>
@@ -169,6 +185,10 @@ export default class MyInvestorValidationsIndex extends Component {
   }
 
   render() {
+    const { getMyProfileInProcess } = this.props
+
+    if (getMyProfileInProcess) return <LoadingSpinner />
+
     return (
       <div id="page-my-investor-validations-index">
         <SharedOthersSideTitle
