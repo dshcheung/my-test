@@ -140,19 +140,19 @@ export default class SharedCampaignsProfile extends Component {
                 <div className="col-xs-12">
                   <div className="row cards">
                     <div className="card col-xs-4">
-                      <div><i className="fas fa-calendar-alt" /></div>
+                      <div><i className="ahub-campaign" /></div>
                       <div>YEAR OF FOUNDATION</div>
                       <div><strong>{yearFounded}</strong></div>
                     </div>
 
                     <div className="card col-xs-4">
-                      <div><i className="fas fa-map-marker-alt" /></div>
+                      <div><i className="ahub-location" /></div>
                       <div>LOCATION</div>
                       <div><strong>{location}</strong></div>
                     </div>
 
                     <div className="card col-xs-4">
-                      <div><i className="fas fa-hand-holding-usd" /></div>
+                      <div><i className="ahub-valuation" /></div>
                       <div>VALUATION PRE-MONEY</div>
                       <div><strong>${preMoney.currency()}</strong></div>
                     </div>
