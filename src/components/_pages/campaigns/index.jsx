@@ -61,7 +61,7 @@ export default class CampaignsIndex extends Component {
     const { getCampaignsInProcess } = this.props
 
     // TODO: change this back to using this.props
-    const campaigns = [
+    const campaigns = this.props.campaigns.length > 0 ? [
       {
         active: true,
         approved: true,
@@ -96,7 +96,7 @@ export default class CampaignsIndex extends Component {
           submitted: "approved"
         }
       }
-    ]
+    ] : []
 
     return (
       <div id="pages-campaigns-index">

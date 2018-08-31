@@ -18,7 +18,7 @@ export default class CampaignList extends Component {
               component = <LoadingSpinner />
             } else if (campaigns.length < 1) {
               component = (
-                <div key="no-campaigns" className="col-xs-12">
+                <div key="no-campaigns" className="col-xs-12 text-center">
                   <h3>No Campaigns Found</h3>
                 </div>
               )
