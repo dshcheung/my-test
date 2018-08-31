@@ -147,51 +147,47 @@ export default class Home extends Component {
         </section>
 
         <hr className="w-50" />
-        <section className=" clearfix text-center">
-          <div className="investment-committee">
-            <div className="row">
-              <div className="col-xs-12">
-                <div className="row title">
-                  <div className="h4 text-black">INVESTMENT COMMITTEE</div>
+        <section className="investment-committee clearfix text-center">
+          <div className="col-xs-12">
+            <div className="row title">
+              <div className="h4 text-black">INVESTMENT COMMITTEE</div>
 
-                  <div className="col-xs-12 col-md-6 col-md-offset-3">Our Investment Committee is comprised of highly experienced entrepreneurs, investors, industry experts and top-level business leaders will extensive experience in startup investing and scaling.</div>
-                </div>
+              <div className="col-xs-12 col-md-6 col-md-offset-3">Our Investment Committee is comprised of highly experienced entrepreneurs, investors, industry experts and top-level business leaders will extensive experience in startup investing and scaling.</div>
+            </div>
 
-                <div className="row committees">
-                  <ul className="nav members-list">
-                    <li>
-                      <div className="committee-img" style={{ backgroundImage: `url(https://whub.io/assets/ahub/images/ic-benedicte-nolens.jpg)` }}>
-                        <div className="blur">
-                          <div>
-                            <strong>Benedicte Nolens</strong>
-                            <p>Head of Regulatory Affairs at Circle</p>
-                          </div>
-                        </div>
+            <div className="row committees">
+              <ul className="nav members-list">
+                <li>
+                  <div className="committee-img" style={{ backgroundImage: `url(https://whub.io/assets/ahub/images/ic-benedicte-nolens.jpg)` }}>
+                    <div className="blur">
+                      <div>
+                        <strong>Benedicte Nolens</strong>
+                        <p>Head of Regulatory Affairs at Circle</p>
                       </div>
-                    </li>
-                    <li>
-                      <div className="committee-img" style={{ backgroundImage: `url(https://whub.io/assets/ahub/images/ic-itai-damti.jpg)` }}>
-                        <div className="blur">
-                          <div>
-                            <strong>Itai Damti</strong>
-                            <p>Entrepreneur in Residence at 500 Startups</p>
-                          </div>
-                        </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="committee-img" style={{ backgroundImage: `url(https://whub.io/assets/ahub/images/ic-itai-damti.jpg)` }}>
+                    <div className="blur">
+                      <div>
+                        <strong>Itai Damti</strong>
+                        <p>Entrepreneur in Residence at 500 Startups</p>
                       </div>
-                    </li>
-                    <li>
-                      <div className="committee-img" style={{ backgroundImage: `url(https://whub.io/assets/ahub/images/ic-olivier-motte.jpg)` }}>
-                        <div className="blur">
-                          <div>
-                            <strong>Olivier MOTTE</strong>
-                            <p>Director of Phileuropa Ltd (HK)</p>
-                          </div>
-                        </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div className="committee-img" style={{ backgroundImage: `url(https://whub.io/assets/ahub/images/ic-olivier-motte.jpg)` }}>
+                    <div className="blur">
+                      <div>
+                        <strong>Olivier MOTTE</strong>
+                        <p>Director of Phileuropa Ltd (HK)</p>
                       </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </section>
