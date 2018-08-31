@@ -197,23 +197,23 @@ export default class Home extends Component {
         </section>
 
         <section className="partners clearfix text-center">
-          <div className="col-xs-8 col-xs-offset-2 col-lg-6 col-lg-offset-3">
+          <div className="col-xs-12 col-md-8 col-md-offset-2">
             <div className="row title">
               <div className="h4 text-primary">OUR PARTNERS</div>
             </div>
 
-            <div className="container margin-top-30">
+            <div className="margin-top-30">
               <div className="row">
-                <div className="col-xs-6 col-md-3">
+                <div className="col-xs-12 col-md-3">
                   <a href="https://www.brinc.io" target="_blank" className="thumbnail" rel="noopener noreferrer"><img src="https://whub.io/assets/ahub/images/landing_partner1.png" alt="brinc" /></a>
                 </div>
-                <div className="col-xs-6 col-md-3">
+                <div className="col-xs-12 col-md-3">
                   <a href="https://www.hkvca.com.hk" target="_blank" className="thumbnail" rel="noopener noreferrer"><img src="https://whub.io/assets/ahub/images/landing_partner2.png" alt="HKVCA" /></a>
                 </div>
-                <div className="col-xs-6 col-md-3">
+                <div className="col-xs-12 col-md-3">
                   <a href="http://www.familyoffices-asia.org" target="_blank" className="thumbnail" rel="noopener noreferrer"><img src="https://whub.io/assets/ahub/images/landing_partner3.png" alt="AFO" /></a>
                 </div>
-                <div className="col-xs-6 col-md-3">
+                <div className="col-xs-12 col-md-3">
                   <a href="https://whub.io" target="_blank" className="thumbnail" rel="noopener noreferrer"><img src="https://whub.io/assets/ahub/images/landing_partner4.png" alt="WHub" /></a>
                 </div>
               </div>
