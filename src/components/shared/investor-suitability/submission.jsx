@@ -26,7 +26,7 @@ export default class SharedInvestorSuitabilitySubmission extends Component {
     const submittedStatus = _.get(myInvestorQuestionnaire, 'status')
 
     return (
-      <div className={`col-sm-6 col-md-6 text-center ${optClass}`}>
+      <div className={`col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-0 text-center ${optClass}`}>
         {
           (() => {
             let component = null
