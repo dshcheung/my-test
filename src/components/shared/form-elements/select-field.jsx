@@ -30,7 +30,7 @@ export default class SelectField extends Component {
         options, requestInProcess,
         label,
         placeholder, optClass, hint,
-        valueField, textField,
+        valueField, textField, groupBy,
         filter, allowCreate,
         allowEmptyValue, uniq,
         showErrors, validationHint
@@ -71,6 +71,7 @@ export default class SelectField extends Component {
           placeholder={placeholder}
           valueField={valueField}
           textField={textField}
+          groupBy={groupBy}
           searchTerm={this.state.searchTerm}
           messages={{
             filterPlaceholder: allowCreate ? "Type to Filter or Create / Select One" : "Type to Filter / Select One"
