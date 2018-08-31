@@ -7,16 +7,15 @@ export default class NInvestModal extends Component {
 
     return (
       <Modal show onHide={close} className="form-modal">
-        <Modal.Header closeButton className="bg-primary">
-          <Modal.Title>Invest</Modal.Title>
-        </Modal.Header>
         <Modal.Body>
-          <div className="text-center">
-            <div><i className="ahub-3x ahub-lock text-dark" /></div>
+          <div
+            className="text-center px-top-80 px-bottom-80"
+            style={{ boxShadow: "5px 5px 30px #ccc" }}
+          >
+            <div><i className="fa-3x fas fa-hourglass-half text-primary" /></div>
 
-            <div className="h4">Warning</div>
-
-            <p>Verification In Progress</p>
+            <div className="h2 margin-bottom-0">VERIFICATIONS</div>
+            <div className="h2 margin-top-0">IN PROGRESS</div>
           </div>
         </Modal.Body>
       </Modal>
