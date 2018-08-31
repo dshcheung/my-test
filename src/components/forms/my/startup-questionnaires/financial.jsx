@@ -114,7 +114,6 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
           <StaticField
             name="startup_questionnaire_break_even"
             label="4. Break-even point"
-            headerNoMargin
             hint="State a Quarter and a year"
             fields={[
               {

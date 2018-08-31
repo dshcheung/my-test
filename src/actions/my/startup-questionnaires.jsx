@@ -176,10 +176,12 @@ const generateParams = (values) => {
   let startup_questionnaire_team_members_attributes = _.get(values, 'team.startup_questionnaire_team_members', null)
   if (startup_questionnaire_team_members_attributes) {
     startup_questionnaire_team_members_attributes = startup_questionnaire_team_members_attributes.map((tf) => {
-      return {
+      const nv = {
         ...tf,
         salary_attributes: _.get(tf, 'salary', null)
       }
+
+      return _.omit(nv, 'salary')
     })
   }
 
