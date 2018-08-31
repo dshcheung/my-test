@@ -37,7 +37,7 @@ export default class SharedStartupQuestionnairesSubmission extends Component {
                   <div className="text-gray margin-bottom-40">Once you submit, you will not be able to modify. You can go back to any section and resave now!</div>
                   <div className="text-gray margin-bottom-40">When You Are Ready To Submit Your Campaign For Us To Review, Click The Button Below</div>
                   <button
-                    className={`btn btn-primary btn-outline ${markMyCampaignForReviewInProcess && "m-progress"} margin-top-20`}
+                    className={`btn btn-primary text-uppercase ${markMyCampaignForReviewInProcess && "m-progress"} margin-top-20`}
                     type="submit"
                     disabled={markMyCampaignForReviewInProcess}
                     onClick={() => { this.props.markMyCampaignForReview(routeParams) }}

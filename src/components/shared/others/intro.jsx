@@ -27,10 +27,14 @@ export default class SharedOthersIntro extends Component {
           }
         </div>
 
-        <button
-          className="btn btn-primary text-uppercase pull-right"
-          onClick={onContinue}
-        >Continue</button>
+        <div className="row">
+          <div className="col-xs-12 col-md-offset-8 col-md-4">
+            <button
+              className="btn btn-primary text-uppercase"
+              onClick={onContinue}
+            >Continue</button>
+          </div>
+        </div>
       </div>
     )
   }
