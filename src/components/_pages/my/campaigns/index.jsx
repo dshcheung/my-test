@@ -37,12 +37,16 @@ export default class MyCampaignsIndex extends Component {
     const { myCampaigns, gMyCampaignsInProcess } = this.props
 
     return (
-      <div id="pages-my-campaigns" className="container">
-        <CampaignList
-          loadingInProcess={gMyCampaignsInProcess}
-          campaigns={myCampaigns}
-          newable
-        />
+      <div id="pages-my-campaigns">
+        <div className="col-xs-10 col-xs-offset-1">
+          <div className="row">
+            <CampaignList
+              loadingInProcess={gMyCampaignsInProcess}
+              campaigns={myCampaigns}
+              newable
+            />
+          </div>
+        </div>
       </div>
     )
   }

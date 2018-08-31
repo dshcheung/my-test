@@ -10,19 +10,25 @@ export default class CampaignList extends Component {
     const { loadingInProcess, campaigns, newable } = this.props
 
     return (
-      <div className="row" id="shared-campaigns-list">
+      <div id="shared-campaigns-list">
         {
           (() => {
             let component = null
             if (loadingInProcess) {
               component = <LoadingSpinner />
+            } else if (campaigns.length < 1) {
+              component = (
+                <div key="no-campaigns" className="col-xs-12">
+                  <h3>No Campaigns Found</h3>
+                </div>
+              )
             } else {
-              const createNewCampaign = newable ? (
+              const createNewCampaign = newable && (
                 <div key="new-campaign" className="col-xs-12 col-sm-6 col-md-4 text-center campaign-card">
                   <Link to="/my/campaigns/new" className="clearfix card-banner-wrapper">
                     <div
                       className="col-xs-12 card-banner clearfix"
-                      style={{ backgroundImage: `url(${DEFAULT_STARTUP_BANNER})` }}
+                      style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${DEFAULT_STARTUP_BANNER})` }}
                     />
                     <div
                       className="campaign-logo"
@@ -33,30 +39,24 @@ export default class CampaignList extends Component {
                     <Link className="h3" to="/my/campaigns/new">Create A New Campaign</Link>
                   </div>
                 </div>
-              ) : (
-                <div key="no-campaigns" className="col-xs-12">
-                  <h3>No Campaigns Found</h3>
-                </div>
               )
 
               const campaignsItems = campaigns.map((campaign, i) => {
-                const banner = _.get(campaign, 'startup.profile.banner.original', null) || DEFAULT_STARTUP_BANNER
-                const avatar = _.get(campaign, 'startup.profile.avatar.original', null) || DEFAULT_STARTUP_AVATAR
-                const bannerStyle = { backgroundImage: `url(${banner})` }
+                // startup profile stuff
+                const banner = _.get(campaign, 'startup.profile.banner.original') || DEFAULT_STARTUP_BANNER
+                const avatar = _.get(campaign, 'startup.profile.avatar.original') || DEFAULT_STARTUP_AVATAR
+                const bannerStyle = { backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${banner})` }
                 const logoStyle = { backgroundImage: `url(${avatar}` }
+                const startupName = campaign.startup.name
+                const tagline = _.get(campaign, 'startup.profile.tagline') || "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab quo maiores doloribus, placeat, corporis ex libero nihil corrupti iusto doloremque saepe ipsa perspiciatis? Asperiores sunt, laboriosam magnam esse culpa repellat."
 
+                // campaign stuff
                 const campaignID = campaign.id
-                // const campaignName = campaign.campaign_type.name
-                // const amountType = _.get(campaign, 'campaign_type.amount_type', '').splitCap("_")
-                // const endDate = moment(campaign.end_date).diff(moment(), 'days')
+                const endDate = moment(campaign.end_date).fromNow()
                 const goal = campaign.goal || 0
                 const raised = campaign.raised || 0
                 const achieved = Math.floor((raised / goal) * 100)
-                // const investorNum = campaign.number_of_investors
-                const progressStyle = { width: `${achieved}px` }
-
-                const startupName = campaign.startup.name
-                const tagline = _.get(campaign, 'startup.profile.tagline') || "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab quo maiores doloribus, placeat, corporis ex libero nihil corrupti iusto doloremque saepe ipsa perspiciatis? Asperiores sunt, laboriosam magnam esse culpa repellat."
+                const progressStyle = { width: `${achieved}%` }
 
                 let linkTo = `/campaigns/${campaignID}`
 
@@ -94,6 +94,7 @@ export default class CampaignList extends Component {
                         { displayDanger && <span className="label label-danger">{submitStatus.splitCap("_")}</span> }
                         { displayWarning && <span className="label label-warning">Pending Review</span> }
                         { displayInfo && <span className="label label-info">Not Submitted For Review</span> }
+                        { displayStats && <span className="label label-default">Ends {endDate}</span> }
                       </div>
                       <div className="active-bubble">
                         { isActive && <span className="label label-success">Live</span> }

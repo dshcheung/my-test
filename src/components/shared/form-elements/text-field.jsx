@@ -10,17 +10,20 @@ export default class TextField extends Component {
         type,
         label, placeholder, hint,
         step, min, readOnly, overrideValue,
-        frontInputGroup, backInputGroup
+        frontInputGroup, backInputGroup,
+        showErrors, validationHint
       }
     } = this.props
 
     const inputGroup = backInputGroup || frontInputGroup
 
-    const hasErrorClass = touched && invalid ? 'has-error' : ''
+    const hasErrorClass = (showErrors || touched) && invalid ? 'has-error' : ''
 
     return (
       <div className={`form-group clearfix ${hasErrorClass} ${optClass}`}>
         { hint && <span className="help-block hint">{hint}</span> }
+        { validationHint && <span className="help-block hint">{validationHint}</span>}
+
         {
           inputGroup ? (
             <div className="input-group">
@@ -51,8 +54,9 @@ export default class TextField extends Component {
             />
           )
         }
-        { label && <label htmlFor={input.name}>{label} {hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>} </label> }
-        { !label && <span className="help-block">{touched && hasErrorClass && error.join(", ")}&nbsp;</span>}
+
+        { label && <label htmlFor={input.name}>{label} {hasErrorClass && <span className="help-block">{(showErrors || touched) ? error.join(", ") : ''}</span>} </label> }
+        { !label && <span className="help-block">{(showErrors || touched) && hasErrorClass && error.join(", ")}&nbsp;</span>}
       </div>
     )
   }

@@ -46,15 +46,16 @@ export default class MobileField extends Component {
       opts: {
         label,
         placeholder,
-        hint
+        hint, showErrors, validationHint
       }
     } = this.props
 
-    const hasErrorClass = touched && invalid ? 'has-error' : ''
+    const hasErrorClass = (showErrors || touched) && invalid ? 'has-error' : ''
 
     return (
       <div className={`form-group clearfix ${hasErrorClass}`}>
         { hint && <span className="help-block">{hint}</span> }
+        { validationHint && <span className="help-block hint">{validationHint}</span>}
 
         <div className="input-group">
           <div className="input-group-btn">
@@ -82,8 +83,8 @@ export default class MobileField extends Component {
           />
         </div>
 
-        { label && <label htmlFor={rest.name}>{label} {hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>} </label> }
-        { !label && <span className="help-block">{touched && hasErrorClass && error.join(", ")}&nbsp;</span>}
+        { label && <label htmlFor={rest.name}>{label} {hasErrorClass && <span className="help-block">{(showErrors || touched) ? error.join(", ") : ''}</span>} </label> }
+        { !label && <span className="help-block">{(showErrors || touched) && hasErrorClass && error.join(", ")}&nbsp;</span>}
       </div>
     )
   }

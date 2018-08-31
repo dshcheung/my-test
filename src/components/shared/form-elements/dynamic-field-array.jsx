@@ -16,7 +16,7 @@ export default class DynamicFieldArray extends Component {
       opts: {
         label, groupName,
         newFieldInit, onDeleteField,
-        dynamicFields, hint, maxFields
+        dynamicFields, hint, maxFields, validationHint
       }
     } = this.props
 
@@ -27,6 +27,7 @@ export default class DynamicFieldArray extends Component {
             { label && <label htmlFor={fields.name}>{label} {error && <span className="help-block">{error}</span>}</label> }
             { !label && <span className="help-block">{error}&nbsp;</span> }
           </div>
+          { validationHint && <span className="help-block hint">{validationHint}</span>}
           { hint && <span className="help-block hint">{hint}</span> }
         </div>
         {

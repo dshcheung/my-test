@@ -24,7 +24,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
           childFields: {
             name: ["presences"],
             website: ["presences", "httpLink"],
-            solution_benchmark: [{ type: "lengthWord", opts: { max: 200 } }]
+            solution_benchmark: ["presences", { type: "lengthWord", opts: { max: 200 } }]
           }
         }
       }],
@@ -64,6 +64,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             name="global_market"
             component={TextRTE}
             opts={{
+              showErrors: true,
               label: "1. Global market",
               hint: "Worldwide, or any global reference point that is the market you could address eventually, after scaling up. Please provide basic metrics for this market; size and growth rate."
             }}
@@ -73,6 +74,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             name="target_market"
             component={TextRTE}
             opts={{
+              showErrors: true,
               label: "2. Targeted market (your customers)",
               hint: "Your entry market that you are targeting in the coming months. Remember that its definition should give us a precise description of your targeted customer. Please provide basic metrics for this market; size and growth rate"
             }}
@@ -82,8 +84,10 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             name="traction"
             component={TextRTE}
             opts={{
+              showErrors: true,
               label: "3. Traction",
-              hint: "Max 200 Words. Users and/or validated feedback"
+              validationHint: "Max 200 Words",
+              hint: "Users and/or validated feedback"
             }}
           />
 
@@ -91,8 +95,10 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             name="barriers_to_entry"
             component={TextRTE}
             opts={{
+              showErrors: true,
               label: "4. Barriers to entry",
-              hint: "Max 200 Words. Main reasons why a company will find it difficult to conquer your customers when entering your market"
+              validationHint: "Max 200 Words",
+              hint: "Main reasons why a company will find it difficult to conquer your customers when entering your market"
             }}
           />
 
@@ -100,8 +106,9 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             name="competition_landscape"
             component={TextRTE}
             opts={{
+              showErrors: true,
               label: "5. Describe your competition landscape",
-              hint: "Max 200 Words"
+              validationHint: "Max 200 Words"
             }}
           />
 
@@ -109,6 +116,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             name="competitors"
             component={DynamicFieldArray}
             opts={{
+              showErrors: true,
               label: "6. Competitors",
               groupName: "Competitor",
               newFieldInit: {
@@ -121,6 +129,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
                   key: "name",
                   component: TextField,
                   opts: {
+                    showErrors: true,
                     label: "Name"
                   }
                 },
@@ -128,6 +137,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
                   key: "website",
                   component: TextField,
                   opts: {
+                    showErrors: true,
                     label: "Link",
                     placeholder: "https://competitor.com"
                   }
@@ -136,8 +146,10 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
                   key: "solution_benchmark",
                   component: TextRTE,
                   opts: {
+                    showErrors: true,
                     label: "Solution Benchmark",
-                    hint: "Max 200 Words. Features that differentiate your solution from this competitor’s solution"
+                    validationHint: "Max 200 Words",
+                    hint: "Features that differentiate your solution from this competitor’s solution"
                   }
                 }
               ]
@@ -148,6 +160,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             name="go_to_market_strategies"
             component={DynamicFieldArray}
             opts={{
+              showErrors: true,
               label: "7. Go-To-Market Strategies",
               groupName: "Strategy",
               newFieldInit: {
@@ -160,6 +173,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
                   key: "occurs_on",
                   component: DateTimePicker,
                   opts: {
+                    showErrors: true,
                     label: "Date",
                     time: false,
                     format: "YYYY/MM",
@@ -170,8 +184,9 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
                   key: "action",
                   component: TextRTE,
                   opts: {
+                    showErrors: true,
                     label: "Action",
-                    hint: "Max 40 Words"
+                    validationHint: "Max 40 Words"
                   }
                 }
               ]
@@ -182,6 +197,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
             name="attachments"
             component={DynamicFieldArray}
             opts={{
+              showErrors: true,
               label: "8. You want to show us more ? (optional)",
               hint: "Upload Slides, Graphs, research summary, link to sources",
               groupName: "File",
@@ -195,6 +211,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
                   key: "title",
                   component: SelectField,
                   opts: {
+                    showErrors: true,
                     label: "Title",
                     options: this.props.attachmentOptions,
                     valueField: "name",
@@ -207,6 +224,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
                   key: "file",
                   component: FileField,
                   opts: {
+                    showErrors: true,
                     label: "File",
                     urlKey: "original"
                   }

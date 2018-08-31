@@ -20,8 +20,8 @@ import FileField from '../../../shared/form-elements/file-field'
         opts: {
           selfPresences: false,
           childFields: {
-            logo: ["presences"],
-            link: ["presences"]
+            title: ["presences"],
+            registration_date: ["presences"]
           }
         }
       }],
@@ -51,6 +51,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="product"
             component={TextRTE}
             opts={{
+              showErrors: true,
               label: "1. Your product or service",
               hint: "Features, Underlying Technology, UI, UX,.... You can here explain in more details how your product will indeed solve the problem for the customer"
             }}
@@ -60,6 +61,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="startup_questionnaire_patents"
             component={DynamicFieldArray}
             opts={{
+              showErrors: true,
               label: "2. Patents (optional)",
               groupName: "Patent",
               newFieldInit: {
@@ -73,6 +75,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                   key: "title",
                   component: TextField,
                   opts: {
+                    showErrors: true,
                     label: "Title"
                   }
                 },
@@ -80,6 +83,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                   key: "registration_date",
                   component: DateTimePicker,
                   opts: {
+                    showErrors: true,
                     label: "Registration Date",
                     time: false,
                     format: "YYYY/MM/DD"
@@ -89,6 +93,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                   key: "registration_in_progess",
                   component: CheckboxField,
                   opts: {
+                    showErrors: true,
                     label: "Registration In Progress"
                   }
                 }
@@ -100,6 +105,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
             name="attachments"
             component={DynamicFieldArray}
             opts={{
+              showErrors: true,
               label: "3. You have something to add? (optional)",
               hint: "Upload Pictures or Slides describing your product/service",
               groupName: "File",
@@ -113,6 +119,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                   key: "title",
                   component: SelectField,
                   opts: {
+                    showErrors: true,
                     label: "Title",
                     options: this.props.attachmentOptions,
                     valueField: "name",
@@ -125,6 +132,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                   key: "file",
                   component: FileField,
                   opts: {
+                    showErrors: true,
                     label: "File",
                     urlKey: "original"
                   }

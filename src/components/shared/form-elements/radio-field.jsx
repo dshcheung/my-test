@@ -8,16 +8,17 @@ export default class RadioField extends Component {
         optClass, optItemClass,
         options, valueKey, nameKey,
         label, optionNameIsDangerous,
-        hint, boldLabel
+        hint, boldLabel, showErrors, validationHint
       }
     } = this.props
 
-    const hasErrorClass = touched && invalid ? 'has-error' : ''
+    const hasErrorClass = (showErrors || touched) && invalid ? 'has-error' : ''
 
     return (
       <div className={`form-group flex-column clearfix ${hasErrorClass} ${optClass}`}>
-        { label && <label className={`${boldLabel && "fw-700"} margin-bottom-15`} htmlFor={input.name}>{label} {hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>} </label> }
-        { !label && <span className="help-block">{touched && hasErrorClass && error.join(", ")}&nbsp;</span>}
+        { label && <label className={`${boldLabel && "fw-700"} margin-bottom-15`} htmlFor={input.name}>{label} {hasErrorClass && <span className="help-block">{(showErrors || touched) ? error.join(", ") : ''}</span>} </label> }
+        { !label && <span className="help-block">{(showErrors || touched) && hasErrorClass && error.join(", ")}&nbsp;</span>}
+
         {
           options.map((opt, i) => {
             let value = null
@@ -50,6 +51,8 @@ export default class RadioField extends Component {
             )
           })
         }
+
+        { validationHint && <span className="help-block hint">{validationHint}</span>}
         { hint && <span className="help-block hint">{hint}</span> }
       </div>
     )

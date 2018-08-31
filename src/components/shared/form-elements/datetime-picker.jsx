@@ -87,11 +87,11 @@ export default class DateTimePickerField extends Component {
         label,
         placeholder,
         min, max, views, date, time, format, step,
-        hint, optClass
+        hint, optClass, showErrors, validationHint
       }
     } = this.props
 
-    const hasErrorClass = touched && invalid ? 'has-error' : ''
+    const hasErrorClass = (showErrors || touched) && invalid ? 'has-error' : ''
 
     return (
       <div
@@ -99,6 +99,8 @@ export default class DateTimePickerField extends Component {
         ref={(node) => { this.node = node }}
       >
         { hint && <span className="help-block hint">{hint}</span> }
+        { validationHint && <span className="help-block hint">{validationHint}</span>}
+
         <DateTimePick
           containerClassName={`${label && "has-label"} ${input.value && "has-value"}`}
           autofocus={false}
@@ -122,8 +124,9 @@ export default class DateTimePickerField extends Component {
           onKeyDown={this.onKey}
           onKeyUp={this.onKey}
         />
-        { label && <label className={input.value && 'has-value'} htmlFor={input.name}>{label} {hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>} </label> }
-        { !label && <span className="help-block">{touched && hasErrorClass && error.join(", ")}&nbsp;</span>}
+
+        { label && <label className={input.value && 'has-value'} htmlFor={input.name}>{label} {hasErrorClass && <span className="help-block">{(showErrors || touched) ? error.join(", ") : ''}</span>} </label> }
+        { !label && <span className="help-block">{(showErrors || touched) && hasErrorClass && error.join(", ")}&nbsp;</span>}
       </div>
     )
   }

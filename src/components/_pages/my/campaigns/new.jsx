@@ -8,7 +8,6 @@ import {
 
 
 import SharedOthersSideTitle from '../../../shared/others/side-title'
-import SharedOthersIntro from '../../../shared/others/intro'
 import SharedOthersTabNav from '../../../shared/others/tab-nav'
 
 import MyStartupQuestionnairesBasicNewForm from '../../../forms/my/startup-questionnaires/basic-new'
@@ -98,25 +97,24 @@ export default class MyCampaignsNew extends Component {
         }
 
         <div className="row">
-          <SharedOthersSideTitle title="startup" optClass={`hidden-xs hidden-sm col-md-offset-1 col-md-2`} number={intro ? '' : 1} />
+          <SharedOthersSideTitle title="startup" optClass={`hidden-xs hidden-sm col-md-2 col-md-offset-1`} number={intro ? '' : 1} />
 
           {
             intro && (
-              <SharedOthersIntro
-                optClass="col-sm-10 col-sm-offset-1 col-md-offset-0 col-md-8"
-                onContinue={this.onContinue}
-                title="what we need from you"
-                content={[
-                  {
-                    title: "Tell us about your Startup",
-                    body: "all the details from a-z about your startup"
-                  },
-                  {
-                    title: "Campaign profile",
-                    body: "make your campaign stand out"
-                  }
-                ]}
-              />
+              <div className="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-0">
+                <div className="h1 page-title-c fw-500 fs-28">WHAT WE NEED FROM YOU</div>
+
+                <div className="row margin-bottom-20">
+                  <div className="col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1">
+                    <img className="img-responsive" src="https://image.ibb.co/i07zYU/Screen_Shot_2018_08_31_at_2_03_56_AM.png" alt="guide" />
+                  </div>
+                </div>
+
+                <button
+                  className="btn btn-primary text-uppercase pull-right"
+                  onClick={this.onContinue}
+                >Continue</button>
+              </div>
             )
           }
 

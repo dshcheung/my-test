@@ -32,11 +32,12 @@ export default class SelectField extends Component {
         placeholder, optClass, hint,
         valueField, textField,
         filter, allowCreate,
-        allowEmptyValue, uniq
+        allowEmptyValue, uniq,
+        showErrors, validationHint
       }
     } = this.props
 
-    const hasErrorClass = touched && invalid ? 'has-error' : ''
+    const hasErrorClass = (showErrors || touched) && invalid ? 'has-error' : ''
 
     let nOptions = options
 
@@ -59,6 +60,8 @@ export default class SelectField extends Component {
     return (
       <div className={`form-group clearfix ${hasErrorClass} ${optClass}`}>
         { hint && <span className="help-block hint">{hint}</span> }
+        { validationHint && <span className="help-block hint">{validationHint}</span>}
+
         <DropdownList
           filter={filter}
           allowCreate={allowCreate && "onFilter"}
@@ -78,8 +81,9 @@ export default class SelectField extends Component {
           onBlur={this.onBlur}
           onSearch={this.onSearch}
         />
-        { label && <label className={input.value && 'has-value'} htmlFor={input.name}>{label} {hasErrorClass && <span className="help-block">{touched ? error.join(", ") : ''}</span>} </label> }
-        { !label && <span className="help-block">{touched && hasErrorClass && error.join(", ")}&nbsp;</span>}
+
+        { label && <label className={input.value && 'has-value'} htmlFor={input.name}>{label} {hasErrorClass && <span className="help-block">{(showErrors || touched) ? error.join(", ") : ''}</span>} </label> }
+        { !label && <span className="help-block">{(showErrors || touched) && hasErrorClass && error.join(", ")}&nbsp;</span>}
       </div>
     )
   }

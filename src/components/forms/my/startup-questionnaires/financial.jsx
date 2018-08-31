@@ -32,11 +32,8 @@ import StaticField from '../../../shared/form-elements/static-field'
           selfPresences: false,
           childFields: {
             occurred_on: ["presences"],
-            money: ["presences"],
-            contract_type: ["presences"],
-            date_of_investment: ["presences"],
-            class_of_shares: ["presences"],
-            comment: ["presences"]
+            money: ["currencyPresences"],
+            fund_type: ["presences"]
           }
         }
       }],
@@ -47,7 +44,11 @@ import StaticField from '../../../shared/form-elements/static-field'
           childFields: {
             first_name: ["presences"],
             last_name: ["presences"],
-            percentage_of_shares: ["presences"]
+            cap_table_type: ["presences"],
+            percentage_of_shares: ["presences"],
+            date_of_investment: ["presences"],
+            class_of_shares: ["presences"],
+            comment: ["presences"]
           }
         }
       }],
@@ -82,6 +83,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             name="income_statement"
             component={FileField}
             opts={{
+              showErrors: true,
               label: "1. Income Statement Projection",
               urlKey: "original",
               templateUrl: "https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/templates/income+statement+template.xlsx"
@@ -92,6 +94,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             name="cash_flow_statement"
             component={FileField}
             opts={{
+              showErrors: true,
               label: "2. Cash-Flow Statement Projection",
               urlKey: "original",
               templateUrl: "https://s3-ap-northeast-1.amazonaws.com/angel-hub-dev/static/templates/cash-flow+statement+template.xlsx"
@@ -102,6 +105,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             name="cash_burn"
             component={CurrencyField}
             opts={{
+              showErrors: true,
               label: "3. Monthly Cash Burn Rate",
               hint: "Amount of HKD/USD burned by month"
             }}
@@ -117,6 +121,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                 name: "quarter",
                 component: SelectField,
                 opts: {
+                  showErrors: true,
                   optClass: "margin-0",
                   options: [
                     { value: 1, name: "Q1" },
@@ -134,6 +139,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                 name: "year",
                 component: DateTimePicker,
                 opts: {
+                  showErrors: true,
                   label: "Year",
                   time: false,
                   format: "YYYY",
@@ -147,6 +153,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             name="startup_questionnaire_use_of_funds"
             component={DynamicFieldArray}
             opts={{
+              showErrors: true,
               label: "5. Use of fund",
               hint: "How you will use the money you are going to raise",
               groupName: "Use",
@@ -160,6 +167,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   key: "percentage",
                   component: TextField,
                   opts: {
+                    showErrors: true,
                     label: "Percentage",
                     type: "number",
                     backInputGroup: "%"
@@ -169,8 +177,9 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   key: "description",
                   component: TextRTE,
                   opts: {
+                    showErrors: true,
                     label: "Description",
-                    hint: "Max 50 Words"
+                    validationHint: "Max 50 Words"
                   }
                 }
               ]
@@ -181,6 +190,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             name="startup_questionnaire_previous_funds"
             component={DynamicFieldArray}
             opts={{
+              showErrors: true,
               label: "6. Previous funding round(s) (optional)",
               hint: "Date and Amount and type (Equity / Convertible)",
               groupName: "Round",
@@ -198,6 +208,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   key: "occurred_on",
                   component: DateTimePicker,
                   opts: {
+                    showErrors: true,
                     label: "Occurred On",
                     time: false,
                     format: "YYYY/MM",
@@ -208,6 +219,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   key: "money",
                   component: CurrencyField,
                   opts: {
+                    showErrors: true,
                     label: "Amount"
                   }
                 },
@@ -215,6 +227,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   key: "fund_type",
                   component: SelectField,
                   opts: {
+                    showErrors: true,
                     options: [
                       { key: "equity", name: "Equity" },
                       { key: "convertible", name: "Convertible" }
@@ -233,6 +246,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             name="startup_questionnaire_cap_tables"
             component={DynamicFieldArray}
             opts={{
+              showErrors: true,
               label: "7. Cap Table",
               hint: "In addition to your current investors, please state if you have created an ESOP and the equity share it represents",
               groupName: "Investor",
@@ -250,6 +264,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   key: "first_name",
                   component: TextField,
                   opts: {
+                    showErrors: true,
                     label: "First Name"
                   }
                 },
@@ -257,6 +272,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   key: "last_name",
                   component: TextField,
                   opts: {
+                    showErrors: true,
                     label: "Last Name"
                   }
                 },
@@ -264,6 +280,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   key: "cap_table_type",
                   component: SelectField,
                   opts: {
+                    showErrors: true,
                     options: this.props.capTableOptions,
                     valueField: 'id',
                     textField: 'name',
@@ -275,6 +292,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   key: "percentage_of_shares",
                   component: TextField,
                   opts: {
+                    showErrors: true,
                     type: "number",
                     backInputGroup: "%",
                     label: "Percentage of Shares"
@@ -284,6 +302,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   key: "date_of_investment",
                   component: DateTimePicker,
                   opts: {
+                    showErrors: true,
                     label: "Date of Investment",
                     time: false,
                     format: "YYYY/MM",
@@ -294,6 +313,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   key: "class_of_shares",
                   component: SelectField,
                   opts: {
+                    showErrors: true,
                     options: [
                       { name: "Preferred" },
                       { name: "Ordinary" },
@@ -311,6 +331,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   key: "comment",
                   component: TextField,
                   opts: {
+                    showErrors: true,
                     label: "Comment"
                   }
                 }
@@ -322,6 +343,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
             name="attachments"
             component={DynamicFieldArray}
             opts={{
+              showErrors: true,
               label: "8. You have been doing your homework on financials and want to share an instrumental document(s) with us ? (Optional)",
               hint: "Upload your documents",
               groupName: "File",
@@ -335,6 +357,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   key: "title",
                   component: SelectField,
                   opts: {
+                    showErrors: true,
                     label: "Title",
                     options: this.props.attachmentOptions,
                     valueField: "name",
@@ -347,6 +370,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                   key: "file",
                   component: FileField,
                   opts: {
+                    showErrors: true,
                     label: "File",
                     urlKey: "original"
                   }
