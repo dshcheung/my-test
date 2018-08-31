@@ -7,7 +7,7 @@ export default class Signup extends Component {
       <div id="page-auth-signup">
         <div className="row">
           <div className="col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2 selector signup-wrapper">
-            <h1 className="page-title">Sign Up</h1>
+            <h1 className="page-title text-uppercase">Sign Up</h1>
 
             <p>You need to sign up to get full access. Free to join!</p>
 
