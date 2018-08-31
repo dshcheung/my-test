@@ -26,7 +26,7 @@ export default class SharedStartupQuestionnairesSubmission extends Component {
     const submittedStatus = _.get(myCampaign, 'status.submitted')
 
     return (
-      <div className="col-sm-6 col-md-6 text-center">
+      <div className="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-0 text-center">
         {
           (() => {
             let component = null
