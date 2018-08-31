@@ -50,7 +50,7 @@ export default class MyStartupQuestionnairesAttachmentsForm extends Component {
           />
 
           <button
-            className={`btn btn-primary btn-outline pull-right ${submitInProcess && "m-progress"}`}
+            className={`btn btn-primary pull-right ${submitInProcess && "m-progress"}`}
             type="submit"
             disabled={submitInProcess || pristine}
           >CONTINUE</button>

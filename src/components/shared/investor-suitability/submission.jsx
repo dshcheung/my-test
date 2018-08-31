@@ -37,7 +37,7 @@ export default class SharedInvestorSuitabilitySubmission extends Component {
                   <div className="text-gray margin-bottom-40">Once you submit, you will not be able to modify. You can go back to any section and resave now!</div>
                   <div className="text-gray margin-bottom-40">When You Are Ready To Submit Your Suitability Assessment For Us To Review, Click The Button Below</div>
                   <button
-                    className={`btn btn-primary btn-outline ${uMyInvestorQuestionnaireMarkForReivewInProcess && "m-progress"} margin-top-20`}
+                    className={`btn btn-primary ${uMyInvestorQuestionnaireMarkForReivewInProcess && "m-progress"} margin-top-20`}
                     type="submit"
                     disabled={uMyInvestorQuestionnaireMarkForReivewInProcess}
                     onClick={() => { this.props.uMyInvestorQuestionnaireMarkForReview(routeParams) }}

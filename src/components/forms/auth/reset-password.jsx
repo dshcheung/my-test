@@ -46,7 +46,7 @@ export default class AuthResetPasswordForm extends Component {
           />
 
           <button
-            className={`btn btn-primary btn-outline btn-lg btn-block ${submitInProcess && "m-progress"}`}
+            className={`btn btn-primary btn-lg btn-block ${submitInProcess && "m-progress"}`}
             type="submit"
             disabled={submitInProcess}
           >
