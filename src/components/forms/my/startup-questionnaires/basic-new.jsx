@@ -23,7 +23,7 @@ const mapStateToProps = (state) => {
   return {
     formData: _.get(state.form, 'MyStartupQuestionnairesBasicNewForm'),
     gHashtagOptionsInProcess: _.get(state.requestStatus, G_IMMOVABLE_HASHTAG_OPTIONS),
-    hashtagOptions: _.get(state, 'immovables.hashtag_options', [])
+    hashtagOptions: _.get(state, 'immovables.startup_questionnaire_hashtag_options', [])
   }
 }
 
@@ -100,7 +100,7 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
   }
 
   componentWillMount() {
-    this.props.gImmovable({ immovableID: "hashtag_options" })
+    this.props.gImmovable({ immovableID: "startup_questionnaire_hashtag_options" })
   }
 
   componentWillUnmount() {

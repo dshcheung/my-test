@@ -14,7 +14,7 @@ import SelectField from '../../shared/form-elements/select-field'
 
 const mapStateToProps = (state) => {
   return {
-    hashtagOptions: _.get(state.immovables, "hashtag_options", []),
+    hashtagOptions: _.get(state.immovables, "startup_questionnaire_hashtag_options", []),
     gHashtagOptionsInProcess: _.get(state.requestStatus, G_IMMOVABLE_HASHTAG_OPTIONS),
     campaignFilterable: _.get(state.immovables, "campaign_filterable", []),
     gCampaignFilterableInProcess: _.get(state.requestStatus, G_IMMOVABLE_CAMPAIGN_FILTERABLE)
@@ -35,7 +35,7 @@ const mapDispatchToProps = (dispatch) => {
 
 export default class CampaignsSearchForm extends Component {
   componentWillMount() {
-    this.props.gImmovable({ immovableID: "hashtag_options" })
+    this.props.gImmovable({ immovableID: "startup_questionnaire_hashtag_options" })
     this.props.gImmovable({ immovableID: "campaign_filterable" })
   }
 

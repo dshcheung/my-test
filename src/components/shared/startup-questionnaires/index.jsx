@@ -38,7 +38,7 @@ const mapStateToProps = (state) => {
     gHashtagOptionsInProcess: _.get(state.requestStatus, G_IMMOVABLE_HASHTAG_OPTIONS),
     gCapTableOptionsInProcess: _.get(state.requestStatus, G_IMMOVABLE_STARTUP_QUESTIONNAIRE_CAP_TABLE_OPTIONS),
     attachmentOptions: _.get(state, 'immovables.attachment_options', []),
-    hashtagOptions: _.get(state, 'immovables.hashtag_options', []),
+    hashtagOptions: _.get(state, 'immovables.startup_questionnaire_hashtag_options', []),
     capTableOptions: _.get(state, 'immovables.startup_questionnaire_cap_table_options', []),
   }
 }
