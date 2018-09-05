@@ -34,8 +34,8 @@ const mapDispatchToProps = (dispatch) => {
   form: "MyStartupQuestionnairesCampaignForm",
   validate: (values) => {
     return Validators({
-      discount_rate: ["percentage"],
-      interest_rate: ["percentage"],
+      discount_rate: values.campaign_type === "convertible" ? ["percentage"] : [],
+      interest_rate: values.campaign_type === "convertible" ? ["percentage"] : [],
       attachments: [{
         type: "complexArrOfObj",
         opts: {

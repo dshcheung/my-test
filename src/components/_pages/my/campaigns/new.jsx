@@ -96,38 +96,36 @@ export default class MyCampaignsNew extends Component {
           !intro && <SharedOthersTabNav order={order} currentTab={currentTab} disableNav={disableNav} />
         }
 
-        <div className="row">
-          <SharedOthersSideTitle title="startup" optClass={`hidden-xs hidden-sm col-md-2 col-md-offset-1`} number={intro ? '' : 1} />
+        <SharedOthersSideTitle title="startup" optClass={`hidden-xs hidden-sm col-md-2 col-md-offset-1`} number={intro ? '' : 1} />
 
-          {
-            intro && (
-              <div className="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-0">
-                <div className="h1 page-title-c fw-500 fs-28">WHAT WE NEED FROM YOU</div>
+        {
+          intro && (
+            <div className="col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-0">
+              <div className="h1 page-title-c fw-500 fs-28">WHAT WE NEED FROM YOU</div>
 
-                <div className="row margin-bottom-20">
-                  <div className="col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1">
-                    <img className="img-responsive" src="https://image.ibb.co/i07zYU/Screen_Shot_2018_08_31_at_2_03_56_AM.png" alt="guide" />
-                  </div>
+              <div className="row margin-bottom-20">
+                <div className="col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1">
+                  <img className="img-responsive" src="https://image.ibb.co/i07zYU/Screen_Shot_2018_08_31_at_2_03_56_AM.png" alt="guide" />
                 </div>
-
-                <button
-                  className="btn btn-primary text-uppercase pull-right"
-                  onClick={this.onContinue}
-                >Continue</button>
               </div>
-            )
-          }
 
-          {
-            !intro && (
-              <MyStartupQuestionnairesBasicNewForm
-                optClass="col-sm-10 col-sm-offset-1 col-md-offset-0 col-md-8 col-lg-offset-0 col-lg-6"
-                onSubmit={this.cMyStartupQuestionnaire}
-                submitInProcess={this.props.cMyStartupQuestionnaireInProcess}
-              />
-            )
-          }
-        </div>
+              <button
+                className="btn btn-primary text-uppercase pull-right"
+                onClick={this.onContinue}
+              >Continue</button>
+            </div>
+          )
+        }
+
+        {
+          !intro && (
+            <MyStartupQuestionnairesBasicNewForm
+              optClass="col-sm-10 col-sm-offset-1 col-md-offset-0 col-md-8 col-lg-offset-0 col-lg-6"
+              onSubmit={this.cMyStartupQuestionnaire}
+              submitInProcess={this.props.cMyStartupQuestionnaireInProcess}
+            />
+          )
+        }
       </div>
     )
   }

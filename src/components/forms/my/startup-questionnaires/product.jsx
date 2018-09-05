@@ -12,7 +12,7 @@ import SelectField from '../../../shared/form-elements/select-field'
 import FileField from '../../../shared/form-elements/file-field'
 
 @reduxForm({
-  form: "MyStartupQuestionnairesTeaserForm",
+  form: "MyStartupQuestionnairesProductForm",
   validate: (values) => {
     return Validators({
       startup_questionnaire_patents: [{
@@ -40,7 +40,7 @@ import FileField from '../../../shared/form-elements/file-field'
   enableReinitialize: true
 })
 
-export default class MyStartupQuestionnairesTeaserForm extends Component {
+export default class MyStartupQuestionnairesProductForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass, dMSQAttributes, pristine } = this.props
 

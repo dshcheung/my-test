@@ -8,17 +8,22 @@ export default class SharedOthersTabNav extends Component {
         <div className="container">
           {
             order.map((t, i) => {
-              const bgColor = currentTab === t.key ? "active" : ""
-              const disabledClass = disableNav ? "disabled" : "pointer"
-              return (
-                <div
-                  key={i}
-                  className={`pointer tab-item ${bgColor} ${disabledClass}`}
-                  onClick={() => {
-                    if (handleClick) handleClick(t.key)
-                  }}
-                >{t.title}</div>
-              )
+              const title = t.title
+              if (title) {
+                const bgColor = currentTab === t.key ? "active" : ""
+                const disabledClass = disableNav ? "disabled" : "pointer"
+                return (
+                  <div
+                    key={i}
+                    className={`pointer tab-item ${bgColor} ${disabledClass}`}
+                    onClick={() => {
+                      if (handleClick) handleClick(t.key)
+                    }}
+                  >{t.title}</div>
+                )
+              } else {
+                return null
+              }
             })
           }
         </div>
