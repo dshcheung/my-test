@@ -67,7 +67,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
               newFieldInit: {
                 registration_date: '',
                 title: '',
-                registration_in_progess: false
+                registration_in_progress: false
               },
               onDeleteField: dMSQAttributes,
               dynamicFields: [
@@ -90,7 +90,7 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                   }
                 },
                 {
-                  key: "registration_in_progess",
+                  key: "registration_in_progress",
                   component: CheckboxField,
                   opts: {
                     showErrors: true,

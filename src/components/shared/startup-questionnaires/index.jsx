@@ -137,7 +137,7 @@ export default class SharedStartupQuestionnaires extends Component {
           model: MyStartupQuestionnairesMarketForm,
           nextTab: "team",
           formatValues: (q) => {
-            const go_to_market_strategies = _.get(q, 'go_to_market_strategies') || []
+            const startup_questionnaire_go_to_market_strategies = _.get(q, 'startup_questionnaire_go_to_market_strategies') || []
 
             const nq = {
               ...q,
@@ -147,7 +147,7 @@ export default class SharedStartupQuestionnaires extends Component {
               solution_benchmark: _.get(q, 'solution_benchmark') || '',
               target_market: _.get(q, 'target_market') || '',
               traction: _.get(q, 'traction') || '',
-              go_to_market_strategies: go_to_market_strategies.map((s) => {
+              startup_questionnaire_go_to_market_strategies: startup_questionnaire_go_to_market_strategies.map((s) => {
                 const occurs_on = _.get(s, 'occurs_on')
                 return {
                   ...s,

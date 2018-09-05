@@ -223,8 +223,8 @@ const generateParams = (values) => {
       barriers_to_entry: _.get(values, 'market.barriers_to_entry', null),
       traction: _.get(values, 'market.traction', null),
       competition_landscape: _.get(values, 'market.competition_landscape', null),
-      competitors_attributes: _.get(values, 'market.competitors', null),
-      go_to_market_strategies_attributes: _.get(values, 'market.go_to_market_strategies', null),
+      startup_questionnaire_competitors_attributes: _.get(values, 'market.startup_questionnaire_competitors', null),
+      startup_questionnaire_go_to_market_strategies_attributes: _.get(values, 'market.startup_questionnaire_go_to_market_strategies', null),
       attachments_attributes: _.get(values, 'market.attachments', null)
     },
     startup_questionnaire_team_attributes: {

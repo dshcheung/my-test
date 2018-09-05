@@ -113,7 +113,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
           />
 
           <FieldArray
-            name="competitors"
+            name="startup_questionnaire_competitors"
             component={DynamicFieldArray}
             opts={{
               showErrors: true,
@@ -157,7 +157,7 @@ export default class MyStartupQuestionnairesMarketForm extends Component {
           />
 
           <FieldArray
-            name="go_to_market_strategies"
+            name="startup_questionnaire_go_to_market_strategies"
             component={DynamicFieldArray}
             opts={{
               showErrors: true,

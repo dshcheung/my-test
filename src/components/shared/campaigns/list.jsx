@@ -47,7 +47,7 @@ export default class CampaignList extends Component {
                 const avatar = _.get(campaign, 'startup.profile.avatar.original') || DEFAULT_STARTUP_AVATAR
                 const bannerStyle = { backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${banner})` }
                 const logoStyle = { backgroundImage: `url(${avatar}` }
-                const startupName = campaign.startup.name
+                const startupName = _.get(campaign, 'startup.name') || "None"
                 const tagline = _.get(campaign, 'startup.profile.tagline') || "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab quo maiores doloribus, placeat, corporis ex libero nihil corrupti iusto doloremque saepe ipsa perspiciatis? Asperiores sunt, laboriosam magnam esse culpa repellat."
 
                 // campaign stuff

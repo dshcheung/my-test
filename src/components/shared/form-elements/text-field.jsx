@@ -9,7 +9,7 @@ export default class TextField extends Component {
         optClass,
         type,
         label, placeholder, hint,
-        step, min, readOnly, overrideValue,
+        step, min, max, readOnly, overrideValue,
         frontInputGroup, backInputGroup,
         showErrors, validationHint
       }
@@ -33,6 +33,7 @@ export default class TextField extends Component {
                 type={type || "text"}
                 step={step}
                 min={min}
+                max={max}
                 readOnly={readOnly}
                 {...input}
                 value={overrideValue || input.value}
@@ -48,6 +49,7 @@ export default class TextField extends Component {
               type={type || "text"}
               step={step}
               min={min}
+              max={max}
               readOnly={readOnly}
               {...input}
               value={overrideValue || input.value}

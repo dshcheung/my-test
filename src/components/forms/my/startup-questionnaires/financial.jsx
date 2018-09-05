@@ -21,7 +21,7 @@ import StaticField from '../../../shared/form-elements/static-field'
         opts: {
           selfPresences: false,
           childFields: {
-            percentage: ["presences"],
+            percentage: ["presences", "percentage"],
             description: ["presences", { type: "lengthWord", opts: { max: 50 } }]
           }
         }
@@ -45,7 +45,7 @@ import StaticField from '../../../shared/form-elements/static-field'
             first_name: ["presences"],
             last_name: ["presences"],
             cap_table_type: ["presences"],
-            percentage_of_shares: ["presences"],
+            percentage_of_shares: ["presences", "percentage"],
             date_of_investment: ["presences"],
             class_of_shares: ["presences"],
             comment: ["presences"]
@@ -169,7 +169,10 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                     showErrors: true,
                     label: "Percentage",
                     type: "number",
-                    backInputGroup: "%"
+                    backInputGroup: "%",
+                    min: 0,
+                    max: 100,
+                    step: 1
                   }
                 },
                 {
@@ -294,6 +297,9 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
                     showErrors: true,
                     type: "number",
                     backInputGroup: "%",
+                    min: 0,
+                    max: 100,
+                    step: 1,
                     label: "Percentage of Shares"
                   }
                 },

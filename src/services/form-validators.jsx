@@ -166,6 +166,15 @@ const validators = {
       }
     }
   },
+  percentage: (value) => {
+    if (value > 100) {
+      return "Max 100%"
+    }
+
+    if (value < 0.1) {
+      return "Min 0.1%"
+    }
+  },
   httpLink: (value) => {
     const regex = /^https?:\/\//
     const result = regex.test(value)

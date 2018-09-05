@@ -29,7 +29,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
             linkedin: ["presences", "httpLink"],
             commitment: ["presences"],
             salary: ["currencyPresences"],
-            equity: ["presences"],
+            equity: ["presences", "percentage"],
           }
         }
       }],
@@ -202,7 +202,10 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
                     showErrors: true,
                     type: "number",
                     label: "Equity Interest",
-                    backInputGroup: "%"
+                    backInputGroup: "%",
+                    min: 0,
+                    max: 100,
+                    step: 1
                   }
                 }
               ]

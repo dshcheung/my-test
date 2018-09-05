@@ -34,6 +34,8 @@ const mapDispatchToProps = (dispatch) => {
   form: "MyStartupQuestionnairesCampaignForm",
   validate: (values) => {
     return Validators({
+      discount_rate: ["percentage"],
+      interest_rate: ["percentage"],
       attachments: [{
         type: "complexArrOfObj",
         opts: {
@@ -131,7 +133,10 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
                     showErrors: true,
                     type: "number",
                     label: "3. Discount rate",
-                    backInputGroup: "%"
+                    backInputGroup: "%",
+                    min: 0,
+                    max: 100,
+                    step: 1
                   }}
                 />
 
@@ -142,7 +147,10 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
                     showErrors: true,
                     type: "number",
                     label: "4. Interest rate",
-                    backInputGroup: "%"
+                    backInputGroup: "%",
+                    min: 0,
+                    max: 100,
+                    step: 1
                   }}
                 />
 
