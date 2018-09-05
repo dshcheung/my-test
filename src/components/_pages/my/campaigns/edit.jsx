@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { isPristine } from 'redux-form'
 
 import {
   gMyCampaign
@@ -49,7 +50,7 @@ const mapStateToProps = (state) => {
     attachmentOptions: _.get(state, 'immovables.attachment_options', []),
     hashtagOptions: _.get(state, 'immovables.startup_questionnaire_hashtag_options', []),
     capTableOptions: _.get(state, 'immovables.startup_questionnaire_cap_table_options', []),
-    formValues: _.get(state, 'form')
+    formState: { form: _.get(state, 'form') },
   }
 }
 
@@ -350,17 +351,17 @@ export default class MyCampaigns extends Component {
   }
 
 
-  // TODO: consider to remove
   saveOnChangeTab(tab) {
     const { order, currentTab, routeParams } = this.state
 
     const baseInfo = _.find(order, { key: currentTab })
     const modelKey = _.get(baseInfo, 'modelKey')
 
-    if (modelKey) {
-      const { formValues } = this.props
-      const thisFormValues = _.get(formValues, modelKey)
+    const { formState } = this.props
+    const thisPristine = isPristine(modelKey)(formState)
 
+    if (modelKey && !thisPristine) {
+      const thisFormValues = _.get(formState.form, modelKey)
       const thisError = _.get(thisFormValues, "syncErrors")
       const thisValues = _.get(thisFormValues, "values")
 
@@ -478,7 +479,7 @@ export default class MyCampaigns extends Component {
     return (
       <div id="my-campaigns-edit" className={currentTab !== "success" && "remove-body-top-padding"}>
         {
-          currentTab !== "success" && <SharedOthersTabNav disableNav={uMyStartupQuestionnaireInProcess} order={order} currentTab={currentTab} handleClick={this.changeTab} />
+          currentTab !== "success" && <SharedOthersTabNav disableNav={uMyStartupQuestionnaireInProcess} order={order} currentTab={currentTab} handleClick={this.saveOnChangeTab} />
         }
 
         <SharedOthersSideTitle title="startup" optClass="hidden-xs hidden-sm col-md-offset-1 col-md-2" number="1" />

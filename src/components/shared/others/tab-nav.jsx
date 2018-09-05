@@ -17,7 +17,7 @@ export default class SharedOthersTabNav extends Component {
                     key={i}
                     className={`pointer tab-item ${bgColor} ${disabledClass}`}
                     onClick={() => {
-                      if (handleClick) handleClick(t.key)
+                      if (handleClick && !disableNav) handleClick(t.key)
                     }}
                   >{t.title}</div>
                 )

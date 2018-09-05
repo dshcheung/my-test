@@ -13,9 +13,21 @@
     position: relative;
     text-transform: uppercase;
     font-size: 12px;
-    &.active {
+    &.active, &:hover {
       font-weight: bold;
       color: $ahub-blue;
+    }
+
+    &.disabled {
+      cursor: not-allowed;
+
+      &:hover {
+        font-weight: initial;
+      }
+
+      &.active {
+        font-weight: bold;
+      }
     }
 
     &:not(.active) {
