@@ -62,8 +62,7 @@ const mapDispatchToProps = (dispatch) => {
     dMyStartupQuestionnaireAttribute: bindActionCreators(dMyStartupQuestionnaireAttribute, dispatch),
     resetMyStartupQuestionnaire: bindActionCreators(resetMyStartupQuestionnaire, dispatch),
     gImmovable: bindActionCreators(gImmovable, dispatch),
-    resetImmovable: bindActionCreators(resetImmovable, dispatch),
-
+    resetImmovable: bindActionCreators(resetImmovable, dispatch)
   }
 }
 
@@ -81,21 +80,6 @@ export default class MyCampaigns extends Component {
           model: MyStartupQuestionnairesBasicEditForm,
           modelKey: "MyStartupQuestionnairesBasicEditForm",
           nextTab: "teaser",
-          formatValues: (q) => {
-            const year = _.get(q, 'founded_year')
-            const nq = {
-              ...q,
-              company_name: _.get(q, 'company_name') || '',
-              country_of_incorporation: _.get(q, 'country_of_incorporation') || '',
-              founded_year: year ? moment(year, "YYYY").toDate() : '',
-              hashtags: _.get(q, 'hashtags') || '',
-              tagline: _.get(q, 'tagline') || '',
-              vertical: _.get(q, 'vertical') || '',
-              attachments: _.get(q, 'attachments') || []
-            }
-
-            return nq
-          }
         },
         {
           key: "teaser",
@@ -104,30 +88,6 @@ export default class MyCampaigns extends Component {
           model: MyStartupQuestionnairesTeaserForm,
           modelKey: "MyStartupQuestionnairesTeaserForm",
           nextTab: "product",
-          formatValues: (q) => {
-            const startup_questionnaire_highlights = _.get(q, 'startup_questionnaire_highlights') || []
-            const startup_questionnaire_media = _.get(q, 'startup_questionnaire_media') || []
-
-            const nq = {
-              ...q,
-              make_money: _.get(q, 'make_money') || '',
-              problem: _.get(q, 'problem') || '',
-              solution: _.get(q, 'solution') || '',
-              solution_benchmark: _.get(q, 'solution_benchmark') || '',
-              startup_questionnaire_highlights: startup_questionnaire_highlights.map((h) => {
-                const occurred_on = _.get(h, "occurred_on")
-
-                return {
-                  ...h,
-                  occurred_on: occurred_on ? moment(occurred_on).toDate() : ''
-                }
-              }),
-              startup_questionnaire_media,
-              attachments: _.get(q, 'attachments') || []
-            }
-
-            return nq
-          }
         },
         {
           key: "product",
@@ -136,23 +96,6 @@ export default class MyCampaigns extends Component {
           model: MyStartupQuestionnairesProductForm,
           modelKey: "MyStartupQuestionnairesProductForm",
           nextTab: "market",
-          formatValues: (q) => {
-            const startup_questionnaire_patents = _.get(q, 'startup_questionnaire_patents') || []
-
-            const nq = {
-              ...q,
-              product: _.get(q, 'product') || '',
-              startup_questionnaire_patents: startup_questionnaire_patents.map((p) => {
-                const registration_date = _.get(p, 'registration_date')
-                return {
-                  ...p,
-                  registration_date: registration_date ? moment(registration_date).toDate() : ''
-                }
-              })
-            }
-
-            return nq
-          }
         },
         {
           key: "market",
@@ -161,28 +104,6 @@ export default class MyCampaigns extends Component {
           model: MyStartupQuestionnairesMarketForm,
           modelKey: "MyStartupQuestionnairesMarketForm",
           nextTab: "team",
-          formatValues: (q) => {
-            const startup_questionnaire_go_to_market_strategies = _.get(q, 'startup_questionnaire_go_to_market_strategies') || []
-
-            const nq = {
-              ...q,
-              barriers_to_entry: _.get(q, 'barriers_to_entry') || '',
-              competition_landscape: _.get(q, 'competition_landscape') || '',
-              global_market: _.get(q, 'global_market') || '',
-              solution_benchmark: _.get(q, 'solution_benchmark') || '',
-              target_market: _.get(q, 'target_market') || '',
-              traction: _.get(q, 'traction') || '',
-              startup_questionnaire_go_to_market_strategies: startup_questionnaire_go_to_market_strategies.map((s) => {
-                const occurs_on = _.get(s, 'occurs_on')
-                return {
-                  ...s,
-                  occurs_on: occurs_on ? moment(occurs_on).toDate() : ''
-                }
-              })
-            }
-
-            return nq
-          }
         },
         {
           key: "team",
@@ -199,38 +120,6 @@ export default class MyCampaigns extends Component {
           model: MyStartupQuestionnairesFinancialForm,
           modelKey: "MyStartupQuestionnairesFinancialForm",
           nextTab: "campaign",
-          formatValues: (q) => {
-            const startup_questionnaire_previous_funds = _.get(q, 'startup_questionnaire_previous_funds') || []
-            const startup_questionnaire_cap_tables = _.get(q, 'startup_questionnaire_cap_tables') || []
-            const startup_questionnaire_break_even = _.get(q, 'startup_questionnaire_break_even')
-            const year = _.get(startup_questionnaire_break_even, 'year')
-            _.set(startup_questionnaire_break_even, 'year', year ? moment(year).toDate() : '')
-
-            const nq = {
-              ...q,
-              startup_questionnaire_previous_funds: startup_questionnaire_previous_funds.map((pf) => {
-                const occurred_on = _.get(pf, 'occurred_on')
-                return {
-                  ...pf,
-                  occurred_on: occurred_on ? moment(occurred_on).toDate() : ''
-                }
-              }),
-              startup_questionnaire_cap_tables: startup_questionnaire_cap_tables.map((ct) => {
-                const date_of_investment = _.get(ct, 'date_of_investment')
-                return {
-                  ...ct,
-                  date_of_investment: date_of_investment ? moment(date_of_investment).toDate() : ''
-                }
-              }),
-              startup_questionnaire_break_even,
-              cash_burn: {
-                ..._.get(q, 'cash_burn'),
-                amount: _.get(q, 'cash_burn.amount') || ''
-              }
-            }
-
-            return nq
-          }
         },
         {
           key: "campaign",
@@ -239,26 +128,6 @@ export default class MyCampaigns extends Component {
           model: MyStartupQuestionnairesCampaignForm,
           modelKey: "MyStartupQuestionnairesCampaignForm",
           nextTab: "duediligence",
-          formatValues: (q) => {
-            const nq = {
-              ...q,
-              maturity_date: _.get(q, 'maturity_date') ? moment(_.get(q, 'maturity_date')).toDate() : '',
-              pre_money_valuation: {
-                ..._.get(q, 'pre_money_valuation'),
-                amount: _.get(q, 'pre_money_valuation.amount') || ''
-              },
-              raised: {
-                ..._.get(q, 'raised'),
-                amount: _.get(q, 'raised.amount') || ''
-              },
-              valuation_cap: {
-                ..._.get(q, 'valuation_cap'),
-                amount: _.get(q, 'valuation_cap.amount') || ''
-              }
-            }
-
-            return nq
-          }
         },
         {
           key: "duediligence",
@@ -267,12 +136,6 @@ export default class MyCampaigns extends Component {
           model: MyStartupQuestionnairesAttachmentsForm,
           modelKey: "MyStartupQuestionnairesAttachmentsForm",
           nextTab: "submission",
-          formatValues: (q) => {
-            const nq = {
-              attachments: q || []
-            }
-            return nq
-          },
           allAttachmentOptions: true
         },
         {
@@ -439,12 +302,10 @@ export default class MyCampaigns extends Component {
       return <baseInfo.model routeParams={routeParams} />
     } else {
       const questionnairePiece = _.get(myStartupQuestionnaire, baseInfo.dataKey, {})
-      const formatValues = baseInfo.formatValues
-      const initialValues = formatValues ? formatValues(questionnairePiece || {}) : questionnairePiece
 
       return (
         <baseInfo.model
-          initialValues={initialValues}
+          initialValues={questionnairePiece}
           baseInfo={baseInfo}
           onSubmit={this.uMyStartupQuestionnaire}
           onSubmitFail={this.handleSubmitFail}

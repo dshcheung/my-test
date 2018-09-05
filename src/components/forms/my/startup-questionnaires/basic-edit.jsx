@@ -171,7 +171,7 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
             className={`btn btn-primary pull-right ${submitInProcess && "m-progress"}`}
             type="submit"
             disabled={submitInProcess || pristine}
-          >SAVE</button>
+          >CONTINUE</button>
         </form>
       </div>
     )

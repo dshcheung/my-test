@@ -9,6 +9,7 @@ import {
 const mapStateToProps = (state) => {
   return {
     myCampaign: _.get(state, 'myCampaign'),
+    myStartupQuestionnaire: _.get(state, 'myStartupQuestionnaire'),
     markMyCampaignForReviewInProcess: _.get(state.requestStatus, MARK_MY_CAMPAIGN_FOR_REVIEW),
   }
 }
@@ -22,7 +23,7 @@ const mapDispatchToProps = (dispatch) => {
 @connect(mapStateToProps, mapDispatchToProps)
 export default class SharedStartupQuestionnairesSubmission extends Component {
   render() {
-    const { myCampaign, markMyCampaignForReviewInProcess, routeParams } = this.props
+    const { myCampaign, markMyCampaignForReviewInProcess, routeParams, myStartupQuestionnaire } = this.props
     const submittedStatus = _.get(myCampaign, 'status.submitted')
 
     return (
