@@ -56,10 +56,10 @@ export default class ProfileInvestorUpdateForm extends Component {
           <div className="row">
             <div className="col-xs-12 col-sm-6">
               <Field
-                name="nationality"
+                name="country_of_residence"
                 component={SelectField}
                 opts={{
-                  label: "Nationality",
+                  label: "Residence Country",
                   placeholder: "Hong Kong",
                   options: COUNTRIES,
                   valueField: "name",
@@ -67,13 +67,12 @@ export default class ProfileInvestorUpdateForm extends Component {
                 }}
               />
             </div>
-
             <div className="col-xs-12 col-sm-6">
               <Field
-                name="address"
+                name="nationality"
                 component={SelectField}
                 opts={{
-                  label: "Residence Country",
+                  label: "Nationality",
                   placeholder: "Hong Kong",
                   options: COUNTRIES,
                   valueField: "name",

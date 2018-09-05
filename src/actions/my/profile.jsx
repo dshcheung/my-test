@@ -40,9 +40,10 @@ export const updateMyProfile = (values, cb) => {
         first_name: _.get(values, 'first_name', null),
         last_name: _.get(values, 'last_name', null),
         chinese_name: _.get(values, 'chinese_name', null),
-        national_id: _.get(values, 'national_id', null),
         dob: _.get(values, 'dob', null),
+        national_id: _.get(values, 'national_id', null),
         address: _.get(values, 'address', null),
+        nationality: _.get(values, 'nationality', null),
         bio: _.get(values, 'bio', null),
         avatar: _.get(values, 'avatar[0]', null),
         banner: _.get(values, 'banner[0]', null)
