@@ -22,8 +22,65 @@ const mapDispatchToProps = (dispatch) => {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class SharedStartupQuestionnairesSubmission extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      errorsToCheck: [
+        {
+          dataKey: "startup_questionnaire_basic",
+          title: "Basic"
+        },
+        {
+          dataKey: "startup_questionnaire_teaser",
+          title: "Teaser"
+        },
+        {
+          dataKey: "startup_questionnaire_product",
+          title: "Product"
+        },
+        {
+          dataKey: "startup_questionnaire_market",
+          title: "Market"
+        },
+        {
+          dataKey: "startup_questionnaire_team",
+          title: "Team"
+        },
+        {
+          dataKey: "startup_questionnaire_financial",
+          title: "Financial"
+        },
+        {
+          dataKey: "startup_questionnaire_campaign",
+          title: "Campaign"
+        },
+        {
+          dataKey: "attachments",
+          title: "Due Dilligence"
+        },
+      ]
+    }
+
+    this.handleMarkMyCampaignForReview = this.handleMarkMyCampaignForReview.bind(this)
+  }
+
+  handleMarkMyCampaignForReview() {
+    const { myStartupQuestionnaire, triggerHighlightErrors, routeParams } = this.props
+    const errors = _.get(myStartupQuestionnaire, 'errors')
+    const hasErrors = errors && Object.keys(errors).length > 0
+
+    if (hasErrors) {
+      triggerHighlightErrors()
+    } else {
+      this.props.markMyCampaignForReview(routeParams)
+    }
+  }
+
   render() {
-    const { myCampaign, markMyCampaignForReviewInProcess, routeParams, myStartupQuestionnaire } = this.props
+    const { myCampaign, markMyCampaignForReviewInProcess, myStartupQuestionnaire, highlightErrors } = this.props
+    const { errorsToCheck } = this.state
+    const errors = _.get(myStartupQuestionnaire, 'errors')
     const submittedStatus = _.get(myCampaign, 'status.submitted')
 
     return (
@@ -37,11 +94,31 @@ export default class SharedStartupQuestionnairesSubmission extends Component {
                 <div>
                   <div className="text-gray margin-bottom-40">Once you submit, you will not be able to modify. You can go back to any section and resave now!</div>
                   <div className="text-gray margin-bottom-40">When You Are Ready To Submit Your Campaign For Us To Review, Click The Button Below</div>
+                  {
+                    highlightErrors && (
+                      <div>
+                        <div className="text-danger margin-bottom-20">You have unfilled require questions! Check the following tab(s) to see unfilled questions</div>
+                        {
+                          errorsToCheck.map((e, i) => {
+                            const error = _.get(errors, e.dataKey)
+
+                            if (error) {
+                              return (
+                                <div key={i} className="text-danger">{e.title}</div>
+                              )
+                            } else {
+                              return null
+                            }
+                          })
+                        }
+                      </div>
+                    )
+                  }
                   <button
                     className={`btn btn-primary text-uppercase ${markMyCampaignForReviewInProcess && "m-progress"} margin-top-20`}
                     type="submit"
                     disabled={markMyCampaignForReviewInProcess}
-                    onClick={() => { this.props.markMyCampaignForReview(routeParams) }}
+                    onClick={this.handleMarkMyCampaignForReview}
                   >
                     Submit
                   </button>

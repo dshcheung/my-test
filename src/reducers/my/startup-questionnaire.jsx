@@ -144,7 +144,6 @@ const formatFormula = {
     return nq
   }
 }
-
 const errorFormula = {
   startup_questionnaire_basic: (values) => {
     return Validators({
@@ -152,84 +151,96 @@ const errorFormula = {
       founded_year: ["presences"],
       country_of_incorporation: ["presences"],
       tagline: ["presences"],
-      hashtags: [{ type: "amount", opts: { max: 5 } }],
+      hashtags: [{ type: "amount", opts: { min: 1 } }],
       attachments: [{
         type: "complexArrOfObj",
         opts: {
-          selfPresences: true,
-          selfMax: 2,
-          uniqFields: ["title"],
-          childFields: {
-            title: ["presences"],
-            file: ["filePresences"]
-          }
+          selfPresences: true
         }
       }]
     }, values, ["attachments"])
   },
   startup_questionnaire_teaser: (values) => {
     return Validators({
-      problem: ["presences", { type: "lengthWord", opts: { max: 100 } }],
-      solution: ["presences", { type: "lengthWord", opts: { max: 100 } }],
-      make_money: ["presences", { type: "lengthWord", opts: { max: 100 } }],
-      solution_benchmark: ["presences", { type: "lengthWord", opts: { max: 200 } }],
+      problem: ["presences"],
+      solution: ["presences"],
+      make_money: ["presences"],
+      solution_benchmark: ["presences"],
       startup_questionnaire_highlights: [{
         type: "complexArrOfObj",
         opts: {
-          selfPresences: false,
-          selfMax: 5,
-          childFields: {
-            occurred_on: ["presences"],
-            title: ["presences", { type: "lengthWord", opts: { max: 4 } }],
-            content: ["presences", { type: "lengthWord", opts: { max: 20 } }]
-          }
-        }
-      }],
-      startup_questionnaire_media: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: false,
-          selfMax: 5,
-          childFields: {
-            logo: ["presences"],
-            link: ["presences", "httpLink"]
-          }
-        }
-      }],
-      attachments: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: false,
-          childFields: {
-            title: ["presences"],
-            file: ["filePresences"]
-          }
+          selfPresences: true
         }
       }]
-    }, values, [
-      "startup_questionnaire_highlights",
-      "startup_questionnaire_media",
-      "attachments"
-    ])
+    }, values, ["startup_questionnaire_highlights"])
   },
-  // startup_questionnaire_product: {
-
-  // },
-  // startup_questionnaire_market: {
-
-  // },
-  // startup_questionnaire_team: {
-
-  // },
-  // startup_questionnaire_financial: {
-
-  // },
-  // startup_questionnaire_campaign: {
-
-  // },
-  // attachments: {
-
-  // },
+  startup_questionnaire_product: (values) => {
+    return Validators({
+      product: ["presences"]
+    }, values)
+  },
+  startup_questionnaire_market: (values) => {
+    return Validators({
+      global_market: ["presences"],
+      target_market: ["presences"],
+      traction: ["presences"],
+      barriers_to_entry: ["presences"],
+      competition_landscape: ["presences"],
+      competitors: [{
+        type: "complexArrOfObj",
+        opts: {
+          selfPresences: true
+        }
+      }],
+      go_to_market_strategies: [{
+        type: "complexArrOfObj",
+        opts: {
+          selfPresences: true
+        }
+      }]
+    }, values, ["competitors", "go_to_market_strategies"])
+  },
+  startup_questionnaire_team: (values) => {
+    return Validators({
+      story: ["presences"],
+      startup_questionnaire_team_members: [{
+        type: "complexArrOfObj",
+        opts: {
+          selfPresences: true
+        }
+      }]
+    }, values, ["startup_questionnaire_team_members"])
+  },
+  startup_questionnaire_financial: (values) => {
+    return Validators({
+      income_statement: ["filePresences"],
+      cash_flow_statement: ["filePresences"],
+      cash_burn: ["currencyPresences"],
+      quarter: ["presences"],
+      year: ["presences"],
+      startup_questionnaire_use_of_funds: [{
+        type: "complexArrOfObj",
+        opts: {
+          selfPresences: true
+        }
+      }],
+      startup_questionnaire_cap_tables: [{
+        type: "complexArrOfObj",
+        opts: {
+          selfPresences: true
+        }
+      }]
+    }, values, ["startup_questionnaire_use_of_funds", "startup_questionnaire_cap_tables"])
+  },
+  startup_questionnaire_campaign: (values) => {
+    return Validators({
+      campaign_type: ["presences"],
+      raised: ["currencyPresences"],
+      pre_money_valuation: values.campaign_type === "equity" ? ["currencyPresences"] : [],
+      interest_rate: values.campaign_type === "convertible" ? ["presences"] : [],
+      maturity_date: values.campaign_type === "convertible" ? ["presences"] : []
+    }, values)
+  }
 }
 
 const order = [
@@ -276,6 +287,7 @@ export default function(state = initialState, action) {
       const formattedData = formatData(action.data)
       const errors = checkErrors(formattedData)
       return {
+        ...action.data,
         ...formattedData,
         errors
       }

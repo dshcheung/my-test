@@ -12,10 +12,11 @@ export default class SharedOthersTabNav extends Component {
               if (title) {
                 const bgColor = currentTab === t.key ? "active" : ""
                 const disabledClass = disableNav ? "disabled" : "pointer"
+                const highlightError = t.requiredFields && Object.keys(t.requiredFields).length > 0 ? "bg-danger" : ""
                 return (
                   <div
                     key={i}
-                    className={`pointer tab-item ${bgColor} ${disabledClass}`}
+                    className={`pointer tab-item ${bgColor} ${disabledClass} ${highlightError}`}
                     onClick={() => {
                       if (handleClick && !disableNav) handleClick(t.key)
                     }}
