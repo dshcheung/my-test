@@ -50,8 +50,15 @@ export default class FileDropField extends Component {
       }
     })
 
-    formattedNewFiles.forEach((f) => {
-      this.props.fields.push(f)
+    const { fields, opts: { selectOpts: { options, valueField }, autoPickOption } } = this.props
+
+    formattedNewFiles.forEach((f, i) => {
+      if (autoPickOption) {
+        const nextOption = options[i][valueField]
+        fields.push({ ...f, title: nextOption })
+      } else {
+        fields.push(f)
+      }
     })
   }
 

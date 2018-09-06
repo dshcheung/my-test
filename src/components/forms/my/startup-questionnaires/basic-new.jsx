@@ -239,6 +239,7 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
                 if (cb) cb()
               },
               maxFields: 2,
+              autoPickOption: true,
               selectOpts: {
                 options: [
                   { name: "Company Logo" },
