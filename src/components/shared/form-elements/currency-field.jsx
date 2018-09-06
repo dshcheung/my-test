@@ -8,10 +8,12 @@ export default class CurrencyField extends Component {
   constructor(props) {
     super(props)
 
+    const { input: value } = props
+
     this.state = {
-      id: props.input.value.id || null,
-      currency: props.input.value.currency || "HKD",
-      amount: props.input.value.amount || ''
+      id: value.id || null,
+      currency: (value && value.currency) || "HKD",
+      amount: value.amount || ''
     }
 
     this.onSelect = this.onSelect.bind(this)
