@@ -28,6 +28,12 @@ export default class FileDropField extends Component {
     this.onDrop = this.onDrop.bind(this)
   }
 
+  componentWillMount() {
+    if (this.props.initialFields) {
+      this.props.initialFields(this.props.fields)
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (this.props.fields.length > nextProps.fields.length) {
       nextProps.fields.forEach((objKey, i) => {
@@ -71,8 +77,6 @@ export default class FileDropField extends Component {
         selectOpts, maxFields, showErrors
       }
     } = this.props
-
-    window.test = fields
 
     const errors = _.get(formData.syncErrors, fields.name, [])
     const meta = _.get(formData.fields, fields.name, [])
