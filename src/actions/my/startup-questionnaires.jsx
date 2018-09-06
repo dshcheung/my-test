@@ -161,6 +161,20 @@ const generateParams = (values) => {
     })
   })
 
+  const basicFoundedYear = _.get(values, 'basic.founded_year', null)
+
+  let startup_questionnaire_accelerators_attributes = _.get(values, 'teaser.startup_questionnaire_accelerators', null)
+  if (startup_questionnaire_accelerators_attributes) {
+    startup_questionnaire_accelerators_attributes = startup_questionnaire_accelerators_attributes.map((a) => {
+      const year = _.get(a, 'year', null)
+
+      return {
+        ...a,
+        year: year ? moment(year).year() : null
+      }
+    })
+  }
+
   let startup_questionnaire_previous_funds_attributes = _.get(values, 'financial.startup_questionnaire_previous_funds', null)
   if (startup_questionnaire_previous_funds_attributes) {
     startup_questionnaire_previous_funds_attributes = startup_questionnaire_previous_funds_attributes.map((pf) => {
@@ -185,8 +199,6 @@ const generateParams = (values) => {
     })
   }
 
-  const basicFoundedYear = _.get(values, 'basic.founded_year', null)
-
   const params = {
     startup_questionnaire_basic_attributes: {
       id: _.get(values, 'basic.id', null),
@@ -207,6 +219,7 @@ const generateParams = (values) => {
       pitch_deck: _.get(values, 'teaser.pitch_deck[0]', null),
       business_model: _.get(values, 'teaser.business_model[0]', null),
       startup_questionnaire_highlights_attributes: _.get(values, 'teaser.startup_questionnaire_highlights', null),
+      startup_questionnaire_accelerators_attributes,
       startup_questionnaire_media_attributes: _.get(values, 'teaser.startup_questionnaire_media', null),
       attachments_attributes: _.get(values, 'teaser.attachments', null)
     },

@@ -24,6 +24,7 @@ const formatFormula = {
   },
   startup_questionnaire_teaser: (q) => {
     const startup_questionnaire_highlights = _.get(q, 'startup_questionnaire_highlights') || []
+    const startup_questionnaire_accelerators = _.get(q, 'startup_questionnaire_accelerators') || []
     const startup_questionnaire_media = _.get(q, 'startup_questionnaire_media') || []
 
     const nq = {
@@ -38,6 +39,14 @@ const formatFormula = {
         return {
           ...h,
           occurred_on: occurred_on ? moment(occurred_on).toDate() : ''
+        }
+      }),
+      startup_questionnaire_accelerators: startup_questionnaire_accelerators.map((a) => {
+        const year = _.get(a, 'year')
+
+        return {
+          ...a,
+          year: year ? moment(year, "YYYY").toDate() : ''
         }
       }),
       startup_questionnaire_media,

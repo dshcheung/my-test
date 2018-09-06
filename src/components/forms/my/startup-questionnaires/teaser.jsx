@@ -32,6 +32,16 @@ import FileField from '../../../shared/form-elements/file-field'
             }
           }
         }],
+        startup_questionnaire_accelerators: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              name: ["presences"],
+              year: ["presences"]
+            }
+          }
+        }],
         startup_questionnaire_media: [{
           type: "complexArrOfObj",
           opts: {
@@ -76,6 +86,16 @@ import FileField from '../../../shared/form-elements/file-field'
             }
           }
         }],
+        startup_questionnaire_accelerators: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              name: ["presences"],
+              year: ["presences"]
+            }
+          }
+        }],
         startup_questionnaire_media: [{
           type: "complexArrOfObj",
           opts: {
@@ -99,6 +119,7 @@ import FileField from '../../../shared/form-elements/file-field'
         }]
       }, values, [
         "startup_questionnaire_highlights",
+        "startup_questionnaire_accelerators",
         "startup_questionnaire_media",
         "attachments"
       ])
@@ -228,6 +249,56 @@ export default class MyStartupQuestionnairesTeaserForm extends Component {
                     validationHint: "Max 20 Words"
                   }
                 }
+              ]
+            }}
+          />
+
+          <FieldArray
+            name="startup_questionnaire_accelerators"
+            component={DynamicFieldArray}
+            opts={{
+              showErrors: true,
+              label: "8. Accelerators (optional)",
+              groupName: "Accelerator",
+              newFieldInit: {
+                name: '',
+                year: '',
+                batch: ''
+              },
+              onDeleteField: dMSQAttributes,
+              hint: "Provide us with the accelerator(s) your startup has been involve with",
+              dynamicFields: [
+                {
+                  key: "name",
+                  component: TextField,
+                  opts: {
+                    showErrors: true,
+                    label: "Name",
+                    placeholder: "Betatron"
+                  }
+                },
+                {
+                  key: "year",
+                  component: DateTimePicker,
+                  opts: {
+                    showErrors: true,
+                    placeholder: "Select the year",
+                    label: "Year",
+                    time: false,
+                    format: "YYYY",
+                    views: ["decade"],
+                    max: moment().toDate()
+                  }
+                },
+                {
+                  key: "batch",
+                  component: TextField,
+                  opts: {
+                    showErrors: true,
+                    label: "Batch (Optional)",
+                    placeholder: "YC2018"
+                  }
+                },
               ]
             }}
           />
