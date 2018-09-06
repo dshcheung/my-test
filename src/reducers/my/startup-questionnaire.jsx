@@ -111,6 +111,7 @@ const formatFormula = {
       startup_questionnaire_break_even,
       cash_burn: {
         ..._.get(q, 'cash_burn'),
+        currency: _.get(q, 'cash_burn.currency') || "HKD",
         amount: _.get(q, 'cash_burn.amount') || ''
       }
     }
@@ -123,14 +124,17 @@ const formatFormula = {
       maturity_date: _.get(q, 'maturity_date') ? moment(_.get(q, 'maturity_date')).toDate() : '',
       pre_money_valuation: {
         ..._.get(q, 'pre_money_valuation'),
+        currency: _.get(q, 'pre_money_valuation.currency') || "HKD",
         amount: _.get(q, 'pre_money_valuation.amount') || ''
       },
       raised: {
         ..._.get(q, 'raised'),
+        currency: _.get(q, 'raised.currency') || "HKD",
         amount: _.get(q, 'raised.amount') || ''
       },
       valuation_cap: {
         ..._.get(q, 'valuation_cap'),
+        currency: _.get(q, 'valuation_cap.currency') || "HKD",
         amount: _.get(q, 'valuation_cap.amount') || ''
       }
     }
