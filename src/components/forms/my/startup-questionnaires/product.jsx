@@ -13,29 +13,55 @@ import FileField from '../../../shared/form-elements/file-field'
 
 @reduxForm({
   form: "MyStartupQuestionnairesProductForm",
-  validate: (values) => {
-    return Validators({
-      startup_questionnaire_patents: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: false,
-          childFields: {
-            title: ["presences"],
-            registration_date: ["presences"]
+  validate: (values, props) => {
+    if (props.highlightErrors) {
+      return Validators({
+        product: ["presences"],
+        startup_questionnaire_patents: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              title: ["presences"],
+              registration_date: ["presences"]
+            }
           }
-        }
-      }],
-      attachments: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: false,
-          childFields: {
-            title: ["presences"],
-            file: ["filePresences"]
+        }],
+        attachments: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              title: ["presences"],
+              file: ["filePresences"]
+            }
           }
-        }
-      }]
-    }, values, ["startup_questionnaire_patents", "attachments"])
+        }]
+      }, values, ["startup_questionnaire_patents", "attachments"])
+    } else {
+      return Validators({
+        startup_questionnaire_patents: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              title: ["presences"],
+              registration_date: ["presences"]
+            }
+          }
+        }],
+        attachments: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              title: ["presences"],
+              file: ["filePresences"]
+            }
+          }
+        }]
+      }, values, ["startup_questionnaire_patents", "attachments"])
+    }
   },
   enableReinitialize: true
 })

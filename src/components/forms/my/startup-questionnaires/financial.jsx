@@ -14,60 +14,121 @@ import StaticField from '../../../shared/form-elements/static-field'
 
 @reduxForm({
   form: "MyStartupQuestionnairesFinancialForm",
-  validate: (values) => {
-    return Validators({
-      startup_questionnaire_use_of_funds: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: false,
-          childFields: {
-            percentage: ["presences", "percentage"],
-            description: ["presences", { type: "lengthWord", opts: { max: 50 } }]
+  validate: (values, props) => {
+    if (props.highlightErrors) {
+      return Validators({
+        income_statement: ["filePresences"],
+        cash_flow_statement: ["filePresences"],
+        cash_burn: ["currencyPresences"],
+        "startup_questionnaire_break_even.quarter": ["presences"],
+        "startup_questionnaire_break_even.year": ["presences"],
+        startup_questionnaire_use_of_funds: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: true,
+            childFields: {
+              percentage: ["presences", "percentage"],
+              description: ["presences", { type: "lengthWord", opts: { max: 50 } }]
+            }
           }
-        }
-      }],
-      startup_questionnaire_previous_funds: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: false,
-          childFields: {
-            occurred_on: ["presences"],
-            money: ["currencyPresences"],
-            fund_type: ["presences"]
+        }],
+        startup_questionnaire_previous_funds: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              occurred_on: ["presences"],
+              money: ["currencyPresences"],
+              fund_type: ["presences"]
+            }
           }
-        }
-      }],
-      startup_questionnaire_cap_tables: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: false,
-          childFields: {
-            first_name: ["presences"],
-            last_name: ["presences"],
-            cap_table_type: ["presences"],
-            percentage_of_shares: ["presences", "percentage"],
-            date_of_investment: ["presences"],
-            class_of_shares: ["presences"],
-            comment: ["presences"]
+        }],
+        startup_questionnaire_cap_tables: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: true,
+            childFields: {
+              first_name: ["presences"],
+              last_name: ["presences"],
+              cap_table_type: ["presences"],
+              percentage_of_shares: ["presences", "percentage"],
+              date_of_investment: ["presences"],
+              class_of_shares: ["presences"],
+              comment: ["presences"]
+            }
           }
-        }
-      }],
-      attachments: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: false,
-          childFields: {
-            title: ["presences"],
-            file: ["filePresences"]
+        }],
+        attachments: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              title: ["presences"],
+              file: ["filePresences"]
+            }
           }
-        }
-      }]
-    }, values, [
-      "startup_questionnaire_use_of_funds",
-      "startup_questionnaire_previous_funds",
-      "startup_questionnaire_cap_tables",
-      "attachments"
-    ])
+        }]
+      }, values, [
+        "startup_questionnaire_use_of_funds",
+        "startup_questionnaire_previous_funds",
+        "startup_questionnaire_cap_tables",
+        "attachments"
+      ])
+    } else {
+      return Validators({
+        startup_questionnaire_use_of_funds: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              percentage: ["presences", "percentage"],
+              description: ["presences", { type: "lengthWord", opts: { max: 50 } }]
+            }
+          }
+        }],
+        startup_questionnaire_previous_funds: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              occurred_on: ["presences"],
+              money: ["currencyPresences"],
+              fund_type: ["presences"]
+            }
+          }
+        }],
+        startup_questionnaire_cap_tables: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              first_name: ["presences"],
+              last_name: ["presences"],
+              cap_table_type: ["presences"],
+              percentage_of_shares: ["presences", "percentage"],
+              date_of_investment: ["presences"],
+              class_of_shares: ["presences"],
+              comment: ["presences"]
+            }
+          }
+        }],
+        attachments: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              title: ["presences"],
+              file: ["filePresences"]
+            }
+          }
+        }]
+      }, values, [
+        "startup_questionnaire_use_of_funds",
+        "startup_questionnaire_previous_funds",
+        "startup_questionnaire_cap_tables",
+        "attachments"
+      ])
+    }
   },
   enableReinitialize: true
 })

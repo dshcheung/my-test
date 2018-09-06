@@ -97,7 +97,7 @@ export default class SharedStartupQuestionnairesSubmission extends Component {
                   {
                     highlightErrors && (
                       <div>
-                        <div className="text-danger margin-bottom-20">You have unfilled require questions! Check the following tab(s) to see unfilled questions</div>
+                        <div className="text-danger margin-bottom-20">We noticed you're missing details in the following section. Please update and submit when you've completed</div>
                         {
                           errorsToCheck.map((e, i) => {
                             const error = _.get(errors, e.dataKey)

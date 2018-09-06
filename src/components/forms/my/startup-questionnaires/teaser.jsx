@@ -12,50 +12,97 @@ import FileField from '../../../shared/form-elements/file-field'
 
 @reduxForm({
   form: "MyStartupQuestionnairesTeaserForm",
-  validate: (values) => {
-    return Validators({
-      problem: [{ type: "lengthWord", opts: { max: 100 } }],
-      solution: [{ type: "lengthWord", opts: { max: 100 } }],
-      make_money: [{ type: "lengthWord", opts: { max: 100 } }],
-      solution_benchmark: [{ type: "lengthWord", opts: { max: 200 } }],
-      startup_questionnaire_highlights: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: false,
-          selfMax: 5,
-          childFields: {
-            occurred_on: ["presences"],
-            title: ["presences", { type: "lengthWord", opts: { max: 4 } }],
-            content: ["presences", { type: "lengthWord", opts: { max: 20 } }]
+  validate: (values, props) => {
+    if (props.highlightErrors) {
+      return Validators({
+        problem: ["presences", { type: "lengthWord", opts: { max: 100 } }],
+        solution: ["presences", { type: "lengthWord", opts: { max: 100 } }],
+        make_money: ["presences", { type: "lengthWord", opts: { max: 100 } }],
+        solution_benchmark: ["presences", { type: "lengthWord", opts: { max: 200 } }],
+        pitch_deck: ["filePresences"],
+        startup_questionnaire_highlights: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: true,
+            selfMax: 5,
+            childFields: {
+              occurred_on: ["presences"],
+              title: ["presences", { type: "lengthWord", opts: { max: 4 } }],
+              content: ["presences", { type: "lengthWord", opts: { max: 20 } }]
+            }
           }
-        }
-      }],
-      startup_questionnaire_media: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: false,
-          selfMax: 5,
-          childFields: {
-            logo: ["presences"],
-            link: ["presences", "httpLink"]
+        }],
+        startup_questionnaire_media: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            selfMax: 5,
+            childFields: {
+              logo: ["presences"],
+              link: ["presences", "httpLink"]
+            }
           }
-        }
-      }],
-      attachments: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: false,
-          childFields: {
-            title: ["presences"],
-            file: ["filePresences"]
+        }],
+        attachments: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              title: ["presences"],
+              file: ["filePresences"]
+            }
           }
-        }
-      }]
-    }, values, [
-      "startup_questionnaire_highlights",
-      "startup_questionnaire_media",
-      "attachments"
-    ])
+        }]
+      }, values, [
+        "startup_questionnaire_highlights",
+        "startup_questionnaire_media",
+        "attachments"
+      ])
+    } else {
+      return Validators({
+        problem: [{ type: "lengthWord", opts: { max: 100 } }],
+        solution: [{ type: "lengthWord", opts: { max: 100 } }],
+        make_money: [{ type: "lengthWord", opts: { max: 100 } }],
+        solution_benchmark: [{ type: "lengthWord", opts: { max: 200 } }],
+        startup_questionnaire_highlights: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            selfMax: 5,
+            childFields: {
+              occurred_on: ["presences"],
+              title: ["presences", { type: "lengthWord", opts: { max: 4 } }],
+              content: ["presences", { type: "lengthWord", opts: { max: 20 } }]
+            }
+          }
+        }],
+        startup_questionnaire_media: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            selfMax: 5,
+            childFields: {
+              logo: ["presences"],
+              link: ["presences", "httpLink"]
+            }
+          }
+        }],
+        attachments: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              title: ["presences"],
+              file: ["filePresences"]
+            }
+          }
+        }]
+      }, values, [
+        "startup_questionnaire_highlights",
+        "startup_questionnaire_media",
+        "attachments"
+      ])
+    }
   },
   enableReinitialize: true
 })

@@ -166,6 +166,7 @@ const errorFormula = {
       solution: ["presences"],
       make_money: ["presences"],
       solution_benchmark: ["presences"],
+      pitch_deck: ["filePresences"],
       startup_questionnaire_highlights: [{
         type: "complexArrOfObj",
         opts: {
@@ -186,19 +187,22 @@ const errorFormula = {
       traction: ["presences"],
       barriers_to_entry: ["presences"],
       competition_landscape: ["presences"],
-      competitors: [{
+      startup_questionnaire_competitors: [{
         type: "complexArrOfObj",
         opts: {
           selfPresences: true
         }
       }],
-      go_to_market_strategies: [{
+      startup_questionnaire_go_to_market_strategies: [{
         type: "complexArrOfObj",
         opts: {
           selfPresences: true
         }
       }]
-    }, values, ["competitors", "go_to_market_strategies"])
+    }, values, [
+      "startup_questionnaire_competitors",
+      "startup_questionnaire_go_to_market_strategies"
+    ])
   },
   startup_questionnaire_team: (values) => {
     return Validators({
@@ -216,8 +220,8 @@ const errorFormula = {
       income_statement: ["filePresences"],
       cash_flow_statement: ["filePresences"],
       cash_burn: ["currencyPresences"],
-      quarter: ["presences"],
-      year: ["presences"],
+      "startup_questionnaire_break_even.quarter": ["presences"],
+      "startup_questionnaire_break_even.year": ["presences"],
       startup_questionnaire_use_of_funds: [{
         type: "complexArrOfObj",
         opts: {
@@ -237,8 +241,8 @@ const errorFormula = {
       campaign_type: ["presences"],
       raised: ["currencyPresences"],
       pre_money_valuation: values.campaign_type === "equity" ? ["currencyPresences"] : [],
-      interest_rate: values.campaign_type === "convertible" ? ["presences"] : [],
-      maturity_date: values.campaign_type === "convertible" ? ["presences"] : []
+      maturity_date: values.campaign_type === "convertible" ? ["presences"] : [],
+      interest_rate: values.campaign_type === "convertible" ? ["presences"] : []
     }, values)
   }
 }

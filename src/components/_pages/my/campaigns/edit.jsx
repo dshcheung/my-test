@@ -73,7 +73,7 @@ export default class MyCampaigns extends Component {
 
     this.state = {
       currentTab: props.params.tab,
-      highlightErrors: true
+      highlightErrors: false
     }
 
     this.getOrder = this.getOrder.bind(this)

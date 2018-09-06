@@ -16,6 +16,8 @@ export default class CurrencyField extends Component {
       amount: value.amount || ''
     }
 
+    props.input.onChange({ ...this.state })
+
     this.onSelect = this.onSelect.bind(this)
     this.onChange = this.onChange.bind(this)
     this.onBlur = this.onBlur.bind(this)

@@ -232,7 +232,7 @@ export default function Validators(fields, values, complexFields) {
     })
 
     if (error.length > 0 || !isEmpty(error)) {
-      errorsObj[field] = error
+      _.set(errorsObj, field, error)
       errorsObj._error = "Has Errors"
     }
   })

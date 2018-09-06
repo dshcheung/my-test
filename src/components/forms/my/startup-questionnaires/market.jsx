@@ -12,43 +12,92 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
 
 @reduxForm({
   form: "MyStartupQuestionnairesMarketForm",
-  validate: (values) => {
-    return Validators({
-      barriers_to_entry: [{ type: "lengthWord", opts: { max: 200 } }],
-      traction: [{ type: "lengthWord", opts: { max: 200 } }],
-      competition_landscape: [{ type: "lengthWord", opts: { max: 200 } }],
-      competitors: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: false,
-          childFields: {
-            name: ["presences"],
-            website: ["presences", "httpLink"],
-            solution_benchmark: ["presences", { type: "lengthWord", opts: { max: 200 } }]
+  validate: (values, props) => {
+    if (props.highlightErrors) {
+      return Validators({
+        global_market: ["presences"],
+        target_market: ["presences"],
+        barriers_to_entry: ["presences", { type: "lengthWord", opts: { max: 200 } }],
+        traction: ["presences", { type: "lengthWord", opts: { max: 200 } }],
+        competition_landscape: ["presences", { type: "lengthWord", opts: { max: 200 } }],
+        startup_questionnaire_competitors: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: true,
+            childFields: {
+              name: ["presences"],
+              website: ["presences", "httpLink"],
+              solution_benchmark: ["presences", { type: "lengthWord", opts: { max: 200 } }]
+            }
           }
-        }
-      }],
-      go_to_market_strategies: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: false,
-          childFields: {
-            occurs_on: ["presences"],
-            action: ["presences", { type: "lengthWord", opts: { max: 40 } }]
+        }],
+        startup_questionnaire_go_to_market_strategies: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: true,
+            childFields: {
+              occurs_on: ["presences"],
+              action: ["presences", { type: "lengthWord", opts: { max: 40 } }]
+            }
           }
-        }
-      }],
-      attachments: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: false,
-          childFields: {
-            title: ["presences"],
-            file: ["filePresences"]
+        }],
+        attachments: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              title: ["presences"],
+              file: ["filePresences"]
+            }
           }
-        }
-      }]
-    }, values, ["competitors", "go_to_market_strategies", "attachments"])
+        }]
+      }, values, [
+        "startup_questionnaire_competitors",
+        "startup_questionnaire_go_to_market_strategies",
+        "attachments"
+      ])
+    } else {
+      return Validators({
+        barriers_to_entry: [{ type: "lengthWord", opts: { max: 200 } }],
+        traction: [{ type: "lengthWord", opts: { max: 200 } }],
+        competition_landscape: [{ type: "lengthWord", opts: { max: 200 } }],
+        startup_questionnaire_competitors: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              name: ["presences"],
+              website: ["presences", "httpLink"],
+              solution_benchmark: ["presences", { type: "lengthWord", opts: { max: 200 } }]
+            }
+          }
+        }],
+        startup_questionnaire_go_to_market_strategies: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              occurs_on: ["presences"],
+              action: ["presences", { type: "lengthWord", opts: { max: 40 } }]
+            }
+          }
+        }],
+        attachments: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              title: ["presences"],
+              file: ["filePresences"]
+            }
+          }
+        }]
+      }, values, [
+        "startup_questionnaire_competitors",
+        "startup_questionnaire_go_to_market_strategies",
+        "attachments"
+      ])
+    }
   },
   enableReinitialize: true
 })

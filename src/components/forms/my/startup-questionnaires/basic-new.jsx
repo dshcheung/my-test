@@ -37,26 +37,46 @@ const mapDispatchToProps = (dispatch) => {
 @connect(mapStateToProps, mapDispatchToProps)
 @reduxForm({
   form: "MyStartupQuestionnairesBasicNewForm",
-  validate: (values) => {
-    return Validators({
-      company_name: ["presences"],
-      founded_year: ["presences"],
-      country_of_incorporation: ["presences"],
-      tagline: ["presences", { type: "length", opts: { max: 140 } }],
-      hashtags: ["presences", { type: "amount", opts: { max: 5 } }],
-      attachments: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: false,
-          selfMax: 2,
-          uniqFields: ["title"],
-          childFields: {
-            title: ["presences"],
-            file: ["filePresences"]
+  validate: (values, props) => {
+    if (props.highlightErrors) {
+      return Validators({
+        company_name: ["presences"],
+        founded_year: ["presences"],
+        country_of_incorporation: ["presences"],
+        tagline: ["presences", { type: "length", opts: { max: 140 } }],
+        hashtags: ["presences", { type: "amount", opts: { max: 5 } }],
+        attachments: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: true,
+            selfMax: 2,
+            uniqFields: ["title"],
+            childFields: {
+              title: ["presences"],
+              file: ["filePresences"]
+            }
           }
-        }
-      }]
-    }, values, ["attachments"])
+        }]
+      }, values, ["attachments"])
+    } else {
+      return Validators({
+        company_name: ["presences"],
+        founded_year: ["presences"],
+        country_of_incorporation: ["presences"],
+        attachments: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            selfMax: 2,
+            uniqFields: ["title"],
+            childFields: {
+              title: ["presences"],
+              file: ["filePresences"]
+            }
+          }
+        }]
+      }, values, ["attachments"])
+    }
   },
   enableReinitialize: true
 })

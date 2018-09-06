@@ -12,55 +12,106 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
 
 @reduxForm({
   form: "MyStartupQuestionnairesTeamForm",
-  validate: (values) => {
-    return Validators({
-      story: [{ type: "lengthWord", opts: { max: 600 } }],
-      startup_questionnaire_team_members: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: false,
-          childFields: {
-            avatar: ["filePresences"],
-            first_name: ["presences"],
-            last_name: ["presences"],
-            member_type: ["presences"],
-            title: ["presences"],
-            bio: ["presences", { type: "lengthWord", opts: { max: 60 } }],
-            linkedin: ["presences", "httpLink"],
-            commitment: ["presences"],
-            salary: ["currencyPresences"],
-            equity: ["presences", "percentage"],
+  validate: (values, props) => {
+    if (props.highlightErrors) {
+      return Validators({
+        story: ["presences", { type: "lengthWord", opts: { max: 600 } }],
+        startup_questionnaire_team_members: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: true,
+            childFields: {
+              avatar: ["filePresences"],
+              first_name: ["presences"],
+              last_name: ["presences"],
+              member_type: ["presences"],
+              title: ["presences"],
+              bio: ["presences", { type: "lengthWord", opts: { max: 60 } }],
+              linkedin: ["presences", "httpLink"],
+              commitment: ["presences"],
+              salary: ["currencyPresences"],
+              equity: ["presences", "percentage"],
+            }
           }
-        }
-      }],
-      startup_questionnaire_team_advisors: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: false,
-          childFields: {
-            first_name: ["presences"],
-            last_name: ["presences"],
-            role: ["presences"],
-            bio: [{ type: "lengthWord", opts: { max: 25 } }],
-            linkedin: ["presences", "httpLink"]
+        }],
+        startup_questionnaire_team_advisors: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              first_name: ["presences"],
+              last_name: ["presences"],
+              role: ["presences"],
+              bio: [{ type: "lengthWord", opts: { max: 25 } }],
+              linkedin: ["presences", "httpLink"]
+            }
           }
-        }
-      }],
-      attachments: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: false,
-          childFields: {
-            title: ["presences"],
-            file: ["filePresences"]
+        }],
+        attachments: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              title: ["presences"],
+              file: ["filePresences"]
+            }
           }
-        }
-      }]
-    }, values, [
-      "startup_questionnaire_team_members",
-      "startup_questionnaire_team_advisors",
-      "attachments"
-    ])
+        }]
+      }, values, [
+        "startup_questionnaire_team_members",
+        "startup_questionnaire_team_advisors",
+        "attachments"
+      ])
+    } else {
+      return Validators({
+        story: [{ type: "lengthWord", opts: { max: 600 } }],
+        startup_questionnaire_team_members: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              avatar: ["filePresences"],
+              first_name: ["presences"],
+              last_name: ["presences"],
+              member_type: ["presences"],
+              title: ["presences"],
+              bio: ["presences", { type: "lengthWord", opts: { max: 60 } }],
+              linkedin: ["presences", "httpLink"],
+              commitment: ["presences"],
+              salary: ["currencyPresences"],
+              equity: ["presences", "percentage"],
+            }
+          }
+        }],
+        startup_questionnaire_team_advisors: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              first_name: ["presences"],
+              last_name: ["presences"],
+              role: ["presences"],
+              bio: [{ type: "lengthWord", opts: { max: 25 } }],
+              linkedin: ["presences", "httpLink"]
+            }
+          }
+        }],
+        attachments: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              title: ["presences"],
+              file: ["filePresences"]
+            }
+          }
+        }]
+      }, values, [
+        "startup_questionnaire_team_members",
+        "startup_questionnaire_team_advisors",
+        "attachments"
+      ])
+    }
   },
   enableReinitialize: true
 })

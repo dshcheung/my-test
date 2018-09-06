@@ -32,23 +32,46 @@ const mapDispatchToProps = (dispatch) => {
 
 @reduxForm({
   form: "MyStartupQuestionnairesCampaignForm",
-  validate: (values) => {
-    return Validators({
-      discount_rate: values.campaign_type === "convertible" ? ["percentage"] : [],
-      interest_rate: values.campaign_type === "convertible" ? ["percentage"] : [],
-      attachments: [{
-        type: "complexArrOfObj",
-        opts: {
-          selfPresences: false,
-          childFields: {
-            title: ["presences"],
-            file: ["filePresences"]
+  validate: (values, props) => {
+    if (props.highlightErrors) {
+      return Validators({
+        campaign_type: ["presences"],
+        raised: ["currencyPresences"],
+        pre_money_valuation: values.campaign_type === "equity" ? ["currencyPresences"] : [],
+        maturity_date: values.campaign_type === "convertible" ? ["presences"] : [],
+        interest_rate: values.campaign_type === "convertible" ? ["presences", "percentage"] : [],
+        discount_rate: values.campaign_type === "convertible" ? ["percentage"] : [],
+        attachments: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              title: ["presences"],
+              file: ["filePresences"]
+            }
           }
-        }
-      }]
-    }, values, [
-      "attachments"
-    ])
+        }]
+      }, values, [
+        "attachments"
+      ])
+    } else {
+      return Validators({
+        interest_rate: values.campaign_type === "convertible" ? ["percentage"] : [],
+        discount_rate: values.campaign_type === "convertible" ? ["percentage"] : [],
+        attachments: [{
+          type: "complexArrOfObj",
+          opts: {
+            selfPresences: false,
+            childFields: {
+              title: ["presences"],
+              file: ["filePresences"]
+            }
+          }
+        }]
+      }, values, [
+        "attachments"
+      ])
+    }
   },
   enableReinitialize: true
 })
