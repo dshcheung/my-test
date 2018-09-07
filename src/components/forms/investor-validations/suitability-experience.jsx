@@ -96,7 +96,7 @@ export default class InvestorValidationsSuitabilityExperienceForm extends Compon
                 }
               },
               {
-                injectTitle: "Provide details of frequency and size of trading"
+                injectTitle: "Provide details of frequency and size of trading in USD"
               },
               {
                 name: "scale",

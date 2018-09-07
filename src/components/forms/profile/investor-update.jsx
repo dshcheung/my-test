@@ -14,7 +14,7 @@ import DateTimePickerField from '../../shared/form-elements/datetime-picker'
     return Validators({
       national_id: ["presences"],
       nationality: ["presences"],
-      address: ["presences"],
+      country_of_residence: ['presences'],
       dob: ["presences"]
     }, values)
   }
