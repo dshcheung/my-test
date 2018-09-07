@@ -91,7 +91,6 @@ export const cMyStartupQuestionnaire = (values, cb) => {
   }
 }
 
-// TODO2: add a delete one for deleting members, founders...etc
 export const U_MY_STARTUP_QUESTIONNAIRE = "U_MY_STARTUP_QUESTIONNAIRE"
 export const uMyStartupQuestionnaire = (values, cb, routeParams) => {
   const params = generateParams(values)

@@ -73,9 +73,11 @@ export default class MyCampaigns extends Component {
 
     this.state = {
       currentTab: props.params.tab,
-      highlightErrors: false
+      highlightErrors: false,
+      showNavs: true
     }
 
+    this.getStatus = this.getStatus.bind(this)
     this.getOrder = this.getOrder.bind(this)
     this.getRouteParams = this.getRouteParams.bind(this)
 
@@ -114,97 +116,130 @@ export default class MyCampaigns extends Component {
     this.props.resetImmovable()
   }
 
+  getStatus() {
+    const { myCampaign } = this.props
+    const submitStatus = _.get(myCampaign, 'status.submitted')
+
+    return submitStatus
+  }
+
   getOrder() {
     const { myStartupQuestionnaire } = this.props
     const { highlightErrors } = this.state
     const errors = _.get(myStartupQuestionnaire, 'errors')
+    const submitStatus = this.getStatus()
+
+    const tabs = {
+      updateable: [
+        {
+          key: "basic",
+          title: "Basic",
+          dataKey: "startup_questionnaire_basic",
+          model: MyStartupQuestionnairesBasicEditForm,
+          modelKey: "MyStartupQuestionnairesBasicEditForm",
+          nextTab: "teaser",
+          requiredFields: highlightErrors ? _.get(errors, "startup_questionnaire_basic", {}) : {}
+        },
+        {
+          key: "teaser",
+          title: "Teaser",
+          dataKey: "startup_questionnaire_teaser",
+          model: MyStartupQuestionnairesTeaserForm,
+          modelKey: "MyStartupQuestionnairesTeaserForm",
+          nextTab: "product",
+          requiredFields: highlightErrors ? _.get(errors, "startup_questionnaire_teaser", {}) : {}
+        },
+        {
+          key: "product",
+          title: "Product",
+          dataKey: "startup_questionnaire_product",
+          model: MyStartupQuestionnairesProductForm,
+          modelKey: "MyStartupQuestionnairesProductForm",
+          nextTab: "market",
+          requiredFields: highlightErrors ? _.get(errors, "startup_questionnaire_product", {}) : {}
+        },
+        {
+          key: "market",
+          title: "Market",
+          dataKey: "startup_questionnaire_market",
+          model: MyStartupQuestionnairesMarketForm,
+          modelKey: "MyStartupQuestionnairesMarketForm",
+          nextTab: "team",
+          requiredFields: highlightErrors ? _.get(errors, "startup_questionnaire_market", {}) : {}
+        },
+        {
+          key: "team",
+          title: "Team",
+          dataKey: "startup_questionnaire_team",
+          model: MyStartupQuestionnairesTeamForm,
+          modelKey: "MyStartupQuestionnairesTeamForm",
+          nextTab: "financial",
+          requiredFields: highlightErrors ? _.get(errors, "startup_questionnaire_team", {}) : {}
+        },
+        {
+          key: "financial",
+          title: "Financial",
+          dataKey: "startup_questionnaire_financial",
+          model: MyStartupQuestionnairesFinancialForm,
+          modelKey: "MyStartupQuestionnairesFinancialForm",
+          nextTab: "campaign",
+          requiredFields: highlightErrors ? _.get(errors, "startup_questionnaire_financial", {}) : {}
+        },
+        {
+          key: "campaign",
+          title: "Campaign",
+          dataKey: "startup_questionnaire_campaign",
+          model: MyStartupQuestionnairesCampaignForm,
+          modelKey: "MyStartupQuestionnairesCampaignForm",
+          nextTab: "submission",
+          requiredFields: highlightErrors ? _.get(errors, "startup_questionnaire_campaign", {}) : {}
+        }
+      ],
+      duediligence: [
+        {
+          key: "duediligence",
+          title: "Due Diligence",
+          dataKey: "attachments",
+          model: MyStartupQuestionnairesAttachmentsForm,
+          modelKey: "MyStartupQuestionnairesAttachmentsForm",
+          nextTab: "submission",
+          allAttachmentOptions: true
+        }
+      ],
+      always: [
+        {
+          key: 'submission',
+          title: "Submission",
+          model: SharedStartupQuestionnairesSubmission,
+          nextTab: null,
+          nonForm: true
+        },
+        {
+          key: "success",
+          model: SharedStartupQuestionnairesSuccess,
+          nextTab: null,
+          nonForm: true
+        }
+      ]
+    }
+
+    let toDisplay = []
+
+    switch (submitStatus) {
+      case "not_submitted":
+        toDisplay = tabs.updateable
+        break
+      case "waiting_for_update":
+        toDisplay = [...tabs.updateable, tabs.duediligence]
+        break
+      case "waiting_due_diligence_documents":
+        toDisplay = tabs.duediligence
+        break
+    }
 
     return [
-      {
-        key: "basic",
-        title: "Basic",
-        dataKey: "startup_questionnaire_basic",
-        model: MyStartupQuestionnairesBasicEditForm,
-        modelKey: "MyStartupQuestionnairesBasicEditForm",
-        nextTab: "teaser",
-        requiredFields: highlightErrors ? _.get(errors, "startup_questionnaire_basic", {}) : {}
-      },
-      {
-        key: "teaser",
-        title: "Teaser",
-        dataKey: "startup_questionnaire_teaser",
-        model: MyStartupQuestionnairesTeaserForm,
-        modelKey: "MyStartupQuestionnairesTeaserForm",
-        nextTab: "product",
-        requiredFields: highlightErrors ? _.get(errors, "startup_questionnaire_teaser", {}) : {}
-      },
-      {
-        key: "product",
-        title: "Product",
-        dataKey: "startup_questionnaire_product",
-        model: MyStartupQuestionnairesProductForm,
-        modelKey: "MyStartupQuestionnairesProductForm",
-        nextTab: "market",
-        requiredFields: highlightErrors ? _.get(errors, "startup_questionnaire_product", {}) : {}
-      },
-      {
-        key: "market",
-        title: "Market",
-        dataKey: "startup_questionnaire_market",
-        model: MyStartupQuestionnairesMarketForm,
-        modelKey: "MyStartupQuestionnairesMarketForm",
-        nextTab: "team",
-        requiredFields: highlightErrors ? _.get(errors, "startup_questionnaire_market", {}) : {}
-      },
-      {
-        key: "team",
-        title: "Team",
-        dataKey: "startup_questionnaire_team",
-        model: MyStartupQuestionnairesTeamForm,
-        modelKey: "MyStartupQuestionnairesTeamForm",
-        nextTab: "financial",
-        requiredFields: highlightErrors ? _.get(errors, "startup_questionnaire_team", {}) : {}
-      },
-      {
-        key: "financial",
-        title: "Financial",
-        dataKey: "startup_questionnaire_financial",
-        model: MyStartupQuestionnairesFinancialForm,
-        modelKey: "MyStartupQuestionnairesFinancialForm",
-        nextTab: "campaign",
-        requiredFields: highlightErrors ? _.get(errors, "startup_questionnaire_financial", {}) : {}
-      },
-      {
-        key: "campaign",
-        title: "Campaign",
-        dataKey: "startup_questionnaire_campaign",
-        model: MyStartupQuestionnairesCampaignForm,
-        modelKey: "MyStartupQuestionnairesCampaignForm",
-        nextTab: "duediligence",
-        requiredFields: highlightErrors ? _.get(errors, "startup_questionnaire_campaign", {}) : {}
-      },
-      {
-        key: "duediligence",
-        title: "Due Diligence",
-        dataKey: "attachments",
-        model: MyStartupQuestionnairesAttachmentsForm,
-        modelKey: "MyStartupQuestionnairesAttachmentsForm",
-        nextTab: "submission",
-        allAttachmentOptions: true
-      },
-      {
-        key: 'submission',
-        title: "Submission",
-        model: SharedStartupQuestionnairesSubmission,
-        nextTab: null,
-        nonForm: true
-      },
-      {
-        key: "success",
-        model: SharedStartupQuestionnairesSuccess,
-        nextTab: null,
-        nonForm: true
-      }
+      ...toDisplay,
+      ...tabs.always
     ]
   }
 
@@ -227,7 +262,7 @@ export default class MyCampaigns extends Component {
   }
 
   handleSubmitFail() {
-    notyError("Submission failed - please review error messages and try again")
+    notyError("Submission failed please review error messages and try again")
   }
 
   triggerHighlightErrors() {
@@ -276,7 +311,7 @@ export default class MyCampaigns extends Component {
   uMyStartupQuestionnaire(values) {
     const { currentTab } = this.state
     const routeParams = this.getRouteParams()
-    const order = this.order
+    const order = this.getOrder()
     const baseInfo = _.find(order, { key: currentTab })
 
     this.props.uMyStartupQuestionnaire({
@@ -324,6 +359,8 @@ export default class MyCampaigns extends Component {
     const order = this.getOrder()
 
     const baseInfo = _.find(order, { key: currentTab })
+
+    if (!baseInfo) return null
 
     if (baseInfo.nonForm) {
       return <baseInfo.model routeParams={routeParams} triggerHighlightErrors={this.triggerHighlightErrors} highlightErrors={highlightErrors} />
