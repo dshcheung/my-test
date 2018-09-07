@@ -12,7 +12,7 @@ export default class SharedOthersTabNav extends Component {
               if (title) {
                 const bgColor = currentTab === t.key ? "active" : ""
                 const disabledClass = disableNav ? "disabled" : "pointer"
-                const highlightError = t.requiredFields && Object.keys(t.requiredFields).length > 0 ? "bg-danger" : ""
+                const highlightError = t.requiredFields && Object.keys(t.requiredFields).length > 0 ? "error" : ""
                 return (
                   <div
                     key={i}
@@ -20,7 +20,7 @@ export default class SharedOthersTabNav extends Component {
                     onClick={() => {
                       if (handleClick && !disableNav) handleClick(t.key)
                     }}
-                  >{t.title}</div>
+                  >{t.title}{highlightError && <i className="fas fa-times fa-fw" />}</div>
                 )
               } else {
                 return null

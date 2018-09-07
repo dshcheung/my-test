@@ -13,17 +13,23 @@
     position: relative;
     text-transform: uppercase;
     font-size: 12px;
-    &.active, &:hover {
+    &.error {
+      font-weight: bold;
+      color: $ahub-pink !important;
+    }
+    &.active {
+      &:hover {
+        cursor: default;
+      }
       font-weight: bold;
       color: $ahub-blue;
+    }
+    &:hover:not(.active) {
+      text-decoration: underline;
     }
 
     &.disabled {
       cursor: not-allowed;
-
-      &:hover {
-        font-weight: initial;
-      }
 
       &.active {
         font-weight: bold;

@@ -168,7 +168,8 @@ const errorFormula = {
       attachments: [{
         type: "complexArrOfObj",
         opts: {
-          selfPresences: true
+          selfPresences: true,
+          selfMin: 2
         }
       }]
     }, values, ["attachments"])
