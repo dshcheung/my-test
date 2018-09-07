@@ -8,7 +8,7 @@ export default class CurrencyField extends Component {
   constructor(props) {
     super(props)
 
-    const { input: value } = props
+    const { input: { value } } = props
 
     this.state = {
       id: value.id || null,
