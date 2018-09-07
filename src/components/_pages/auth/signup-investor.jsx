@@ -38,14 +38,14 @@ export default class SignupInvestor extends Component {
 
     this.state = {
       sideTitleNumber: null,
-      pickInvestor: true,
+      pickInvestor: false,
       resultSelected: 0,
       pickerResults: {
         0: ["I am a Professional Investor, because I have individual net worth, or joint net worth with my spouse, that exceeds $8 million HKD."],
         1: ["We are only offering sign-ups for Professional Investors at this time."],
         2: [
           "I am a Professional Investor because I had income exceeding $1,500,000 HKD, or income with my spouse exceeding $2,250,000 HKD, each of the past two years and expect the same this year.",
-          "I am a Professional Investor because I have individual net worth, or joint net worth with my spouse, that exceeds $8 million HKD.",
+          "I am a Professional Investor because I have individual investable assets, or joint investable assets with my spouse, that exceeds $8 million HKD.",
           "I am a Professional Investor because I invest on behalf of an entity with at least $35M in assets or an entity in which all the owners are Professional Investors (e.g. a venture capital fund, LLC).",
           "I am a Professional Investor because I invest on behalf of a trust with at least $35M in assets and I have sufficient knowledge to evaluate the merits and risks of startup investing.",
           "I am not a Professional Investor because none of the above apply to me."
