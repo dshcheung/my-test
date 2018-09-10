@@ -31,7 +31,7 @@ export default class InvestorAMLBankDetailsForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass, pristine } = this.props
 
-    const hint = "Please provide details for the bank account from which you will make your investments into AngelHub campaigns. Please note that the name on the account much match your identity document and the bank should be an HKMA or equivalent licensed institution."
+    const hint = "Please provide details for the bank account from which you will make your investments into AngelHub campaigns. Please note that the name on the account much match your identity document and the bank should be an HKMA or equivalent licensed institution. Be aware if the details of the account from which you are making your investment do not match the identity documents you provided to us we will not be able to accept your investment."
 
     return (
       <div className={optClass}>

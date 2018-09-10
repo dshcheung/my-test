@@ -33,7 +33,7 @@ const mapDispatchToProps = (dispatch) => {
         founded_year: ["presences"],
         country_of_incorporation: ["presences"],
         tagline: ["presences", { type: "length", opts: { max: 140 } }],
-        hashtags: [{ type: "amount", opts: { min: 1, max: 5 } }],
+        startup_questionnaire_hashtags: [{ type: "amount", opts: { min: 1, max: 5 } }],
         attachments: [{
           type: "complexArrOfObj",
           opts: {
@@ -52,7 +52,7 @@ const mapDispatchToProps = (dispatch) => {
       return Validators({
         company_name: ["presences"],
         tagline: [{ type: "length", opts: { max: 140 } }],
-        hashtags: [{ type: "amount", opts: { max: 5 } }],
+        startup_questionnaire_hashtags: [{ type: "amount", opts: { max: 5 } }],
         attachments: [{
           type: "complexArrOfObj",
           opts: {
@@ -126,7 +126,7 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
           />
 
           <Field
-            name="hashtags"
+            name="startup_questionnaire_hashtags"
             component={MultiselectField}
             opts={{
               showErrors: true,

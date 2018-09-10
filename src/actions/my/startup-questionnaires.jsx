@@ -206,7 +206,7 @@ const generateParams = (values) => {
       country_of_incorporation: _.get(values, 'basic.country_of_incorporation', null),
       vertical: _.get(values, 'basic.vertical', null),
       tagline: _.get(values, 'basic.tagline', null),
-      hashtags_attributes: _.get(values, 'basic.hashtags', null),
+      startup_questionnaire_hashtags_attributes: _.get(values, 'basic.startup_questionnaire_hashtags', null),
       attachments_attributes: _.get(values, 'basic.attachments', null)
     },
     startup_questionnaire_teaser_attributes: {

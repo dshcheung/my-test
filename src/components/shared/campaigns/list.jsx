@@ -62,11 +62,7 @@ export default class CampaignList extends Component {
 
                 // TODO: change behaviour when profile is done
                 if (newable) {
-                  if (campaign.can.edit) {
-                    linkTo = `/my/campaigns/${campaignID}/edit/basic`
-                  } else {
-                    linkTo = `/my/campaigns/${campaignID}/edit/success`
-                  }
+                  linkTo = `/my/campaigns/${campaignID}/edit/null`
                 }
 
                 const displayPermissions = {

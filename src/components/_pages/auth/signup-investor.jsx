@@ -38,7 +38,7 @@ export default class SignupInvestor extends Component {
 
     this.state = {
       sideTitleNumber: null,
-      pickInvestor: false,
+      pickInvestor: true,
       resultSelected: 0,
       pickerResults: {
         0: ["I am a Professional Investor, because I have individual net worth, or joint net worth with my spouse, that exceeds $8 million HKD."],

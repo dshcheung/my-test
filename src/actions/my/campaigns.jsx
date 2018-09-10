@@ -129,7 +129,7 @@ export const uMyCampaign = (values, params) => {
     request,
     successCB: (dispatch, data) => {
       dispatch(setMyCampaign(data))
-      dispatch(replace(`/my/campaigns/${data.id}/edit/basic`))
+      dispatch(replace(`/my/campaigns/${data.id}/edit/null`))
       notySuccess("Submitted")
     }
   }
@@ -146,7 +146,7 @@ export const markMyCampaignForReview = (params) => {
     type: MARK_MY_CAMPAIGN_FOR_REVIEW,
     request,
     successCB: (dispatch, data) => {
-      dispatch(push(`/my/campaigns/${data.id}/edit/success`))
+      dispatch(push(`/my/campaigns/${data.id}/edit/null`))
       dispatch(setMyCampaign(data))
       notySuccess("Submitted")
     }

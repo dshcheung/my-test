@@ -19,7 +19,7 @@ import {
   G_IMMOVABLE_ATTACHMENT_OPTIONS, G_IMMOVABLE_HASHTAG_OPTIONS, G_IMMOVABLE_STARTUP_QUESTIONNAIRE_CAP_TABLE_OPTIONS
 } from '../../../../actions/immovables'
 
-import { notyWarning, notyError } from '../../../../services/noty'
+import { notyError } from '../../../../services/noty'
 import { scrollTop } from '../../../../services/utils'
 
 import LoadingSpinner from '../../../shared/others/loading-spinner'
@@ -36,6 +36,7 @@ import MyStartupQuestionnairesCampaignForm from '../../../forms/my/startup-quest
 import MyStartupQuestionnairesAttachmentsForm from '../../../forms/my/startup-questionnaires/attachments'
 import SharedStartupQuestionnairesSubmission from '../../../shared/startup-questionnaires/submission'
 import SharedStartupQuestionnairesSuccess from '../../../shared/startup-questionnaires/success'
+import SharedStartupQuestionnairesRejected from '../../../shared/startup-questionnaires/rejected'
 
 const mapStateToProps = (state) => {
   return {
@@ -72,7 +73,7 @@ export default class MyCampaigns extends Component {
     super(props)
 
     this.state = {
-      currentTab: props.params.tab,
+      currentTab: '',
       highlightErrors: false,
       showNavs: true
     }
@@ -81,7 +82,7 @@ export default class MyCampaigns extends Component {
     this.getOrder = this.getOrder.bind(this)
     this.getRouteParams = this.getRouteParams.bind(this)
 
-    this.checkPermissionForRedirection = this.checkPermissionForRedirection.bind(this)
+    this.setCurrentTabOrRedirect = this.setCurrentTabOrRedirect.bind(this)
 
     this.handleSubmitFail = this.handleSubmitFail.bind(this)
 
@@ -94,7 +95,7 @@ export default class MyCampaigns extends Component {
   }
 
   componentWillMount() {
-    this.checkPermissionForRedirection(this.props)
+    this.setCurrentTabOrRedirect(this.props)
     this.props.gMyStartupQuestionnaire({
       queries: { campaign_id: this.props.myCampaign.id },
       params: { startupQuestionnaireID: null }
@@ -105,9 +106,8 @@ export default class MyCampaigns extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.checkPermissionForRedirection(nextProps)
-    if (this.props.params.tab !== "success" && nextProps.params.tab === "success") {
-      this.setState({ currentTab: "success" })
+    if (this.getStatus() !== this.getStatus(nextProps)) {
+      this.setCurrentTabOrRedirect(nextProps)
     }
   }
 
@@ -116,8 +116,8 @@ export default class MyCampaigns extends Component {
     this.props.resetImmovable()
   }
 
-  getStatus() {
-    const { myCampaign } = this.props
+  getStatus(props) {
+    const { myCampaign } = props || this.props
     const submitStatus = _.get(myCampaign, 'status.submitted')
 
     return submitStatus
@@ -206,17 +206,25 @@ export default class MyCampaigns extends Component {
           allAttachmentOptions: true
         }
       ],
-      always: [
+      submission: [
         {
           key: 'submission',
           title: "Submission",
           model: SharedStartupQuestionnairesSubmission,
           nextTab: null,
           nonForm: true
-        },
+        }
+      ],
+      always: [
         {
           key: "success",
           model: SharedStartupQuestionnairesSuccess,
+          nextTab: null,
+          nonForm: true
+        },
+        {
+          key: "rejected",
+          model: SharedStartupQuestionnairesRejected,
           nextTab: null,
           nonForm: true
         }
@@ -227,13 +235,13 @@ export default class MyCampaigns extends Component {
 
     switch (submitStatus) {
       case "not_submitted":
-        toDisplay = tabs.updateable
+        toDisplay = [...tabs.updateable, ...tabs.submission]
         break
       case "waiting_for_update":
-        toDisplay = [...tabs.updateable, tabs.duediligence]
+        toDisplay = [...tabs.updateable, ...tabs.duediligence, ...tabs.submission]
         break
       case "waiting_due_diligence_documents":
-        toDisplay = tabs.duediligence
+        toDisplay = [...tabs.duediligence, ...tabs.submission]
         break
     }
 
@@ -252,17 +260,50 @@ export default class MyCampaigns extends Component {
     }
   }
 
-  checkPermissionForRedirection(props) {
-    const { params, myCampaign, router } = props
+  setCurrentTabOrRedirect(props) {
+    const { router } = props
+    const { myCampaignID } = this.getRouteParams()
+    const submitStatus = this.getStatus(props)
 
-    if (params.tab !== "success" && myCampaign && !myCampaign.can.edit) {
-      router.push("/my/campaigns")
-      notyWarning("You Cannot Edit")
+    switch (submitStatus) {
+      case "not_submitted":
+        this.changeTab("basic")
+        break
+      case "waiting_for_update":
+        this.changeTab("submission")
+        break
+      case "waiting_due_diligence_documents":
+        this.changeTab("submission")
+        break
+      case "rejected":
+        this.changeTab("rejected")
+        break
+      case "pending":
+        this.changeTab("success")
+        break
+      case "pending_due_diligence_documents":
+        this.changeTab("success")
+        break
+      case "waiting_investment_committee_approval":
+        this.changeTab("success")
+        break
+      case "waiting_selection_committee_approval":
+        this.changeTab("success")
+        break
+      case "accepted":
+        router.push(`/my/campaigns/${myCampaignID}`)
+        break
+      case "completed":
+        router.push(`/my/campaigns/${myCampaignID}`)
+        break
+      case "failure":
+        router.push(`/my/campaigns/${myCampaignID}`)
+        break
     }
   }
 
   handleSubmitFail() {
-    notyError("Submission failed please review error messages and try again")
+    notyError("Submission failed - please review error messages and try again")
   }
 
   triggerHighlightErrors() {
@@ -391,17 +432,12 @@ export default class MyCampaigns extends Component {
 
   render() {
     const {
-      myCampaign,
       gMyStartupQuestionnaireInProcess,
       gAttachmentOptionsInProcess, gHashtagOptionsInProcess, gCapTableOptionsInProcess,
       uMyStartupQuestionnaireInProcess
     } = this.props
     const { currentTab } = this.state
     const order = this.getOrder()
-
-    if (myCampaign && !myCampaign.can.edit && currentTab !== "success") {
-      return null
-    }
 
     if (gMyStartupQuestionnaireInProcess || gAttachmentOptionsInProcess || gHashtagOptionsInProcess || gCapTableOptionsInProcess) return <LoadingSpinner />
 

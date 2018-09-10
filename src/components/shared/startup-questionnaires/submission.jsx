@@ -124,19 +124,18 @@ export default class SharedStartupQuestionnairesSubmission extends Component {
                   </button>
                 </div>
               )
-            } else if (submittedStatus === "rejected" || submittedStatus === "waiting_for_update") {
+            } else if (submittedStatus === "waiting_for_update") {
               const remarks = _.get(myCampaign, 'status.remarks', '')
               component = (
                 <div>
-                  { submittedStatus === "rejected" && <div>Unfortunately We Have Rejected Your Campaign {remarks && "Due To The Following Reason(s)"}</div> }
                   { submittedStatus === "waiting_for_update" && <div>Unfortunately We Are Waiting For More Information On Your Campaign {remarks && "On The Following"}</div> }
                   { remarks && <div className="margin-top-15" dangerouslySetInnerHTML={{ __html: remarks.decode() }} /> }
                 </div>
               )
-            } else if (submittedStatus === "accepted") {
+            } else if (submittedStatus === "waiting_due_diligence_documents") {
               component = (
                 <div>
-                  <div>Your Campaign Is Now Accpeted And Ready For Investors</div>
+                  <div>Our team has reviewed your answers and have now requested you to upload your Due Diligence Documents</div>
                 </div>
               )
             } else {

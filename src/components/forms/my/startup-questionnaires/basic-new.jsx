@@ -44,7 +44,7 @@ const mapDispatchToProps = (dispatch) => {
         founded_year: ["presences"],
         country_of_incorporation: ["presences"],
         tagline: ["presences", { type: "length", opts: { max: 140 } }],
-        hashtags: ["presences", { type: "amount", opts: { max: 5 } }],
+        startup_questionnaire_hashtags: ["presences", { type: "amount", opts: { max: 5 } }],
         attachments: [{
           type: "complexArrOfObj",
           opts: {
@@ -105,7 +105,7 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
         },
         {
           title: "verticals & technologies",
-          key: "hashtags",
+          key: "startup_questionnaire_hashtags",
           hint: "Give us up to 5 hashtags that best describe your solution, technology or add to the buzz"
         },
         {
@@ -206,7 +206,7 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
           />
 
           <Field
-            name="hashtags"
+            name="startup_questionnaire_hashtags"
             component={MultiselectField}
             opts={{
               optClass: currentQuestionIndex !== 4 && `${hideable} ${animateable}`,

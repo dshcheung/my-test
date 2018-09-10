@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-export default class SharedStartupQuestionnairesSuccess extends Component {
+export default class SharedStartupQuestionnairesRejected extends Component {
   render() {
     return (
       <div
-        id="shared-my-startup-questionnaire-success"
+        id="shared-my-startup-questionnaire-rejected"
         className="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-0 text-center"
       >
-        <div className="check margin-bottom-40">
-          <i className="fa fas fa-4x fa-check" />
+        <div className="cross margin-bottom-40">
+          <i className="fa fas fa-4x fa-times" />
         </div>
 
         <h1 className="page-title-c fw-500 text-uppercase margin-bottom-40">
