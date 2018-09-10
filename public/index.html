@@ -13,6 +13,12 @@
 <body>
   <div id="root"></div>
 
+  <!-- raven.js -->
+  <script src="https://cdn.ravenjs.com/3.26.4/raven.min.js" crossorigin="anonymous"></script>
+  <script>
+    Raven.config('https://4b2b2788c1ae49a38d78ead92008325b@sentry.io/1278009').install();
+  </script>
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script src="https://www.googletagmanager.com/gtag/js?id=UA-124005113-1"></script>
   <script>
