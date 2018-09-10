@@ -133,6 +133,15 @@ export default class SharedStartupQuestionnairesSubmission extends Component {
 
                   <div className="margin-top-10">Please click on the tabs (Basic, Teaser, etc) to update the data and you will be able to resubmit once changes have been made</div>
                   <div className="margin-top-10">If you're not sure what changes have to be made, please revert to the email sent prior from your Startup Manager at AngelHub</div>
+
+                  <button
+                    className={`btn btn-primary text-uppercase ${markMyCampaignForReviewInProcess && "m-progress"} margin-top-20`}
+                    type="submit"
+                    disabled={markMyCampaignForReviewInProcess}
+                    onClick={this.handleMarkMyCampaignForReview}
+                  >
+                    Submit
+                  </button>
                 </div>
               )
             } else if (submittedStatus === "waiting_due_diligence_documents") {
@@ -141,6 +150,15 @@ export default class SharedStartupQuestionnairesSubmission extends Component {
                   <div>Our team has reviewed your answers and have now requested you to upload your Due Diligence Documents</div>
                   <div className="margin-top-10">Please click on the tab Due Diligence to update the data and you will be able to resubmit once changes have been made</div>
                   <div className="margin-top-10">If you're not sure what changes have to be made, please revert to the email sent prior from your Startup Manager at AngelHub</div>
+
+                  <button
+                    className={`btn btn-primary text-uppercase ${markMyCampaignForReviewInProcess && "m-progress"} margin-top-20`}
+                    type="submit"
+                    disabled={markMyCampaignForReviewInProcess}
+                    onClick={this.handleMarkMyCampaignForReview}
+                  >
+                    Submit
+                  </button>
                 </div>
               )
             } else {
