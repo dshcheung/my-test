@@ -57,7 +57,7 @@ export default class SharedStartupQuestionnairesSubmission extends Component {
         },
         {
           dataKey: "attachments",
-          title: "Due Dilligence"
+          title: "Due Diligence"
         },
       ]
     }
@@ -128,14 +128,19 @@ export default class SharedStartupQuestionnairesSubmission extends Component {
               const remarks = _.get(myCampaign, 'status.remarks', '')
               component = (
                 <div>
-                  { submittedStatus === "waiting_for_update" && <div>Unfortunately We Are Waiting For More Information On Your Campaign {remarks && "On The Following"}</div> }
+                  <div>Unfortunately We Are Waiting For More Information On Your Campaign {remarks && "On The Following"}</div>
                   { remarks && <div className="margin-top-15" dangerouslySetInnerHTML={{ __html: remarks.decode() }} /> }
+
+                  <div className="margin-top-10">Please click on the tabs (Basic, Teaser, etc) to update the data and you will be able to resubmit once changes have been made</div>
+                  <div className="margin-top-10">If you're not sure what changes have to be made, please revert to the email sent prior from info@angelhub.io</div>
                 </div>
               )
             } else if (submittedStatus === "waiting_due_diligence_documents") {
               component = (
                 <div>
                   <div>Our team has reviewed your answers and have now requested you to upload your Due Diligence Documents</div>
+                  <div className="margin-top-10">Please click on the tab Due Diligence to update the data and you will be able to resubmit once changes have been made</div>
+                  <div className="margin-top-10">If you're not sure what changes have to be made, please revert to the email sent prior from info@angelhub.io</div>
                 </div>
               )
             } else {

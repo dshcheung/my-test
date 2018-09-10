@@ -78,7 +78,7 @@ export default class Home extends Component {
                   <li><span className="text-primary margin-right-5">></span>Stay informed anyway anytime</li>
                 </ul>
                 <ul className="col-xs-4 list-style-none">
-                  <li><span className="text-primary margin-right-5">></span>Access Vetted Startup with the due dilligence documents</li>
+                  <li><span className="text-primary margin-right-5">></span>Access Vetted Startup with the due diligence documents</li>
                   <li><span className="text-primary margin-right-5">></span>From discovery and thorough evaluation, to settlement and post investment monitoring</li>
                   <li><span className="text-primary margin-right-5">></span>Centralised portal with direct access to startups and education through master classes</li>
                 </ul>
@@ -125,7 +125,7 @@ export default class Home extends Component {
                 <div className="row bottom">
                   <div className="card col-xs-6">
                     <div className="h1 water-mark">03</div>
-                    <div className="h4 title">Transparency & Due Dilligence</div>
+                    <div className="h4 title">Transparency & Due Diligence</div>
 
                     <div>
                       <strong>Screen the campaign you like</strong>
