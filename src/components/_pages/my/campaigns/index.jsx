@@ -7,7 +7,7 @@ import {
   resetMyCampaigns
 } from '../../../../actions/my/campaigns'
 
-import CampaignList from '../../../shared/campaigns/list'
+import CampaignsList from '../../../shared/campaigns/list'
 
 const mapStateToProps = (state) => {
   return {
@@ -40,7 +40,7 @@ export default class MyCampaignsIndex extends Component {
       <div id="pages-my-campaigns">
         <div className="col-xs-10 col-xs-offset-1">
           <div className="row">
-            <CampaignList
+            <CampaignsList
               loadingInProcess={gMyCampaignsInProcess}
               campaigns={myCampaigns}
               newable

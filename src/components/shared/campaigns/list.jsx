@@ -16,6 +16,12 @@ export default class CampaignList extends Component {
             let component = null
             if (loadingInProcess) {
               component = <LoadingSpinner />
+            } else if (campaigns.length < 1 && !newable) {
+              component = (
+                <div key="no-campaigns" className="col-xs-12 text-center">
+                  <h3>No Campaigns Found</h3>
+                </div>
+              )
             } else {
               const createNewCampaign = newable && (
                 <div key="new-campaign" className="col-xs-12 col-sm-6 col-md-4 text-center campaign-card">
