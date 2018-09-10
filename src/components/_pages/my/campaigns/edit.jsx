@@ -451,7 +451,7 @@ export default class MyCampaigns extends Component {
     if (gMyStartupQuestionnaireInProcess || gAttachmentOptionsInProcess || gHashtagOptionsInProcess || gCapTableOptionsInProcess) return <LoadingSpinner />
 
     return (
-      <div id="my-campaigns-edit" className={currentTab !== "success" && "remove-body-top-padding"}>
+      <div id="my-campaigns-edit" className={currentTab !== "success" && currentTab !== "rejected" && "remove-body-top-padding"}>
         {
           currentTab !== "success" && <SharedOthersTabNav disableNav={uMyStartupQuestionnaireInProcess} order={order} currentTab={currentTab} handleClick={this.saveOnChangeTab} />
         }
