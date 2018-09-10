@@ -14,7 +14,7 @@ const formatFormula = {
       company_name: _.get(q, 'company_name') || '',
       country_of_incorporation: _.get(q, 'country_of_incorporation') || '',
       founded_year: year ? moment(year, "YYYY").toDate() : '',
-      hashtags: _.get(q, 'hashtags') || '',
+      startup_questionnaire_hashtags: _.get(q, 'startup_questionnaire_hashtags') || '',
       tagline: _.get(q, 'tagline') || '',
       vertical: _.get(q, 'vertical') || '',
       attachments: _.get(q, 'attachments') || []
@@ -164,7 +164,7 @@ const errorFormula = {
       founded_year: ["presences"],
       country_of_incorporation: ["presences"],
       tagline: ["presences"],
-      hashtags: [{ type: "amount", opts: { min: 1 } }],
+      startup_questionnaire_hashtags: [{ type: "amount", opts: { min: 1 } }],
       attachments: [{
         type: "complexArrOfObj",
         opts: {
