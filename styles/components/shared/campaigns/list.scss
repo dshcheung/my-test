@@ -70,11 +70,16 @@ $list-campaign-name-left-space: 100px;
       }
 
       .name {
+        text-align: left;
         position: absolute;
         left: $list-campaign-name-left-space;
         bottom: $list-overlap-bot-space;
         color: black;
         margin: 0;
+        width: calc(100% - #{$list-campaign-logo-size} - (3 * #{$list-status-bubble-spacing}));
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
 
