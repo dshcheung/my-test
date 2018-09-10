@@ -353,13 +353,22 @@ export default class MyCampaigns extends Component {
     const { currentTab } = this.state
     const routeParams = this.getRouteParams()
     const order = this.getOrder()
-    const baseInfo = _.find(order, { key: currentTab })
 
-    this.props.uMyStartupQuestionnaire({
-      [currentTab]: values
-    }, () => {
+    const baseInfo = _.find(order, { key: currentTab })
+    const modelKey = _.get(baseInfo, 'modelKey')
+
+    const { formState } = this.props
+    const thisPristine = isPristine(modelKey)(formState)
+
+    if (modelKey && !thisPristine) {
+      this.props.uMyStartupQuestionnaire({
+        [currentTab]: values
+      }, () => {
+        this.changeTab(baseInfo.nextTab)
+      }, routeParams)
+    } else {
       this.changeTab(baseInfo.nextTab)
-    }, routeParams)
+    }
   }
 
   dMSQAttributes(value, key, cb) {

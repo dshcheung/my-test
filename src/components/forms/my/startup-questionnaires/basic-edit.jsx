@@ -72,7 +72,7 @@ const mapDispatchToProps = (dispatch) => {
 })
 export default class MyStartupQuestionnairesBasicEditForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass, dMSQAttributes, pristine } = this.props
+    const { handleSubmit, submitInProcess, optClass, dMSQAttributes } = this.props
 
     return (
       <div className={optClass}>
@@ -193,7 +193,7 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
           <button
             className={`btn btn-primary pull-right ${submitInProcess && "m-progress"}`}
             type="submit"
-            disabled={submitInProcess || pristine}
+            disabled={submitInProcess}
           >CONTINUE</button>
         </form>
       </div>

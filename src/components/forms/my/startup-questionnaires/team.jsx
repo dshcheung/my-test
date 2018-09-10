@@ -118,7 +118,7 @@ import DynamicFieldArray from '../../../shared/form-elements/dynamic-field-array
 
 export default class MyStartupQuestionnairesTeamForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass, dMSQAttributes, pristine } = this.props
+    const { handleSubmit, submitInProcess, optClass, dMSQAttributes } = this.props
 
     return (
       <div className={optClass}>
@@ -379,7 +379,7 @@ export default class MyStartupQuestionnairesTeamForm extends Component {
           <button
             className={`btn btn-primary text-uppercase pull-right ${submitInProcess && "m-progress"}`}
             type="submit"
-            disabled={submitInProcess || pristine}
+            disabled={submitInProcess}
           >CONTINUE</button>
         </form>
       </div>

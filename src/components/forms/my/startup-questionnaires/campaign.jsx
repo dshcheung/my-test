@@ -82,7 +82,7 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
   }
 
   render() {
-    const { handleSubmit, submitInProcess, optClass, dMSQAttributes, campaignTypes, gImmovableInProcess, pristine } = this.props
+    const { handleSubmit, submitInProcess, optClass, dMSQAttributes, campaignTypes, gImmovableInProcess } = this.props
 
     const campaignType = _.get(this.props.values, 'campaign_type', '')
     const raised = _.get(this.props.values, 'raised.amount', '') || 0
@@ -242,7 +242,7 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
           <button
             className={`btn btn-primary text-uppercase pull-right ${submitInProcess && "m-progress"}`}
             type="submit"
-            disabled={submitInProcess || pristine}
+            disabled={submitInProcess}
           >Continue</button>
         </form>
       </div>

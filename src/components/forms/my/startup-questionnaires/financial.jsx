@@ -135,7 +135,7 @@ import StaticField from '../../../shared/form-elements/static-field'
 
 export default class MyStartupQuestionnairesFinancialForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass, dMSQAttributes, pristine } = this.props
+    const { handleSubmit, submitInProcess, optClass, dMSQAttributes } = this.props
 
     return (
       <div className={optClass}>
@@ -448,7 +448,7 @@ export default class MyStartupQuestionnairesFinancialForm extends Component {
           <button
             className={`btn btn-primary text-uppercase pull-right ${submitInProcess && "m-progress"}`}
             type="submit"
-            disabled={submitInProcess || pristine}
+            disabled={submitInProcess}
           >Continue</button>
         </form>
       </div>
