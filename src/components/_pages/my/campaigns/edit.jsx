@@ -291,13 +291,13 @@ export default class MyCampaigns extends Component {
         this.changeTab("success")
         break
       case "accepted":
-        router.push(`/my/campaigns/${myCampaignID}`)
+        router.replace(`/my/campaigns/${myCampaignID}`)
         break
       case "completed":
-        router.push(`/my/campaigns/${myCampaignID}`)
+        router.replace(`/my/campaigns/${myCampaignID}`)
         break
       case "failure":
-        router.push(`/my/campaigns/${myCampaignID}`)
+        router.replace(`/my/campaigns/${myCampaignID}`)
         break
     }
   }
@@ -345,7 +345,7 @@ export default class MyCampaigns extends Component {
       const { router } = this.props
       scrollTop()
       this.setState({ currentTab: tab })
-      router.push(`/my/campaigns/${router.params.myCampaignID}/edit/${tab}`)
+      router.replace(`/my/campaigns/${router.params.myCampaignID}/edit/${tab}`)
     }
   }
 

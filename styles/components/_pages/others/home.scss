@@ -4,31 +4,61 @@
     padding-bottom: 30px;
 
     &.banner {
-      height: $min-body-height;
       padding: 20px;
       position: relative;
 
-      .banner-background {
-        box-shadow: 2px 2px 20px #BBB;
-        background-repeat: no-repeat;
-        background-position: left center;
-        background-size: cover;
-        height: 100%;
-        width: 100%;
-      }
+      .carousel {
+        .carousel-indicators {
+          bottom: 0px;
+        }
 
-      .header {
-        position: absolute;
-        margin: 70px;
-        top: 0;
-        left: 0;
-        letter-spacing: 15px;
+        .carousel-inner {
+          overflow: initial;
+
+          .item {
+            padding-left: 100%;
+            padding-top: 45%;
+
+            .banner-background {
+              position: absolute;
+              top: 0 ;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: cover;
+            }
+
+            .carousel-caption {
+              top: 5%;
+              left: 5%;
+              right: 5%;
+              bottom: inherit;
+              text-align: left;
+              padding: 20px;
+            }
+
+            .pattern {
+              position: absolute;
+              top: -20px;
+
+              &.left {
+                left: -20px;
+              }
+
+              &.right {
+                right: -20px;
+              }
+            }
+          }
+        }
       }
 
       .start {
         position: absolute;
         left: 50%;
-        top: 85%;
+        bottom: 40px;
         transform: translate(-50%, -50%);
       }
     }

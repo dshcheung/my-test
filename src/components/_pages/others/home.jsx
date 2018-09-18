@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Carousel from 'react-bootstrap/lib/Carousel'
 
 import SharedOthersSideTitle from '../../shared/others/side-title'
 
@@ -7,16 +8,73 @@ import OthersMailingForm from '../../forms/others/mailing'
 export default class Home extends Component {
   render() {
     // use this banner for now until final version is created
-    const banner = "https://image.ibb.co/hVFS09/banner.png"
+    const banner1 = "https://image.ibb.co/my9NCK/slide1_img.jpg"
+    const b1l = "https://image.ibb.co/fvf7ez/slide1_pattern_Left.png"
+    const b1r = "https://image.ibb.co/kpQJme/slide1_pattern_Right.png"
+    const banner2 = "https://image.ibb.co/iEZYKz/slide2_img.jpg"
+    const b2l = "https://image.ibb.co/md2yme/slide2_pattern_Left.png"
+    const b2r = "https://image.ibb.co/kPDFXK/slide2_pattern_Right.png"
+    const banner3 = "https://image.ibb.co/i9AUsK/slide3_img.jpg"
+    const b3l = "https://image.ibb.co/fXYFXK/slide3_pattern_Left.png"
+    const b3r = "https://image.ibb.co/eJUpsK/slide3_pattern_Right.png"
+    const banner4 = "https://image.ibb.co/iySQXK/slide4_img.jpg"
+    const b4l = "https://image.ibb.co/ivJ4Re/slide4_pattern_Left.png"
+    const b4r = "https://image.ibb.co/kmiXCK/slide4_pattern_Right.png"
+    const banner5 = "https://image.ibb.co/jOQesK/slide5_img.jpg"
+    const b5l = "https://image.ibb.co/n69Tme/slide5_pattern_Left.png"
+    const b5r = "https://image.ibb.co/b9qesK/slide5_pattern_Right.png"
 
     return (
       <div id="page-home">
-        <section className="banner clearfix">
-          <div className="banner-background" style={{ backgroundImage: `url(${banner})` }} />
-          <div className="h1 header text-uppercase">
-            <div>Invest in the future</div>
-          </div>
-          <a className="btn btn-primary btn-lg px-20 rounded-2 o-90 start">START INVESTING</a>
+        <section className="clearfix banner">
+          <Carousel controls={false}>
+            <Carousel.Item>
+              <div className="banner-background" style={{ backgroundImage: `url(${banner1})` }} />
+              <Carousel.Caption>
+                <div className="h2 margin-0">JOIN AN EXCLUSIVE COMMUNITY <br /> OF PROFESSIONAL INVESTORS</div>
+                <div className="h5 fw-400 margin-top-5">| SFC Licensed Investment Platform</div>
+              </Carousel.Caption>
+              <img src={b1l} alt="pattern" className="pattern left" style={{ height: "150%" }} />
+              <img src={b1r} alt="pattern" className="pattern right" style={{ height: "150%" }} />
+            </Carousel.Item>
+            <Carousel.Item>
+              <div className="banner-background" style={{ backgroundImage: `url(${banner2})` }} />
+              <Carousel.Caption>
+                <div className="h2 margin-0 text-black">INVEST IN THE FUTURE</div>
+                <div className="h5 fw-400 margin-top-5 text-black">| SFC Licensed Investment Platform</div>
+              </Carousel.Caption>
+              <img src={b2l} alt="pattern" className="pattern left" style={{ height: "115%" }} />
+              <img src={b2r} alt="pattern" className="pattern right" style={{ height: "115%" }} />
+            </Carousel.Item>
+            <Carousel.Item>
+              <div className="banner-background" style={{ backgroundImage: `url(${banner3})` }} />
+              <Carousel.Caption>
+                <div className="h2 margin-0">ALL THE INFORMATION YOU <br /> NEED TO INVEST IN STARTUPS</div>
+                <div className="h5 fw-400 margin-top-5">| SFC Licensed Investment Platform</div>
+              </Carousel.Caption>
+              <img src={b3l} alt="pattern" className="pattern left" style={{ height: "135%" }} />
+              <img src={b3r} alt="pattern" className="pattern right" style={{ height: "135%" }} />
+            </Carousel.Item>
+            <Carousel.Item>
+              <div className="banner-background" style={{ backgroundImage: `url(${banner4})` }} />
+              <Carousel.Caption>
+                <div className="h2 margin-0">WE FEATURE ONLY HIGHLY VETTED <br /> INVESTMENT OPPORTUNITIES</div>
+                <div className="h5 fw-400 margin-top-5">| SFC Licensed Investment Platform</div>
+              </Carousel.Caption>
+              <img src={b4l} alt="pattern" className="pattern left" style={{ height: "150%" }} />
+              <img src={b4r} alt="pattern" className="pattern right" style={{ height: "150%" }} />
+            </Carousel.Item>
+            <Carousel.Item>
+              <div className="banner-background" style={{ backgroundImage: `url(${banner5})` }} />
+              <Carousel.Caption>
+                <div className="h2 margin-0">BUILD A DIVERSIFED <br /> STARTUP PORTFOLIO</div>
+                <div className="h5 fw-400 margin-top-5">| SFC Licensed Investment Platform</div>
+              </Carousel.Caption>
+              <img src={b5l} alt="pattern" className="pattern left" style={{ height: "135%" }} />
+              <img src={b5r} alt="pattern" className="pattern right" style={{ height: "135%" }} />
+            </Carousel.Item>
+          </Carousel>
+          <a className="btn btn-primary btn-lg px-10 rounded-2 o-90 start">START INVESTING</a>
         </section>
 
         <section className="what-we-offer clearfix">
