@@ -4,20 +4,35 @@
     padding-bottom: 30px;
 
     &.banner {
-      padding: 20px;
+      padding: 0;
       position: relative;
 
       .carousel {
         .carousel-indicators {
           bottom: 0px;
+          margin-bottom: 5px;
+
+          li {
+            border: 0;
+            background-color: white;
+            opacity: 0.5;
+            width: 10px;
+            height: 10px;
+            margin: 0;
+
+            &.active {
+              width: 10px;
+              height: 10px;
+              opacity: 1;
+            }
+          }
         }
 
         .carousel-inner {
           overflow: initial;
 
           .item {
-            padding-left: 100%;
-            padding-top: 45%;
+            height: $min-body-height;
 
             .banner-background {
               position: absolute;
@@ -37,18 +52,23 @@
               bottom: inherit;
               text-align: left;
               padding: 20px;
+              letter-spacing: 10px;
+
+              :first-child {
+                line-height: 38px;
+              }
             }
 
             .pattern {
               position: absolute;
-              top: -20px;
+              top: 0;
 
               &.left {
-                left: -20px;
+                left: 0;
               }
 
               &.right {
-                right: -20px;
+                right: 0px;
               }
             }
           }
@@ -56,10 +76,12 @@
       }
 
       .start {
+        padding: 18.5px 30px;
         position: absolute;
         left: 50%;
-        bottom: 40px;
+        bottom: 5px;
         transform: translate(-50%, -50%);
+        letter-spacing: 4px;
       }
     }
 
