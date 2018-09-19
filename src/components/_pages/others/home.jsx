@@ -34,8 +34,8 @@ export default class Home extends Component {
                 <div className="h2 margin-0">JOIN AN EXCLUSIVE COMMUNITY <br /> OF PROFESSIONAL INVESTORS</div>
                 <div className="h4 fw-400 margin-top-5">| SFC Licensed Investment Platform</div>
               </Carousel.Caption>
-              <img src={b1l} alt="pattern" className="pattern left" style={{ height: "150%" }} />
-              <img src={b1r} alt="pattern" className="pattern right" style={{ height: "150%" }} />
+              <img src={b1l} alt="pattern" className="pattern left" style={{ height: "105vh" }} />
+              <img src={b1r} alt="pattern" className="pattern right" style={{ height: "105vh" }} />
             </Carousel.Item>
             <Carousel.Item>
               <div className="banner-background" style={{ backgroundImage: `url(${banner2})` }} />
@@ -43,8 +43,8 @@ export default class Home extends Component {
                 <div className="h2 margin-0 text-black">INVEST IN THE FUTURE</div>
                 <div className="h4 fw-400 margin-top-5 text-black">| SFC Licensed Investment Platform</div>
               </Carousel.Caption>
-              <img src={b2l} alt="pattern" className="pattern left" style={{ height: "115%" }} />
-              <img src={b2r} alt="pattern" className="pattern right" style={{ height: "115%" }} />
+              <img src={b2l} alt="pattern" className="pattern left" style={{ height: "105vh" }} />
+              <img src={b2r} alt="pattern" className="pattern right" style={{ height: "105vh" }} />
             </Carousel.Item>
             <Carousel.Item>
               <div className="banner-background" style={{ backgroundImage: `url(${banner3})` }} />
@@ -52,8 +52,8 @@ export default class Home extends Component {
                 <div className="h2 margin-0">ALL THE INFORMATION YOU <br /> NEED TO INVEST IN STARTUPS</div>
                 <div className="h4 fw-400 margin-top-5">| SFC Licensed Investment Platform</div>
               </Carousel.Caption>
-              <img src={b3l} alt="pattern" className="pattern left" style={{ height: "135%" }} />
-              <img src={b3r} alt="pattern" className="pattern right" style={{ height: "135%" }} />
+              <img src={b3l} alt="pattern" className="pattern left" style={{ height: "105vh" }} />
+              <img src={b3r} alt="pattern" className="pattern right" style={{ height: "105vh" }} />
             </Carousel.Item>
             <Carousel.Item>
               <div className="banner-background" style={{ backgroundImage: `url(${banner4})` }} />
@@ -61,8 +61,8 @@ export default class Home extends Component {
                 <div className="h2 margin-0">WE FEATURE ONLY HIGHLY VETTED <br /> INVESTMENT OPPORTUNITIES</div>
                 <div className="h4 fw-400 margin-top-5">| SFC Licensed Investment Platform</div>
               </Carousel.Caption>
-              <img src={b4l} alt="pattern" className="pattern left" style={{ height: "150%" }} />
-              <img src={b4r} alt="pattern" className="pattern right" style={{ height: "150%" }} />
+              <img src={b4l} alt="pattern" className="pattern left" style={{ height: "105vh" }} />
+              <img src={b4r} alt="pattern" className="pattern right" style={{ height: "105vh" }} />
             </Carousel.Item>
             <Carousel.Item>
               <div className="banner-background" style={{ backgroundImage: `url(${banner5})` }} />
@@ -70,8 +70,8 @@ export default class Home extends Component {
                 <div className="h2 margin-0">BUILD A DIVERSIFED <br /> STARTUP PORTFOLIO</div>
                 <div className="h4 fw-400 margin-top-5">| SFC Licensed Investment Platform</div>
               </Carousel.Caption>
-              <img src={b5l} alt="pattern" className="pattern left" style={{ height: "135%" }} />
-              <img src={b5r} alt="pattern" className="pattern right" style={{ height: "135%" }} />
+              <img src={b5l} alt="pattern" className="pattern left" style={{ height: "105vh" }} />
+              <img src={b5r} alt="pattern" className="pattern right" style={{ height: "105vh" }} />
             </Carousel.Item>
           </Carousel>
           <a className="btn btn-primary btn-lg rounded-2 o-90 start">START INVESTING</a>
