@@ -43,6 +43,7 @@ export const updateMyProfile = (values, cb) => {
         dob: _.get(values, 'dob', null),
         national_id: _.get(values, 'national_id', null),
         address: _.get(values, 'address', null),
+        country_of_residence: _.get(values, 'country_of_residence', null),
         nationality: _.get(values, 'nationality', null),
         bio: _.get(values, 'bio', null),
         avatar: _.get(values, 'avatar[0]', null),
