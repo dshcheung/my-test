@@ -33,8 +33,6 @@ export default class ProfileInvestorUpdateForm extends Component {
 
     const residency = _.get(values, 'country_of_residence')
 
-    console.log(residency)
-
     return (
       <div id="forms-auth-signup-investor-create" className={optClass}>
         <h1 className="form-title fw-500">Join us as an investor</h1>

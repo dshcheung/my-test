@@ -74,7 +74,7 @@ export const updatePassword = (values, cb) => {
     url: genApiUrl(apiMyProfile()),
     data: getFormData({
       password: _.get(values, 'password', null),
-      password_confirmation: _.get(values, 'passwordConfirmation', null)
+      password_confirmation: _.get(values, 'password_confirmation', null)
     }, 'user')
   })
 

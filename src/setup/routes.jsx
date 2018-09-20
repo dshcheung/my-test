@@ -17,6 +17,8 @@ import VerifyContainer from '../components/_pages/verify/index'
 
 import MyWrapperContainer from '../components/_pages/my/wrapper'
 
+import MySettingsContainer from '../components/_pages/my/settings'
+
 import MyCampaignsIndexContainer from '../components/_pages/my/campaigns/index'
 import MyCampaignsNewContainer from '../components/_pages/my/campaigns/new'
 
@@ -57,6 +59,8 @@ export default (
     <Route path="verify" component={VerifyContainer} />
 
     <Route path="my" component={MyWrapperContainer}>
+      <Route path="settings" component={MySettingsContainer} />
+
       <Route path="campaigns" roleAccess="StartupUser">
         <IndexRoute component={MyCampaignsIndexContainer} />
         <Route path="new" component={MyCampaignsNewContainer} />

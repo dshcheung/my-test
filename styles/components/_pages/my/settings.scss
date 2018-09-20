@@ -1,0 +1,53 @@
+#page-my-settings {
+  padding: 20px;
+  min-height: $min-body-height;
+  position: relative;
+
+  .sidebar {
+    position: absolute;
+    width: 150px;
+    min-height: calc(100% - 40px);
+
+    ul {
+      padding: 0;
+      margin: 0;
+      li {
+        list-style: none;
+        padding: 10px 0;
+        > a {
+          display: block;
+          border-right: 5px solid transparent;
+          &:hover {
+            text-decoration: none;
+            color: #283A88;
+            font-weight: bold;
+            border-right-color: #283A88;
+          }
+        }
+        &.selected {
+          > a {
+            color: #283A88;
+            font-weight: bold;
+            border-right-color: #283A88;
+          }
+        }
+      }
+    }
+  }
+
+  .content {
+    position: absolute;
+    width: calc(100% - 150px);
+    margin-left: 150px;
+    min-height: calc(100% - 40px);
+    // border-left: 1px solid black;
+
+    .tab {
+      padding: 0 15px;
+
+      .page-title {
+        margin-top: 0;
+      }
+    }
+  }
+}
