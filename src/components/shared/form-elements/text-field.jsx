@@ -11,7 +11,7 @@ export default class TextField extends Component {
         label, placeholder, hint,
         step, min, max, readOnly, overrideValue,
         frontInputGroup, backInputGroup,
-        showErrors, validationHint
+        showErrors, validationHint, newPassword
       }
     } = this.props
 
@@ -37,6 +37,7 @@ export default class TextField extends Component {
                 readOnly={readOnly}
                 {...input}
                 value={overrideValue || input.value}
+                autoComplete={newPassword ? "new-password" : undefined}
               />
               {
                 backInputGroup && <span className="input-group-addon">{backInputGroup}</span>
@@ -53,6 +54,7 @@ export default class TextField extends Component {
               readOnly={readOnly}
               {...input}
               value={overrideValue || input.value}
+              autoComplete={newPassword ? "new-password" : undefined}
             />
           )
         }

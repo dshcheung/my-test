@@ -37,6 +37,7 @@ export default class ResetPassword extends Component {
           <AuthResetPasswordForm
             optClass="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4"
             onSubmit={this.resetPassword}
+            initialValues={{ resetToken: this.props.router.location.query.code }}
             submitInProcess={this.props.resetPasswordInProcess}
           />
         </div>

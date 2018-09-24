@@ -41,7 +41,8 @@ export default class AuthResetPasswordForm extends Component {
             component={TextField}
             opts={{
               type: "password",
-              label: "Password"
+              label: "Password",
+              newPassword: true
             }}
           />
 
