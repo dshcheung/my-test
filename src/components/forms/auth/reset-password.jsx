@@ -28,7 +28,7 @@ export default class AuthResetPasswordForm extends Component {
 
         <form onSubmit={handleSubmit}>
           <Field
-            name="resetToken"
+            name="reset_token"
             component={TextField}
             opts={{
               type: "text",

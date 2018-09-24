@@ -95,7 +95,7 @@ export const resetPassword = (values) => {
     method: "put",
     url: genApiUrl(apiRequestResendPassword()),
     data: getFormData({
-      reset_token: _.get(values, 'resetToken', null),
+      reset_token: _.get(values, 'reset_token', null),
       password: _.get(values, 'password', null)
     }, 'user')
   })
