@@ -241,3 +241,7 @@ export const apiMyVerificationsResend = () => {
 export const apiRequestResendPassword = () => {
   return `${apiMyProfile()}/reset_password`
 }
+
+export const apiSignoutAll = () => {
+  return `${apiMyProfile()}/signout_all`
+}

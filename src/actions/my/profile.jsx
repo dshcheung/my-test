@@ -3,7 +3,7 @@ import { push } from 'react-router-redux'
 import { genApiUrl, genAxios } from '../../services/api-request'
 import { getFormData } from '../../services/get-form-data'
 import {
-  apiMyProfile, apiRequestResendPassword
+  apiMyProfile, apiRequestResendPassword, apiSignoutAll
 } from '../../services/api-path'
 import { notySuccess, handleFormErrors } from '../../services/noty'
 
@@ -115,6 +115,22 @@ export const resetPassword = (values) => {
     },
     errorCB: (dispatch, data) => {
       handleFormErrors(data)
+    }
+  }
+}
+
+export const SIGNOUT_ALL = "SIGNOUT_ALL"
+export const signoutAll = () => {
+  const request = genAxios({
+    method: "delete",
+    url: genApiUrl(apiSignoutAll())
+  })
+
+  return {
+    type: SIGNOUT_ALL,
+    request,
+    successCB: () => {
+      notySuccess("Successfully Signout All Devices")
     }
   }
 }

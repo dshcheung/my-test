@@ -6,19 +6,22 @@ import { Link } from 'react-router'
 
 import {
   updatePassword, UPDATE_PASSWORD,
-  updateMyProfile, UPDATE_MY_PROFILE
+  updateMyProfile, UPDATE_MY_PROFILE,
+  signoutAll, SIGNOUT_ALL
 } from '../../../actions/my/profile'
 import { uMyPreferences } from '../../../actions/my/preferences'
 
 import MyProfileUpdatePasswordForm from '../../forms/profile/update-password'
 import MyProfileNameForm from '../../forms/profile/settings-name'
+import MyProfileAddressForm from '../../forms/profile/settings-address'
 import MyProfileContactForm from '../../forms/profile/settings-contact'
 
 const mapStateToProps = (state) => {
   return {
     currentUser: _.get(state, 'session'),
     updatePasswordInProcess: _.get(state.requestStatus, UPDATE_PASSWORD),
-    updateMyProfileInProcess: _.get(state.requestStatus, UPDATE_MY_PROFILE)
+    updateMyProfileInProcess: _.get(state.requestStatus, UPDATE_MY_PROFILE),
+    signoutAllInProcess: _.get(state.requestStatus, SIGNOUT_ALL)
   }
 }
 
@@ -26,7 +29,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     updatePassword: bindActionCreators(updatePassword, dispatch),
     updateMyProfile: bindActionCreators(updateMyProfile, dispatch),
-    uMyPreferences: bindActionCreators(uMyPreferences, dispatch)
+    uMyPreferences: bindActionCreators(uMyPreferences, dispatch),
+    signoutAll: bindActionCreators(signoutAll, dispatch)
   }
 }
 
@@ -44,6 +48,7 @@ export default class Settings extends Component {
     this.changeEdit = this.changeEdit.bind(this)
     this.updateMyProfile = this.updateMyProfile.bind(this)
     this.updatePassword = this.updatePassword.bind(this)
+    this.signoutAll = this.signoutAll.bind(this)
   }
 
   componentWillMount() {
@@ -73,6 +78,10 @@ export default class Settings extends Component {
     })
   }
 
+  signoutAll() {
+    this.props.signoutAll()
+  }
+
   render() {
     const { currentUser } = this.props
 
@@ -82,7 +91,7 @@ export default class Settings extends Component {
 
     const kyc_aml_approved = _.get(currentUser, 'investor.kyc_aml_approved', false)
 
-    const { first_name, last_name } = currentUser.profile
+    const { first_name, last_name, country_of_residence, address } = currentUser.profile
 
     const { notify, locale, show_email, show_mobile } = currentUser.preferences
 
@@ -179,6 +188,30 @@ export default class Settings extends Component {
                     )
                   }
                 </Panel>
+                <Panel header="Address">
+                  {
+                    this.state.editingForm !== "address" && (
+                      <div>
+                        <button
+                          className="btn pull-right"
+                          onClick={() => { this.changeEdit("address") }}
+                        >Edit</button>
+                        <div>Country Of Residency - { country_of_residence || "Null" }</div>
+                        <div>Address - { address || "Null" }</div>
+                      </div>
+                    )
+                  }
+                  {
+                    this.state.editingForm === "address" && (
+                      <MyProfileAddressForm
+                        optclass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
+                        onSubmit={this.updateMyProfile}
+                        submitInProcess={this.props.updateMyProfileInProcess}
+                        initialValues={{ address, country_of_residence }}
+                      />
+                    )
+                  }
+                </Panel>
                 {
                   isInvestor && (
                     <Panel header="KYC & AML Status">
@@ -244,6 +277,10 @@ export default class Settings extends Component {
                       className={`btn ${notify === "sms" ? "btn-primary" : "btn-default"}`}
                       onClick={() => { this.props.uMyPreferences({ notify: "sms" }) }}
                     >SMS</button>
+                    <button
+                      className={`btn ${notify === "none" ? "btn-primary" : "btn-default"}`}
+                      onClick={() => { this.props.uMyPreferences({ notify: "none" }) }}
+                    >None</button>
                   </div>
                 </Panel>
               </div>
@@ -276,6 +313,13 @@ export default class Settings extends Component {
                     onSubmit={this.updatePassword}
                     submitInProcess={this.props.updatePasswordInProcess}
                   />
+                </Panel>
+
+                <Panel header="Signout All Devices">
+                  <button
+                    className="btn btn-primary"
+                    onClick={this.signoutAll}
+                  >Signout All</button>
                 </Panel>
               </div>
             )
