@@ -6,7 +6,8 @@ export default ({ optClass, absolute }) => {
   return (
     <div className={`shared-others-loading-spinner ${optClass} ${absoluteClass}`}>
       <div className="title text-center margin-bottom-25">SFC Licensed Investment Platform</div>
-      <div className="ahub-loading" />
+
+      <i className="ahub-4x ahub-hourglass text-primary" />
     </div>
   )
 }
