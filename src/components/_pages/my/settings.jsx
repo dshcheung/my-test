@@ -12,7 +12,8 @@ import {
 import { uMyPreferences } from '../../../actions/my/preferences'
 import {
   G_MY_INVESTOR_BANK_DETAIL, gMyInvestorBankDetail,
-  U_MY_INVESTOR_BANK_DETAIL, uMyInvestorBankDetail
+  U_MY_INVESTOR_BANK_DETAIL, uMyInvestorBankDetail,
+  resetMyInvestorBankDetail
 } from '../../../actions/my/investor-bank-details'
 
 import MyProfileUpdatePasswordForm from '../../forms/profile/update-password'
@@ -41,7 +42,8 @@ const mapDispatchToProps = (dispatch) => {
     uMyPreferences: bindActionCreators(uMyPreferences, dispatch),
     signoutAll: bindActionCreators(signoutAll, dispatch),
     gMyInvestorBankDetail: bindActionCreators(gMyInvestorBankDetail, dispatch),
-    uMyInvestorBankDetail: bindActionCreators(uMyInvestorBankDetail, dispatch)
+    uMyInvestorBankDetail: bindActionCreators(uMyInvestorBankDetail, dispatch),
+    resetMyInvestorBankDetail: bindActionCreators(resetMyInvestorBankDetail, dispatch)
   }
 }
 
@@ -64,9 +66,9 @@ export default class Settings extends Component {
   }
 
   componentWillMount() {
-    const { location } = this.props
+    const { location, currentUser } = this.props
     if (location.hash) { this.setState({ tab: location.hash.replace("#", '') }) }
-    this.props.gMyInvestorBankDetail()
+    if (currentUser.role === "Investor") this.props.gMyInvestorBankDetail()
   }
 
   componentWillUnmount() {

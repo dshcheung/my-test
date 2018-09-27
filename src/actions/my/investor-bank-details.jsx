@@ -55,7 +55,6 @@ export const uMyInvestorBankDetail = (values, cb) => {
 }
 
 const generateParams = (values) => {
-  console.log(values)
   const params = {
     name: _.get(values, "name", null),
     account_number: _.get(values, "account_number", null),
