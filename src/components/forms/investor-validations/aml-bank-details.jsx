@@ -29,16 +29,20 @@ const mapStateToProps = (state) => {
 })
 export default class InvestorAMLBankDetailsForm extends Component {
   render() {
-    const { handleSubmit, submitInProcess, optClass, pristine } = this.props
+    const { handleSubmit, submitInProcess, optClass, pristine, noHint } = this.props
 
     const hint = "Please provide details for the bank account from which you will make your investments into AngelHub campaigns. Please note that the name on the account much match your identity document and the bank should be an HKMA or equivalent licensed institution. Be aware if the details of the account from which you are making your investment do not match the identity documents you provided to us we will not be able to accept your investment."
 
     return (
       <div className={optClass}>
         <form className="clearfix" onSubmit={handleSubmit}>
-          <div className="margin-bottom-20">
-            <span className="help-block hint">{hint}</span>
-          </div>
+          {
+            !noHint && (
+              <div className="margin-bottom-20">
+                <span className="help-block hint">{hint}</span>
+              </div>
+            )
+          }
 
           <div className="row">
             <div className="col-xs-12 col-sm-6">

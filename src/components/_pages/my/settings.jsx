@@ -10,18 +10,27 @@ import {
   signoutAll, SIGNOUT_ALL
 } from '../../../actions/my/profile'
 import { uMyPreferences } from '../../../actions/my/preferences'
+import {
+  G_MY_INVESTOR_BANK_DETAIL, gMyInvestorBankDetail,
+  U_MY_INVESTOR_BANK_DETAIL, uMyInvestorBankDetail
+} from '../../../actions/my/investor-bank-details'
 
 import MyProfileUpdatePasswordForm from '../../forms/profile/update-password'
 import MyProfileNameForm from '../../forms/profile/settings-name'
 import MyProfileAddressForm from '../../forms/profile/settings-address'
 import MyProfileContactForm from '../../forms/profile/settings-contact'
 
+import InvestorAMLBankDetailsForm from '../../forms/investor-validations/aml-bank-details'
+
 const mapStateToProps = (state) => {
   return {
     currentUser: _.get(state, 'session'),
     updatePasswordInProcess: _.get(state.requestStatus, UPDATE_PASSWORD),
     updateMyProfileInProcess: _.get(state.requestStatus, UPDATE_MY_PROFILE),
-    signoutAllInProcess: _.get(state.requestStatus, SIGNOUT_ALL)
+    signoutAllInProcess: _.get(state.requestStatus, SIGNOUT_ALL),
+    myInvestorBankDetail: _.get(state, 'myInvestorBankDetail'),
+    gMyInvestorBankDetailInProcess: _.get(state.requestStatus, G_MY_INVESTOR_BANK_DETAIL),
+    uMyInvestorBankDetailInProcess: _.get(state.requestStatus, U_MY_INVESTOR_BANK_DETAIL)
   }
 }
 
@@ -30,7 +39,9 @@ const mapDispatchToProps = (dispatch) => {
     updatePassword: bindActionCreators(updatePassword, dispatch),
     updateMyProfile: bindActionCreators(updateMyProfile, dispatch),
     uMyPreferences: bindActionCreators(uMyPreferences, dispatch),
-    signoutAll: bindActionCreators(signoutAll, dispatch)
+    signoutAll: bindActionCreators(signoutAll, dispatch),
+    gMyInvestorBankDetail: bindActionCreators(gMyInvestorBankDetail, dispatch),
+    uMyInvestorBankDetail: bindActionCreators(uMyInvestorBankDetail, dispatch)
   }
 }
 
@@ -49,11 +60,17 @@ export default class Settings extends Component {
     this.updateMyProfile = this.updateMyProfile.bind(this)
     this.updatePassword = this.updatePassword.bind(this)
     this.signoutAll = this.signoutAll.bind(this)
+    this.uMyInvestorBankDetail = this.uMyInvestorBankDetail.bind(this)
   }
 
   componentWillMount() {
     const { location } = this.props
     if (location.hash) { this.setState({ tab: location.hash.replace("#", '') }) }
+    this.props.gMyInvestorBankDetail()
+  }
+
+  componentWillUnmount() {
+    this.props.resetMyInvestorBankDetail()
   }
 
   change(tab) {
@@ -82,10 +99,16 @@ export default class Settings extends Component {
     this.props.signoutAll()
   }
 
-  render() {
-    const { currentUser } = this.props
+  uMyInvestorBankDetail(values) {
+    this.props.uMyInvestorBankDetail(values, () => {
+      this.changeEdit(null)
+    })
+  }
 
-    const { email, mobile, verified_email, verified_mobile } = currentUser
+  render() {
+    const { currentUser, myInvestorBankDetail } = this.props
+
+    const { email, mobile, verified_email, verified_mobile, role } = currentUser
 
     const isInvestor = currentUser.is_investor
 
@@ -113,6 +136,9 @@ export default class Settings extends Component {
             </li>
             <li className={this.state.tab === "security" ? "selected" : ""}>
               <Link onClick={() => { this.change("security") }}>Security</Link>
+            </li>
+            <li className={this.state.tab === "bank_details" ? "selected" : ""}>
+              <Link onClick={() => { this.change("bank_details") }}>Bank Details</Link>
             </li>
           </ul>
         </div>
@@ -320,6 +346,39 @@ export default class Settings extends Component {
                     className="btn btn-primary"
                     onClick={this.signoutAll}
                   >Signout All</button>
+                </Panel>
+              </div>
+            )
+          }
+          {
+            this.state.tab === "bank_details" && role === "Investor" && (
+              <div className="tab bank-details">
+                <Panel header="Update Bank Details">
+                  {
+                    this.state.editingForm !== "bank" && (
+                      <div>
+                        <button
+                          className="btn pull-right"
+                          onClick={() => { this.changeEdit("bank") }}
+                        >Edit</button>
+                        <div>Name - {_.get(myInvestorBankDetail, 'name', null)}</div>
+                        <div className="margin-top-15">Account Number - {_.get(myInvestorBankDetail, 'account_number', null)}</div>
+                        <div className="margin-top-15">Address - {_.get(myInvestorBankDetail, 'address', null)}</div>
+                        <div className="margin-top-15">Country - {_.get(myInvestorBankDetail, 'country', null)}</div>
+                      </div>
+                    )
+                  }
+                  {
+                    this.state.editingForm === "bank" && (
+                      <InvestorAMLBankDetailsForm
+                        optclass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
+                        onSubmit={this.uMyInvestorBankDetail}
+                        submitInProcess={this.props.uMyInvestorBankDetailInProcess}
+                        initialValues={myInvestorBankDetail}
+                        noHint
+                      />
+                    )
+                  }
                 </Panel>
               </div>
             )
