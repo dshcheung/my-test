@@ -9,6 +9,8 @@ import { apiAuthenticatesIndex, apiRequestForgetPassword } from '../services/api
 import { notySuccess, handleFormErrors } from '../services/noty'
 
 import { setRedirection } from './system/redirection'
+import { setSecret } from './system/secret'
+
 
 export const SET_CURRENT_USER = "SET_CURRENT_USER"
 export const setCurrentUser = (data) => {
@@ -42,6 +44,7 @@ export const RESET_ALL_STATE = "RESET_ALL_STATE"
 export const resetAllState = (dispatch) => {
   Cookies.remove(AUTH_TOKEN)
   dispatch(setRedirection())
+  dispatch(setSecret({ startupOnly: false }))
   dispatch(push("/"))
 
   return {
