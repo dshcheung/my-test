@@ -110,8 +110,9 @@ export default class Home extends Component {
         </section>
 
         <section className="benefits clearfix text-center px-top-30 px-bottom-30">
-          <div className="hidden-xs hidden-sm col-md-1">&nbsp;</div>
-          <div className="col-xs-12 col-md-11 box-shadow px-0">
+          <div className="col-xs-12 col-md-11 background left" />
+          <div className="hidden-xs hidden-sm col-md-1 background right" />
+          <div className="col-xs-12 col-md-11 box-shadow px-0 col-md-offset-1">
             <div className="col-xs-12 col-md-11 px-20">
               <div className="row title">
                 <div className="h4 text-green">BENEFITS</div>
@@ -146,7 +147,10 @@ export default class Home extends Component {
                 </ul>
               </div>
             </div>
-            <SharedOthersSideTitle title="SFC Licensed Investment Platform" optClass="hidden-xs hidden-sm col-md-1 color-primary bg-white side-text-small px-20" />
+            <SharedOthersSideTitle
+              title="SFC Licensed Investment Platform"
+              optClass="hidden-xs hidden-sm col-md-1 color-primary bg-white side-text-small px-20"
+            />
           </div>
         </section>
 
@@ -205,8 +209,13 @@ export default class Home extends Component {
         </section>
 
         <hr className="w-50" />
-        <section className="investment-committee clearfix text-center">
-          <div className="col-xs-12">
+
+        <section className="investment-committee-and-partners clearfix">
+          <div className="background">
+            <div className="top" />
+            <div className="bottom" />
+          </div>
+          <div className="investment-committee text-center col-xs-12">
             <div className="row title">
               <div className="h4 text-black">INVESTMENT COMMITTEE</div>
 
@@ -248,10 +257,8 @@ export default class Home extends Component {
               </ul>
             </div>
           </div>
-        </section>
 
-        <section className="partners clearfix text-center">
-          <div className="col-xs-12 col-md-8 col-md-offset-2">
+          <div className="partners text-center col-xs-12 col-md-8 col-md-offset-2">
             <div className="row title">
               <div className="h4 text-primary">OUR PARTNERS</div>
             </div>
@@ -276,8 +283,11 @@ export default class Home extends Component {
         </section>
 
         <section className="philosophy clearfix text-center">
-          <SharedOthersSideTitle title="SFC Licensed Investment Platform" optClass="hidden-xs hidden-sm col-md-1 color-primary bg-white side-text-small" />
-          <div className="col-xs-12 col-md-6 col-md-offset-2">
+          <SharedOthersSideTitle
+            title="SFC Licensed Investment Platform"
+            optClass="hidden-xs hidden-sm col-md-1 color-primary bg-white side-text-small right"
+          />
+          <div className="col-xs-12 col-md-6 col-md-offset-3 col-lg-offset-3">
             <div className="row title">
               <div className="h4 text-primary">OUR PHILOSOPHY</div>
             </div>
