@@ -44,7 +44,7 @@ export const RESET_ALL_STATE = "RESET_ALL_STATE"
 export const resetAllState = (dispatch) => {
   Cookies.remove(AUTH_TOKEN)
   dispatch(setRedirection())
-  dispatch(setSecret({ startupOnly: false }))
+  dispatch(setSecret({ startupOnly: false, hasSecret: localStorage.getItem("hasSecret") === "true" }))
   dispatch(push("/"))
 
   return {
