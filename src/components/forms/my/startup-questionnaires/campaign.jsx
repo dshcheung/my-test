@@ -87,7 +87,7 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
     const campaignType = _.get(this.props.values, 'campaign_type', '')
     const raised = _.get(this.props.values, 'raised.amount', '') || 0
     const preMoney = _.get(this.props.values, 'pre_money_valuation.amount', '') || 0
-    const equityPercentage = (preMoney / raised) * 100 || 0
+    const equityPercentage = ((raised / (preMoney + raised)) * 100) || 0
 
     return (
       <div className={optClass}>
@@ -139,7 +139,7 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
                     label: "4. Equity Percentage (Calculated Automatically)",
                     backInputGroup: "%",
                     readOnly: true,
-                    overrideValue: equityPercentage.toFixed(1)
+                    overrideValue: equityPercentage.toFixed(2)
                   }}
                 />
               </div>
@@ -158,8 +158,7 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
                     label: "3. Discount rate",
                     backInputGroup: "%",
                     min: 0,
-                    max: 100,
-                    step: 1
+                    max: 100
                   }}
                 />
 
@@ -172,8 +171,7 @@ export default class MyStartupQuestionnairesCampaignForm extends Component {
                     label: "4. Interest rate",
                     backInputGroup: "%",
                     min: 0,
-                    max: 100,
-                    step: 1
+                    max: 100
                   }}
                 />
 

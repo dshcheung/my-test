@@ -27,14 +27,14 @@ export default class CurrencyField extends Component {
   }
 
   onChange(e) {
-    const amount = e.target.value.replace(/[\D]+/g, "")
+    const amount = parseInt(e.target.value.replace(/[\D]+/g, ""), 10)
 
     this.setState({ amount })
     this.props.input.onChange({ ...this.state, amount })
   }
 
   onBlur(e) {
-    const amount = e.target.value.replace(/[\D]+/g, "")
+    const amount = parseInt(e.target.value.replace(/[\D]+/g, ""), 10)
 
     this.setState({ amount })
     this.props.input.onChange({ ...this.state, amount })
