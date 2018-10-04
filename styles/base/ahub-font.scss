@@ -69,6 +69,9 @@ $ahub-whitepaper: "\e91e";
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  &.ahub-sm {
+    font-size: 0.75em;
+  }
   &.ahub-2x {
     font-size: 2em;
   }

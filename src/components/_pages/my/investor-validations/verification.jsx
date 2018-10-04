@@ -140,7 +140,7 @@ export default class MyInvestorValidationsVerification extends Component {
 
   failureRetryRender() {
     return (
-      <div className="col-xs-12 col-sm-6 box-shadow">
+      <div className="col-xs-12 col-sm-6 box-shadow px-50">
         <div className="status-icon">
           <i className="ahub-lock ahub-6x text-dark" />
         </div>
@@ -162,7 +162,7 @@ export default class MyInvestorValidationsVerification extends Component {
 
   successContinueRender() {
     return (
-      <div className="col-xs-12 col-sm-6 box-shadow">
+      <div className="col-xs-12 col-sm-6 box-shadow px-50">
         <div className="status-icon margin-bottom-40">
           <i className="ahub-unlock ahub-5x text-gold" />
         </div>
