@@ -24,94 +24,96 @@ export default class Home extends Component {
     const b5l = "https://image.ibb.co/n69Tme/slide5_pattern_Left.png"
     const b5r = "https://image.ibb.co/b9qesK/slide5_pattern_Right.png"
 
-    const people = [{
-      name: "Ada Yip",
-      image: "https://image.ibb.co/kL9mde/AdaYip.png",
-      title: "Director at WYNG43 Social Investment",
-      link: "https://www.linkedin.com/in/ada-yip-hongkong",
-      bio: [
-        "Ada is a director at WYNG43 Social Investment, which invests financial and human capital in innovative social start-ups.Ada Yip is also the CEO at Urban Spring, a purpose-driven start-up with a mission to reduce the consumption of single-use plastic in Hong Kong by building a water refill network.",
-        "Previously, she was the Program Director of the i2i (incubation to investment) programme at SOW Asia, a Hong Kong-based impact investor and accelerator. Before joining the impact investing industry, Ada worked at a number of financial institutions in Toronto, Hong Kong and Tokyo.",
-        "Ada is on the board of the Hong Kong Institute of Social Impact Analysts, Teach4HK and Education For Good. She is a member of the Advisory Committee at the Enhancing Self-Reliance Through District Partnership Programme under the Home Affairs Department of the Hong Kong Government.",
-        "Ada earned a BSc in Economics from the London School of Economics."
-      ]
-    }, {
-      name: "Alice Lopin",
-      image: "https://image.ibb.co/i22iPK/Alice_Lopin.png",
-      title: "Retail Store Leader @ Apple",
-      link: "https://www.linkedin.com/in/alice-lopin-7820a77/?originalSubdomain=hk",
-      bio: [
-        "Alice Lopin is a global leader who has lived and worked in 8 countries including the USA, Japan, the UK, China, Singapore and France.",
-        "With nearly twenty years of experience in Asia, Alice is an expert of the Chinese culture and Asian markets. From 2006, she supported the international growth of Chinese jeweller Qeelin, until it’s acquisition in 2012 by Kering-Gucci group, making it the very first Chinese luxury brand ever to be aquired by an international luxury group.",
-        "Alice has held various leadership positions in the luxury industry, with a track record in opening new markets, bringing innovation to market, and putting together highly diverse teams.",
-        "She then took a turn into tech and joined Apple, opening multiple Apple Stores in Asia. Alice leads teams of several hundreds to engage customers to achieve ownership, learn new skills, get technical support, and identify business solutions for entrepreneurs and businesses seeking innovation. She builds these lines of business by selecting top talent for Apple, and supporting her teams to achieve their fullest potential.",
-        "Passionate Community leader, Alice was a founding member of the Ladies of Luxury network in Hong Kong, a think tank focused on Branding, Innovation, Creativity and Design. Alice has been a Community Engagement Lead for Apple in Hong Kong, and is currently co-chair of Women@Apple in Singapore.",
-        "Alice holds a Masters in Business from HEC Paris as well as a Masters in Corporate Law from Paris II-Assas Law school. She graduated in 2004 as an expert gemologist from the GIA. Alice was appointed in 2013 French Foreign Trade Advisor (CCE). The same year, Alice was nominated for the HEC Trajectories (under 40) Award, and received the Rising Talent Award from the Women’s Forum in 2014."
-      ]
-    }, {
-      name: "Bay McLaughlin",
-      image: "https://image.ibb.co/e64Kye/Bay_Mc_Laughlin.png",
-      title: "Co-Founder of Brinc",
-      link: "https://www.linkedin.com/in/betabay/",
-      bio: [
-        "Bay is a Co-Founder of Brinc, a global IoT accelerator, manufacturing studio, and online hardware community based in Hong Kong with offices in Shenzhen, Guangzhou, London, Barcelona, Tel Aviv and Bahrain. He currently holds equity positions in 52 companies in 20 countries, serves on the board of Soundbrenner, Silentmode and Brinc, and is a contributor for Forbes and a KOL for Huawei. He now brings his experience and operations abilities to connect the dots from Asia to Silicon Valley for IoT companies from around the world.",
-        "Over half of this time was spent at Apple as a founding team member of their global SMB channel and as the founder of their first Entrepreneurship Evangelism channel. His division at Apple has grossed more than $350M USD in sales and is still the best team globally in Apple SMB's division.",
-        "As a regular mentor for Chinaccelerator, the Thiel Foundation, and other startup ecosystems in Asia, Bay is passionate about investing in founders with a global vision."
-      ]
-    }, {
-      name: "Bénédicte Nolens",
-      image: "https://image.ibb.co/hihTrz/Benedicte_Nolens.png",
-      title: "Financial Services; Fintech",
-      link: "https://www.linkedin.com/in/benedicte-n-nolens-77529747/",
-      bio: [
-        "Bénédicte is a former Head of Risk and Strategy of Hong Kong of the Hong Kong Securities and Futures Commission. Currently, Bénédicte is the Head of Regulatory Affairs for Asia and Europe for Circle, a Board Member of the Hong Kong Fintech Association and a Member of the Global Digital Finance Advisory Council.",
-        "From 2007 to 2012 she was a Managing Director at Credit Suisse before which she was an Executive Director at Goldman Sachs. Bénédicte holds an LLM and MBA from the University of Chicago.",
-        "In 2016 she was a recipient of the China Daily Asian Women Leadership Awards for people who are dedicated to entrepreneurialism, innovation and change."
-      ]
-    }, {
-      name: "Cesar Jung-Harada",
-      image: "https://image.ibb.co/geuDPK/Cesar_Harada.png",
-      title: "MakerBay and Scoutbots Director",
-      link: "https://www.linkedin.com/in/cesarharada/",
-      bio: [
-        "Cesar Jung-Harada, CEO of MakerBay (Hong Kong MakerSpace for Social and Environmental Impact), Scoutbots and Protei INC (Ocean Robotics), is a French-Japanese environmentalist, inventor and entrepreneur based in Hong Kong.",
-        "He is a former MIT project leader, TED Senior Fellow, GOOD 100, IBM Figure of Progress, Unreasonable at Sea Fellow, Shuttleworth foundation and Ocean Exchange grantee. His company Scoutbots was nominated StartmeUp HK Grand Award winner and listed as China 10th most innovative company by FastCo (2015).",
-        "Cesar often works as a professional speaker, panelist, educator, mentor, judge, designer, R&D. His TED Talk 'How I Teach Kids to Love Science' has been translated into 36 languages and viewed more than 1.5 million times. He is passionate about “Open Hardware for the Environment”, 'Citizen Science' with a strong focus on ocean communities & technologies.",
-        "He used to teach Masters of “Design and Environment” at Goldsmiths University and 'Cultural Entrepreneurship' at HKU (Hong Kong). Cesar won the Ars Electronica Golden Nica [NEXT IDEA] with his Master graduation project from the Royal College of Arts, London. His works are part of the V&A (Victoria and Albert Museum, London) and CNAM (Musée des Arts et Metiers, Paris) collections.",
-        "Cesar has lectured and mentored in many universities including MIT, Royal College of Arts, Central Saint Martins, Ecole Nationale Supérieure d'architecture de Versailles, Tokyo University (Japan), CCCB (Spain), Strathmore University (Kenya), Oslo School of Architecture and Design (Norway) and HKUST."
-      ]
-    }, {
-      name: "Itai Damti",
-      image: "https://image.ibb.co/bwQ9ye/Itai_Damti.png",
-      title: "Fintech EIR at 500 Startups | CEO at Antifragile",
-      link: "https://www.linkedin.com/in/itaidamti/",
-      bio: [
-        "Itai Damti is Entrepreneur in Residence (Fintech) at 500 Startups, a global VC and seed accelerator in San Francisco. He is also the founder and CEO of Antifragile, a Fintech consulting firm in Hong Kong.",
-        "Previously, Itai co-founded and spent 10 years with Leverate (B2B, 160 employees, 6 offices)- an industry leader in tech for online brokers, with over 100b USD in monthly trading volume. He served 3 years as the company’s CEO Asia Pacific - taking its strategy, growth and operations into 12 countries in the region, 3 years as its first VP Products - overseeing 9 PM’s, 13 products and 4 years leading its engineering teams in Israel.",
-        "Itai has a strong passion for building businesses around complex problems. His current interests include cryptocurrencies, data science, machine learning and hardware. He invests in startups and actively mentors in leading accelerators worldwide, including Barclays Techstars (Tel Aviv) and HAX (China).",
-        "Before starting Leverate, Itai graduated with excellence from Basmach- the IDF’s Academy for Computer Science and Cyber Defense."
-      ]
-    }, {
-      name: "Maaike Steinebach",
-      image: "https://image.ibb.co/eDQbde/Maaike_Steinebach.png",
-      title: "Banker | Founding Boardmember HK Fintech Association | Co-Founder Women in Tech HK | Boardmember | Community Builder | Techaficionado | Start Up Mentor & Advisor",
-      link: "https://www.linkedin.com/in/maaike-steinebach-8a3a304/",
-      bio: [
-        "Maaike has been in the banking industry for 20+ years. Most recently she was Chief Executive of Commonwealth Bank of Australia where she managed Institutional Banking & Markets and provided oversight for the Private Bank, supported the bank’s business development in China and was instrumental in setting up the first overseas Innovation Lab for CBA in Hong Kong for which she was the executive sponsor.",
-        "She has also worked across multiple jurisdictions in Europe and Asia and has held senior positions in financial institutions including CBA, Fortis Bank and ABN AMRO.",
-        "She is passionate about technology and inclusive leadership. She is a board director for the Australian Chamber of Commerce for Hong Kong and Macau, where she sits on the Women in Business Committee. She started work on the FinTech Association of Hong Kong in 2016 which was officially launched in June 2017. She is also one of the conveners of Women in Tech Hong Kong and Women Chief Executives, a group of 16 female CEO of Financial Institutions in Hong Kong."
-      ]
-    }, {
-      name: "Olivier Motte",
-      image: "https://image.ibb.co/dscBBz/Olivier_Motte.png",
-      title: "Sole director, Phileuropa Limited (Hong Kong)",
-      link: "https://www.linkedin.com/in/olivier-motte-8967658/",
-      bio: [
-        "Oliver is a former Asia-Pacific Head of Conduct Compliance at HSBC. Since 2005, he has specialized in French, European and Asian compliance, government and public affairs (Credit Agricole Corporate and Investment Bank and HSBC APAC), in particular conduct compliance and FinTech.",
-        "With particular participation in the elaboration of new regulations, linkage with concerned business lines and support functions, representation of the bank in various trade associations while being responsible  for the implementation of relevant regulation.",
-        "Currently a retired international banker with 37 years of experience, he is a the consultant and sole Director of Phileuropa Ltd (HK)."
-      ]
-    }]
+    const people = [
+      {
+        name: "Ada Yip",
+        image: "https://image.ibb.co/kL9mde/AdaYip.png",
+        title: "Director at WYNG43 Social Investment",
+        link: "https://www.linkedin.com/in/ada-yip-hongkong",
+        bio: [
+          "Ada is a director at WYNG43 Social Investment, which invests financial and human capital in innovative social start-ups.Ada Yip is also the CEO at Urban Spring, a purpose-driven start-up with a mission to reduce the consumption of single-use plastic in Hong Kong by building a water refill network.",
+          "Previously, she was the Program Director of the i2i (incubation to investment) programme at SOW Asia, a Hong Kong-based impact investor and accelerator. Before joining the impact investing industry, Ada worked at a number of financial institutions in Toronto, Hong Kong and Tokyo.",
+          "Ada is on the board of the Hong Kong Institute of Social Impact Analysts, Teach4HK and Education For Good. She is a member of the Advisory Committee at the Enhancing Self-Reliance Through District Partnership Programme under the Home Affairs Department of the Hong Kong Government.",
+          "Ada earned a BSc in Economics from the London School of Economics."
+        ]
+      }, {
+        name: "Alice Lopin",
+        image: "https://image.ibb.co/i22iPK/Alice_Lopin.png",
+        title: "Retail Store Leader @ Apple",
+        link: "https://www.linkedin.com/in/alice-lopin-7820a77/?originalSubdomain=hk",
+        bio: [
+          "Alice Lopin is a global leader who has lived and worked in 8 countries including the USA, Japan, the UK, China, Singapore and France.",
+          "With nearly twenty years of experience in Asia, Alice is an expert of the Chinese culture and Asian markets. From 2006, she supported the international growth of Chinese jeweller Qeelin, until it’s acquisition in 2012 by Kering-Gucci group, making it the very first Chinese luxury brand ever to be aquired by an international luxury group.",
+          "Alice has held various leadership positions in the luxury industry, with a track record in opening new markets, bringing innovation to market, and putting together highly diverse teams.",
+          "She then took a turn into tech and joined Apple, opening multiple Apple Stores in Asia. Alice leads teams of several hundreds to engage customers to achieve ownership, learn new skills, get technical support, and identify business solutions for entrepreneurs and businesses seeking innovation. She builds these lines of business by selecting top talent for Apple, and supporting her teams to achieve their fullest potential.",
+          "Passionate Community leader, Alice was a founding member of the Ladies of Luxury network in Hong Kong, a think tank focused on Branding, Innovation, Creativity and Design. Alice has been a Community Engagement Lead for Apple in Hong Kong, and is currently co-chair of Women@Apple in Singapore.",
+          "Alice holds a Masters in Business from HEC Paris as well as a Masters in Corporate Law from Paris II-Assas Law school. She graduated in 2004 as an expert gemologist from the GIA. Alice was appointed in 2013 French Foreign Trade Advisor (CCE). The same year, Alice was nominated for the HEC Trajectories (under 40) Award, and received the Rising Talent Award from the Women’s Forum in 2014."
+        ]
+      }, {
+        name: "Bay McLaughlin",
+        image: "https://image.ibb.co/e64Kye/Bay_Mc_Laughlin.png",
+        title: "Co-Founder of Brinc",
+        link: "https://www.linkedin.com/in/betabay/",
+        bio: [
+          "Bay is a Co-Founder of Brinc, a global IoT accelerator, manufacturing studio, and online hardware community based in Hong Kong with offices in Shenzhen, Guangzhou, London, Barcelona, Tel Aviv and Bahrain. He currently holds equity positions in 52 companies in 20 countries, serves on the board of Soundbrenner, Silentmode and Brinc, and is a contributor for Forbes and a KOL for Huawei. He now brings his experience and operations abilities to connect the dots from Asia to Silicon Valley for IoT companies from around the world.",
+          "Over half of this time was spent at Apple as a founding team member of their global SMB channel and as the founder of their first Entrepreneurship Evangelism channel. His division at Apple has grossed more than $350M USD in sales and is still the best team globally in Apple SMB's division.",
+          "As a regular mentor for Chinaccelerator, the Thiel Foundation, and other startup ecosystems in Asia, Bay is passionate about investing in founders with a global vision."
+        ]
+      }, {
+        name: "Bénédicte Nolens",
+        image: "https://image.ibb.co/hihTrz/Benedicte_Nolens.png",
+        title: "Financial Services; Fintech",
+        link: "https://www.linkedin.com/in/benedicte-n-nolens-77529747/",
+        bio: [
+          "Bénédicte is a former Head of Risk and Strategy of Hong Kong of the Hong Kong Securities and Futures Commission. Currently, Bénédicte is the Head of Regulatory Affairs for Asia and Europe for Circle, a Board Member of the Hong Kong Fintech Association and a Member of the Global Digital Finance Advisory Council.",
+          "From 2007 to 2012 she was a Managing Director at Credit Suisse before which she was an Executive Director at Goldman Sachs. Bénédicte holds an LLM and MBA from the University of Chicago.",
+          "In 2016 she was a recipient of the China Daily Asian Women Leadership Awards for people who are dedicated to entrepreneurialism, innovation and change."
+        ]
+      }, {
+        name: "Cesar Jung-Harada",
+        image: "https://image.ibb.co/geuDPK/Cesar_Harada.png",
+        title: "MakerBay and Scoutbots Director",
+        link: "https://www.linkedin.com/in/cesarharada/",
+        bio: [
+          "Cesar Jung-Harada, CEO of MakerBay (Hong Kong MakerSpace for Social and Environmental Impact), Scoutbots and Protei INC (Ocean Robotics), is a French-Japanese environmentalist, inventor and entrepreneur based in Hong Kong.",
+          "He is a former MIT project leader, TED Senior Fellow, GOOD 100, IBM Figure of Progress, Unreasonable at Sea Fellow, Shuttleworth foundation and Ocean Exchange grantee. His company Scoutbots was nominated StartmeUp HK Grand Award winner and listed as China 10th most innovative company by FastCo (2015).",
+          "Cesar often works as a professional speaker, panelist, educator, mentor, judge, designer, R&D. His TED Talk 'How I Teach Kids to Love Science' has been translated into 36 languages and viewed more than 1.5 million times. He is passionate about “Open Hardware for the Environment”, 'Citizen Science' with a strong focus on ocean communities & technologies.",
+          "He used to teach Masters of “Design and Environment” at Goldsmiths University and 'Cultural Entrepreneurship' at HKU (Hong Kong). Cesar won the Ars Electronica Golden Nica [NEXT IDEA] with his Master graduation project from the Royal College of Arts, London. His works are part of the V&A (Victoria and Albert Museum, London) and CNAM (Musée des Arts et Metiers, Paris) collections.",
+          "Cesar has lectured and mentored in many universities including MIT, Royal College of Arts, Central Saint Martins, Ecole Nationale Supérieure d'architecture de Versailles, Tokyo University (Japan), CCCB (Spain), Strathmore University (Kenya), Oslo School of Architecture and Design (Norway) and HKUST."
+        ]
+      }, {
+        name: "Itai Damti",
+        image: "https://image.ibb.co/bwQ9ye/Itai_Damti.png",
+        title: "Fintech EIR at 500 Startups | CEO at Antifragile",
+        link: "https://www.linkedin.com/in/itaidamti/",
+        bio: [
+          "Itai Damti is Entrepreneur in Residence (Fintech) at 500 Startups, a global VC and seed accelerator in San Francisco. He is also the founder and CEO of Antifragile, a Fintech consulting firm in Hong Kong.",
+          "Previously, Itai co-founded and spent 10 years with Leverate (B2B, 160 employees, 6 offices)- an industry leader in tech for online brokers, with over 100b USD in monthly trading volume. He served 3 years as the company’s CEO Asia Pacific - taking its strategy, growth and operations into 12 countries in the region, 3 years as its first VP Products - overseeing 9 PM’s, 13 products and 4 years leading its engineering teams in Israel.",
+          "Itai has a strong passion for building businesses around complex problems. His current interests include cryptocurrencies, data science, machine learning and hardware. He invests in startups and actively mentors in leading accelerators worldwide, including Barclays Techstars (Tel Aviv) and HAX (China).",
+          "Before starting Leverate, Itai graduated with excellence from Basmach- the IDF’s Academy for Computer Science and Cyber Defense."
+        ]
+      }, {
+        name: "Maaike Steinebach",
+        image: "https://image.ibb.co/eDQbde/Maaike_Steinebach.png",
+        title: "Banker | Founding Boardmember HK Fintech Association | Co-Founder Women in Tech HK | Boardmember | Community Builder | Techaficionado | Start Up Mentor & Advisor",
+        link: "https://www.linkedin.com/in/maaike-steinebach-8a3a304/",
+        bio: [
+          "Maaike has been in the banking industry for 20+ years. Most recently she was Chief Executive of Commonwealth Bank of Australia where she managed Institutional Banking & Markets and provided oversight for the Private Bank, supported the bank’s business development in China and was instrumental in setting up the first overseas Innovation Lab for CBA in Hong Kong for which she was the executive sponsor.",
+          "She has also worked across multiple jurisdictions in Europe and Asia and has held senior positions in financial institutions including CBA, Fortis Bank and ABN AMRO.",
+          "She is passionate about technology and inclusive leadership. She is a board director for the Australian Chamber of Commerce for Hong Kong and Macau, where she sits on the Women in Business Committee. She started work on the FinTech Association of Hong Kong in 2016 which was officially launched in June 2017. She is also one of the conveners of Women in Tech Hong Kong and Women Chief Executives, a group of 16 female CEO of Financial Institutions in Hong Kong."
+        ]
+      }, {
+        name: "Olivier Motte",
+        image: "https://image.ibb.co/dscBBz/Olivier_Motte.png",
+        title: "Sole director, Phileuropa Limited (Hong Kong)",
+        link: "https://www.linkedin.com/in/olivier-motte-8967658/",
+        bio: [
+          "Oliver is a former Asia-Pacific Head of Conduct Compliance at HSBC. Since 2005, he has specialized in French, European and Asian compliance, government and public affairs (Credit Agricole Corporate and Investment Bank and HSBC APAC), in particular conduct compliance and FinTech.",
+          "With particular participation in the elaboration of new regulations, linkage with concerned business lines and support functions, representation of the bank in various trade associations while being responsible  for the implementation of relevant regulation.",
+          "Currently a retired international banker with 37 years of experience, he is a the consultant and sole Director of Phileuropa Ltd (HK)."
+        ]
+      }
+    ]
 
     return (
       <div id="page-home">
@@ -328,7 +330,7 @@ export default class Home extends Component {
                             <img src={p.image} alt={p.name} />
                           </div>
                           <div className="right">
-                            <a href={p.link}><i className="fab fa-linkedin fa-2x" /></a>
+                            <a href={p.link} target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin fa-2x" /></a>
                             <div className="h4 name margin-0">{p.name}</div>
                             <div className="h5 title margin-top-5">{p.title}</div>
                             <div className="bio">{p.bio.map((b, n) => { return <div key={n} className="line">{b}</div> })}</div>
