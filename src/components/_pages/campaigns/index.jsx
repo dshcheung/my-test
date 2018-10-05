@@ -13,6 +13,7 @@ import SharedOthersSideTitle from '../../shared/others/side-title'
 
 const mapStateToProps = (state) => {
   return {
+    currentUser: _.get(state, 'session'),
     campaigns: _.get(state, 'campaigns', []),
     getCampaignsInProcess: _.get(state.requestStatus, GET_CAMPAIGNS)
   }
@@ -58,7 +59,7 @@ export default class CampaignsIndex extends Component {
   }
 
   render() {
-    const { getCampaignsInProcess } = this.props
+    const { getCampaignsInProcess, currentUser: { approved } } = this.props
 
     // TODO: change this back to using this.props
     const campaigns = this.props.campaigns.length > 0 ? [
@@ -143,6 +144,7 @@ export default class CampaignsIndex extends Component {
             <CampaignsList
               loadingInProcess={getCampaignsInProcess}
               campaigns={campaigns}
+              approved={approved}
             />
           </div>
         </section>

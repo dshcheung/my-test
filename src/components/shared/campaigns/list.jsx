@@ -7,7 +7,7 @@ import LoadingSpinner from '../others/loading-spinner'
 
 export default class CampaignList extends Component {
   render() {
-    const { loadingInProcess, campaigns, newable } = this.props
+    const { loadingInProcess, campaigns, newable, approved } = this.props
 
     return (
       <div id="shared-campaigns-list">
@@ -18,8 +18,14 @@ export default class CampaignList extends Component {
               component = <LoadingSpinner />
             } else if (campaigns.length < 1 && !newable) {
               component = (
-                <div key="no-campaigns" className="col-xs-12 text-center">
-                  <h3>No Campaigns Found</h3>
+                <div key="no-campaigns" className="col-xs-12 margin-top-20 text-center">
+                  {
+                    approved ? (
+                      <h3>No Campaigns Found</h3>
+                    ) : (
+                      <h3>As per SFC only verified investors can access startup's fundrainsing campaigns</h3>
+                    )
+                  }
                 </div>
               )
             } else {
