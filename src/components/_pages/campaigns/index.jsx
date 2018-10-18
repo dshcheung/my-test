@@ -59,45 +59,7 @@ export default class CampaignsIndex extends Component {
   }
 
   render() {
-    const { getCampaignsInProcess, currentUser: { approved } } = this.props
-
-    // TODO: change this back to using this.props
-    const campaigns = this.props.campaigns.length > 0 ? [
-      {
-        active: true,
-        approved: true,
-        campaign_type: {
-          id: 100,
-          amount: 1000000,
-          amount_type: "equity",
-          equity_percentage: 10,
-          equity_type: "ordinary",
-        },
-        id: "Z9r1t5KMx5vwR4E2",
-        end_date: 1536506131000,
-        start_date: 1535640809000,
-        raised: 500000,
-        goal: 1000000,
-        number_of_investors: 5,
-        has_reached_goal: false,
-        startup: {
-          id: "TeWuz4n8QC3cyCPu",
-          name: "UBER",
-          profile: {
-            id: 11,
-            avatar: {
-              original: "https://image.ibb.co/dxbRdU/campaign_logo.png",
-            },
-            banner: {
-              original: "https://image.ibb.co/cUuOQ9/campaign_banner.png"
-            }
-          }
-        },
-        status: {
-          submitted: "approved"
-        }
-      }
-    ] : []
+    const { getCampaignsInProcess, currentUser: { approved }, campaigns } = this.props
 
     return (
       <div id="pages-campaigns-index">

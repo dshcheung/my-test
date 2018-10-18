@@ -48,15 +48,15 @@ export default class CampaignList extends Component {
               )
 
               const campaignsItems = campaigns.map((campaign, i) => {
-                // startup profile stuff
-                const banner = _.get(campaign, 'startup.profile.banner.original') || DEFAULT_STARTUP_BANNER
-                const avatar = _.get(campaign, 'startup.profile.avatar.original') || DEFAULT_STARTUP_AVATAR
+                // campaign.profile stuff
+                const banner = _.get(campaign, 'profile.banner.original') || DEFAULT_STARTUP_BANNER
+                const avatar = _.get(campaign, 'profile.avatar.original') || DEFAULT_STARTUP_AVATAR
                 const bannerStyle = { backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${banner})` }
                 const logoStyle = { backgroundImage: `url(${avatar}` }
-                const startupName = _.get(campaign, 'startup.name') || "None"
-                const tagline = _.get(campaign, 'startup.profile.tagline') || "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab quo maiores doloribus, placeat, corporis ex libero nihil corrupti iusto doloremque saepe ipsa perspiciatis? Asperiores sunt, laboriosam magnam esse culpa repellat."
+                const tagline = _.get(campaign, 'profile.tagline') || "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab quo maiores doloribus, placeat, corporis ex libero nihil corrupti iusto doloremque saepe ipsa perspiciatis? Asperiores sunt, laboriosam magnam esse culpa repellat."
 
                 // campaign stuff
+                const startupName = campaign.name || "None"
                 const campaignID = campaign.id
                 const endDate = moment(campaign.end_date).fromNow()
                 const goal = campaign.goal || 0
@@ -66,25 +66,13 @@ export default class CampaignList extends Component {
 
                 let linkTo = `/campaigns/${campaignID}`
 
-                // TODO: change behaviour when profile is done
                 if (newable) {
                   linkTo = `/my/campaigns/${campaignID}/edit/null`
                 }
 
-                const displayPermissions = {
-                  stats: ["approved", "accepted", "completed"],
-                  danger: ["waiting_for_update", "rejected"],
-                  warning: ["pending", "first_approval", "investment_committee", "selection_committee"],
-                  info: ["not_submitted"]
-                }
-
-                const submitStatus = _.get(campaign, 'status.submitted')
+                const isApproved = campaign.approved
                 const isActive = campaign.active
-                const isCompleted = submitStatus === "completed"
-                const displayStats = _.indexOf(displayPermissions.stats, submitStatus) >= 0
-                const displayDanger = _.indexOf(displayPermissions.danger, submitStatus) >= 0
-                const displayWarning = _.indexOf(displayPermissions.warning, submitStatus) >= 0
-                const displayInfo = _.indexOf(displayPermissions.info, submitStatus) >= 0
+                const ended = moment().unix() > moment(campaign.end_date).unix()
 
                 return (
                   <div key={i} className="col-xs-12 col-sm-6 col-md-4 text-center campaign-card">
@@ -93,21 +81,18 @@ export default class CampaignList extends Component {
                       <Link to={linkTo}><div className="campaign-logo" style={logoStyle} /></Link>
                       <Link to={linkTo}><h3 className="name text-bold">{startupName}</h3></Link>
                       <div className="status-bubble">
-                        { displayDanger && <span className="label label-danger">{submitStatus.splitCap("_")}</span> }
-                        { displayWarning && <span className="label label-warning">Pending Review</span> }
-                        { displayInfo && <span className="label label-info">Not Submitted For Review</span> }
-                        { displayStats && <span className="label label-default">Ends {endDate}</span> }
+                        { !isApproved && <span className="label label-warning">Waiting for Approval</span> }
+                        { isApproved && <span className="label label-default">{ended ? "Ended" : `Ends ${endDate}`}</span> }
                       </div>
                       <div className="active-bubble">
                         { isActive && <span className="label label-success">Live</span> }
-                        { isCompleted && <span className="label label-success">Completed</span> }
-                        { !isActive && !isCompleted && <span className="label label-warning">To Be Live Soon</span>}
+                        { !isActive && <span className="label label-warning">To Be Live Soon</span>}
                       </div>
                     </div>
 
                     <div className="col-xs-12 card-info">
                       {
-                        displayStats && (
+                        isApproved && (
                           <div className="stats">
                             <div className="progress">
                               <div className="progress-bar" style={progressStyle} />
