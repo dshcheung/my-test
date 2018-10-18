@@ -25,6 +25,7 @@ import SharedOthersSideTitle from '../../shared/others/side-title'
 
 import InvestorValidationsAMLDocumentsForm from '../../forms/investor-validations/aml-documents'
 import InvestorValidationsAMLBankDetailsForm from '../../forms/investor-validations/aml-bank-details'
+import InvestorValidationsAMLSignatureForm from '../../forms/investor-validations/aml-signature'
 
 const mapStateToProps = (state) => {
   return {
@@ -36,7 +37,7 @@ const mapStateToProps = (state) => {
     gMyInvestorBankDetailInProcess: _.get(state.requestStatus, G_MY_INVESTOR_BANK_DETAIL),
     uMyInvestorBankDetailInProcess: _.get(state.requestStatus, U_MY_INVESTOR_BANK_DETAIL),
     gLegalAgreementsInProcess: _.get(state.requestStatus, G_IMMOVABLE_LEGAL_AGREEMENT),
-    legalAgreements: _.get(state, 'immovables.legal_agreement', {}),
+    legalAgreements: _.get(state, 'immovables.legal_agreement.legal_agreements', []),
   }
 }
 
@@ -65,7 +66,12 @@ export default class SharedInvestorAML extends Component {
         {
           key: "bank_details",
           model: InvestorValidationsAMLBankDetailsForm,
-          nextTab: "null",
+          nextTab: "investor_agreement",
+        },
+        {
+          key: "investor_agreement",
+          model: InvestorValidationsAMLSignatureForm,
+          nextTab: null
         }
       ]
     }
@@ -86,9 +92,13 @@ export default class SharedInvestorAML extends Component {
   uMyInvestorAgreement(values) {
     const baseInfo = _.find(this.state.order, { key: this.props.currentTab })
 
-    this.props.uMyInvestorAgreement(values, () => {
+    if (values === null) {
       this.props.changeTab(baseInfo.nextTab)
-    })
+    } else {
+      this.props.uMyInvestorAgreement(values, () => {
+        this.props.changeTab(baseInfo.nextTab)
+      })
+    }
   }
 
   dMyInvestorAgreementAttribute(value, key, cb) {
@@ -105,8 +115,10 @@ export default class SharedInvestorAML extends Component {
   }
 
   uMyInvestorBankDetail(values) {
+    const baseInfo = _.find(this.state.order, { key: this.props.currentTab })
+
     this.props.uMyInvestorBankDetail(values, () => {
-      this.props.router.push("/my/investor-validations")
+      this.props.changeTab(baseInfo.nextTab)
     })
   }
 
@@ -115,8 +127,10 @@ export default class SharedInvestorAML extends Component {
       currentTab, myInvestorAgreement, myInvestorBankDetail,
       uMyInvestorAgreementInProcess, dMyInvestorAgreementAttributeInProcess,
       uMyInvestorBankDetailInProcess,
-      legal_agreements
+      legalAgreements
     } = this.props
+
+    const investorAgreement = _.find(legalAgreements, { id: "investor-agreement" }) || {}
     const { order } = this.state
     const baseInfo = _.find(order, { key: currentTab })
 
@@ -126,14 +140,18 @@ export default class SharedInvestorAML extends Component {
       return (
         <baseInfo.model
           optClass="col-sm-10 col-sm-offset-1 col-md-offset-0 col-md-8"
-          initialValues={myInvestorAgreement}
+          initialValues={{
+            attachments: myInvestorAgreement.attachments,
+            signature: {}
+          }}
           onSubmit={this.uMyInvestorAgreement}
           onSubmitFail={() => {
             notyError("Submission failed - please review error messages and try again")
           }}
           submitInProcess={uMyInvestorAgreementInProcess || dMyInvestorAgreementAttributeInProcess}
           dAttribute={this.dMyInvestorAgreementAttribute}
-          legal_agreements={legal_agreements}
+          investorAgreement={investorAgreement}
+          signedDocument={null}
         />
       )
     } else if (baseInfo.key === "bank_details") {

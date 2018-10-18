@@ -409,3 +409,14 @@ $input-border-focus: 1px solid #666;
     }
   }
 }
+
+.signature-field {
+  .signature, .preview-signature {
+    background: $ahub-gray;
+    box-sizing: content-box;
+  }
+
+  .signature {
+    cursor: crosshair;
+  }
+}

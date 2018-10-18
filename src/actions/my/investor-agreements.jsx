@@ -83,9 +83,8 @@ const generateParams = (values) => {
   })
 
   const params = {
-    agreement: _.get(values, "agreement,", null),
-    signed_on: _.get(values, "signed_on,", null),
-    agreement_data: _.get(values, "agreement_data,", null),
+    signature: _.get(values, "signature.signature", null),
+    investor_agreement_events: _.get(values, "signature.investor_agreement_events", null),
     attachments_attributes: _.get(values, 'attachments', null)
   }
 
