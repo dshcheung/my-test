@@ -112,6 +112,26 @@ export default class Home extends Component {
           "With particular participation in the elaboration of new regulations, linkage with concerned business lines and support functions, representation of the bank in various trade associations while being responsible  for the implementation of relevant regulation.",
           "Currently a retired international banker with 37 years of experience, he is a the consultant and sole Director of Phileuropa Ltd (HK)."
         ]
+      }, {
+        name: "Leroy Yau",
+        image: "https://image.ibb.co/gXg0y0/LeroyYau.png",
+        title: "Venture Builder",
+        link: "https://www.linkedin.com/in/yauleroy/",
+        bio: [
+          "Leroy has over 20 years of professional experience in business and IT advisory services. He is a founding partner of #43 Ventures and co-founder for Everiii/Taiwan Startup Stadium. Leroy was previously an Advisory partner at EY and has extensive experience in corporate governance, cyber security, IT strategy, and financial and internal controls. A graduate in computer engineering, electronic engineering, and laws, Leroy is also a fellow member of the Hong Kong Institute of Certified Public Accountants, CPA Australia, and The Hong Kong Institute of Directors. In addition to being a frequent speaker and trainer for startup courses and events, Leroy is a co-author and instructor of a Hong Kong Institute of Bankers certificate course entitled “Certificate in Technology Management and Innovation in Banking”.  He is currently serving as the President of the ISACA China Hong Kong Chapter."
+        ]
+      }, {
+        name: "Fabrice Fischer",
+        image: "https://image.ibb.co/d2V4Qf/Fabrice-Fischer.jpg",
+        title: "Founder & CEO at Blu Ltd - Artificial Intelligence",
+        link: "https://www.linkedin.com/in/fabrice-fischer-3852ab/",
+        bio: [
+          "Fabrice Fischer is the Founder and CEO of Blu, an Artificial Intelligence advisory firm that specializes in disruptive innovation within the Financial Services industry, based in Hong Kong. Over the past 20 years, Fabrice has taken up multiple roles in Financial Services and IT within Asia, Europe and North America.",
+          "In his six year stint as CFO of Sentient Technologies, Fabrice oversaw a period of extraordinary growth, which resulted in Sentient becoming one of the world’s best funded AI companies. He also played an integral part in the launch of Sentient Investment Management, Sentient’s artificial intelligence based Hedge Fund, which continually evolves and optimizes its investment strategies. He also headed Sentient’s Distributed Computing grid in Asia.",
+          "Fabrice’s career highlights also include starting a HK-based IT-services company in infrastructure and ERP for the Asset Management industry. Subsequently, he joined Bain & Co. as a Consultant advising companies in the IT, Telecom and Private Equity industries across Europe and then continued as an independent advisor to Banks and Asset Managers. He was the CFO and COO of Bryan Garnier, a European boutique Investment Bank that specialized in Corporate Finance, Brokerage, Asset Management and Private Banking. There he managed the asset management activities and also the equity analysis team of the bank.",
+          "Fabrice is currently advising on a variety of projects in numerous industries and geographic markets. His AI expertise includes Machine Learning (ML), Neural Networks (NN) and Deep Learning (DL), Evolutionary Algorithm (EA), Natural Language Processing (NLP), Image recognition and video processing. He is also has a rare hands on experience in Distributed Computing at a very large scale (over 2M CPU cores and thousands of GPUs). In addition, Fabrice has also spoken at multiple Artificial Intelligence and Technology conferences and events, both in Asia-Pacific, and around the world.",
+          "Fabrice holds a Bachelor’s in Electrical Engineering from University of Montreal and an MBA from INSEAD."
+        ]
       }
     ]
 
