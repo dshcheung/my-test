@@ -22,9 +22,9 @@ module.exports = function () {
     module: {
       rules: [
         {
-          exclude: /node_modules/,
-          test: /\.jsx$/,
           enforce: "pre",
+          test: /\.jsx$/,
+          exclude: /node_modules/,
           loader: "eslint-loader"
         },
         {

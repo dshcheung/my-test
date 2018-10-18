@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SignaturePad from 'signature_pad'
+import SignaturePad from 'signature_pad/dist/signature_pad.umd'
 
 export default class SignatureField extends Component {
   constructor(props) {
