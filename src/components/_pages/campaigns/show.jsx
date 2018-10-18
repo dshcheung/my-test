@@ -13,10 +13,8 @@ import {
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: _.get(state, 'session', null),
     campaign: _.get(state, 'campaign', null),
-    getCampaignInProcess: _.get(state.requestStatus, GET_CAMPAIGN),
-    requestStatus: _.get(state, 'requestStatus')
+    getCampaignInProcess: _.get(state.requestStatus, GET_CAMPAIGN)
   }
 }
 

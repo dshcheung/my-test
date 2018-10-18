@@ -58,21 +58,26 @@ export default class CampaignList extends Component {
                 // campaign stuff
                 const startupName = campaign.name || "None"
                 const campaignID = campaign.id
-                const endDate = moment(campaign.end_date).fromNow()
                 const goal = campaign.goal || 0
                 const raised = campaign.raised || 0
                 const achieved = Math.floor((raised / goal) * 100)
                 const progressStyle = { width: `${achieved}%` }
 
+                const endDate = moment(campaign.end_date).fromNow()
+                const ended = moment().unix() > moment(campaign.end_date).unix()
+
                 let linkTo = `/campaigns/${campaignID}`
-
-                if (newable) {
-                  linkTo = `/my/campaigns/${campaignID}/edit/null`
-                }
-
                 const isApproved = campaign.approved
                 const isActive = campaign.active
-                const ended = moment().unix() > moment(campaign.end_date).unix()
+
+                // TODO: change to /my/campaigns/${campaignID}/edit/null only since it has redirect?
+                if (newable) {
+                  if (isApproved) {
+                    linkTo = `/my/campaigns/${campaignID}`
+                  } else {
+                    linkTo = `/my/campaigns/${campaignID}/edit/null`
+                  }
+                }
 
                 return (
                   <div key={i} className="col-xs-12 col-sm-6 col-md-4 text-center campaign-card">

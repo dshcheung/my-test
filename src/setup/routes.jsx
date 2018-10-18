@@ -23,6 +23,7 @@ import MyCampaignsIndexContainer from '../components/_pages/my/campaigns/index'
 import MyCampaignsNewContainer from '../components/_pages/my/campaigns/new'
 
 import MyCampaignsShowWrapperContainer from '../components/_pages/my/campaigns/show-wrapper'
+import MyCampaignsShowContainer from '../components/_pages/my/campaigns/show'
 import MyCampaignsEditContainer from '../components/_pages/my/campaigns/edit'
 
 import MyDashboardContainer from '../components/_pages/my/dashboard'
@@ -65,6 +66,7 @@ export default (
         <IndexRoute component={MyCampaignsIndexContainer} />
         <Route path="new" component={MyCampaignsNewContainer} />
         <Route path=":myCampaignID" component={MyCampaignsShowWrapperContainer}>
+          <IndexRoute component={MyCampaignsShowContainer} />
           <Route path="edit/:tab" component={MyCampaignsEditContainer} />
         </Route>
       </Route>
