@@ -240,6 +240,10 @@
                   .line:not(:first-child) {
                     margin-top: 20px;
                   }
+
+                  .line:last-child {
+                    margin-bottom: 20px;
+                  }
                 }
               }
             }

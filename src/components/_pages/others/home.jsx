@@ -132,6 +132,16 @@ export default class Home extends Component {
           "Fabrice is currently advising on a variety of projects in numerous industries and geographic markets. His AI expertise includes Machine Learning (ML), Neural Networks (NN) and Deep Learning (DL), Evolutionary Algorithm (EA), Natural Language Processing (NLP), Image recognition and video processing. He is also has a rare hands on experience in Distributed Computing at a very large scale (over 2M CPU cores and thousands of GPUs). In addition, Fabrice has also spoken at multiple Artificial Intelligence and Technology conferences and events, both in Asia-Pacific, and around the world.",
           "Fabrice holds a Bachelor’s in Electrical Engineering from University of Montreal and an MBA from INSEAD."
         ]
+      }, {
+        name: "Josianne Robb",
+        image: "https://image.ibb.co/m2FmO0/Josianne-Robb.jpg",
+        title: "Change Management | Mindset Change | Digital Transformation | Customer Experience | Business Technology | Women in Tech",
+        link: "https://www.linkedin.com/in/josiannerobb/",
+        bio: [
+          "Josianne spent the last 25 years exploring different facets of the financial services industry (investment banking, retail banking, consulting and insurance) from different perspectives (operations, internal audit, IT, business change). The constant is a passion for change, inclusive leadership, digital & customer centricity.",
+          "Most recently, Josianne Robb was the Head of IT for Digital in Prudential Corporation Asia. She was responsible for driving and executing customer centric digital initiatives including mobile proposition, data analytics, workflow automation and multichannel customer management. Prior to joining Prudential, Josianne set up and led a regional customer experience transformation programme in AIA, aiming at making the organization easier for customers to do business with.",
+          "Josianne has extensive change management experience in banking and insurance, gained across Europe and Asia."
+        ]
       }
     ]
 
