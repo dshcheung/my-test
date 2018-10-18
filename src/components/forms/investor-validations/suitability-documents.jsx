@@ -54,8 +54,7 @@ export default class InvestorValidationsSuitabilityDocumentsForm extends Compone
                 valueField: 'name',
                 textField: 'name',
                 placeholder: 'Select a Title',
-                filter: true,
-                uniq: true
+                filter: true
               }
             }}
           />

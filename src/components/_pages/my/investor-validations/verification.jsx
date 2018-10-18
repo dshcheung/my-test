@@ -169,7 +169,7 @@ export default class MyInvestorValidationsVerification extends Component {
 
         <div className="text-center">
           <h1>CONGRATULATIONS</h1>
-          <h3>You have passed the Rick Assessment</h3>
+          <h3>You have passed the Risk Assessment</h3>
         </div>
         <div className="margin-top-40 text-center">
           <button

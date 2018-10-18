@@ -32,6 +32,12 @@ export default class ProfileInvestorUpdateForm extends Component {
     const { handleSubmit, submitInProcess, optClass, values } = this.props
 
     const residency = _.get(values, 'country_of_residence')
+    const nationality = _.get(values, 'nationality')
+
+    const isHKResidency = residency === "Hong Kong" || residency === null
+    const isHKNationality = nationality === "Hong Kong" || nationality === null
+
+    const showSFCMsg = !isHKResidency || !isHKNationality
 
     return (
       <div id="forms-auth-signup-investor-create" className={optClass}>
@@ -117,7 +123,7 @@ export default class ProfileInvestorUpdateForm extends Component {
         </form>
 
         {
-          residency !== "Hong Kong" && residency !== null && (
+          showSFCMsg && (
             <div className="margin-top-20 clearfix">
               <p>Please note that AngelHub is a Hong Kong Securities and Futures Commission (SFC) licensed entity that provides services to Professional Investors (PIs), as defined by the SFC.  If you are not a Hong Kong resident and/or hold a non-Hong Kong passport, we will still require that you qualify under the SFC PI guidelines, which we will assess through our onboarding process.</p>
 

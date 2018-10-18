@@ -173,8 +173,7 @@ export default class MyStartupQuestionnairesBasicEditForm extends Component {
                     ],
                     valueField: "name",
                     textField: "name",
-                    filter: true,
-                    uniq: true
+                    filter: true
                   }
                 },
                 {

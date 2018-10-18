@@ -248,8 +248,7 @@ export default class MyStartupQuestionnairesBasicNewForm extends Component {
                 valueField: 'name',
                 textField: 'name',
                 placeholder: 'Select a Title',
-                filter: true,
-                uniq: true
+                filter: true
               }
             }}
           />
