@@ -117,8 +117,9 @@ export default class MyCampaigns extends Component {
   }
 
   getStatus(props) {
-    const { myCampaign } = props || this.props
-    const submitStatus = _.get(myCampaign, 'status.submitted')
+    const { myStartupQuestionnaire } = props || this.props
+
+    const submitStatus = _.get(myStartupQuestionnaire, 'status')
 
     return submitStatus
   }

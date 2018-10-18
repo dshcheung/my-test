@@ -3,20 +3,19 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import {
-  markMyCampaignForReview, MARK_MY_CAMPAIGN_FOR_REVIEW
-} from '../../../actions/my/campaigns'
+  markMyStartupQuestionnaireForReview, MARK_MY_STARTUP_QUESTIONNAIRE_FOR_REVIEW
+} from '../../../actions/my/startup-questionnaires'
 
 const mapStateToProps = (state) => {
   return {
-    myCampaign: _.get(state, 'myCampaign'),
     myStartupQuestionnaire: _.get(state, 'myStartupQuestionnaire'),
-    markMyCampaignForReviewInProcess: _.get(state.requestStatus, MARK_MY_CAMPAIGN_FOR_REVIEW),
+    markMySQForReviewInProcess: _.get(state.requestStatus, MARK_MY_STARTUP_QUESTIONNAIRE_FOR_REVIEW),
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    markMyCampaignForReview: bindActionCreators(markMyCampaignForReview, dispatch)
+    markMySQForReview: bindActionCreators(markMyStartupQuestionnaireForReview, dispatch)
   }
 }
 
@@ -62,10 +61,10 @@ export default class SharedStartupQuestionnairesSubmission extends Component {
       ]
     }
 
-    this.handleMarkMyCampaignForReview = this.handleMarkMyCampaignForReview.bind(this)
+    this.handlemarkMySQForReview = this.handlemarkMySQForReview.bind(this)
   }
 
-  handleMarkMyCampaignForReview() {
+  handlemarkMySQForReview() {
     const { myStartupQuestionnaire, triggerHighlightErrors, routeParams } = this.props
     const errors = _.get(myStartupQuestionnaire, 'errors')
     const hasErrors = errors && Object.keys(errors).length > 0
@@ -73,15 +72,15 @@ export default class SharedStartupQuestionnairesSubmission extends Component {
     if (hasErrors) {
       triggerHighlightErrors()
     } else {
-      this.props.markMyCampaignForReview(routeParams)
+      this.props.markMySQForReview(routeParams)
     }
   }
 
   render() {
-    const { myCampaign, markMyCampaignForReviewInProcess, myStartupQuestionnaire, highlightErrors } = this.props
+    const { markMySQForReviewInProcess, myStartupQuestionnaire, highlightErrors } = this.props
     const { errorsToCheck } = this.state
     const errors = _.get(myStartupQuestionnaire, 'errors')
-    const submittedStatus = _.get(myCampaign, 'status.submitted')
+    const submittedStatus = _.get(myStartupQuestionnaire, 'status')
 
     return (
       <div className="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-0 text-center">
@@ -115,17 +114,17 @@ export default class SharedStartupQuestionnairesSubmission extends Component {
                     )
                   }
                   <button
-                    className={`btn btn-primary text-uppercase ${markMyCampaignForReviewInProcess && "m-progress"} margin-top-20`}
+                    className={`btn btn-primary text-uppercase ${markMySQForReviewInProcess && "m-progress"} margin-top-20`}
                     type="submit"
-                    disabled={markMyCampaignForReviewInProcess}
-                    onClick={this.handleMarkMyCampaignForReview}
+                    disabled={markMySQForReviewInProcess}
+                    onClick={this.handlemarkMySQForReview}
                   >
                     Submit
                   </button>
                 </div>
               )
             } else if (submittedStatus === "waiting_for_update") {
-              const remarks = _.get(myCampaign, 'status.remarks', '')
+              const remarks = _.get(myStartupQuestionnaire, 'review_remarks', '')
               component = (
                 <div>
                   <div>Unfortunately We Are Waiting For More Information On Your Campaign {remarks && "On The Following"}</div>
@@ -135,10 +134,10 @@ export default class SharedStartupQuestionnairesSubmission extends Component {
                   <div className="margin-top-10">If you're not sure what changes have to be made, please revert to the email sent prior from your Startup Manager at AngelHub</div>
 
                   <button
-                    className={`btn btn-primary text-uppercase ${markMyCampaignForReviewInProcess && "m-progress"} margin-top-20`}
+                    className={`btn btn-primary text-uppercase ${markMySQForReviewInProcess && "m-progress"} margin-top-20`}
                     type="submit"
-                    disabled={markMyCampaignForReviewInProcess}
-                    onClick={this.handleMarkMyCampaignForReview}
+                    disabled={markMySQForReviewInProcess}
+                    onClick={this.handlemarkMySQForReview}
                   >
                     Submit
                   </button>
@@ -152,10 +151,10 @@ export default class SharedStartupQuestionnairesSubmission extends Component {
                   <div className="margin-top-10">If you're not sure what changes have to be made, please revert to the email sent prior from your Startup Manager at AngelHub</div>
 
                   <button
-                    className={`btn btn-primary text-uppercase ${markMyCampaignForReviewInProcess && "m-progress"} margin-top-20`}
+                    className={`btn btn-primary text-uppercase ${markMySQForReviewInProcess && "m-progress"} margin-top-20`}
                     type="submit"
-                    disabled={markMyCampaignForReviewInProcess}
-                    onClick={this.handleMarkMyCampaignForReview}
+                    disabled={markMySQForReviewInProcess}
+                    onClick={this.handlemarkMySQForReview}
                   >
                     Submit
                   </button>

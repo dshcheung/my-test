@@ -1,6 +1,12 @@
+import { push } from 'react-router-redux'
+
 import { genApiUrl, genAxios, addParamsToUrl } from '../../services/api-request'
 import { getFormData } from '../../services/get-form-data'
-import { apiMyStartupQuestionnairesShow, apiMyStartupQuestionnairesIndex } from '../../services/api-path'
+import {
+  apiMyStartupQuestionnairesShow,
+  apiMyStartupQuestionnairesIndex,
+  apiMyStartupQuetionnairesShowMFR
+} from '../../services/api-path'
 
 import { notySuccess } from '../../services/noty'
 import { checkFile } from '../../services/utils'
@@ -130,6 +136,24 @@ export const dMyStartupQuestionnaireAttribute = (values, cb, routeParams) => {
       if (cb) cb(data)
       dispatch(setMyStartupQuestionnaire(data, true))
       notySuccess("Deleted!")
+    }
+  }
+}
+
+export const MARK_MY_STARTUP_QUESTIONNAIRE_FOR_REVIEW = "MARK_MY_STARTUP_QUESTIONNAIRE_FOR_REVIEW"
+export const markMyStartupQuestionnaireForReview = (params) => {
+  const request = genAxios({
+    method: "put",
+    url: genApiUrl(apiMyStartupQuetionnairesShowMFR(params))
+  })
+
+  return {
+    type: MARK_MY_STARTUP_QUESTIONNAIRE_FOR_REVIEW,
+    request,
+    successCB: (dispatch, data) => {
+      dispatch(push(`/my/campaigns/${data.campaign.id}/edit/null`))
+      dispatch(setMyStartupQuestionnaire(data))
+      notySuccess("Submitted")
     }
   }
 }
