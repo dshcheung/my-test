@@ -381,17 +381,23 @@ export default class Home extends Component {
 
             <div className="margin-top-30">
               <div className="row">
-                <div className="col-xs-12 col-md-3">
-                  <a href="https://www.brinc.io" target="_blank" className="thumbnail" rel="noopener noreferrer"><img src="https://whub.io/assets/ahub/images/landing_partner1.png" alt="brinc" /></a>
+                <div className="col-xs-12 col-md-2">
+                  <a href="https://www.brinc.io" target="_blank" className="thumbnail" rel="noopener noreferrer"><img src="http://angelhub.io/images/partners/landing_partner2.png" alt="brinc" /></a>
                 </div>
-                <div className="col-xs-12 col-md-3">
-                  <a href="https://www.hkvca.com.hk" target="_blank" className="thumbnail" rel="noopener noreferrer"><img src="https://whub.io/assets/ahub/images/landing_partner2.png" alt="HKVCA" /></a>
+                <div className="col-xs-12 col-md-2">
+                  <a href="https://zegal.com/en-hk/" target="_blank" className="thumbnail" rel="noopener noreferrer"><img src="http://angelhub.io/images/partners/landing_partner6.png" alt="Zegal" /></a>
                 </div>
-                <div className="col-xs-12 col-md-3">
-                  <a href="http://www.familyoffices-asia.org" target="_blank" className="thumbnail" rel="noopener noreferrer"><img src="https://whub.io/assets/ahub/images/landing_partner3.png" alt="AFO" /></a>
+                <div className="col-xs-12 col-md-2">
+                  <a href="http://www.familyoffices-asia.org" target="_blank" className="thumbnail" rel="noopener noreferrer"><img src="http://angelhub.io/images/partners/landing_partner3.png" alt="AFO" /></a>
                 </div>
-                <div className="col-xs-12 col-md-3">
-                  <a href="https://whub.io" target="_blank" className="thumbnail" rel="noopener noreferrer"><img src="https://whub.io/assets/ahub/images/landing_partner4.png" alt="WHub" /></a>
+                <div className="col-xs-12 col-md-2">
+                  <a href="https://whub.io" target="_blank" className="thumbnail" rel="noopener noreferrer"><img src="http://angelhub.io/images/partners/landing_partner1.png" alt="WHub" /></a>
+                </div>
+                <div className="col-xs-12 col-md-2">
+                  <a href="http://www.avantfaireim.com/" target="_blank" className="thumbnail" rel="noopener noreferrer"><img src="http://angelhub.io/images/partners/landing_partner4.png" alt="Avant Faire IM" /></a>
+                </div>
+                <div className="col-xs-12 col-md-2">
+                  <a href="https://www.newgatecomms.com/" target="_blank" className="thumbnail" rel="noopener noreferrer"><img src="http://angelhub.io/images/partners/landing_partner5.png" alt="Avant Faire IM" /></a>
                 </div>
               </div>
             </div>
