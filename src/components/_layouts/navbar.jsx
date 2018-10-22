@@ -38,7 +38,13 @@ export default class Navbar extends Component {
       >
         <BNavbar.Header>
           <BNavbar.Brand>
-            <img src="http://angelhub.io/images/logo-white.png" alt="" />
+            {
+              currentUser ? (
+                <img src="http://angelhub.io/images/favicon-96x96.png" alt="" />
+              ) : (
+                <img src="http://angelhub.io/images/logo-white.png" alt="" />
+              )
+            }
           </BNavbar.Brand>
           <BNavbar.Toggle>
             <i className="fa fa-signal fa-rotate-90" />

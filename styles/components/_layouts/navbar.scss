@@ -14,20 +14,12 @@ $navbar-brand-line-height: $navbar-height;
     padding: 0 $navbar-lr-padding;
 
     .navbar-header {
-      position: absolute;
-      width: calc(100% - (2 * #{$navbar-lr-padding}));
-      margin: 0;
       height: $navbar-height;
       background-color: $ahub-black;
-      text-align: center;
 
       // logo
       .navbar-brand {
-        padding: $navbar-brand-padding;
-        font-size: 40px;
-        line-height: $navbar-brand-line-height;
-        float: none;
-        color: $white;
+        height: $navbar-height;
       }
 
       // button on collapse
@@ -43,7 +35,7 @@ $navbar-brand-line-height: $navbar-height;
     }
 
     .navbar-collapse {
-      background-color: #0b1641;
+      background-color: $ahub-black;
 
       .navbar-nav {
         height: $navbar-height;
