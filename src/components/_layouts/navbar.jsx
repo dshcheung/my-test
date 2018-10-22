@@ -102,17 +102,17 @@ export default class Navbar extends Component {
             !currentUser && (
 
               <Nav pullRight>
-                <LinkContainer to="/help/invest" active={false}>
+                <LinkContainer to="/auth/signup" active={false}>
                   <NavItem eventKey={1.2}>
                     <span>Invest</span>
                   </NavItem>
                 </LinkContainer>
-                <LinkContainer to="/help/learn" active={false}>
+                <LinkContainer to="/auth/signup" active={false}>
                   <NavItem eventKey={2.1}>
                     <span>Raise Funding</span>
                   </NavItem>
                 </LinkContainer>
-                <LinkContainer to="/help/learn" active={false}>
+                <LinkContainer to="/auth/signup" active={false}>
                   <NavItem eventKey={2.2}>
                     <span>Learn</span>
                   </NavItem>

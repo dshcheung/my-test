@@ -195,7 +195,7 @@ export default class Home extends Component {
               <img src={b5r} alt="pattern" className="pattern right" style={{ height: "105vh" }} />
             </Carousel.Item>
           </Carousel>
-          <a className="btn btn-primary btn-lg rounded-2 o-90 start">START INVESTING</a>
+          <a href="/auth/signup" className="btn btn-primary btn-lg rounded-2 o-90 start">START INVESTING</a>
         </section>
 
         <section className="what-we-offer clearfix">
@@ -340,7 +340,7 @@ export default class Home extends Component {
             <div className="row title">
               <div className="h4 text-black">INVESTMENT COMMITTEE</div>
 
-              <div className="col-xs-12 col-md-6 col-md-offset-3">Our Investment Committee is comprised of highly experienced entrepreneurs, investors, industry experts and top-level business leaders will extensive experience in startup investing and scaling.</div>
+              <div className="col-xs-12 col-md-6 col-md-offset-3">Our Investment Committee is comprised of highly experienced entrepreneurs, investors, industry experts and top-level business leaders with extensive experience in startup investing and scaling.</div>
             </div>
 
             <div className="row slider">

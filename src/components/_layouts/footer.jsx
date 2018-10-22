@@ -35,19 +35,15 @@ export default class Footer extends Component {
                     <ul>
                       <li><Link className="" to="/guide/invest">Invest</Link></li>
                       <li><Link className="" to="/guide/raise">Raise</Link></li>
-                      <li><Link className="" to="/guide/types">Types of Equity</Link></li>
                     </ul>
                   </div>
 
                   <div className="links-section">
                     <span className="header text-uppercase">Learn</span>
                     <ul>
-                      <li><Link className="" to="/masterclass/case-studies">Case Studies</Link></li>
-                      <li><Link className="" to="/masterclass/guides">Guide</Link></li>
                       <li><Link className="" to="https://blog.angelhub.io">Blog</Link></li>
                       <li><Link className="" to="/help/invesetor">Investor Help Centre</Link></li>
                       <li><Link className="" to="/help/entrepreneur">Entrepreneur Help Centre</Link></li>
-                      <li><Link className="" to="/guide/glossary">Glossary</Link></li>
                     </ul>
                   </div>
 
@@ -56,8 +52,6 @@ export default class Footer extends Component {
                     <ul>
                       <li><Link className="" to="/legal/risk">Risk Warning</Link></li>
                       <li><Link className="" to="/legal/security">Security</Link></li>
-                      <li><Link className="" to="/legal/referral">Referral Fee Terms</Link></li>
-                      <li><Link className="" to="/legal/campaign-terms">Campaign Terms</Link></li>
                     </ul>
                   </div>
 
