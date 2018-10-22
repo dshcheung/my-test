@@ -439,7 +439,7 @@ export default class Home extends Component {
 
               <div className="col-xs-6 card">
                 <div className="h1 water-mark">WHAT</div>
-                <div className="h4 title">WHAT WE ARE WORKING ON</div>
+                <div className="h4 title">WHAT WE DO</div>
 
                 <div>AngelHub is the only SFC Licensed highly vetted startup Investment platform for Professional investors. It provides access, time and know how to startups and PI to democratize the fundraising process that was reserved to an small exclusive group of people. AngelHub combines the professionalism of VCs, the flexibility of Angel investing and power of key strategic partnerships.</div>
               </div>
