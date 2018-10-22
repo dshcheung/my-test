@@ -432,7 +432,7 @@ export default class Home extends Component {
 
               <div className="col-xs-6 card">
                 <div className="h1 water-mark">WHY</div>
-                <div className="h4 title">WHY WE ARE HERE</div>
+                <div className="h4 title">WHY WE'RE HERE</div>
 
                 <div>Let's be part of the digital revolution and empower startups to drive wealth and economic growth by giving them the resource they need. Fundraising is a long and daunting process for entrepreneurs and they need to focus on developing their business rather than spending months fundraising. Professional Investors want to diversify their portfolio be part of the digital revolution but lack time. both entrepreneurs and Investors lack time, access and know-how to fulfill this. AngelHub is to help Professional Investors invest in the future.</div>
               </div>
