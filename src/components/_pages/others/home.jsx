@@ -508,13 +508,13 @@ export default class Home extends Component {
             <div className="container margin-top-30">
               <div className="row">
                 <div className="col-xs-12 col-md-4">
-                  <a href="https://www.ft.com/content/f3c01d7a-69a6-11e8-aee1-39f3459514fd" target="_blank" className="thumbnail"><img src="http://angelhub.io/images/media/landing_media1.png" alt="Financial Times" /></a>
+                  <a href="https://www.ft.com/content/f3c01d7a-69a6-11e8-aee1-39f3459514fd" target="_blank" rel="noopener noreferrer" className="thumbnail"><img src="http://angelhub.io/images/media/landing_media1.png" alt="Financial Times" /></a>
                 </div>
                 <div className="col-xs-12 col-md-4">
-                  <a href="https://www.lattice80.com/lattice80-fintech-50-hong-kong-top-influencers/" target="_blank" className="thumbnail"><img src="http://angelhub.io/images/media/landing_media2.png" alt="Lattice 80" /></a>
+                  <a href="https://www.lattice80.com/lattice80-fintech-50-hong-kong-top-influencers/" target="_blank" rel="noopener noreferrer" className="thumbnail"><img src="http://angelhub.io/images/media/landing_media2.png" alt="Lattice 80" /></a>
                 </div>
                 <div className="col-xs-12 col-md-4">
-                  <a href="https://www.siliconrepublic.com/enterprise/inspirefest-karen-contet-farzam-cashless-society" target="_blank" className="thumbnail"><img src="http://angelhub.io/images/media/landing_media3.png" alt="Silicon Republic" /></a>
+                  <a href="https://www.siliconrepublic.com/enterprise/inspirefest-karen-contet-farzam-cashless-society" target="_blank" rel="noopener noreferrer" className="thumbnail"><img src="http://angelhub.io/images/media/landing_media3.png" alt="Silicon Republic" /></a>
                 </div>
               </div>
             </div>
