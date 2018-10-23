@@ -26,6 +26,7 @@ import SharedOthersSideTitle from '../../shared/others/side-title'
 import InvestorValidationsAMLDocumentsForm from '../../forms/investor-validations/aml-documents'
 import InvestorValidationsAMLBankDetailsForm from '../../forms/investor-validations/aml-bank-details'
 import InvestorValidationsAMLSignatureForm from '../../forms/investor-validations/aml-signature'
+import SharedInvestorAMLSubmission from './submission'
 
 const mapStateToProps = (state) => {
   return {
@@ -71,6 +72,12 @@ export default class SharedInvestorAML extends Component {
         {
           key: "investor_agreement",
           model: InvestorValidationsAMLSignatureForm,
+          nextTab: "submission"
+        },
+        {
+          key: "submission",
+          model: SharedInvestorAMLSubmission,
+          nonForm: true,
           nextTab: null
         }
       ]

@@ -19,6 +19,7 @@ const mapStateToProps = (state) => {
   form: "InvestorAMLBankDetailsForm",
   validate: (values) => {
     return Validators({
+      name_on_account: ["presences"],
       name: ["presences"],
       account_number: ["presences"],
       address: ["presences"],
@@ -44,53 +45,61 @@ export default class InvestorAMLBankDetailsForm extends Component {
             )
           }
 
-          <div className="row">
-            <div className="col-xs-12 col-sm-6">
-              <Field
-                name="name"
-                component={TextField}
-                opts={{
-                  type: "text",
-                  label: "Name",
-                  placeholder: "Adam Chan"
-                }}
-              />
-            </div>
-            <div className="col-xs-12 col-sm-6">
-              <Field
-                name="account_number"
-                component={TextField}
-                opts={{
-                  type: "text",
-                  label: "Account Number",
-                  placeholder: "123456789"
-                }}
-              />
-            </div>
-          </div>
-
           <Field
-            name="address"
+            name="name_on_account"
             component={TextField}
             opts={{
-              label: "Address"
+              type: "text",
+              label: "Name On Account",
+              placeholder: "Adam Chan"
             }}
           />
 
-          <div className="row">
-            <div className="col-xs-12 col-sm-6">
-              <Field
-                name="country"
-                component={SelectField}
-                opts={{
-                  label: "Country",
-                  placeholder: "Hong Kong",
-                  options: COUNTRIES,
-                  valueField: "name",
-                  textField: "name",
-                }}
-              />
-            </div>
+          <div className="bank-details clearfix margin-bottom-20 px-top-10">
+            <div className="h4 title">Bank Details</div>
+            <Field
+              name="name"
+              component={TextField}
+              opts={{
+                type: "text",
+                label: "Name",
+                placeholder: "Bank of China",
+                optClass: "col-xs-12 col-sm-6"
+              }}
+            />
+
+            <Field
+              name="account_number"
+              component={TextField}
+              opts={{
+                type: "text",
+                label: "Account Number",
+                placeholder: "123456789",
+                optClass: "col-xs-12 col-sm-6"
+              }}
+            />
+
+            <Field
+              name="address"
+              component={TextField}
+              opts={{
+                label: "Address",
+                optClass: "col-xs-12"
+              }}
+            />
+
+            <Field
+              name="country"
+              component={SelectField}
+              opts={{
+                label: "Country",
+                placeholder: "Hong Kong",
+                options: COUNTRIES,
+                valueField: "name",
+                textField: "name",
+                optClass: "col-xs-12 col-sm-6"
+              }}
+            />
           </div>
 
           <button

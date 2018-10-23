@@ -230,6 +230,10 @@ export const apiMyInvestorBankDetailIndex = () => {
   return `${apiMy()}/investor_bank_detail`
 }
 
+export const apiMyInvestorValidationsIndex = () => {
+  return `${apiMy()}/investor_validation`
+}
+
 export const apiMyVerificationsIndex = () => {
   return `${apiMy()}/verifications`
 }
