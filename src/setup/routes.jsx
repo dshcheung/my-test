@@ -41,7 +41,16 @@ import CampaignsShowContainer from '../components/_pages/campaigns/show'
 
 import InPersonValidationContainer from '../components/_pages/others/in-person-validation'
 
-import InDevelopmentContainer from '../components/_pages/others/in-development'
+import CompanyAboutUsContainer from '../components/_pages/others/company/about-us'
+import CompanyOurTeamContainer from '../components/_pages/others/company/our-team'
+import CompanyCareersContainer from '../components/_pages/others/company/careers'
+import CompanyContactUsContainer from '../components/_pages/others/company/contact-us'
+
+import GuidesContainer from '../components/_pages/others/guides'
+import HelpContainer from '../components/_pages/others/help'
+import LegalContainer from '../components/_pages/others/legal'
+
+// import InDevelopmentContainer from '../components/_pages/others/in-development'
 import EarlybirdContainer from '../components/_pages/others/earlybird'
 
 import PageNotFound from '../components/_pages/others/not-found'
@@ -93,10 +102,16 @@ export default (
 
     <Route path="in-person-validation" component={InPersonValidationContainer} barebone />
 
-    <Route path="p/:page" component={InDevelopmentContainer} />
-    <Route path="guide/:page" component={InDevelopmentContainer} />
-    <Route path="help/:page" component={InDevelopmentContainer} />
-    <Route path="legal/:page" component={InDevelopmentContainer} />
+    <Route path="p">
+      <Route path="about-us" component={CompanyAboutUsContainer} />
+      <Route path="our-team" component={CompanyOurTeamContainer} />
+      <Route path="careers" component={CompanyCareersContainer} />
+      <Route path="contact-us" component={CompanyContactUsContainer} />
+    </Route>
+
+    <Route path="guide/:page" component={GuidesContainer} />
+    <Route path="help/:page" component={HelpContainer} />
+    <Route path="legal/:page" component={LegalContainer} />
 
     <Route path="earlybird" component={EarlybirdContainer} />
 
