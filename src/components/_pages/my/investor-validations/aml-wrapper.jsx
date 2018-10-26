@@ -16,10 +16,15 @@ import {
   gMyInvestorBankDetail, G_MY_INVESTOR_BANK_DETAIL, resetMyInvestorBankDetail
 } from '../../../../actions/my/investor-bank-details'
 
+import {
+  gMyDocuments, G_MY_DOCUMENTS, resetMyDocuments
+} from '../../../../actions/my/documents'
+
 const mapStateToProps = (state) => {
   return {
     gMyInvestorAgreementInProcess: _.get(state.requestStatus, G_MY_INVESTOR_AGREEMENT),
-    gMyInvestorBankDetailInProcess: _.get(state.requestStatus, G_MY_INVESTOR_BANK_DETAIL)
+    gMyInvestorBankDetailInProcess: _.get(state.requestStatus, G_MY_INVESTOR_BANK_DETAIL),
+    gMyDocumentsInProcess: _.get(state.requestStatus, G_MY_DOCUMENTS)
   }
 }
 
@@ -28,7 +33,9 @@ const mapDispatchToProps = (dispatch) => {
     gMyInvestorAgreement: bindActionCreators(gMyInvestorAgreement, dispatch),
     resetMyInvestorAgreement: bindActionCreators(resetMyInvestorAgreement, dispatch),
     gMyInvestorBankDetail: bindActionCreators(gMyInvestorBankDetail, dispatch),
-    resetMyInvestorBankDetail: bindActionCreators(resetMyInvestorBankDetail, dispatch)
+    resetMyInvestorBankDetail: bindActionCreators(resetMyInvestorBankDetail, dispatch),
+    gMyDocuments: bindActionCreators(gMyDocuments, dispatch),
+    resetMyDocuments: bindActionCreators(resetMyDocuments, dispatch)
   }
 }
 
@@ -65,6 +72,7 @@ export default class InvestorValidationsAMLWrapper extends Component {
   componentWillMount() {
     this.props.gMyInvestorAgreement()
     this.props.gMyInvestorBankDetail()
+    this.props.gMyDocuments()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -76,6 +84,7 @@ export default class InvestorValidationsAMLWrapper extends Component {
   componentWillUnmount() {
     this.props.resetMyInvestorAgreement()
     this.props.resetMyInvestorBankDetail()
+    this.props.resetMyDocuments()
   }
 
   changeTab(tab) {
@@ -101,10 +110,10 @@ export default class InvestorValidationsAMLWrapper extends Component {
   }
 
   render() {
-    const { gMyInvestorAgreementInProcess, gMyInvestorBankDetailInProcess } = this.props
+    const { gMyInvestorAgreementInProcess, gMyInvestorBankDetailInProcess, gMyDocumentsInProcess } = this.props
     const { currentTab, order } = this.state
 
-    if (gMyInvestorAgreementInProcess || gMyInvestorBankDetailInProcess) return <LoadingSpinner />
+    if (gMyInvestorAgreementInProcess || gMyInvestorBankDetailInProcess || gMyDocumentsInProcess) return <LoadingSpinner />
 
     return (
       <div id="my-investors-validations-aml" className={currentTab !== "success" && "remove-body-top-padding"}>

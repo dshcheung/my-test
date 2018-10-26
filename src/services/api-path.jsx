@@ -226,6 +226,14 @@ export const apiMyInvestorAgreementIndex = () => {
   return `${apiMy()}/investor_agreement`
 }
 
+export const apiMyDocumentsIndex = () => {
+  return `${apiMy()}/documents`
+}
+
+export const apiMyDocumentsShow = (params) => {
+  return `${apiMyDocumentsIndex()}/${params.myDocumentID}`
+}
+
 export const apiMyInvestorBankDetailIndex = () => {
   return `${apiMy()}/investor_bank_detail`
 }

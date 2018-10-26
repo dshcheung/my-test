@@ -55,8 +55,12 @@ export default class InvestorAMLBankDetailsForm extends Component {
             }}
           />
 
-          <div className="bank-details clearfix margin-bottom-20 px-top-10">
+          <div className="divider">
+            <hr className="w-50" />
             <div className="h4 title">Bank Details</div>
+          </div>
+
+          <div className="row">
             <Field
               name="name"
               component={TextField}

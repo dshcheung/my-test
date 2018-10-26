@@ -12,6 +12,7 @@ import campaignsReducer from './campaigns/campaigns'
 import myCampaignReducer from './my/campaign'
 import myCampaignsReducer from './my/campaigns'
 
+import myDocumentsReducers from './my/documents'
 import myInvestorQuestionnaireReducers from './my/investor-questionnaire'
 import myInvestorAgreementReducers from './my/investor-agreement'
 import myInvestorBankDetailReducers from './my/investor-bank-detail'
@@ -31,6 +32,7 @@ const appReducer = combineReducers({
   campaigns: campaignsReducer,
   myCampaign: myCampaignReducer,
   myCampaigns: myCampaignsReducer,
+  myDocuments: myDocumentsReducers,
   myInvestorQuestionnaire: myInvestorQuestionnaireReducers,
   myInvestorAgreement: myInvestorAgreementReducers,
   myInvestorBankDetail: myInvestorBankDetailReducers,

@@ -55,26 +55,6 @@ export const uMyInvestorAgreement = (values, cb) => {
   }
 }
 
-export const D_MY_INVESTOR_AGREEMENT_ATTRIBUTE = "D_MY_INVESTOR_AGREEMENT_ATTRIBUTE"
-export const dMyInvestorAgreementAttribute = (values, cb) => {
-  const request = genAxios({
-    method: "put",
-    url: genApiUrl(apiMyInvestorAgreementIndex()),
-    data: getFormData(generateParams(values), 'investor_agreement')
-  })
-
-  return {
-    type: D_MY_INVESTOR_AGREEMENT_ATTRIBUTE,
-    request,
-    noScrollTop: true,
-    successCB: (dispatch, data) => {
-      if (cb) cb(data)
-      dispatch(setMyInvestorAgreement(data, true))
-      notySuccess("Deleted!")
-    }
-  }
-}
-
 const generateParams = (values) => {
   const attachments = _.get(values, "attachments") || []
 
