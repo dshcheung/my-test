@@ -26,6 +26,10 @@ export const apiCampaignsPledgesShow = (params) => {
   return `${apiCampaignsPledgesIndex(params)}/${params.pledgeID}`
 }
 
+export const apiEarlybirdsIndex = () => {
+  return 'earlybirds'
+}
+
 export const apiUsersIndex = () => {
   return 'users'
 }

@@ -179,6 +179,10 @@ $input-border-focus: 1px solid #666;
       background-color: #fff;
     }
 
+    .rw-input-reset {
+      width: 100%;
+    }
+
     &.has-label {
       .rw-placeholder, ::placeholder {
         opacity: 0;

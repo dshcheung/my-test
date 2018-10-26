@@ -15,11 +15,16 @@ import { createUser, CREATE_USER } from '../../../actions/users'
 
 import LoadingSpinner from '../../shared/others/loading-spinner'
 
+// TODO: to be removed
+import { cEarlybird, C_EARLYBIRD } from '../../../actions/earlybirds'
+import EarlyBirdForm from '../../forms/others/earlybird'
+
 const mapStateToProps = (state) => {
   return {
     legalAgreement: _.get(state, 'immovables.legal_agreement.legal_agreements', []),
     gLegalAgreementInProcess: _.get(state.requestStatus, G_IMMOVABLE_LEGAL_AGREEMENT),
-    createUserInProcess: _.get(state.requestStatus, CREATE_USER)
+    createUserInProcess: _.get(state.requestStatus, CREATE_USER),
+    cEarlybirdInProcess: _.get(state.requestStatus, C_EARLYBIRD)
   }
 }
 
@@ -27,7 +32,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     gImmovable: bindActionCreators(gImmovable, dispatch),
     resetImmovable: bindActionCreators(resetImmovable, dispatch),
-    createUser: bindActionCreators(createUser, dispatch)
+    createUser: bindActionCreators(createUser, dispatch),
+    cEarlybird: bindActionCreators(cEarlybird, dispatch)
   }
 }
 
@@ -37,8 +43,9 @@ export default class SignupInvestor extends Component {
     super(props)
 
     this.state = {
+      earlybird: true,
       sideTitleNumber: null,
-      pickInvestor: true,
+      pickInvestor: false,
       resultSelected: 0,
       pickerResults: {
         0: ["I am a Professional Investor, because I have individual net worth, or joint net worth with my spouse, that exceeds $8 million HKD."],
@@ -56,7 +63,7 @@ export default class SignupInvestor extends Component {
       warningAgreement: false,
       read: false,
       termsAgreed: false,
-      createUserStep: false
+      createUserStep: true
     }
 
     this.onPickInvestorContinue = this.onPickInvestorContinue.bind(this)
@@ -89,10 +96,16 @@ export default class SignupInvestor extends Component {
   }
 
   onCreateUser(values) {
-    this.props.createUser({
-      ...values,
-      role: "Investor"
-    })
+    // TODO: change this back to createUser from cEarlybird
+    const { earlybird } = this.state
+    if (earlybird) {
+      this.props.cEarlybird(values)
+    } else {
+      this.props.createUser({
+        ...values,
+        role: "Investor"
+      })
+    }
   }
 
   pickerInvestor() {
@@ -214,13 +227,26 @@ export default class SignupInvestor extends Component {
   }
 
   createUserRender() {
-    return (
-      <AuthSigupInvestorCreateForm
-        optClass="col-sm-6"
-        onSubmit={this.onCreateUser}
-        submitInProcess={this.props.createUserInProcess}
-      />
-    )
+    // TODO: change this back to AuthSigupInvestorCreateForm from EarlyBirdForm
+    const { earlybird } = this.state
+
+    if (earlybird) {
+      return (
+        <EarlyBirdForm
+          optClass="col-sm-6"
+          onSubmit={this.onCreateUser}
+          submitInProcess={this.props.cEarlybirdInProcess}
+        />
+      )
+    } else {
+      return (
+        <AuthSigupInvestorCreateForm
+          optClass="col-sm-6"
+          onSubmit={this.onCreateUser}
+          submitInProcess={this.props.createUserInProcess}
+        />
+      )
+    }
   }
 
   render() {
@@ -228,14 +254,12 @@ export default class SignupInvestor extends Component {
 
     return (
       <div id="page-auth-signup-investor">
-        <div className="row">
-          <SharedOthersSideTitle title="investor" number={sideTitleNumber} optClass="hidden-xs col-sm-3 col-md-offset-1 col-md-2" />
+        <SharedOthersSideTitle title="investor" number={sideTitleNumber} optClass="hidden-xs col-sm-3 col-md-offset-1 col-md-2" />
 
-          { pickInvestor && this.pickerInvestor() }
-          { intro && this.intro() }
-          { warningAgreement && this.warningAgreement() }
-          { createUserStep && this.createUserRender() }
-        </div>
+        { pickInvestor && this.pickerInvestor() }
+        { intro && this.intro() }
+        { warningAgreement && this.warningAgreement() }
+        { createUserStep && this.createUserRender() }
       </div>
     )
   }

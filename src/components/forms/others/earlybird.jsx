@@ -7,24 +7,23 @@ import TextField from '../../shared/form-elements/text-field'
 import MobileField from '../../shared/form-elements/mobile-field'
 
 @reduxForm({
-  form: "AuthSigupInvestorCreateForm",
+  form: "EarlybirdForm",
   validate: (values) => {
     return Validators({
       email: ["presences", "email"],
-      password: ["presences", { type: "length", opts: { min: 6 } }],
       mobile: ["mobile"],
       firstName: ["presences"],
       lastName: ["presences"]
     }, values)
   }
 })
-export default class AuthSigupInvestorCreateForm extends Component {
+export default class EarlybirdForm extends Component {
   render() {
     const { handleSubmit, submitInProcess, optClass } = this.props
 
     return (
       <div id="forms-auth-signup-investor-create" className={optClass}>
-        <h1 className="form-title fw-500">Join us as an investor</h1>
+        <h1 className="form-title fw-500">Signup for Earlybird</h1>
 
         <form onSubmit={handleSubmit}>
           <div className="row">
@@ -35,8 +34,7 @@ export default class AuthSigupInvestorCreateForm extends Component {
                 opts={{
                   type: "text",
                   label: "First Name",
-                  placeholder: "Adam",
-                  hint: "Need to match HKID - Passport or official documents"
+                  placeholder: "Adam"
                 }}
               />
             </div>
@@ -47,8 +45,7 @@ export default class AuthSigupInvestorCreateForm extends Component {
                 opts={{
                   type: "text",
                   label: "Last Name",
-                  placeholder: "Chan",
-                  hint: "Need to match HKID - Passport or official documents"
+                  placeholder: "Chan"
                 }}
               />
             </div>
@@ -74,20 +71,6 @@ export default class AuthSigupInvestorCreateForm extends Component {
                   type: "email",
                   label: "Username / Email",
                   placeholder: "example@mail.com"
-                }}
-              />
-            </div>
-          </div>
-
-          <div className="row">
-            <div className="col-xs-12 col-sm-6">
-              <Field
-                name="password"
-                component={TextField}
-                opts={{
-                  type: "password",
-                  label: "Password",
-                  placeholder: "********"
                 }}
               />
             </div>

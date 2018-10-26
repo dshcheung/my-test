@@ -153,7 +153,7 @@ export default class Home extends Component {
               <div className="banner-background" style={{ backgroundImage: `url(${banner1})` }} />
               <Carousel.Caption>
                 <div className="h2 margin-0">JOIN AN EXCLUSIVE COMMUNITY <br /> OF PROFESSIONAL INVESTORS</div>
-                <div className="h4 fw-400 margin-top-5">| SFC Licensed Investment Platform</div>
+                <div className="h4 fw-400 margin-top-5">| SFC Licensed Platform (Application in Principal)</div>
               </Carousel.Caption>
               <img src={b1l} alt="pattern" className="pattern left" style={{ height: "105vh" }} />
               <img src={b1r} alt="pattern" className="pattern right" style={{ height: "105vh" }} />
@@ -162,7 +162,7 @@ export default class Home extends Component {
               <div className="banner-background" style={{ backgroundImage: `url(${banner2})` }} />
               <Carousel.Caption>
                 <div className="h2 margin-0 text-black">INVEST IN THE FUTURE</div>
-                <div className="h4 fw-400 margin-top-5 text-black">| SFC Licensed Investment Platform</div>
+                <div className="h4 fw-400 margin-top-5 text-black">| SFC Licensed Platform (Application in Principal)</div>
               </Carousel.Caption>
               <img src={b2l} alt="pattern" className="pattern left" style={{ height: "105vh" }} />
               <img src={b2r} alt="pattern" className="pattern right" style={{ height: "105vh" }} />
@@ -171,7 +171,7 @@ export default class Home extends Component {
               <div className="banner-background" style={{ backgroundImage: `url(${banner3})` }} />
               <Carousel.Caption>
                 <div className="h2 margin-0">ALL THE INFORMATION YOU <br /> NEED TO INVEST IN STARTUPS</div>
-                <div className="h4 fw-400 margin-top-5">| SFC Licensed Investment Platform</div>
+                <div className="h4 fw-400 margin-top-5">| SFC Licensed Platform (Application in Principal)</div>
               </Carousel.Caption>
               <img src={b3l} alt="pattern" className="pattern left" style={{ height: "105vh" }} />
               <img src={b3r} alt="pattern" className="pattern right" style={{ height: "105vh" }} />
@@ -180,7 +180,7 @@ export default class Home extends Component {
               <div className="banner-background" style={{ backgroundImage: `url(${banner4})` }} />
               <Carousel.Caption>
                 <div className="h2 margin-0">WE FEATURE ONLY HIGHLY VETTED <br /> INVESTMENT OPPORTUNITIES</div>
-                <div className="h4 fw-400 margin-top-5">| SFC Licensed Investment Platform</div>
+                <div className="h4 fw-400 margin-top-5">| SFC Licensed Platform (Application in Principal)</div>
               </Carousel.Caption>
               <img src={b4l} alt="pattern" className="pattern left" style={{ height: "105vh" }} />
               <img src={b4r} alt="pattern" className="pattern right" style={{ height: "105vh" }} />
@@ -189,7 +189,7 @@ export default class Home extends Component {
               <div className="banner-background" style={{ backgroundImage: `url(${banner5})` }} />
               <Carousel.Caption>
                 <div className="h2 margin-0">BUILD A DIVERSIFED <br /> STARTUP PORTFOLIO</div>
-                <div className="h4 fw-400 margin-top-5">| SFC Licensed Investment Platform</div>
+                <div className="h4 fw-400 margin-top-5">| SFC Licensed Platform (Application in Principal)</div>
               </Carousel.Caption>
               <img src={b5l} alt="pattern" className="pattern left" style={{ height: "105vh" }} />
               <img src={b5r} alt="pattern" className="pattern right" style={{ height: "105vh" }} />
@@ -269,7 +269,7 @@ export default class Home extends Component {
               </div>
             </div>
             <SharedOthersSideTitle
-              title="SFC Licensed Investment Platform"
+              title="SFC Licensed Platform (Application in Principal)"
               optClass="hidden-xs hidden-sm col-md-1 color-primary bg-white side-text-small px-20"
             />
           </div>
@@ -290,7 +290,7 @@ export default class Home extends Component {
 
                     <div>
                       <strong>It is simple and easy</strong>
-                      <p>AngelHub is a SFC-licensed entity and all Investors are required to be verified as Professional Investors before browsing any investment opportunities. Investor verification will grant you all access to startup campaigns and data room</p>
+                      <p>AngelHub is a SFC Licensed (Application in Principal) entity and all Investors are required to be verified as Professional Investors before browsing any investment opportunities. Investor verification will grant you all access to startup campaigns and data room</p>
                     </div>
                   </div>
 
@@ -408,7 +408,7 @@ export default class Home extends Component {
 
         <section className="philosophy clearfix text-center">
           <SharedOthersSideTitle
-            title="SFC Licensed Investment Platform"
+            title="SFC Licensed Platform (Application in Principal)"
             optClass="hidden-xs hidden-sm col-md-1 color-primary bg-white side-text-small right"
           />
           <div className="col-xs-12 col-md-6 col-md-offset-3 col-lg-offset-3">
@@ -443,7 +443,7 @@ export default class Home extends Component {
                 <div className="h1 water-mark">WHAT</div>
                 <div className="h4 title">WHAT WE DO</div>
 
-                <div>AngelHub is the only SFC Licensed highly vetted startup Investment platform for Professional investors. It provides access, time and know how to startups and PI to democratize the fundraising process that was reserved to an small exclusive group of people. AngelHub combines the professionalism of VCs, the flexibility of Angel investing and power of key strategic partnerships.</div>
+                <div>AngelHub is the only SFC Licensed Platform (Application in Principal) highly vetted startup Investment platform for Professional investors. It provides access, time and know how to startups and PI to democratize the fundraising process that was reserved to an small exclusive group of people. AngelHub combines the professionalism of VCs, the flexibility of Angel investing and power of key strategic partnerships.</div>
               </div>
 
               <div className="col-xs-6 card image">

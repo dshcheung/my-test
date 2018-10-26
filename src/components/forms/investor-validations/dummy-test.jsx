@@ -58,7 +58,7 @@ export default class InvestorValidationsDummyTestForm extends Component {
         <form onSubmit={handleSubmit}>
           <h1 className="form-title fw-500 margin-bottom-20">risk assessment</h1>
           <div className="help-text margin-bottom-50">
-            As an SFC licensed firm, we are required to assess the risk appetite of all of our potential members, so please take the time to complete the following questionnaire. Thank you.
+            As an SFC Licensed (Application in Principal) firm, we are required to assess the risk appetite of all of our potential members, so please take the time to complete the following questionnaire. Thank you.
           </div>
 
           <div className="row margin-bottom-40">

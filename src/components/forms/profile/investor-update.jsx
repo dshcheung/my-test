@@ -125,7 +125,7 @@ export default class ProfileInvestorUpdateForm extends Component {
         {
           showSFCMsg && (
             <div className="margin-top-20 clearfix">
-              <p>Please note that AngelHub is a Hong Kong Securities and Futures Commission (SFC) licensed entity that provides services to Professional Investors (PIs), as defined by the SFC.  If you are not a Hong Kong resident and/or hold a non-Hong Kong passport, we will still require that you qualify under the SFC PI guidelines, which we will assess through our onboarding process.</p>
+              <p>Please note that AngelHub is a Hong Kong Securities and Futures Commission (SFC) Licensed (Application in Principal) entity that provides services to Professional Investors (PIs), as defined by the SFC.  If you are not a Hong Kong resident and/or hold a non-Hong Kong passport, we will still require that you qualify under the SFC PI guidelines, which we will assess through our onboarding process.</p>
 
               <p>Please further note that, as a non-Hong Kong resident, you must also ensure that you meet the equivalent PI qualification specific to the jurisdiction in which your are a resident, and, where applicable and required, the jurisdiction of your citizenship.  This is fully your responsibility and AngelHub accepts no liability should you fail to do so.  In addition, should AngelHub for any reason believe that you have not met the above qualifications, we will immediately disqualify you from the platform and divest you of any investments made through the platform.</p>
 

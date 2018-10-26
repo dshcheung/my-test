@@ -41,6 +41,9 @@ import CampaignsShowContainer from '../components/_pages/campaigns/show'
 
 import InPersonValidationContainer from '../components/_pages/others/in-person-validation'
 
+import InDevelopmentContainer from '../components/_pages/others/in-development'
+import EarlybirdContainer from '../components/_pages/others/earlybird'
+
 import PageNotFound from '../components/_pages/others/not-found'
 
 export default (
@@ -89,6 +92,13 @@ export default (
     </Route>
 
     <Route path="in-person-validation" component={InPersonValidationContainer} barebone />
+
+    <Route path="p/:page" component={InDevelopmentContainer} />
+    <Route path="guide/:page" component={InDevelopmentContainer} />
+    <Route path="help/:page" component={InDevelopmentContainer} />
+    <Route path="legal/:page" component={InDevelopmentContainer} />
+
+    <Route path="earlybird" component={EarlybirdContainer} />
 
     <Route path="blank" barebone />
 

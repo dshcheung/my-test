@@ -34,19 +34,15 @@ export default class Login extends Component {
   render() {
     return (
       <div id="page-auth-login">
-        <div className="row">
-          <AuthLoginForm
-            optClass="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4"
-            onSubmit={this.createSession}
-            submitInProcess={this.props.createSessionInProcess}
-          />
-        </div>
+        <AuthLoginForm
+          optClass="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4"
+          onSubmit={this.createSession}
+          submitInProcess={this.props.createSessionInProcess}
+        />
 
-        <div className="row">
-          <div className="create-account col-sm-4 col-sm-offset-4">
-            <span>New to AngelHub? </span>
-            <Link to="/auth/signup" className="text-uppercase">Create An Account</Link>
-          </div>
+        <div className="create-account col-sm-4 col-sm-offset-4">
+          <span>New to AngelHub? </span>
+          <Link to="/auth/signup" className="text-uppercase">Create An Account</Link>
         </div>
       </div>
     )
