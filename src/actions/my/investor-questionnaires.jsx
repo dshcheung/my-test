@@ -3,8 +3,6 @@ import { genApiUrl, genAxios } from '../../services/api-request'
 import { getFormData } from '../../services/get-form-data'
 import { apiMyInvestorQuestionnaireIndex, apiMyInvestorQuestionnaireMarkForReviewIndex } from '../../services/api-path'
 
-import { getMyProfile } from '../my/profile'
-
 import { notySuccess } from '../../services/noty'
 import { checkFile } from '../../services/utils'
 
@@ -88,11 +86,8 @@ export const uMyInvestorQuestionnaireMarkForReview = () => {
   return {
     type: U_MY_INVESTOR_QUESTIONNAIRE_MARK_FOR_REVIEW,
     request,
-    successCB: (dispatch, data) => {
-      // TODO: remove getMyProfile after secret page is removed
-      dispatch(getMyProfile())
+    successCB: (dispatch) => {
       dispatch(push(`/my/investor-validations`))
-      dispatch(setMyInvestorQuestionnaire(data))
       notySuccess("Submitted")
     }
   }

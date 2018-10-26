@@ -23,7 +23,6 @@ import myStartupQuestionnairesReducers from './my/startup-questionnaires'
 import paginationReducer from './system/pagination'
 import redirectionReducer from './system/redirection'
 import requestStatusReducer from './system/request-status'
-import secretReducer from './system/secret'
 import sessionReducer from './session'
 
 const appReducer = combineReducers({
@@ -43,7 +42,6 @@ const appReducer = combineReducers({
   requestStatus: requestStatusReducer,
   session: sessionReducer,
   routing: routerReducer,
-  secret: secretReducer,
   form: formReducer
 })
 
@@ -54,7 +52,6 @@ export default (state, action) => {
     newState = {
       requestStatus: state.requestStatus,
       routing: state.routing,
-      secret: state.secret,
       form: state.form
     }
   }

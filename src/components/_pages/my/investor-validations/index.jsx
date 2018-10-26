@@ -75,8 +75,7 @@ export default class MyInvestorValidationsIndex extends Component {
   }
 
   componentWillMount() {
-    // TODO: add back when secret page is removed
-    // this.props.getMyProfile()
+    this.props.getMyProfile()
   }
 
   iconCheck(status) {
