@@ -34,13 +34,17 @@ export default class OurTeam extends Component {
                         <div className="box-content">
                           <h3 className="name">{p.name}</h3>
                           <span className="title">{p.title}</span>
-                          <ul className="icon">
-                            <li>
-                              <a href={p.linkedIn} target="_blank" rel="noopener noreferrer">
-                                <i className="fab fa-linkedin fa-2x" />
-                              </a>
-                            </li>
-                          </ul>
+                          {
+                            p.link && (
+                              <ul className="icon">
+                                <li>
+                                  <a href={p.linkedIn} target="_blank" rel="noopener noreferrer">
+                                    <i className="fab fa-linkedin fa-2x" />
+                                  </a>
+                                </li>
+                              </ul>
+                            )
+                          }
                         </div>
                       </div>
                     </div>
