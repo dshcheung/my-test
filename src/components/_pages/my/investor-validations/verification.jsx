@@ -222,7 +222,7 @@ export default class MyInvestorValidationsVerification extends Component {
     if (gInvestorRiskAssessment) return <LoadingSpinner />
 
     return (
-      <div id="page-my-investor-validations-verification">
+      <div id="page-my-investor-validations-verification" className="margin-top-50">
         <SharedOthersSideTitle title="investor" number={sideTitleNumber} optClass="hidden-xs col-sm-3 col-md-offset-1 col-md-2" />
 
         { updateUserStep && this.updateUserRender() }

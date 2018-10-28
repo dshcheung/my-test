@@ -116,7 +116,7 @@ export default class InvestorValidationsAMLWrapper extends Component {
     if (gMyInvestorAgreementInProcess || gMyInvestorBankDetailInProcess || gMyDocumentsInProcess) return <LoadingSpinner />
 
     return (
-      <div id="my-investors-validations-aml" className={currentTab !== "success" && "remove-body-top-padding"}>
+      <div id="my-investors-validations-aml">
         {
           currentTab !== "success" && <SharedOthersTabNav order={order} currentTab={currentTab} handleClick={this.changeTab} />
         }

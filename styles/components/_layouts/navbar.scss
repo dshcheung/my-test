@@ -25,6 +25,10 @@ $navbar-brand-line-height: $navbar-height;
       // logo
       .navbar-brand {
         height: $navbar-height;
+
+        img {
+          height: 100%;
+        }
       }
 
       // button on collapse
