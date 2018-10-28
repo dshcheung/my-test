@@ -40,6 +40,15 @@
   }
 }
 
+.no-bullets {
+  list-style-type: none;
+  a {
+    text-align: center;
+    font-size: 14px;
+    display: block;
+  }
+}
+
 .hover-info {
   background: #000;
   position: relative;
@@ -78,6 +87,8 @@
     transition: all .35s ease 0s;
     a {
       text-align: center;
+      font-size: 14px;
+      display: block;
     }
   }
   .title {

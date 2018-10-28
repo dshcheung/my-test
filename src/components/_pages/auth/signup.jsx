@@ -18,7 +18,7 @@ export default class Signup extends Component {
                 <Link
                   to="/auth/signup-investor"
                   className="btn btn-primary btn-outline px-10 mt-2 text-uppercase"
-                >Sign Up</Link>
+                >Request Access</Link>
               </div>
             </div>
             <div className="col-xs-12 col-md-6 px-50 border-before">
@@ -36,12 +36,12 @@ export default class Signup extends Component {
           <hr className="clear-both" />
 
           <div className="have-account">
-            <span>Already have an account? </span>
+            <span className="inline-block">Already have an account? </span>
             <Link to="/auth/login" className="text-uppercase">Log in here</Link>
           </div>
 
           <div className="is-institute margin-top-10">
-            <span>Are you an Institutional Investor?</span>
+            <span className="inline-block">Are you an Institutional Investor?</span>
             <Link to="/p/contact-us" className="text-uppercase">Please contact us here</Link>
           </div>
         </div>
