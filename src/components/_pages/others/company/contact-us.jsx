@@ -14,7 +14,7 @@ export default class ContactUs extends Component {
           <SharedOthersSideTitle title="Contact Us" optClass="col-xs-2 col-lg-2 color-primary" />
           <div className="col-xs-10 col-lg-9">
             <div className="row title">
-              <div className="h2 text-primary text-uppercase">Contact us to see how we can help you</div>
+              <div className="h2 text-primary text-uppercase">how we can help you</div>
             </div>
 
             <div className="row text-left">
