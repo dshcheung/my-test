@@ -64,7 +64,7 @@ export default class Footer extends Component {
                   </div>
 
                   <div className="links-section">
-                    <img className="footer-brand" src="http://angelhub.io/images/logo-white.png" alt="AngelHub" />
+                    <img className="footer-brand img-responsive" src="http://angelhub.io/images/angelhub-logo-white-tagline.png" alt="AngelHub" />
                   </div>
                 </div>
                 <hr />
