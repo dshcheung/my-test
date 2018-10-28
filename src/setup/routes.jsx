@@ -42,7 +42,6 @@ import CampaignsShowContainer from '../components/_pages/campaigns/show'
 import InPersonValidationContainer from '../components/_pages/others/in-person-validation'
 
 import CompanyAboutUsContainer from '../components/_pages/others/company/about-us'
-import CompanyOurTeamContainer from '../components/_pages/others/company/our-team'
 import CompanyCareersContainer from '../components/_pages/others/company/careers'
 import CompanyContactUsContainer from '../components/_pages/others/company/contact-us'
 
@@ -104,7 +103,6 @@ export default (
 
     <Route path="p">
       <Route path="about-us" component={CompanyAboutUsContainer} />
-      <Route path="our-team" component={CompanyOurTeamContainer} />
       <Route path="careers" component={CompanyCareersContainer} />
       <Route path="contact-us" component={CompanyContactUsContainer} />
     </Route>
