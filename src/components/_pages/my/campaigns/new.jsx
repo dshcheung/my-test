@@ -91,7 +91,7 @@ export default class MyCampaignsNew extends Component {
     const { currentTab, disableNav, intro, order } = this.state
 
     return (
-      <div id="my-campaigns-new" className={!intro && "remove-body-top-padding"}>
+      <div id="my-campaigns-new" className={intro && "margin-top-50 margin-bottom-20 clearfix"}>
         {
           !intro && <SharedOthersTabNav order={order} currentTab={currentTab} disableNav={disableNav} />
         }

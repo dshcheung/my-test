@@ -62,13 +62,13 @@ export default class CampaignsIndex extends Component {
     const { getCampaignsInProcess, currentUser: { approved }, campaigns } = this.props
 
     return (
-      <div id="pages-campaigns-index">
+      <div id="pages-campaigns-index" className="margin-top-20">
         <SharedOthersSideTitle title="campaigns" optClass="col-xs-2" />
 
         <section className="col-xs-8">
           <div className="row section-header text-left">
             <div className="col-xs-10 col-xs-offset-1">
-              <div className="h3">Invest in Business,</div>
+              <div className="h3 margin-top-0">Invest in Business,</div>
               <div className="h3">That Adds Values to Your Portfolio</div>
 
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos adipisci fugit sed est optio, praesentium fugiat nobis non, esse, vitae quibusdam rerum error in voluptatibus distinctio. Repellendus, illo. Expedita, sit.</p>

@@ -27,10 +27,10 @@ export default class ContactUs extends Component {
     return (
       <div>
         <section className="launch-today clearfix margin-top-20 margin-bottom-20">
-          <SharedOthersSideTitle title="Contact Us" optClass="col-xs-2 col-lg-2 color-primary" />
-          <div className="col-xs-10 col-lg-9">
+          <SharedOthersSideTitle title="Contact Us" optClass="hidden-xs col-sm-3 col-md-offset-1 col-md-2" />
+          <div className="col-sm-6">
             <div className="row title">
-              <div className="h2 text-primary text-uppercase">how we can help you</div>
+              <div className="h2 text-primary text-uppercase margin-top-0">how we can help you</div>
             </div>
 
             <div className="row text-left">

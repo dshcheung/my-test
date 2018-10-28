@@ -32,9 +32,9 @@ export default class ResetPassword extends Component {
 
   render() {
     return (
-      <div id="page-auth-reset-password">
+      <div id="page-auth-reset-password" className="margin-top-50">
         <AuthResetPasswordForm
-          optClass="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4"
+          optClass="col-sm-6 col-sm-offset-3"
           onSubmit={this.resetPassword}
           initialValues={{ reset_token: this.props.router.location.query.code }}
           submitInProcess={this.props.resetPasswordInProcess}

@@ -34,17 +34,15 @@ export default class Verify extends Component {
 
   render() {
     return (
-      <div id="page-verify" className="container padding-top-20 padding-bottom-20">
-        <div className="row">
-          <VerifyForm
-            optClass="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3"
-            onSubmit={this.uMyVerifications}
-            submitInProcess={this.props.uMyVerificationsInProcess}
-            initialValues={{
-              code: _.get(this.props, 'location.query.code', '')
-            }}
-          />
-        </div>
+      <div id="page-verify" className="margin-top-50">
+        <VerifyForm
+          optClass="col-sm-6 col-sm-offset-3"
+          onSubmit={this.uMyVerifications}
+          submitInProcess={this.props.uMyVerificationsInProcess}
+          initialValues={{
+            code: _.get(this.props, 'location.query.code', '')
+          }}
+        />
       </div>
     )
   }

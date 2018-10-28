@@ -35,7 +35,7 @@ export default class Login extends Component {
     return (
       <div id="page-auth-login">
         <AuthLoginForm
-          optClass="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4"
+          optClass="col-sm-6 col-sm-offset-3"
           onSubmit={this.createSession}
           submitInProcess={this.props.createSessionInProcess}
         />

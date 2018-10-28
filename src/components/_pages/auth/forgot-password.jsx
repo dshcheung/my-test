@@ -32,9 +32,9 @@ export default class ForgotPassword extends Component {
 
   render() {
     return (
-      <div id="page-auth-forgot-password">
+      <div id="page-auth-forgot-password" className="margin-top-50">
         <AuthForgotPasswordForm
-          optClass="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4"
+          optClass="col-sm-6 col-sm-offset-3"
           onSubmit={this.requestForgetPassword}
           submitInProcess={this.props.requestForgetPasswordInProcess}
         />
