@@ -30,14 +30,16 @@ export default class Footer extends Component {
                       <li><Link className="" to="/p/contact-us">Contact Us</Link></li>
                     </ul>
                   </div>
-                  <div className="links-section">
-                    <span className="header text-uppercase">Get Started</span>
-                    <ul>
-                      <li><Link className="" to="/get-started/invest">Invest</Link></li>
-                      <li><Link className="" to="/get-started/raise">Raise</Link></li>
-                    </ul>
-                  </div>
-
+                  {
+                    // TODO: tempolary remove
+                    // <div className="links-section">
+                    //   <span className="header text-uppercase">Get Started</span>
+                    //   <ul>
+                    //     <li><Link className="" to="/get-started/invest">Invest</Link></li>
+                    //     <li><Link className="" to="/get-started/raise">Raise</Link></li>
+                    //   </ul>
+                    // </div>
+                  }
                   <div className="links-section">
                     <span className="header text-uppercase">Learn</span>
                     <ul>
