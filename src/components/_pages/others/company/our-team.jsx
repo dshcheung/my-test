@@ -134,7 +134,7 @@ export default class OurTeam extends Component {
                     </div>
                     <div className="col-sm-6 col-md-8">
                       <div className="box-content">
-                        <h3 className="name">
+                        <h3 className="name margin-bottom-0">
                           {p.name}
                           {
                             p.link && (
@@ -148,7 +148,7 @@ export default class OurTeam extends Component {
                             )
                           }
                         </h3>
-                        <div className="title text-bold">{p.title}</div>
+                        <div className="title text-bold margin-bottom-10">{p.title}</div>
                         <div className="bio-content">{p.bio}</div>
                       </div>
                     </div>
