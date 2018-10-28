@@ -24,7 +24,8 @@ export default class Footer extends Component {
                   <div className="links-section">
                     <span className="header text-uppercase">COMPANY</span>
                     <ul>
-                      <li><Link className="" to="/p/about-us">About</Link></li>
+                      <li><Link className="" to="/p/about-us">About Us</Link></li>
+                      <li><Link className="" to="/p/our-team">Our Team</Link></li>
                       <li><Link className="" to="/p/careers">Careers</Link></li>
                       <li><Link className="" to="/p/contact-us">Contact Us</Link></li>
                     </ul>

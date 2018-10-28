@@ -81,7 +81,7 @@ export default class AboutUs extends Component {
                         <div className="box-content">
                           <h3 className="name">{p.name}</h3>
                           <span className="title">{p.title}</span>
-                          <ul className="icon">
+                          <ul className="bio-share">
                             <li>
                               <a href={p.linkedIn} target="_blank" rel="noopener noreferrer">
                                 <i className="fab fa-linkedin fa-2x" />

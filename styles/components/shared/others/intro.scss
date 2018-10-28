@@ -68,7 +68,11 @@
     margin: 0 0 10px;
     transform: scale(0);
   }
-  .icon li {
+  .bio-content {
+    color: #ccc;
+    font-size: 0.9em;
+  }
+  .bio-share li {
     opacity: 0;
     transform: translateX(40px);
     transition: all .35s ease 0s;
@@ -85,7 +89,7 @@
     color: #fff;
     margin-bottom: 5px;
   }
-  .icon {
+  .bio-share {
     display: inline-block;
     margin: 0;
     padding: 0;
@@ -101,11 +105,11 @@
     &:after {
       transform: skew(20deg) translateX(0);
     }
-    .icon li, .title {
+    .bio-share li, .title {
       opacity: 1;
       transform: translateX(0);
     }
-    .icon li {
+    .bio-share li {
       &:first-child {
         transition-delay: .1s;
       }
@@ -114,7 +118,7 @@
       }
     }
   }
-  .icon li a {
+  .bio-share li a {
     display: block;
     color: #fff;
     margin-bottom: 5px;
