@@ -33,7 +33,7 @@ export default class SignupStartup extends Component {
 
   render() {
     return (
-      <div id="page-auth-signup-startup">
+      <div id="page-auth-signup-startup" className="margin-top-50">
         <SharedOthersSideTitle title="startup" optClass="hidden-xs col-sm-3 col-md-4" />
 
         <AuthSignupStartupForm

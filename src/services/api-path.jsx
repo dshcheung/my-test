@@ -34,6 +34,10 @@ export const apiNewsletterIndex = () => {
   return 'newsletter'
 }
 
+export const apiContactUsIndex = () => {
+  return 'contact_us'
+}
+
 export const apiUsersIndex = () => {
   return 'users'
 }

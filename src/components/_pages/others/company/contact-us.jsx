@@ -1,15 +1,31 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+import { cContactUs, C_CONTACT_US } from "../../../../actions/contact-us"
 
 import SharedOthersSideTitle from '../../../shared/others/side-title'
 
-import OthersMailingForm from '../../../forms/others/mailing'
+import OthersContactUsForm from '../../../forms/others/contact-us'
 
+const mapStateToProps = (state) => {
+  return {
+    cNewsletterInProcess: _.get(state.requestStatus, C_CONTACT_US)
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    cNewsletter: bindActionCreators(cContactUs, dispatch),
+  }
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 export default class ContactUs extends Component {
   render() {
     return (
       <div>
-
         <section className="launch-today clearfix margin-top-20 margin-bottom-20">
           <SharedOthersSideTitle title="Contact Us" optClass="col-xs-2 col-lg-2 color-primary" />
           <div className="col-xs-10 col-lg-9">
@@ -18,9 +34,13 @@ export default class ContactUs extends Component {
             </div>
 
             <div className="row text-left">
-              <OthersMailingForm
+              <OthersContactUsForm
+                initialValues={{
+                  subject: "General"
+                }}
                 optClass="col-xs-12"
-                onSubmit={() => {}}
+                onSubmit={this.props.cNewsletter}
+                submitInProcess={this.props.cNewsletterInProcess}
               />
             </div>
           </div>
