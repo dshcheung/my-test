@@ -49,7 +49,7 @@ import CompanyContactUsContainer from '../components/_pages/others/company/conta
 import GetStartedInvestContainer from '../components/_pages/others/get-started/invest'
 import GetStartedRaiseContainer from '../components/_pages/others/get-started/raise'
 
-import GuideContainer from '../components/_pages/others/guide'
+import GuidesContainer from '../components/_pages/others/guides'
 
 import LegalContainer from '../components/_pages/others/legal'
 
@@ -115,7 +115,7 @@ export default (
     <Route path="get-started/invest" component={GetStartedInvestContainer} />
     <Route path="get-started/raise" component={GetStartedRaiseContainer} />
 
-    <Route path="guide" component={GuideContainer} />
+    <Route path="guides" component={GuidesContainer} />
 
     <Route path="legal/:page" component={LegalContainer} />
 

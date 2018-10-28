@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class Guide extends Component {
+export default class Guides extends Component {
   getInfo() {
     const { routeParams: { page } } = this.props
     const pages = {
@@ -17,7 +17,7 @@ export default class Guide extends Component {
     // const pageInfo = this.getInfo()
 
     return (
-      <div>Guide</div>
+      <div>Guides</div>
     )
   }
 }

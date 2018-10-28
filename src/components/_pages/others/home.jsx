@@ -496,7 +496,7 @@ export default class Home extends Component {
                 <div className="blue-hover last">
                   <i className="text-primary ahub-education" />
                   <div className="h5 margin-bottom-20">Education Centre</div>
-                  <Link to="/guide" className="btn btn-dark btn-block">START LEARNING</Link>
+                  <Link to="/guides" className="btn btn-dark btn-block">START LEARNING</Link>
                 </div>
               </div>
             </div>
