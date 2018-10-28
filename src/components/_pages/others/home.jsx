@@ -1,10 +1,27 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import Carousel from 'react-bootstrap/lib/Carousel'
+
+import { cNewsletter, C_NEWSLETTER } from '../../../actions/newsletter'
 
 import SharedOthersSideTitle from '../../shared/others/side-title'
 
 import OthersMailingForm from '../../forms/others/mailing'
 
+const mapStateToProps = (state) => {
+  return {
+    cNewsletterInProcess: _.get(state.requestStatus, C_NEWSLETTER)
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    cNewsletter: bindActionCreators(cNewsletter, dispatch),
+  }
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 export default class Home extends Component {
   render() {
     // use this banner for now until final version is created
@@ -494,7 +511,8 @@ export default class Home extends Component {
             <div className="row text-left">
               <OthersMailingForm
                 optClass="col-xs-8 col-xs-offset-2 col-lg-6 col-lg-offset-3 dark"
-                onSubmit={() => {}}
+                onSubmit={this.props.cNewsletter}
+                submitInProcess={this.props.cNewsletterInProcess}
               />
             </div>
           </div>

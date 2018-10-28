@@ -30,6 +30,10 @@ export const apiEarlybirdsIndex = () => {
   return 'earlybirds'
 }
 
+export const apiNewsletterIndex = () => {
+  return 'newsletter'
+}
+
 export const apiUsersIndex = () => {
   return 'users'
 }
