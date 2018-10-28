@@ -123,7 +123,7 @@ export default class OurTeam extends Component {
           </div>
         </div>
 
-        <section className="who-we-are clearfix margin-top-50">
+        <section className="who-we-are clearfix margin-top-50 margin-bottom-50">
           <div className="container">
             {
               people.map((p, i) => {
