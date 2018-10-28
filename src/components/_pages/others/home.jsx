@@ -223,25 +223,25 @@ export default class Home extends Component {
             <div className="row cards">
               <div className="col-xs-6 card">
                 <div className="h5 text-uppercase">VENTURE AS AN ASSET CLASS</div>
-                <div>Less than 5% of startups that apply get accepted by AngelHub. Listed startups have to get through our rigorous due diligence process</div>
+                <div>AngelHub democratises startup investment and provide you the opportunity to invest in highly vetted startup opportunities</div>
               </div>
 
               <div className="col-xs-6 card">
                 <div className="h5 text-uppercase">BUILD A DIVERSIFIED STARTUP PORTFOLIO</div>
 
-                <div>Invest in startups from around the world across industries and sectors starting at a minimum investment of US$ 10,000</div>
+                <div>With a minimum investment of US$ 10,000 - 50 times lower than usual venture investment size - build a diversified portfolio with startups from various industries and geographical locations</div>
+              </div>
+
+              <div className="col-xs-6 card">
+                <div className="h5 text-uppercase">HIGHLY VETTED STARTUPS</div>
+
+                <div>Less than 5% of startups that apply get accepted. Listed startups get through our rigorous due diligence screening process and committees</div>
               </div>
 
               <div className="col-xs-6 card">
                 <div className="h5 text-uppercase">INVEST IN THE FUTURE</div>
 
-                <div>Startups are driving innovation and changing the future and changing the status quo. Be a part of the digital revolution and empower startups to drive wealth and economic growth</div>
-              </div>
-
-              <div className="col-xs-6 card">
-                <div className="h5 text-uppercase">POWER OF KEY STRATEGIC PARTNER</div>
-
-                <div>We are a team of builders and operators, immersed in the startup eco- system and have built strong partnerships with incubators, accelerators and startup communities across the world</div>
+                <div>Entrepreneurs are revolutionising the way we live. You can now capture this entrepreneurial spirit that is driving the economy and inspiring the world</div>
               </div>
 
             </div>
@@ -264,25 +264,26 @@ export default class Home extends Component {
               </div>
 
               <div className="row heading">
-                <div className="h5 col-xs-4">Investment Portal Overview</div>
-                <div className="h5 col-xs-4">Diversified Investment through a multi sector platform</div>
-                <div className="h5 col-xs-4">Gain insights and keep track of your investment</div>
+                <div className="h5 col-xs-4">INVESTMENT PORTAL OVERVIEW</div>
+                <div className="h5 col-xs-4">DIVERSIFIED INVESTMENT</div>
+                <div className="h5 col-xs-4">GAIN INSIGHTS AND KEEP TRACK OF YOUR INVESTMENT</div>
               </div>
 
               <div className="row points text-left">
                 <ul className="col-xs-4 list-style-none">
-                  <li><span className="text-primary margin-right-5">></span>Gives full flexibility and transparency</li>
-                  <li><span className="text-primary margin-right-5">></span>Make informed decisions and build a personalised investment portfolio</li>
-                  <li><span className="text-primary margin-right-5">></span>Stay informed anyway anytime</li>
+                  <li><span className="text-primary margin-right-5">></span>Startups go through a throughout selection process from an online application, due diligence screening to pitching to AngelHub's selection and investment committee</li>
+                  <li><span className="text-primary margin-right-5">></span>Access highly vetted startups with all the due diligence documents you need</li>
+                  <li><span className="text-primary margin-right-5">></span>Decide in which opportunity you want to invest</li>
                 </ul>
                 <ul className="col-xs-4 list-style-none">
-                  <li><span className="text-primary margin-right-5">></span>Access Vetted Startup with the due diligence documents</li>
-                  <li><span className="text-primary margin-right-5">></span>From discovery and thorough evaluation, to settlement and post investment monitoring</li>
-                  <li><span className="text-primary margin-right-5">></span>Centralised portal with direct access to startups and education through master classes</li>
+                  <li><span className="text-primary margin-right-5">></span>Diversify across multiple startups with a minimum ticket size of US$ 10,000</li>
+                  <li><span className="text-primary margin-right-5">></span>Build a personalised and diversified portfolio</li>
+                  <li><span className="text-primary margin-right-5">></span>Access worldwide growth state ventures scaling in Asia from all type of sectors and technologies</li>
                 </ul>
                 <ul className="col-xs-4 list-style-none">
-                  <li><span className="text-primary margin-right-5">></span>Overview at a glance or in depth</li>
-                  <li><span className="text-primary margin-right-5">></span>Analytics and post investment report</li>
+                  <li><span className="text-primary margin-right-5">></span>Learn everything you need from new business model, latest technologies or legal materials through our master classes and education centre</li>
+                  <li><span className="text-primary margin-right-5">></span>Post investment structure and process done by AngelHub</li>
+                  <li><span className="text-primary margin-right-5">></span>Analytics and post investment reports directly on the platform</li>
                 </ul>
               </div>
             </div>
