@@ -26,7 +26,10 @@ export default class Footer extends Component {
                     <ul>
                       <li><Link className="" to="/p/about-us">About Us</Link></li>
                       <li><Link className="" to="/p/our-team">Our Team</Link></li>
-                      <li><Link className="" to="/p/careers">Careers</Link></li>
+                      {
+                        // TODO: tempolary remove
+                        // <li><Link className="" to="/p/careers">Careers</Link></li>
+                      }
                       <li><Link className="" to="/p/contact-us">Contact Us</Link></li>
                     </ul>
                   </div>
