@@ -4,7 +4,6 @@ import { AppContainer } from 'react-hot-loader'
 import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
-
 import { scrollTop } from './services/utils'
 
 import configureStore from './setup/store-config'

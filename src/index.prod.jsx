@@ -4,11 +4,10 @@ import { Provider } from 'react-redux'
 import { Router, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { hotjar } from 'react-hotjar'
+import { scrollTop } from './services/utils'
 
 import configureStore from './setup/store-config'
 import currentRoutes from './setup/routes'
-
-import scrollTop from './services/utils'
 
 require('../styles/index.scss')
 require('./setup/prototypes.js')
