@@ -41,7 +41,7 @@ export default class Footer extends Component {
                   <div className="links-section">
                     <span className="header text-uppercase">Learn</span>
                     <ul>
-                      <li><Link className="" to="https://blog.angelhub.io">Blog</Link></li>
+                      <li><Link className="" to="https://medium.com/angelhub" target="_blank">Blog</Link></li>
                       <li><Link className="" to="/help/invesetor">Investor Help Centre</Link></li>
                       <li><Link className="" to="/help/entrepreneur">Entrepreneur Help Centre</Link></li>
                     </ul>
@@ -51,7 +51,8 @@ export default class Footer extends Component {
                     <span className="header text-uppercase">Legal</span>
                     <ul>
                       <li><Link className="" to="/legal/risk">Risk Warning</Link></li>
-                      <li><Link className="" to="/legal/security">Security</Link></li>
+                      <li><Link className="" to="/legal/terms">Terms Of Service</Link></li>
+                      <li><Link className="" to="/legal/privacy">Privacy Policy</Link></li>
                     </ul>
                   </div>
 
