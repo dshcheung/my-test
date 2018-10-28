@@ -190,7 +190,7 @@ export default class MyInvestorValidationsIndex extends Component {
     if (getMyProfileInProcess) return <LoadingSpinner />
 
     return (
-      <div id="page-my-investor-validations-index">
+      <div id="page-my-investor-validations-index" className="margin-top-50">
         <SharedOthersSideTitle
           title="investor"
           optClass="hidden-xs col-sm-3 col-md-offset-1 col-md-2"

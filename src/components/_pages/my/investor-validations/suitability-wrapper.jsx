@@ -102,7 +102,7 @@ export default class InvestorValidationsSuitabilityWrapper extends Component {
     if (gMyInvestorQuestionnaireInProcess) return <LoadingSpinner />
 
     return (
-      <div id="my-investors-validations-suitability" className={currentTab !== "success" && "remove-body-top-padding"}>
+      <div id="my-investors-validations-suitability">
         {
           currentTab !== "success" && <SharedOthersTabNav order={order} currentTab={currentTab} handleClick={this.changeTab} />
         }

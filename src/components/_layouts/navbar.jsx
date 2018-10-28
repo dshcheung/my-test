@@ -7,6 +7,7 @@ import NavDropdown from 'react-bootstrap/lib/NavDropdown'
 import MenuItem from 'react-bootstrap/lib/MenuItem'
 import NavItem from 'react-bootstrap/lib/NavItem'
 import LinkContainer from 'react-router-bootstrap/lib/LinkContainer'
+import { Link } from 'react-router'
 
 // import { DEFAULT_USER_AVATAR } from '../../services/constants'
 
@@ -38,13 +39,15 @@ export default class Navbar extends Component {
       >
         <BNavbar.Header>
           <BNavbar.Brand>
-            {
-              currentUser ? (
-                <img src="http://angelhub.io/images/favicon-96x96.png" alt="" />
-              ) : (
-                <img src="http://angelhub.io/images/logo-white.png" alt="" />
-              )
-            }
+            <Link to="/">
+              {
+                currentUser ? (
+                  <img src="http://angelhub.io/images/favicon-96x96.png" alt="" />
+                ) : (
+                  <img src="http://angelhub.io/images/logo-white.png" alt="" />
+                )
+              }
+            </Link>
           </BNavbar.Brand>
           <BNavbar.Toggle>
             <i className="fa fa-signal fa-rotate-90" />
