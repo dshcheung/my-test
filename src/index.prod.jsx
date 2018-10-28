@@ -20,7 +20,6 @@ const render = (routes) => {
   return ReactDOM.render(
     <Provider store={store}>
       <Router
-        onUpdate={scrollTop}
         history={history}
         routes={routes}
       />
@@ -32,6 +31,7 @@ const render = (routes) => {
 hotjar.initialize(982655, 6)
 
 history.listen((location) => {
+  scrollTop()
   window.gtag('create', { trackingId: 'UA-124005113-1', cookieDomain: 'auto' })
   window.gtag('set', 'page', location.pathname + location.search)
   window.gtag('send', 'pageview', location.pathname + location.search)
