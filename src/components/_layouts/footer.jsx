@@ -50,9 +50,9 @@ export default class Footer extends Component {
                   <div className="links-section">
                     <span className="header text-uppercase">Legal</span>
                     <ul>
-                      <li><Link className="" to="/legal/risk">Risk Warning</Link></li>
-                      <li><Link className="" to="/legal/terms">Terms Of Service</Link></li>
-                      <li><Link className="" to="/legal/privacy">Privacy Policy</Link></li>
+                      <li><Link className="" to="/legal/risk-warning">Risk Warning</Link></li>
+                      <li><Link className="" to="/legal/terms-of-service">Terms Of Service</Link></li>
+                      <li><Link className="" to="/legal/privacy-policy">Privacy Policy</Link></li>
                     </ul>
                   </div>
 
@@ -73,7 +73,7 @@ export default class Footer extends Component {
                   AngelHub Limited 2018. All rights reserved. AngelHub Limited, a limited company registered in Hong Kong (No. 2486647),
                   with registered office at Remex Centre 7F, 42 Wong Chuk Hang Road, Hong Kong. angelhub.io is a website owned and operated by AngelHub Limited.
                 </p>
-                <p className="fw-500 text-white">Investing carries risks, including loss of capital and illiquidity. Please ready our <Link className="text-primary" to="/legal/risk">Risk Warning & Disclaimer</Link> for more information.</p>
+                <p className="fw-500 text-white">Investing carries risks, including loss of capital and illiquidity. Please ready our <Link className="text-primary" to="/legal/risk-warning">Risk Warning & Disclaimer</Link> for more information.</p>
               </div>
             </div>
           </div>
@@ -84,8 +84,8 @@ export default class Footer extends Component {
               <div className="others clearfix">
                 <span className="copy-right pull-left">&copy; 2018 AngelHub Limited</span>
                 <ul className="social pull-right">
-                  <li><Link className="" to="/legal/terms" target="_blank" rel="noopener noreferrer">Terms of Use</Link></li>
-                  <li><Link className="" to="/legal/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</Link></li>
+                  <li><Link className="" to="/legal/terms-of-service" target="_blank" rel="noopener noreferrer">Terms of Use</Link></li>
+                  <li><Link className="" to="/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</Link></li>
                 </ul>
               </div>
             </div>
