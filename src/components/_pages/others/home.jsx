@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Carousel from 'react-bootstrap/lib/Carousel'
+import { Link } from 'react-router'
 
 import { cNewsletter, C_NEWSLETTER } from '../../../actions/newsletter'
 
@@ -481,27 +482,28 @@ export default class Home extends Component {
                 <div className="blue-hover first">
                   <i className="text-primary ahub-whitepaper" />
                   <div className="h5 margin-bottom-20">White paper</div>
-                  <a className="btn btn-dark btn-block">DOWNLOAD</a>
+                  <a className="btn btn-dark btn-block">COMING SOON</a>
                 </div>
               </div>
               <div className="col-xs-12 col-md-4">
                 <div className="blue-hover">
                   <i className="text-primary ahub-newsletter" />
                   <div className="h5 margin-bottom-20">Newsletter</div>
-                  <a className="btn btn-dark btn-block">SUBSCRIBE</a>
+                  <a href="#newsletter" className="btn btn-dark btn-block">SUBSCRIBE</a>
                 </div>
               </div>
               <div className="col-xs-12 col-md-4">
                 <div className="blue-hover last">
                   <i className="text-primary ahub-education" />
                   <div className="h5 margin-bottom-20">Education Centre</div>
-                  <a className="btn btn-dark btn-block">START LEARNING</a>
+                  <Link to="/guide" className="btn btn-dark btn-block">START LEARNING</Link>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
+        <a id="newsletter" className="hashtag-anchor" />
         <section className="launch-today clearfix text-center">
           <div className="col-xs-12">
             <div className="row title">

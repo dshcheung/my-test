@@ -46,8 +46,11 @@ import CompanyOurTeamContainer from '../components/_pages/others/company/our-tea
 import CompanyCareersContainer from '../components/_pages/others/company/careers'
 import CompanyContactUsContainer from '../components/_pages/others/company/contact-us'
 
-import GuidesContainer from '../components/_pages/others/guides'
-import HelpContainer from '../components/_pages/others/help'
+import GetStartedInvestContainer from '../components/_pages/others/get-started/invest'
+import GetStartedRaiseContainer from '../components/_pages/others/get-started/raise'
+
+import GuideContainer from '../components/_pages/others/guide'
+
 import LegalContainer from '../components/_pages/others/legal'
 
 // import InDevelopmentContainer from '../components/_pages/others/in-development'
@@ -109,8 +112,11 @@ export default (
       <Route path="contact-us" component={CompanyContactUsContainer} />
     </Route>
 
-    <Route path="guide/:page" component={GuidesContainer} />
-    <Route path="help/:page" component={HelpContainer} />
+    <Route path="get-started/invest" component={GetStartedInvestContainer} />
+    <Route path="get-started/raise" component={GetStartedRaiseContainer} />
+
+    <Route path="guide" component={GuideContainer} />
+
     <Route path="legal/:page" component={LegalContainer} />
 
     <Route path="earlybird" component={EarlybirdContainer} />

@@ -302,3 +302,10 @@ a:hover {
   padding-right: 0;
   padding-left: 0;
 }
+
+.hashtag-anchor {
+  display: block;
+  position: relative;
+  top: -$navbar-height;
+  visibility: hidden;
+}
