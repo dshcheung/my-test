@@ -21,7 +21,6 @@ const render = (routes) => {
     <AppContainer>
       <Provider store={store}>
         <Router
-          onUpdate={scrollTop}
           history={history}
           routes={routes}
         />
@@ -30,6 +29,10 @@ const render = (routes) => {
     document.getElementById('root')
   )
 }
+
+history.listen(() => {
+  scrollTop()
+})
 
 render(currentRoutes)
 
