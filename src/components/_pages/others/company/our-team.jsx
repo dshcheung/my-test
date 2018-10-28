@@ -134,7 +134,7 @@ export default class OurTeam extends Component {
                     </div>
                     <div className="col-sm-6 col-md-8">
                       <div className="box-content">
-                        <h3 className="name margin-bottom-0">
+                        <h3 className="name margin-top-0 margin-bottom-0">
                           {p.name}
                           {
                             p.link && (
