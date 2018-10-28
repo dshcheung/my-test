@@ -4,7 +4,7 @@ $min-body-content-height: calc(100vh - #{$navbar-height} - 40px) !default;
 #layouts-body {
   margin-top: $navbar-height;
   min-height: $min-body-height;
-  padding: 0 0 20px;
+  padding: 0; // 0 20px;
 
   .remove-body-top-padding {
     margin-top: -20px;
