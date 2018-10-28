@@ -67,7 +67,7 @@ export default class AboutUs extends Component {
           </div>
         </section>
 
-        <section className="who-we-are clearfix margin-top-50">
+        <section className="who-we-are clearfix margin-top-50 margin-bottom-30">
           <div className="container">
             <div className="row">
               <div className="h1 text-uppercase text-center">Our Team</div>
