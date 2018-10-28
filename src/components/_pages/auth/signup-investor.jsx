@@ -253,7 +253,7 @@ export default class SignupInvestor extends Component {
     const { sideTitleNumber, pickInvestor, intro, warningAgreement, createUserStep } = this.state
 
     return (
-      <div id="page-auth-signup-investor">
+      <div id="page-auth-signup-investor" className="margin-top-50">
         <SharedOthersSideTitle title="investor" number={sideTitleNumber} optClass="hidden-xs col-sm-3 col-md-offset-1 col-md-2" />
 
         { pickInvestor && this.pickerInvestor() }

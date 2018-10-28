@@ -23,7 +23,7 @@ export default class EarlybirdForm extends Component {
 
     return (
       <div id="forms-auth-signup-investor-create" className={optClass}>
-        <h1 className="form-title fw-500">Signup for Earlybird</h1>
+        <h1 className="form-title h3">Be the first to join our exclusive club of professional investors</h1>
 
         <form onSubmit={handleSubmit}>
           <div className="row">

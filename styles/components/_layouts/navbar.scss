@@ -4,6 +4,11 @@ $navbar-brand-padding: 10px;
 $navbar-tb-margin: 30.5px;
 $navbar-brand-line-height: $navbar-height;
 
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+  background-color: #fff;
+  color: $ahub-black !important;
+}
+
 #layouts-navbar {
   height: $navbar-height;
   background-color: $ahub-black;
