@@ -288,8 +288,8 @@ export default class Home extends Component {
               </div>
             </div>
             <SharedOthersSideTitle
-              title="SFC Licensed Platform (Approval in Principal)"
-              optClass="hidden-xs hidden-sm col-md-1 color-primary bg-white side-text-small px-20"
+              title={<span>SFC Licensed Platform <br /> (Approval in Principal)</span>}
+              optClass="hidden-xs hidden-sm col-md-1 color-primary bg-white side-text-small px-20 test-fit-right"
             />
           </div>
         </section>
@@ -427,8 +427,8 @@ export default class Home extends Component {
 
         <section className="philosophy clearfix text-center">
           <SharedOthersSideTitle
-            title="SFC Licensed Platform (Approval in Principal)"
-            optClass="hidden-xs hidden-sm col-md-1 color-primary bg-white side-text-small right"
+            title={<span>SFC Licensed Platform <br /> (Approval in Principal)</span>}
+            optClass="hidden-xs hidden-sm col-md-1 color-primary bg-white side-text-small right test-fit-left"
           />
           <div className="col-xs-12 col-md-6 col-md-offset-3 col-lg-offset-3">
             <div className="row title">
