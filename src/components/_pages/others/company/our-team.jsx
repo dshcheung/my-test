@@ -6,7 +6,7 @@ export default class OurTeam extends Component {
       {
         name: "Karen Contet Farzam",
         title: "Founder & CEO - Responsible Officer",
-        image: 'http://angelhub.io/images/team/team_karen.jpg',
+        image: '/images/team/team_karen.jpg',
         link: 'https://www.linkedin.com/in/karencontetfarzam/',
         bio: `Karen Contet Farzam is passionate about Technology and Startups with a background in investment banking in JP Morgan.
         She is the co-founder & CEO of AngelHub - Hong Kong’s first Startup Investment platform for professional investors -
@@ -23,7 +23,7 @@ export default class OurTeam extends Component {
       {
         name: "Karena Belin",
         title: "Founder & COO/CFO - Responsible Officer",
-        image: 'http://angelhub.io/images/team/team_karena.jpg',
+        image: '/images/team/team_karena.jpg',
         link: 'https://www.linkedin.com/in/karenabelin/',
         bio: `Karena Belin is Founder and CEO of HK’s biggest startup platform and community builder WHub (whub.io) and Founder and COO/CFO of AngelHub (angelhub.io), Hong Kong’s first (approval in principle) SFC licensed startup investment platform for professional investors and global startups raising growth capital.
 
@@ -35,7 +35,7 @@ export default class OurTeam extends Component {
       {
         name: "Gram Milosevic",
         title: "Alchemist & CTO",
-        image: 'http://angelhub.io/images/team/team_gram.jpg',
+        image: '/images/team/team_gram.jpg',
         link: 'https://www.linkedin.com/in/grahammilosevic/',
         bio: `Gram has been developing for 17 years in various languages (Ruby, Python, Java, C#) and different domains.
               He has worked for over a year as Visual Engineer and Dev Ops for Noble Group. Prior to that, he has been the
@@ -44,7 +44,7 @@ export default class OurTeam extends Component {
       {
         name: "Pritish Sanyal",
         title: "Investor Director",
-        image: 'http://angelhub.io/images/team/team_pritish.jpg',
+        image: '/images/team/team_pritish.jpg',
         link: 'https://www.linkedin.com/in/pritishsanyal/',
         bio: `Pritish has 10+ years of experience in which he has built and scaled early and late-stage startups
               across Asia and worked with organizations such as Accenture. He has experience across multiple
@@ -56,7 +56,7 @@ export default class OurTeam extends Component {
       {
         name: "Nicolas Breitburd",
         title: "Head of Development",
-        image: 'http://angelhub.io/images/team/team_nicolas.jpg',
+        image: '/images/team/team_nicolas.jpg',
         link: 'https://www.linkedin.com/in/nicolasbreitburd/',
         bio: `Holder of an executive MBA from INSEAD, Nicolas has been leading companies on the path of sustainable growth over the past 20 years.
               During 2015, Nicolas decided to move to Asia and settled in Hong-Kong, where he started advising and coaching start-up companies
@@ -71,7 +71,7 @@ export default class OurTeam extends Component {
       {
         name: "Jason Gerber",
         title: "Compliance Officer",
-        image: 'http://angelhub.io/images/team/team_jason.jpg',
+        image: '/images/team/team_jason.jpg',
         bio: `Jason has over 25 years’ experience advising companies in Asia on a broad range of corporate
               and legal matters including governance, regulatory compliance, M&A structuring and execution,
               joint ventures, cross border transactions, strategic partnerships, corporate restructurings, capital
@@ -86,7 +86,7 @@ export default class OurTeam extends Component {
       {
         name: "Denis Cheung",
         title: "Senior Developer",
-        image: 'http://angelhub.io/images/team/team_denis.jpg',
+        image: '/images/team/team_denis.jpg',
         link: 'https://www.linkedin.com/in/dshcheung/',
         bio: `Denis is a Business Finance Major that has a passion for web development.
               Through various means, he educated himself to further advance his skills in development and has
@@ -97,7 +97,7 @@ export default class OurTeam extends Component {
       {
         name: "Kartik Parameswaran",
         title: "Finance Manager",
-        image: 'http://angelhub.io/images/team/team_kartik.jpg',
+        image: '/images/team/team_kartik.jpg',
         link: 'https://www.linkedin.com/in/kartik-%E5%8D%A1%E8%BF%AA%E5%85%8B%EF%BC%89-parameswaran-97235659/',
         bio: `Kartik Parameswaran is a recent MBA graduate from the University of Hong Kong. He is a Chartered Accountant (CPA)
               by qualification and also a Master and a Bachelor in Commerce graduate from the University of Mumbai in India.

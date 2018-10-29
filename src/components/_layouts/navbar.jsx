@@ -42,9 +42,9 @@ export default class Navbar extends Component {
             <Link to="/">
               {
                 currentUser ? (
-                  <img src="http://angelhub.io/images/favicon-96x96.png" alt="" />
+                  <img src="/images/favicon-96x96.png" alt="" />
                 ) : (
-                  <img src="http://angelhub.io/images/logo-white.png" alt="" />
+                  <img src="/images/logo-white.png" alt="" />
                 )
               }
             </Link>

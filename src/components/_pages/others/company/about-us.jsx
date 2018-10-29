@@ -5,14 +5,14 @@ import React, { Component } from 'react'
 export default class AboutUs extends Component {
   render() {
     const people = [
-      { name: "Karen Contet Farzam", title: "Founder & CEO - Responsible Officer", image: 'http://angelhub.io/images/team/team_karen.jpg', link: 'https://www.linkedin.com/in/karencontetfarzam/' },
-      { name: "Karena Belin", title: "Founder & COO/CFO - Responsible Officer", image: 'http://angelhub.io/images/team/team_karena.jpg', link: 'https://www.linkedin.com/in/karenabelin/' },
-      { name: "Gram Milosevic", title: "Alchemist & CTO", image: 'http://angelhub.io/images/team/team_gram.jpg', link: 'https://www.linkedin.com/in/grahammilosevic/' },
-      { name: "Pritish Sanyal", title: "Investor Director", image: 'http://angelhub.io/images/team/team_pritish.jpg', link: 'https://www.linkedin.com/in/pritishsanyal/' },
-      { name: "Nicolas Breitburd", title: "Head of Development", image: 'http://angelhub.io/images/team/team_nicolas.jpg', link: 'https://www.linkedin.com/in/nicolasbreitburd/' },
-      { name: "Jason Gerber", title: "Compliance Officer", image: 'http://angelhub.io/images/team/team_jason.jpg' },
-      { name: "Denis Cheung", title: "Senior Developer", image: 'http://angelhub.io/images/team/team_denis.jpg', link: 'https://www.linkedin.com/in/dshcheung/' },
-      { name: "Kartik Parameswaran", title: "Finance Manager", image: 'http://angelhub.io/images/team/team_kartik.jpg', link: 'https://www.linkedin.com/in/kartik-%E5%8D%A1%E8%BF%AA%E5%85%8B%EF%BC%89-parameswaran-97235659/' },
+      { name: "Karen Contet Farzam", title: "Founder & CEO - Responsible Officer", image: '/images/team/team_karen.jpg', link: 'https://www.linkedin.com/in/karencontetfarzam/' },
+      { name: "Karena Belin", title: "Founder & COO/CFO - Responsible Officer", image: '/images/team/team_karena.jpg', link: 'https://www.linkedin.com/in/karenabelin/' },
+      { name: "Gram Milosevic", title: "Alchemist & CTO", image: '/images/team/team_gram.jpg', link: 'https://www.linkedin.com/in/grahammilosevic/' },
+      { name: "Pritish Sanyal", title: "Investor Director", image: '/images/team/team_pritish.jpg', link: 'https://www.linkedin.com/in/pritishsanyal/' },
+      { name: "Nicolas Breitburd", title: "Head of Development", image: '/images/team/team_nicolas.jpg', link: 'https://www.linkedin.com/in/nicolasbreitburd/' },
+      { name: "Jason Gerber", title: "Compliance Officer", image: '/images/team/team_jason.jpg' },
+      { name: "Denis Cheung", title: "Senior Developer", image: '/images/team/team_denis.jpg', link: 'https://www.linkedin.com/in/dshcheung/' },
+      { name: "Kartik Parameswaran", title: "Finance Manager", image: '/images/team/team_kartik.jpg', link: 'https://www.linkedin.com/in/kartik-%E5%8D%A1%E8%BF%AA%E5%85%8B%EF%BC%89-parameswaran-97235659/' },
     ]
 
     return (
