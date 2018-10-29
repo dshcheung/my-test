@@ -5,7 +5,7 @@ export default class OurTeam extends Component {
     const people = [
       {
         name: "Karen Contet Farzam",
-        title: "Founder & CEO",
+        title: "Founder & CEO - Responsible Officer",
         image: 'http://angelhub.io/images/team/team_karen.jpg',
         link: 'https://www.linkedin.com/in/karencontetfarzam/',
         bio: `Karen Contet Farzam is passionate about Technology and Startups with a background in investment banking in JP Morgan.
@@ -22,7 +22,7 @@ export default class OurTeam extends Component {
       },
       {
         name: "Karena Belin",
-        title: "Founder & COO",
+        title: "Founder & COO - Responsible Officer",
         image: 'http://angelhub.io/images/team/team_karena.jpg',
         link: 'https://www.linkedin.com/in/karenabelin/',
         bio: `Karena Belin holds a double diploma in business and administration from the University of
@@ -44,6 +44,18 @@ export default class OurTeam extends Component {
               He has worked for over a year as Visual Engineer and Dev Ops for Noble Group. Prior to that, he has been the
               head of digital of the Hong Kong based agency AlchemyAsia. He has also been the platform creator and Alchemist
               of Hong Kong’s startup success BEECRAZY.` },
+      {
+        name: "Pritish Sanyal",
+        title: "Investor Director",
+        image: 'http://angelhub.io/images/team/team_pritish.jpg',
+        link: 'https://www.linkedin.com/in/pritishsanyal/',
+        bio: `Pritish has 10+ years of experience in which he has built and scaled early and late-stage startups
+              across Asia and worked with organizations such as Accenture. He has experience across multiple
+              industries in building and scaling businesses. He has closely worked with investors, VCs and
+              family funds and most recently worked for as a founding team member of a premier venture
+              builder in SEA founded by ex-AirBnB and WeWork senior employees. He is also a fellow of
+              StartingBloc and RealAcad. He has an MBA from The University of Hong Kong and London
+              Business School and Bachelor in Engineering from India.` },
       {
         name: "Nicolas Breitburd",
         title: "Head of Development",
@@ -74,18 +86,6 @@ export default class OurTeam extends Component {
               returning to the US for law school, Jason resumed his career in Asia where, for the past 16 years,
               he has advised fast growing technology companies both as in house counsel and working with
               PE firms and family offices` },
-      {
-        name: "Pritish Sanyal",
-        title: "Investor Director",
-        image: 'http://angelhub.io/images/team/team_pritish.jpg',
-        link: 'https://www.linkedin.com/in/pritishsanyal/',
-        bio: `Pritish has 10+ years of experience in which he has built and scaled early and late-stage startups
-              across Asia and worked with organizations such as Accenture. He has experience across multiple
-              industries in building and scaling businesses. He has closely worked with investors, VCs and
-              family funds and most recently worked for as a founding team member of a premier venture
-              builder in SEA founded by ex-AirBnB and WeWork senior employees. He is also a fellow of
-              StartingBloc and RealAcad. He has an MBA from The University of Hong Kong and London
-              Business School and Bachelor in Engineering from India.` },
       {
         name: "Denis Cheung",
         title: "Senior Developer",
