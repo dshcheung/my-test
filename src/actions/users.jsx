@@ -34,8 +34,8 @@ export const createUser = (values) => {
       mobile: _.get(values, 'mobile', null),
       password: _.get(values, 'password', null),
       profile: {
-        first_name: _.get(values, 'firstName', null),
-        last_name: _.get(values, 'lastName', null)
+        first_name: _.get(values, 'first_name', null),
+        last_name: _.get(values, 'last_name', null)
       }
     }, 'user')
   })

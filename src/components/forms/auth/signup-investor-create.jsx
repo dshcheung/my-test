@@ -13,8 +13,8 @@ import MobileField from '../../shared/form-elements/mobile-field'
       email: ["presences", "email"],
       password: ["presences", { type: "length", opts: { min: 6 } }],
       mobile: ["mobile"],
-      firstName: ["presences"],
-      lastName: ["presences"]
+      first_name: ["presences"],
+      last_name: ["presences"]
     }, values)
   }
 })
@@ -30,7 +30,7 @@ export default class AuthSigupInvestorCreateForm extends Component {
           <div className="row">
             <div className="col-xs-12 col-sm-6">
               <Field
-                name="firstName"
+                name="first_name"
                 component={TextField}
                 opts={{
                   type: "text",
@@ -42,7 +42,7 @@ export default class AuthSigupInvestorCreateForm extends Component {
             </div>
             <div className="col-xs-12 col-sm-6">
               <Field
-                name="lastName"
+                name="last_name"
                 component={TextField}
                 opts={{
                   type: "text",
