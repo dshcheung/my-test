@@ -528,14 +528,20 @@ export default class Home extends Component {
             </div>
             <div className="container margin-top-30">
               <div className="row">
-                <div className="col-xs-12 col-md-4">
+                <div className="col-xs-12 col-md-2 col-md-offset-1">
                   <a href="https://www.ft.com/content/f3c01d7a-69a6-11e8-aee1-39f3459514fd" target="_blank" rel="noopener noreferrer" className="thumbnail"><img src="http://angelhub.io/images/media/landing_media1.png" alt="Financial Times" /></a>
                 </div>
-                <div className="col-xs-12 col-md-4">
+                <div className="col-xs-12 col-md-2">
                   <a href="https://www.lattice80.com/lattice80-fintech-50-hong-kong-top-influencers/" target="_blank" rel="noopener noreferrer" className="thumbnail"><img src="http://angelhub.io/images/media/landing_media2.png" alt="Lattice 80" /></a>
                 </div>
-                <div className="col-xs-12 col-md-4">
+                <div className="col-xs-12 col-md-2">
                   <a href="https://www.siliconrepublic.com/enterprise/inspirefest-karen-contet-farzam-cashless-society" target="_blank" rel="noopener noreferrer" className="thumbnail"><img src="http://angelhub.io/images/media/landing_media3.png" alt="Silicon Republic" /></a>
+                </div>
+                <div className="col-xs-12 col-md-2">
+                  <a href="http://www.asianentrepreneur.org/karena-belin-co-founder-of-w-hub/" target="_blank" rel="noopener noreferrer" className="thumbnail"><img src="http://angelhub.io/images/media/landing_media4.png" alt="The Asian Entrepreneur" /></a>
+                </div>
+                <div className="col-xs-12 col-md-2">
+                  <a href="https://innovationhub.fnst.org/content/start-your-business-hong-kong-or-you-dont-make-it-elsewhere-0" target="_blank" rel="noopener noreferrer" className="thumbnail"><img src="http://angelhub.io/images/media/landing_media5.png" alt="Für Die Freiheit" /></a>
                 </div>
               </div>
             </div>
