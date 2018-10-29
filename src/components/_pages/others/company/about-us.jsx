@@ -6,7 +6,7 @@ export default class AboutUs extends Component {
   render() {
     const people = [
       { name: "Karen Contet Farzam", title: "Founder & CEO - Responsible Officer", image: 'http://angelhub.io/images/team/team_karen.jpg', link: 'https://www.linkedin.com/in/karencontetfarzam/' },
-      { name: "Karena Belin", title: "Founder & COO - Responsible Officer", image: 'http://angelhub.io/images/team/team_karena.jpg', link: 'https://www.linkedin.com/in/karenabelin/' },
+      { name: "Karena Belin", title: "Founder & COO/CFO - Responsible Officer", image: 'http://angelhub.io/images/team/team_karena.jpg', link: 'https://www.linkedin.com/in/karenabelin/' },
       { name: "Gram Milosevic", title: "Alchemist & CTO", image: 'http://angelhub.io/images/team/team_gram.jpg', link: 'https://www.linkedin.com/in/grahammilosevic/' },
       { name: "Pritish Sanyal", title: "Investor Director", image: 'http://angelhub.io/images/team/team_pritish.jpg', link: 'https://www.linkedin.com/in/pritishsanyal/' },
       { name: "Nicolas Breitburd", title: "Head of Development", image: 'http://angelhub.io/images/team/team_nicolas.jpg', link: 'https://www.linkedin.com/in/nicolasbreitburd/' },

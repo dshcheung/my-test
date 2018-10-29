@@ -22,18 +22,15 @@ export default class OurTeam extends Component {
       },
       {
         name: "Karena Belin",
-        title: "Founder & COO - Responsible Officer",
+        title: "Founder & COO/CFO - Responsible Officer",
         image: 'http://angelhub.io/images/team/team_karena.jpg',
         link: 'https://www.linkedin.com/in/karenabelin/',
-        bio: `Karena Belin holds a double diploma in business and administration from the University of
-        Mannheim and the MBA business school ESSEC in Paris. She has worked 15 years for Procter & Gamble in various roles
-        including Finance, Sales and Strategy across Europe, North East Asia and Greater China before co-founding W Hub.
-        She has extensive background in business and financial planning, business acquisition and integration
-        (leading Gillette integration in Japan).
-        She acts currently as speaker, mentor and judge at events and organisations such as the Chicago Booth GNVC, Google EYE,
-        RISE Conference and Web Summit, Jeju Peace and Prosperity Conference, Techsauce Thailande, Tech Open Air Berlin, IFLR,
-        Nexchange, Techstar’s StartupWeekendHK and Poly U Entrepreneurial Mentorship Network as well as driving diversity and
-        inclusion as board member of WOW at the American Women’s Association.`
+        bio: `Karena Belin is Founder and CEO of HK’s biggest startup platform and community builder WHub (whub.io) and Founder and COO/CFO of AngelHub (angelhub.io), Hong Kong’s first (approval in principle) SFC licensed startup investment platform for professional investors and global startups raising growth capital.
+
+              Since 2013, she has been passionate about entrepreneurship and a leader in the startup scene. She acts currently as speaker, mentor and judge at events and organisations such as the Chicago Booth GNVC, Google EYE, RISE Conference and Web Summit, Jeju Peace and Prosperity Conference, FinTech Valley Vizag India, Techsauce Thailande, Asia Pacific Konferenz, Tech Open Air Berlin, IFLR, Nexchange, Techstar’s StartupWeekendHK, global YPO YNG+ and more.  She is a Member of the Global FinTech Core Group at the Government of Andhra Pradesh, member of the FinTech Association of Hong Kong (FTAHK), The Indus Entrepreneurs Network (TiE), President of the board of the parent organisation (PFO) at Hong Kong International School,  as well as driving diversity and inclusion as board member of WOW at the American Women’s Association.
+
+              Karena Belin holds a double diploma in business and administration from the University of
+              Mannheim and the MBA business school ESSEC in Paris. She has worked 15 years for Procter & Gamble in various roles including Finance, Sales and Strategy across Europe, North East Asia and Greater China before co-founding W Hub. She has extensive background in business and financial planning, business acquisition and integration (leading Gillette integration in Japan).`
       },
       {
         name: "Gram Milosevic",
