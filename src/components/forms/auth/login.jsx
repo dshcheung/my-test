@@ -33,7 +33,7 @@ export default class AuthLoginForm extends Component {
             component={TextField}
             opts={{
               type: "email",
-              label: "Username / Email",
+              label: "Email",
               placeholder: "adam.chan@domain.com"
             }}
           />

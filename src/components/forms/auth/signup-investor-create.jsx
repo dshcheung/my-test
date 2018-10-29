@@ -72,7 +72,7 @@ export default class AuthSigupInvestorCreateForm extends Component {
                 component={TextField}
                 opts={{
                   type: "email",
-                  label: "Username / Email",
+                  label: "Email",
                   placeholder: "example@mail.com"
                 }}
               />

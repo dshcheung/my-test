@@ -53,7 +53,7 @@ export default class AuthSignupStartup extends Component {
             component={TextField}
             opts={{
               type: "email",
-              label: "Username / Email"
+              label: "Email"
             }}
           />
 

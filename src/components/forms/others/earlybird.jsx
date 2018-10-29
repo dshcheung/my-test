@@ -12,8 +12,8 @@ import MobileField from '../../shared/form-elements/mobile-field'
     return Validators({
       email: ["presences", "email"],
       mobile: ["mobile"],
-      firstName: ["presences"],
-      lastName: ["presences"]
+      first_name: ["presences"],
+      last_name: ["presences"]
     }, values)
   }
 })
@@ -29,7 +29,7 @@ export default class EarlybirdForm extends Component {
           <div className="row">
             <div className="col-xs-12 col-sm-6">
               <Field
-                name="firstName"
+                name="first_name"
                 component={TextField}
                 opts={{
                   type: "text",
@@ -40,7 +40,7 @@ export default class EarlybirdForm extends Component {
             </div>
             <div className="col-xs-12 col-sm-6">
               <Field
-                name="lastName"
+                name="last_name"
                 component={TextField}
                 opts={{
                   type: "text",
@@ -51,7 +51,7 @@ export default class EarlybirdForm extends Component {
             </div>
           </div>
 
-          <div className="row">
+          <div className="row margin-top-0">
             <div className="col-xs-12 col-sm-6">
               <Field
                 name="mobile"
@@ -69,8 +69,21 @@ export default class EarlybirdForm extends Component {
                 component={TextField}
                 opts={{
                   type: "email",
-                  label: "Username / Email",
+                  label: "Email",
                   placeholder: "example@mail.com"
+                }}
+              />
+            </div>
+          </div>
+
+          <div className="row margin-top-0">
+            <div className="col-xs-12">
+              <Field
+                name="code"
+                component={TextField}
+                opts={{
+                  type: "text",
+                  label: "Exclusive Code"
                 }}
               />
             </div>
