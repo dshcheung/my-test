@@ -12,8 +12,9 @@ export const cEarlybird = (values) => {
     data: getFormData({
       email: _.get(values, 'email', null),
       mobile: _.get(values, 'mobile', null),
-      first_name: _.get(values, 'firstName', null),
-      last_name: _.get(values, 'lastName', null)
+      first_name: _.get(values, 'first_name', null),
+      last_name: _.get(values, 'last_name', null),
+      code: _.get(values, 'code', null)
     }, 'user')
   })
 
