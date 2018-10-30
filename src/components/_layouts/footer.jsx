@@ -74,7 +74,7 @@ export default class Footer extends Component {
                 </div>
                 <hr />
                 <p className="text-white">
-                  <strong className="fw-500">AngelHub Limited is Approved in Principal Securities and Futures Commission Licensed Platform</strong>.
+                  <strong className="fw-500">AngelHub is a (approval in principal) Securities and Futures Commission licensed platform</strong>.
                   AngelHub Limited 2018. All rights reserved. AngelHub Limited, a limited company registered in Hong Kong (No. 2486647),
                   with registered office at Remex Centre 7F, 42 Wong Chuk Hang Road, Hong Kong. angelhub.io is a website owned and operated by AngelHub Limited.
                 </p>

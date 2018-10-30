@@ -223,19 +223,19 @@ export default class Home extends Component {
             <div className="row cards">
               <div className="col-xs-6 card">
                 <div className="h5 text-uppercase">VENTURE AS AN ASSET CLASS</div>
-                <div>AngelHub democratises startup investment and provide you the opportunity to invest in highly vetted startup opportunities</div>
+                <div>AngelHub democratises startup investment and provides you the opportunity to invest in highly vetted startup opportunities</div>
               </div>
 
               <div className="col-xs-6 card">
                 <div className="h5 text-uppercase">BUILD A DIVERSIFIED STARTUP PORTFOLIO</div>
 
-                <div>With a minimum investment of US$ 10,000 - 50 times lower than usual venture investment size - build a diversified portfolio with startups from various industries and geographical locations</div>
+                <div>With a minimum investment of US$ 10,000 - 50 times lower than usual venture investment size - build a diversified portfolio with startups from various industries and geographies</div>
               </div>
 
               <div className="col-xs-6 card">
                 <div className="h5 text-uppercase">HIGHLY VETTED STARTUPS</div>
 
-                <div>Less than 5% of startups that apply get accepted. Listed startups get through our rigorous due diligence screening process and committees</div>
+                <div>Less than 5% of startups that apply get accepted. Listed startups have gotten through our rigorous due diligence screening process and committees</div>
               </div>
 
               <div className="col-xs-6 card">
@@ -271,17 +271,17 @@ export default class Home extends Component {
 
               <div className="row points text-left">
                 <ul className="col-xs-4 list-style-none">
-                  <li><span className="text-primary margin-right-5">></span>Startups go through a throughout selection process from an online application, due diligence screening to pitching to AngelHub's selection and investment committee</li>
+                  <li><span className="text-primary margin-right-5">></span>Startups go through a thorough selection process from an online application, due diligence screening to pitching to AngelHub's selection and investment committee</li>
                   <li><span className="text-primary margin-right-5">></span>Access highly vetted startups with all the due diligence documents you need</li>
                   <li><span className="text-primary margin-right-5">></span>Decide in which opportunity you want to invest</li>
                 </ul>
                 <ul className="col-xs-4 list-style-none">
-                  <li><span className="text-primary margin-right-5">></span>Diversify across multiple startups with a minimum ticket size of US$ 10,000</li>
+                  <li><span className="text-primary margin-right-5">></span>Diversify across multiple startups with a minimum ticket sizes of US$ 10,000</li>
                   <li><span className="text-primary margin-right-5">></span>Build a personalised and diversified portfolio</li>
                   <li><span className="text-primary margin-right-5">></span>Access worldwide growth state ventures scaling in Asia from all type of sectors and technologies</li>
                 </ul>
                 <ul className="col-xs-4 list-style-none">
-                  <li><span className="text-primary margin-right-5">></span>Learn everything you need from new business model, latest technologies or legal materials through our master classes and education centre</li>
+                  <li><span className="text-primary margin-right-5">></span>Learn everything you need from new business models, latest technologies or legal materials through our master classes and education centre</li>
                   <li><span className="text-primary margin-right-5">></span>Post investment structure and process done by AngelHub</li>
                   <li><span className="text-primary margin-right-5">></span>Analytics and post investment reports directly on the platform</li>
                 </ul>
@@ -309,7 +309,7 @@ export default class Home extends Component {
 
                     <div>
                       <strong>It is simple and easy</strong>
-                      <p>AngelHub is a SFC Licensed (Approval in Principal) entity and all Investors are required to be verified as Professional Investors before browsing any investment opportunities. Investor verification will grant you all access to startup campaigns and data room</p>
+                      <p>AngelHub is a SFC Licensed (Approval in Principal) entity and all Investors are required to be verified as Professional Investors before browsing any investment opportunity. Investor verification will grant you access to all startup campaigns and data room</p>
                     </div>
                   </div>
 
@@ -319,7 +319,7 @@ export default class Home extends Component {
 
                     <div>
                       <strong>Browse diversifed investment opportunities</strong>
-                      <p>Browse all AngelHub startup's campaigns and access all information you need to investment in the startup you believe in. We can also customized your feed according to your interests</p>
+                      <p>Browse all AngelHub startup campaigns and access all information you need to invest in the startups you believe in. We can also customised your feed according to your interests</p>
                     </div>
                   </div>
                 </div>
@@ -331,7 +331,7 @@ export default class Home extends Component {
 
                     <div>
                       <strong>Screen the campaign you like</strong>
-                      <p>Access all the information you need through the campaign and data room to screen the campaign. You can also access the founders and their team face to face through events or in conference calls. Behind each tech company, there is a team of passionate and dedicated persons</p>
+                      <p>Access all information you need through the campaign and data room to screen the campaign. You can also meet the founders and their team face to face through events or in conference calls. Behind each tech company, there is a team of passionate and dedicated people</p>
                     </div>
                   </div>
 
@@ -440,7 +440,7 @@ export default class Home extends Component {
                 <div className="h1 water-mark">WHO</div>
                 <div className="h4 title">WHO IS BEHIND</div>
 
-                <div>People matters. Behind AngelHub is a team of passionnate entrepreneurs, innoovators and tech lovers. At the ero of the 4th industrial revolution, Startups are driving innovation and changing the future by always challenging the status quo. The Founders of WHub, the biggest Hong Kong startup ecosystem, decided to continue its mission to empower startups by democratizing fundraising and making investment in startups accessible to all Professional Investors</div>
+                <div>People matter. Behind AngelHub is a team of passionate entrepreneurs, innovators and tech lovers. At the era of the 4th industrial revolution, Startups are driving innovation and changing the future by always challenging the status quo. The Founders of WHub, Hong Kong’s biggest startup ecosystem, decided to continue their mission to empower startups by democratizing fundraising and making investment in startups accessible to all Professional Investors</div>
               </div>
 
               <div className="col-xs-6 card image">
@@ -455,14 +455,14 @@ export default class Home extends Component {
                 <div className="h1 water-mark">WHY</div>
                 <div className="h4 title">WHY WE'RE HERE</div>
 
-                <div>Let's be part of the digital revolution and empower startups to drive wealth and economic growth by giving them the resource they need. Fundraising is a long and daunting process for entrepreneurs and they need to focus on developing their business rather than spending months fundraising. Professional Investors want to diversify their portfolio be part of the digital revolution but lack time. both entrepreneurs and Investors lack time, access and know-how to fulfill this. AngelHub is to help Professional Investors invest in the future.</div>
+                <div>Let's be part of the digital revolution and empower startups to drive wealth and economic growth by giving them the resources they need. Fundraising is a long and daunting process for entrepreneurs and they need to focus on developing their business rather than spending months fundraising. Professional Investors want to diversify their portfolio and be part of the digital revolution but lack time. both Entrepreneurs and Investors lack time, access and know-how to fulfill this. AngelHub is to help Professional Investors invest in the future.</div>
               </div>
 
               <div className="col-xs-6 card">
                 <div className="h1 water-mark">WHAT</div>
                 <div className="h4 title">WHAT WE DO</div>
 
-                <div>AngelHub is the only SFC Licensed Platform (Approval in Principal) highly vetted startup Investment platform for Professional investors. It provides access, time and know how to startups and PI to democratize the fundraising process that was reserved to an small exclusive group of people. AngelHub combines the professionalism of VCs, the flexibility of Angel investing and power of key strategic partnerships.</div>
+                <div>AngelHub is the only SFC Licensed Platform (Approval in Principal) highly vetted startup Investment platform for Professional Investors. It provides access, time and know how to startups and Professional Investors to democratize the fundraising process that was reserved to a small exclusive group of people. AngelHub combines the professionalism of Venture Capitalists, the flexibility of Angel investing and the power of key strategic partnerships.</div>
               </div>
 
               <div className="col-xs-6 card image">
@@ -508,7 +508,7 @@ export default class Home extends Component {
         <section className="launch-today clearfix text-center">
           <div className="col-xs-12">
             <div className="row title">
-              <div className="h4 text-primary">LAUNCH A FUNDRAISE FOR YOUR BUSINESS TODAY</div>
+              <div className="h4 text-primary">LAUNCH A FUNDRAISING CAMPAIGN FOR YOUR BUSINESS TODAY</div>
             </div>
 
             <div className="row text-left">
