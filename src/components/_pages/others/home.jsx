@@ -508,7 +508,7 @@ export default class Home extends Component {
         <section className="launch-today clearfix text-center">
           <div className="col-xs-12">
             <div className="row title">
-              <div className="h4 text-primary">LAUNCH A FUNDRAISING CAMPAIGN FOR YOUR BUSINESS TODAY</div>
+              <div className="h4 text-primary">JOIN OUR NEWSLETTER</div>
             </div>
 
             <div className="row text-left">
